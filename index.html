@@ -4,231 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Atlas A.S</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <!-- Sidebar de navegación -->
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <h1 class="logo">Private Atlas</h1>
-            <span class="logo-sub">A.S</span>
+
+<!-- BOTÓN SIDEBAR -->
+<button id="toggle-sidebar" class="toggle-btn">☰</button>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <h1 class="logo">Private Atlas</h1>
+        <span class="logo-sub">A.S</span>
+    </div>
+
+    <nav class="sidebar-nav">
+        <button class="nav-btn" data-section="home">🏠 <span>Inicio</span></button>
+        <button class="nav-btn" data-section="planner">📅 <span>Planificador</span></button>
+        <button class="nav-btn" data-section="journal">📖 <span>Diario</span></button>
+        <button class="nav-btn" data-section="library">📚 <span>Biblioteca</span></button>
+        <button class="nav-btn" data-section="mood">🎧 <span>Música</span></button>
+    </nav>
+
+    <div class="sidebar-footer">
+        <button class="lang-btn active" data-lang-select="es">ES</button>
+        <button class="lang-btn" data-lang-select="en">EN</button>
+    </div>
+</aside>
+
+<!-- ESCRITORIO -->
+<main class="desktop" id="desktop">
+    <div id="desktop-welcome" class="desktop-welcome">
+        <h2>Bienvenido</h2>
+        <p>Selecciona una opción</p>
+    </div>
+</main>
+
+<!-- TEMPLATE VENTANA -->
+<template id="window-template">
+    <div class="window">
+        <div class="window-header">
+            <h3 class="window-title"></h3>
+            <button class="window-close">✖</button>
         </div>
+        <div class="window-content"></div>
+    </div>
+</template>
 
-        <nav class="sidebar-nav">
-            <button class="nav-btn" data-section="home">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-                <span data-lang="nav_home">Inicio</span>
-            </button>
+<!-- HOME -->
+<template id="content-home">
+    <h2>Hola 👋</h2>
+    <p class="phrase-text"></p>
+</template>
 
-            <button class="nav-btn" data-section="planner">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-                <span data-lang="nav_planner">Planificador</span>
-            </button>
+<!-- PLANNER -->
+<template id="content-planner">
+    <input id="task-input" placeholder="Nueva tarea">
+    <button id="add-task">Agregar</button>
+    <ul id="task-list"></ul>
+</template>
 
-            <button class="nav-btn" data-section="journal">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                </svg>
-                <span data-lang="nav_journal">Diario</span>
-            </button>
+<!-- JOURNAL -->
+<template id="content-journal">
+    <textarea id="journal-text" placeholder="Escribe..."></textarea>
+    <button id="save-journal">Guardar</button>
+</template>
 
-            <button class="nav-btn" data-section="library">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                    <line x1="8" y1="7" x2="16" y2="7"></line>
-                    <line x1="8" y1="11" x2="16" y2="11"></line>
-                </svg>
-                <span data-lang="nav_library">Biblioteca</span>
-            </button>
+<!-- LIBRARY -->
+<template id="content-library">
+    <div class="book-grid">
+        <div class="book-card" data-file="libro1.pdf">📘 Libro 1</div>
+        <div class="book-card" data-file="libro2.pdf">📙 Libro 2</div>
+    </div>
+</template>
 
-            <button class="nav-btn" data-section="mood">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 18V5l12-2v13"></path>
-                    <circle cx="6" cy="18" r="3"></circle>
-                    <circle cx="18" cy="16" r="3"></circle>
-                </svg>
-                <span data-lang="nav_mood">Música</span>
-            </button>
-        </nav>
+<!-- MUSIC -->
+<template id="content-mood">
+    <input id="spotify-link" placeholder="Link Spotify">
+    <button id="load-spotify">Cargar</button>
+    <div id="player"></div>
+</template>
 
-        <div class="sidebar-footer">
-            <div class="lang-switch">
-                <button class="lang-btn active" data-lang-select="es">ES</button>
-                <span class="lang-divider">|</span>
-                <button class="lang-btn" data-lang-select="en">EN</button>
-            </div>
-        </div>
-    </aside>
-
-    <!-- Área de escritorio principal -->
-    <main class="desktop" id="desktop">
-        <div class="desktop-welcome" id="desktop-welcome">
-            <div class="welcome-content">
-                <h2 data-lang="welcome_title">Bienvenido a tu espacio personal</h2>
-                <p data-lang="welcome_subtitle">Selecciona una opción del menú lateral para comenzar</p>
-                <div class="welcome-icon">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Plantilla de ventana -->
-    <template id="window-template">
-        <div class="window" data-section="">
-            <div class="window-header">
-                <h3 class="window-title"></h3>
-                <button class="window-close" aria-label="Cerrar">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-            </div>
-            <div class="window-content"></div>
-        </div>
-    </template>
-
-    <!-- Contenido Home -->
-    <template id="content-home">
-        <div class="content-home">
-            <h2 data-lang="home_greeting">¡Hola! Bienvenido de nuevo</h2>
-            <p class="home-date"></p>
-            <div class="random-phrase">
-                <p class="phrase-text"></p>
-            </div>
-            <div class="home-actions">
-                <p data-lang="home_hint">Explora las diferentes secciones para organizar tu día</p>
-            </div>
-        </div>
-    </template>
-
-    <!-- Contenido Planner -->
-    <template id="content-planner">
-        <div class="content-planner">
-            <div class="planner-input">
-                <input type="text" id="task-input" data-lang-placeholder="planner_placeholder" placeholder="Escribe una nueva tarea...">
-                <button class="add-task-btn" data-lang="planner_add">Agregar</button>
-            </div>
-            <ul class="task-list" id="task-list"></ul>
-            <div class="planner-stats">
-                <span data-lang="planner_total">Total: <span class="task-count">0</span></span>
-                <span data-lang="planner_done">Completadas: <span class="done-count">0</span></span>
-            </div>
-        </div>
-    </template>
-
-    <!-- Contenido Journal -->
-    <template id="content-journal">
-        <div class="content-journal">
-            <div class="journal-header">
-                <span class="journal-date"></span>
-                <span class="journal-last-save" data-lang="journal_last_save">Último guardado: Nunca</span>
-            </div>
-            <textarea id="journal-textarea" data-lang-placeholder="journal_placeholder" placeholder="Escribe tus pensamientos, reflexiones o lo que desees recordar..."></textarea>
-            <div class="journal-footer">
-                <span class="char-count">0 caracteres</span>
-                <button class="save-btn" data-lang="journal_save">Guardar</button>
-            </div>
-        </div>
-    </template>
-
-    <!-- Contenido Library -->
-    <template id="content-library">
-        <div class="content-library">
-            <h3 data-lang="library_title">Mi Biblioteca</h3>
-            <div class="book-grid">
-                <div class="book-card" data-book="1">
-                    <div class="book-cover color-1">
-                        <span class="book-icon">📖</span>
-                    </div>
-                    <div class="book-info">
-                        <h4>El Arte de Pensar</h4>
-                        <p>Romain Rolland</p>
-                    </div>
-                </div>
-                <div class="book-card" data-book="2">
-                    <div class="book-cover color-2">
-                        <span class="book-icon">📚</span>
-                    </div>
-                    <div class="book-info">
-                        <h4>Meditaciones</h4>
-                        <p>Marco Aurelio</p>
-                    </div>
-                </div>
-                <div class="book-card" data-book="3">
-                    <div class="book-cover color-3">
-                        <span class="book-icon">📕</span>
-                    </div>
-                    <div class="book-info">
-                        <h4>El Hombre Busca Sentido</h4>
-                        <p>Viktor Frankl</p>
-                    </div>
-                </div>
-                <div class="book-card" data-book="4">
-                    <div class="book-cover color-4">
-                        <span class="book-icon">📗</span>
-                    </div>
-                    <div class="book-info">
-                        <h4>El Poder del Hábito</h4>
-                        <p>Charles Duhigg</p>
-                    </div>
-                </div>
-                <div class="book-card" data-book="5">
-                    <div class="book-cover color-5">
-                        <span class="book-icon">📘</span>
-                    </div>
-                    <div class="book-info">
-                        <h4>Sapiens</h4>
-                        <p>Yuval Noah Harari</p>
-                    </div>
-                </div>
-                <div class="book-card" data-book="6">
-                    <div class="book-cover color-6">
-                        <span class="book-icon">📙</span>
-                    </div>
-                    <div class="book-info">
-                        <h4>El Monje que Vendió Su Ferrari</h4>
-                        <p>Robin Sharma</p>
-                    </div>
-                </div>
-            </div>
-            <p class="library-note" data-lang="library_note">Haz clic en un libro para abrir el PDF</p>
-        </div>
-    </template>
-
-    <!-- Contenido Mood (Música) -->
-    <template id="content-mood">
-        <div class="content-mood">
-            <h3 data-lang="mood_title">Tu Espacio Musical</h3>
-            <p class="mood-description" data-lang="mood_description">Pega el enlace de una canción o playlist de Spotify para escucharla aquí</p>
-            <div class="spotify-input">
-                <input type="text" id="spotify-link" data-lang-placeholder="mood_placeholder" placeholder="https://open.spotify.com/track/...">
-                <button class="convert-btn" data-lang="mood_convert">Convertir</button>
-            </div>
-            <div class="spotify-player" id="spotify-player">
-                <div class="player-placeholder" data-lang="mood_placeholder_text">Pegar enlace arriba</div>
-            </div>
-        </div>
-    </template>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
