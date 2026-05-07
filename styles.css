@@ -1,10 +1,13 @@
 body {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Plus Jakarta Sans', sans-serif;
     background: linear-gradient( 135deg,
         #f5f0eb,
         #ECD8CD,
         #f2e6df
+
     );
 
     overflow:hidden
@@ -26,7 +29,7 @@ body {
     width: 70px;
 }
 
-.sidebar.collapsed.nav-btn span {
+.sidebar.collapsed .nav-btn span {
     display: none;
 }
 
@@ -43,7 +46,7 @@ body {
     display: block;
     margin: 10px 0;
     width: 100%;
-    background: rgba(255,255,255,0,15);
+    background: rgba(255,255,255,0.15);
     border-radius: 14px;
     cursor: pointer;
     transition: 0.3s;
@@ -77,7 +80,7 @@ body {
 /* WINDOW */
 .window {
     position: absolute;
-    background: rgba(255,255,255,0,75);
+    background: rgba(255,255,255,0.75);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
@@ -106,7 +109,7 @@ body {
 
 .book-card {
     border-radius: 15px;
-    background: -o-linear-gradient(
+    background: linear-gradient(
         135deg,
         #EC9C9D,
         #AA7F66

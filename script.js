@@ -79,7 +79,7 @@ function openWindow(section){
 
         newWindow.remove();
 
-    });
+    })
 
     function dragWindow(windowElement){
         const header =
@@ -92,9 +92,9 @@ function openWindow(section){
         header.addEventListener("mousedown",(e)=>{
             isDragging = true;
             offsetX = 
-            e.clientX - windowElement.offsetLeft;
+            clientX - windowElement.offsetLeft;
             offsetY =
-            e.clienteY - windowElement.offsetTop;
+            clienteY - windowElement.offsetTop;
         });
         document.addEventListener("mousemove",(e)=>{
             if(!isDragging) return;
@@ -111,7 +111,7 @@ function openWindow(section){
 
 
     // AGREGAR AL DESKTOP
-    dragwindow(newWindow);
+    dragWindow(newWindow);
     desktop.appendChild(newWindow);
 
 }
