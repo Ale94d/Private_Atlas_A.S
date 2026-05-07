@@ -59,15 +59,16 @@ body {
 
 .desktop-welcome{
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 55%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,-40%);
     text-align: center;
     color: #443025;
+    width: 500px;
 }
 
 .desktop-welcome h2{
-    font-size: 60px;
+    font-size: 36px;
 }
 .desktop-welcome p{
     font-size: 18px;
