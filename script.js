@@ -81,6 +81,33 @@ function openWindow(section){
 
     });
 
+    function dragwindow(windowElement){
+        const header =
+        windowElement.querySelector(",window-header");
+
+        let offsetX = 0;
+        let offsetY = 0;
+        let isDragging = false;
+
+        header.addEventListener("mousedown",(e)=>{
+            isDragging = true;
+            offsetX = 
+            e.clientX - windowElement.offsetLeft;
+            offsetY =
+            e.clienteY - windowElement.offset top;
+        });
+        document.addEventListener("mousemove",(e)=>{
+            if(!isDragging) return;
+            windowElement.style.left =
+            e.clientX - offsetX + "px";
+            windowElement.sityle.top =
+            e.clientY - offsetY + "px";
+        });
+        document.addEventListener("mouseup",()=>{
+            isDragging = false;
+        });
+    }
+
 
 
     // AGREGAR AL DESKTOP

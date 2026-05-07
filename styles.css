@@ -1,15 +1,21 @@
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: #F5F0EB;
-}
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: linear-gradient( 135deg,
+        #f5f0eb,
+        #ECD8CD,
+        #f2e6df
+    );
+
+    overflow:hidden
+} 
 
 /* SIDEBAR */
 .sidebar {
     width: 250px;
     height: 100vh;
     background: linear-gradient(180deg,#8f633d,#443025);
-    color: white;
+    color: rgb(189, 135, 135);
     position: fixed;
     padding: 20px;
     transition: 0.3s;
@@ -20,7 +26,7 @@ body {
     width: 70px;
 }
 
-.sidebar.collapsed span {
+.sidebar.collapsed.nav-btn span {
     display: none;
 }
 
@@ -51,6 +57,22 @@ body {
     transition: 0.3s;
 }
 
+.desktop-welcome{
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    color: #443025;
+}
+
+.desktop-welcome h2{
+    font-size: 60px;
+}
+.desktop-welcome p{
+    font-size: 18px;
+    opacity: 0.7;
+}
 /* WINDOW */
 .window {
     position: absolute;
@@ -61,9 +83,10 @@ body {
 
 .window-header {
     background: linear-gradient(135deg,#EC9C9D,#AA7F66);
-    padding: 10px;
+    padding: 14px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     cursor: move;
 }
 

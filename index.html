@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Atlas A.S</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -17,29 +17,22 @@
 <!-- SIDEBAR -->
 <aside class="sidebar">
     <div class="sidebar-header">
-        <h1 class="logo">Private Atlas</h1>
-        <span class="logo-sub">A.S</span>
+        <h1 class="logo">Private Atlas A.S</h1>
     </div>
 
     <nav class="sidebar-nav">
-        <button class="nav-btn" data-section="home">🏠 <span>Inicio</span></button>
+        <button class="nav-btn" data-section="maps" 🗺️ <span>Maps</span></button>
         <button class="nav-btn" data-section="planner">📅 <span>Planificador</span></button>
         <button class="nav-btn" data-section="journal">📖 <span>Diario</span></button>
         <button class="nav-btn" data-section="library">📚 <span>Biblioteca</span></button>
         <button class="nav-btn" data-section="mood">🎧 <span>Música</span></button>
     </nav>
 
-    <div class="sidebar-footer">
-        <button class="lang-btn active" data-lang-select="es">ES</button>
-        <button class="lang-btn" data-lang-select="en">EN</button>
-    </div>
-</aside>
-
 <!-- ESCRITORIO -->
 <main class="desktop" id="desktop">
     <div id="desktop-welcome" class="desktop-welcome">
-        <h2>Bienvenido</h2>
-        <p>Selecciona una opción</p>
+        <h2>Welcome</h2>
+        <p></p>
     </div>
 </main>
 
@@ -53,13 +46,16 @@
         <div class="window-content"></div>
     </div>
 </template>
-
-<!-- HOME -->
-<template id="content-home">
-    <h2>Hola 👋</h2>
-    <p class="phrase-text"></p>
-</template>
-
+<!-- MAPS -->
+ <template id="content-maps">
+    <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18..."
+    width="100%" 
+    height="400"
+    style="border:0;"
+    loading="lazy">
+</iframe>
+ </template>
 <!-- PLANNER -->
 <template id="content-planner">
     <input class="task-input" placeholder="Nueva tarea">
