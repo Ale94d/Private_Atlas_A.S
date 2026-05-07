@@ -81,9 +81,9 @@ function openWindow(section){
 
     });
 
-    function dragwindow(windowElement){
+    function dragWindow(windowElement){
         const header =
-        windowElement.querySelector(",window-header");
+        windowElement.querySelector(".window-header");
 
         let offsetX = 0;
         let offsetY = 0;
@@ -94,13 +94,13 @@ function openWindow(section){
             offsetX = 
             e.clientX - windowElement.offsetLeft;
             offsetY =
-            e.clienteY - windowElement.offset top;
+            e.clienteY - windowElement.offsetTop;
         });
         document.addEventListener("mousemove",(e)=>{
             if(!isDragging) return;
             windowElement.style.left =
             e.clientX - offsetX + "px";
-            windowElement.sityle.top =
+            windowElement.style.top =
             e.clientY - offsetY + "px";
         });
         document.addEventListener("mouseup",()=>{
@@ -111,6 +111,7 @@ function openWindow(section){
 
 
     // AGREGAR AL DESKTOP
+    dragwindow(newWindow);
     desktop.appendChild(newWindow);
 
 }
