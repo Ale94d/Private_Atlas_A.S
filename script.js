@@ -1,84 +1,89 @@
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: #F5F0EB;
-}
+const sidebar = document.querySelector(".sidebar");
+const toggleBtn = document.getElementById("toggle-sidebar");
+const desktop = document.getElementById("desktop");
 
-/* SIDEBAR */
-.sidebar {
-    width: 250px;
-    height: 100vh;
-    background: linear-gradient(180deg,#7F5836,#443025);
-    color: white;
-    position: fixed;
-    padding: 20px;
-    transition: 0.3s;
-}
 
-.sidebar.collapsed {
-    width: 70px;
-}
+// COLAPSAR SIDEBAR
+toggleBtn.addEventListener("click", () => {
 
-.sidebar.collapsed span {
-    display: none;
-}
+    sidebar.classList.toggle("collapsed");
 
-/* BOTÓN */
-.toggle-btn {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 1000;
-}
+    if(sidebar.classList.contains("collapsed")){
+        desktop.style.marginLeft = "70px";
+    } else {
+        desktop.style.marginLeft = "250px";
+    }
 
-/* NAV */
-.nav-btn {
-    display: block;
-    margin: 10px 0;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
+});
 
-/* DESKTOP */
-.desktop {
-    margin-left: 250px;
-    height: 100vh;
-    position: relative;
-}
 
-/* WINDOW */
-.window {
-    position: absolute;
-    background: white;
-    border-radius: 12px;
-    width: 300px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
+// BOTONES DEL MENÚ
+const navButtons = document.querySelectorAll(".nav-btn");
 
-.window-header {
-    background: linear-gradient(135deg,#EC9C9D,#AA7F66);
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    cursor: move;
-}
+navButtons.forEach(button => {
 
-/* BOOKS */
-.book-grid {
-    display: flex;
-    gap: 10px;
-}
+    button.addEventListener("click", () => {
 
-.book-card {
-    padding: 20px;
-    background: #eee;
-    cursor: pointer;
-}
+        const section = button.dataset.section;
 
-/* SPOTIFY */
-#player iframe {
-    width: 100%;
-    height: 200px;
+        openWindow(section);
+
+    });
+
+});
+
+
+// ABRIR VENTANAS
+function openWindow(section){
+
+    // TEMPLATE VENTANA
+    const windowTemplate =
+    document.getElementById("window-template");
+
+    const newWindow =
+    windowTemplate.content.firstElementChild.cloneNode(true);
+
+
+
+    // TÍTULO
+    const title =
+    section.charAt(0).toUpperCase() + section.slice(1);
+
+    newWindow.querySelector(".window-title").textContent = title;
+
+
+
+    // CONTENIDO
+    const contentTemplate =
+    document.getElementById(`content-${section}`);
+
+    const content =
+    contentTemplate.content.cloneNode(true);
+
+    newWindow
+    .querySelector(".window-content")
+    .appendChild(content);
+
+
+
+    // POSICIÓN
+    newWindow.style.top = "100px";
+    newWindow.style.left = "100px";
+
+
+
+    // CERRAR
+    newWindow
+    .querySelector(".window-close")
+    .addEventListener("click", () => {
+
+        newWindow.remove();
+
+    });
+
+
+
+    // AGREGAR AL DESKTOP
+    desktop.appendChild(newWindow);
+
 }
