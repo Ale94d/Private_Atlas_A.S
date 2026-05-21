@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Tangerine', cursive;
     background: linear-gradient( 135deg,
         #f5f0eb,
         #ECD8CD,
@@ -15,49 +15,111 @@ body {
 
 /* SIDEBAR */
 .sidebar {
-    width: 250px;
+    width: 290px;
     height: 100vh;
-    background: linear-gradient(180deg,#8f633d,#443025);
-    color: rgb(189, 135, 135);
     position: fixed;
-    padding: 20px;
-    transition: 0.3s;
-    box-sizing:border-box;
+     top: 0;
+    left: 0;
+    background: linear-gradient(180deg,#7f5836,#443025);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.4s;
+    z-index: 999;
+    overflow: hidden;
+    box-shadow:  8px 0 30px rgba(0, 0, 0, 0.12);
+}
+
+.logo {
+    font-family: 'Tangerine', cursive;
+    font-size: 82px;
+    color: #EC9C9D;
+    line-height: 0.9;
+    margin-top: 25px;
+}
+
+.logo-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.logo-mini{
+    color: #f5d7d8;
+    font-size: 18px;
+    letter-spacing: 4px;
+    margin-top: 8px;
+    opacity: 0.7;
 }
 
 .sidebar.collapsed {
-    width: 70px;
+    width: 90px;
 }
 
-.sidebar.collapsed .nav-btn span {
+.sidebar.collapsed .nav-btn span, 
+.sidebar.collapsed .logo{
     display: none;
+}
+
+,.sidebar.collapsed .nav-btn{
+    justify-content: center;
+    padding: 16px;
 }
 
 /* BOTÓN */
 .toggle-btn {
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: 18px;
+    left: 18px;
+    width: 46px;
+    height: 46px;
+    border: none;
+    border-radius: 14px;
+    background: white;
+    color: #443025;
+    font-size: 22px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    cursor:pointer;
     z-index: 1000;
+    transition: 0.3s;
+}
+
+.toggle-btn:hover{
+    transform: scale(1.05);
 }
 
 /* NAV */
 .nav-btn {
-    display: block;
-    margin: 10px 0;
     width: 100%;
-    background: rgba(255,255,255,0.15);
+    padding: 16px 18px;
+    border: none;
     border-radius: 14px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    color:white;
+    font-family: 'Tangerine', cursive;
+    font-size: 34px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
     cursor: pointer;
     transition: 0.3s;
 }
 
+.nav-btn:hover{
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(6px);
+}
+
 /* DESKTOP */
 .desktop {
-    margin-left: 250px;
+    margin-left: 290px;
     height: 100vh;
     position: relative;
-    transition: 0.3s;
+    transition: 0.4s;
+    overflow: hidden;
 }
 
 .desktop-welcome{
