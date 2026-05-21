@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Whiskey', cursive;
+    font-family: 'Whiskey', sans-serif;
     background: linear-gradient( 135deg,
         #f5f0eb,
         #ECD8CD,
@@ -32,7 +32,7 @@ body {
 }
 
 .logo {
-    font-family: 'Whiskey', cursive;
+    font-family: 'Whiskey', sans-serif;
     font-size: 38px;
     color: #EC9C9D;
     line-height: 0.9;
@@ -99,7 +99,7 @@ body {
     background: rgba(255,255,255,0.15);
     backdrop-filter: blur(10px);
     color:white;
-    font-family: 'Whiskey', cursive;
+    font-family: 'Whiskey', sans-serif;
     font-size: 20px;
     display: flex;
     align-items: center;
