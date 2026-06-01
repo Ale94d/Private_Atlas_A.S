@@ -32,7 +32,7 @@ body {
 }
 
 .logo {
-    font-family: 'Tangerine', cursive;
+    font-family: 'Whiskey', sans-serif;
     font-size: 82px;
     color: #EC9C9D;
     line-height: 0.9;
@@ -99,7 +99,7 @@ body {
     background: rgba(255,255,255,0.15);
     backdrop-filter: blur(10px);
     color:white;
-    font-family: 'Tangerine', cursive;
+    font-family: 'Whiskey', sans-serif;
     font-size: 34px;
     display: flex;
     align-items: center;
