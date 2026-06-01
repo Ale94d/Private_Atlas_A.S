@@ -1,4 +1,4 @@
-body {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -35,10 +35,7 @@ body {
     font-family: 'Whiskey', sans-serif;
     font-size: 42px;
     font-weight: 700;
-
     font-size: 50px;
-  main
->>>>>>> 17b59b4b059100806b541285ffae9ee6f97fc2e3
     color: #EC9C9D;
     line-height: 0.9;
     margin: 0;
@@ -165,9 +162,7 @@ body {
     background: rgba(255,255,255,0.75);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
 
-.window{
     min-width: 350px;
     min-height: 220px;
     resize: both;
