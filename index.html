@@ -17,11 +17,10 @@
 <!-- SIDEBAR -->
 <aside class="sidebar">
     <div class="sidebar-header">
-        <h1 class="logo">
-            Private 
-            Atlas 
+        <h1 class="logo"> Private Atlas 
             A.S
         </h1>
+        <p class="logo-mini">Aesthetic System</p>
     </div>
 
     <nav class="sidebar-nav">
@@ -30,14 +29,15 @@
         <button class="nav-btn" data-section="journal">📖 <span>Diario</span></button>
         <button class="nav-btn" data-section="library">📚 <span>Biblioteca</span></button>
         <button class="nav-btn" data-section="mood">🎧 <span>Música</span></button>
+        <button class="nav-btn" data-section="expenses">💰 <span>Gastos</span></button>
     </nav>
 </aside> 
 
 <!-- ESCRITORIO -->
 <main class="desktop" id="desktop">
     <div id="desktop-welcome" class="desktop-welcome">
-        <h2>Welcome</h2>
-        <p>Tus recuerdos viajan contigo</p>
+        <h2>Private Atlas</h2>
+        <p class="welcome-slogan"> recuerdos viajan contigo</p>
     </div>
 </main>
 
@@ -74,6 +74,7 @@
     <button class="save-journal">Guardar</button>
 </template>
 
+
 <!-- LIBRARY -->
 <template id="content-library">
     <div class="book-grid">
@@ -87,6 +88,14 @@
     <input class="spotify-link" placeholder="Link Spotify">
     <button class="load-spotify">Cargar</button>
     <div class="player"></div>
+</template>
+
+<!-- Expense -->
+<template id="content-expenses">
+    <input class="expense-name" placeholder="Descripción">
+    <input class="expense-amount" placeholder="Monto">
+    <button class="add-expense"> Agregar gasto </button>
+    ><ul class="expense-list"></ul>
 </template>
 
 <script src="script.js"></script>
