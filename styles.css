@@ -33,19 +33,24 @@ body {
 
 .logo {
     font-family: 'Whiskey', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
 
     font-size: 50px;
   main
+>>>>>>> 17b59b4b059100806b541285ffae9ee6f97fc2e3
     color: #EC9C9D;
     line-height: 0.9;
-    margin-top: 25px;
+    margin: 0;
+    margin-bottom: 5px;
 }
 
 .logo-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .logo-mini{
@@ -65,8 +70,12 @@ body {
     display: none;
 }
 
-,.sidebar.collapsed .nav-btn{
-    justify-content: center;
+.sidebar-nav{
+    margin-top: 25px;
+}
+
+.sidebar.collapsed .nav-btn{
+    justify-content: flex-start;
     padding: 16px;
 }
 
@@ -114,7 +123,7 @@ body {
 
 .nav-btn:hover{
     background: rgba(255, 255, 255, 0.2);
-    transform: translate(6px);
+    transform: translateX(6px);
 }
 
 /* DESKTOP */
@@ -129,7 +138,7 @@ body {
 .desktop-welcome{
     position: absolute;
     top: 40%;
-    left: 55%;
+    left: 50%;
     transform: translate(-50%,-40%);
     text-align: center;
     color: #443025;
@@ -143,6 +152,13 @@ body {
     font-size: 18px;
     opacity: 0.7;
 }
+
+.welcome-slogan{
+    font-size: 22px;
+    color: #7f5836;
+    letter-spacing: 2px;
+    opacity: .8;
+}
 /* WINDOW */
 .window {
     position: absolute;
@@ -151,9 +167,16 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
+.window{
+    min-width: 350px;
+    min-height: 220px;
+    resize: both;
+    overflow: auto;
+}
 .window-header {
     background: linear-gradient(135deg,#EC9C9D,#AA7F66);
     padding: 14px;
+    user-select: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -167,6 +190,16 @@ body {
     gap: 15px;
 }
 
+.window-close{
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.window-close:hover{
+    transform: scale(1.1);
+}
 /* BOOKS */
 .book-grid {
     display: flex;

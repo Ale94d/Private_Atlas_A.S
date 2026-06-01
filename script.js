@@ -9,9 +9,9 @@ toggleBtn.addEventListener("click", () => {
     sidebar.classList.toggle("collapsed");
 
     if(sidebar.classList.contains("collapsed")){
-        desktop.style.marginLeft = "70px";
+        desktop.style.marginLeft = "90px";
     } else {
-        desktop.style.marginLeft = "250px";
+        desktop.style.marginLeft = "290px";
     }
 
 });
@@ -91,10 +91,12 @@ function openWindow(section){
 
         header.addEventListener("mousedown",(e)=>{
             isDragging = true;
+            document.body.style.userSelect = "none";
             offsetX = 
-            clientX - windowElement.offsetLeft;
+            e.clientX - windowElement.offsetLeft;
             offsetY =
-            clienteY - windowElement.offsetTop;
+            e.clienteY - windowElement.offsetTop;
+
         });
         document.addEventListener("mousemove",(e)=>{
             if(!isDragging) return;
@@ -105,6 +107,7 @@ function openWindow(section){
         });
         document.addEventListener("mouseup",()=>{
             isDragging = false;
+            document.body.style.userSelect = "auto";
         });
     }
 
