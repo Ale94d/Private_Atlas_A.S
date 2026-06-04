@@ -36,6 +36,12 @@ navButtons.forEach(button => {
 // ABRIR VENTANAS
 function openWindow(section){
 
+    document.getElementById("desktop-welcome").style.display = "none";
+
+    if(document.querySelectorAll(".window").length === 0){
+        document.getElementById("desktop-welcome").style.display = "block";
+    }
+
     // TEMPLATE VENTANA
     const windowTemplate =
     document.getElementById("window-template");
@@ -95,7 +101,7 @@ function openWindow(section){
             offsetX = 
             e.clientX - windowElement.offsetLeft;
             offsetY =
-            e.clienteY - windowElement.offsetTop;
+            e.clientY - windowElement.offsetTop;
         });
         document.addEventListener("mousemove",(e)=>{
             if(!isDragging) return;
@@ -103,6 +109,14 @@ function openWindow(section){
             e.clientX - offsetX + "px";
             windowElement.style.top =
             e.clientY - offsetY + "px";
+            const maxX =
+            desktop.clientHeight - windowElement.offsetWidth;
+            const maxY = 
+            desktop.clientHeight - windowElement.offsetHeight;
+            x = Math.max(0,Math.min(x,maxX));
+            y = Math.max(0, Math.max(y, maxY));
+            windowElement.style.left = x + "px";
+            windowElement.style.top = y + "px";
         });
         document.addEventListener("mouseup",()=>{
             isDragging = false;
