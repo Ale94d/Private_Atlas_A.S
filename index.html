@@ -11,94 +11,199 @@
 
 <body>
 
-<!-- BOTÓN SIDEBAR -->
-<button id="toggle-sidebar" class="toggle-btn">☰</button>
+    <!-- BOTÓN SIDEBAR -->
+    <button id="toggle-sidebar" class="toggle-btn">☰</button>
 
-<!-- SIDEBAR -->
-<aside class="sidebar">
-    <div class="sidebar-header">
-        <h1 class="logo"> Private Atlas <br> 
-            A.S
-        </h1>
-        <p class="logo-mini">Stylish System</p>
-    </div>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
 
-    <nav class="sidebar-nav">
-        <button class="nav-btn" data-section="maps" >🗺️ <span>Maps</span></button>
-        <button class="nav-btn" data-section="planner">📅 <span>Planificador</span></button>
-        <button class="nav-btn" data-section="journal">📖 <span>Diario</span></button>
-        <button class="nav-btn" data-section="library">📚 <span>Biblioteca</span></button>
-        <button class="nav-btn" data-section="mood">🎧 <span>Música</span></button>
-        <button class="nav-btn" data-section="expenses">💰 <span>Gastos</span></button>
-    </nav>
-</aside> 
+        <div class="sidebar-header">
+            <h1 class="logo">
+                Private Atlas
+                <br>
+                A.S
+            </h1>
 
-<!-- ESCRITORIO -->
-<main class="desktop" id="desktop">
-    <div id="desktop-welcome" class="desktop-welcome">
-        <h2>Private Atlas</h2>
-        <p class="welcome-slogan"> Tus recuerdos viajan contigo</p>
-    </div>
-</main>
-
-<!-- TEMPLATE VENTANA -->
-<template id="window-template">
-    <div class="window">
-        <div class="window-header">
-            <h3 class="window-title"></h3>
-            <button class="window-close">✖</button>
+            <p class="logo-mini">
+                Stylish System
+            </p>
         </div>
-        <div class="window-content"></div>
-    </div>
-</template>
-<!-- MAPS -->
- <template id="content-maps">
-    <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18..."
-    width="100%" 
-    height="400"
-    style="border:0;"
-    loading="lazy">
-</iframe>
- </template>
-<!-- PLANNER -->
-<template id="content-planner">
-    <input class="task-input" placeholder="Nueva tarea">
-    <button class="add-task">Agregar</button>
-    <ul class="task-list"></ul>
-</template>
 
-<!-- JOURNAL -->
-<template id="content-journal">
-    <textarea class="journal-text" placeholder="Escribe..."></textarea>
-    <button class="save-journal">Guardar</button>
-</template>
+        <nav class="sidebar-nav">
 
+            <button class="nav-btn" data-section="maps">
+                🗺️ <span>Maps</span>
+            </button>
 
-<!-- LIBRARY -->
-<template id="content-library">
-    <div class="book-grid">
-        <div class="book-card" data-file="libro1.pdf">📘 Libro 1</div>
-        <div class="book-card" data-file="libro2.pdf">📙 Libro 2</div>
-    </div>
-</template>
+            <button class="nav-btn" data-section="planner">
+                📅 <span>Planificador</span>
+            </button>
 
-<!-- MUSIC -->
-<template id="content-mood">
-    <input class="spotify-link" placeholder="Link Spotify">
-    <button class="load-spotify">Cargar</button>
-    <div class="player"></div>
-</template>
+            <button class="nav-btn" data-section="journal">
+                📖 <span>Diario</span>
+            </button>
 
-<!-- Expense -->
-<template id="content-expenses">
-    <input class="expense-name" placeholder="Descripción">
-    <input class="expense-amount" placeholder="Monto">
-    <input class="expense-date" type="date">
-    <button class="add-expense"> Agregar gasto </button>
-    <ul class="expense-list"></ul>
-</template>
+            <button class="nav-btn" data-section="library">
+                📚 <span>Biblioteca</span>
+            </button>
 
-<script src="script.js"></script>
+            <button class="nav-btn" data-section="mood">
+                🎧 <span>Música</span>
+            </button>
+
+            <button class="nav-btn" data-section="expenses">
+                💰 <span>Gastos</span>
+            </button>
+
+        </nav>
+
+    </aside>
+
+    <!-- ESCRITORIO -->
+    <main class="desktop" id="desktop">
+
+        <div id="desktop-welcome" class="desktop-welcome">
+
+            <h2>Private Atlas</h2>
+
+            <p class="welcome-slogan">
+                Tus recuerdos viajan contigo
+            </p>
+
+        </div>
+
+    </main>
+
+    <!-- TEMPLATE GENERAL DE VENTANAS -->
+    <template id="window-template">
+
+        <div class="window">
+
+            <div class="window-header">
+
+                <h3 class="window-title"></h3>
+
+                <button class="window-close">
+                    ✖
+                </button>
+
+            </div>
+
+            <div class="window-content"></div>
+
+        </div>
+
+    </template>
+
+    <!-- MAPS -->
+    <template id="content-maps">
+
+        <div style="text-align:center;">
+            <h3>Google Maps</h3>
+            <p>
+                Próximamente se integrará el mapa interactivo.
+            </p>
+        </div>
+
+    </template>
+
+    <!-- PLANIFICADOR -->
+    <template id="content-planner">
+
+        <input
+            class="task-input"
+            placeholder="Nueva tarea"
+        >
+
+        <button class="add-task">
+            Agregar
+        </button>
+
+        <ul class="task-list"></ul>
+
+    </template>
+
+    <!-- DIARIO -->
+    <template id="content-journal">
+
+        <textarea
+            class="journal-text"
+            placeholder="Escribe tus recuerdos..."
+        ></textarea>
+
+        <button class="save-journal">
+            Guardar
+        </button>
+
+    </template>
+
+    <!-- BIBLIOTECA -->
+    <template id="content-library">
+
+        <div class="book-grid">
+
+            <div
+                class="book-card"
+                data-file="libro1.pdf"
+            >
+                📘 Libro 1
+            </div>
+
+            <div
+                class="book-card"
+                data-file="libro2.pdf"
+            >
+                📙 Libro 2
+            </div>
+
+        </div>
+
+    </template>
+
+    <!-- MÚSICA -->
+    <template id="content-mood">
+
+        <input
+            class="spotify-link"
+            placeholder="Link Spotify"
+        >
+
+        <button class="load-spotify">
+            Cargar
+        </button>
+
+        <div class="player"></div>
+
+    </template>
+
+    <!-- GASTOS -->
+    <template id="content-expenses">
+
+        <input
+            class="expense-name"
+            placeholder="Descripción"
+        >
+
+        <input
+            class="expense-amount"
+            type="number"
+            placeholder="Monto"
+        >
+
+        <input
+            class="expense-date"
+            type="date"
+        >
+
+        <button class="add-expense">
+            Agregar gasto
+        </button>
+
+        <ul class="expense-list"></ul>
+
+    </template>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
