@@ -2,7 +2,6 @@ const sidebar = document.querySelector(".sidebar");
 const toggleBtn = document.getElementById("toggle-sidebar");
 const desktop = document.getElementById("desktop");
 
-
 // COLAPSAR SIDEBAR
 toggleBtn.addEventListener("click", () => {
 
@@ -15,7 +14,6 @@ toggleBtn.addEventListener("click", () => {
     }
 
 });
-
 
 // BOTONES DEL MENÚ
 const navButtons = document.querySelectorAll(".nav-btn");
@@ -32,15 +30,16 @@ navButtons.forEach(button => {
 
 });
 
-
 // ABRIR VENTANAS
 function openWindow(section){
 
     document.getElementById("desktop-welcome").style.display = "none";
 
-    if(document.querySelectorAll(".window").length === 0){
-        document.getElementById("desktop-welcome").style.display = "block";
-    }
+    // EVITAR VENTANAS DUPLICADAS
+    const existing =
+    document.querySelector(`[data-window="${section}"]`);
+
+    if(existing) return;
 
     // TEMPLATE VENTANA
     const windowTemplate =
@@ -49,15 +48,13 @@ function openWindow(section){
     const newWindow =
     windowTemplate.content.firstElementChild.cloneNode(true);
 
-
+    newWindow.dataset.window = section;
 
     // TÍTULO
     const title =
     section.charAt(0).toUpperCase() + section.slice(1);
 
     newWindow.querySelector(".window-title").textContent = title;
-
-
 
     // CONTENIDO
     const contentTemplate =
@@ -70,13 +67,19 @@ function openWindow(section){
     .querySelector(".window-content")
     .appendChild(content);
 
-
-
     // POSICIÓN
-    newWindow.style.top = "100px";
-    newWindow.style.left = "100px";
+    const windows =
+    document.querySelectorAll(".window").length;
 
+    newWindow.style.top =
+    100 + windows * 25 + "px";
 
+    newWindow.style.left =
+    100 + windows * 25 + "px";
+
+    // TAMAÑO
+    newWindow.style.width = "450px";
+    newWindow.style.height = "300px";
 
     // CERRAR
     newWindow
@@ -85,9 +88,15 @@ function openWindow(section){
 
         newWindow.remove();
 
+        if(document.querySelectorAll(".window").length === 0){
+            document.getElementById("desktop-welcome").style.display = "block";
+        }
+
     });
 
+    // DRAG
     function dragWindow(windowElement){
+
         const header =
         windowElement.querySelector(".window-header");
 
@@ -96,38 +105,72 @@ function openWindow(section){
         let isDragging = false;
 
         header.addEventListener("mousedown",(e)=>{
+
             isDragging = true;
+
             document.body.style.userSelect = "none";
-            offsetX = 
+
+            offsetX =
             e.clientX - windowElement.offsetLeft;
+
             offsetY =
             e.clientY - windowElement.offsetTop;
+
         });
+
         document.addEventListener("mousemove",(e)=>{
+
             if(!isDragging) return;
-            windowElement.style.left =
-            e.clientX - offsetX + "px";
-            windowElement.style.top =
-            e.clientY - offsetY + "px";
+
+            let x =
+            e.clientX - offsetX;
+
+            let y =
+            e.clientY - offsetY;
+
             const maxX =
-            desktop.clientHeight - windowElement.offsetWidth;
-            const maxY = 
-            desktop.clientHeight - windowElement.offsetHeight;
-            x = Math.max(0,Math.min(x,maxX));
-            y = Math.max(0, Math.max(y, maxY));
+            desktop.clientWidth -
+            windowElement.offsetWidth;
+
+            const maxY =
+            desktop.clientHeight -
+            windowElement.offsetHeight;
+
+            x = Math.max(0, Math.min(x, maxX));
+            y = Math.max(0, Math.min(y, maxY));
+
             windowElement.style.left = x + "px";
             windowElement.style.top = y + "px";
+
         });
+
         document.addEventListener("mouseup",()=>{
+
             isDragging = false;
+
             document.body.style.userSelect = "auto";
+
         });
+
     }
 
-
-
-    // AGREGAR AL DESKTOP
     dragWindow(newWindow);
+
     desktop.appendChild(newWindow);
+
+}
+
+// GOOGLE MAPS
+function searchPlace(){
+
+    const place =
+    document.getElementById("map-search").value;
+
+    if(place.trim() === "") return;
+
+    window.open(
+        `https://www.google.com/maps/search/${place}`,
+        "_blank"
+    );
 
 }
