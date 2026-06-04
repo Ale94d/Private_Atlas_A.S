@@ -49,7 +49,11 @@ function openWindow(section){
     const newWindow =
     windowTemplate.content.firstElementChild.cloneNode(true);
 
+    const existing = 
+    document.querySelector('[data-window="${section}"]');
+    if(existing) return;
 
+    newWindow.dataset.window = section;
 
     // TÍTULO
     const title =
@@ -75,6 +79,8 @@ function openWindow(section){
     // POSICIÓN
     newWindow.style.top = "100px";
     newWindow.style.left = "100px";
+    newWindow.style.width = "600px";
+    newWindow.style.height = "400px"
 
 
 
@@ -84,6 +90,10 @@ function openWindow(section){
     .addEventListener("click", () => {
 
         newWindow.remove();
+
+        if(document.querySelectorAll(".window").length === 0){
+            document.getElementById("desktop-welcome").style.display = "block";
+        }
 
     });
 
@@ -110,9 +120,11 @@ function openWindow(section){
             windowElement.style.top =
             e.clientY - offsetY + "px";
             const maxX =
-            desktop.clientHeight - windowElement.offsetWidth;
+            desktop.clientWidth - windowElement.offsetWidth;
             const maxY = 
             desktop.clientHeight - windowElement.offsetHeight;
+            let x = e.clientX - offsetX;
+            let y = e.clientY - offsetY;
             x = Math.max(0,Math.min(x,maxX));
             y = Math.max(0, Math.max(y, maxY));
             windowElement.style.left = x + "px";
