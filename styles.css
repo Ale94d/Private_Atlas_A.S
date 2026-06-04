@@ -43,6 +43,7 @@ body{
 .logo {
     font-family: 'Whiskey', sans-serif;
     font-size: 50px;
+    font-size: 50px;
     color: #EC9C9D;
     line-height: 0.9;
     margin-top: 35px;
@@ -111,6 +112,9 @@ body{
     color:white;
     font-family: 'Whiskey', sans-serif;
     font-size: 20px;
+
+    font-size: 20px;
+ main
     display: flex;
     align-items: center;
     gap: 14px;
