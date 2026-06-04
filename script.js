@@ -48,6 +48,10 @@ function openWindow(section){
     const newWindow =
     windowTemplate.content.firstElementChild.cloneNode(true);
 
+    const existing = 
+    document.querySelector('[data-window="${section}"]');
+    if(existing) return;
+
     newWindow.dataset.window = section;
 
     // TÍTULO
@@ -68,8 +72,15 @@ function openWindow(section){
     .appendChild(content);
 
     // POSICIÓN
+
     const windows =
     document.querySelectorAll(".window").length;
+
+    newWindow.style.top = "100px";
+    newWindow.style.left = "100px";
+    newWindow.style.width = "600px";
+    newWindow.style.height = "400px"
+
 
     newWindow.style.top =
     100 + windows * 25 + "px";
@@ -129,6 +140,7 @@ function openWindow(section){
             e.clientY - offsetY;
 
             const maxX =
+
             desktop.clientWidth -
             windowElement.offsetWidth;
 
@@ -138,6 +150,14 @@ function openWindow(section){
 
             x = Math.max(0, Math.min(x, maxX));
             y = Math.max(0, Math.min(y, maxY));
+
+            desktop.clientWidth - windowElement.offsetWidth;
+            const maxY = 
+            desktop.clientHeight - windowElement.offsetHeight;
+            let x = e.clientX - offsetX;
+            let y = e.clientY - offsetY;
+            x = Math.max(0,Math.min(x,maxX));
+            y = Math.max(0, Math.max(y, maxY));
 
             windowElement.style.left = x + "px";
             windowElement.style.top = y + "px";
