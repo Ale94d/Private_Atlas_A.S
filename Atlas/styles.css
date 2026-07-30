@@ -1,0 +1,75 @@
+.atlas-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 40px;
+
+    border-bottom: 2px solid #D9CCB8;
+
+    background-color: #F7F2E8;
+}
+
+.atlas-workspace{
+    flex: 1;
+
+    display: flex;
+
+    padding: 30px;
+    gap: 25px;
+}
+.atlas-title h1{
+    font-size: 2rem;
+    color: #5A4632;
+}
+
+.atlas-title p{
+    margin-top: 5px;
+    color: #7D6A58;
+    font-size: .9rem;
+}
+
+.atlas-location{
+    font-size: 1.2rem;
+    color: #5A4632;
+    font-weight: bold;
+}
+
+.atlas-map{
+    flex: 1;
+
+    background: #EFE6D7;
+    border-radius: 25px;
+    border: 2px solid #D9CCB8;
+    position: relative;
+    overflow: hidden;
+}
+
+.atlas-map{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-background{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.map-placeholder{
+
+    text-align: center;
+}
+.map-placeholder h2{
+    font-size: 2.4rem;
+    color: #5A4632;
+}
+
+.map-placeholder p{
+    margin-top: 15px;
+    color:#7D6A58;
+}
