@@ -1,281 +1,78 @@
+/* ===========================
+   RESET
+=========================== */
+
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Whiskey', sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
+
+/* ===========================
+   BODY
+=========================== */
 
 body{
-    background: linear-gradient(
-        135deg,
-        #f5f0eb,
-        #ECD8CD,
-        #f2e6df
-    );
-    overflow: hidden;
+
+    font-family:'Whiskey', sans-serif;
+
+    width:100%;
+    height:100vh;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #F7F3EE,
+            #F2E6DF,
+            #ECD8CD
+        );
+
+    color:#443025;
+
 }
 
-/* SIDEBAR */
-.sidebar{
-    width: 290px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: linear-gradient(
-        180deg,
-        #7f5836,
-        #443025
-    );
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: 0.4s;
-    z-index: 999;
-    overflow: hidden;
-    box-shadow: 8px 0 30px rgba(0,0,0,0.12);
+/* ===========================
+   HEADER
+=========================== */
+
+header{
+
+    width:100%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    padding-top:40px;
+
 }
 
-.sidebar-nav{
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 18px;
-}
+/* ===========================
+   LOGO
+=========================== */
 
-/* LOGO */
 .logo{
-    font-size: 50px;
-    font-size: 50px;
-    color: #EC9C9D;
-    line-height: 0.9;
-    margin-top: 30px;
-    text-align: center;
+
+    width:280px;
+
+    user-select:none;
+
 }
 
-.logo-mini{
-    color: #f5d7d8;
-    font-size: 18px;
-    letter-spacing: 4px;
-    margin-top: 8px;
-    opacity: 0.7;
-    text-align: center;
-}
+/* ===========================
+   SLOGAN
+=========================== */
 
-/* SIDEBAR COLAPSADA */
-.sidebar.collapsed{
-    width: 90px;
-}
+.slogan{
 
-.sidebar.collapsed .nav-btn span,
-.sidebar.collapsed .logo,
-.sidebar.collapsed .logo-mini{
-    display: none;
-}
+    margin-top:15px;
 
-.sidebar.collapsed .nav-btn{
-    justify-content: center;
-}
+    font-size:20px;
 
-/* BOTÓN */
-.toggle-btn{
-    position: fixed;
-    top: 18px;
-    left: 18px;
-    width: 46px;
-    height: 46px;
-    border: none;
-    border-radius: 14px;
-    background: white;
-    color: #443025;
-    font-size: 22px;
-    cursor: pointer;
-    z-index: 1000;
-    transition: .3s;
-    box-shadow: 0 4px 12px rgba(0,0,0,.12);
-}
+    letter-spacing:2px;
 
-.toggle-btn:hover{
-    transform: scale(1.05);
-}
+    color:#7A5A46;
 
-/* BOTONES MENÚ */
-.nav-btn{
-    width: 100%;
-    padding: 16px 18px;
-    border: none;
-    border-radius: 14px;
-    background: rgba(255,255,255,.15);
-    backdrop-filter: blur(10px);
-    color: white;
-    font-size: 20px;
-
-    font-size: 20px;
- main
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.nav-btn:hover{
-    background: rgba(255,255,255,.25);
-    transform: translateX(6px);
-}
-
-/* ESCRITORIO */
-.desktop{
-    margin-left: 290px;
-    height: 100vh;
-    position: relative;
-    transition: .4s;
-    overflow: hidden;
-}
-
-/* WELCOME */
-.desktop-welcome{
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%,-40%);
-    text-align: center;
-    color: #443025;
-    width: 600px;
-}
-
-.desktop-welcome h2{
-    font-size: 64px;
-    margin-bottom: 10px;
-}
-
-.welcome-slogan{
-    font-size: 22px;
-    color: #7f5836;
-    opacity: .8;
-    letter-spacing: 2px;
-}
-
-/* VENTANAS */
-.window{
-    position: absolute;
-    background: rgba(255,255,255,.85);
-    backdrop-filter: blur(12px);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.15);
-
-    min-width: 350px;
-    min-height: 220px;
-
-    max-width: 90%;
-    max-height: 90%;
-
-    resize: both;
-    overflow: auto;
-}
-
-.window-header{
-    background: linear-gradient(
-        135deg,
-        #EC9C9D,
-        #AA7F66
-    );
-
-    padding: 14px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    cursor: move;
-    user-select: none;
-
-    border-radius: 20px 20px 0 0;
-}
-
-.window-title{
-    color: white;
-    font-size: 20px;
-}
-
-.window-close{
-    border: none;
-    background: transparent;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    transition: .2s;
-}
-
-.window-close:hover{
-    transform: scale(1.15);
-}
-
-.window-content{
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* INPUTS */
-input,
-textarea{
-    padding: 12px;
-    border: 1px solid #d7c4b7;
-    border-radius: 12px;
-    outline: none;
-    font-size: 16px;
-}
-
-textarea{
-    min-height: 140px;
-    resize: vertical;
-}
-
-/* BOTONES INTERNOS */
-.window-content button{
-    padding: 12px;
-    border: none;
-    border-radius: 12px;
-    background: #AA7F66;
-    color: white;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.window-content button:hover{
-    background: #7f5836;
-}
-
-/* LIBRARY */
-.book-grid{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.book-card{
-    padding: 20px;
-    border-radius: 15px;
-    background: linear-gradient(
-        135deg,
-        #EC9C9D,
-        #AA7F66
-    );
-    color: white;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.book-card:hover{
-    transform: translateY(-3px);
-}
-
-/* SPOTIFY */
-.player iframe{
-    width: 100%;
-    height: 200px;
-    border: none;
 }
