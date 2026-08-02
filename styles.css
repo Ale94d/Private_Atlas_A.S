@@ -104,22 +104,30 @@ header{
 
 .circle{
 
-    width:95px;
-    height:95px;
+    width:120px;
+    height:120px;
 
-    border-radius:50%;
+    border-radius:35%;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    font-size:42px;
+    font-size:50px;
 
     cursor:pointer;
 
     transition:.35s;
 
+    animation: float 5s ease-in-out infinite;
+
     box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+    border:4px solid rgba(255,255,255,.35);
+
+backdrop-filter:blur(8px);
+
+font-weight:bold;
 
 }
 
@@ -135,9 +143,21 @@ header{
 
 .workspace p{
 
-    margin-top:12px;
+    margin-top:15px;
 
-    font-weight:bold;
+    font-size:17px;
+
+    font-weight:600;
+
+    color:#443025;
+
+    transition:.3s;
+
+}
+
+.workspace:hover p{
+
+    transform:translateY(3px);
 
 }
 
@@ -253,5 +273,55 @@ footer{
 
     background:#3F6EA8;
     color:white;
+
+}
+
+/* ===========================
+   ANIMACIÓN FLOTANTE
+=========================== */
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+
+/* ===========================
+   DECORACIÓN DE FONDO
+=========================== */
+
+.background-decoration{
+
+    position:absolute;
+
+    width:700px;
+    height:700px;
+
+    border-radius:50%;
+
+    background:radial-gradient(
+        rgba(255,255,255,.35),
+        transparent 70%
+    );
+
+    filter:blur(40px);
+
+    z-index:-1;
 
 }
