@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" data-lang="es">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Atlas A.S</title>
+    <title>Private Atlas A.S.</title>
 
     <link href="https://fonts.cdnfonts.com/css/whiskey-2" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -11,197 +11,60 @@
 
 <body>
 
-    <!-- BOTÓN SIDEBAR -->
-    <button id="toggle-sidebar" class="toggle-btn">☰</button>
+    <header>
+        
+        img
+    src="assets/images/logo.png"
+    alt="Private Atlas"
+    class="logo"
+>
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+        <p class="slogan">
+            Tus recuerdos viajan contigo
+        </p>
 
-        <div class="sidebar-header">
-            <h1 class="logo">
-                Private Atlas
-                <br>
-                A.S
-            </h1>
+    </header>
 
-            <p class="logo-mini">
-                Stylish System
-            </p>
+        <main class="home">
+
+    <div class="workspace-container">
+
+        <div class="workspace atlas">
+            <div class="circle">🌍</div>
+            <p>Atlas</p>
         </div>
 
-        <nav class="sidebar-nav">
-
-            <button class="nav-btn" data-section="maps">
-                🗺️ <span>Maps</span>
-            </button>
-
-            <button class="nav-btn" data-section="planner">
-                📅 <span>Planificador</span>
-            </button>
-
-            <button class="nav-btn" data-section="journal">
-                📖 <span>Diario</span>
-            </button>
-
-            <button class="nav-btn" data-section="library">
-                📚 <span>Biblioteca</span>
-            </button>
-
-            <button class="nav-btn" data-section="mood">
-                🎧 <span>Música</span>
-            </button>
-
-            <button class="nav-btn" data-section="expenses">
-                💰 <span>Gastos</span>
-            </button>
-
-        </nav>
-
-    </aside>
-
-    <!-- ESCRITORIO -->
-    <main class="desktop" id="desktop">
-
-        <div id="desktop-welcome" class="desktop-welcome">
-
-            <h2>Private Atlas</h2>
-
-            <p class="welcome-slogan">
-                Tus recuerdos viajan contigo
-            </p>
-
+        <div class="workspace planner">
+            <div class="circle">📅</div>
+            <p>Life Planner</p>
         </div>
 
-    </main>
-
-    <!-- TEMPLATE GENERAL DE VENTANAS -->
-    <template id="window-template">
-
-        <div class="window">
-
-            <div class="window-header">
-
-                <h3 class="window-title"></h3>
-
-                <button class="window-close">
-                    ✖
-                </button>
-
-            </div>
-
-            <div class="window-content"></div>
-
+        <div class="workspace journal">
+            <div class="circle">📖</div>
+            <p>Daily Journal</p>
         </div>
 
-    </template>
-
-    <!-- MAPS -->
-    <template id="content-maps">
-
-        <div style="text-align:center;">
-            <h3>Google Maps</h3>
-            <p>
-                Próximamente se integrará el mapa interactivo.
-            </p>
+        <div class="workspace baul">
+            <div class="circle">📦</div>
+            <p>Baúl</p>
         </div>
 
-    </template>
+        <div class="workspace timeline">
+            <div class="circle">🕰️</div>
+            <p>Timeline</p>
+        </div>
 
-    <!-- PLANIFICADOR -->
-    <template id="content-planner">
+    </div>
 
-        <input
-            class="task-input"
-            placeholder="Nueva tarea"
-        >
+</main>
 
-        <button class="add-task">
-            Agregar
+    <footer>
+
+        <button class="customize-btn">
+            ⚙️ Personalizar
         </button>
 
-        <ul class="task-list"></ul>
-
-    </template>
-
-    <!-- DIARIO -->
-    <template id="content-journal">
-
-        <textarea
-            class="journal-text"
-            placeholder="Escribe tus recuerdos..."
-        ></textarea>
-
-        <button class="save-journal">
-            Guardar
-        </button>
-
-    </template>
-
-    <!-- BIBLIOTECA -->
-    <template id="content-library">
-
-        <div class="book-grid">
-
-            <div
-                class="book-card"
-                data-file="libro1.pdf"
-            >
-                📘 Libro 1
-            </div>
-
-            <div
-                class="book-card"
-                data-file="libro2.pdf"
-            >
-                📙 Libro 2
-            </div>
-
-        </div>
-
-    </template>
-
-    <!-- MÚSICA -->
-    <template id="content-mood">
-
-        <input
-            class="spotify-link"
-            placeholder="Link Spotify"
-        >
-
-        <button class="load-spotify">
-            Cargar
-        </button>
-
-        <div class="player"></div>
-
-    </template>
-
-    <!-- GASTOS -->
-    <template id="content-expenses">
-
-        <input
-            class="expense-name"
-            placeholder="Descripción"
-        >
-
-        <input
-            class="expense-amount"
-            type="number"
-            placeholder="Monto"
-        >
-
-        <input
-            class="expense-date"
-            type="date"
-        >
-
-        <button class="add-expense">
-            Agregar gasto
-        </button>
-
-        <ul class="expense-list"></ul>
-
-    </template>
+    </footer>
 
     <script src="script.js"></script>
 
