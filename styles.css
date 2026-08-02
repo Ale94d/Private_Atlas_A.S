@@ -1,6 +1,6 @@
-/* ===========================
+/* ===================================
    RESET
-=========================== */
+=================================== */
 
 *{
     margin:0;
@@ -19,24 +19,24 @@ body{
         #ECD8CD
     );
 
-    width:100%;
-    height:100vh;
+    min-height:100vh;
 
     overflow:hidden;
 
     color:#443025;
 
-}
-
-/* ===========================
-   HEADER
-=========================== */
-
-header{
-
     display:flex;
     flex-direction:column;
-    align-items:center;
+
+}
+
+/* ===================================
+   HEADER
+=================================== */
+
+.hero{
+
+    text-align:center;
 
     padding-top:35px;
 
@@ -44,15 +44,31 @@ header{
 
 .logo{
 
-    width:260px;
+    width:150px;
+
+    user-select:none;
+
+    pointer-events:none;
 
 }
 
-.slogan{
+.hero h1{
 
-    margin-top:15px;
+    margin-top:10px;
 
-    font-size:20px;
+    font-family:'Whiskey',sans-serif;
+
+    font-size:60px;
+
+    color:#443025;
+
+}
+
+.hero p{
+
+    margin-top:10px;
+
+    font-size:18px;
 
     letter-spacing:2px;
 
@@ -60,268 +76,239 @@ header{
 
 }
 
-/* ===========================
+/* ===================================
    HOME
-=========================== */
+=================================== */
 
 .home{
 
-    width:100%;
-    height:65vh;
+    flex:1;
 
-    display:flex;
-    justify-content:center;
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    grid-template-rows:repeat(2,1fr);
+
+    justify-items:center;
+
     align-items:center;
 
-    position:relative;
+    max-width:900px;
+
+    width:100%;
+
+    margin:auto;
+
+    padding:20px;
 
 }
 
-/* ===========================
-   CONTENEDOR
-=========================== */
+/* Posiciones */
 
-.workspace-container{
+.atlas{
 
-    width:750px;
-    height:450px;
-
-    position:relative;
+    grid-column:2;
+    grid-row:1;
 
 }
 
-/* ===========================
+.planner{
+
+    grid-column:1;
+    grid-row:1;
+
+}
+
+.journal{
+
+    grid-column:3;
+    grid-row:1;
+
+}
+
+.baul{
+
+    grid-column:1;
+    grid-row:2;
+
+}
+
+.timeline{
+
+    grid-column:3;
+    grid-row:2;
+
+}
+
+/* ===================================
    WORKSPACES
-=========================== */
+=================================== */
 
 .workspace{
 
-    position:absolute;
+    display:flex;
 
-    text-align:center;
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:15px;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.workspace:hover{
+
+    transform:translateY(-8px);
 
 }
 
 .circle{
 
     width:120px;
+
     height:120px;
 
-    border-radius:35%;
+    border-radius:50%;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
-    font-size:50px;
+    color:white;
 
-    cursor:pointer;
+    font-size:45px;
+
+    font-weight:bold;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
 
     transition:.35s;
 
-    animation: float 5s ease-in-out infinite;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-
-    border:4px solid rgba(255,255,255,.35);
-
-backdrop-filter:blur(8px);
-
-font-weight:bold;
-
 }
 
-.circle:hover{
+.workspace:hover .circle{
 
     transform:scale(1.1);
 
-    box-shadow:
-        0 0 25px rgba(255,255,255,.5),
-        0 12px 30px rgba(0,0,0,.25);
-
 }
 
-.workspace p{
+.workspace h3{
 
-    margin-top:15px;
-
-    font-size:17px;
+    font-size:18px;
 
     font-weight:600;
 
-    color:#443025;
-
-    transition:.3s;
-
 }
 
-.workspace:hover p{
-
-    transform:translateY(3px);
-
-}
-
-/* ===========================
-   POSICIONES
-=========================== */
-
-.atlas{
-
-    top:0;
-    left:325px;
-
-}
-
-.planner{
-
-    top:120px;
-    left:120px;
-
-}
-
-.journal{
-
-    top:120px;
-    right:120px;
-
-}
-
-.baul{
-
-    bottom:0;
-    left:200px;
-
-}
-
-.timeline{
-
-    bottom:0;
-    right:200px;
-
-}
-
-/* ===========================
-   FOOTER
-=========================== */
-
-footer{
-
-    display:flex;
-    justify-content:center;
-
-}
-
-.customize-btn{
-
-    border:none;
-
-    padding:14px 26px;
-
-    border-radius:30px;
-
-    background:#6A0DAD;
-
-    color:white;
-
-    cursor:pointer;
-
-    font-size:16px;
-
-    transition:.3s;
-
-}
-
-.customize-btn:hover{
-
-    transform:scale(1.05);
-
-}
-
-/* ===========================
-   COLORES WORKSPACES
-=========================== */
+/* ===================================
+   COLORES
+=================================== */
 
 .atlas .circle{
 
-    background:#8B5E3C;
-    color:white;
+    background:#7A5638;
 
 }
 
 .planner .circle{
 
-    background:#7CB342;
-    color:white;
+    background:#63A65F;
 
 }
 
 .journal .circle{
 
-    background:#8E7CC3;
-    color:white;
+    background:#8D73C7;
 
 }
 
 .baul .circle{
 
-    background:#D99036;
-    color:white;
+    background:#D38A2F;
 
 }
 
 .timeline .circle{
 
-    background:#3F6EA8;
+    background:#4C7BC7;
+
+}
+
+/* ===================================
+   FOOTER
+=================================== */
+
+footer{
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:25px;
+
+}
+
+.customize{
+
+    border:none;
+
+    padding:14px 28px;
+
+    border-radius:40px;
+
+    background:#6A0DAD;
+
     color:white;
 
-}
+    font-size:16px;
 
-/* ===========================
-   ANIMACIÓN FLOTANTE
-=========================== */
+    cursor:pointer;
 
-@keyframes float{
-
-    0%{
-
-        transform:translateY(0px);
-
-    }
-
-    50%{
-
-        transform:translateY(-8px);
-
-    }
-
-    100%{
-
-        transform:translateY(0px);
-
-    }
+    transition:.3s;
 
 }
 
-/* ===========================
-   DECORACIÓN DE FONDO
-=========================== */
+.customize:hover{
 
-.background-decoration{
+    transform:scale(1.05);
 
-    position:absolute;
+}
 
-    width:700px;
-    height:700px;
+/* ===================================
+   ESTADOS DEL SCRIPT
+=================================== */
 
-    border-radius:50%;
+.hidden{
 
-    background:radial-gradient(
-        rgba(255,255,255,.35),
-        transparent 70%
-    );
+    opacity:0;
 
-    filter:blur(40px);
+    transform:scale(.8);
 
-    z-index:-1;
+    pointer-events:none;
+
+    transition:.45s;
+
+}
+
+.selected{
+
+    z-index:10;
+
+}
+
+.selected .circle{
+
+    transform:scale(1.25);
+
+    box-shadow:
+        0 0 30px rgba(255,255,255,.7),
+        0 15px 35px rgba(0,0,0,.25);
 
 }
