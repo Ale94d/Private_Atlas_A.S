@@ -8,26 +8,21 @@
     box-sizing:border-box;
 }
 
-/* ===========================
-   BODY
-=========================== */
-
 body{
 
-    font-family:'Whiskey', sans-serif;
+    font-family:Arial, sans-serif;
+
+    background:linear-gradient(
+        135deg,
+        #F7F3EE,
+        #F2E6DF,
+        #ECD8CD
+    );
 
     width:100%;
     height:100vh;
 
     overflow:hidden;
-
-    background:
-        linear-gradient(
-            135deg,
-            #F7F3EE,
-            #F2E6DF,
-            #ECD8CD
-        );
 
     color:#443025;
 
@@ -39,31 +34,19 @@ body{
 
 header{
 
-    width:100%;
-
     display:flex;
     flex-direction:column;
     align-items:center;
 
-    padding-top:40px;
+    padding-top:35px;
 
 }
-
-/* ===========================
-   LOGO
-=========================== */
 
 .logo{
 
-    width:280px;
-
-    user-select:none;
+    width:260px;
 
 }
-
-/* ===========================
-   SLOGAN
-=========================== */
 
 .slogan{
 
@@ -74,5 +57,201 @@ header{
     letter-spacing:2px;
 
     color:#7A5A46;
+
+}
+
+/* ===========================
+   HOME
+=========================== */
+
+.home{
+
+    width:100%;
+    height:65vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+
+}
+
+/* ===========================
+   CONTENEDOR
+=========================== */
+
+.workspace-container{
+
+    width:750px;
+    height:450px;
+
+    position:relative;
+
+}
+
+/* ===========================
+   WORKSPACES
+=========================== */
+
+.workspace{
+
+    position:absolute;
+
+    text-align:center;
+
+}
+
+.circle{
+
+    width:95px;
+    height:95px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:42px;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+.circle:hover{
+
+    transform:scale(1.1);
+
+    box-shadow:
+        0 0 25px rgba(255,255,255,.5),
+        0 12px 30px rgba(0,0,0,.25);
+
+}
+
+.workspace p{
+
+    margin-top:12px;
+
+    font-weight:bold;
+
+}
+
+/* ===========================
+   POSICIONES
+=========================== */
+
+.atlas{
+
+    top:0;
+    left:325px;
+
+}
+
+.planner{
+
+    top:120px;
+    left:120px;
+
+}
+
+.journal{
+
+    top:120px;
+    right:120px;
+
+}
+
+.baul{
+
+    bottom:0;
+    left:200px;
+
+}
+
+.timeline{
+
+    bottom:0;
+    right:200px;
+
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+footer{
+
+    display:flex;
+    justify-content:center;
+
+}
+
+.customize-btn{
+
+    border:none;
+
+    padding:14px 26px;
+
+    border-radius:30px;
+
+    background:#6A0DAD;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+.customize-btn:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* ===========================
+   COLORES WORKSPACES
+=========================== */
+
+.atlas .circle{
+
+    background:#8B5E3C;
+    color:white;
+
+}
+
+.planner .circle{
+
+    background:#7CB342;
+    color:white;
+
+}
+
+.journal .circle{
+
+    background:#8E7CC3;
+    color:white;
+
+}
+
+.baul .circle{
+
+    background:#D99036;
+    color:white;
+
+}
+
+.timeline .circle{
+
+    background:#3F6EA8;
+    color:white;
 
 }
