@@ -1,7 +1,7 @@
-/* ======================================
-   PRIVATE ATLAS A.S.
-   HOME V1.0
-====================================== */
+/* =====================================
+   PRIVATE ATLAS
+   HOME V2
+===================================== */
 
 const workspaces = document.querySelectorAll(".workspace");
 
@@ -9,18 +9,7 @@ workspaces.forEach(workspace => {
 
     workspace.addEventListener("click", () => {
 
-        // Reiniciar estado
-        workspaces.forEach(item => {
-
-            item.classList.remove("selected");
-            item.classList.remove("hidden");
-
-        });
-
-        // Seleccionar el workspace
-        workspace.classList.add("selected");
-
-        // Ocultar los demás
+        // Oculta los demás
         workspaces.forEach(item => {
 
             if(item !== workspace){
@@ -31,15 +20,24 @@ workspaces.forEach(workspace => {
 
         });
 
-        // Nombre del Workspace
-        const workspaceName =
-            workspace.classList[1];
+        // Selecciona el actual
+        workspace.classList.add("selected");
 
-        console.log("Workspace:", workspaceName);
-
-        // Aquí irá la animación de entrada
-        // y la carga del Workspace.
+        console.log(
+            workspace.querySelector("span").textContent
+        );
 
     });
+
+});
+
+// Botón de personalización
+
+const customize =
+document.querySelector(".customize-btn");
+
+customize.addEventListener("click",()=>{
+
+    alert("Próximamente podrás personalizar Private Atlas.");
 
 });

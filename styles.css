@@ -1,6 +1,6 @@
-/* ===================================
+/* =====================================
    RESET
-=================================== */
+===================================== */
 
 *{
     margin:0;
@@ -10,97 +10,88 @@
 
 body{
 
-    font-family:Arial, sans-serif;
+    font-family:'Plus Jakarta Sans',sans-serif;
 
     background:linear-gradient(
         135deg,
-        #F7F3EE,
+        #F8F4EF,
         #F2E6DF,
         #ECD8CD
     );
+
+    color:#443025;
 
     min-height:100vh;
 
     overflow:hidden;
 
-    color:#443025;
-
-    display:flex;
-    flex-direction:column;
-
 }
 
-/* ===================================
+/* =====================================
    HEADER
-=================================== */
+===================================== */
 
 .hero{
 
-    text-align:center;
+    display:flex;
 
-    padding-top:35px;
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-top:35px;
 
 }
 
 .logo{
 
-    width:150px;
+    width:170px;
 
     user-select:none;
 
     pointer-events:none;
 
-}
-
-.hero h1{
-
-    margin-top:10px;
-
-    font-family:'Whiskey',sans-serif;
-
-    font-size:60px;
-
-    color:#443025;
+    animation:fadeLogo .8s ease;
 
 }
 
-.hero p{
+.slogan{
 
-    margin-top:10px;
+    margin-top:12px;
 
-    font-size:18px;
+    font-family:'Cormorant Garamond',serif;
 
-    letter-spacing:2px;
+    font-size:25px;
 
-    color:#7A5A46;
+    font-style:italic;
+
+    color:#6E5646;
+
+    letter-spacing:1px;
 
 }
 
-/* ===================================
+/* =====================================
    HOME
-=================================== */
+===================================== */
 
 .home{
 
-    flex:1;
+    width:900px;
+
+    margin:40px auto;
 
     display:grid;
 
     grid-template-columns:repeat(3,1fr);
 
-    grid-template-rows:repeat(2,1fr);
+    grid-template-rows:repeat(2,170px);
 
     justify-items:center;
 
     align-items:center;
-
-    max-width:900px;
-
-    width:100%;
-
-    margin:auto;
-
-    padding:20px;
 
 }
 
@@ -141,9 +132,9 @@ body{
 
 }
 
-/* ===================================
+/* =====================================
    WORKSPACES
-=================================== */
+===================================== */
 
 .workspace{
 
@@ -153,7 +144,7 @@ body{
 
     align-items:center;
 
-    gap:15px;
+    gap:14px;
 
     cursor:pointer;
 
@@ -181,35 +172,47 @@ body{
 
     align-items:center;
 
+    font-size:46px;
+
     color:white;
 
-    font-size:45px;
-
-    font-weight:bold;
-
-    box-shadow:0 15px 35px rgba(0,0,0,.15);
-
     transition:.35s;
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.18);
+
+}
+
+.workspace span{
+
+    font-size:15px;
+
+    font-weight:500;
+
+    color:#4D3A2E;
+
+    transition:.3s;
 
 }
 
 .workspace:hover .circle{
 
-    transform:scale(1.1);
+    transform:translateY(-6px) scale(1.08);
+
+    box-shadow:
+        0 25px 55px rgba(0,0,0,.22);
 
 }
 
-.workspace h3{
+.workspace:hover span{
 
-    font-size:18px;
-
-    font-weight:600;
+    color:#2B1A12;
 
 }
 
-/* ===================================
+/* =====================================
    COLORES
-=================================== */
+===================================== */
 
 .atlas .circle{
 
@@ -219,77 +222,229 @@ body{
 
 .planner .circle{
 
-    background:#63A65F;
+    background:#67B05B;
 
 }
 
 .journal .circle{
 
-    background:#8D73C7;
+    background:#8E74CF;
 
 }
 
 .baul .circle{
 
-    background:#D38A2F;
+    background:#D99229;
 
 }
 
 .timeline .circle{
 
-    background:#4C7BC7;
+    background:#4F7DCA;
 
 }
 
-/* ===================================
-   FOOTER
-=================================== */
+/* =====================================
+   BOTÓN PERSONALIZAR
+===================================== */
 
-footer{
+.customize-btn{
 
-    display:flex;
+    position:fixed;
 
-    justify-content:center;
+    right:30px;
 
-    padding:25px;
+    bottom:30px;
 
-}
+    width:60px;
 
-.customize{
+    height:60px;
 
     border:none;
 
-    padding:14px 28px;
+    border-radius:50%;
 
-    border-radius:40px;
+    background:white;
 
-    background:#6A0DAD;
+    color:#443025;
 
-    color:white;
-
-    font-size:16px;
+    font-size:26px;
 
     cursor:pointer;
 
-    transition:.3s;
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+
+    transition:.35s;
+
+    z-index:1000;
 
 }
 
-.customize:hover{
+.customize-btn:hover{
 
-    transform:scale(1.05);
+    transform:translateY(-4px) scale(1.08);
+
+    box-shadow:0 18px 40px rgba(0,0,0,.25);
 
 }
 
-/* ===================================
-   ESTADOS DEL SCRIPT
-=================================== */
+.customize-btn::before{
 
-.hidden{
+    content:"Personalizar";
+
+    position:absolute;
+
+    right:72px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    background:#443025;
+
+    color:white;
+
+    padding:8px 14px;
+
+    border-radius:10px;
+
+    font-size:13px;
 
     opacity:0;
 
-    transform:scale(.8);
+    pointer-events:none;
+
+    transition:.3s;
+
+    white-space:nowrap;
+
+}
+
+.customize-btn:hover::before{
+
+    opacity:1;
+
+}
+
+/* =====================================
+   ANIMACIONES
+===================================== */
+
+@keyframes fadeLogo{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.workspace{
+
+    opacity:0;
+
+    animation:appear .6s forwards;
+
+}
+
+.workspace:nth-child(1){
+
+    animation-delay:.15s;
+
+}
+
+.workspace:nth-child(2){
+
+    animation-delay:.30s;
+
+}
+
+.workspace:nth-child(3){
+
+    animation-delay:.45s;
+
+}
+
+.workspace:nth-child(4){
+
+    animation-delay:.60s;
+
+}
+
+.workspace:nth-child(5){
+
+    animation-delay:.75s;
+
+}
+
+@keyframes appear{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px) scale(.95);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:900px){
+
+    .home{
+
+        width:95%;
+
+        grid-template-columns:repeat(2,1fr);
+
+        grid-template-rows:auto;
+
+        gap:40px;
+
+    }
+
+    .atlas{
+
+        grid-column:1 / span 2;
+
+    }
+
+}
+
+/* =====================================
+   ESTADOS DEL SCRIPT
+===================================== */
+
+.hidden{
+
+    opacity:.15;
+
+    transform:scale(.85);
+
+    filter:blur(2px);
 
     pointer-events:none;
 
@@ -297,18 +452,11 @@ footer{
 
 }
 
-.selected{
-
-    z-index:10;
-
-}
-
 .selected .circle{
 
-    transform:scale(1.25);
+    transform:scale(1.15);
 
     box-shadow:
-        0 0 30px rgba(255,255,255,.7),
-        0 15px 35px rgba(0,0,0,.25);
+        0 25px 60px rgba(0,0,0,.30);
 
 }
