@@ -458,3 +458,33 @@ body{
 .appearance-panel.active{
     display: block;
 }
+
+.atlas{
+
+    transform:translateY(20px);
+
+}
+
+.planner{
+
+    transform:translateY(0px);
+
+}
+
+.journal{
+
+    transform:translateY(-20px);
+
+}
+
+.baul{
+
+    transform:translateY(0px);
+
+}
+
+.timeline{
+
+    transform:translateY(20px);
+
+}
