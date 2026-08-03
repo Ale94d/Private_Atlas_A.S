@@ -37,8 +37,7 @@ const customize =
 document.querySelector(".customize-btn");
 const appearancePanel = 
 document.querySelector(".appearance-panel");
-customize.addEventListener("click",()
-=> {
+customize.addEventListener("click",()=>{
     appearancePanel.classList.toggle("active");
 });
 
