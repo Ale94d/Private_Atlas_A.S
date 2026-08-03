@@ -36,13 +36,13 @@ workspaces.forEach(workspace => {
 const customize =
 document.querySelector(".customize-btn");
 const appearancePanel = 
-document.querySelector(".apperance-panel");
+document.querySelector(".appearance-panel");
 customize.addEventListener("click",()
 => {
     appearancePanel.classList.toggle("active");
 });
 
-Document
+document
 .querySelector(".close-appearance")
 .addEventListener("click",() => {
 
