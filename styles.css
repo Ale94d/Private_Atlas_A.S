@@ -47,7 +47,11 @@ body{
 
 .logo{
 
-    width:225px;
+    width:280px;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    transition:.35s;
     user-select:none;
     pointer-events:none;
     animation:aparecer .8s ease;
@@ -55,15 +59,20 @@ body{
 
 }
 
+.logo: hover{
+    transform:scale(1.03);
+}
+
 .slogan{
 
-    margin-top:12px;
-    margin-bottom: 55px;
+    margin-top:20px;
+    margin-bottom: 70px;
     font-family:'Cormorant Garamond',serif;
-    font-size:25px;
+    font-size:30px;
     font-style:italic;
     color:#6E5646;
-    letter-spacing:1px;
+    letter-spacing:2px;
+    text-align:center;
 
 }
 
@@ -270,32 +279,23 @@ body{
 .customize-btn{
 
     position:fixed;
-
-    right:30px;
-    bottom:30px;
-
+    right:35px;
+    bottom:35px;
     width:65px;
     height:65px;
-
     border:none;
     border-radius:50%;
-
     background:#7A5638;
     color:white;
-
     font-size:28px;
-
     cursor:pointer;
-
     display: flex;
-    justify-content: center;
+    justify-content: column;
     align-items: center;
-
+    gap:12px;
     box-shadow:0 12px 30px rgba(0,0,0,.20);
-    
     transition:.35s;
-
-    z-index: 1000;
+    z-index: 999;
 
 }
 
@@ -313,31 +313,18 @@ body{
 .customize-btn::before{
 
     content:"Personalizar";
-
     position:absolute;
-
     right:72px;
-
     top:50%;
-
     transform:translateY(-50%);
-
     background:#443025;
-
     color:white;
-
     padding:8px 14px;
-
     border-radius:10px;
-
     font-size:13px;
-
     opacity:0;
-
     pointer-events:none;
-
     transition:.3s;
-
     white-space:nowrap;
 
 }
@@ -568,4 +555,41 @@ body{
 
     animation:aparecer .7s ease;
 
+}
+
+.workspaces{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    gap:70px;
+
+    margin-top:35px;
+
+    flex-wrap:wrap;
+
+}
+
+.customize-btn .circle{
+
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#7A5638;
+    color:white;
+    font-size:30px;
+    border:6px solid #F5EFE8;
+    transition:.3s;
+
+}
+
+.customize-btn: hover .circle{
+    transform:translateY(-6px)
+    scale(1.08);
 }
