@@ -48,3 +48,14 @@ document
 
     appearancePanel.classList.remove("active");
 });
+
+document.addEventListener("click",(e)=>{
+    if(
+        !
+        appearancePanel.contains(e.target) &&
+        !customize.contains(e.target)
+    ){
+        appearancePanel.classList.remove("active");
+    }
+
+});

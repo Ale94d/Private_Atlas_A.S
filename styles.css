@@ -287,7 +287,10 @@ body{
 
 .customize-btn:hover{
 
-    transform:translateY(-5px) rotate(25deg);
+    transform:
+    translateY(-5px) 
+    rotate(25deg)
+    scale(1.08);
 
     box-shadow: #8F6645;
 
@@ -469,27 +472,27 @@ body{
 .appearance-panel{
 
     position: fixed;
-
     right:110px;
     bottom:35px;
-
     width:300px;
-
     background:white;
-
     border-radius:18px;
-
     padding:20px;
-
     box-shadow:0 20px 5px rgba(0,0,0,.18);
-
     display:none;
-
     z-index: 999;
+    opacity:0;
+    transform:
+    translateY(20opx);
+    pointer-events:none;
+    transition:.35s;
 }
 
 .appearance-panel.active{
-    display:block;
+    opacity:1;
+    transform:
+    translateY(0);
+    pointer-events:auto;
 }
 
 .appearance-panel h2{
