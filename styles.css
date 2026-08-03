@@ -73,11 +73,12 @@ body{
 
 .workspaces{
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:55px;
-    flex-wrap:nowrap;
+    width: 700px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    justify-items:center;
+    align-items: center;
 
 }
 
