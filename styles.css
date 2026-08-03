@@ -522,3 +522,20 @@ body{
 
     transition:.3s;
 }
+
+.close-appearance{
+
+    width:100;
+    margin-top:18px;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background: #7A5638;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.close-appearance:hover{
+    background: #5F4129;
+}

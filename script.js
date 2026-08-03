@@ -35,9 +35,16 @@ workspaces.forEach(workspace => {
 
 const customize =
 document.querySelector(".customize-btn");
+const appearancePanel = 
+document.querySelector(".apperance-panel");
+customize.addEventListener("click",()
+=> {
+    appearancePanel.classList.toggle("active");
+});
 
-customize.addEventListener("click",()=>{
+Document
+.querySelector(".close-appearance")
+.addEventListener("click",() => {
 
-    alert("Próximamente podrás personalizar Private Atlas.");
-
+    appearancePanel.classList.remove("active");
 });
