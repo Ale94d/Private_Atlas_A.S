@@ -27,12 +27,14 @@ body{
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    width:fit-content;
-    margin:35px auto;
+    width:100;
+    margin:0 auto;
     padding:20px 35px;
     background:rgba(255,255,255,.18);
     backdrop-filter:blur(8px);
     border-radius:25px;
+    padding-top: 35px;
+    padding-bottom: 20px;
 
 }
 
