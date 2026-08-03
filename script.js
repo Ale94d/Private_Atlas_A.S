@@ -147,7 +147,7 @@ if (defaultTheme) {
     defaultTheme.addEventListener("click", () => {
 
         document.body.style.backgroundImage =
-        "url('assets/images/default.jpg')";
+        "url('./assets/images/default.jpg')";
 
         document.body.style.backgroundSize = "cover";
         document.body.style.backgroundPosition = "center";
