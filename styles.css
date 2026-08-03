@@ -25,13 +25,14 @@ body{
 
     display:flex;
     flex-direction:column;
-    align-items:center;
     justify-content:center;
-    padding-top:40px;
-    background: rgba(255,255,255,.18);
-    backdrop-filter: blur(8px);
+    align-items:center;
+    width:fit-content;
+    margin:35px auto;
     padding:20px 35px;
-    border-radius: 25px;
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(8px);
+    border-radius:25px;
 
 }
 
@@ -64,10 +65,10 @@ body{
 .home{
 
     width:100%;
-    min-height:70vh;
+    min-height:60vh;
     display:flex;
     justify-content:center;
-    margin-top:60px;
+    align-items: center;
 
 }
 
@@ -127,6 +128,10 @@ body{
 
     transition:.35s;
 
+}
+
+.circle i{
+    font-size: 34px;
 }
 
 .workspace span{
@@ -461,7 +466,7 @@ body{
 
 .atlas{
 
-    transform:translateY(20px);
+    transform:translateY(12px);
 
 }
 
@@ -473,7 +478,7 @@ body{
 
 .journal{
 
-    transform:translateY(-20px);
+    transform:translateY(-12px);
 
 }
 
@@ -485,6 +490,6 @@ body{
 
 .timeline{
 
-    transform:translateY(20px);
+    transform:translateY(12px);
 
 }
