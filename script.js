@@ -1,6 +1,5 @@
 /* =====================================
    PRIVATE ATLAS
-   HOME V2
 ===================================== */
 
 const workspaces = document.querySelectorAll(".workspace");
@@ -9,7 +8,8 @@ workspaces.forEach(workspace => {
 
     workspace.addEventListener("click", () => {
 
-        if(workspace.classList.contains("selected")){
+        // Si ya estaba seleccionado, vuelve al inicio
+        if (workspace.classList.contains("selected")) {
 
             workspaces.forEach(item => {
 
@@ -22,56 +22,132 @@ workspaces.forEach(workspace => {
 
         }
 
+        // Oculta los demás
         workspaces.forEach(item => {
 
-            item.classList.remove("selected");
-
-            if(item !== workspace){
+            if (item !== workspace) {
 
                 item.classList.add("hidden");
 
-            }else{
+            } else {
 
                 item.classList.remove("hidden");
 
             }
 
+            item.classList.remove("selected");
+
         });
 
         workspace.classList.add("selected");
-
-        console.log(
-            workspace.querySelector("span").textContent
-        );
 
     });
 
 });
 
-// Botón de personalización
+/* =====================================
+   PERSONALIZAR
+===================================== */
 
-const customize =
-document.querySelector(".customize-btn");
-const appearancePanel = 
-document.querySelector(".appearance-panel");
-customize.addEventListener("click",()=>{
-    appearancePanel.classList.toggle("active");
-});
+const customize = document.querySelector(".customize-btn");
+const appearancePanel = document.querySelector(".appearance-panel");
+const closeAppearance = document.querySelector(".close-appearance");
 
-document
-.querySelector(".close-appearance")
-.addEventListener("click",() => {
+if (customize && appearancePanel) {
 
-    appearancePanel.classList.remove("active");
-});
+    customize.addEventListener("click", (e) => {
 
-document.addEventListener("click",(e)=>{
-    if(
-        !
-        appearancePanel.contains(e.target) &&
-        !customize.contains(e.target)
-    ){
+        e.stopPropagation();
+
+        appearancePanel.classList.toggle("active");
+
+    });
+
+}
+
+if (closeAppearance) {
+
+    closeAppearance.addEventListener("click", () => {
+
         appearancePanel.classList.remove("active");
+
+    });
+
+}
+
+/* =====================================
+   CERRAR PANEL
+===================================== */
+
+document.addEventListener("click", (e) => {
+
+    if (
+        appearancePanel &&
+        !appearancePanel.contains(e.target) &&
+        !customize.contains(e.target)
+    ) {
+
+        appearancePanel.classList.remove("active");
+
     }
 
 });
+
+/* =====================================
+   CAMBIAR FONDO
+===================================== */
+
+const inputBackground = document.getElementById("background-input");
+const uploadButton = document.querySelector(".upload-background");
+
+if (uploadButton && inputBackground) {
+
+    uploadButton.addEventListener("click", () => {
+
+        inputBackground.click();
+
+    });
+
+    inputBackground.addEventListener("change", (event) => {
+
+        const file = event.target.files[0];
+
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+
+            document.body.style.backgroundImage = `url('${e.target.result}')`;
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundPosition = "center";
+            document.body.style.backgroundRepeat = "no-repeat";
+
+            localStorage.setItem(
+                "privateAtlasBackground",
+                e.target.result
+            );
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+}
+
+/* =====================================
+   CARGAR FONDO
+===================================== */
+
+const savedBackground = localStorage.getItem("privateAtlasBackground");
+
+if (savedBackground) {
+
+    document.body.style.backgroundImage = `url('${savedBackground}')`;
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+    document.body.style.backgroundRepeat = "no-repeat";
+
+}
+

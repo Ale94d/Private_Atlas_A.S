@@ -10,8 +10,6 @@
 
     <title>Private Atlas A.S.</title>
 
-    <!-- Google Fonts -->
-
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
 
@@ -29,39 +27,27 @@
 
 <body>
 
-    <!-- ===========================
-            CABECERA
-    ============================ -->
+<header class="hero">
 
-    <header class="hero">
+    <img
+        src="assets/images/logo.png"
+        alt="Private Atlas"
+        class="logo">
 
-        <img
-            src="assets/images/logo.png"
-            alt="Private Atlas"
-            class="logo">
+    <p class="slogan">
+        Tus recuerdos viajan contigo
+    </p>
 
-        <p class="slogan">
+</header>
 
-            Tus recuerdos viajan contigo
+<main class="home">
 
-        </p>
-
-    </header>
-
-    <!-- ===========================
-            HOME
-    ============================ -->
-
-    <main class="home">
-
-        <div class="workspaces">
+    <div class="workspaces">
 
         <div class="workspace atlas">
 
             <div class="circle">
-
-                🌍
-
+                🧭
             </div>
 
             <span>Atlas</span>
@@ -71,9 +57,7 @@
         <div class="workspace planner">
 
             <div class="circle">
-
                 📅
-
             </div>
 
             <span>Life Planner</span>
@@ -83,9 +67,7 @@
         <div class="workspace journal">
 
             <div class="circle">
-
                 📖
-
             </div>
 
             <span>Daily Journal</span>
@@ -95,9 +77,7 @@
         <div class="workspace baul">
 
             <div class="circle">
-
                 📦
-
             </div>
 
             <span>Baúl</span>
@@ -107,57 +87,71 @@
         <div class="workspace timeline">
 
             <div class="circle">
-
                 🕰️
-
             </div>
 
             <span>Timeline</span>
 
         </div>
 
-    </main>
+    </div>
 
-    <!-- ===========================
-        BOTÓN PERSONALIZAR
-    ============================ -->
+</main>
+<!-- =====================================
+     BOTÓN PERSONALIZAR
+===================================== -->
 
-    <button
-        class="circle">
-        <span>Personalizar</span>
+<div class="customize-btn">
 
+    <div class="circle">
         🎨
+    </div>
+
+    <span>Personalizar</span>
+
+</div>
+
+<!-- =====================================
+     PANEL DE APARIENCIA
+===================================== -->
+
+<div class="appearance-panel">
+
+    <h2>Apariencia</h2>
+
+    <button class="upload-background">
+
+        Subir imagen
 
     </button>
 
-    <template id=""appearance-template">
-        
-        <div class="appearance-panel">
-            <h2>Apariencia<h2>
+    <input
+        type="file"
+        id="background-input"
+        accept="image/*"
+        hidden>
 
-            <button class="upload-background"> Subir Fondo</button>
+    <div class="theme-list">
 
-            <input
-            type="file"
-            id="background-input"
-            accept="image/*"
-            hidden
-            >
-        <div class="theme-list">
+        <button
+            class="theme-btn"
+            data-theme="default">
 
-        <button class="theme-btn" 
-        data-theme="default">
-        Fondo clasico
+            Fondo clásico
+
         </button>
 
-        <button class="close-appearance">
-            <- Volver
-        </button>
-    
-    
-    </template>
+    </div>
 
-    <script src="script.js"></script>
+    <button class="close-appearance">
+
+        Volver
+
+    </button>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
 
