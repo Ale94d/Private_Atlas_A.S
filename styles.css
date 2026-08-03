@@ -28,6 +28,11 @@ body{
     align-items:center;
     justify-content:center;
     padding-top:40px;
+    background: rgba(255,255,255,.18);
+    backdrop-filter: blur(8px);
+    padding:20px 35px;
+    border-radius: 25px;
+    display: inline-flex;
 
 }
 
