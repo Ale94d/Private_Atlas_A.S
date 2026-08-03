@@ -9,18 +9,35 @@ workspaces.forEach(workspace => {
 
     workspace.addEventListener("click", () => {
 
-        // Oculta los demás
+        if(workspace.classList.contains("selected")){
+
+            workspaces.forEach(item => {
+
+                item.classList.remove("selected");
+                item.classList.remove("hidden");
+
+            });
+
+            return;
+
+        }
+
         workspaces.forEach(item => {
+
+            item.classList.remove("selected");
 
             if(item !== workspace){
 
                 item.classList.add("hidden");
 
+            }else{
+
+                item.classList.remove("hidden");
+
             }
 
         });
 
-        // Selecciona el actual
         workspace.classList.add("selected");
 
         console.log(
