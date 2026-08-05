@@ -168,9 +168,30 @@ const savedBackground = localStorage.getItem("privateAtlasBackground");
 if (savedBackground) {
 
     document.body.style.backgroundImage = `url('${savedBackground}')`;
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition = "center";
-    document.body.style.backgroundRepeat = "no-repeat";
+
+} else {
+
+    document.body.style.backgroundImage =
+    "url('assets/images/default.jpg')";
 
 }
 
+document.body.style.backgroundSize = "cover";
+document.body.style.backgroundPosition = "center";
+document.body.style.backgroundRepeat = "no-repeat";
+
+/* =====================================
+   PERFIL
+===================================== */
+
+const profileBtn = document.querySelector(".profile-btn");
+
+if(profileBtn){
+
+    profileBtn.addEventListener("click",()=>{
+
+        profileBtn.classList.toggle("active");
+
+    });
+
+}
