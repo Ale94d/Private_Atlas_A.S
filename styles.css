@@ -504,7 +504,7 @@ body{
     position:fixed;
     top:25px;
     left:25px;
-    z-index:1000;
+    z-index:9999;
 
 }
 
@@ -543,6 +543,7 @@ body{
     pointer-events:none;
     transform:translateY(20px);
     transition:.35s;
+    z-index:9999;
 
 }
 
