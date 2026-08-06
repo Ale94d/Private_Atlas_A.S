@@ -2,13 +2,16 @@
    PRIVATE ATLAS
 ===================================== */
 
+// ===============================
+// WORKSPACES
+// ===============================
+
 const workspaces = document.querySelectorAll(".workspace");
 
 workspaces.forEach(workspace => {
 
     workspace.addEventListener("click", () => {
 
-        // Si ya estaba seleccionado, vuelve al inicio
         if (workspace.classList.contains("selected")) {
 
             workspaces.forEach(item => {
@@ -22,7 +25,6 @@ workspaces.forEach(workspace => {
 
         }
 
-        // Oculta los demás
         workspaces.forEach(item => {
 
             if (item !== workspace) {
@@ -45,9 +47,9 @@ workspaces.forEach(workspace => {
 
 });
 
-/* =====================================
-   PERSONALIZAR
-===================================== */
+// ===============================
+// PANEL PERSONALIZAR
+// ===============================
 
 const customize = document.querySelector(".customize-btn");
 const appearancePanel = document.querySelector(".appearance-panel");
@@ -60,6 +62,8 @@ if (customize && appearancePanel) {
         e.stopPropagation();
 
         appearancePanel.classList.toggle("active");
+
+        profileBtn.classList.remove("active");
 
     });
 
@@ -75,27 +79,9 @@ if (closeAppearance) {
 
 }
 
-/* =====================================
-   CERRAR PANEL
-===================================== */
-
-document.addEventListener("click", (e) => {
-
-    if (
-        appearancePanel &&
-        !appearancePanel.contains(e.target) &&
-        !customize.contains(e.target)
-    ) {
-
-        appearancePanel.classList.remove("active");
-
-    }
-
-});
-
-/* =====================================
-   CAMBIAR FONDO
-===================================== */
+// ===============================
+// CAMBIAR FONDO
+// ===============================
 
 const inputBackground = document.getElementById("background-input");
 const uploadButton = document.querySelector(".upload-background");
@@ -136,9 +122,9 @@ if (uploadButton && inputBackground) {
 
 }
 
-/* =====================================
-   FONDO CLÁSICO
-===================================== */
+// ===============================
+// FONDO CLÁSICO
+// ===============================
 
 const defaultTheme = document.querySelector(".theme-btn");
 
@@ -147,7 +133,7 @@ if (defaultTheme) {
     defaultTheme.addEventListener("click", () => {
 
         document.body.style.backgroundImage =
-        "url('./assets/images/default.jpg')";
+            "url('assets/images/default.jpg')";
 
         document.body.style.backgroundSize = "cover";
         document.body.style.backgroundPosition = "center";
@@ -159,9 +145,9 @@ if (defaultTheme) {
 
 }
 
-/* =====================================
-   CARGAR FONDO
-===================================== */
+// ===============================
+// CARGAR FONDO
+// ===============================
 
 const savedBackground = localStorage.getItem("privateAtlasBackground");
 
@@ -172,7 +158,7 @@ if (savedBackground) {
 } else {
 
     document.body.style.backgroundImage =
-    "url('assets/images/default.jpg')";
+        "url('assets/images/default.jpg')";
 
 }
 
@@ -180,34 +166,61 @@ document.body.style.backgroundSize = "cover";
 document.body.style.backgroundPosition = "center";
 document.body.style.backgroundRepeat = "no-repeat";
 
-/* =====================================
-   PERFIL
-===================================== */
+// ===============================
+// PERFIL
+// ===============================
 
 const profileBtn = document.querySelector(".profile-btn");
+const profilePanel = document.querySelector(".profile-panel");
+const closeProfile = document.querySelector(".close-profile");
 
-if(profileBtn){
+if (profileBtn) {
 
-    profileBtn.addEventListener("click",()=>{
+    profileBtn.addEventListener("click", (e) => {
 
         e.stopPropagation();
 
         profileBtn.classList.toggle("active");
 
+        appearancePanel.classList.remove("active");
+
     });
 
-    const profilePanel =
-        document.querySelector(".profile-panel"
-        );
-    const closeProfile =
-        document.querySelector(".close-profile"
-        );
+}
 
-    if(closeProfile){
-        closeProfile.addEventListener("click",
-            ()=>{
-                profileBtn.classList.remove("active");
-            });
-    }
+if (closeProfile) {
+
+    closeProfile.addEventListener("click", () => {
+
+        profileBtn.classList.remove("active");
+
+    });
 
 }
+
+// ===============================
+// CERRAR PANELES
+// ===============================
+
+document.addEventListener("click", (e) => {
+
+    if (
+        appearancePanel &&
+        !appearancePanel.contains(e.target) &&
+        !customize.contains(e.target)
+    ) {
+
+        appearancePanel.classList.remove("active");
+
+    }
+
+    if (
+        profileBtn &&
+        !profileBtn.contains(e.target)
+    ) {
+
+        profileBtn.classList.remove("active");
+
+    }
+
+});
