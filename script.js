@@ -55,9 +55,13 @@ const atlasWorkspace = document.querySelector(".atlas");
 
 if (atlasWorkspace) {
 
-    atlasWorkspace.addEventListener("dblclick", () => {
+    atlasWorkspace.addEventListener("click", () => {
 
-        window.location.href = "atlas/index.html";
+        setTimeout(() => {
+
+            window.location.href = "atlas/index.html";
+
+        }, 350);
 
     });
 
