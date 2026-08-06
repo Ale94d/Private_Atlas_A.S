@@ -224,3 +224,45 @@ document.addEventListener("click", (e) => {
     }
 
 });
+
+/* =====================================
+   CERRAR PERFIL
+===================================== */
+
+const closeProfile = document.querySelector(".close-profile");
+
+if (closeProfile) {
+
+    closeProfile.addEventListener("click", (e) => {
+
+        e.stopPropagation();
+
+        profileBtn.classList.remove("active");
+
+    });
+
+}
+
+document.addEventListener("click", (e) => {
+
+    if (
+        profileBtn &&
+        !profileBtn.contains(e.target)
+    ) {
+
+        profileBtn.classList.remove("active");
+
+    }
+
+}); document.addEventListener("click", (e) => {
+
+    if (
+        profileBtn &&
+        !profileBtn.contains(e.target)
+    ) {
+
+        profileBtn.classList.remove("active");
+
+    }
+
+});
