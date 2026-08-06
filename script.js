@@ -190,8 +190,24 @@ if(profileBtn){
 
     profileBtn.addEventListener("click",()=>{
 
+        e.stopPropagation();
+
         profileBtn.classList.toggle("active");
 
     });
+
+    const profilePanel =
+        document.querySelector(".profile-panel"
+        );
+    const closeProfile =
+        document.querySelector(".close-profile"
+        );
+
+    if(closeProfile){
+        closeProfile.addEventListener("click",
+            ()=>{
+                profileBtn.classList.remove("active");
+            });
+    }
 
 }
