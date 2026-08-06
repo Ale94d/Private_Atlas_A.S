@@ -63,7 +63,9 @@ if (customize && appearancePanel) {
 
         appearancePanel.classList.toggle("active");
 
-        profileBtn.classList.remove("active");
+        if (profileBtn) {
+            profileBtn.classList.remove("active");
+        }
 
     });
 
@@ -182,7 +184,9 @@ if (profileBtn) {
 
         profileBtn.classList.toggle("active");
 
-        appearancePanel.classList.remove("active");
+        if (appearancePanel) {
+            appearancePanel.classList.remove("active");
+        }
 
     });
 
@@ -190,7 +194,9 @@ if (profileBtn) {
 
 if (closeProfile) {
 
-    closeProfile.addEventListener("click", () => {
+    closeProfile.addEventListener("click", (e) => {
+
+        e.stopPropagation();
 
         profileBtn.classList.remove("active");
 
@@ -213,48 +219,6 @@ document.addEventListener("click", (e) => {
         appearancePanel.classList.remove("active");
 
     }
-
-    if (
-        profileBtn &&
-        !profileBtn.contains(e.target)
-    ) {
-
-        profileBtn.classList.remove("active");
-
-    }
-
-});
-
-/* =====================================
-   CERRAR PERFIL
-===================================== */
-
-const closeProfile = document.querySelector(".close-profile");
-
-if (closeProfile) {
-
-    closeProfile.addEventListener("click", (e) => {
-
-        e.stopPropagation();
-
-        profileBtn.classList.remove("active");
-
-    });
-
-}
-
-document.addEventListener("click", (e) => {
-
-    if (
-        profileBtn &&
-        !profileBtn.contains(e.target)
-    ) {
-
-        profileBtn.classList.remove("active");
-
-    }
-
-}); document.addEventListener("click", (e) => {
 
     if (
         profileBtn &&
