@@ -51,7 +51,7 @@ workspaces.forEach(workspace => {
 // ABRIR ATLAS
 // ===============================
 
-const atlasWorkspace = document.querySelector(".workspace.atlas");
+const atlasWorkspace = document.querySelector(".atlas");
 
 if (atlasWorkspace) {
 
