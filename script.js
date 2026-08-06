@@ -48,6 +48,22 @@ workspaces.forEach(workspace => {
 });
 
 // ===============================
+// ABRIR ATLAS
+// ===============================
+
+const atlasWorkspace = document.querySelector(".workspace.atlas");
+
+if (atlasWorkspace) {
+
+    atlasWorkspace.addEventListener("dblclick", () => {
+
+        window.location.href = "atlas/index.html";
+
+    });
+
+}
+
+// ===============================
 // PANEL PERSONALIZAR
 // ===============================
 
