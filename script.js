@@ -171,7 +171,7 @@ document.body.style.backgroundRepeat = "no-repeat";
 // ===============================
 
 const profileBtn = document.querySelector(".profile-btn");
-const profilePanel = document.querySelector(".profile-panel");
+const profilePanel = document.querySelector(".profile-menu");
 const closeProfile = document.querySelector(".close-profile");
 
 if (profileBtn) {
