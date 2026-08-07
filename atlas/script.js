@@ -1,4 +1,4 @@
-const backHome = document.querySelector(".back-home");
+const backHome = document.querySelector(".back-btn");
 
 if (backHome) {
 
