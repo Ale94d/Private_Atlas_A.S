@@ -29,10 +29,13 @@ body{
 
 .atlas-workspace{
     
-    flex: 1;
-    display: flex;
-    padding: 30px;
-    gap: 25px;
+    width:100vw;
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    box-sizing: border-box;
 }
 .atlas-title h1{
     
@@ -62,7 +65,7 @@ body{
     justify-content:center;
     align-items:center;
     position:relative;
-    overflow:hidden;
+    overflow:visible;
     border-radius:32px;
     background:radial-gradient(
         circle at center,
@@ -153,13 +156,13 @@ body{
 
 .scroll-left{
 
-    left:-18px;
+    left:-28px;
 
 }
 
 .scroll-right{
 
-    right:-18px;
+    right:-28px;
 
 }
 
@@ -248,5 +251,63 @@ rgba(0, 0, 0,.30);
         transform:scaleX(1);
 
     }
+
+}
+
+/* =====================================
+        BOTONES DEL PERGAMINO
+===================================== */
+
+.scroll-left,
+.scroll-right{
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+
+}
+
+.scroll-btn{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+    border-radius:50%;
+
+    background:rgba(255,255,255,.18);
+
+    color:#4A3524;
+    font-size:1.1rem;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.scroll-btn:hover{
+
+    transform:scale(1.12);
+
+    background:rgba(255,255,255,.35);
+
+}
+
+.scroll-text{
+
+    writing-mode:vertical-rl;
+
+    text-orientation:mixed;
+
+    font-size:.9rem;
+
+    color:#4A3524;
+
+    font-weight:bold;
+
+    margin-top:10px;
 
 }

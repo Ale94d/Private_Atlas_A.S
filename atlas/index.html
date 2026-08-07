@@ -10,7 +10,8 @@
 </head>
 
 <body>
-
+    
+    <!--
     <header class="atlas-header">
 
         <button class="back-home">
@@ -28,6 +29,7 @@
     </div>
 
     </header>
+    -->
 
     <main class="atlas-workspace">
 
@@ -37,19 +39,41 @@
 
     <section class="atlas-map">
 
-        <div class="scroll-left"></div>
+    <aside class="scroll-left">
 
-        <div class="map-background">
-           <object
+        <button class="scroll-btn">
+            ⬅️
+        </button>
+
+        <span class="scroll-text">
+            Volver
+        </span>
+
+    </aside>
+
+    <div class="map-background">
+
+        <object
             id="world-map"
             data="assets/Maps/world.svg"
             type="image/svg+xml">
-            </object>
-        </div>
+        </object>
 
-        <div class="scroll-right"></div>
-        
-    </section>
+    </div>
+
+    <aside class="scroll-right">
+
+        <button class="scroll-btn">🔍</button>
+
+        <button class="scroll-btn">⭐</button>
+
+        <button class="scroll-btn">📍</button>
+
+        <button class="scroll-btn">⚙️</button>
+
+    </aside>
+
+</section>
 
     </main>
 
