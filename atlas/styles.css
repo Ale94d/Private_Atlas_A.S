@@ -12,6 +12,7 @@ body{
     height:100vh;
     display:flex;
     flex-direction: column;
+    cursor:default;
 }
 
 .atlas-header{
@@ -71,31 +72,40 @@ body{
     #F8E9C9 0%,
     #F3D9A5 60%,
     #D2A86E 100%);
+    cursor:grab;
     
 
 }
 
 .map-background{
-    
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+
+    position:absolute;
+    left:90px;
+    right:90px;
+    top:0;
+    bottom:0;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
 }
 
-#world-map{
+#map-container{
 
-    width: 100%;
-    height: 100%;
-    user-select: none;
-    pointer-events: auto;
-    cursor: grab;
-    transition: .2s;
+    position:absolute;
+    width:3200px;
+    height:1800px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:grab;
+    user-select:none;
+    transform:translate(0px,0px);
+    transition:transform .15 linear;
 
 }
+
 .map-placeholder{
 
     text-align: center;
@@ -120,38 +130,38 @@ body{
 .scroll-right{
 
     position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:48px;
-    height:90%;
-    border-radius:30px;
+    top:0;
+    width:95px;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:25px;
     background:linear-gradient(
         90deg,
-        #5B3D22 0%,
-        #8A6244 25%,
-        #D7B27B 50%,
-        #8A6244 75%,
-        #5B3D22 100%
-    );
-
+        #4D321A 0%,
+        #7A5333 18%,
+        #D5AE78 50%,
+        #7A5333 82%,
+        #4D321A 100%);
     box-shadow:
-        inset 4px 0 8px rgba(255,255,255,.18),
-        inset -4px 0 10px rgba(0,0,0,.20),
-        0 12px 22px rgba(0,0,0,.18);
-
-    z-index:5;
+        inset 6px 0 10px rgba(255,255,255,.18),
+        inset -8px 0 12px rgba(0,0,0,.22);
+    z-index:20;
 
 }
 
+
 .scroll-left{
 
-    left:-28px;
+    left:0px;
 
 }
 
 .scroll-right{
 
-    right:-28px;
+    right:0px;
 
 }
 
@@ -165,8 +175,8 @@ body{
     top: 50%;
     left: 50%;
     transform:translate(-50%,-50%);
-    width: 18px;
-    height: 18px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     background: #6B4727;
     box-shadow: 
@@ -183,10 +193,8 @@ rgba(0, 0, 0,.30);
 .atlas-map::before{
 
     content:"";
-
     position:absolute;
     inset:0;
-
     background:
     radial-gradient(
         circle at 20% 20%,
@@ -203,8 +211,10 @@ rgba(0, 0, 0,.30);
         rgba(120,90,60,.05),
         transparent 45%
     );
-
     pointer-events:none;
+    object{
+        display:block;
+    }
 
 }
 
@@ -260,13 +270,15 @@ rgba(0, 0, 0,.30);
 
 .scroll-btn{
 
-    width:42px;
-    height:42px;
+    width:58px;
+    height:58px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background:transparent;
     border:none;
-    border-radius:50%;
-    background:rgba(255,255,255,.18);
-    color:#4A3524;
-    font-size:1.1rem;
+    color:#3B281A;
+    font-size:30px;
     cursor:pointer;
     transition:.25s;
 
@@ -274,8 +286,7 @@ rgba(0, 0, 0,.30);
 
 .scroll-btn:hover{
 
-    transform:scale(1.12);
-    background:rgba(255,255,255,.35);
+    transform:scale(1.18);
 
 }
 
@@ -283,34 +294,51 @@ rgba(0, 0, 0,.30);
 
     writing-mode:vertical-rl;
     text-orientation:mixed;
-    font-size:.9rem;
+    font-size:1rem;
     color:#4A3524;
     font-weight:bold;
     margin-top:10px;
+    letter-spacing: 2px;
 
 }
 
-/* =====================================
-        CONTENEDOR DEL MAPA
-===================================== */
 
-#map-container{
+.zooming{
 
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: grab;
-    user-select: none;
+    transition: none;
+}
+
+#world-map{
+
+    -webkit-user-drag:none;
+
+    user-select:none;
 
 }
 
-#map-container:active{
+#country-memory{
 
-    cursor: grabbing;
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.45);
+
+    z-index:500;
+
+}
+
+.memory-paper{
+
+    width:600px;
+
+    background:#F7E7C4;
+
+    padding:40px;
 
 }
