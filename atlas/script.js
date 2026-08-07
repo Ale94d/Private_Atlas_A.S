@@ -10,7 +10,7 @@ if (backHome) {
 
 }
 
-const mapContainer = document.getElementById("map-container");
+const mapContainer = document.getElementById("#map-container");
 
 let isDragging = false;
 
