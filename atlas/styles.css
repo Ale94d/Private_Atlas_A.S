@@ -81,6 +81,7 @@ body{
     
     width: 95%;
     height: 95%;
+    object-fit:contain;
     display: flex;
     justify-content: center;
     align-items: center;
