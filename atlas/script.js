@@ -1,4 +1,5 @@
 const mapContainer = document.getElementById("map-container");
+const mapArea = document.querySelector(".map-background");
 
 let isDragging = false;
 
@@ -8,103 +9,120 @@ let startY = 0;
 let currentX = 0;
 let currentY = 0;
 
-mapContainer.addEventListener("mousedown",(e)=>{
+let scale = 1;
+
+
+/* =====================================
+        ACTUALIZAR MAPA
+===================================== */
+
+function updateMap(){
+
+    mapContainer.style.transform =
+        `translate(${currentX}px, ${currentY}px) scale(${scale})`;
+
+}
+
+
+/* =====================================
+        MOVER MAPA
+===================================== */
+
+mapArea.addEventListener("mousedown", (e) => {
+
+    if (e.target.closest(".scroll-btn")) return;
 
     isDragging = true;
 
     startX = e.clientX - currentX;
     startY = e.clientY - currentY;
 
-    mapContainer.style.cursor="grabbing";
+    mapArea.style.cursor = "grabbing";
 
 });
 
-document.addEventListener("mouseup",()=>{
+
+/* =====================================
+        SOLTAR MAPA
+===================================== */
+
+document.addEventListener("mouseup", () => {
 
     isDragging = false;
 
-    mapContainer.style.cursor="grab";
+    mapArea.style.cursor = "grab";
 
 });
 
-document.addEventListener("mousemove",(e)=>{
 
-    if(!isDragging) return;
+/* =====================================
+        ARRASTRAR MAPA
+===================================== */
+
+document.addEventListener("mousemove", (e) => {
+
+    if (!isDragging) return;
 
     currentX = e.clientX - startX;
     currentY = e.clientY - startY;
 
-    const limitX = 1200;
-    const limitY = 700;
-
-    currentX = Math.max(-limitX,Math.min(limitX,currentX));
-    currentY = Math.max(-limitY,Math.min(limitY,currentY));
-
-    mapContainer.style.transform =
-    `translate(${currentX}px,${currentY}px) scale(${scale})`;
+    updateMap();
 
 });
 
-let scale = 1;
 
-document.addEventListener("wheel",(e)=>{
+/* =====================================
+        ZOOM CON RUEDA
+===================================== */
+
+mapArea.addEventListener("wheel", (e) => {
 
     e.preventDefault();
 
-    if(e.deltaY<0){
+    if (e.deltaY < 0) {
 
-        scale+=0.08;
+        scale += 0.08;
 
-    }else{
+    } else {
 
-        scale-=0.08;
+        scale -= 0.08;
 
     }
 
-    scale=Math.max(.6,Math.min(scale,4));
+    scale = Math.max(0.6, Math.min(scale, 4));
 
-    mapContainer.style.transform=
-    `translate(${currentX}px,${currentY}px) scale(${scale})`;
+    updateMap();
 
-},{passive:false});
+}, { passive: false });
 
-window.addEventListener("load",()=>{
 
-    currentX = -900;
-    currentY = -350;
+/* =====================================
+        DOBLE CLIC = CENTRAR
+===================================== */
 
-    mapContainer.style.transform=
-    `translate(${currentX}px,${currentY}px) scale(${scale})`;
-
-});
-
-mapContainer.addEventListener("dblclick",()=>{
+mapArea.addEventListener("dblclick", () => {
 
     currentX = -900;
     currentY = -350;
+
     scale = 1;
 
-    mapContainer.style.transform =
-    `translate(${currentX}px,${currentY}px) scale(${scale})`;
+    updateMap();
 
 });
 
-const worldMap = document.getElementById("world-map");
 
-worldMap.addEventListener("load",()=>{
+/* =====================================
+        POSICIÓN INICIAL
+===================================== */
 
-    console.log("Mapa cargado correctamente.");
+window.addEventListener("load", () => {
 
-});
+    currentX = -900;
+    currentY = -350;
 
-const memoryWindow =
-document.getElementById("country-memory");
+    scale = 1;
 
-const closeMemory =
-document.getElementById("close-memory");
-
-closeMemory.addEventListener("click",()=>{
-
-    memoryWindow.style.display="none";
+    updateMap();
 
 });

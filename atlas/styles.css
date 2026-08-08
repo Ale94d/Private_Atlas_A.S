@@ -72,16 +72,14 @@ body{
     #F8E9C9 0%,
     #F3D9A5 60%,
     #D2A86E 100%);
-    cursor:grab;
-    
 
 }
 
 .map-background{
 
     position:absolute;
-    left:90px;
-    right:90px;
+    left:95px;
+    right:95px;
     top:0;
     bottom:0;
     overflow:hidden;
@@ -94,15 +92,16 @@ body{
 #map-container{
 
     position:absolute;
+    left:0;
+    top:0;
     width:3200px;
     height:1800px;
     display:flex;
     justify-content:center;
     align-items:center;
-    cursor:grab;
     user-select:none;
-    transform:translate(0px,0px);
-    transition:transform .15 linear;
+    transform-origin: center center;
+    will-change: transform;
 
 }
 
@@ -212,10 +211,11 @@ rgba(0, 0, 0,.30);
         transparent 45%
     );
     pointer-events:none;
-    object{
-        display:block;
-    }
 
+}
+
+object{
+    display:block;
 }
 
 /* =====================================
@@ -310,8 +310,11 @@ rgba(0, 0, 0,.30);
 
 #world-map{
 
+    display:block;
+    width:100%;
+    height:100%;
+    pointer-events:none;
     -webkit-user-drag:none;
-
     user-select:none;
 
 }
@@ -319,16 +322,11 @@ rgba(0, 0, 0,.30);
 #country-memory{
 
     position:fixed;
-
     inset:0;
-
     display:none;
-
     justify-content:center;
     align-items:center;
-
     background:rgba(0,0,0,.45);
-
     z-index:500;
 
 }
@@ -336,9 +334,37 @@ rgba(0, 0, 0,.30);
 .memory-paper{
 
     width:600px;
-
     background:#F7E7C4;
-
     padding:40px;
+
+}
+
+.map-background{
+    cursor: grab;
+}
+
+.map-background:active{
+    cursor: grabbing;
+}
+
+.scroll-left,
+.scroll-right{
+    cursor: default;
+}
+
+.scroll-btn{
+    cursor: pointer;
+}
+
+.scroll-left,
+.scroll-right{
+
+    z-index: 100;
+
+}
+
+.map-background{
+
+    z-index: 10;
 
 }
