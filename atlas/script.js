@@ -1,3 +1,19 @@
+/* =====================================
+        VOLVER AL HOME
+===================================== */
+
+const backHome = document.querySelector(".back-btn");
+
+if (backHome) {
+
+    backHome.addEventListener("click", () => {
+
+        window.location.href = "../index.html";
+
+    });
+
+}
+
 const mapContainer = document.getElementById("map-container");
 const mapArea = document.querySelector(".map-background");
 
