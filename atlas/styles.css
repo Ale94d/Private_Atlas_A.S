@@ -68,10 +68,31 @@ body{
     align-items: center;
     overflow: hidden;
     background:
-    radial-gradient(circle at center,
-    #F8E9C9 0%,
-    #F3D9A5 60%,
-    #D2A86E 100%);
+
+    radial-gradient(
+        circle at 20% 20%,
+        rgba(255,255,255,.18),
+        transparent 25%
+    ),
+
+    radial-gradient(
+        circle at 80% 70%,
+        rgba(100,65,30,.10),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 45% 45%,
+        rgba(255,255,255,.12),
+        transparent 40%
+    ),
+
+    linear-gradient(
+        135deg,
+        #E8D2A8,
+        #F2E0BB,
+        #D9BC8A
+    );
 
 }
 
@@ -86,6 +107,21 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+    background:
+
+        radial-gradient(
+            circle at 25% 30%,
+            rgba(255,255,255,.15),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 75% 65%,
+            rgba(100,65,30,.08),
+            transparent 30%
+        ),
+
+        #E8D2A8;
 
 }
 
@@ -164,26 +200,7 @@ body{
 
 }
 
-/*CENTRO DEL ROLLO */
 
-.scroll-left::after,
-.scroll-right::after{
-
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform:translate(-50%,-50%);
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: #6B4727;
-    box-shadow: 
-        inset 0 2px 4px
-rgba(255,255,255,.15),
-        inset 0 -2px 5px
-rgba(0, 0, 0,.30);
-}
 
 /* =====================================
         TEXTURA DEL PERGAMINO
@@ -264,29 +281,42 @@ object{
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    gap:18px;
+    gap:28px;
 
 }
 
 .scroll-btn{
 
-    width:58px;
-    height:58px;
+    width:48px;
+    height:48px;
     display:flex;
     justify-content: center;
     align-items: center;
-    background:transparent;
+    background: rgba(255, 248, 230,.18);
     border:none;
-    color:#3B281A;
-    font-size:30px;
+    color:#3F2818;
+    border-radius:50%;
+    font-size:20px;
     cursor:pointer;
-    transition:.25s;
+    transition:
+        transform .25s ease
+        background .25s ease
+        box-shadow .25s ease;
 
+}
+
+.scroll-btn i{
+
+    font-size:22px;
+    line-height:1;
 }
 
 .scroll-btn:hover{
 
-    transform:scale(1.18);
+    transform:scale(1.12);
+    background: rgba(255,248,230,.38);
+    box-shadow:
+            0 4px 10px rgba(50,30,15,.18)
 
 }
 
@@ -366,5 +396,29 @@ object{
 .map-background{
 
     z-index: 10;
+
+}
+
+.scroll-left,
+.scroll-right{
+
+    width:105px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #3F2815 0%,
+            #654321 15%,
+            #A97845 35%,
+            #D6B27A 50%,
+            #A97845 65%,
+            #654321 85%,
+            #3F2815 100%
+        );
+
+    box-shadow:
+        inset 5px 0 12px rgba(255,255,255,.18),
+        inset -6px 0 14px rgba(0,0,0,.28),
+        0 0 18px rgba(50,30,15,.22);
 
 }
