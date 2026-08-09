@@ -68,30 +68,11 @@ body{
     align-items: center;
     overflow: hidden;
     background:
-
-    radial-gradient(
-        circle at 20% 20%,
-        rgba(255,255,255,.18),
-        transparent 25%
-    ),
-
-    radial-gradient(
-        circle at 80% 70%,
-        rgba(100,65,30,.10),
-        transparent 30%
-    ),
-
-    radial-gradient(
-        circle at 45% 45%,
-        rgba(255,255,255,.12),
-        transparent 40%
-    ),
-
-    linear-gradient(
-        135deg,
-        #E8D2A8,
-        #F2E0BB,
-        #D9BC8A
+        radial-gradient(
+            ellipse at 50% 45%,
+            #E8D2A5 0%,
+            #D9BD8A 45%,
+            #B9905D 100%
     );
 
 }
@@ -212,22 +193,60 @@ body{
     position:absolute;
     inset:0;
     background:
-    radial-gradient(
-        circle at 20% 20%,
-        rgba(255,255,255,.12),
-        transparent 28%
-    ),
-    radial-gradient(
-        circle at 80% 70%,
-        rgba(90,60,30,.08),
-        transparent 30%
-    ),
-    radial-gradient(
-        circle at 50% 40%,
-        rgba(120,90,60,.05),
-        transparent 45%
-    );
+
+        radial-gradient(
+            ellipse at 15% 20%,
+            rgba(255,244,210,.28),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            ellipse at 85% 75%,
+            rgba(82,48,20,.16),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            ellipse at 55% 15%,
+            rgba(255,250,220,.14),
+            transparent 22%
+        ),
+
+        radial-gradient(
+            ellipse at 30% 85%,
+            rgba(90,55,25,.10),
+            transparent 28%
+        );
+
     pointer-events:none;
+    z-index:1;
+
+}
+
+.atlas-map::after{
+
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(65,38,16,.20),
+            transparent 7%,
+            transparent 93%,
+            rgba(65,38,16,.20)
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(65,38,16,.15),
+            transparent 8%,
+            transparent 92%,
+            rgba(65,38,16,.18)
+        );
+
+    z-index:2;
 
 }
 
@@ -503,3 +522,4 @@ object{
     font-size:21px;
     line-height:1;
 }
+
