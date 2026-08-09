@@ -60,20 +60,20 @@ body{
 
 .atlas-map{
 
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    position:relative;
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
     background:
         radial-gradient(
-            ellipse at 50% 45%,
-            #E8D2A5 0%,
-            #D9BD8A 45%,
-            #B9905D 100%
-    );
+            ellipse at 50% 50%,
+            #D8B77C 0%,
+            #C39A5E 45%,
+            #91683D 100%
+        );
 
 }
 
@@ -88,21 +88,6 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:
-
-        radial-gradient(
-            circle at 25% 30%,
-            rgba(255,255,255,.15),
-            transparent 28%
-        ),
-
-        radial-gradient(
-            circle at 75% 65%,
-            rgba(100,65,30,.08),
-            transparent 30%
-        ),
-
-        #E8D2A8;
 
 }
 
@@ -194,28 +179,46 @@ body{
     inset:0;
     background:
 
+        /* manchas de papel */
         radial-gradient(
-            ellipse at 15% 20%,
-            rgba(255,244,210,.28),
-            transparent 25%
+            ellipse at 18% 22%,
+            rgba(255,231,177,.30) 0%,
+            transparent 18%
         ),
 
         radial-gradient(
-            ellipse at 85% 75%,
-            rgba(82,48,20,.16),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            ellipse at 55% 15%,
-            rgba(255,250,220,.14),
+            ellipse at 78% 18%,
+            rgba(91,54,25,.18) 0%,
             transparent 22%
         ),
 
         radial-gradient(
-            ellipse at 30% 85%,
-            rgba(90,55,25,.10),
-            transparent 28%
+            ellipse at 25% 78%,
+            rgba(83,48,22,.16) 0%,
+            transparent 24%
+        ),
+
+        radial-gradient(
+            ellipse at 82% 76%,
+            rgba(255,226,164,.18) 0%,
+            transparent 20%
+        ),
+
+        /* fibras */
+        repeating-linear-gradient(
+            0deg,
+            rgba(75,45,20,.035) 0px,
+            rgba(75,45,20,.035) 1px,
+            transparent 1px,
+            transparent 4px
+        ),
+
+        repeating-linear-gradient(
+            90deg,
+            rgba(255,240,195,.025) 0px,
+            rgba(255,240,195,.025) 1px,
+            transparent 1px,
+            transparent 6px
         );
 
     pointer-events:none;
@@ -230,22 +233,16 @@ body{
     inset:0;
     pointer-events:none;
     background:
-        linear-gradient(
-            90deg,
-            rgba(65,38,16,.20),
-            transparent 7%,
-            transparent 93%,
-            rgba(65,38,16,.20)
-        ),
 
-        linear-gradient(
-            180deg,
-            rgba(65,38,16,.15),
-            transparent 8%,
-            transparent 92%,
-            rgba(65,38,16,.18)
+        radial-gradient(
+            ellipse at center,
+            transparent 45%,
+            rgba(60,34,15,.12) 75%,
+            rgba(45,25,10,.38) 100%
         );
-
+    box-shadow:
+        inset 0 0 120px rgba(55,31,12,.35),
+        inset 0 0 35px rgba(55,31,12,.20);
     z-index:2;
 
 }
@@ -318,8 +315,8 @@ object{
     font-size:21px;
     cursor:pointer;
     transition:
-        transform .25s ease
-        background .25s ease
+        transform .25s ease,
+        background .25s ease,
         box-shadow .25s ease;
 
 }
