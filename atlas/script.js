@@ -2,11 +2,11 @@
         VOLVER AL HOME
 ===================================== */
 
-const backHome = document.querySelector(".back-btn");
+const homeButton = document.querySelector(".back-home");
 
-if (backHome) {
+if (homeButton) {
 
-    backHome.addEventListener("click", () => {
+    homeButton.addEventListener("click", () => {
 
         window.location.href = "../index.html";
 
@@ -14,16 +14,26 @@ if (backHome) {
 
 }
 
+
+/* =====================================
+        ELEMENTOS DEL MAPA
+===================================== */
+
 const mapContainer = document.getElementById("map-container");
 const mapArea = document.querySelector(".map-background");
+
+
+/* =====================================
+        VARIABLES
+===================================== */
 
 let isDragging = false;
 
 let startX = 0;
 let startY = 0;
 
-let currentX = 0;
-let currentY = 0;
+let currentX = -900;
+let currentY = -350;
 
 let scale = 1;
 
@@ -41,104 +51,126 @@ function updateMap(){
 
 
 /* =====================================
-        MOVER MAPA
+        COMPROBAR MAPA
 ===================================== */
 
-mapArea.addEventListener("mousedown", (e) => {
-
-    if (e.target.closest(".scroll-btn")) return;
-
-    isDragging = true;
-
-    startX = e.clientX - currentX;
-    startY = e.clientY - currentY;
-
-    mapArea.style.cursor = "grabbing";
-
-});
+if (mapContainer && mapArea) {
 
 
-/* =====================================
-        SOLTAR MAPA
-===================================== */
+    /* =====================================
+            EMPEZAR A MOVER
+    ===================================== */
 
-document.addEventListener("mouseup", () => {
+    mapArea.addEventListener("pointerdown", (e) => {
 
-    isDragging = false;
+        if (e.target.closest(".scroll-btn")) {
+            return;
+        }
 
-    mapArea.style.cursor = "grab";
+        isDragging = true;
 
-});
+        startX = e.clientX - currentX;
+        startY = e.clientY - currentY;
+
+        mapArea.setPointerCapture(e.pointerId);
+
+        mapArea.style.cursor = "grabbing";
+
+    });
 
 
-/* =====================================
-        ARRASTRAR MAPA
-===================================== */
+    /* =====================================
+            MOVER
+    ===================================== */
 
-document.addEventListener("mousemove", (e) => {
+    mapArea.addEventListener("pointermove", (e) => {
 
-    if (!isDragging) return;
+        if (!isDragging) {
+            return;
+        }
 
-    currentX = e.clientX - startX;
-    currentY = e.clientY - startY;
+        currentX = e.clientX - startX;
+        currentY = e.clientY - startY;
+
+        updateMap();
+
+    });
+
+
+    /* =====================================
+            TERMINAR MOVIMIENTO
+    ===================================== */
+
+    mapArea.addEventListener("pointerup", (e) => {
+
+        isDragging = false;
+
+        if (mapArea.hasPointerCapture(e.pointerId)) {
+            mapArea.releasePointerCapture(e.pointerId);
+        }
+
+        mapArea.style.cursor = "grab";
+
+    });
+
+
+    mapArea.addEventListener("pointercancel", () => {
+
+        isDragging = false;
+
+        mapArea.style.cursor = "grab";
+
+    });
+
+
+    /* =====================================
+            ZOOM CON RUEDA
+    ===================================== */
+
+    mapArea.addEventListener("wheel", (e) => {
+
+        e.preventDefault();
+
+        if (e.deltaY < 0) {
+
+            scale += 0.08;
+
+        } else {
+
+            scale -= 0.08;
+
+        }
+
+        scale = Math.max(
+            0.6,
+            Math.min(scale, 4)
+        );
+
+        updateMap();
+
+    }, { passive:false });
+
+
+    /* =====================================
+            DOBLE CLIC = CENTRAR
+    ===================================== */
+
+    mapArea.addEventListener("dblclick", () => {
+
+        currentX = -900;
+        currentY = -350;
+
+        scale = 1;
+
+        updateMap();
+
+    });
+
+
+    /* =====================================
+            POSICIÓN INICIAL
+    ===================================== */
 
     updateMap();
 
-});
-
-
-/* =====================================
-        ZOOM CON RUEDA
-===================================== */
-
-mapArea.addEventListener("wheel", (e) => {
-
-    e.preventDefault();
-
-    if (e.deltaY < 0) {
-
-        scale += 0.08;
-
-    } else {
-
-        scale -= 0.08;
-
-    }
-
-    scale = Math.max(0.6, Math.min(scale, 4));
-
-    updateMap();
-
-}, { passive: false });
-
-
-/* =====================================
-        DOBLE CLIC = CENTRAR
-===================================== */
-
-mapArea.addEventListener("dblclick", () => {
-
-    currentX = -900;
-    currentY = -350;
-
-    scale = 1;
-
-    updateMap();
-
-});
-
-
-/* =====================================
-        POSICIÓN INICIAL
-===================================== */
-
-window.addEventListener("load", () => {
-
-    currentX = -900;
-    currentY = -350;
-
-    scale = 1;
-
-    updateMap();
-
-});
+}

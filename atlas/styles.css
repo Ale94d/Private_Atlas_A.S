@@ -434,7 +434,7 @@ object{
 }
 
 .favorite-btn i{
-    color: #D9A441;
+    color: #FFF4D6;
     fill: #D9A441;
 }
 
@@ -444,4 +444,62 @@ object{
 
 .memory-btn i{
     color: #8B5E3C;
+}
+
+/* =====================================
+        BOTONES DEL PERGAMINO
+===================================== */
+
+.scroll-btn{
+
+    width:44px;
+    height:44px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border:none;
+    border-radius:50%;
+
+    background:#E8D2A8;
+
+    color:#4A3020;
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,.45),
+        0 3px 8px rgba(55,35,18,.25);
+
+    cursor:pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+
+}
+
+.back-home{
+    background:#E8D2A8;
+    color:#4A3020;
+}
+
+.search-btn{
+    background:#E8D2A8;
+    color:#4A3020;
+}
+
+.favorite-btn{
+    background:#D9A441;
+    color:#FFF4D6;
+}
+
+.memory-btn{
+    background:#E8D2A8;
+    color:#6B4727;
+}
+
+.scroll-btn i{
+    font-size:21px;
+    line-height:1;
 }
