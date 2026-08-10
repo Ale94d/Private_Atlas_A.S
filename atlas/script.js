@@ -1,5 +1,5 @@
 /* =====================================
-        VOLVER AL HOME
+   VOLVER AL HOME
 ===================================== */
 
 const homeButton = document.querySelector(".back-home");
@@ -16,7 +16,7 @@ if (homeButton) {
 
 
 /* =====================================
-        ELEMENTOS DEL MAPA
+   ELEMENTOS DEL MAPA
 ===================================== */
 
 const mapContainer = document.getElementById("map-container");
@@ -24,7 +24,7 @@ const mapArea = document.querySelector(".map-background");
 
 
 /* =====================================
-        VARIABLES
+   VARIABLES
 ===================================== */
 
 let isDragging = false;
@@ -39,10 +39,12 @@ let scale = 1;
 
 
 /* =====================================
-        ACTUALIZAR MAPA
+   ACTUALIZAR MAPA
 ===================================== */
 
-function updateMap(){
+function updateMap() {
+
+    if (!mapContainer) return;
 
     mapContainer.style.transform =
         `translate(${currentX}px, ${currentY}px) scale(${scale})`;
@@ -51,15 +53,10 @@ function updateMap(){
 
 
 /* =====================================
-        COMPROBAR MAPA
+   MOVIMIENTO DEL MAPA
 ===================================== */
 
 if (mapContainer && mapArea) {
-
-
-    /* =====================================
-            EMPEZAR A MOVER
-    ===================================== */
 
     mapArea.addEventListener("pointerdown", (e) => {
 
@@ -79,10 +76,6 @@ if (mapContainer && mapArea) {
     });
 
 
-    /* =====================================
-            MOVER
-    ===================================== */
-
     mapArea.addEventListener("pointermove", (e) => {
 
         if (!isDragging) {
@@ -96,10 +89,6 @@ if (mapContainer && mapArea) {
 
     });
 
-
-    /* =====================================
-            TERMINAR MOVIMIENTO
-    ===================================== */
 
     mapArea.addEventListener("pointerup", (e) => {
 
@@ -124,7 +113,7 @@ if (mapContainer && mapArea) {
 
 
     /* =====================================
-            ZOOM CON RUEDA
+       ZOOM CON RUEDA
     ===================================== */
 
     mapArea.addEventListener("wheel", (e) => {
@@ -148,11 +137,11 @@ if (mapContainer && mapArea) {
 
         updateMap();
 
-    }, { passive:false });
+    }, { passive: false });
 
 
     /* =====================================
-            DOBLE CLIC = CENTRAR
+       DOBLE CLIC = CENTRAR
     ===================================== */
 
     mapArea.addEventListener("dblclick", () => {
@@ -168,12 +157,17 @@ if (mapContainer && mapArea) {
 
 
     /* =====================================
-            POSICIÓN INICIAL
+       POSICIÓN INICIAL
     ===================================== */
 
     updateMap();
 
 }
+
+
+/* =====================================
+   CONECTAR CON EL WORLD.SVG
+===================================== */
 
 const worldMap = document.getElementById("world-map");
 
@@ -183,29 +177,26 @@ if (worldMap) {
 
         const svgDocument = worldMap.contentDocument;
 
-        if (!svgDocument) return;
+        if (!svgDocument) {
 
-        const colombia = svgDocument.getElementById("CO");
+            console.log("No se pudo acceder al SVG.");
 
-        if (!colombia) return;
+            return;
 
-        colombia.style.cursor = "pointer";
+        }
 
-        colombia.addEventListener("mouseenter", () => {
+        const colombia =
+            svgDocument.getElementById("CO");
 
-            colombia.style.filter =
-                "drop-shadow(0 0 8px rgba(217,164,65,.8))";
+        if (!colombia) {
 
-            colombia.style.fill = "#D9A441";
+            console.log("No se encontró Colombia.");
 
-        });
+            return;
 
-        colombia.addEventListener("mouseleave", () => {
+        }
 
-            colombia.style.filter = "";
-            colombia.style.fill = "";
-
-        });
+        console.log("Colombia encontrada.");
 
     });
 
