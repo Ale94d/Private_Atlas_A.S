@@ -167,14 +167,6 @@ if (mapContainer && mapArea) {
     });
 
 
-    /* =====================================
-            POSICIÓN INICIAL
-    ===================================== */
-
-    updateMap();
-
-}
-
 const worldMap = document.getElementById("world-map");
 
 if (worldMap) {
@@ -183,29 +175,19 @@ if (worldMap) {
 
         const svgDocument = worldMap.contentDocument;
 
-        if (!svgDocument) return;
+        if (!svgDocument) {
+            console.log("No se pudo acceder al SVG");
+            return;
+        }
 
         const colombia = svgDocument.getElementById("CO");
 
-        if (!colombia) return;
+        if (!colombia) {
+            console.log("No se encontró Colombia");
+            return;
+        }
 
-        colombia.style.cursor = "pointer";
-
-        colombia.addEventListener("mouseenter", () => {
-
-            colombia.style.filter =
-                "drop-shadow(0 0 8px rgba(217,164,65,.8))";
-
-            colombia.style.fill = "#D9A441";
-
-        });
-
-        colombia.addEventListener("mouseleave", () => {
-
-            colombia.style.filter = "";
-            colombia.style.fill = "";
-
-        });
+        console.log("Colombia encontrada:", colombia);
 
     });
 
