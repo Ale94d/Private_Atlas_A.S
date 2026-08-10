@@ -174,3 +174,39 @@ if (mapContainer && mapArea) {
     updateMap();
 
 }
+
+const worldMap = document.getElementById("world-map");
+
+if (worldMap) {
+
+    worldMap.addEventListener("load", () => {
+
+        const svgDocument = worldMap.contentDocument;
+
+        if (!svgDocument) return;
+
+        const colombia = svgDocument.getElementById("CO");
+
+        if (!colombia) return;
+
+        colombia.style.cursor = "pointer";
+
+        colombia.addEventListener("mouseenter", () => {
+
+            colombia.style.filter =
+                "drop-shadow(0 0 8px rgba(217,164,65,.8))";
+
+            colombia.style.fill = "#D9A441";
+
+        });
+
+        colombia.addEventListener("mouseleave", () => {
+
+            colombia.style.filter = "";
+            colombia.style.fill = "";
+
+        });
+
+    });
+
+}
