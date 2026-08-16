@@ -66,7 +66,25 @@ if (atlasWorkspace) {
     });
 }
 
+// ===============================
+// ABRIR TIMELINE
+// ===============================
 
+const timelineWorkspace = document.querySelector(".timeline");
+
+if (timelineWorkspace) {
+
+    timelineWorkspace.addEventListener("click", () => {
+
+        setTimeout(() => {
+
+            window.location.href = "timeline/index.html";
+
+        }, 350);
+
+    });
+
+}
 
 
 // ===============================
