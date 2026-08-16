@@ -603,3 +603,21 @@ button {
             rotateY(100deg);
     }
 }
+
+.timeline-entrance {
+    display: flex !important;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 9999 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.timeline-door {
+    display: block !important;
+    width: 50% !important;
+    height: 100% !important;
+    background: #D5A83F !important;
+}
