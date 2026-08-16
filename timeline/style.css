@@ -52,48 +52,69 @@ body {
 
 
 /* =====================================
-   BOTÓN HOME
+   HOME — INTEGRADO AL ENTABLAMENTO
 ===================================== */
 
 .back-home {
 
     position: fixed;
-    top: 32px;
-    left:30px;
-    right: auto;
+
+    top: 16px;
+    left: 18px;
+
     z-index: 100;
+
     width: 46px;
     height: 46px;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     border:
         1px solid
-        rgba(167, 122, 50, 0.65);
+        rgba(115, 105, 92, 0.65);
+
     border-radius: 50%;
+
     background:
         linear-gradient(
-            180deg,
-            rgba(248,245,238,0.95),
-            rgba(190,183,171,0.92)
+            145deg,
+            #eee9df,
+            #b8b1a6
         );
-    color: #665D51;
+
+    color: #514a41;
+
     cursor: pointer;
-    backdrop-filter: blur(8px);
+
     box-shadow:
-        0 5px 20px
-        rgba(30, 20, 10, 0.3);
+
+        0 5px 12px
+        rgba(40,35,30,0.30),
+
+        inset 0 2px 4px
+        rgba(255,255,255,0.60);
+
     transition:
+
         transform 0.2s ease,
-        background 0.2s ease;
+        box-shadow 0.2s ease;
 }
 
 
 .back-home:hover {
 
-    transform: scale(1.08);
-    background:
-        rgba(167, 122, 50, 0.85);
+    transform: translateY(-2px);
+
+    box-shadow:
+
+        0 8px 16px
+        rgba(40,35,30,0.38),
+
+        inset 0 2px 4px
+        rgba(255,255,255,0.70);
 }
 
 
@@ -102,7 +123,6 @@ body {
     width: 20px;
     height: 20px;
 }
-
 
 /* =====================================
    CONTENEDOR
@@ -214,105 +234,123 @@ body {
 
 
 /* =====================================
-   ENTABLAMENTO GRIEGO SUPERIOR
+   ENTABLAMENTO GRIEGO
+   DELGADO E INTEGRADO
 ===================================== */
 
 .greek-border {
 
     position: absolute;
+
     top: 0;
     left: 0;
-    width: 100%;
-    height: 125px;
+    right: 0;
+
+    height: 78px;
+
     z-index: 20;
+
     background:
+
         linear-gradient(
             180deg,
-            #817b72 0%,
-            #b8b1a6 8%,
-            #d5d0c6 18%,
-            #aaa398 28%,
-            #d9d4ca 39%,
-            #8d877e 46%,
-            #c7c1b6 55%,
-            #a39d92 63%,
-            #d8d2c7 72%,
-            #8b857b 80%,
-            #b9b2a7 88%,
-            #777168 100%
+            #d8d2c8 0%,
+            #aaa398 22%,
+            #c9c3b9 38%,
+            #8d877e 43%,
+            #c8c2b8 58%,
+            #a19b91 72%,
+            #d6d0c6 100%
         );
-    box-shadow:
-        0 12px 22px
-        rgba(45, 40, 34, 0.35),
 
-        inset 0 -8px 12px
-        rgba(45, 40, 34, 0.25);
+    box-shadow:
+
+        0 8px 16px
+        rgba(45, 40, 34, 0.30),
+
+        inset 0 -5px 8px
+        rgba(55, 48, 40, 0.20);
 }
 
 
-/* RELIEVES HORIZONTALES */
+/* =====================================
+   RELIEVES / DENTÍCULOS
+===================================== */
 
 .greek-border::before {
 
     content: "";
+
     position: absolute;
+
     left: 0;
     right: 0;
-    top: 18px;
+
+    bottom: 12px;
+
     height: 18px;
+
     background:
-        linear-gradient(
-            180deg,
-            #e8e3da,
-            #aaa398
+
+        repeating-linear-gradient(
+            90deg,
+            #9a9389 0px,
+            #9a9389 18px,
+            #d8d2c8 18px,
+            #d8d2c8 36px
         );
+
     box-shadow:
 
-        0 18px 0
-        #817b72,
+        inset 0 3px 4px
+        rgba(255,255,255,0.35),
 
-        0 25px 0
-        #d8d2c8,
-
-        0 47px 0
-        #8c867c,
-
-        0 55px 0
-        #c8c2b8;
+        inset 0 -4px 5px
+        rgba(60,52,43,0.22);
 }
 
 
-/* MOLDURA INFERIOR */
+/* =====================================
+   MOLDURA INFERIOR
+===================================== */
 
 .greek-border::after {
 
     content: "";
+
     position: absolute;
+
     left: 0;
     right: 0;
+
     bottom: 0;
-    height: 18px;
+
+    height: 9px;
+
     background:
+
         linear-gradient(
             180deg,
-            #ddd8cf,
-            #8b857b
+            #e3ded5,
+            #89837a
         );
+
     box-shadow:
-        0 5px 10px
-        rgba(45, 40, 34, 0.35);
+
+        0 4px 8px
+        rgba(40,35,30,0.30);
 }
 
 /* =====================================
-   COLUMNAS
+   COLUMNAS INTEGRADAS
 ===================================== */
 
 .background-columns {
 
     position: absolute;
-    left: -95px;
-    right: -95px;
-    top: 82px;
+    left: -90px;
+    right: -90px;
+    top: 52px;
     bottom: 0;
     z-index: 10;
     display: flex;
@@ -389,7 +427,8 @@ body {
 
 
 /* =====================================
-   FUSTE
+   FUSTE DE COLUMNA
+   MÁRMOL + FLAUTAS
 ===================================== */
 
 .column-shaft {
@@ -398,46 +437,55 @@ body {
 
     flex: 1;
 
-    width: 135px;
+    width: 138px;
 
     min-height: 350px;
 
     background:
 
-        linear-gradient(
+        repeating-linear-gradient(
             90deg,
 
-            #aaa397 0%,
-            #d9d4cb 12%,
-            #f8f5ee 28%,
-            #d2ccc2 45%,
-            #f4f0e8 62%,
-            #b5aea3 82%,
-            #e3ded5 100%
+            #8f897f 0px,
+            #a9a39a 7px,
+
+            #ddd8cf 13px,
+            #f0ece5 18px,
+
+            #c1bbb1 24px,
+            #8e887e 30px,
+
+            #aaa49b 36px,
+            #e3ded5 43px,
+
+            #f5f1ea 48px,
+            #aaa49b 55px,
+
+            #8d877d 61px
         );
 
     border-left:
         5px solid
-        #948d82;
+        #89837a;
 
     border-right:
         5px solid
-        #948d82;
+        #817b72;
 
     box-shadow:
 
-        inset 12px 0 18px
-        rgba(60,50,40,0.16),
+        inset 10px 0 14px
+        rgba(55,48,40,0.20),
 
-        inset -12px 0 18px
-        rgba(60,50,40,0.16),
+        inset -10px 0 14px
+        rgba(55,48,40,0.20),
 
-        10px 0 18px
-        rgba(50,40,30,0.18);
+        8px 0 12px
+        rgba(45,40,34,0.18);
 }
 
 
-/* VETAS DEL MÁRMOL */
+/* VETAS ORGÁNICAS DEL MÁRMOL */
 
 .column-shaft::after {
 
@@ -447,32 +495,33 @@ body {
 
     inset: 0;
 
-    opacity: 0.45;
+    opacity: 0.28;
+
+    pointer-events: none;
 
     background:
 
         linear-gradient(
-            110deg,
-            transparent 10%,
-            rgba(100,95,85,0.20) 18%,
-            transparent 21%,
-            transparent 55%,
-            rgba(255,255,255,0.35) 60%,
-            transparent 64%
+            112deg,
+            transparent 15%,
+            rgba(82,75,66,0.22) 17%,
+            transparent 19%
         ),
 
         linear-gradient(
-            70deg,
-            transparent 35%,
-            rgba(100,95,85,0.15) 40%,
-            transparent 44%
+            76deg,
+            transparent 42%,
+            rgba(255,255,255,0.35) 44%,
+            transparent 47%
+        ),
+
+        linear-gradient(
+            105deg,
+            transparent 70%,
+            rgba(92,84,73,0.18) 72%,
+            transparent 75%
         );
-
-    background-size:
-        350px 500px,
-        420px 600px;
 }
-
 
 /* =====================================
    BASE INFERIOR
