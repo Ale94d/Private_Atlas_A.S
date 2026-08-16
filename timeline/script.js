@@ -38,25 +38,13 @@ if (typeof lucide !== "undefined") {
    ENTRADA
 ===================================== */
 
-window.addEventListener("load", () => {
+if (entrance) {
+    entrance.classList.add("open");
+}
 
-    setTimeout(() => {
-
-        if (entrance) {
-
-            entrance.classList.add("open");
-
-        }
-
-        if (timeline) {
-
-            timeline.classList.add("active");
-
-        }
-
-    }, 300);
-
-});
+if (timeline) {
+    timeline.classList.add("active");
+}
 
 
 /* =====================================

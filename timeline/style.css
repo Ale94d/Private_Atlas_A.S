@@ -18,11 +18,8 @@ body {
 
 body {
     font-family: "Plus Jakarta Sans", sans-serif;
-
     color: #3A281C;
-
     overflow: hidden;
-
     background:
         linear-gradient(
             135deg,
@@ -45,21 +42,14 @@ button {
 .timeline-workspace {
 
     position: fixed;
-
     inset: 0;
-
     display: flex;
-
     flex-direction: column;
-
     opacity: 0;
-
-    visibility: hidden;
-
+    visibility: visible;
     transition:
         opacity 0.8s ease,
         visibility 0.8s ease;
-
     background:
         radial-gradient(
             ellipse at center,
@@ -78,7 +68,6 @@ button {
 .timeline-workspace.active {
 
     opacity: 1;
-
     visibility: visible;
 }
 
@@ -90,15 +79,10 @@ button {
 .timeline-workspace::before {
 
     content: "";
-
     position: absolute;
-
     inset: 0;
-
     pointer-events: none;
-
     opacity: 0.35;
-
     background:
         linear-gradient(
             120deg,
@@ -112,7 +96,6 @@ button {
             rgba(255, 255, 255, 0.3) 41%,
             transparent 44%
         );
-
     background-size:
         500px 350px,
         600px 400px;
@@ -126,24 +109,16 @@ button {
 .timeline-header {
 
     position: relative;
-
     z-index: 20;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     padding: 28px 45px;
-
     border-bottom:
         1px solid
         rgba(122, 91, 48, 0.25);
-
     background:
         rgba(239, 230, 212, 0.65);
-
     backdrop-filter: blur(10px);
 }
 
@@ -151,9 +126,7 @@ button {
 .timeline-title span {
 
     font-size: 0.65rem;
-
     letter-spacing: 4px;
-
     color: #987039;
 }
 
@@ -161,13 +134,10 @@ button {
 .timeline-title h1 {
 
     margin-top: 2px;
-
     font-family:
         "Cormorant Garamond",
         serif;
-
     font-size: 3rem;
-
     color: #5A3B20;
 }
 
@@ -175,9 +145,7 @@ button {
 .timeline-title p {
 
     margin-top: 2px;
-
     font-size: 0.85rem;
-
     color: #806D58;
 }
 
@@ -189,28 +157,18 @@ button {
 .back-home {
 
     width: 46px;
-
     height: 46px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     border:
         1px solid
         rgba(139, 99, 43, 0.45);
-
     border-radius: 50%;
-
     background:
         rgba(255, 247, 225, 0.75);
-
     color: #805A29;
-
     cursor: pointer;
-
     transition:
         transform 0.2s ease,
         background 0.2s ease;
@@ -221,7 +179,6 @@ button {
 
     transform:
         translateY(-2px);
-
     background: #E4C77E;
 }
 
@@ -229,7 +186,6 @@ button {
 .back-home i {
 
     width: 20px;
-
     height: 20px;
 }
 
@@ -241,11 +197,8 @@ button {
 .timeline-container {
 
     position: relative;
-
     flex: 1;
-
     overflow: hidden;
-
     cursor: grab;
 }
 
@@ -263,15 +216,10 @@ button {
 .timeline-world {
 
     position: absolute;
-
     left: 0;
-
     top: 0;
-
     width: 3500px;
-
     height: 100%;
-
     min-height: 600px;
 }
 
@@ -283,17 +231,11 @@ button {
 .timeline-line {
 
     position: absolute;
-
     left: 150px;
-
     right: 150px;
-
     top: 52%;
-
     height: 5px;
-
     border-radius: 999px;
-
     background:
         linear-gradient(
             90deg,
@@ -302,7 +244,6 @@ button {
             #F0D27A,
             #B27A24
         );
-
     box-shadow:
         0 0 12px
         rgba(205, 159, 55, 0.4);
@@ -316,11 +257,8 @@ button {
 .timeline-event {
 
     position: absolute;
-
     top: 32%;
-
     width: 260px;
-
     transform:
         translateX(-50%);
 }
@@ -329,32 +267,23 @@ button {
 .timeline-dot {
 
     width: 34px;
-
     height: 34px;
-
     margin: auto;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     border-radius: 50%;
-
     background:
         radial-gradient(
             circle,
             #F8D77D,
             #B47A20
         );
-
     border:
         2px solid
         #F4D890;
 
     color: #5D3B16;
-
     box-shadow:
         0 0 0 5px
         rgba(180, 122, 32, 0.12),
@@ -367,26 +296,20 @@ button {
 .timeline-card {
 
     margin-top: 15px;
-
     padding: 18px;
-
     border:
         1px solid
         rgba(139, 99, 43, 0.3);
-
     border-radius: 14px;
-
     background:
         linear-gradient(
             135deg,
             rgba(255, 249, 232, 0.94),
             rgba(232, 215, 181, 0.92)
         );
-
     box-shadow:
         0 10px 25px
         rgba(69, 45, 20, 0.15);
-
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease;
@@ -397,7 +320,6 @@ button {
 
     transform:
         translateY(-6px);
-
     box-shadow:
         0 15px 30px
         rgba(69, 45, 20, 0.22);
@@ -411,7 +333,6 @@ button {
         serif;
 
     font-size: 1.3rem;
-
     color: #A16F20;
 }
 
@@ -419,13 +340,11 @@ button {
 .timeline-card h2 {
 
     margin-top: 4px;
-
     font-family:
         "Cormorant Garamond",
         serif;
 
     font-size: 1.5rem;
-
     color: #55371D;
 }
 
@@ -433,11 +352,8 @@ button {
 .timeline-card p {
 
     margin-top: 7px;
-
     font-size: 0.78rem;
-
     line-height: 1.5;
-
     color: #75634D;
 }
 
@@ -449,25 +365,19 @@ button {
 .timeline-entrance {
 
     position: fixed;
-
     inset: 0;
-
     z-index: 1000;
-
     display: flex;
-
     pointer-events: none;
+    background: transparent;
 }
 
 
 .timeline-door {
 
     position: relative;
-
     width: 50%;
-
     height: 100%;
-
     background:
         linear-gradient(
             135deg,
@@ -476,11 +386,9 @@ button {
             #BFAE8E 70%,
             #E7DAC2
         );
-
     border:
         10px solid
         #A77A32;
-
     box-shadow:
         inset 0 0 50px
         rgba(91, 61, 28, 0.28);
@@ -490,15 +398,11 @@ button {
 .timeline-door::before {
 
     content: "";
-
     position: absolute;
-
     inset: 35px;
-
     border:
         3px solid
         rgba(139, 99, 43, 0.55);
-
     box-shadow:
         inset 0 0 20px
         rgba(130, 95, 45, 0.12);
@@ -508,11 +412,8 @@ button {
 .timeline-door::after {
 
     content: "";
-
     position: absolute;
-
     inset: 65px;
-
     border:
         1px solid
         rgba(255, 248, 224, 0.7);
@@ -604,20 +505,3 @@ button {
     }
 }
 
-.timeline-entrance {
-    display: flex !important;
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: 9999 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-.timeline-door {
-    display: block !important;
-    width: 50% !important;
-    height: 100% !important;
-    background: #D5A83F !important;
-}
