@@ -167,30 +167,12 @@ body {
     position: absolute;
     inset: 0;
     overflow: hidden;
-    background:
+    background-image:
+        url("assets/background/fondo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-    radial-gradient(
-        ellipse at 30% 25%,
-        rgba(235, 232, 224, 0.55),
-        transparent 45%
-    ),
-
-    radial-gradient(
-        ellipse at 75% 70%,
-        rgba(125, 120, 111, 0.18),
-        transparent 50%
-    ),
-
-    linear-gradient(
-        105deg,
-        #817d75 0%,
-        #aaa59c 16%,
-        #c5c0b7 32%,
-        #98938a 50%,
-        #b8b3aa 67%,
-        #8c877f 84%,
-        #aaa49b 100%
-    );
 }
 
 
@@ -200,35 +182,7 @@ body {
 
 .marble-wall::before {
 
-    content: "";
-    position: absolute;
-    inset: 0;
-    opacity: 0.45;
-    pointer-events: none;
-    background:
-
-        linear-gradient(
-            112deg,
-            transparent 0%,
-            rgba(92, 81, 66, 0.18) 18%,
-            transparent 20%,
-            transparent 42%,
-            rgba(255, 255, 255, 0.35) 44%,
-            transparent 47%
-        ),
-
-        linear-gradient(
-            68deg,
-            transparent 15%,
-            rgba(90,78,62,0.14) 17%,
-            transparent 20%,
-            transparent 60%,
-            rgba(255, 255, 255, 0.25) 63%,
-            transparent 66%
-        );
-    background-size:
-        900px 700px,
-        1100px 800px,
+    content: none;
         
 }
 
