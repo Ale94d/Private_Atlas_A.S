@@ -149,20 +149,28 @@ body {
     overflow: hidden;
     background:
 
-        radial-gradient(
-            ellipse at 50% 35%,
-            rgba(255, 250, 235, 0.9),
-            transparent 55%
-        ),
+    radial-gradient(
+        ellipse at 30% 25%,
+        rgba(235, 232, 224, 0.55),
+        transparent 45%
+    ),
 
-        linear-gradient(
-            90deg,
-            #bcb3a3 0%,
-            #e8e0d0 18%,
-            #d2c8b7 50%,
-            #eee6d7 82%,
-            #b9af9d 100%
-        );
+    radial-gradient(
+        ellipse at 75% 70%,
+        rgba(125, 120, 111, 0.18),
+        transparent 50%
+    ),
+
+    linear-gradient(
+        105deg,
+        #817d75 0%,
+        #aaa59c 16%,
+        #c5c0b7 32%,
+        #98938a 50%,
+        #b8b3aa 67%,
+        #8c877f 84%,
+        #aaa49b 100%
+    );
 }
 
 
@@ -198,7 +206,6 @@ body {
             rgba(255, 255, 255, 0.25) 63%,
             transparent 66%
         );
-
     background-size:
         900px 700px,
         1100px 800px,
@@ -207,162 +214,94 @@ body {
 
 
 /* =====================================
-   ARQUITECTURA GRIEGA
-===================================== */
-
-.marble-wall {
-
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-
-    background-color: #d8d4cb;
-
-    background-image:
-
-        radial-gradient(
-            ellipse at 20% 25%,
-            rgba(255,255,255,0.65),
-            transparent 45%
-        ),
-
-        radial-gradient(
-            ellipse at 80% 70%,
-            rgba(150,145,135,0.18),
-            transparent 50%
-        ),
-
-        linear-gradient(
-            115deg,
-            transparent 0%,
-            rgba(100,95,85,0.18) 18%,
-            transparent 21%,
-            transparent 42%,
-            rgba(255,255,255,0.45) 45%,
-            transparent 48%
-        ),
-
-        linear-gradient(
-            65deg,
-            transparent 30%,
-            rgba(120,115,105,0.14) 33%,
-            transparent 36%
-        );
-
-    background-size:
-        900px 700px,
-        1000px 800px,
-        1100px 900px,
-        1300px 1000px;
-}
-
-
-/* =====================================
-   FRISO SUPERIOR
+   ENTABLAMENTO GRIEGO SUPERIOR
 ===================================== */
 
 .greek-border {
 
     position: absolute;
-
     top: 0;
     left: 0;
-    right: 0;
-
-    height: 115px;
-
+    width: 100%;
+    height: 125px;
     z-index: 20;
-
     background:
-
         linear-gradient(
             180deg,
-            #f8f5ee 0%,
-            #d8d2c7 35%,
-            #aaa397 65%,
-            #e8e3da 100%
+            #817b72 0%,
+            #b8b1a6 8%,
+            #d5d0c6 18%,
+            #aaa398 28%,
+            #d9d4ca 39%,
+            #8d877e 46%,
+            #c7c1b6 55%,
+            #a39d92 63%,
+            #d8d2c7 72%,
+            #8b857b 80%,
+            #b9b2a7 88%,
+            #777168 100%
         );
-
-    border-top:
-        8px solid
-        #8d877d;
-
-    border-bottom:
-        6px solid
-        #8d877d;
-
     box-shadow:
-        0 12px 25px
-        rgba(45,35,25,0.28);
+        0 12px 22px
+        rgba(45, 40, 34, 0.35),
+
+        inset 0 -8px 12px
+        rgba(45, 40, 34, 0.25);
 }
 
 
-/* RELIEVE GRIEGO */
+/* RELIEVES HORIZONTALES */
 
-.top-border::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    right: 0;
-
-    top: 22px;
-
-    height: 55px;
-
-    background:
-
-        repeating-linear-gradient(
-            90deg,
-
-            transparent 0px,
-            transparent 35px,
-
-            rgba(125,116,102,0.65) 35px,
-            rgba(125,116,102,0.65) 43px,
-
-            transparent 43px,
-            transparent 70px
-        );
-
-    opacity: 0.7;
-}
-
-
-/* LÍNEAS DE RELIEVE */
-
-.top-border::after {
+.greek-border::before {
 
     content: "";
-
     position: absolute;
-
     left: 0;
     right: 0;
-
-    bottom: 15px;
-
-    height: 8px;
-
+    top: 18px;
+    height: 18px;
     background:
-
         linear-gradient(
             180deg,
-            #f8f5ee,
-            #a49c90
+            #e8e3da,
+            #aaa398
         );
-
     box-shadow:
 
-        0 -7px 0
-        rgba(255,255,255,0.6),
+        0 18px 0
+        #817b72,
 
-        0 7px 0
-        rgba(90,80,68,0.18);
+        0 25px 0
+        #d8d2c8,
+
+        0 47px 0
+        #8c867c,
+
+        0 55px 0
+        #c8c2b8;
 }
 
+
+/* MOLDURA INFERIOR */
+
+.greek-border::after {
+
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 18px;
+    background:
+        linear-gradient(
+            180deg,
+            #ddd8cf,
+            #8b857b
+        );
+    box-shadow:
+        0 5px 10px
+        rgba(45, 40, 34, 0.35);
+}
 
 /* =====================================
    COLUMNAS
@@ -371,20 +310,15 @@ body {
 .background-columns {
 
     position: absolute;
-
     left: -95px;
     right: -95px;
-
-    top: 115px;
-    bottom: 65px;
-
-    z-index: 5;
-
+    top: 82px;
+    bottom: 0;
+    z-index: 10;
     display: flex;
-
     justify-content: space-between;
-
     align-items: stretch;
+    gap: 0;
 }
 
 
@@ -395,15 +329,10 @@ body {
 .column {
 
     position: relative;
-
     width: 190px;
-
     height: 100%;
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
 }
 
@@ -414,42 +343,48 @@ body {
 
 .column-capital {
 
+    position: relative;
     width: 210px;
-
-    height: 35px;
-
+    height: 58px;
     flex-shrink: 0;
-
+    margin-top: -5px;
     background:
 
         linear-gradient(
             180deg,
-            #ffffff,
-            #ddd8cf 45%,
-            #aaa399 100%
+            #e3ded5 0%,
+            #aaa49a 35%,
+            #d2ccc2 65%,
+            #858078 100%
         );
-
     border-top:
         5px solid
-        #ffffff;
-
+        #eeeae3;
     border-bottom:
-        5px solid
-        #8f887d;
-
+        6px solid
+        #817b72;
     box-shadow:
 
-        0 8px 15px
-        rgba(40,30,20,0.25);
+        0 7px 12px
+        rgba(45, 40, 34, 0.32),
+
+        inset 0 6px 8px
+        rgba(255,255,255,0.35),
+
+        inset 0 -7px 9px
+        rgba(65,58,49,0.22);
 }
 
 
-/* ELIMINAMOS LOS CÍRCULOS */
+/* =================================
+        CAPITEL --SIN ESPIRALES
+   =================================
+*/
 
 .column-capital::before,
 .column-capital::after {
 
-    display: none;
+    content: none;
 }
 
 
