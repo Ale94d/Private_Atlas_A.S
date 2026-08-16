@@ -34,19 +34,29 @@
 <body>
 
     <!-- =====================================
-         CONTENEDOR PRINCIPAL
+         PUERTA DE ENTRADA
+    ====================================== -->
+
+    <div class="timeline-entrance">
+
+        <div class="timeline-door timeline-door-left"></div>
+
+        <div class="timeline-door timeline-door-right"></div>
+
+    </div>
+
+
+    <!-- =====================================
+         TIMELINE
     ====================================== -->
 
     <main class="timeline-workspace">
 
-
-        <!-- =====================================
-             ENCABEZADO
-        ====================================== -->
-
         <header class="timeline-header">
 
             <div class="timeline-title">
+
+                <span>PRIVATE ATLAS</span>
 
                 <h1>Timeline</h1>
 
@@ -57,9 +67,10 @@
             </div>
 
 
-            <button class="back-home"
-                    type="button"
-                    aria-label="Volver al Home">
+            <button
+                class="back-home"
+                type="button"
+                aria-label="Volver al Home">
 
                 <i data-lucide="house"></i>
 
@@ -69,39 +80,103 @@
 
 
         <!-- =====================================
-             CONTENIDO DE LA CRONOLOGÍA
+             ESPACIO DE LA CRONOLOGÍA
         ====================================== -->
 
         <section class="timeline-container">
 
-            <div class="timeline-line"></div>
+            <div class="timeline-world">
+
+                <div class="timeline-line"></div>
 
 
-            <!-- EVENTO DE EJEMPLO -->
+                <!-- RECUERDO 1 -->
 
-            <article class="timeline-event">
+                <article
+                    class="timeline-event"
+                    style="left: 500px;">
 
-                <div class="timeline-dot"></div>
+                    <div class="timeline-dot">
+                        ★
+                    </div>
 
-                <div class="timeline-card">
+                    <div class="timeline-card">
 
-                    <span class="timeline-date">
-                        2026
-                    </span>
+                        <span class="timeline-date">
+                            2026
+                        </span>
 
-                    <h2>
-                        Un nuevo recuerdo
-                    </h2>
+                        <h2>
+                            El comienzo
+                        </h2>
 
-                    <p>
-                        Aquí aparecerá la descripción
-                        de tu acontecimiento.
-                    </p>
+                        <p>
+                            Private Atlas comienza a tomar forma.
+                        </p>
 
-                </div>
+                    </div>
 
-            </article>
+                </article>
 
+
+                <!-- RECUERDO 2 -->
+
+                <article
+                    class="timeline-event"
+                    style="left: 1200px;">
+
+                    <div class="timeline-dot">
+                        ★
+                    </div>
+
+                    <div class="timeline-card">
+
+                        <span class="timeline-date">
+                            2026
+                        </span>
+
+                        <h2>
+                            Un nuevo recuerdo
+                        </h2>
+
+                        <p>
+                            Aquí aparecerá otro momento especial.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- RECUERDO 3 -->
+
+                <article
+                    class="timeline-event"
+                    style="left: 2000px;">
+
+                    <div class="timeline-dot">
+                        ★
+                    </div>
+
+                    <div class="timeline-card">
+
+                        <span class="timeline-date">
+                            2026
+                        </span>
+
+                        <h2>
+                            Un nuevo capítulo
+                        </h2>
+
+                        <p>
+                            La historia continúa.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
 
         </section>
 
@@ -109,9 +184,11 @@
 
 
     <!-- ICONOS -->
+
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- JAVASCRIPT -->
+
     <script src="script.js"></script>
 
 </body>

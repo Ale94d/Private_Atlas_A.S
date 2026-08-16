@@ -1,8 +1,13 @@
+/* =====================================
+   RESET
+===================================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 
 html,
 body {
@@ -10,121 +15,165 @@ body {
     height: 100%;
 }
 
+
 body {
     font-family: "Plus Jakarta Sans", sans-serif;
+
     color: #3A281C;
+
     overflow: hidden;
-    background: #E9E0D0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #D8CCB5,
+            #EFE6D4,
+            #C9B894
+        );
 }
+
 
 button {
     font-family: inherit;
 }
 
-.timeline-gallery {
+
+/* =====================================
+   TIMELINE PRINCIPAL
+===================================== */
+
+.timeline-workspace {
+
     position: fixed;
+
     inset: 0;
 
     display: flex;
+
     flex-direction: column;
 
-    background:
-        radial-gradient(
-            ellipse at 50% 30%,
-            rgba(255, 248, 225, 0.8),
-            transparent 55%
-        ),
-        linear-gradient(
-            90deg,
-            #D8CCB5,
-            #EFE6D4 50%,
-            #D8CCB5
-        );
-
     opacity: 0;
+
     visibility: hidden;
 
     transition:
         opacity 0.8s ease,
         visibility 0.8s ease;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255, 249, 231, 0.8),
+            transparent 65%
+        ),
+        linear-gradient(
+            90deg,
+            #D8CCB5,
+            #EFE6D4,
+            #D8CCB5
+        );
 }
 
-.timeline-gallery.active {
+
+.timeline-workspace.active {
+
     opacity: 1;
+
     visibility: visible;
 }
 
-.timeline-gallery::before {
+
+/* =====================================
+   TEXTURA MARMOLEADA
+===================================== */
+
+.timeline-workspace::before {
+
     content: "";
 
     position: absolute;
+
     inset: 0;
 
     pointer-events: none;
 
-    opacity: 0.45;
+    opacity: 0.35;
 
     background:
         linear-gradient(
-            125deg,
+            120deg,
             transparent 20%,
-            rgba(132, 105, 72, 0.12) 21%,
+            rgba(120, 91, 53, 0.15) 21%,
             transparent 23%
         ),
         linear-gradient(
-            65deg,
-            transparent 35%,
-            rgba(255, 255, 255, 0.28) 36%,
-            transparent 39%
-        ),
-        linear-gradient(
-            155deg,
-            transparent 60%,
-            rgba(132, 105, 72, 0.10) 61%,
-            transparent 64%
+            60deg,
+            transparent 40%,
+            rgba(255, 255, 255, 0.3) 41%,
+            transparent 44%
         );
 
     background-size:
-        420px 300px,
-        500px 360px,
-        620px 420px;
+        500px 350px,
+        600px 400px;
 }
+
+
+/* =====================================
+   ENCABEZADO
+===================================== */
 
 .timeline-header {
+
     position: relative;
-    z-index: 10;
+
+    z-index: 20;
 
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
-    padding: 30px 45px;
+    padding: 28px 45px;
 
-    border-bottom: 1px solid rgba(122, 91, 48, 0.25);
+    border-bottom:
+        1px solid
+        rgba(122, 91, 48, 0.25);
 
-    background: rgba(239, 230, 212, 0.55);
+    background:
+        rgba(239, 230, 212, 0.65);
 
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
 }
 
-.timeline-brand span {
-    font-size: 0.7rem;
+
+.timeline-title span {
+
+    font-size: 0.65rem;
+
     letter-spacing: 4px;
+
     color: #987039;
 }
 
-.timeline-brand h1 {
+
+.timeline-title h1 {
+
     margin-top: 2px;
 
-    font-family: "Cormorant Garamond", serif;
+    font-family:
+        "Cormorant Garamond",
+        serif;
 
     font-size: 3rem;
-    font-weight: 700;
 
     color: #5A3B20;
 }
 
-.timeline-brand p {
+
+.timeline-title p {
+
     margin-top: 2px;
 
     font-size: 0.85rem;
@@ -132,47 +181,65 @@ button {
     color: #806D58;
 }
 
+
+/* =====================================
+   BOTÓN HOME
+===================================== */
+
 .back-home {
+
     width: 46px;
+
     height: 46px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
-    border: 1px solid rgba(139, 99, 43, 0.45);
+    border:
+        1px solid
+        rgba(139, 99, 43, 0.45);
+
     border-radius: 50%;
 
-    background: rgba(255, 247, 225, 0.7);
+    background:
+        rgba(255, 247, 225, 0.75);
 
     color: #805A29;
 
     cursor: pointer;
 
-    box-shadow:
-        0 4px 12px rgba(70, 45, 20, 0.12);
-
     transition:
         transform 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease;
+        background 0.2s ease;
 }
+
 
 .back-home:hover {
-    transform: translateY(-2px);
+
+    transform:
+        translateY(-2px);
 
     background: #E4C77E;
-
-    box-shadow:
-        0 7px 18px rgba(70, 45, 20, 0.18);
 }
 
+
 .back-home i {
+
     width: 20px;
+
     height: 20px;
 }
 
-.timeline-space {
+
+/* =====================================
+   CONTENEDOR
+===================================== */
+
+.timeline-container {
+
     position: relative;
 
     flex: 1;
@@ -182,31 +249,50 @@ button {
     cursor: grab;
 }
 
-.timeline-space:active {
+
+.timeline-container:active {
+
     cursor: grabbing;
 }
 
+
+/* =====================================
+   MUNDO HORIZONTAL
+===================================== */
+
 .timeline-world {
+
     position: absolute;
 
     left: 0;
+
     top: 0;
 
-    width: 5000px;
+    width: 3500px;
+
     height: 100%;
 
-    min-height: 700px;
+    min-height: 600px;
 }
 
-.timeline-path {
+
+/* =====================================
+   LÍNEA
+===================================== */
+
+.timeline-line {
+
     position: absolute;
 
-    left: 120px;
-    right: 120px;
+    left: 150px;
+
+    right: 150px;
 
     top: 52%;
 
     height: 5px;
+
+    border-radius: 999px;
 
     background:
         linear-gradient(
@@ -217,57 +303,41 @@ button {
             #B27A24
         );
 
-    border-radius: 999px;
-
     box-shadow:
-        0 0 10px rgba(205, 159, 55, 0.35);
+        0 0 12px
+        rgba(205, 159, 55, 0.4);
 }
 
-.timeline-path::before,
-.timeline-path::after {
-    content: "";
 
-    position: absolute;
-
-    width: 14px;
-    height: 14px;
-
-    top: 50%;
-
-    border-radius: 50%;
-
-    background: #D5A83F;
-
-    transform: translateY(-50%);
-
-    box-shadow:
-        0 0 12px rgba(216, 170, 62, 0.7);
-}
-
-.timeline-path::before {
-    left: 0;
-}
-
-.timeline-path::after {
-    right: 0;
-}
+/* =====================================
+   RECUERDOS
+===================================== */
 
 .timeline-event {
+
     position: absolute;
+
+    top: 32%;
 
     width: 260px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 }
 
-.timeline-event-marker {
+
+.timeline-dot {
+
     width: 34px;
+
     height: 34px;
 
-    margin: 0 auto;
+    margin: auto;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border-radius: 50%;
@@ -279,76 +349,107 @@ button {
             #B47A20
         );
 
-    border: 2px solid #F4D890;
+    border:
+        2px solid
+        #F4D890;
 
     color: #5D3B16;
 
     box-shadow:
-        0 0 0 5px rgba(180, 122, 32, 0.12),
-        0 0 18px rgba(211, 165, 55, 0.55);
+        0 0 0 5px
+        rgba(180, 122, 32, 0.12),
 
-    font-size: 15px;
+        0 0 18px
+        rgba(211, 165, 55, 0.55);
 }
 
-.timeline-event-card {
+
+.timeline-card {
+
     margin-top: 15px;
 
     padding: 18px;
 
-    border: 1px solid rgba(139, 99, 43, 0.3);
+    border:
+        1px solid
+        rgba(139, 99, 43, 0.3);
+
     border-radius: 14px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(255, 249, 232, 0.92),
-            rgba(232, 215, 181, 0.9)
+            rgba(255, 249, 232, 0.94),
+            rgba(232, 215, 181, 0.92)
         );
 
     box-shadow:
-        0 10px 25px rgba(69, 45, 20, 0.15);
+        0 10px 25px
+        rgba(69, 45, 20, 0.15);
 
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease;
 }
 
-.timeline-event-card:hover {
-    transform: translateY(-6px);
+
+.timeline-card:hover {
+
+    transform:
+        translateY(-6px);
 
     box-shadow:
-        0 15px 30px rgba(69, 45, 20, 0.22);
+        0 15px 30px
+        rgba(69, 45, 20, 0.22);
 }
 
-.timeline-event-date {
-    font-family: "Cormorant Garamond", serif;
+
+.timeline-date {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
 
     font-size: 1.3rem;
 
     color: #A16F20;
 }
 
-.timeline-event-card h2 {
+
+.timeline-card h2 {
+
     margin-top: 4px;
 
-    font-family: "Cormorant Garamond", serif;
+    font-family:
+        "Cormorant Garamond",
+        serif;
 
     font-size: 1.5rem;
 
     color: #55371D;
 }
 
-.timeline-event-card p {
+
+.timeline-card p {
+
     margin-top: 7px;
 
     font-size: 0.78rem;
+
     line-height: 1.5;
 
     color: #75634D;
 }
 
+
+/* =====================================
+   PUERTA
+===================================== */
+
 .timeline-entrance {
+
     position: fixed;
+
     inset: 0;
 
     z-index: 1000;
@@ -356,15 +457,15 @@ button {
     display: flex;
 
     pointer-events: none;
-
-    transition:
-        visibility 1.2s ease;
 }
 
+
 .timeline-door {
+
     position: relative;
 
     width: 50%;
+
     height: 100%;
 
     background:
@@ -376,85 +477,129 @@ button {
             #E7DAC2
         );
 
-    border: 10px solid #A77A32;
+    border:
+        10px solid
+        #A77A32;
 
     box-shadow:
-        inset 0 0 50px rgba(91, 61, 28, 0.28);
+        inset 0 0 50px
+        rgba(91, 61, 28, 0.28);
 }
 
+
 .timeline-door::before {
+
     content: "";
 
     position: absolute;
 
     inset: 35px;
 
-    border: 3px solid rgba(139, 99, 43, 0.55);
+    border:
+        3px solid
+        rgba(139, 99, 43, 0.55);
 
     box-shadow:
-        inset 0 0 20px rgba(130, 95, 45, 0.12);
+        inset 0 0 20px
+        rgba(130, 95, 45, 0.12);
 }
 
+
 .timeline-door::after {
+
     content: "";
 
     position: absolute;
 
     inset: 65px;
 
-    border: 1px solid rgba(255, 248, 224, 0.7);
+    border:
+        1px solid
+        rgba(255, 248, 224, 0.7);
 }
+
 
 .timeline-door-left {
-    transform-origin: left center;
+
+    transform-origin:
+        left center;
 }
+
 
 .timeline-door-right {
-    transform-origin: right center;
+
+    transform-origin:
+        right center;
 }
 
-.timeline-entrance.open .timeline-door-left {
-    animation: openLeftDoor 1.4s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+
+/* =====================================
+   ANIMACIÓN PUERTA
+===================================== */
+
+.timeline-entrance.open
+.timeline-door-left {
+
+    animation:
+        openLeftDoor
+        1.4s
+        cubic-bezier(
+            0.77,
+            0,
+            0.18,
+            1
+        )
+        forwards;
 }
 
-.timeline-entrance.open .timeline-door-right {
-    animation: openRightDoor 1.4s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+
+.timeline-entrance.open
+.timeline-door-right {
+
+    animation:
+        openRightDoor
+        1.4s
+        cubic-bezier(
+            0.77,
+            0,
+            0.18,
+            1
+        )
+        forwards;
 }
 
-.timeline-entrance.open {
-    pointer-events: none;
-}
 
 @keyframes openLeftDoor {
 
     from {
-        transform: perspective(1200px) rotateY(0deg);
+
+        transform:
+            perspective(1200px)
+            rotateY(0deg);
     }
 
     to {
-        transform: perspective(1200px) rotateY(-100deg);
-    }
 
+        transform:
+            perspective(1200px)
+            rotateY(-100deg);
+    }
 }
+
 
 @keyframes openRightDoor {
 
     from {
-        transform: perspective(1200px) rotateY(0deg);
+
+        transform:
+            perspective(1200px)
+            rotateY(0deg);
     }
 
     to {
-        transform: perspective(1200px) rotateY(100deg);
+
+        transform:
+            perspective(1200px)
+            rotateY(100deg);
     }
-
 }
-
-.timeline-entrance.open {
-    visibility: hidden;
-}
-
-.timeline-entrance.open + .timeline-gallery {
-    opacity: 1;
-    visibility: visible;
-}
-

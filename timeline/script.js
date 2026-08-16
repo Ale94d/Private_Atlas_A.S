@@ -10,20 +10,28 @@
 const entrance =
     document.querySelector(".timeline-entrance");
 
-const gallery =
-    document.querySelector(".timeline-gallery");
+const timeline =
+    document.querySelector(".timeline-workspace");
 
-const homeButton =
-    document.querySelector(".back-home");
-
-const timelineSpace =
-    document.querySelector(".timeline-space");
+const timelineContainer =
+    document.querySelector(".timeline-container");
 
 const timelineWorld =
     document.querySelector(".timeline-world");
 
-const eventsContainer =
-    document.getElementById("timeline-events");
+const homeButton =
+    document.querySelector(".back-home");
+
+
+/* =====================================
+   ICONOS
+===================================== */
+
+if (typeof lucide !== "undefined") {
+
+    lucide.createIcons();
+
+}
 
 
 /* =====================================
@@ -35,11 +43,15 @@ window.addEventListener("load", () => {
     setTimeout(() => {
 
         if (entrance) {
+
             entrance.classList.add("open");
+
         }
 
-        if (gallery) {
-            gallery.classList.add("active");
+        if (timeline) {
+
+            timeline.classList.add("active");
+
         }
 
     }, 300);
@@ -53,11 +65,15 @@ window.addEventListener("load", () => {
 
 if (homeButton) {
 
-    homeButton.addEventListener("click", () => {
+    homeButton.addEventListener(
+        "click",
+        () => {
 
-        window.location.href = "../index.html";
+            window.location.href =
+                "../index.html";
 
-    });
+        }
+    );
 
 }
 
@@ -70,21 +86,25 @@ let isDragging = false;
 
 let startX = 0;
 
-let worldX = 0;
+let currentX = 0;
 
 
-if (timelineSpace && timelineWorld) {
+if (
+    timelineContainer &&
+    timelineWorld
+) {
 
-    timelineSpace.addEventListener(
+    timelineContainer.addEventListener(
         "pointerdown",
         (event) => {
 
             isDragging = true;
 
             startX =
-                event.clientX - worldX;
+                event.clientX -
+                currentX;
 
-            timelineSpace.setPointerCapture(
+            timelineContainer.setPointerCapture(
                 event.pointerId
             );
 
@@ -92,50 +112,74 @@ if (timelineSpace && timelineWorld) {
     );
 
 
-    timelineSpace.addEventListener(
+    timelineContainer.addEventListener(
         "pointermove",
         (event) => {
 
             if (!isDragging) {
+
                 return;
+
             }
 
-            worldX =
-                event.clientX - startX;
 
-            const viewportWidth =
-                timelineSpace.clientWidth;
+            currentX =
+                event.clientX -
+                startX;
+
+
+            const containerWidth =
+                timelineContainer.clientWidth;
 
             const worldWidth =
-                timelineWorld.scrollWidth;
+                timelineWorld.offsetWidth;
+
 
             const minimumX =
-                -(worldWidth - viewportWidth);
+                -(worldWidth -
+                    containerWidth);
 
-            worldX =
+
+            currentX =
                 Math.max(
                     minimumX,
-                    Math.min(0, worldX)
+                    Math.min(
+                        0,
+                        currentX
+                    )
                 );
 
+
             timelineWorld.style.transform =
-                `translateX(${worldX}px)`;
+                `translateX(${currentX}px)`;
 
         }
     );
 
 
-    timelineSpace.addEventListener(
+    timelineContainer.addEventListener(
         "pointerup",
-        () => {
+        (event) => {
 
             isDragging = false;
 
+            if (
+                timelineContainer.hasPointerCapture(
+                    event.pointerId
+                )
+            ) {
+
+                timelineContainer.releasePointerCapture(
+                    event.pointerId
+                );
+
+            }
+
         }
     );
 
 
-    timelineSpace.addEventListener(
+    timelineContainer.addEventListener(
         "pointercancel",
         () => {
 
@@ -145,105 +189,3 @@ if (timelineSpace && timelineWorld) {
     );
 
 }
-
-
-/* =====================================
-   DATOS DE PRUEBA
-===================================== */
-
-const timelineEvents = [
-
-    {
-        year: 2026,
-        title: "El comienzo",
-        description:
-            "Private Atlas A.S. comienza a tomar forma.",
-        position: 420
-    },
-
-    {
-        year: 2026,
-        title: "Un momento especial",
-        description:
-            "Este será un recuerdo destacado.",
-        position: 1000
-    },
-
-    {
-        year: 2026,
-        title: "Un nuevo capítulo",
-        description:
-            "La historia continúa.",
-        position: 1650
-    }
-
-];
-
-
-/* =====================================
-   CREAR EVENTOS
-===================================== */
-
-function createTimelineEvents() {
-
-    if (!eventsContainer) {
-        return;
-    }
-
-    eventsContainer.innerHTML = "";
-
-
-    timelineEvents.forEach((event, index) => {
-
-        const article =
-            document.createElement("article");
-
-        article.className =
-            "timeline-event";
-
-        article.style.left =
-            `${event.position}px`;
-
-        article.style.top =
-            index % 2 === 0
-                ? "28%"
-                : "55%";
-
-
-        article.innerHTML = `
-
-            <div class="timeline-event-marker">
-                ★
-            </div>
-
-            <div class="timeline-event-card">
-
-                <span class="timeline-event-date">
-                    ${event.year}
-                </span>
-
-                <h2>
-                    ${event.title}
-                </h2>
-
-                <p>
-                    ${event.description}
-                </p>
-
-            </div>
-
-        `;
-
-
-        eventsContainer.appendChild(article);
-
-    });
-
-}
-
-
-/* =====================================
-   INICIAR
-===================================== */
-
-createTimelineEvents();
