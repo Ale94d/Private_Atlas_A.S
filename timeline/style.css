@@ -326,8 +326,8 @@ body {
     left: -90px;
     right: -90px;
     top: 52px;
-    bottom: 25px;
-    z-index: 10;
+    bottom: 65px;
+    z-index: 21;
     display: flex;
     justify-content: space-between;
     align-items: stretch;
