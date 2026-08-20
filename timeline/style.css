@@ -326,11 +326,11 @@ body {
     left: -90px;
     right: -90px;
     top: 52px;
-    bottom: 65px;
+    bottom: 0;
     z-index: 21;
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: flex-start;
     gap: 0;
 }
 
@@ -343,7 +343,7 @@ body {
 
     position: relative;
     width: 190px;
-    height: 100%;
+    height: calc(100% - 20px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -425,6 +425,7 @@ body {
     position: relative;
     width: 155px;
     height: 24px;
+    z-index: 25;
     flex-shrink: 0;
     background:
         linear-gradient(
@@ -452,9 +453,13 @@ body {
 .column-shaft {
 
     position: relative;
+
     flex: 1;
+
     width: 135px;
-    min-height: 350px;
+
+    min-height: 0;
+
     background:
         repeating-linear-gradient(
             90deg,
@@ -464,13 +469,17 @@ body {
             #c9c3b8 21px,
             #9e978c 28px
         );
+
     border-left:
         3px solid
         #8d867b;
+
     border-right:
         3px solid
         #878076;
+
     box-shadow:
+
         inset 12px 0 15px
         rgba(70, 60, 48, 0.18),
 
