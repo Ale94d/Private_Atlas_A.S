@@ -34,13 +34,15 @@ body {
     position: fixed;
     inset: 0;
     overflow: hidden;
+
     opacity: 0;
     visibility: hidden;
+
     transition:
         opacity 0.8s ease,
         visibility 0.8s ease;
-    background:
-        #cfc5b2;
+
+    background: #cfc5b2;
 }
 
 
@@ -98,7 +100,6 @@ body {
         rgba(255,255,255,0.60);
 
     transition:
-
         transform 0.2s ease,
         box-shadow 0.2s ease;
 }
@@ -124,6 +125,7 @@ body {
     height: 20px;
 }
 
+
 /* =====================================
    CONTENEDOR
 ===================================== */
@@ -132,7 +134,9 @@ body {
 
     position: absolute;
     inset: 0;
+
     overflow: hidden;
+
     cursor: grab;
 }
 
@@ -150,10 +154,13 @@ body {
 .timeline-world {
 
     position: absolute;
+
     left: 0;
     top: 0;
+
     width: 4000px;
     height: 100%;
+
     min-height: 700px;
 }
 
@@ -165,7 +172,9 @@ body {
 .marble-wall {
 
     position: absolute;
+
     inset: 0;
+
     overflow: hidden;
 
     background-image:
@@ -197,6 +206,7 @@ body {
         contrast(1.04);
 }
 
+
 /* =====================================
    VETAS DEL MÁRMOL
 ===================================== */
@@ -204,13 +214,11 @@ body {
 .marble-wall::before {
 
     content: none;
-        
 }
 
 
 /* =====================================
    ENTABLAMENTO GRIEGO
-   DELGADO E INTEGRADO
 ===================================== */
 
 .greek-border {
@@ -316,6 +324,7 @@ body {
         rgba(40,35,30,0.30);
 }
 
+
 /* =====================================
    COLUMNAS INTEGRADAS
 ===================================== */
@@ -323,14 +332,28 @@ body {
 .background-columns {
 
     position: absolute;
+
     left: -90px;
     right: -90px;
-    top: 52px;
-    bottom: 0;
-    z-index: 21;
+
+    /*
+       El entablamento ocupa 78px
+       y el friso inferior 65px.
+       Las columnas quedan exactamente
+       entre ambos.
+    */
+
+    top: 78px;
+    bottom: 65px;
+
+    z-index: 10;
+
     display: flex;
+
     justify-content: space-between;
-    align-items: flex-start;
+
+    align-items: stretch;
+
     gap: 0;
 }
 
@@ -342,37 +365,50 @@ body {
 .column {
 
     position: relative;
+
     width: 190px;
-    height: calc(100% - 20px);
+
+    height: 100%;
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 }
 
 
 /* =====================================
-   CAPITEL DE CADA COLUMNA
+   CAPITEL
 ===================================== */
 
 .column-capital {
 
     position: relative;
+
     width: 155px;
     height: 32px;
+
     flex-shrink: 0;
+
     background:
+
         linear-gradient(
             180deg,
             #faf7f0,
             #d8d1c5
         );
+
     border-top:
         4px solid
         #fffdf8;
+
     border-bottom:
         5px solid
         #9b9387;
+
     box-shadow:
+
         0 5px 10px
         rgba(50, 40, 30, 0.22),
 
@@ -384,21 +420,30 @@ body {
 .column-capital::before {
 
     content: "";
+
     position: absolute;
+
     left: -12px;
     right: -12px;
+
     bottom: -10px;
+
     height: 8px;
+
     background:
+
         linear-gradient(
             180deg,
             #eee9df,
             #aaa196
         );
+
     border-top:
         2px solid
         #fffdf8;
+
     box-shadow:
+
         0 4px 6px
         rgba(50,40,30,0.2);
 }
@@ -407,41 +452,23 @@ body {
 .column-capital::after {
 
     content: "";
+
     position: absolute;
+
     left: -20px;
     right: -20px;
+
     bottom: -18px;
+
     height: 5px;
+
     background:
         #b7afa3;
+
     box-shadow:
+
         0 3px 5px
         rgba(40,30,20,0.18);
-}
-
-
-.column-base {
-
-    position: relative;
-    width: 155px;
-    height: 24px;
-    z-index: 25;
-    flex-shrink: 0;
-    background:
-        linear-gradient(
-            180deg,
-            #f7f3eb,
-            #b1a99d
-        );
-    border-top:
-        4px solid
-        #fffdf8;
-    border-bottom:
-        5px solid
-        #91897d;
-    box-shadow:
-        0 6px 10px
-        rgba(45,35,25,0.25);
 }
 
 
@@ -454,6 +481,11 @@ body {
 
     position: relative;
 
+    /*
+       Ocupa solamente el espacio
+       que queda entre capitel y base.
+    */
+
     flex: 1;
 
     width: 135px;
@@ -461,6 +493,7 @@ body {
     min-height: 0;
 
     background:
+
         repeating-linear-gradient(
             90deg,
             #a9a297 0px,
@@ -494,17 +527,24 @@ body {
 .column-shaft::after {
 
     content: "";
+
     position: absolute;
+
     inset: 0;
+
     opacity: 0.22;
+
     pointer-events: none;
+
     background:
+
         linear-gradient(
             110deg,
             transparent 20%,
             rgba(80, 70, 58, 0.28) 21%,
             transparent 23%
         ),
+
         linear-gradient(
             75deg,
             transparent 60%,
@@ -515,18 +555,62 @@ body {
 
 
 /* =====================================
+   BASE DE COLUMNA
+===================================== */
+
+.column-base {
+
+    position: relative;
+
+    width: 155px;
+    height: 24px;
+
+    flex-shrink: 0;
+
+    z-index: 11;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #f7f3eb,
+            #b1a99d
+        );
+
+    border-top:
+        4px solid
+        #fffdf8;
+
+    border-bottom:
+        5px solid
+        #91897d;
+
+    box-shadow:
+
+        0 6px 10px
+        rgba(45,35,25,0.25);
+}
+
+
+/* =====================================
    FRISO INFERIOR CONTINUO
 ===================================== */
 
 .marble-wall::after {
 
     content: "";
+
     position: absolute;
+
     left: 0;
     right: 0;
+
     bottom: 0;
+
     height: 65px;
+
     z-index: 19;
+
     background:
 
         linear-gradient(
@@ -535,14 +619,17 @@ body {
             #d4cec3 45%,
             #a29a8e 100%
         );
+
     border-top:
         6px solid
         #8d877d;
+
     box-shadow:
 
         0 -8px 18px
         rgba(45,35,25,0.20);
 }
+
 
 /* =====================================
    TIMELINE
@@ -551,12 +638,18 @@ body {
 .timeline-line {
 
     position: absolute;
+
     left: 0;
     right: 0;
+
     top: 60%;
+
     height: 4px;
+
     z-index: 30;
+
     border-radius: 999px;
+
     background:
 
         linear-gradient(
@@ -566,7 +659,9 @@ body {
             #f4d77e,
             #b47a24
         );
+
     box-shadow:
+
         0 0 15px
         rgba(213, 168, 63, 0.65);
 }
@@ -579,9 +674,13 @@ body {
 .timeline-event {
 
     position: absolute;
+
     top: 39%;
+
     width: 260px;
+
     z-index: 40;
+
     transform:
         translateX(-50%);
 }
@@ -591,11 +690,16 @@ body {
 
     width: 36px;
     height: 36px;
+
     margin: auto;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     border-radius: 50%;
+
     background:
 
         radial-gradient(
@@ -603,10 +707,14 @@ body {
             #ffe9a4,
             #c08a2d
         );
+
     border:
         2px solid
         #f6d986;
-    color: #5b3b16;
+
+    color:
+        #5b3b16;
+
     box-shadow:
 
         0 0 0 6px
@@ -620,11 +728,15 @@ body {
 .timeline-card {
 
     margin-top: 18px;
+
     padding: 18px;
+
     border:
         1px solid
         rgba(132, 95, 43, 0.4);
+
     border-radius: 10px;
+
     background:
 
         linear-gradient(
@@ -632,6 +744,7 @@ body {
             rgba(255, 249, 232, 0.96),
             rgba(224, 208, 177, 0.94)
         );
+
     box-shadow:
 
         0 15px 30px
@@ -644,28 +757,39 @@ body {
     font-family:
         "Cormorant Garamond",
         serif;
+
     font-size: 1.25rem;
-    color: #a17227;
+
+    color:
+        #a17227;
 }
 
 
 .timeline-card h2 {
 
     margin-top: 4px;
+
     font-family:
         "Cormorant Garamond",
         serif;
+
     font-size: 1.45rem;
-    color: #563a20;
+
+    color:
+        #563a20;
 }
 
 
 .timeline-card p {
 
     margin-top: 7px;
+
     font-size: 0.78rem;
+
     line-height: 1.5;
-    color: #75634d;
+
+    color:
+        #75634d;
 }
 
 
@@ -677,12 +801,18 @@ body {
 .timeline-entrance {
 
     position: fixed;
+
     inset: 0;
+
     z-index: 9999;
+
     display: flex;
+
     pointer-events: none;
+
     opacity: 1;
     visibility: visible;
+
     perspective: 1400px;
 }
 
@@ -690,25 +820,33 @@ body {
 .timeline-door {
 
     position: relative;
+
     width: 50%;
     height: 100%;
+
     overflow: hidden;
-    background: 
+
+    background:
+
         linear-gradient(
             90deg,
-             #8F877B 0%,
-             #D9D2C7 18%,
-             #F7F3EB 40%,
-             #B7AEA1 65%,
-             #E8E2D8 82%,
-             #91887B 100%
+            #8F877B 0%,
+            #D9D2C7 18%,
+            #F7F3EB 40%,
+            #B7AEA1 65%,
+            #E8E2D8 82%,
+            #91887B 100%
         );
+
     box-shadow:
+
         inset 0 0 60px
         rgba(45, 35, 25, 0.35),
-        0 0 35px rgba(40,30,20,0.35);
-        
+
+        0 0 35px
+        rgba(40,30,20,0.35);
 }
+
 
 .timeline-door::before {
 
@@ -729,8 +867,8 @@ body {
 
         0 0 0 3px
         rgba(255,255,255,0.25);
-
 }
+
 
 .timeline-door::after {
 
@@ -739,14 +877,13 @@ body {
     position: absolute;
 
     left: 50%;
-
     top: 15%;
 
     width: 70%;
-
     height: 70%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     border:
         5px solid
@@ -763,22 +900,23 @@ body {
         );
 
     box-shadow:
+
         inset 0 0 35px
         rgba(50,40,30,0.25);
-
 }
 
 
 .timeline-door-left {
 
-    transform-origin: left center;
-
+    transform-origin:
+        left center;
 }
+
 
 .timeline-door-right {
 
-    transform-origin: right center;
-
+    transform-origin:
+        right center;
 }
 
 
@@ -789,7 +927,6 @@ body {
         1.8s
         cubic-bezier(0.77, 0, 0.18, 1)
         forwards;
-
 }
 
 
@@ -800,7 +937,6 @@ body {
         1.8s
         cubic-bezier(0.77, 0, 0.18, 1)
         forwards;
-
 }
 
 
@@ -811,7 +947,6 @@ body {
         transform:
             perspective(1400px)
             rotateY(0deg);
-
     }
 
     to {
@@ -819,9 +954,7 @@ body {
         transform:
             perspective(1400px)
             rotateY(-105deg);
-
     }
-
 }
 
 
@@ -832,7 +965,6 @@ body {
         transform:
             perspective(1400px)
             rotateY(0deg);
-
     }
 
     to {
@@ -840,7 +972,5 @@ body {
         transform:
             perspective(1400px)
             rotateY(105deg);
-
     }
-
 }
