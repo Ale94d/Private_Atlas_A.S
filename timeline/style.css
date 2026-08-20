@@ -326,7 +326,7 @@ body {
     left: -90px;
     right: -90px;
     top: 52px;
-    bottom: 5;
+    bottom: 20;
     z-index: 10;
     display: flex;
     justify-content: space-between;
