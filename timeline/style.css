@@ -326,7 +326,7 @@ body {
     left: -90px;
     right: -90px;
     top: 52px;
-    bottom: 20;
+    bottom: 20px;
     z-index: 10;
     display: flex;
     justify-content: space-between;
@@ -512,18 +512,12 @@ body {
 .marble-wall::after {
 
     content: "";
-
     position: absolute;
-
     left: 0;
     right: 0;
-
     bottom: 0;
-
     height: 65px;
-
-    z-index: 18;
-
+    z-index: 19;
     background:
 
         linear-gradient(
@@ -532,11 +526,9 @@ body {
             #d4cec3 45%,
             #a29a8e 100%
         );
-
     border-top:
         6px solid
         #8d877d;
-
     box-shadow:
 
         0 -8px 18px
