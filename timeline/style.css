@@ -349,47 +349,90 @@ body {
 .column-capital {
 
     position: relative;
-    width: 210px;
-    height: 58px;
+    width: 155px;
+    height: 32px;
     flex-shrink: 0;
-    margin-top: -5px;
     background:
-
         linear-gradient(
             180deg,
-            #e3ded5 0%,
-            #aaa49a 35%,
-            #d2ccc2 65%,
-            #858078 100%
+            #faf7f0,
+            #d8d1c5
         );
     border-top:
-        5px solid
-        #eeeae3;
+        4px solid
+        #fffdf8;
     border-bottom:
-        6px solid
-        #817b72;
+        5px solid
+        #9b9387;
     box-shadow:
+        0 5px 10px
+        rgba(50, 40, 30, 0.22),
 
-        0 7px 12px
-        rgba(45, 40, 34, 0.32),
-
-        inset 0 6px 8px
-        rgba(255,255,255,0.35),
-
-        inset 0 -7px 9px
-        rgba(65,58,49,0.22);
+        inset 0 3px 4px
+        rgba(255,255,255,0.5);
 }
 
 
-/* =================================
-        CAPITEL --SIN ESPIRALES
-   =================================
-*/
+.column-capital::before {
 
-.column-capital::before,
+    content: "";
+    position: absolute;
+    left: -12px;
+    right: -12px;
+    bottom: -10px;
+    height: 8px;
+    background:
+        linear-gradient(
+            180deg,
+            #eee9df,
+            #aaa196
+        );
+    border-top:
+        2px solid
+        #fffdf8;
+    box-shadow:
+        0 4px 6px
+        rgba(50,40,30,0.2);
+}
+
+
 .column-capital::after {
 
-    content: none;
+    content: "";
+    position: absolute;
+    left: -20px;
+    right: -20px;
+    bottom: -18px;
+    height: 5px;
+    background:
+        #b7afa3;
+    box-shadow:
+        0 3px 5px
+        rgba(40,30,20,0.18);
+}
+
+
+.column-base {
+
+    position: relative;
+    width: 155px;
+    height: 24px;
+    flex-shrink: 0;
+    background:
+        linear-gradient(
+            180deg,
+            #f7f3eb,
+            #b1a99d
+        );
+    border-top:
+        4px solid
+        #fffdf8;
+    border-bottom:
+        5px solid
+        #91897d;
+    box-shadow:
+        0 6px 10px
+        rgba(45,35,25,0.25);
 }
 
 
@@ -401,128 +444,56 @@ body {
 .column-shaft {
 
     position: relative;
-
     flex: 1;
-
-    width: 138px;
-
+    width: 135px;
     min-height: 350px;
-
     background:
-
         repeating-linear-gradient(
             90deg,
-
-            #8f897f 0px,
-            #a9a39a 7px,
-
-            #ddd8cf 13px,
-            #f0ece5 18px,
-
-            #c1bbb1 24px,
-            #8e887e 30px,
-
-            #aaa49b 36px,
-            #e3ded5 43px,
-
-            #f5f1ea 48px,
-            #aaa49b 55px,
-
-            #8d877d 61px
+            #a9a297 0px,
+            #c9c3b8 7px,
+            #eeeae2 14px,
+            #c9c3b8 21px,
+            #9e978c 28px
         );
-
     border-left:
-        5px solid
-        #89837a;
-
+        3px solid
+        #8d867b;
     border-right:
-        5px solid
-        #817b72;
-
+        3px solid
+        #878076;
     box-shadow:
+        inset 12px 0 15px
+        rgba(70, 60, 48, 0.18),
 
-        inset 10px 0 14px
-        rgba(55,48,40,0.20),
-
-        inset -10px 0 14px
-        rgba(55,48,40,0.20),
+        inset -12px 0 15px
+        rgba(70, 60, 48, 0.18),
 
         8px 0 12px
-        rgba(45,40,34,0.18);
+        rgba(50, 40, 30, 0.16);
 }
 
-
-/* VETAS ORGÁNICAS DEL MÁRMOL */
 
 .column-shaft::after {
 
     content: "";
-
     position: absolute;
-
     inset: 0;
-
-    opacity: 0.28;
-
+    opacity: 0.22;
     pointer-events: none;
-
     background:
-
         linear-gradient(
-            112deg,
-            transparent 15%,
-            rgba(82,75,66,0.22) 17%,
-            transparent 19%
+            110deg,
+            transparent 20%,
+            rgba(80, 70, 58, 0.28) 21%,
+            transparent 23%
         ),
-
         linear-gradient(
-            76deg,
-            transparent 42%,
-            rgba(255,255,255,0.35) 44%,
-            transparent 47%
-        ),
-
-        linear-gradient(
-            105deg,
-            transparent 70%,
-            rgba(92,84,73,0.18) 72%,
-            transparent 75%
+            75deg,
+            transparent 60%,
+            rgba(255, 255, 255, 0.35) 62%,
+            transparent 65%
         );
-}
-
-/* =====================================
-   BASE INFERIOR
-===================================== */
-
-.column-base {
-
-    width: 205px;
-
-    height: 25px;
-
-    flex-shrink: 0;
-
-    background:
-
-        linear-gradient(
-            180deg,
-            #f8f5ee,
-            #d0c9be 50%,
-            #9d9589
-        );
-
-    border-top:
-        5px solid
-        #ffffff;
-
-    border-bottom:
-        4px solid
-        #888074;
-
-    box-shadow:
-
-        0 5px 12px
-        rgba(40,30,20,0.25);
 }
 
 
