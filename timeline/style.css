@@ -335,25 +335,12 @@ body {
 
     left: -90px;
     right: -90px;
-
-    /*
-       El entablamento ocupa 78px
-       y el friso inferior 65px.
-       Las columnas quedan exactamente
-       entre ambos.
-    */
-
-    top: 78px;
+    top: 58px;
     bottom: 65px;
-
     z-index: 10;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: stretch;
-
     gap: 0;
 }
 
@@ -385,92 +372,84 @@ body {
 .column-capital {
 
     position: relative;
-
-    width: 155px;
-    height: 32px;
-
+    width: 150px;
+    height: 38px;
     flex-shrink: 0;
-
     background:
 
         linear-gradient(
             180deg,
-            #faf7f0,
-            #d8d1c5
-        );
-
+            #f8f5ee 0%,
+            #d9d3c8 45%,
+            #aaa298 100%
+       );
     border-top:
-        4px solid
+        3px solid
         #fffdf8;
-
     border-bottom:
-        5px solid
-        #9b9387;
-
+        4px solid
+        #91897d;
     box-shadow:
 
         0 5px 10px
         rgba(50, 40, 30, 0.22),
 
-        inset 0 3px 4px
-        rgba(255,255,255,0.5);
+        inset 0 3px 5px
+        rgba(255,255,255,0.55);
 }
 
 
 .column-capital::before {
 
     content: "";
-
     position: absolute;
-
-    left: -12px;
-    right: -12px;
-
-    bottom: -10px;
-
-    height: 8px;
-
+    left: -18px;
+    right: -18px;
+    top: -7px;
+    height: 10px;
     background:
 
         linear-gradient(
             180deg,
-            #eee9df,
-            #aaa196
+            #faf8f2,
+            #c4bdb2
         );
-
     border-top:
         2px solid
         #fffdf8;
-
+    border-bottom:
+        2px solid
+        #91897d;
     box-shadow:
 
-        0 4px 6px
-        rgba(50,40,30,0.2);
+        0 4px 7px
+        rgba(45,35,25,0.22);
 }
 
 
 .column-capital::after {
 
     content: "";
-
     position: absolute;
-
-    left: -20px;
-    right: -20px;
-
-    bottom: -18px;
-
-    height: 5px;
-
+    left: -11px;
+    right: -11px;
+    bottom: -8px;
+    height: 8px;
     background:
-        #b7afa3;
 
+        linear-gradient(
+            180deg,
+            #e9e4db,
+            #aaa196
+        );
+    border-top:
+        2px solid
+        #fffdf8;
     box-shadow:
 
-        0 3px 5px
-        rgba(40,30,20,0.18);
+        0 4px 6px
+        rgba(45,35,25,0.18);
 }
-
 
 /* =====================================
    FUSTE DE COLUMNA
@@ -480,37 +459,39 @@ body {
 .column-shaft {
 
     position: relative;
-
-    /*
-       Ocupa solamente el espacio
-       que queda entre capitel y base.
-    */
-
     flex: 1;
-
     width: 135px;
-
     min-height: 0;
-
     background:
 
-        repeating-linear-gradient(
-            90deg,
-            #a9a297 0px,
-            #c9c3b8 7px,
-            #eeeae2 14px,
-            #c9c3b8 21px,
-            #9e978c 28px
-        );
+    linear-gradient(
+        105deg,
+        transparent 20%,
+        rgba(95,88,78,0.18) 21%,
+        transparent 24%
+    ),
 
+    linear-gradient(
+        72deg,
+        transparent 58%,
+        rgba(255,255,255,0.25) 60%,
+        transparent 64%
+    ),
+
+    repeating-linear-gradient(
+        90deg,
+        #aaa49a 0px,
+        #c9c3b8 7px,
+        #eeeae2 14px,
+        #c9c3b8 21px,
+        #9e978c 28px
+    );
     border-left:
         3px solid
         #8d867b;
-
     border-right:
         3px solid
         #878076;
-
     box-shadow:
 
         inset 12px 0 15px
