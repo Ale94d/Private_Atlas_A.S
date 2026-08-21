@@ -50,6 +50,12 @@ body {
 
     opacity: 1;
     visibility: visible;
+    animation:
+        timelineReveal
+        1.1s
+        ease-out
+        2.5s
+        both;
 }
 
 
@@ -798,6 +804,10 @@ body {
 }
 
 
+/* =====================================
+   PUERTAS DE ENTRADA — TEMPLO GRIEGO
+===================================== */
+
 .timeline-door {
 
     position: relative;
@@ -809,25 +819,50 @@ body {
 
     background:
 
+        /* vetas suaves de mármol */
+        linear-gradient(
+            105deg,
+            transparent 18%,
+            rgba(120,110,95,0.10) 20%,
+            transparent 23%
+        ),
+
+        linear-gradient(
+            75deg,
+            transparent 58%,
+            rgba(255,255,255,0.35) 61%,
+            transparent 64%
+        ),
+
+        /* mármol principal */
         linear-gradient(
             90deg,
-            #8F877B 0%,
-            #D9D2C7 18%,
-            #F7F3EB 40%,
-            #B7AEA1 65%,
-            #E8E2D8 82%,
-            #91887B 100%
+            #8f877b 0%,
+            #d9d2c7 14%,
+            #f7f3eb 35%,
+            #d8d1c6 52%,
+            #f3eee5 70%,
+            #b7aea1 88%,
+            #91887b 100%
         );
 
     box-shadow:
 
-        inset 0 0 60px
-        rgba(45, 35, 25, 0.35),
+        inset 0 0 70px
+        rgba(45,35,25,0.35),
+
+        inset 0 0 20px
+        rgba(255,255,255,0.35),
 
         0 0 35px
         rgba(40,30,20,0.35);
+
 }
 
+
+/* =====================================
+   MARCO MONUMENTAL
+===================================== */
 
 .timeline-door::before {
 
@@ -835,21 +870,32 @@ body {
 
     position: absolute;
 
-    inset: 35px;
+    inset: 28px;
 
     border:
         8px solid
-        rgba(121, 110, 96, 0.75);
+        rgba(121,110,96,0.72);
 
     box-shadow:
 
-        inset 0 0 30px
+        inset 0 0 0 3px
+        rgba(255,255,255,0.55),
+
+        inset 0 0 25px
         rgba(50,40,30,0.25),
 
-        0 0 0 3px
-        rgba(255,255,255,0.25);
+        0 0 0 2px
+        rgba(139,120,83,0.35),
+
+        0 8px 20px
+        rgba(45,35,25,0.20);
+
 }
 
+
+/* =====================================
+   PANEL GRIEGO CENTRAL
+===================================== */
 
 .timeline-door::after {
 
@@ -858,100 +904,236 @@ body {
     position: absolute;
 
     left: 50%;
-    top: 15%;
+    top: 13%;
 
-    width: 70%;
-    height: 70%;
+    width: 68%;
+    height: 74%;
 
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
 
     border:
         5px solid
-        rgba(139, 120, 83, 0.65);
+        rgba(139,120,83,0.70);
 
     background:
 
+        /* medallón central */
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(255,245,210,0.95) 0px,
+            rgba(194,157,91,0.65) 22px,
+            rgba(120,95,55,0.28) 25px,
+            transparent 29px
+        ),
+
+        /* líneas geométricas verticales */
         repeating-linear-gradient(
             90deg,
             transparent 0px,
-            transparent 45px,
-            rgba(255,255,255,0.15) 48px,
-            transparent 53px
+            transparent 42px,
+            rgba(255,255,255,0.18) 43px,
+            rgba(255,255,255,0.18) 46px,
+            transparent 47px,
+            transparent 84px
+        ),
+
+        /* mármol del panel */
+        linear-gradient(
+            90deg,
+            rgba(120,110,98,0.20),
+            rgba(255,255,255,0.25),
+            rgba(150,140,125,0.18),
+            rgba(255,255,255,0.25),
+            rgba(120,110,98,0.20)
         );
 
     box-shadow:
 
         inset 0 0 35px
-        rgba(50,40,30,0.25);
+        rgba(50,40,30,0.28),
+
+        inset 0 0 0 2px
+        rgba(255,255,255,0.35),
+
+        0 8px 18px
+        rgba(40,30,20,0.22);
+
 }
 
 
+/* =====================================
+   DETALLE SUPERIOR TIPO FRONTÓN
+===================================== */
+
 .timeline-door-left {
 
-    transform-origin:
-        left center;
+    transform-origin: left center;
+
 }
 
 
 .timeline-door-right {
 
-    transform-origin:
-        right center;
+    transform-origin: right center;
+
 }
 
+
+/* =====================================
+   DETALLE GEOMÉTRICO SOBRE LA PUERTA
+===================================== */
+
+.timeline-door {
+
+    background-color: #d8d2c7;
+}
+
+
+/* Línea decorativa superior */
+
+.timeline-door-left::after,
+.timeline-door-right::after {
+
+    border-radius: 2px;
+
+}
+
+
+/* =====================================
+   APERTURA
+===================================== */
 
 .timeline-entrance.open .timeline-door-left {
 
     animation:
+
         openLeftDoor
-        1.8s
+
+        2.8s
+
         cubic-bezier(0.77, 0, 0.18, 1)
+
         forwards;
+
 }
 
 
 .timeline-entrance.open .timeline-door-right {
 
     animation:
+
         openRightDoor
-        1.8s
+
+        2.8s
+
         cubic-bezier(0.77, 0, 0.18, 1)
+
         forwards;
+
 }
 
 
+
+
+/* =====================================
+   ANIMACIÓN PUERTA IZQUIERDA
+===================================== */
+
 @keyframes openLeftDoor {
 
-    from {
+    0% {
 
         transform:
             perspective(1400px)
             rotateY(0deg);
+
     }
 
-    to {
+    60% {
+
+        transform:
+            perspective(1400px)
+            rotateY(-75deg);
+
+    }
+
+    100% {
 
         transform:
             perspective(1400px)
             rotateY(-105deg);
+
     }
+
 }
 
 
+/* =====================================
+   ANIMACIÓN PUERTA DERECHA
+===================================== */
+
 @keyframes openRightDoor {
 
-    from {
+    0% {
 
         transform:
             perspective(1400px)
             rotateY(0deg);
+
     }
 
-    to {
+    60% {
+
+        transform:
+            perspective(1400px)
+            rotateY(75deg);
+
+    }
+
+    100% {
 
         transform:
             perspective(1400px)
             rotateY(105deg);
+
     }
+
+}
+
+/* =====================================
+   REVELADO DEL TIMELINE
+===================================== */
+
+.timeline-workspace.active {
+
+    animation:
+        timelineReveal
+        1.1s
+        ease-out
+        2.5s
+        both;
+
+}
+
+
+@keyframes timelineReveal {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(1.035);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
 }
