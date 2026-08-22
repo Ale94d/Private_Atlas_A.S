@@ -67,6 +67,66 @@ if (atlasWorkspace) {
 }
 
 // ===============================
+// ABRIR LIFE-PLANER
+// ===============================
+
+const lifeplanerWorkspace = document.querySelector(".planner");
+
+if (lifeplanerWorkspace) {
+
+    lifeplanerWorkspace.addEventListener("click", () => {
+
+        setTimeout(() => {
+
+            window.location.href = "life-planer/index.html";
+
+        }, 350);
+
+    });
+
+}
+
+// ===============================
+// ABRIR DAILY-JOURNAL
+// ===============================
+
+const dailyjournalWorkspace = document.querySelector(".journal");
+
+if (dailyjournalWorkspace) {
+
+    dailyjournalWorkspace.addEventListener("click", () => {
+
+        setTimeout(() => {
+
+            window.location.href = "daily-journal/index.html";
+
+        }, 350);
+
+    });
+
+}
+
+// ===============================
+// ABRIR BAUL
+// ===============================
+
+const baulWorkspace = document.querySelector(".baul");
+
+if (baulWorkspace) {
+
+    baulWorkspace.addEventListener("click", () => {
+
+        setTimeout(() => {
+
+            window.location.href = "baul/index.html";
+
+        }, 350);
+
+    });
+
+}
+
+// ===============================
 // ABRIR TIMELINE
 // ===============================
 
