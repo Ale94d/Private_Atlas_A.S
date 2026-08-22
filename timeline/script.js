@@ -191,8 +191,25 @@ document.addEventListener("keydown",(event)=>{
     if(event.key === "ArrowRight"){
         currentX -= keyboardSpeed;
     }
+
+    const containerWidth =
+                timelineContainer.clientWidth;
+
+            const worldWidth =
+                timelineWorld.offsetWidth;
+
     const minimumX = -(worldWidth - containerWidth);
 
+    currentX =
+                Math.max(
+                    minimumX,
+                    Math.min(
+                        0,
+                        currentX
+                    )
+                );
+
+
     timelineWorld.style.transform =
-        'translateX(${currentX}px)';
+        ´translateX(${currentX}px)´;
 });
