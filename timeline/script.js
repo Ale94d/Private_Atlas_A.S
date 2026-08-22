@@ -39,11 +39,15 @@ if (typeof lucide !== "undefined") {
 ===================================== */
 
 if (entrance) {
+
     entrance.classList.add("open");
+
 }
 
 if (timeline) {
+
     timeline.classList.add("active");
+
 }
 
 
@@ -76,6 +80,53 @@ let startX = 0;
 
 let currentX = 0;
 
+
+/* =====================================
+   ACTUALIZAR POSICIÓN
+===================================== */
+
+function updateTimelinePosition() {
+
+    if (
+        !timelineContainer ||
+        !timelineWorld
+    ) {
+
+        return;
+
+    }
+
+
+    const containerWidth =
+        timelineContainer.clientWidth;
+
+    const worldWidth =
+        timelineWorld.offsetWidth;
+
+
+    const minimumX =
+        -(worldWidth - containerWidth);
+
+
+    currentX =
+        Math.max(
+            minimumX,
+            Math.min(
+                0,
+                currentX
+            )
+        );
+
+
+    timelineWorld.style.transform =
+        `translateX(${currentX}px)`;
+
+}
+
+
+/* =====================================
+   MOVIMIENTO CON MOUSE
+===================================== */
 
 if (
     timelineContainer &&
@@ -116,30 +167,7 @@ if (
                 startX;
 
 
-            const containerWidth =
-                timelineContainer.clientWidth;
-
-            const worldWidth =
-                timelineWorld.offsetWidth;
-
-
-            const minimumX =
-                -(worldWidth -
-                    containerWidth);
-
-
-            currentX =
-                Math.max(
-                    minimumX,
-                    Math.min(
-                        0,
-                        currentX
-                    )
-                );
-
-
-            timelineWorld.style.transform =
-                `translateX(${currentX}px)`;
+            updateTimelinePosition();
 
         }
     );
@@ -150,6 +178,7 @@ if (
         (event) => {
 
             isDragging = false;
+
 
             if (
                 timelineContainer.hasPointerCapture(
@@ -178,3 +207,34 @@ if (
 
 }
 
+
+/* =====================================
+   MOVIMIENTO CON TECLADO
+===================================== */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        const keyboardSpeed = 50;
+
+
+        if (event.key === "ArrowLeft") {
+
+            currentX += keyboardSpeed;
+
+            updateTimelinePosition();
+
+        }
+
+
+        if (event.key === "ArrowRight") {
+
+            currentX -= keyboardSpeed;
+
+            updateTimelinePosition();
+
+        }
+
+    }
+);
