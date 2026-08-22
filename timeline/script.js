@@ -178,38 +178,3 @@ if (
 
 }
 
-/*======================================
-        MOVIMIENTO CON TECLADO
-========================================*/
-document.addEventListener("keydown",(event)=>{
-
-    const keyboardSpeed = 50;
-
-    if(event.key === "ArrowLeft"){
-        currentX += keyboardSpeed;
-    }
-    if(event.key === "ArrowRight"){
-        currentX -= keyboardSpeed;
-    }
-
-    const containerWidth =
-                timelineContainer.clientWidth;
-
-            const worldWidth =
-                timelineWorld.offsetWidth;
-
-    const minimumX = -(worldWidth - containerWidth);
-
-    currentX =
-                Math.max(
-                    minimumX,
-                    Math.min(
-                        0,
-                        currentX
-                    )
-                );
-
-
-    timelineWorld.style.transform =
-        `translateX(${currentX}px)`;
-});
