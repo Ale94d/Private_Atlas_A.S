@@ -177,3 +177,22 @@ if (
     );
 
 }
+
+/*======================================
+        MOVIMIENTO CON TECLADO
+========================================*/
+document.addEventListener("keydown",(event)=>{
+
+    const keyboardSpeed = 50;
+
+    if(event.key === "ArrowLeft"){
+        currentX += keyboardSpeed;
+    }
+    if(event.key === "ArrowRight"){
+        currentX -= keyboardSpeed;
+    }
+    const minimumX = -(worldWidth - containerWidth);
+
+    timelineWorld.style.transform =
+        'translateX(${currentX}px)';
+});
