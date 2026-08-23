@@ -109,13 +109,12 @@ body {
         linear-gradient(
             145deg,
             #eee9df,
-            #b8b1a6,
+            #b8b1a6
         );
     color: #514a41;
     box-shadow: 
         0 5px 12px rgba(40, 35, 30, 0.30),
-        inset 0 2px 4px
-        rgba(255, 255, 255, 0.60);
+        inset 0 2px 4px rgba(255, 255, 255, 0.60);
     border-radius: 50%;
     border: none;
     cursor: pointer;
