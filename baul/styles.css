@@ -108,13 +108,13 @@ body {
     background: 
         linear-gradient(
             145deg,
-            #eee9df,
-            #b8b1a6
+            #3a302b,
+            #171310
         );
     color: #514a41;
     box-shadow: 
-        0 5px 12px rgba(40, 35, 30, 0.30),
-        inset 0 2px 4px rgba(255, 255, 255, 0.60);
+        0 5px 12px rgba(0, 0, 0, 0.55),
+        inset 0 2px 4px rgba(255, 255, 255, 0.12);
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -134,7 +134,7 @@ body {
 .back-home i {
     width: 20px;
     height: 20px;
-    color: #3b2415;
+    color: #f3e6d0;
 }
 
 .baul-window {
