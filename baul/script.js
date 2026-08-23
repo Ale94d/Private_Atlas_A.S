@@ -1,3 +1,7 @@
+if (typeof lucide !== "undefined") {
+    lucide.createIcons();
+}
+
 /* =====================================
    VOLVER AL HOME
 ===================================== */

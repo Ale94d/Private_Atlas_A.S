@@ -15,7 +15,7 @@ body {
     overflow: hidden;
     background: #15110f;
     color: #f3e6d0;
-    font-family: "Plus Jakarta Sams",sans-serif;
+    font-family: "Plus Jakarta Sans",sans-serif;
 }
 
 /*
@@ -83,7 +83,7 @@ body {
             rgba(0, 0, 0, 0.55),
             transparent 25%,
             transparent 75%,
-            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.55)
         ),
         linear-gradient(
             180deg,
@@ -105,6 +105,17 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 100;
+    background: 
+        linear-gradient(
+            145deg,
+            #eee9df,
+            #b8b1a6,
+        );
+    color: #514a41;
+    box-shadow: 
+        0 5px 12px rgba(40, 35, 30, 0.30),
+        inset 0 2px 4px
+        rgba(255, 255, 255, 0.60);
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -115,6 +126,10 @@ body {
 
 .back-home:hover {
     transform: translateY(-3px);
+    box-shadow: 
+        0 8px 16px rgba(40, 35, 30, 0.38),
+        inset 0 2px 4px
+        rgba(255,255,255,0.70);
 }
 
 .back-home i {
