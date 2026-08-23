@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+
+    overflow: hidden;
+    background: #15110f;
+    color: #f3e6d0;
+    font-family: "Plus Jakarta Sams",sans-serif;
+}
+
+/*
+================================
+    BAÚL - ESPACIO PRINCIPAL
+================================ */
+
+.baul-workspace {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: 
+        linear-gradient(
+            rgba(20, 12, 8, 0.25),
+            rgba(20, 12, 8, 0.25)
+        ),
+        url("assets/background/roca-lava.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/*
+===============================
+    ESTILO VALCÁNICO
+=============================== */
+
+.baul-workspace::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: 
+        radial-gradient(
+            circle at 50% 55%,
+            rgba(255, 90,20,0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(255, 70, 10, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 25%,
+            rgba(255, 100, 20, 0.08),
+            transparent 30%
+        );
+    z-index: 1;
+}
+
+/*
+=============================
+    SOMBRAS DE LA CUEVA
+============================= */
+
+.baul-workspace::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: 
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.55),
+            transparent 25%,
+            transparent 75%,
+            rgba(0, 0, 0, 0.55),
+        ),
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.40),
+            transparent 25%,
+            transparent 75%,
+            rgba(0, 0, 0, 0.55)
+        );
+    z-index: 2;
+}
