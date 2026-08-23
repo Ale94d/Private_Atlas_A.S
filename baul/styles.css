@@ -108,6 +108,13 @@ body {
     border-radius: 50%;
     border: none;
     cursor: pointer;
+    transition: 
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.back-home:hover {
+    transform: translateY(-3px);
 }
 
 .back-home i {
