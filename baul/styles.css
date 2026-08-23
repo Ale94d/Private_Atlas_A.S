@@ -165,7 +165,14 @@ body {
     position: absolute;
     width: 150px;
     height: 110px;
-    background: 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 35% 45% 40% 30%;
+    background:
         linear-gradient(
             145deg,
             #121214,
@@ -174,18 +181,15 @@ body {
     box-shadow:
         0 6px 14px rgba(0,0,0,0.65),
         inset 3px 3px 6px rgba(255,255,255,0.08),
-        inset -4px -4px 8px rgba(0,0,0,0.65);
-    border-radius: 35% 45% 40% 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: none;
-}
-
-.baul-window i {
+        inset -4px -4px 8px rgba(0,0,0,0.65),
+        inset 0 0 10px rgba(211,47,15,0.15);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
     color: #d32f0f;
+}
+.baul-window i {
+    
     width: 30px;
     height: 30px;
 
@@ -193,23 +197,39 @@ body {
 
 .baul-window span {
     margin-top: 8px;
-    color: #f3e6d0;
+    color: #d32f0f;
     font-family: "Cormorant Garamond",serif;
     font-size: 1.15rem;
     font-weight: 600;
+    text-shadow: none0 0 5px rgba(211,47,15,0.25);
+}
+
+.baul-window:hover {
+    transform: 
+        translateX(-50%),
+        translateY(-4px);
+    box-shadow: 
+        0 10px 20px rgba(0,0,0,0.75),
+        inset 3px 3px 6px rgba(255,255,255,0.10),
+        inset -4px -4px 8px rgba(0,0,0,0.70),
+        inset 0 0 16px rgba(255,85,0,0.35),
+        0 0 12px rgba(211,47,15,0.25);
 }
 
 .books-window {
     left: 25%;
-    top: 35%;
+    top: 40%;
+    transform: translateX(-50%);
 }
 
 .recipes-window {
     left: 50%;
     top: 55%;
+    transform: translateX(-50%);
 }
 
 .travel-window {
     left: 75%;
     top: 35%;
+    transform: translateX(-50%);
 }
