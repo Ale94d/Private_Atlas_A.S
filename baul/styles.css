@@ -94,3 +94,50 @@ body {
         );
     z-index: 2;
 }
+
+.back-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.back-home i {
+    width: 20px;
+    height: 20px;
+}
+
+.baul-window {
+    position: absolute;
+    width: 180px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+}
+
+.books-window {
+    left: 25%;
+    top: 35%;
+}
+
+.recipes-window {
+    left: 50%;
+    top: 55%;
+}
+
+.travel-window {
+    left: 75%;
+    top: 35%;
+}
