@@ -217,19 +217,19 @@ body {
 }
 
 .books-window {
-    left: 25%;
-    top: 40%;
+    left: 50%;
+    top: 32%;
     transform: translateX(-50%);
 }
 
 .recipes-window {
-    left: 50%;
+    left: 35%;
     top: 55%;
     transform: translateX(-50%);
 }
 
 .travel-window {
-    left: 75%;
-    top: 35%;
+    left: 65%;
+    top: 55%;
     transform: translateX(-50%);
 }
