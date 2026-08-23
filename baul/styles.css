@@ -345,3 +345,222 @@ body {
     }
 
 }
+
+/* =====================================
+   BRASAS
+===================================== */
+
+.embers {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.embers span {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+
+    background: #ff5500;
+
+    box-shadow:
+        0 0 6px rgba(255, 85, 0, 0.8),
+        0 0 12px rgba(211, 47, 15, 0.45);
+
+    animation: emberGlow 3s ease-in-out infinite;
+}
+
+.embers span:nth-child(1) {
+    left: 8%;
+    top: 68%;
+}
+
+.embers span:nth-child(2) {
+    left: 18%;
+    top: 30%;
+    animation-delay: 1s;
+}
+
+.embers span:nth-child(3) {
+    left: 83%;
+    top: 38%;
+    animation-delay: 0.5s;
+}
+
+.embers span:nth-child(4) {
+    left: 91%;
+    top: 70%;
+    animation-delay: 1.5s;
+}
+
+.embers span:nth-child(5) {
+    left: 43%;
+    top: 82%;
+    animation-delay: 2s;
+}
+
+.embers span:nth-child(6) {
+    left: 70%;
+    top: 20%;
+    animation-delay: 0.8s;
+}
+
+@keyframes emberGlow {
+
+    0%,
+    100% {
+        opacity: 0.35;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+
+}
+
+/* =====================================
+   PEQUEÑAS LLAMAS
+===================================== */
+
+.flames {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.flames span {
+    position: absolute;
+
+    width: 12px;
+    height: 18px;
+
+    background:
+        radial-gradient(
+            ellipse at bottom,
+            #ffc800 0%,
+            #ff5500 45%,
+            #d32f0f 75%,
+            transparent 76%
+        );
+
+    border-radius:
+        50% 50% 45% 45%;
+
+    filter:
+        drop-shadow(0 0 7px rgba(255, 85, 0, 0.65));
+
+    animation: flameMove 2s ease-in-out infinite;
+}
+
+.flames span:nth-child(1) {
+    left: 7%;
+    bottom: 18%;
+}
+
+.flames span:nth-child(2) {
+    right: 8%;
+    bottom: 25%;
+    animation-delay: 0.7s;
+}
+
+.flames span:nth-child(3) {
+    left: 87%;
+    top: 28%;
+    animation-delay: 1.2s;
+}
+
+@keyframes flameMove {
+
+    0%,
+    100% {
+        transform: scaleY(0.9) rotate(-2deg);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scaleY(1.15) rotate(3deg);
+        opacity: 1;
+    }
+
+}
+
+/* =====================================
+   FÓSIL INCRUSTADO
+===================================== */
+
+.fossil {
+    position: absolute;
+
+    width: 220px;
+    height: 150px;
+
+    left: 50%;
+    bottom: 7%;
+
+    transform: translateX(-50%) rotate(-8deg);
+
+    z-index: 2;
+    pointer-events: none;
+
+    opacity: 0.28;
+}
+
+.fossil-bone {
+    position: absolute;
+
+    width: 170px;
+    height: 32px;
+
+    top: 55px;
+    left: 25px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6e6254,
+            #a3947e,
+            #51483e
+        );
+
+    box-shadow:
+        inset 0 4px 7px rgba(255,255,255,0.12),
+        inset 0 -5px 8px rgba(0,0,0,0.5),
+        0 0 8px rgba(0,0,0,0.5);
+
+    transform: rotate(12deg);
+}
+
+.fossil-bone::before,
+.fossil-bone::after {
+    content: "";
+
+    position: absolute;
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    background: #756958;
+
+    box-shadow:
+        inset 0 3px 5px rgba(255,255,255,0.1),
+        inset 0 -4px 6px rgba(0,0,0,0.45);
+}
+
+.fossil-bone::before {
+    left: -12px;
+    top: 2px;
+}
+
+.fossil-bone::after {
+    right: -12px;
+    top: 2px;
+}
