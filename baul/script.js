@@ -22,140 +22,102 @@ if (homeButton) {
    VENTANAS DEL BAÚL
 ===================================== */
 
-.content-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 20;
+const overlay = document.querySelector(".content-overlay");
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+const booksButton = document.querySelector(".books-window");
+const recipesButton = document.querySelector(".recipes-window");
+const travelButton = document.querySelector(".travel-window");
 
-    background: rgba(0, 0, 0, 0.45);
+const booksContent = document.querySelector(".books-content");
+const recipesContent = document.querySelector(".recipes-content");
+const travelContent = document.querySelector(".travel-content");
 
-    opacity: 0;
-    visibility: hidden;
+const closeButtons = document.querySelectorAll(".close-window");
 
-    transition:
-        opacity 0.35s ease,
-        visibility 0.35s ease;
+
+function openWindow(content) {
+
+    if (!overlay || !content) return;
+
+    overlay.classList.add("active");
+
+    content.style.display = "block";
+
+    requestAnimationFrame(() => {
+        content.classList.add("active");
+    });
+
 }
 
-.content-window {
-    position: relative;
 
-    width: min(850px, 85vw);
-    height: min(600px, 80vh);
+function closeWindow() {
 
-    padding: 35px;
+    if (!overlay) return;
 
-    background:
-        linear-gradient(
-            145deg,
-            #121214,
-            #2b2b2e
-        );
+    const activeWindow =
+        document.querySelector(".content-window.active");
 
-    border-radius: 28px;
+    if (activeWindow) {
 
-    box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.75),
-        inset 4px 4px 8px rgba(255, 255, 255, 0.08),
-        inset -5px -5px 10px rgba(0, 0, 0, 0.75);
+        activeWindow.classList.remove("active");
 
-    transform: translateY(40px) scale(0.94);
-    opacity: 0;
+        setTimeout(() => {
+            activeWindow.style.display = "none";
+        }, 400);
 
-    transition:
-        transform 0.4s ease,
-        opacity 0.35s ease;
+    }
 
-    display: none;
+    setTimeout(() => {
+        overlay.classList.remove("active");
+    }, 400);
+
 }
 
-.content-overlay.active {
-    opacity: 1;
-    visibility: visible;
+
+if (booksButton) {
+
+    booksButton.addEventListener("click", () => {
+        openWindow(booksContent);
+    });
+
 }
 
-.content-overlay.active .content-window.active {
-    display: block;
 
-    transform: translateY(0) scale(1);
-    opacity: 1;
+if (recipesButton) {
+
+    recipesButton.addEventListener("click", () => {
+        openWindow(recipesContent);
+    });
+
 }
 
-/* ENCABEZADO */
 
-.content-window-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+if (travelButton) {
 
-    padding-bottom: 18px;
+    travelButton.addEventListener("click", () => {
+        openWindow(travelContent);
+    });
 
-    border-bottom: 1px solid rgba(243, 230, 208, 0.15);
 }
 
-.content-window-header i {
-    width: 28px;
-    height: 28px;
 
-    color: #d32f0f;
-}
+closeButtons.forEach(button => {
 
-.content-window-header h2 {
-    color: #f3e6d0;
+    button.addEventListener("click", () => {
+        closeWindow();
+    });
 
-    font-family: "Cormorant Garamond", serif;
-    font-size: 2rem;
-    font-weight: 700;
-}
+});
 
-/* BOTÓN CERRAR */
 
-.close-window {
-    position: absolute;
+if (overlay) {
 
-    top: 18px;
-    right: 18px;
+    overlay.addEventListener("click", (event) => {
 
-    width: 38px;
-    height: 38px;
+        if (event.target === overlay) {
+            closeWindow();
+        }
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    });
 
-    border: none;
-    border-radius: 50%;
-
-    background: #121214;
-    color: #d32f0f;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.close-window:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 6px 12px rgba(0, 0, 0, 0.65),
-        inset 0 0 8px rgba(211, 47, 15, 0.35);
-}
-
-.close-window i {
-    width: 18px;
-    height: 18px;
-}
-
-/* CUERPO */
-
-.content-window-body {
-    height: calc(100% - 70px);
-    padding-top: 25px;
 }
