@@ -531,13 +531,13 @@ body {
     padding: 35px;
     background:
     linear-gradient(
-        rgba(18,18,20,0.88),
-        rgba(18,18,20,0.94)
+        rgba(18,18,20,0.93),
+        rgba(18,18,20,0.93)
     ),
     url("assets/background/roca-textura.png");
     background-size: cover;
     background-position: center;
-    background-blend-mode: multiply;
+    background-blend-mode: soft-light;
     border-radius: 30px 24px 34px 27px;
     box-shadow:
         0 15px 35px rgba(0, 0, 0, 0.75),
