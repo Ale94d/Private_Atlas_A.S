@@ -531,8 +531,8 @@ body {
     padding: 35px;
     background:
     linear-gradient(
-        rgba(18,18,20,0.55),
-        rgba(18,18,20,0.70)
+        rgba(18,18,20,0.88),
+        rgba(18,18,20,0.94)
     ),
     url("assets/background/roca-textura.png");
     background-size: cover;
