@@ -178,18 +178,26 @@ body {
     border: none;
     border-radius: 35% 45% 40% 30%;
     background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255,255,255,0.08),
+            transparent 25%
+        ),
+
         linear-gradient(
             145deg,
-            #121214,
-            #2b2b2e
+            #171719,
+            #302f32 45%,
+            #1b1b1b
         );
     box-shadow:
-        0 6px 14px rgba(0,0,0,0.65),
-        inset 3px 3px 6px rgba(255,255,255,0.08),
-        inset -4px -4px 8px rgba(0,0,0,0.65),
-        inset 0 0 10px rgba(211,47,15,0.15);
+        0 8px 16px rgba(0,0,0,0.75),
+        inset 4px 4px 7px rgba(255,255,255,0.08),
+        inset -5px -5px 9px rgba(0,0,0,0.8),
+        inset 0 0 10px rgba(211,47,15,0.12);
     transition:
         transform 0.25s ease,
+        filter0.25s ease,
         box-shadow 0.25s ease;
     color: #d32f0f;
 }
@@ -197,28 +205,32 @@ body {
     
     width: 30px;
     height: 30px;
+    color: #d32f0f;
+    filter: 
+        drop-shadow(0 0 5px rgba(211,47,15,0.35));
 
 }
 
 .baul-window span {
     margin-top: 8px;
-    color: #d32f0f;
+    color: #f3e6d0;
     font-family: "Cormorant Garamond",serif;
     font-size: 1.15rem;
     font-weight: 600;
-    text-shadow: none0 0 5px rgba(211,47,15,0.25);
+    text-shadow: 0 2px 3px rgba(0,0,0,0.7);
 }
 
 .baul-window:hover {
-    transform: 
-        translateX(-50%),
-        translateY(-4px);
+    transform:
+        translateY(-5px),
+        scale(1.03);
+    filter: brightness(1.08);
     box-shadow: 
-        0 10px 20px rgba(0,0,0,0.75),
-        inset 3px 3px 6px rgba(255,255,255,0.10),
-        inset -4px -4px 8px rgba(0,0,0,0.70),
-        inset 0 0 16px rgba(255,85,0,0.35),
-        0 0 12px rgba(211,47,15,0.25);
+        0 12px 20px rgba(0,0,0,0.8),
+        inset 4px 4px 8px rgba(255,255,255,0.10),
+        inset -5px -5px 10px rgba(0,0,0,0.85),
+        inset 0 0 14px rgba(211,47,15,0.28),
+        0 0 12px rgba(211,47,15,0.15);
 }
 
 .books-window {
@@ -514,34 +526,46 @@ body {
 
 .content-window {
     position: relative;
-
     width: min(850px, 85vw);
     height: min(600px, 80vh);
-
     padding: 35px;
-
     background:
+        radial-gradient(
+            circle at 30% 20%,
+            rgba(255,255,255,0.06),
+            transparent 25%
+        ),
         linear-gradient(
             145deg,
-            #121214,
-            #2b2b2e
+            #141414,
+            #302f32,
+            #19191b
         );
 
-    border-radius: 28px;
+    border-radius: 30px 24px 34px 27px;
 
     box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.75),
-        inset 4px 4px 8px rgba(255, 255, 255, 0.08),
-        inset -5px -5px 10px rgba(0, 0, 0, 0.75);
-
+        0 18px 40px rgba(0, 0, 0, 0.8),
+        inset 5px 5px 10px rgba(255, 255, 255, 0.07),
+        inset -7px -7px 12px rgba(0, 0, 0, 0.85),
+        inset 0 0 18px rgba(211,47,15,0.12);
     transform: translateY(40px) scale(0.94);
     opacity: 0;
-
     transition:
         transform 0.4s ease,
         opacity 0.35s ease;
-
     display: none;
+}
+
+.content-window::before {
+    content:"";
+    position: absolute;
+    inset: 8px;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: 
+        inset 0 0 12px rgba(211,47,15,0.15);
+    opacity: 0.8;
 }
 
 .content-overlay.active {
