@@ -556,6 +556,7 @@ body {
         transform 0.4s ease,
         opacity 0.35s ease;
     display: block;
+    margin: auto;
 }
 
 
