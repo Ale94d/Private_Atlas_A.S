@@ -1,0 +1,1002 @@
+/* =====================================
+   RESET
+===================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+    overflow: hidden;
+
+    background: #3d2b20;
+
+    color: #3d2b20;
+
+}
+
+
+/* =====================================
+   WORKSPACE
+===================================== */
+
+.journal-workspace {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(214, 183, 133, 0.18),
+            transparent 55%
+        ),
+
+        linear-gradient(
+            135deg,
+            #38271e,
+            #5a4030 45%,
+            #2e211a
+        );
+
+}
+
+
+/* =====================================
+   BOTÓN HOME
+===================================== */
+
+.back-home {
+
+    position: fixed;
+
+    top: 22px;
+    left: 22px;
+
+    z-index: 100;
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid
+        rgba(226, 208, 177, 0.45);
+
+    border-radius: 50%;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #eadfce,
+            #a9957b
+        );
+
+    color: #4b3728;
+
+    cursor: pointer;
+
+    box-shadow:
+
+        0 7px 18px
+        rgba(0, 0, 0, 0.35),
+
+        inset 0 2px 4px
+        rgba(255,255,255,0.55);
+
+    transition:
+
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.back-home:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+
+        0 10px 22px
+        rgba(0, 0, 0, 0.42),
+
+        inset 0 2px 5px
+        rgba(255,255,255,0.65);
+
+}
+
+
+.back-home i {
+
+    width: 20px;
+    height: 20px;
+
+}
+
+
+/* =====================================
+   FONDO
+===================================== */
+
+.journal-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+}
+
+
+/* =====================================
+   LUZ CENTRAL
+===================================== */
+
+.background-light {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 900px;
+    height: 700px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            ellipse,
+            rgba(232, 204, 155, 0.22),
+            rgba(232, 204, 155, 0.08) 40%,
+            transparent 72%
+        );
+
+    filter: blur(20px);
+
+}
+
+
+/* =====================================
+   DECORACIÓN LATERAL
+===================================== */
+
+.background-decoration {
+
+    position: absolute;
+
+    top: 50%;
+
+    width: 260px;
+    height: 500px;
+
+    transform:
+        translateY(-50%);
+
+    opacity: 0.25;
+
+    border: 1px solid
+        rgba(215, 187, 145, 0.25);
+
+}
+
+
+.decoration-left {
+
+    left: -160px;
+
+    border-radius:
+        0 50% 50% 0;
+
+}
+
+
+.decoration-right {
+
+    right: -160px;
+
+    border-radius:
+        50% 0 0 50%;
+
+}
+
+
+/* =====================================
+   ESCENA DEL JOURNAL
+===================================== */
+
+.journal-scene {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    perspective: 1800px;
+
+}
+
+
+/* =====================================
+   LIBRO
+===================================== */
+
+.journal-book {
+
+    position: relative;
+
+    width: min(1050px, 88vw);
+
+    height: min(650px, 76vh);
+
+    display: flex;
+
+    transform:
+        rotateX(2deg);
+
+    filter:
+        drop-shadow(
+            0 35px 35px
+            rgba(0,0,0,0.45)
+        );
+
+}
+
+
+/* =====================================
+   LOMO
+===================================== */
+
+.book-spine {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+
+    width: 34px;
+    height: 100%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 10;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #5a3d29,
+            #8b6242 35%,
+            #4a3021 70%,
+            #281b14
+        );
+
+    box-shadow:
+
+        inset 7px 0 10px
+        rgba(0,0,0,0.35),
+
+        inset -7px 0 10px
+        rgba(0,0,0,0.35);
+
+}
+
+
+/* =====================================
+   PÁGINAS
+===================================== */
+
+.book-page {
+
+    position: relative;
+
+    width: 50%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #f5ead6,
+            #ead9bd 55%,
+            #d8c19d
+        );
+
+    box-shadow:
+
+        inset 0 0 35px
+        rgba(104, 72, 40, 0.16);
+
+}
+
+
+/* =====================================
+   PÁGINA IZQUIERDA
+===================================== */
+
+.book-page-left {
+
+    padding:
+        65px 70px 55px 80px;
+
+    border-radius:
+        18px 0 0 18px;
+
+    box-shadow:
+
+        inset -18px 0 25px
+        rgba(75, 47, 27, 0.18),
+
+        inset 0 0 30px
+        rgba(110, 75, 40, 0.12);
+
+}
+
+
+/* =====================================
+   PÁGINA DERECHA
+===================================== */
+
+.book-page-right {
+
+    padding:
+        65px 80px 45px 70px;
+
+    border-radius:
+        0 18px 18px 0;
+
+    box-shadow:
+
+        inset 18px 0 25px
+        rgba(75, 47, 27, 0.18),
+
+        inset 0 0 30px
+        rgba(110, 75, 40, 0.12);
+
+}
+
+
+/* =====================================
+   TEXTURA DEL PAPEL
+===================================== */
+
+.book-page::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.22;
+
+    background:
+
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 5px,
+            rgba(100, 72, 42, 0.08) 6px
+        );
+
+}
+
+
+/* =====================================
+   ORNAMENTO
+===================================== */
+
+.page-ornament {
+
+    position: relative;
+
+    text-align: center;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 24px;
+
+    color: #9a6b37;
+
+}
+
+
+/* =====================================
+   ENCABEZADO
+===================================== */
+
+.journal-heading {
+
+    position: relative;
+
+    margin-top: 35px;
+
+    text-align: center;
+
+}
+
+
+.heading-small {
+
+    display: block;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 0.28em;
+
+    color: #94704a;
+
+}
+
+
+.journal-heading h1 {
+
+    margin-top: 8px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: clamp(
+        2.8rem,
+        5vw,
+        4.6rem
+    );
+
+    font-weight: 600;
+
+    line-height: 0.95;
+
+    color: #4a3020;
+
+}
+
+
+/* =====================================
+   LÍNEA DEL TÍTULO
+===================================== */
+
+.heading-line {
+
+    width: 95px;
+    height: 1px;
+
+    margin:
+        20px auto 0;
+
+    background:
+        #a47a45;
+
+}
+
+
+/* =====================================
+   INTRODUCCIÓN
+===================================== */
+
+.journal-intro {
+
+    max-width: 390px;
+
+    margin:
+        35px auto 0;
+
+    text-align: center;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 1.2rem;
+
+    line-height: 1.6;
+
+    color: #70583f;
+
+}
+
+
+/* =====================================
+   FECHA
+===================================== */
+
+.journal-date {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+
+    margin-top: 48px;
+
+}
+
+
+.date-day {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 4rem;
+
+    line-height: 0.8;
+
+    color: #81572e;
+
+}
+
+
+.date-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    font-size: 0.68rem;
+
+    letter-spacing: 0.18em;
+
+    color: #8c6a46;
+
+}
+
+
+/* =====================================
+   DIVISOR
+===================================== */
+
+.page-divider {
+
+    width: 70%;
+
+    height: 1px;
+
+    margin:
+        45px auto 0;
+
+    background:
+        rgba(137, 101, 61, 0.4);
+
+}
+
+
+/* =====================================
+   FRASE INFERIOR
+===================================== */
+
+.page-note {
+
+    margin-top: 25px;
+
+    text-align: center;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-style: italic;
+
+    font-size: 1rem;
+
+    color: #8a7054;
+
+}
+
+
+/* =====================================
+   ENCABEZADO PÁGINA DERECHA
+===================================== */
+
+.page-header {
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding-bottom: 12px;
+
+    border-bottom:
+        1px solid
+        rgba(126, 92, 53, 0.35);
+
+    font-size: 0.65rem;
+
+    letter-spacing: 0.2em;
+
+    color: #92704b;
+
+}
+
+
+/* =====================================
+   CONTENIDO
+===================================== */
+
+.journal-content {
+
+    position: relative;
+
+    margin-top: 30px;
+
+}
+
+
+.journal-content h2 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 2rem;
+
+    font-weight: 600;
+
+    color: #4c3221;
+
+}
+
+
+.writing-placeholder {
+
+    margin-top: 12px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 1.05rem;
+
+    line-height: 1.8;
+
+    color: #8b7358;
+
+}
+
+
+/* =====================================
+   SECCIONES
+===================================== */
+
+.journal-sections {
+
+    position: absolute;
+
+    left: 55px;
+    right: 55px;
+
+    bottom: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    z-index: 20;
+
+}
+
+
+/* =====================================
+   BOTÓN DE SECCIÓN
+===================================== */
+
+.journal-section {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    min-width: 70px;
+
+    padding:
+        8px 7px;
+
+    border: 0;
+
+    border-radius: 6px;
+
+    background:
+        transparent;
+
+    color: #81684c;
+
+    cursor: pointer;
+
+    transition:
+
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.journal-section i {
+
+    width: 18px;
+    height: 18px;
+
+}
+
+
+.journal-section span {
+
+    font-size: 0.62rem;
+
+    letter-spacing: 0.04em;
+
+}
+
+
+.journal-section:hover {
+
+    background:
+        rgba(132, 94, 52, 0.08);
+
+    color: #5b3b24;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.journal-section.active {
+
+    background:
+        rgba(132, 94, 52, 0.12);
+
+    color: #684421;
+
+}
+
+
+/* =====================================
+   PLUMA
+===================================== */
+
+.journal-feather {
+
+    position: absolute;
+
+    right: 5%;
+
+    bottom: 7%;
+
+    z-index: 30;
+
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(232, 211, 178, 0.12);
+
+    color:
+        rgba(221, 191, 146, 0.65);
+
+}
+
+
+.journal-feather i {
+
+    width: 28px;
+    height: 28px;
+
+    transform:
+        rotate(-25deg);
+
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 900px) {
+
+    .journal-book {
+
+        width: 94vw;
+
+        height: 70vh;
+
+    }
+
+
+    .book-page-left {
+
+        padding:
+            45px 40px;
+
+    }
+
+
+    .book-page-right {
+
+        padding:
+            45px 40px;
+
+    }
+
+
+    .journal-heading h1 {
+
+        font-size: 3rem;
+
+    }
+
+
+    .journal-intro {
+
+        font-size: 1rem;
+
+    }
+
+
+    .journal-sections {
+
+        left: 25px;
+        right: 25px;
+
+        gap: 3px;
+
+    }
+
+
+    .journal-section {
+
+        min-width: 58px;
+
+    }
+
+}
+
+
+/* =====================================
+   PANTALLAS PEQUEÑAS
+===================================== */
+
+@media (max-width: 650px) {
+
+    .journal-book {
+
+        width: 96vw;
+
+        height: 72vh;
+
+    }
+
+
+    .book-page-left {
+
+        padding:
+            35px 25px;
+
+    }
+
+
+    .book-page-right {
+
+        padding:
+            35px 25px;
+
+    }
+
+
+    .journal-heading h1 {
+
+        font-size: 2.3rem;
+
+    }
+
+
+    .journal-intro {
+
+        font-size: 0.9rem;
+
+    }
+
+
+    .journal-date {
+
+        margin-top: 30px;
+
+    }
+
+
+    .date-day {
+
+        font-size: 3rem;
+
+    }
+
+
+    .journal-sections {
+
+        bottom: 25px;
+
+    }
+
+
+    .journal-section span {
+
+        display: none;
+
+    }
+
+
+    .journal-section {
+
+        min-width: 42px;
+
+    }
+
+}
