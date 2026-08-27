@@ -509,16 +509,12 @@ body {
     position: fixed;
     inset: 0;
     z-index: 20;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: rgba(0, 0, 0, 0.45);
-
     opacity: 0;
     visibility: hidden;
-
     transition:
         opacity 0.35s ease,
         visibility 0.35s ease;
@@ -555,8 +551,8 @@ body {
     transition:
         transform 0.4s ease,
         opacity 0.35s ease;
-    display: block;
-    margin: auto;
+    display: none;
+
 }
 
 
