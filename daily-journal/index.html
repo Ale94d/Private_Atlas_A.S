@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Daily Journal | Private Atlas A.S.</title>
+
+    <!-- =====================================
+         FUENTES
+    ====================================== -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+
+    <!-- =====================================
+         CSS
+    ====================================== -->
+
+    <link rel="stylesheet"
+          href="style.css">
+
+
+    <!-- =====================================
+         FAVICON
+    ====================================== -->
+
+    <link rel="icon"
+          type="image/png"
+          href="assets/icons/favicon-daily-journal.png">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         ESPACIO PRINCIPAL
+    ====================================== -->
+
+    <main class="journal-workspace">
+
+
+        <!-- =====================================
+             BOTÓN HOME
+        ====================================== -->
+
+        <button
+            class="back-home"
+            type="button"
+            aria-label="Volver al Home">
+
+            <i data-lucide="house"></i>
+
+        </button>
+
+
+
+        <!-- =====================================
+             AMBIENTE / FONDO
+        ====================================== -->
+
+        <div class="journal-background">
+
+
+            <!-- LUZ DECORATIVA -->
+
+            <div class="background-light"></div>
+
+
+            <!-- DECORACIÓN -->
+
+            <div class="background-decoration decoration-left"></div>
+
+            <div class="background-decoration decoration-right"></div>
+
+
+        </div>
+
+
+
+        <!-- =====================================
+             CONTENEDOR DEL LIBRO
+        ====================================== -->
+
+        <section class="journal-scene">
+
+
+            <!-- =====================================
+                 LIBRO
+            ====================================== -->
+
+            <div class="journal-book">
+
+
+                <!-- =================================
+                     LOMO DEL LIBRO
+                ================================== -->
+
+                <div class="book-spine"></div>
+
+
+
+                <!-- =================================
+                     PÁGINA IZQUIERDA
+                ================================== -->
+
+                <div class="book-page book-page-left">
+
+
+                    <!-- DECORACIÓN SUPERIOR -->
+
+                    <div class="page-ornament">
+                        ✦
+                    </div>
+
+
+                    <!-- TÍTULO -->
+
+                    <div class="journal-heading">
+
+                        <span class="heading-small">
+                            PRIVATE ATLAS
+                        </span>
+
+                        <h1>
+                            Daily Journal
+                        </h1>
+
+                        <div class="heading-line"></div>
+
+                    </div>
+
+
+                    <!-- FRASE -->
+
+                    <p class="journal-intro">
+                        Un lugar para guardar los pequeños
+                        momentos que hacen parte de tu historia.
+                    </p>
+
+
+                    <!-- FECHA -->
+
+                    <div class="journal-date">
+
+                        <span class="date-day">
+                            27
+                        </span>
+
+                        <div class="date-info">
+
+                            <span>
+                                AGOSTO
+                            </span>
+
+                            <span>
+                                2026
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DECORACIÓN -->
+
+                    <div class="page-divider"></div>
+
+
+                    <!-- TEXTO -->
+
+                    <p class="page-note">
+                        Cada página guarda una parte de ti.
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- =================================
+                     PÁGINA DERECHA
+                ================================== -->
+
+                <div class="book-page book-page-right">
+
+
+                    <!-- ENCABEZADO -->
+
+                    <div class="page-header">
+
+                        <span>
+                            MI HISTORIA
+                        </span>
+
+                        <span>
+                            01
+                        </span>
+
+                    </div>
+
+
+                    <!-- ESPACIO PRINCIPAL -->
+
+                    <div class="journal-content">
+
+
+                        <h2>
+                            Hoy...
+                        </h2>
+
+
+                        <p class="writing-placeholder">
+                            Escribe aquí lo que quieras recordar
+                            de este día.
+                        </p>
+
+
+                    </div>
+
+
+                    <!-- SECCIONES DEL JOURNAL -->
+
+                    <nav class="journal-sections"
+                         aria-label="Secciones del Daily Journal">
+
+
+                        <button
+                            class="journal-section active"
+                            type="button"
+                            data-section="diary">
+
+                            <i data-lucide="feather"></i>
+
+                            <span>
+                                Diario
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="journal-section"
+                            type="button"
+                            data-section="books">
+
+                            <i data-lucide="book-open"></i>
+
+                            <span>
+                                Libros
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="journal-section"
+                            type="button"
+                            data-section="recipes">
+
+                            <i data-lucide="utensils"></i>
+
+                            <span>
+                                Recetas
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="journal-section"
+                            type="button"
+                            data-section="emotions">
+
+                            <i data-lucide="heart"></i>
+
+                            <span>
+                                Emociones
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="journal-section"
+                            type="button"
+                            data-section="movies">
+
+                            <i data-lucide="clapperboard"></i>
+
+                            <span>
+                                Películas
+                            </span>
+
+                        </button>
+
+
+                    </nav>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =====================================
+                 PLUMA DECORATIVA
+            ====================================== -->
+
+            <div class="journal-feather">
+
+                <i data-lucide="feather"></i>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================
+         ICONOS
+    ====================================== -->
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
