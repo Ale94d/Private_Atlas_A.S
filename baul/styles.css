@@ -596,6 +596,11 @@ body {
         inset 0 0 18px rgba(0,0,0,0.45);
 }
 
+.content-overlay.active {
+    opacity:1;
+    visibility: visible;
+}
+
 .content-overlay.active .content-window.active {
     display: block;
     transform: translateY(0) scale(1);
