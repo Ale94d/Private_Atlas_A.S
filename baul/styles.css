@@ -608,9 +608,6 @@ body {
     opacity: 1;
 }
 
-
-/* ENCABEZADO */
-
 .content-window-header {
     display: flex;
     align-items: center;
@@ -635,8 +632,6 @@ body {
     font-size: 2rem;
     font-weight: 700;
 }
-
-/* BOTÓN CERRAR */
 
 .close-window {
     position: absolute;
@@ -677,9 +672,91 @@ body {
     height: 18px;
 }
 
-/* CUERPO */
-
 .content-window-body {
     height: calc(100% - 70px);
     padding-top: 25px;
+}
+
+.lava-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    overflow: hidden;
+    background: #090706;
+    animation: introFade 0.7s
+    ease-in-out 1.2s forwards;
+}
+
+.lava-folw {
+    position: absolute;
+    top: -15%;
+    left: -10%;
+    width: 120%;
+    height: 125%;
+    background: 
+        radial-gradient(
+            ellipse at 50% 0%,
+            #ffc800 0%,
+            #ff5500 18%,
+            #d32f0f 38%,
+            #7d180c 60%,
+            #180806 82%,
+        );
+    filter: blur(5px);
+    transform: translateY(-100%);
+    animation: lavaDown 2.8s
+    cubic-bezier(0,65,0,0.35,1) forwards;
+}
+
+.lava-glow {
+    position: absolute;
+    inset: -20%;
+    background: 
+        radial-gradient(
+            ellipse at center,
+            rgba(255,85,0,0.45),
+            transparent 55%
+        );
+    mix-blend-mode: screen;
+    opacity: 0;
+    animation:lavaGlow 2.8s
+    ease-in-out forwards;
+}
+
+@keyframes lacaDown {
+    0% {
+        transform: translateY(-105%);
+    }
+    55% {
+        transform: translateY(-10%);
+    }
+    100% {
+        transform:translateY(105%);
+    }
+}
+
+@keyframes lavaGlow {
+    0%{
+        opacity: 0%;
+    }
+    35% {
+        opacity: 0.8;
+    }
+    65% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes introFade {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
