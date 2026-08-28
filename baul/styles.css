@@ -631,179 +631,300 @@ body {
     padding-top: 25px;
 }
 
-.lava-transition {
-    position: fixed;
-    inset: 0;
-    z-index: 50;
-    pointer-events: none;
-    overflow: hidden;
-    background: #210806;
-    animation: lavaDisappear 5.5s ease-in-out forwards;
-}
-
+/* =====================================
+   TRANSICIÓN DE LAVA
+===================================== */
 
 .lava-transition {
     position: fixed;
     inset: 0;
-    z-index: 50;
+
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 9999;
 
     pointer-events: none;
 
     overflow: hidden;
 
-    opacity: 0;
-    visibility: hidden;
+    background: #170604;
 
-    background: #120705;
+    opacity: 1;
+    visibility: visible;
+
+    animation: lavaFadeOut 0.8s ease 6.2s forwards;
 }
 
 
-.lava-layer {
+/* =====================================
+   CUERPO COMPLETO DE LA LAVA
+===================================== */
+
+.lava-body {
     position: absolute;
 
     left: -5%;
-    top: -110%;
+    top: -2%;
 
     width: 110%;
-    height: 120%;
+    height: 108%;
 
     background:
         radial-gradient(
-            ellipse at 20% 35%,
-            rgba(255, 105, 20, 0.95),
-            transparent 20%
+            ellipse at 18% 22%,
+            rgba(255, 115, 15, 0.95) 0%,
+            rgba(190, 35, 8, 0.75) 22%,
+            transparent 45%
         ),
 
         radial-gradient(
-            ellipse at 65% 20%,
-            rgba(210, 35, 8, 0.90),
-            transparent 25%
+            ellipse at 75% 30%,
+            rgba(255, 75, 5, 0.9) 0%,
+            rgba(135, 18, 7, 0.75) 28%,
+            transparent 48%
         ),
 
         radial-gradient(
-            ellipse at 45% 65%,
-            rgba(255, 70, 5, 0.85),
-            transparent 30%
+            ellipse at 42% 70%,
+            rgba(255, 90, 5, 0.85) 0%,
+            rgba(120, 15, 6, 0.8) 30%,
+            transparent 50%
+        ),
+
+        radial-gradient(
+            ellipse at 88% 78%,
+            rgba(230, 45, 5, 0.9) 0%,
+            transparent 35%
         ),
 
         linear-gradient(
             180deg,
-            #3a0904 0%,
-            #8f1608 30%,
-            #d32f0f 55%,
-            #ff5500 72%,
-            #7a1005 100%
+            #4a0b05 0%,
+            #8c1708 30%,
+            #b52208 60%,
+            #5b0d05 100%
         );
 
     filter:
-        contrast(1.15)
-        saturate(1.25);
-
-    border-radius:
-        0 0 48% 52% /
-        0 0 7% 9%;
-
-    box-shadow:
-        inset 0 -15px 30px rgba(255, 180, 30, 0.25),
-        inset 0 -5px 15px rgba(255, 85, 0, 0.45);
+        contrast(1.2)
+        saturate(1.35);
 
     transform: translateY(0);
 
-    animation: lavaWave 5s ease-in-out infinite;
+    /*
+       La lava empieza cubriendo
+       absolutamente toda la pantalla.
+    */
+
+    animation:
+        lavaDescend 6.2s cubic-bezier(0.55, 0.05, 0.25, 1) forwards;
 }
 
 
+/* =====================================
+   MOVIMIENTO INTERNO
+===================================== */
 
-@keyframes lavaWave {
+.lava-body::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -15%;
+
+    background:
+        radial-gradient(
+            ellipse at 15% 35%,
+            rgba(255, 190, 40, 0.65),
+            transparent 14%
+        ),
+
+        radial-gradient(
+            ellipse at 38% 18%,
+            rgba(255, 80, 0, 0.8),
+            transparent 18%
+        ),
+
+        radial-gradient(
+            ellipse at 65% 42%,
+            rgba(255, 145, 10, 0.6),
+            transparent 17%
+        ),
+
+        radial-gradient(
+            ellipse at 82% 20%,
+            rgba(255, 70, 0, 0.75),
+            transparent 15%
+        ),
+
+        radial-gradient(
+            ellipse at 55% 78%,
+            rgba(255, 80, 0, 0.7),
+            transparent 20%
+        );
+
+    filter: blur(12px);
+
+    animation: lavaFlow 3.2s ease-in-out infinite alternate;
+}
+
+
+/* =====================================
+   BORDES / ONDULACIONES
+===================================== */
+
+.lava-body::after {
+    content: "";
+
+    position: absolute;
+
+    left: -5%;
+    bottom: -1%;
+
+    width: 110%;
+    height: 20%;
+
+    background:
+        radial-gradient(
+            ellipse at 8% 0%,
+            #8f1808 0%,
+            #d8320b 45%,
+            transparent 47%
+        ),
+
+        radial-gradient(
+            ellipse at 25% 0%,
+            #671007 0%,
+            #b52208 48%,
+            transparent 50%
+        ),
+
+        radial-gradient(
+            ellipse at 43% 0%,
+            #a91d08 0%,
+            #ef4508 46%,
+            transparent 48%
+        ),
+
+        radial-gradient(
+            ellipse at 62% 0%,
+            #5d0d06 0%,
+            #a91c08 48%,
+            transparent 50%
+        ),
+
+        radial-gradient(
+            ellipse at 80% 0%,
+            #9e1a07 0%,
+            #e23b08 46%,
+            transparent 48%
+        ),
+
+        radial-gradient(
+            ellipse at 96% 0%,
+            #651007 0%,
+            #bd2608 48%,
+            transparent 50%
+        );
+
+    filter: blur(3px);
+
+    animation: lavaEdge 2.8s ease-in-out infinite alternate;
+}
+
+
+/* =====================================
+   DESCENSO
+===================================== */
+
+@keyframes lavaDescend {
 
     0% {
-        border-radius:
-            0 0 48% 52% /
-            0 0 7% 9%;
-
-        transform:
-            translateX(0)
-            skewX(0deg);
+        transform: translateY(0);
     }
 
-    25% {
-        border-radius:
-            0 0 55% 45% /
-            0 0 10% 6%;
+    35% {
+        transform: translateY(8vh);
+    }
 
+    65% {
+        transform: translateY(35vh);
+    }
+
+    100% {
+        transform: translateY(108vh);
+    }
+}
+
+
+/* =====================================
+   FLUJO INTERNO
+===================================== */
+
+@keyframes lavaFlow {
+
+    0% {
         transform:
-            translateX(-1.5%)
-            skewX(-1deg);
+            translate(-3%, -2%)
+            scale(1);
     }
 
     50% {
-        border-radius:
-            0 0 43% 57% /
-            0 0 6% 11%;
-
         transform:
-            translateX(1.5%)
-            skewX(1deg);
-    }
-
-    75% {
-        border-radius:
-            0 0 58% 42% /
-            0 0 11% 7%;
-
-        transform:
-            translateX(-1%)
-            skewX(-0.5deg);
+            translate(3%, 2%)
+            scale(1.04);
     }
 
     100% {
-        border-radius:
-            0 0 48% 52% /
-            0 0 7% 9%;
-
         transform:
-            translateX(0)
-            skewX(0deg);
+            translate(-2%, 3%)
+            scale(1.02);
     }
 }
 
 
-.lava-transition.active {
-    opacity: 1;
-    visibility: visible;
-}
+/* =====================================
+   MOVIMIENTO DEL BORDE
+===================================== */
 
-
-.lava-transition.active .lava-layer {
-    animation:
-        lavaWave 5s ease-in-out infinite,
-        lavaCover 2.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-}
-
-
-@keyframes lavaCover {
+@keyframes lavaEdge {
 
     0% {
-        top: -110%;
+        transform:
+            translateX(-3%)
+            scaleX(0.97)
+            rotate(-0.5deg);
+    }
+
+    50% {
+        transform:
+            translateX(2%)
+            scaleX(1.03)
+            rotate(0.5deg);
     }
 
     100% {
-        top: -5%;
+        transform:
+            translateX(-2%)
+            scaleX(0.99)
+            rotate(-0.3deg);
     }
 }
 
 
-.lava-transition.hide {
-    animation: lavaDisappear 0.9s ease forwards;
-}
+/* =====================================
+   DESAPARECER
+===================================== */
 
-@keyframes lavaDisappear {
+@keyframes lavaFadeOut {
 
-    0% {
+    from {
         opacity: 1;
+        visibility: visible;
     }
 
-    100% {
+    to {
         opacity: 0;
         visibility: hidden;
     }
