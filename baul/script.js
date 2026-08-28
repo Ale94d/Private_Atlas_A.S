@@ -2,9 +2,6 @@ if (typeof lucide !== "undefined") {
     lucide.createIcons();
 }
 
-/* =====================================
-   VOLVER AL HOME
-===================================== */
 
 const homeButton = document.querySelector(".back-home");
 
@@ -18,9 +15,6 @@ if (homeButton) {
 
 }
 
-/* =====================================
-   VENTANAS DEL BAÚL
-===================================== */
 
 const overlay = document.querySelector(".content-overlay");
 
@@ -121,3 +115,36 @@ if (overlay) {
     });
 
 }
+
+
+const lavaTransition =
+    document.querySelector(".lava-transition");
+
+
+function playLavaTransition() {
+
+    if (!lavaTransition) return;
+
+    lavaTransition.classList.remove("hide");
+
+    lavaTransition.classList.add("active");
+
+    setTimeout(() => {
+
+        lavaTransition.classList.add("hide");
+
+        setTimeout(() => {
+            lavaTransition.classList.remove("active");
+            lavaTransition.classList.remove("hide");
+        }, 900);
+
+    }, 2800);
+
+}
+
+
+window.addEventListener("load", () => {
+
+    playLavaTransition();
+
+});
