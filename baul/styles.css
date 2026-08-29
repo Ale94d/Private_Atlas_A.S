@@ -643,7 +643,7 @@ body {
     overflow: hidden;
     background: transparent;
 
-    animation: lavaDown 12s linear forwards;
+    animation: lavaDown 7ss linear forwards;
 }
 
 
@@ -703,10 +703,10 @@ body {
         saturate(1.45);
 
     transform: scale(1.08);
-
     animation:
-        lavaMovement 7s ease-in-out infinite ,
-        lavaHeat 4s ease-in-out infinite;
+        lavaMovement 5s ease-in-out
+        infinite alternate
+        lavaHeat 3s ease-in-out infinite;
 }
 
 
@@ -748,7 +748,7 @@ body {
     mix-blend-mode: screen;
     opacity: 0.8;
 
-    animation: lavaRipples 5.5s ease-in-out infinite ;
+    animation: lavaRipples 3s ease-in-out infinite ;
 }
 
 
@@ -790,7 +790,7 @@ body {
     mix-blend-mode: screen;
     opacity: 0.7;
 
-    animation: lavaTextureMove 6s linear infinite;
+    animation: lavaTextureMove 4s linear infinite;
 }
 
 
@@ -801,38 +801,23 @@ body {
 @keyframes lavaMovement {
 
     0% {
-        transform:
-            translate(-1%, 0)
-            scale(1.08)
-            skewX(-1deg);
+        transform: translate(-3%, 0) scale(1.08);
     }
 
     25% {
-        transform:
-            translate(1%, -0.5%)
-            scale(1.10)
-            skewX(1deg);
+        transform: translate(2%, -2%) scale(1.11);
     }
 
     50% {
-        transform:
-            translate(2%, 1%)
-            scale(1.09)
-            skewX(-1deg);
+        transform: translate(3%, 1%) scale(1.09);
     }
 
     75% {
-        transform:
-            translate(-1%, 1.5%)
-            scale(1.11)
-            skewX(1deg);
+        transform: translate(-2%, 2%) scale(1.12);
     }
 
     100% {
-        transform:
-            translate(-2%, 0)
-            scale(1.08)
-            skewX(-1deg);
+        transform: translate(-3%, -1%) scale(1.08);
     }
 }
 
@@ -938,34 +923,34 @@ body {
     0% {
         clip-path: polygon(
             0 0,
-            10% 2%,
+            10% 0,
             20% 0,
-            30% 2%,
+            30% 0,
             40% 0,
-            50% 2%,
+            50% 0,
             60% 0,
-            70% 2%,
+            70% 0,
             80% 0,
-            90% 2%,
+            90% 0,
             100% 0,
             100% 100%,
             0 100%
         );
     }
 
-    25% {
+    15% {
         clip-path: polygon(
-            0 20%,
-            10% 17%,
-            20% 22%,
-            30% 18%,
-            40% 21%,
-            50% 17%,
-            60% 22%,
-            70% 18%,
-            80% 21%,
-            90% 17%,
-            100% 20%,
+            0 8%,
+            10% 5%,
+            20% 10%,
+            30% 6%,
+            40% 11%,
+            50% 5%,
+            60% 9%,
+            70% 4%,
+            80% 10%,
+            90% 6%,
+            100% 9%,
             100% 100%,
             0 100%
         );
@@ -973,17 +958,17 @@ body {
 
     50% {
         clip-path: polygon(
-            0 45%,
-            10% 41%,
-            20% 47%,
-            30% 43%,
-            40% 46%,
-            50% 41%,
-            60% 47%,
-            70% 43%,
-            80% 46%,
-            90% 41%,
-            100% 45%,
+            0 40%,
+            10% 36%,
+            20% 43%,
+            30% 38%,
+            40% 44%,
+            50% 37%,
+            60% 42%,
+            70% 36%,
+            80% 43%,
+            90% 38%,
+            100% 41%,
             100% 100%,
             0 100%
         );
@@ -991,17 +976,17 @@ body {
 
     75% {
         clip-path: polygon(
-            0 72%,
-            10% 68%,
-            20% 74%,
-            30% 70%,
-            40% 73%,
-            50% 68%,
-            60% 74%,
-            70% 70%,
+            0 70%,
+            10% 66%,
+            20% 73%,
+            30% 68%,
+            40% 74%,
+            50% 67%,
+            60% 72%,
+            70% 66%,
             80% 73%,
             90% 68%,
-            100% 72%,
+            100% 71%,
             100% 100%,
             0 100%
         );
