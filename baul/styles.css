@@ -639,282 +639,6 @@ body {
     position: fixed;
     inset: 0;
     z-index: 90;
-
-    width: 100%;
-    height: 100%;
-
-    pointer-events: none;
-    overflow: hidden;
-
-    /* La lava empieza cubriendo TODA la pantalla */
-    clip-path: polygon(
-        0 0,
-        10% 0,
-        20% 0,
-        30% 0,
-        40% 0,
-        50% 0,
-        60% 0,
-        70% 0,
-        80% 0,
-        90% 0,
-        100% 0,
-        100% 100%,
-        0 100%
-    );
-
-    animation: lavaDescenso 8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-}
-
-
-/* =====================================
-   CUERPO DE LA LAVA
-===================================== */
-
-.lava-body {
-    position: absolute;
-    inset: -8%;
-
-    width: 116%;
-    height: 116%;
-
-    background:
-
-        /* zonas amarillas calientes */
-        radial-gradient(
-            ellipse at 25% 70%,
-            rgba(255, 210, 40, 0.9),
-            transparent 18%
-        ),
-
-        radial-gradient(
-            ellipse at 70% 35%,
-            rgba(255, 120, 0, 0.85),
-            transparent 24%
-        ),
-
-        radial-gradient(
-            ellipse at 45% 85%,
-            rgba(255, 70, 0, 0.8),
-            transparent 22%
-        ),
-
-        /* zonas oscuras */
-        radial-gradient(
-            ellipse at 10% 25%,
-            rgba(45, 3, 1, 0.95),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            ellipse at 85% 75%,
-            rgba(50, 3, 1, 0.9),
-            transparent 28%
-        ),
-
-        /* base */
-        linear-gradient(
-            135deg,
-            #160201 0%,
-            #4d0802 20%,
-            #8d1804 40%,
-            #c52d05 60%,
-            #6d0902 80%,
-            #220302 100%
-        );
-
-    filter:
-        contrast(1.35)
-        saturate(1.5);
-
-    animation:
-        lavaMovimiento 5s ease-in-out infinite alternate,
-        lavaBrillo 3s ease-in-out infinite;
-}
-
-
-/* =====================================
-   TEXTURA DE LA LAVA
-===================================== */
-
-.lava-body::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-
-        radial-gradient(
-            ellipse at 15% 30%,
-            rgba(255, 180, 20, 0.65),
-            transparent 8%
-        ),
-
-        radial-gradient(
-            ellipse at 35% 65%,
-            rgba(255, 210, 40, 0.55),
-            transparent 10%
-        ),
-
-        radial-gradient(
-            ellipse at 60% 25%,
-            rgba(255, 100, 0, 0.6),
-            transparent 12%
-        ),
-
-        radial-gradient(
-            ellipse at 80% 60%,
-            rgba(255, 180, 20, 0.55),
-            transparent 9%
-        ),
-
-        radial-gradient(
-            ellipse at 55% 85%,
-            rgba(255, 80, 0, 0.65),
-            transparent 13%
-        );
-
-    mix-blend-mode: screen;
-
-    opacity: 0.75;
-
-    animation: lavaTextura 6s linear infinite;
-}
-
-
-/* =====================================
-   MOVIMIENTO INTERNO
-===================================== */
-
-.lava-body::after {
-    content: "";
-
-    position: absolute;
-    inset: -10%;
-
-    background:
-        repeating-radial-gradient(
-            ellipse at center,
-            transparent 0 7%,
-            rgba(255, 130, 0, 0.18) 8%,
-            transparent 12%
-        );
-
-    opacity: 0.35;
-
-    mix-blend-mode: screen;
-
-    animation: lavaOndulacion 7s ease-in-out infinite;
-}
-
-
-/* =====================================
-   DESCENSO LENTO
-===================================== */
-
-@keyframes lavaDescenso {
-
-    0% {
-        clip-path: polygon(
-            0 0,
-            10% 0,
-            20% 0,
-            30% 0,
-            40% 0,
-            50% 0,
-            60% 0,
-            70% 0,
-            80% 0,
-            90% 0,
-            100% 0,
-            100% 100%,
-            0 100%
-        );
-    }
-
-    15% {
-        clip-path: polygon(
-            0 8%,
-            10% 6%,
-            20% 9%,
-            30% 5%,
-            40% 8%,
-            50% 4%,
-            60% 9%,
-            70% 6%,
-            80% 10%,
-            90% 5%,
-            100% 8%,
-            100% 100%,
-            0 100%
-        );
-    }
-
-    45% {
-        clip-path: polygon(
-            0 38%,
-            10% 34%,
-            20% 40%,
-            30% 35%,
-            40% 39%,
-            50% 33%,
-            60% 40%,
-            70% 35%,
-            80% 41%,
-            90% 34%,
-            100% 39%,
-            100% 100%,
-            0 100%
-        );
-    }
-
-    75% {
-        clip-path: polygon(
-            0 72%,
-            10% 68%,
-            20% 74%,
-            30% 69%,
-            40% 73%,
-            50% 67%,
-            60% 74%,
-            70% 69%,
-            80% 75%,
-            90% 68%,
-            100% 73%,
-            100% 100%,
-            0 100%
-        );
-    }
-
-    100% {
-        clip-path: polygon(
-            0 100%,
-            10% 100%,
-            20% 100%,
-            30% 100%,
-            40% 100%,
-            50% 100%,
-            60% 100%,
-            70% 100%,
-            80% 100%,
-            90% 100%,
-            100% 100%,
-            100% 100%,
-            0 100%
-        );
-    }
-}
-
-
-/* =====================================
-   TRANSICIÓN DE LAVA
-===================================== */
-
-.lava-transition {
-    position: fixed;
-    inset: 0;
-    z-index: 90;
     pointer-events: none;
     overflow: hidden;
     background: transparent;
@@ -1184,14 +908,36 @@ body {
 @keyframes lavaDown {
 
     0% {
-        clip-path: inset(0 0 0 0);
-    }
-
-    65% {
-        clip-path: inset(0 0 0 0);
+        clip-path: polygon(
+            0 0, 
+            10% 0,
+            20% 0,
+            30% 0,
+            40% 0,
+            50% 0,
+            60% 0,
+            70% 0,
+            80% 0,
+            90% 0,
+            100% 100%,
+            0 100%
+        );
     }
 
     100% {
-        clip-path: inset(100% 0 0 0);
+         clip-path: polygon(
+            0 0, 
+            10% 0,
+            20% 0,
+            30% 0,
+            40% 0,
+            50% 0,
+            60% 0,
+            70% 0,
+            80% 0,
+            90% 0,
+            100% 100%,
+            0 100%
+        );
     }
 }
