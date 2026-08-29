@@ -657,7 +657,6 @@ body {
 
     background:
 
-        /* grietas y zonas muy calientes */
         radial-gradient(
             ellipse at 30% 65%,
             rgba(255, 190, 30, 0.85) 0%,
@@ -678,7 +677,6 @@ body {
             transparent 22%
         ),
 
-        /* manchas oscuras */
         radial-gradient(
             ellipse at 15% 30%,
             rgba(35, 3, 2, 0.9),
@@ -691,7 +689,6 @@ body {
             transparent 30%
         ),
 
-        /* base */
         linear-gradient(
             180deg,
             #160202 0%,
@@ -708,8 +705,8 @@ body {
     transform: scale(1.08);
 
     animation:
-        lavaMovement 5s ease-in-out infinite alternate,
-        lavaHeat 3s ease-in-out infinite;
+        lavaMovement 7s ease-in-out infinite ,
+        lavaHeat 4s ease-in-out infinite;
 }
 
 
@@ -751,7 +748,7 @@ body {
     mix-blend-mode: screen;
     opacity: 0.8;
 
-    animation: lavaRipples 4s ease-in-out infinite alternate;
+    animation: lavaRipples 4s ease-in-out infinite ;
 }
 
 
@@ -805,20 +802,37 @@ body {
 
     0% {
         transform:
-            translate(-2%, 0)
-            scale(1.08);
+            translate(-1%, 0)
+            scale(1.08)
+            skewX(-1deg);
+    }
+
+    25% {
+        transform:
+            translate(1%, -0.5%)
+            scale(1.10)
+            skewX(1deg);
     }
 
     50% {
         transform:
-            translate(2%, -1%)
-            scale(1.10);
+            translate(2%, 1%)
+            scale(1.09)
+            skewX(-1deg);
+    }
+
+    75% {
+        transform:
+            translate(-1%, 1.5%)
+            scale(1.11)
+            skewX(1deg);
     }
 
     100% {
         transform:
-            translate(-1%, 2%)
-            scale(1.08);
+            translate(-2%, 0)
+            scale(1.08)
+            skewX(-1deg);
     }
 }
 
@@ -831,23 +845,37 @@ body {
 
     0% {
         transform:
-            translateX(-2%)
-            translateY(1%)
-            scale(1);
+            translate(-3%, 1%)
+            scale(1.02)
+            rotate(-1deg);
+    }
+
+    25% {
+        transform:
+            translate(2%, -1%)
+            scale(1.07)
+            rotate(1deg);
     }
 
     50% {
         transform:
-            translateX(2%)
-            translateY(-1%)
-            scale(1.04);
+            translate(4%, 1%)
+            scale(1.10)
+            rotate(-1deg);
+    }
+
+    75% {
+        transform:
+            translate(-2%, 2%)
+            scale(1.06)
+            rotate(1deg);
     }
 
     100% {
         transform:
-            translateX(-1%)
-            translateY(2%)
-            scale(1.02);
+            translate(-4%, 0)
+            scale(1.03)
+            rotate(-1deg);
     }
 }
 
