@@ -23,11 +23,15 @@
     <link rel="stylesheet"
           href="styles.css">
 
-    <link rel="icon" type="image/png" href="assets/icons/favicon-baul.png">
+    <link rel="icon"
+          type="image/png"
+          href="assets/icons/favicon-baul.png">
 
 </head>
 
+
 <body>
+
 
 <!-- =====================================
      TRANSICIÓN DE LAVA
@@ -36,6 +40,11 @@
 <div class="lava-transition">
     <div class="lava-body"></div>
 </div>
+
+
+<!-- =====================================
+     PARTÍCULAS
+===================================== -->
 
 <div class="ash-particles">
 
@@ -73,201 +82,595 @@
 
 </div>
 
-    <main class="baul-workspace">
-
-        <!-- BOTÓN HOME -->
-
-        <button
-            class="back-home"
-            type="button"
-            aria-label="Volver al Home">
-
-            <i data-lucide="house"></i>
-
-
-        </button>
-
-
-
-
-        <section class="baul-chamber">
-
-            <div class="baul-rock">
-
-            
-
-                <div class="books-window">
-
-    <div class="books-header">
-        <div>
-            <h2>Mis libros</h2>
-            <p>Guarda lo que esperas y lo que piensas de cada libro.</p>
-        </div>
-
-        <button class="add-book-btn" id="openAddBook">
-            + Agregar libro
-        </button>
-    </div>
-
-    <div class="books-grid" id="booksGrid">
-        <!-- Los libros aparecerán aquí -->
-    </div>
-
-</div>
-
 
 <!-- =====================================
-     FORMULARIO AGREGAR LIBRO
+     ESPACIO PRINCIPAL
 ===================================== -->
 
-<div class="book-form-overlay" id="bookFormOverlay">
+<main class="baul-workspace">
 
-    <div class="book-form">
 
-        <button class="close-book-form" id="closeBookForm">
-            ×
-        </button>
+    <!-- =====================================
+         BOTÓN HOME
+    ===================================== -->
 
-        <h2>Agregar libro</h2>
+    <button
+        class="back-home"
+        type="button"
+        aria-label="Volver al Home">
 
-        <form id="bookForm">
+        <i data-lucide="house"></i>
 
-            <label>Título</label>
-            <input type="text" id="bookTitle" required>
+    </button>
 
-            <label>Autor</label>
-            <input type="text" id="bookAuthor" required>
 
-            <label>Género</label>
-            <select id="bookGenre" required>
-                <option value="">Selecciona un género</option>
-                <option value="Fantasía">Fantasía</option>
-                <option value="Romance">Romance</option>
-                <option value="Misterio">Misterio</option>
-                <option value="Terror">Terror</option>
-                <option value="Ciencia ficción">Ciencia ficción</option>
-                <option value="Historia">Historia</option>
-                <option value="Otro">Otro</option>
-            </select>
+    <!-- =====================================
+         BAÚL
+    ===================================== -->
 
-            <label>Portada</label>
-            <input type="file" id="bookCover" accept="image/*">
+    <section class="baul-chamber">
 
-            <label>Expectativas</label>
-            <textarea
-                id="bookExpectations"
-                placeholder="¿Qué esperas encontrar en este libro?"
-            ></textarea>
+        <div class="baul-rock">
 
-            <label>Reseña</label>
-            <textarea
-                id="bookReview"
-                placeholder="Escribe tu opinión después de leerlo..."
-            ></textarea>
 
-            <label class="favorite-option">
-                <input type="checkbox" id="bookFavorite">
-                Marcar como favorito
-            </label>
+            <!-- =====================================
+                 BOTÓN LIBROS
+            ===================================== -->
 
-            <button type="submit" class="save-book-btn">
-                Guardar libro
+            <button
+                class="baul-window books-window"
+                type="button">
+
+                <i data-lucide="book-open"></i>
+
+                <span>Libros</span>
+
             </button>
 
-        </form>
 
-    </div>
+            <!-- =====================================
+                 BOTÓN RECETAS
+            ===================================== -->
 
-</div>
+            <button
+                class="baul-window recipes-window"
+                type="button">
+
+                <i data-lucide="chef-hat"></i>
+
+                <span>Recetas</span>
+
+            </button>
 
 
-                    <button
-                        class="baul-window recipes-window"
-                        type="button">
+            <!-- =====================================
+                 BOTÓN VIAJES
+            ===================================== -->
 
-                        <i data-lucide="chef-hat"></i>
-                        <span>Recetas</span>
+            <button
+                class="baul-window travel-window"
+                type="button">
 
-                    </button>
+                <i data-lucide="plane"></i>
+
+                <span>Viajes</span>
+
+            </button>
 
 
-                    <button
-                        class="baul-window travel-window"
-                        type="button">
+        </div>
 
-                        <i data-lucide="plane"></i>
-                        <span>Viajes</span>
+    </section>
 
-                    </button>
+
+    <!-- =====================================
+         VENTANAS DEL BAÚL
+    ===================================== -->
+
+    <div class="content-overlay">
+
+
+        <!-- =====================================
+             LIBROS
+        ===================================== -->
+
+        <section class="content-window books-content">
+
+
+            <button
+                class="close-window"
+                type="button"
+                aria-label="Cerrar">
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+
+            <div class="content-window-header">
+
+                <i data-lucide="book-open"></i>
+
+                <div>
+
+                    <h2>Mis libros</h2>
+
+                    <p>
+                        Guarda lo que esperas y lo que piensas
+                        de cada libro.
+                    </p>
 
                 </div>
 
             </div>
 
+
+            <div class="content-window-body">
+
+
+                <!-- BOTÓN AGREGAR -->
+
+                <div class="books-toolbar">
+
+                    <button
+                        class="add-book-btn"
+                        id="openAddBook"
+                        type="button">
+
+                        <i data-lucide="plus"></i>
+
+                        Agregar libro
+
+                    </button>
+
+                </div>
+
+
+                <!-- LIBROS -->
+
+                <div
+                    class="books-grid"
+                    id="booksGrid">
+
+                </div>
+
+
+                <!-- MENSAJE CUANDO NO HAY LIBROS -->
+
+                <div
+                    class="empty-books"
+                    id="emptyBooks">
+
+                    <i data-lucide="book-open"></i>
+
+                    <h3>Aún no tienes libros</h3>
+
+                    <p>
+                        Agrega tu primer libro para comenzar
+                        a construir tu biblioteca.
+                    </p>
+
+                </div>
+
+
+            </div>
+
         </section>
 
-<div class="content-overlay">
-
-    <section class="content-window books-content">
-
-        <button class="close-window" type="button" aria-label="Cerrar">
-            <i data-lucide="x"></i>
-        </button>
-
-        <div class="content-window-header">
-            <i data-lucide="book-open"></i>
-            <h2>Libros</h2>
-        </div>
-
-        <div class="content-window-body">
-        </div>
-
-    </section>
 
 
-    <section class="content-window recipes-content">
+        <!-- =====================================
+             RECETAS
+        ===================================== -->
 
-        <button class="close-window" type="button" aria-label="Cerrar">
-            <i data-lucide="x"></i>
-        </button>
-
-        <div class="content-window-header">
-            <i data-lucide="chef-hat"></i>
-            <h2>Recetas</h2>
-        </div>
-
-        <div class="content-window-body">
-        </div>
-
-    </section>
+        <section class="content-window recipes-content">
 
 
-   <section class="content-window travel-content">
+            <button
+                class="close-window"
+                type="button"
+                aria-label="Cerrar">
 
-    <button class="close-window" type="button" aria-label="Cerrar">
-        <i data-lucide="x"></i>
-    </button>
+                <i data-lucide="x"></i>
 
-    <div class="content-window-header">
-        <i data-lucide="plane"></i>
-        <h2>Viajes</h2>
+            </button>
+
+
+            <div class="content-window-header">
+
+                <i data-lucide="chef-hat"></i>
+
+                <div>
+
+                    <h2>Recetas</h2>
+
+                    <p>
+                        Guarda tus recetas favoritas.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-window-body">
+
+                <div class="empty-section">
+
+                    <i data-lucide="chef-hat"></i>
+
+                    <h3>Recetas</h3>
+
+                    <p>
+                        Esta sección está preparada para
+                        agregar las recetas.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             VIAJES
+        ===================================== -->
+
+        <section class="content-window travel-content">
+
+
+            <button
+                class="close-window"
+                type="button"
+                aria-label="Cerrar">
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+
+            <div class="content-window-header">
+
+                <i data-lucide="plane"></i>
+
+                <div>
+
+                    <h2>Mis viajes</h2>
+
+                    <p>
+                        Guarda los recuerdos de tus viajes.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-window-body">
+
+                <div class="empty-section">
+
+                    <i data-lucide="plane"></i>
+
+                    <h3>Viajes</h3>
+
+                    <p>
+                        Esta sección está preparada para
+                        agregar los viajes.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
     </div>
 
-    <div class="content-window-body">
+
+
+    <!-- =====================================
+         FORMULARIO PARA AGREGAR LIBRO
+    ===================================== -->
+
+    <div
+        class="book-form-overlay"
+        id="bookFormOverlay">
+
+
+        <div
+            class="book-form">
+
+
+            <!-- CERRAR -->
+
+            <button
+                class="close-book-form"
+                id="closeBookForm"
+                type="button"
+                aria-label="Cerrar">
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+
+            <div class="book-form-header">
+
+                <i data-lucide="book-plus"></i>
+
+                <div>
+
+                    <h2>Agregar libro</h2>
+
+                    <p>
+                        Guarda tu experiencia con el libro.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="bookForm">
+
+
+                <!-- TÍTULO -->
+
+                <div class="form-group">
+
+                    <label for="bookTitle">
+                        Título
+                    </label>
+
+                    <input
+                        type="text"
+                        id="bookTitle"
+                        placeholder="Nombre del libro"
+                        required>
+
+                </div>
+
+
+                <!-- AUTOR -->
+
+                <div class="form-group">
+
+                    <label for="bookAuthor">
+                        Autor
+                    </label>
+
+                    <input
+                        type="text"
+                        id="bookAuthor"
+                        placeholder="Nombre del autor"
+                        required>
+
+                </div>
+
+
+                <!-- GÉNERO -->
+
+                <div class="form-group">
+
+                    <label for="bookGenre">
+                        Género
+                    </label>
+
+                    <select
+                        id="bookGenre"
+                        required>
+
+                        <option value="">
+                            Selecciona un género
+                        </option>
+
+                        <option value="Fantasía">
+                            Fantasía
+                        </option>
+
+                        <option value="Romance">
+                            Romance
+                        </option>
+
+                        <option value="Misterio">
+                            Misterio
+                        </option>
+
+                        <option value="Terror">
+                            Terror
+                        </option>
+
+                        <option value="Ciencia ficción">
+                            Ciencia ficción
+                        </option>
+
+                        <option value="Aventura">
+                            Aventura
+                        </option>
+
+                        <option value="Drama">
+                            Drama
+                        </option>
+
+                        <option value="Historia">
+                            Historia
+                        </option>
+
+                        <option value="Poesía">
+                            Poesía
+                        </option>
+
+                        <option value="Thriller">
+                            Thriller
+                        </option>
+
+                        <option value="Distopía">
+                            Distopía
+                        </option>
+
+                        <option value="Biografía">
+                            Biografía
+                        </option>
+
+                        <option value="Autobiografía">
+                            Autobiografía
+                        </option>
+
+                        <option value="Filosofía">
+                            Filosofía
+                        </option>
+
+                        <option value="Otro">
+                            Otro
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- PORTADA -->
+
+                <div class="form-group">
+
+                    <label>
+                        Portada
+                    </label>
+
+
+                    <div class="file-input-wrapper">
+
+                        <input
+                            type="file"
+                            id="bookCover"
+                            accept="image/png,image/jpeg,image/webp">
+
+
+                        <label
+                            for="bookCover"
+                            class="file-input-label">
+
+                            <i data-lucide="image"></i>
+
+                            <span id="fileName">
+                                Seleccionar portada
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <small>
+                        Si no seleccionas una portada,
+                        se utilizará una portada genérica.
+                    </small>
+
+                </div>
+
+
+                <!-- EXPECTATIVAS -->
+
+                <div class="form-group">
+
+                    <label for="bookExpectations">
+                        Antes de leerlo
+                    </label>
+
+                    <textarea
+                        id="bookExpectations"
+                        placeholder="¿Qué esperas encontrar en este libro?"></textarea>
+
+                </div>
+
+
+                <!-- RESEÑA -->
+
+                <div class="form-group">
+
+                    <label for="bookReview">
+                        Después de leerlo
+                    </label>
+
+                    <textarea
+                        id="bookReview"
+                        placeholder="¿Qué pensaste del libro después de leerlo?"></textarea>
+
+                </div>
+
+
+                <!-- FAVORITO -->
+
+                <label class="favorite-option">
+
+                    <input
+                        type="checkbox"
+                        id="bookFavorite">
+
+                    <span>
+                        Marcar como favorito
+                    </span>
+
+                </label>
+
+
+                <!-- BOTONES -->
+
+                <div class="form-buttons">
+
+                    <button
+                        type="button"
+                        class="cancel-book-btn"
+                        id="cancelBook">
+
+                        Cancelar
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="save-book-btn">
+
+                        <i data-lucide="save"></i>
+
+                        Guardar libro
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
     </div>
 
-</section>
 
-</div>
-
-
-    </main>
-
-    <script
-    src="https://unpkg.com/lucide@latest"></script>
+</main>
 
 
-    <script src="script.js"></script>
+<!-- =====================================
+     LUCIDE
+===================================== -->
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+
+<!-- =====================================
+     JAVASCRIPT
+===================================== -->
+
+<script src="script.js"></script>
+
 
 </body>
 

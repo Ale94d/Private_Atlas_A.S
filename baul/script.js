@@ -1,7 +1,15 @@
+// =========================================
+// ICONOS
+// =========================================
+
 if (typeof lucide !== "undefined") {
     lucide.createIcons();
 }
 
+
+// =========================================
+// BOTÓN HOME
+// =========================================
 
 const homeButton = document.querySelector(".back-home");
 
@@ -16,6 +24,10 @@ if (homeButton) {
 }
 
 
+// =========================================
+// VENTANAS DEL BAÚL
+// =========================================
+
 const overlay = document.querySelector(".content-overlay");
 
 const booksButton = document.querySelector(".books-window");
@@ -26,90 +38,169 @@ const booksContent = document.querySelector(".books-content");
 const recipesContent = document.querySelector(".recipes-content");
 const travelContent = document.querySelector(".travel-content");
 
-const closeButtons = document.querySelectorAll(".close-window");
+const closeButtons =
+    document.querySelectorAll(".close-window");
 
+
+// =========================================
+// ABRIR VENTANA
+// =========================================
 
 function openWindow(content) {
 
-    if (!overlay || !content) return;
+    if (!overlay || !content) {
+        return;
+    }
+
+
+    // Ocultar todas las ventanas
+
+    document
+        .querySelectorAll(".content-window")
+        .forEach(window => {
+
+            window.classList.remove("active");
+
+            window.style.display = "none";
+
+        });
+
+
+    // Mostrar la ventana seleccionada
 
     overlay.classList.add("active");
 
     content.style.display = "block";
 
+
     requestAnimationFrame(() => {
+
         content.classList.add("active");
+
     });
+
+
+    // Actualizar iconos
+
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+    }
 
 }
 
 
+// =========================================
+// CERRAR VENTANA
+// =========================================
+
 function closeWindow() {
 
-    if (!overlay) return;
+    if (!overlay) {
+        return;
+    }
+
 
     const activeWindow =
-        document.querySelector(".content-window.active");
+        document.querySelector(
+            ".content-window.active"
+        );
+
 
     if (activeWindow) {
 
         activeWindow.classList.remove("active");
 
+
         setTimeout(() => {
+
             activeWindow.style.display = "none";
-        }, 400);
+
+        }, 250);
 
     }
 
+
     setTimeout(() => {
+
         overlay.classList.remove("active");
-    }, 400);
+
+    }, 250);
 
 }
 
+
+// =========================================
+// BOTÓN LIBROS
+// =========================================
 
 if (booksButton) {
 
     booksButton.addEventListener("click", () => {
+
         openWindow(booksContent);
+
     });
 
 }
 
+
+// =========================================
+// BOTÓN RECETAS
+// =========================================
 
 if (recipesButton) {
 
     recipesButton.addEventListener("click", () => {
+
         openWindow(recipesContent);
+
     });
 
 }
 
+
+// =========================================
+// BOTÓN VIAJES
+// =========================================
 
 if (travelButton) {
 
     travelButton.addEventListener("click", () => {
+
         openWindow(travelContent);
+
     });
 
 }
 
+
+// =========================================
+// BOTONES CERRAR
+// =========================================
 
 closeButtons.forEach(button => {
 
     button.addEventListener("click", () => {
+
         closeWindow();
+
     });
 
 });
 
 
+// =========================================
+// CERRAR AL HACER CLIC AFUERA
+// =========================================
+
 if (overlay) {
 
-    overlay.addEventListener("click", (event) => {
+    overlay.addEventListener("click", event => {
 
         if (event.target === overlay) {
+
             closeWindow();
+
         }
 
     });
@@ -117,72 +208,531 @@ if (overlay) {
 }
 
 
-// =====================================
+// =========================================
 // LIBROS
-// =====================================
+// =========================================
 
-const openAddBook = document.getElementById("openAddBook");
-const closeBookForm = document.getElementById("closeBookForm");
-const bookFormOverlay = document.getElementById("bookFormOverlay");
-const bookForm = document.getElementById("bookForm");
-const booksGrid = document.getElementById("booksGrid");
+const openAddBook =
+    document.getElementById("openAddBook");
 
-openAddBook.addEventListener("click", () => {
-    bookFormOverlay.classList.add("active");
-});
+const closeBookForm =
+    document.getElementById("closeBookForm");
 
-closeBookForm.addEventListener("click", () => {
-    bookFormOverlay.classList.remove("active");
-});
+const cancelBook =
+    document.getElementById("cancelBook");
 
-bookFormOverlay.addEventListener("click", (event) => {
-    if (event.target === bookFormOverlay) {
+const bookFormOverlay =
+    document.getElementById("bookFormOverlay");
+
+const bookForm =
+    document.getElementById("bookForm");
+
+const booksGrid =
+    document.getElementById("booksGrid");
+
+const emptyBooks =
+    document.getElementById("emptyBooks");
+
+
+// =========================================
+// ABRIR FORMULARIO
+// =========================================
+
+if (openAddBook) {
+
+    openAddBook.addEventListener("click", () => {
+
+        bookFormOverlay.classList.add("active");
+
+    });
+
+}
+
+
+// =========================================
+// CERRAR FORMULARIO
+// =========================================
+
+function closeBookFormWindow() {
+
+    if (bookFormOverlay) {
+
         bookFormOverlay.classList.remove("active");
-    }
-});
 
-bookForm.addEventListener("submit", (event) => {
-
-    event.preventDefault();
-
-    const title = document.getElementById("bookTitle").value;
-    const author = document.getElementById("bookAuthor").value;
-    const genre = document.getElementById("bookGenre").value;
-    const expectations = document.getElementById("bookExpectations").value;
-    const review = document.getElementById("bookReview").value;
-    const favorite = document.getElementById("bookFavorite").checked;
-
-    const coverInput = document.getElementById("bookCover");
-
-    let cover = "assets/portadas/genericas/generica-libros.jpg";
-
-    if (coverInput.files.length > 0) {
-        cover = URL.createObjectURL(coverInput.files[0]);
     }
 
-    const bookCard = document.createElement("div");
+}
 
-    bookCard.classList.add("book-card");
 
-    bookCard.innerHTML = `
-        <img src="${cover}" alt="Portada de ${title}">
+if (closeBookForm) {
 
-        <h3>${title}</h3>
+    closeBookForm.addEventListener(
+        "click",
+        closeBookFormWindow
+    );
 
-        <p>${author}</p>
+}
 
-        <p>${genre}</p>
 
-        ${
-            favorite
-                ? "<p>★ Favorito</p>"
-                : ""
+if (cancelBook) {
+
+    cancelBook.addEventListener(
+        "click",
+        closeBookFormWindow
+    );
+
+}
+
+
+// =========================================
+// CERRAR FORMULARIO HACIENDO CLIC AFUERA
+// =========================================
+
+if (bookFormOverlay) {
+
+    bookFormOverlay.addEventListener(
+        "click",
+        event => {
+
+            if (event.target === bookFormOverlay) {
+
+                closeBookFormWindow();
+
+            }
+
         }
+    );
+
+}
+
+
+// =========================================
+// NOMBRE DEL ARCHIVO
+// =========================================
+
+const coverInput =
+    document.getElementById("bookCover");
+
+const fileName =
+    document.getElementById("fileName");
+
+
+if (coverInput) {
+
+    coverInput.addEventListener("change", () => {
+
+        if (
+            coverInput.files &&
+            coverInput.files.length > 0
+        ) {
+
+            fileName.textContent =
+                coverInput.files[0].name;
+
+        } else {
+
+            fileName.textContent =
+                "Seleccionar portada";
+
+        }
+
+    });
+
+}
+
+
+// =========================================
+// PORTADA GENÉRICA
+// =========================================
+
+const genericCover =
+    "assets/portadas/genericas/generica-libros.jpg";
+
+
+// =========================================
+// CARGAR LIBROS
+// =========================================
+
+function loadBooks() {
+
+    if (!booksGrid) {
+        return;
+    }
+
+
+    booksGrid.innerHTML = "";
+
+
+    const books =
+        JSON.parse(
+            localStorage.getItem("privateAtlasBooks")
+        ) || [];
+
+
+    // No hay libros
+
+    if (books.length === 0) {
+
+        if (emptyBooks) {
+
+            emptyBooks.style.display = "flex";
+
+        }
+
+        return;
+
+    }
+
+
+    // Hay libros
+
+    if (emptyBooks) {
+
+        emptyBooks.style.display = "none";
+
+    }
+
+
+    books.forEach(book => {
+
+        createBookCard(book);
+
+    });
+
+
+    if (typeof lucide !== "undefined") {
+
+        lucide.createIcons();
+
+    }
+
+}
+
+
+// =========================================
+// CREAR TARJETA DE LIBRO
+// =========================================
+
+function createBookCard(book) {
+
+    const card =
+        document.createElement("article");
+
+
+    card.classList.add("book-card");
+
+
+    card.innerHTML = `
+
+        <div class="book-cover-container">
+
+            <img
+                src="${book.cover}"
+                alt="Portada de ${escapeHTML(book.title)}">
+
+        </div>
+
+
+        <div class="book-card-info">
+
+            <h3>
+                ${escapeHTML(book.title)}
+            </h3>
+
+
+            <p class="book-author">
+                ${escapeHTML(book.author)}
+            </p>
+
+
+            <span class="book-genre">
+                ${escapeHTML(book.genre)}
+            </span>
+
+
+            ${
+                book.favorite
+                    ? `
+                        <span class="book-favorite">
+                            <i data-lucide="star"></i>
+                            Favorito
+                        </span>
+                    `
+                    : ""
+            }
+
+
+            <button
+                class="view-book-btn"
+                type="button">
+
+                Ver libro
+
+            </button>
+
+        </div>
+
     `;
 
-    booksGrid.appendChild(bookCard);
 
-    bookForm.reset();
+    booksGrid.appendChild(card);
 
-    bookFormOverlay.classList.remove("active");
-});
+
+    // Botón para abrir el detalle
+
+    const viewButton =
+        card.querySelector(".view-book-btn");
+
+
+    if (viewButton) {
+
+        viewButton.addEventListener(
+            "click",
+            () => {
+
+                showBookDetails(book);
+
+            }
+        );
+
+    }
+
+}
+
+
+// =========================================
+// DETALLE DEL LIBRO
+// =========================================
+
+function showBookDetails(book) {
+
+    const message = `
+
+Título: ${book.title}
+
+Autor: ${book.author}
+
+Género: ${book.genre}
+
+Antes de leerlo:
+${book.expectations || "Sin información"}
+
+Después de leerlo:
+${book.review || "Sin reseña"}
+
+${book.favorite ? "★ Libro favorito" : ""}
+
+    `;
+
+
+    alert(message);
+
+}
+
+
+// =========================================
+// GUARDAR LIBRO
+// =========================================
+
+if (bookForm) {
+
+    bookForm.addEventListener(
+        "submit",
+        event => {
+
+            event.preventDefault();
+
+
+            // =====================================
+            // DATOS
+            // =====================================
+
+            const title =
+                document
+                    .getElementById("bookTitle")
+                    .value
+                    .trim();
+
+
+            const author =
+                document
+                    .getElementById("bookAuthor")
+                    .value
+                    .trim();
+
+
+            const genre =
+                document
+                    .getElementById("bookGenre")
+                    .value;
+
+
+            const expectations =
+                document
+                    .getElementById(
+                        "bookExpectations"
+                    )
+                    .value
+                    .trim();
+
+
+            const review =
+                document
+                    .getElementById("bookReview")
+                    .value
+                    .trim();
+
+
+            const favorite =
+                document
+                    .getElementById("bookFavorite")
+                    .checked;
+
+
+            // =====================================
+            // PORTADA
+            // =====================================
+
+            let cover = genericCover;
+
+
+            if (
+                coverInput &&
+                coverInput.files &&
+                coverInput.files.length > 0
+            ) {
+
+                cover =
+                    URL.createObjectURL(
+                        coverInput.files[0]
+                    );
+
+            }
+
+
+            // =====================================
+            // CREAR OBJETO
+            // =====================================
+
+            const book = {
+
+                id: Date.now(),
+
+                title: title,
+
+                author: author,
+
+                genre: genre,
+
+                cover: cover,
+
+                expectations: expectations,
+
+                review: review,
+
+                favorite: favorite,
+
+                dateAdded:
+                    new Date().toISOString()
+
+            };
+
+
+            // =====================================
+            // OBTENER LIBROS EXISTENTES
+            // =====================================
+
+            const books =
+                JSON.parse(
+                    localStorage.getItem(
+                        "privateAtlasBooks"
+                    )
+                ) || [];
+
+
+            // =====================================
+            // AGREGAR
+            // =====================================
+
+            books.push(book);
+
+
+            // =====================================
+            // GUARDAR
+            // =====================================
+
+            localStorage.setItem(
+                "privateAtlasBooks",
+                JSON.stringify(books)
+            );
+
+
+            // =====================================
+            // MOSTRAR INMEDIATAMENTE
+            // =====================================
+
+            loadBooks();
+
+
+            // =====================================
+            // LIMPIAR FORMULARIO
+            // =====================================
+
+            bookForm.reset();
+
+
+            if (fileName) {
+
+                fileName.textContent =
+                    "Seleccionar portada";
+
+            }
+
+
+            // =====================================
+            // CERRAR
+            // =====================================
+
+            closeBookFormWindow();
+
+
+        }
+    );
+
+}
+
+
+// =========================================
+// ESCAPAR HTML
+// Evita problemas si el usuario escribe
+// caracteres especiales en título/autor.
+// =========================================
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+// =========================================
+// INICIAR
+// =========================================
+
+loadBooks();
+
+
+// =========================================
+// ICONOS
+// =========================================
+
+if (typeof lucide !== "undefined") {
+
+    lucide.createIcons();
+
+}
