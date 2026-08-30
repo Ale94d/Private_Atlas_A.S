@@ -643,7 +643,7 @@ body {
     overflow: hidden;
     background: transparent;
 
-    animation: lavaDown 7s linear forwards;
+    animation: lavaDown 12s linear forwards;
 }
 
 
@@ -704,7 +704,7 @@ body {
 
     transform: scale(1.08);
     animation:
-        lavaDown 7s linear forwards,
+        lavaDown 12s linear forwards,
         lavaMovement 5s ease-in-out
         infinite alternate,
         lavaHeat 3s ease-in-out infinite;
