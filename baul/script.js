@@ -117,3 +117,72 @@ if (overlay) {
 }
 
 
+// =====================================
+// LIBROS
+// =====================================
+
+const openAddBook = document.getElementById("openAddBook");
+const closeBookForm = document.getElementById("closeBookForm");
+const bookFormOverlay = document.getElementById("bookFormOverlay");
+const bookForm = document.getElementById("bookForm");
+const booksGrid = document.getElementById("booksGrid");
+
+openAddBook.addEventListener("click", () => {
+    bookFormOverlay.classList.add("active");
+});
+
+closeBookForm.addEventListener("click", () => {
+    bookFormOverlay.classList.remove("active");
+});
+
+bookFormOverlay.addEventListener("click", (event) => {
+    if (event.target === bookFormOverlay) {
+        bookFormOverlay.classList.remove("active");
+    }
+});
+
+bookForm.addEventListener("submit", (event) => {
+
+    event.preventDefault();
+
+    const title = document.getElementById("bookTitle").value;
+    const author = document.getElementById("bookAuthor").value;
+    const genre = document.getElementById("bookGenre").value;
+    const expectations = document.getElementById("bookExpectations").value;
+    const review = document.getElementById("bookReview").value;
+    const favorite = document.getElementById("bookFavorite").checked;
+
+    const coverInput = document.getElementById("bookCover");
+
+    let cover = "assets/portadas/genericas/generica-libros.jpg";
+
+    if (coverInput.files.length > 0) {
+        cover = URL.createObjectURL(coverInput.files[0]);
+    }
+
+    const bookCard = document.createElement("div");
+
+    bookCard.classList.add("book-card");
+
+    bookCard.innerHTML = `
+        <img src="${cover}" alt="Portada de ${title}">
+
+        <h3>${title}</h3>
+
+        <p>${author}</p>
+
+        <p>${genre}</p>
+
+        ${
+            favorite
+                ? "<p>★ Favorito</p>"
+                : ""
+        }
+    `;
+
+    booksGrid.appendChild(bookCard);
+
+    bookForm.reset();
+
+    bookFormOverlay.classList.remove("active");
+});
