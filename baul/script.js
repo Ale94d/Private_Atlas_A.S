@@ -284,10 +284,6 @@ if (cancelBook) {
 }
 
 
-// =========================================
-// CERRAR FORMULARIO HACIENDO CLIC AFUERA
-// =========================================
-
 if (bookFormOverlay) {
 
     bookFormOverlay.addEventListener(
@@ -305,10 +301,6 @@ if (bookFormOverlay) {
 
 }
 
-
-// =========================================
-// NOMBRE DEL ARCHIVO
-// =========================================
 
 const coverInput =
     document.getElementById("bookCover");
@@ -341,17 +333,9 @@ if (coverInput) {
 }
 
 
-// =========================================
-// PORTADA GENÉRICA
-// =========================================
 
 const genericCover =
     "assets/portadas/genericas/generica-libros.jpg";
-
-
-// =========================================
-// CARGAR LIBROS
-// =========================================
 
 function loadBooks() {
 
@@ -369,8 +353,6 @@ function loadBooks() {
         ) || [];
 
 
-    // No hay libros
-
     if (books.length === 0) {
 
         if (emptyBooks) {
@@ -383,8 +365,6 @@ function loadBooks() {
 
     }
 
-
-    // Hay libros
 
     if (emptyBooks) {
 
@@ -407,11 +387,6 @@ function loadBooks() {
     }
 
 }
-
-
-// =========================================
-// CREAR TARJETA DE LIBRO
-// =========================================
 
 function createBookCard(book) {
 
@@ -478,8 +453,6 @@ function createBookCard(book) {
     booksGrid.appendChild(card);
 
 
-    // Botón para abrir el detalle
-
     const viewButton =
         card.querySelector(".view-book-btn");
 
@@ -498,11 +471,6 @@ function createBookCard(book) {
     }
 
 }
-
-
-// =========================================
-// DETALLE DEL LIBRO
-// =========================================
 
 function showBookDetails(book) {
 
@@ -529,11 +497,6 @@ ${book.favorite ? "★ Libro favorito" : ""}
 
 }
 
-
-// =========================================
-// GUARDAR LIBRO
-// =========================================
-
 if (bookForm) {
 
     bookForm.addEventListener(
@@ -541,11 +504,6 @@ if (bookForm) {
         event => {
 
             event.preventDefault();
-
-
-            // =====================================
-            // DATOS
-            // =====================================
 
             const title =
                 document
@@ -589,10 +547,6 @@ if (bookForm) {
                     .checked;
 
 
-            // =====================================
-            // PORTADA
-            // =====================================
-
             let cover = genericCover;
 
 
@@ -608,11 +562,6 @@ if (bookForm) {
                     );
 
             }
-
-
-            // =====================================
-            // CREAR OBJETO
-            // =====================================
 
             const book = {
 
@@ -637,11 +586,6 @@ if (bookForm) {
 
             };
 
-
-            // =====================================
-            // OBTENER LIBROS EXISTENTES
-            // =====================================
-
             const books =
                 JSON.parse(
                     localStorage.getItem(
@@ -649,34 +593,15 @@ if (bookForm) {
                     )
                 ) || [];
 
-
-            // =====================================
-            // AGREGAR
-            // =====================================
-
             books.push(book);
 
-
-            // =====================================
-            // GUARDAR
-            // =====================================
 
             localStorage.setItem(
                 "privateAtlasBooks",
                 JSON.stringify(books)
             );
 
-
-            // =====================================
-            // MOSTRAR INMEDIATAMENTE
-            // =====================================
-
             loadBooks();
-
-
-            // =====================================
-            // LIMPIAR FORMULARIO
-            // =====================================
 
             bookForm.reset();
 
@@ -689,10 +614,6 @@ if (bookForm) {
             }
 
 
-            // =====================================
-            // CERRAR
-            // =====================================
-
             closeBookFormWindow();
 
 
@@ -700,13 +621,6 @@ if (bookForm) {
     );
 
 }
-
-
-// =========================================
-// ESCAPAR HTML
-// Evita problemas si el usuario escribe
-// caracteres especiales en título/autor.
-// =========================================
 
 function escapeHTML(text) {
 
@@ -719,17 +633,7 @@ function escapeHTML(text) {
 
 }
 
-
-// =========================================
-// INICIAR
-// =========================================
-
 loadBooks();
-
-
-// =========================================
-// ICONOS
-// =========================================
 
 if (typeof lucide !== "undefined") {
 
