@@ -428,65 +428,63 @@ function createBookCard(book) {
 
         </div>
 
-        <div class="book-card-info">
+        <div class="book-cover-wrapper">
 
-            <h3>
-                ${escapeHTML(book.title)}
-            </h3>
+    <img
+        src="${book.cover}"
+        alt="Portada de ${escapeHTML(book.title)}">
 
-            <p class="book-author">
-                ${escapeHTML(book.author)}
-            </p>
+    <div class="book-card-info">
 
-            <span class="book-genre">
-                ${escapeHTML(book.genre)}
-            </span>
+        <h3>
+            ${escapeHTML(book.title)}
+        </h3>
 
-            ${
-                book.favorite
-                    ? `
-                        <span class="book-favorite">
-                            <i data-lucide="star"></i>
-                            Favorito
-                        </span>
-                    `
-                    : ""
-            }
+        <p class="book-author">
+            ${escapeHTML(book.author)}
+        </p>
 
-            <div class="book-actions">
+    </div>
 
-                <button
-                    class="view-book-btn"
-                    type="button">
+</div>
 
-                    <i data-lucide="eye"></i>
-                    Ver libro
+<div class="book-card-bottom">
 
-                </button>
+    <span class="book-genre">
+        ${escapeHTML(book.genre)}
+    </span>
 
-                <button
-                    class="edit-book-btn"
-                    type="button">
+    ${
+        book.favorite
+            ? `
+                <span class="book-favorite">
+                    <i data-lucide="star"></i>
+                    Favorito
+                </span>
+            `
+            : ""
+    }
 
-                    <i data-lucide="pencil"></i>
-                    Editar
+    <div class="book-card-buttons">
 
-                </button>
+        <button class="view-book-btn" type="button">
+            <i data-lucide="eye"></i>
+            Ver libro
+        </button>
 
-                <button
-                    class="delete-book-btn"
-                    type="button">
+        <button class="edit-book-btn" type="button">
+            <i data-lucide="pencil"></i>
+            Editar
+        </button>
 
-                    <i data-lucide="trash-2"></i>
-                    Eliminar
+        <button class="delete-book-btn" type="button">
+            <i data-lucide="trash-2"></i>
+            Eliminar
+        </button>
 
-                </button>
+    </div>
 
-            </div>
-
-        </div>
-
-    `;
+</div>
 
     booksGrid.appendChild(card);
 

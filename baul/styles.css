@@ -1077,11 +1077,54 @@ body {
 .book-cover-wrapper {
     position: relative;
     width: 100%;
-    height: 245px;
+    height: 230px;
     overflow: hidden;
     border-radius: 11px;
     background: #121110;
     border: 1px solid rgba(243, 230, 208, 0.06);
+}
+
+.book-cover-wrapper .book-card-info {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px 25px;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.10),
+        rgba(0,0,0,0.65)
+
+    );
+}
+
+.book-cover-wrapper .book-card-info h3 {
+    color: #f3e6d0;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+
+    text-align: center;
+
+    text-shadow:
+        0 2px 5px rgba(0,0,0,0.9);
+
+    margin: 0;
+}
+
+.book-cover-wrapper .book-card-info .book-author {
+    color: #f3e6d0;
+    font-size: 0.9rem;
+    margin-top: 6px;
+
+    text-align: center;
+
+    text-shadow:
+        0 2px 5px rgba(0,0,0,0.9);
 }
 
 .book-cover-container::after,
