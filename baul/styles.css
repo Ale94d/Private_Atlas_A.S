@@ -102,10 +102,10 @@ body {
         );
     color: #d32f0f;
     box-shadow:
-        0 6px 12px rgba(0,0,0,0.65),
-        inset 3px 3px 6px rgba(255,255,255,0.08),
-        inset -3px -3px 7px rgba(0,0,0,0.65),
-        inset 0 0 8px rgba(211,47,15,0.18);
+        0 6px 12px rgba(0, 0, 0, 0.65),
+        inset 3px 3px 6px rgba(255, 255, 255, 0.08),
+        inset -3px -3px 7px rgba(0, 0, 0, 0.65),
+        inset 0 0 8px rgba(211, 47, 15, 0.18);
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -118,7 +118,7 @@ body {
     transform: translateY(-3px);
     box-shadow:
         0 8px 16px rgba(40, 35, 30, 0.38),
-        inset 0 2px 4px rgba(255,255,255,0.70);
+        inset 0 2px 4px rgba(255, 255, 255, 0.70);
 }
 
 .back-home i {
@@ -137,12 +137,12 @@ body {
     background:
         radial-gradient(
             circle at 30% 30%,
-            rgba(255,255,255,0.08),
+            rgba(255, 255, 255, 0.08),
             transparent 25%
         ),
         radial-gradient(
             circle at 70% 65%,
-            rgba(0,0,0,0.35),
+            rgba(0, 0, 0, 0.35),
             transparent 35%
         );
     opacity: 0.8;
@@ -162,7 +162,7 @@ body {
     background:
         radial-gradient(
             circle at 35% 30%,
-            rgba(255,255,255,0.08),
+            rgba(255, 255, 255, 0.08),
             transparent 25%
         ),
         linear-gradient(
@@ -172,10 +172,10 @@ body {
             #1b1b1b
         );
     box-shadow:
-        0 8px 16px rgba(0,0,0,0.75),
-        inset 4px 4px 7px rgba(255,255,255,0.08),
-        inset -5px -5px 9px rgba(0,0,0,0.8),
-        inset 0 0 10px rgba(211,47,15,0.12);
+        0 8px 16px rgba(0, 0, 0, 0.75),
+        inset 4px 4px 7px rgba(255, 255, 255, 0.08),
+        inset -5px -5px 9px rgba(0, 0, 0, 0.8),
+        inset 0 0 10px rgba(211, 47, 15, 0.12);
     transition:
         transform 0.25s ease,
         filter 0.25s ease,
@@ -188,7 +188,7 @@ body {
     height: 30px;
     color: #d32f0f;
     filter:
-        drop-shadow(0 0 5px rgba(211,47,15,0.35));
+        drop-shadow(0 0 5px rgba(211, 47, 15, 0.35));
 }
 
 .baul-window span {
@@ -197,17 +197,17 @@ body {
     font-family: "Cormorant Garamond", serif;
     font-size: 1.15rem;
     font-weight: 600;
-    text-shadow: 0 2px 3px rgba(0,0,0,0.7);
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.7);
 }
 
 .baul-window:hover {
     filter: brightness(1.08);
     box-shadow:
-        0 12px 20px rgba(0,0,0,0.8),
-        inset 4px 4px 8px rgba(255,255,255,0.10),
-        inset -5px -5px 10px rgba(0,0,0,0.85),
-        inset 0 0 14px rgba(211,47,15,0.28),
-        0 0 12px rgba(211,47,15,0.15);
+        0 12px 20px rgba(0, 0, 0, 0.8),
+        inset 4px 4px 8px rgba(255, 255, 255, 0.10),
+        inset -5px -5px 10px rgba(0, 0, 0, 0.85),
+        inset 0 0 14px rgba(211, 47, 15, 0.28),
+        0 0 12px rgba(211, 47, 15, 0.15);
 }
 
 .books-window {
@@ -339,8 +339,8 @@ body {
     border-radius: 50%;
     background: #ff5500;
     box-shadow:
-        0 0 6px rgba(255,85,0,0.8),
-        0 0 12px rgba(211,47,15,0.45);
+        0 0 6px rgba(255, 85, 0, 0.8),
+        0 0 12px rgba(211, 47, 15, 0.45);
     animation: emberGlow 3s ease-in-out infinite;
 }
 
@@ -411,10 +411,9 @@ body {
             #d32f0f 75%,
             transparent 76%
         );
-    border-radius:
-        50% 50% 45% 45%;
+    border-radius: 50% 50% 45% 45%;
     filter:
-        drop-shadow(0 0 7px rgba(255,85,0,0.65));
+        drop-shadow(0 0 7px rgba(255, 85, 0, 0.65));
     animation: flameMove 2s ease-in-out infinite;
 }
 
@@ -455,8 +454,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 25px;
-    background: rgba(0,0,0,0.45);
+    background: rgba(0, 0, 0, 0.45);
     opacity: 0;
     visibility: hidden;
     transition:
@@ -466,18 +464,18 @@ body {
 
 .content-window {
     position: relative;
-    width: min(900px, 88vw);
-    height: min(650px, 82vh);
-    padding: 30px;
+    width: min(850px, 85vw);
+    height: min(600px, 80vh);
+    padding: 35px;
     background:
         radial-gradient(
             circle at 25% 30%,
-            rgba(255,255,255,0.06),
+            rgba(255, 255, 255, 0.06),
             transparent 22%
         ),
         radial-gradient(
             circle at 75% 65%,
-            rgba(0,0,0,0.35),
+            rgba(0, 0, 0, 0.35),
             transparent 28%
         ),
         linear-gradient(
@@ -487,9 +485,9 @@ body {
         );
     border-radius: 28px;
     box-shadow:
-        0 15px 35px rgba(0,0,0,0.75),
-        inset 4px 4px 8px rgba(255,255,255,0.07),
-        inset -6px -6px 12px rgba(0,0,0,0.80);
+        0 15px 35px rgba(0, 0, 0, 0.75),
+        inset 4px 4px 8px rgba(255, 255, 255, 0.07),
+        inset -6px -6px 12px rgba(0, 0, 0, 0.80);
     transform: translateY(40px) scale(0.94);
     opacity: 0;
     transition:
@@ -508,17 +506,17 @@ body {
     background:
         radial-gradient(
             ellipse at 20% 20%,
-            rgba(255,255,255,0.035),
+            rgba(255, 255, 255, 0.035),
             transparent 18%
         ),
         radial-gradient(
             ellipse at 80% 30%,
-            rgba(255,255,255,0.025),
+            rgba(255, 255, 255, 0.025),
             transparent 20%
         ),
         radial-gradient(
             ellipse at 60% 80%,
-            rgba(0,0,0,0.20),
+            rgba(0, 0, 0, 0.20),
             transparent 25%
         );
     opacity: 0.8;
@@ -530,9 +528,9 @@ body {
     inset: 4px;
     border-radius: 25px;
     pointer-events: none;
-    border: 1px solid rgba(255,255,255,0.04);
+    border: 1px solid rgba(255, 255, 255, 0.04);
     box-shadow:
-        inset 0 0 18px rgba(0,0,0,0.45);
+        inset 0 0 18px rgba(0, 0, 0, 0.45);
 }
 
 .content-window:not(.active) {
@@ -552,12 +550,12 @@ body {
 
 .content-window-header {
     position: relative;
-    z-index: 3;
+    z-index: 2;
     display: flex;
     align-items: center;
     gap: 12px;
     padding-bottom: 18px;
-    border-bottom: 1px solid rgba(243,230,208,0.15);
+    border-bottom: 1px solid rgba(243, 230, 208, 0.15);
 }
 
 .content-window-header i {
@@ -574,9 +572,9 @@ body {
 }
 
 .content-window-header p {
+    color: rgba(243, 230, 208, 0.65);
     margin-top: 4px;
-    color: rgba(243,230,208,0.62);
-    font-size: 0.88rem;
+    font-size: 0.9rem;
 }
 
 .close-window {
@@ -585,10 +583,10 @@ body {
     right: 18px;
     width: 38px;
     height: 38px;
+    z-index: 5;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10;
     border: none;
     border-radius: 50%;
     background: #121214;
@@ -602,8 +600,8 @@ body {
 .close-window:hover {
     transform: translateY(-3px);
     box-shadow:
-        0 6px 12px rgba(0,0,0,0.65),
-        inset 0 0 8px rgba(211,47,15,0.35);
+        0 6px 12px rgba(0, 0, 0, 0.65),
+        inset 0 0 8px rgba(211, 47, 15, 0.35);
 }
 
 .close-window i {
@@ -613,23 +611,354 @@ body {
 
 .content-window-body {
     position: relative;
-    z-index: 3;
-    height: calc(100% - 75px);
-    padding-top: 22px;
+    z-index: 2;
+    height: calc(100% - 70px);
+    padding-top: 25px;
+}
+
+.lava-transition {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
     overflow: hidden;
+    background: transparent;
+    animation: lavaDown 12s linear forwards;
+}
+
+.lava-body {
+    position: absolute;
+    inset: -8%;
+    background:
+        radial-gradient(
+            ellipse at 30% 65%,
+            rgba(255, 190, 30, 0.85) 0%,
+            rgba(255, 80, 0, 0.55) 8%,
+            transparent 20%
+        ),
+        radial-gradient(
+            ellipse at 72% 35%,
+            rgba(255, 120, 0, 0.75) 0%,
+            rgba(190, 30, 0, 0.5) 10%,
+            transparent 24%
+        ),
+        radial-gradient(
+            ellipse at 55% 85%,
+            rgba(255, 70, 0, 0.65) 0%,
+            transparent 22%
+        ),
+        radial-gradient(
+            ellipse at 15% 30%,
+            rgba(35, 3, 2, 0.9),
+            transparent 28%
+        ),
+        radial-gradient(
+            ellipse at 85% 70%,
+            rgba(40, 3, 2, 0.85),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #160202 0%,
+            #3d0502 20%,
+            #701006 45%,
+            #a91f05 70%,
+            #4d0502 100%
+        );
+    filter:
+        contrast(1.35)
+        saturate(1.45);
+    transform: scale(1.08);
+    animation:
+        lavaDown 12s linear forwards,
+        lavaMovement 5s ease-in-out infinite alternate,
+        lavaHeat 3s ease-in-out infinite;
+    clip-path: inset(-10%, -10%, -10%, -10%);
+}
+
+.lava-body::before {
+    content: "";
+    position: absolute;
+    inset: -5%;
+    background:
+        radial-gradient(
+            ellipse 35% 12% at 15% 20%,
+            rgba(255, 110, 0, 0.30),
+            transparent 70%
+        ),
+        radial-gradient(
+            ellipse 45% 15% at 55% 35%,
+            rgba(255, 160, 20, 0.28),
+            transparent 70%
+        ),
+        radial-gradient(
+            ellipse 40% 13% at 80% 60%,
+            rgba(255, 90, 0, 0.30),
+            transparent 70%
+        ),
+        radial-gradient(
+            ellipse 50% 16% at 30% 80%,
+            rgba(255, 130, 0, 0.25),
+            transparent 70%
+        );
+    mix-blend-mode: screen;
+    opacity: 0.8;
+    animation: lavaRipples 3s ease-in-out infinite;
+}
+
+.lava-body::after {
+    content: "";
+    position: absolute;
+    inset: -10%;
+    background:
+        radial-gradient(
+            ellipse 18% 7% at 20% 30%,
+            rgba(255, 210, 50, 0.55),
+            transparent 70%
+        ),
+        radial-gradient(
+            ellipse 22% 8% at 65% 20%,
+            rgba(255, 180, 20, 0.45),
+            transparent 70%
+        ),
+        radial-gradient(
+            ellipse 15% 6% at 80% 75%,
+            rgba(255, 200, 40, 0.45),
+            transparent 70%
+        ),
+        radial-gradient(
+            ellipse 25% 9% at 40% 60%,
+            rgba(255, 90, 0, 0.40),
+            transparent 70%
+        );
+    mix-blend-mode: screen;
+    opacity: 0.7;
+    animation: lavaTextureMove 4s linear infinite;
+}
+
+@keyframes lavaMovement {
+    0% {
+        transform: translate(-3%, 0) scale(1.08);
+    }
+
+    25% {
+        transform: translate(2%, -2%) scale(1.11);
+    }
+
+    50% {
+        transform: translate(3%, 1%) scale(1.09);
+    }
+
+    75% {
+        transform: translate(-2%, 2%) scale(1.12);
+    }
+
+    100% {
+        transform: translate(-3%, -1%) scale(1.08);
+    }
+}
+
+@keyframes lavaRipples {
+    0% {
+        transform:
+            translate(-3%, 1%)
+            scale(1.02)
+            rotate(-1deg);
+    }
+
+    25% {
+        transform:
+            translate(2%, -1%)
+            scale(1.07)
+            rotate(1deg);
+    }
+
+    50% {
+        transform:
+            translate(4%, 1%)
+            scale(1.10)
+            rotate(-1deg);
+    }
+
+    75% {
+        transform:
+            translate(-2%, 2%)
+            scale(1.06)
+            rotate(1deg);
+    }
+
+    100% {
+        transform:
+            translate(-4%, 0)
+            scale(1.03)
+            rotate(-1deg);
+    }
+}
+
+@keyframes lavaTextureMove {
+    0% {
+        transform:
+            translate(-3%, -2%)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(3%, 2%)
+            scale(1.06);
+    }
+
+    100% {
+        transform:
+            translate(-2%, 3%)
+            scale(1.03);
+    }
+}
+
+@keyframes lavaHeat {
+    0%,
+    100% {
+        filter:
+            contrast(1.3)
+            saturate(1.35)
+            brightness(0.92);
+    }
+
+    50% {
+        filter:
+            contrast(1.45)
+            saturate(1.55)
+            brightness(1.08);
+    }
+}
+
+@keyframes lavaDown {
+    0% {
+        clip-path: polygon(
+            0 0,
+            10% 0,
+            20% 0,
+            30% 0,
+            40% 0,
+            50% 0,
+            60% 0,
+            70% 0,
+            80% 0,
+            90% 0,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
+    }
+
+    15% {
+        clip-path: polygon(
+            0 7%,
+            8% 4%,
+            16% 9%,
+            25% 5%,
+            34% 11%,
+            43% 6%,
+            52% 10%,
+            61% 4%,
+            70% 9%,
+            80% 5%,
+            90% 10%,
+            100% 6%,
+            100% 100%,
+            0 100%
+        );
+    }
+
+    35% {
+        clip-path: polygon(
+            0 25%,
+            8% 21%,
+            17% 28%,
+            26% 22%,
+            35% 30%,
+            44% 23%,
+            53% 28%,
+            62% 21%,
+            71% 27%,
+            80% 23%,
+            90% 29%,
+            100% 24%,
+            100% 100%,
+            0 100%
+        );
+    }
+
+    55% {
+        clip-path: polygon(
+            0 48%,
+            5% 46%,
+            10% 44%,
+            15% 45%,
+            20% 48%,
+            25% 47%,
+            30% 45%,
+            35% 47%,
+            40% 50%,
+            45% 48%,
+            50% 46%,
+            55% 47%,
+            60% 49%,
+            65% 46%,
+            70% 45%,
+            75% 47%,
+            80% 49%,
+            85% 47%,
+            90% 45%,
+            95% 47%,
+            100% 46%,
+            100% 100%,
+            0 100%
+        );
+    }
+
+    75% {
+        clip-path: polygon(
+            0 72%,
+            9% 67%,
+            18% 75%,
+            27% 69%,
+            36% 77%,
+            45% 70%,
+            54% 75%,
+            63% 68%,
+            72% 74%,
+            81% 70%,
+            90% 76%,
+            100% 71%,
+            100% 100%,
+            0 100%
+        );
+    }
+
+    100% {
+        clip-path: polygon(
+            0 100%,
+            10% 96%,
+            20% 100%,
+            30% 97%,
+            40% 100%,
+            50% 96%,
+            60% 100%,
+            70% 97%,
+            80% 100%,
+            90% 96%,
+            100% 100%,
+            100% 100%,
+            0 100%
+        );
+    }
 }
 
 .books-content {
-    width: 100%;
-    height: 100%;
+    width: min(850px, 85vw);
+    height: min(600px, 80vh);
     overflow: hidden;
-}
-
-.books-toolbar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 18px;
 }
 
 .books-header {
@@ -647,8 +976,15 @@ body {
 }
 
 .books-header p {
-    color: rgba(243,230,208,0.65);
+    color: rgba(243, 230, 208, 0.65);
     margin-top: 5px;
+}
+
+.books-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 18px;
 }
 
 .add-book-btn,
@@ -656,7 +992,7 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 7px;
     border: none;
     border-radius: 10px;
     padding: 12px 18px;
@@ -670,29 +1006,29 @@ body {
         box-shadow 0.2s ease;
 }
 
-.add-book-btn:hover,
-.save-book-btn:hover {
-    filter: brightness(1.12);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.35);
-}
-
 .add-book-btn i,
 .save-book-btn i {
     width: 17px;
     height: 17px;
 }
 
+.add-book-btn:hover,
+.save-book-btn:hover {
+    filter: brightness(1.12);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+}
+
 .books-grid {
-    height: calc(100% - 65px);
+    height: calc(100% - 90px);
     overflow-y: auto;
-    overflow-x: hidden;
     display: grid;
     grid-template-columns:
-        repeat(auto-fill, minmax(190px, 1fr));
+        repeat(auto-fill, minmax(180px, 1fr));
     align-content: start;
     gap: 20px;
-    padding: 4px 8px 20px 2px;
+    padding-right: 8px;
+    padding-bottom: 15px;
 }
 
 .books-grid::-webkit-scrollbar {
@@ -700,12 +1036,12 @@ body {
 }
 
 .books-grid::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.03);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 10px;
 }
 
 .books-grid::-webkit-scrollbar-thumb {
-    background: rgba(211,47,15,0.55);
+    background: rgba(211, 47, 15, 0.55);
     border-radius: 10px;
 }
 
@@ -716,36 +1052,52 @@ body {
     background:
         linear-gradient(
             145deg,
-            rgba(50,48,47,0.95),
-            rgba(20,19,18,0.95)
+            rgba(50, 48, 47, 0.95),
+            rgba(20, 19, 18, 0.95)
         );
     border:
-        1px solid rgba(243,230,208,0.08);
+        1px solid rgba(243, 230, 208, 0.08);
     border-radius: 16px;
     box-shadow:
-        0 8px 18px rgba(0,0,0,0.45),
-        inset 1px 1px 2px rgba(255,255,255,0.04);
+        0 8px 18px rgba(0, 0, 0, 0.45),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.04);
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease;
-    overflow: hidden;
 }
 
 .book-card:hover {
     transform: translateY(-4px);
     box-shadow:
-        0 12px 25px rgba(0,0,0,0.55),
-        0 0 12px rgba(211,47,15,0.10);
+        0 12px 25px rgba(0, 0, 0, 0.55),
+        0 0 12px rgba(211, 47, 15, 0.10);
 }
 
-.book-cover-container {
+.book-cover-container,
+.book-cover-wrapper {
     position: relative;
     width: 100%;
-    height: 270px;
+    height: 245px;
     overflow: hidden;
     border-radius: 11px;
     background: #121110;
-    border: 1px solid rgba(243,230,208,0.06);
+    border: 1px solid rgba(243, 230, 208, 0.06);
+}
+
+.book-cover-container::after,
+.book-cover-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.05) 0%,
+            transparent 35%,
+            rgba(0, 0, 0, 0.15) 55%,
+            rgba(0, 0, 0, 0.88) 100%
+        );
 }
 
 .book-card img {
@@ -755,68 +1107,80 @@ body {
     display: block;
 }
 
-.book-card-info {
+.book-cover-wrapper::before {
+    content: "";
     position: absolute;
-    top: 12px;
     left: 12px;
     right: 12px;
+    bottom: 13px;
+    height: 65px;
     z-index: 2;
-    padding: 18px 12px 12px;
-    text-align: center;
+    pointer-events: none;
     background:
         linear-gradient(
             180deg,
-            rgba(0,0,0,0.82),
-            rgba(0,0,0,0.55),
-            transparent
+            transparent,
+            rgba(0, 0, 0, 0.55)
         );
+}
+
+.book-card-info {
+    position: relative;
+    padding-top: 12px;
+}
+
+.book-card-info h3 {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 265px;
+    z-index: 3;
+    margin: 0;
+    color: #ffffff;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.05;
+    text-align: center;
+    text-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.9),
+        0 1px 12px rgba(0, 0, 0, 0.75);
     pointer-events: none;
 }
 
-.book-card h3 {
-    color: #f3e6d0;
-    font-family:
-        "Cormorant Garamond",
-        serif;
-    font-size: 1.35rem;
-    font-weight: 700;
-    line-height: 1.15;
-    text-shadow:
-        0 2px 4px rgba(0,0,0,0.9);
-}
-
 .book-author {
-    color: rgba(243,230,208,0.88);
-    margin-top: 5px;
-    font-size: 0.82rem;
-    line-height: 1.3;
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 245px;
+    z-index: 3;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.78rem;
+    text-align: center;
     text-shadow:
-        0 2px 4px rgba(0,0,0,0.9);
+        0 2px 4px rgba(0, 0, 0, 0.95);
+    pointer-events: none;
 }
 
 .book-genre {
     display: inline-block;
-    margin-top: 7px;
+    margin-top: 0;
     padding: 4px 8px;
     border-radius: 6px;
-    background:
-        rgba(0,0,0,0.50);
-    color: #f0a087;
-    font-size: 0.7rem;
-    text-shadow:
-        0 1px 3px rgba(0,0,0,0.8);
+    background: rgba(211, 47, 15, 0.15);
+    color: #d9856e;
+    font-size: 0.75rem;
 }
 
 .book-favorite {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: 4px;
-    margin-top: 7px;
+    margin-top: 8px;
+    margin-left: 5px;
     color: #e7b06c;
-    font-size: 0.75rem;
-    text-shadow:
-        0 1px 3px rgba(0,0,0,0.8);
+    font-size: 0.8rem;
 }
 
 .book-favorite i {
@@ -824,76 +1188,74 @@ body {
     height: 13px;
 }
 
+.book-card-buttons,
 .book-actions {
+    display: flex;
+    gap: 7px;
+    margin-top: 12px;
     position: relative;
     z-index: 5;
-    display: flex;
-    gap: 6px;
-    margin-top: 12px;
-    pointer-events: auto;
 }
 
+.book-card-buttons button,
 .book-actions button {
     flex: 1;
-    min-width: 0;
-    min-height: 34px;
+    min-height: 36px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 5px;
     border: none;
     border-radius: 8px;
-    padding: 7px 5px;
+    padding: 8px 7px;
     cursor: pointer;
     font-family:
         "Plus Jakarta Sans",
         sans-serif;
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     transition:
+        transform 0.2s ease,
         filter 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
+        box-shadow 0.2s ease;
 }
 
+.book-card-buttons button i,
 .book-actions button i {
     width: 14px;
     height: 14px;
 }
 
 .view-book-btn {
-    background:
-        rgba(211,47,15,0.18);
+    background: rgba(211, 47, 15, 0.18);
     color: #f3e6d0;
 }
 
 .edit-book-btn {
-    background:
-        rgba(243,230,208,0.08);
+    background: rgba(243, 230, 208, 0.08);
     color: #f3e6d0;
 }
 
 .delete-book-btn {
-    background:
-        rgba(120,35,25,0.35);
+    background: rgba(120, 35, 25, 0.35);
     color: #d9856e;
 }
 
+.book-card-buttons button:hover,
 .book-actions button:hover {
     filter: brightness(1.18);
+    transform: translateY(-2px);
     box-shadow:
-        0 4px 10px rgba(0,0,0,0.35);
-    transform: translateY(-1px);
+        0 4px 10px rgba(0, 0, 0, 0.35);
 }
 
 .empty-books {
-    min-height: 250px;
+    height: calc(100% - 90px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: rgba(243,230,208,0.65);
-    padding: 30px;
+    color: rgba(243, 230, 208, 0.65);
 }
 
 .empty-books i {
@@ -907,11 +1269,11 @@ body {
     color: #f3e6d0;
     font-family: "Cormorant Garamond", serif;
     font-size: 1.5rem;
+    margin-bottom: 5px;
 }
 
 .empty-books p {
-    max-width: 380px;
-    margin-top: 6px;
+    max-width: 350px;
     line-height: 1.5;
 }
 
@@ -922,7 +1284,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: rgba(243,230,208,0.65);
+    color: rgba(243, 230, 208, 0.65);
 }
 
 .empty-section i {
@@ -935,12 +1297,12 @@ body {
 .empty-section h3 {
     color: #f3e6d0;
     font-family: "Cormorant Garamond", serif;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    margin-bottom: 6px;
 }
 
 .empty-section p {
-    max-width: 400px;
-    margin-top: 7px;
+    max-width: 380px;
     line-height: 1.5;
 }
 
@@ -951,9 +1313,8 @@ body {
     display: none;
     align-items: center;
     justify-content: center;
+    background: rgba(0, 0, 0, 0.70);
     padding: 20px;
-    background:
-        rgba(0,0,0,0.70);
 }
 
 .book-form-overlay.active {
@@ -974,21 +1335,17 @@ body {
         );
     border-radius: 20px;
     border:
-        1px solid rgba(243,230,208,0.08);
+        1px solid rgba(243, 230, 208, 0.08);
     box-shadow:
-        0 20px 50px rgba(0,0,0,0.8);
+        0 20px 50px rgba(0, 0, 0, 0.8);
 }
 
 .book-form::-webkit-scrollbar {
     width: 6px;
 }
 
-.book-form::-webkit-scrollbar-track {
-    background: transparent;
-}
-
 .book-form::-webkit-scrollbar-thumb {
-    background: rgba(211,47,15,0.5);
+    background: rgba(211, 47, 15, 0.55);
     border-radius: 10px;
 }
 
@@ -996,7 +1353,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 20px;
+    padding-right: 30px;
 }
 
 .book-form-header > i {
@@ -1006,7 +1363,7 @@ body {
 }
 
 .book-form h2 {
-    margin-bottom: 0;
+    margin-bottom: 3px;
     color: #f3e6d0;
     font-family:
         "Cormorant Garamond",
@@ -1015,12 +1372,11 @@ body {
 }
 
 .book-form-header p {
-    margin-top: 3px;
-    color: rgba(243,230,208,0.60);
-    font-size: 0.8rem;
+    color: rgba(243, 230, 208, 0.60);
+    font-size: 0.85rem;
 }
 
-.book-form label:not(.favorite-option):not(.file-upload-button):not(.file-input-label) {
+.book-form label:not(.favorite-option):not(.file-input-label):not(.file-upload-button) {
     display: block;
     margin-top: 15px;
     margin-bottom: 6px;
@@ -1033,7 +1389,7 @@ body {
     width: 100%;
     padding: 11px 12px;
     border:
-        1px solid rgba(243,230,208,0.12);
+        1px solid rgba(243, 230, 208, 0.12);
     border-radius: 9px;
     background: #121110;
     color: #f3e6d0;
@@ -1050,9 +1406,9 @@ body {
 .book-form select:focus,
 .book-form textarea:focus {
     border-color:
-        rgba(211,47,15,0.65);
+        rgba(211, 47, 15, 0.65);
     box-shadow:
-        0 0 0 3px rgba(211,47,15,0.08);
+        0 0 0 3px rgba(211, 47, 15, 0.08);
 }
 
 .book-form textarea {
@@ -1075,45 +1431,30 @@ body {
 
 .file-input-label {
     width: 100%;
-    min-height: 48px;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    min-height: 46px;
     padding: 10px 12px;
     border:
-        1px solid rgba(243,230,208,0.12);
+        1px solid rgba(243, 230, 208, 0.12);
     border-radius: 10px;
     background:
-        rgba(18,17,16,0.85);
-    color: #f3e6d0;
+        rgba(18, 17, 16, 0.85);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(243, 230, 208, 0.65);
     cursor: pointer;
-    font-size: 0.85rem;
-    transition:
-        background 0.2s ease,
-        border 0.2s ease,
-        transform 0.2s ease;
-}
-
-.file-input-label:hover {
-    background:
-        rgba(48,45,43,0.85);
-    border-color:
-        rgba(211,47,15,0.35);
-    transform: translateY(-1px);
 }
 
 .file-input-label i {
-    width: 17px;
-    height: 17px;
+    width: 18px;
+    height: 18px;
     color: #d32f0f;
 }
 
 .book-form small {
     display: block;
     margin-top: 6px;
-    color:
-        rgba(243,230,208,0.45);
+    color: rgba(243, 230, 208, 0.45);
     font-size: 0.72rem;
     line-height: 1.4;
 }
@@ -1123,10 +1464,10 @@ body {
     width: 100%;
     padding: 12px;
     border:
-        1px solid rgba(243,230,208,0.12);
+        1px solid rgba(243, 230, 208, 0.12);
     border-radius: 10px;
     background:
-        rgba(18,17,16,0.85);
+        rgba(18, 17, 16, 0.85);
     display: flex;
     align-items: center;
     gap: 12px;
@@ -1153,7 +1494,7 @@ body {
             #1b1918
         );
     border:
-        1px solid rgba(243,230,208,0.10);
+        1px solid rgba(243, 230, 208, 0.10);
     color: #f3e6d0;
     cursor: pointer;
     font-size: 0.85rem;
@@ -1185,7 +1526,7 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     color:
-        rgba(243,230,208,0.55);
+        rgba(243, 230, 208, 0.55);
     font-size: 0.78rem;
 }
 
@@ -1209,13 +1550,10 @@ body {
     right: 12px;
     width: 35px;
     height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: none;
     border-radius: 50%;
     background:
-        rgba(0,0,0,0.35);
+        rgba(0, 0, 0, 0.35);
     color: #d32f0f;
     font-size: 25px;
     cursor: pointer;
@@ -1223,7 +1561,7 @@ body {
 
 .close-book-form:hover {
     background:
-        rgba(211,47,15,0.12);
+        rgba(211, 47, 15, 0.12);
 }
 
 .form-buttons {
@@ -1232,154 +1570,28 @@ body {
     margin-top: 22px;
 }
 
-.cancel-book-btn,
-.save-book-btn {
+.cancel-book-btn {
     flex: 1;
-    min-height: 42px;
     border: none;
     border-radius: 10px;
+    padding: 12px 18px;
+    background: rgba(243, 230, 208, 0.08);
+    color: #f3e6d0;
     cursor: pointer;
     font-family:
         "Plus Jakarta Sans",
         sans-serif;
 }
 
-.cancel-book-btn {
-    background:
-        rgba(243,230,208,0.08);
-    color: #f3e6d0;
-}
-
 .cancel-book-btn:hover {
-    background:
-        rgba(243,230,208,0.13);
+    background: rgba(243, 230, 208, 0.14);
 }
 
-.book-detail-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 300;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    background:
-        rgba(0,0,0,0.72);
+.form-buttons .save-book-btn {
+    flex: 1;
 }
 
-.book-detail-overlay.active {
-    display: flex;
-}
-
-.book-detail-window {
-    position: relative;
-    width: min(850px, 90vw);
-    max-height: 85vh;
-    overflow-y: auto;
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 30px;
-    padding: 30px;
-    background:
-        linear-gradient(
-            145deg,
-            #292624,
-            #151312
-        );
-    border:
-        1px solid rgba(243,230,208,0.10);
-    border-radius: 24px;
-    box-shadow:
-        0 25px 60px rgba(0,0,0,0.8);
-}
-
-.close-book-detail {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    width: 38px;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 50%;
-    background: #121110;
-    color: #d32f0f;
-    cursor: pointer;
-    z-index: 5;
-}
-
-.book-detail-cover {
-    width: 240px;
-    height: 350px;
-    overflow: hidden;
-    border-radius: 14px;
-    background: #121110;
-    box-shadow:
-        0 12px 25px rgba(0,0,0,0.5);
-}
-
-.book-detail-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.book-detail-info {
-    padding: 10px 25px 10px 0;
-}
-
-.book-detail-genre {
-    display: inline-block;
-    padding: 5px 9px;
-    border-radius: 7px;
-    background:
-        rgba(211,47,15,0.16);
-    color: #d9856e;
-    font-size: 0.78rem;
-}
-
-.book-detail-info h2 {
-    margin-top: 12px;
-    color: #f3e6d0;
-    font-family:
-        "Cormorant Garamond",
-        serif;
-    font-size: 2.3rem;
-}
-
-.book-detail-author {
-    margin-top: 4px;
-    color:
-        rgba(243,230,208,0.65);
-}
-
-.book-detail-section {
-    margin-top: 22px;
-}
-
-.book-detail-section h3 {
-    margin-bottom: 7px;
-    color: #e7b06c;
-    font-family:
-        "Cormorant Garamond",
-        serif;
-    font-size: 1.2rem;
-}
-
-.book-detail-section p {
-    color:
-        rgba(243,230,208,0.78);
-    line-height: 1.6;
-    white-space: pre-wrap;
-}
-
-.book-detail-favorite {
-    margin-top: 18px;
-    color: #e7b06c;
-}
-
+.book-detail-overlay,
 .book-details-overlay {
     position: fixed;
     inset: 0;
@@ -1389,20 +1601,22 @@ body {
     justify-content: center;
     padding: 30px;
     background:
-        rgba(0,0,0,0.72);
+        rgba(0, 0, 0, 0.72);
 }
 
+.book-detail-overlay.active,
 .book-details-overlay.active {
     display: flex;
 }
 
+.book-detail-window,
 .book-details-window {
     position: relative;
     width: min(850px, 90vw);
     max-height: 85vh;
     overflow-y: auto;
     display: grid;
-    grid-template-columns: 240px 1fr;
+    grid-template-columns: 280px 1fr;
     gap: 30px;
     padding: 30px;
     background:
@@ -1412,78 +1626,174 @@ body {
             #151312
         );
     border:
-        1px solid rgba(243,230,208,0.10);
+        1px solid rgba(243, 230, 208, 0.10);
     border-radius: 24px;
     box-shadow:
-        0 25px 60px rgba(0,0,0,0.8);
+        0 25px 60px rgba(0, 0, 0, 0.8);
 }
 
+.book-detail-window::-webkit-scrollbar,
+.book-details-window::-webkit-scrollbar {
+    width: 6px;
+}
+
+.book-detail-window::-webkit-scrollbar-thumb,
+.book-details-window::-webkit-scrollbar-thumb {
+    background: rgba(211, 47, 15, 0.55);
+    border-radius: 10px;
+}
+
+.close-book-detail,
 .close-book-details {
     position: absolute;
     top: 14px;
     right: 14px;
     width: 38px;
     height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 10;
     border: none;
     border-radius: 50%;
     background: #121110;
     color: #d32f0f;
     cursor: pointer;
-    z-index: 5;
 }
 
+.close-book-detail:hover,
+.close-book-details:hover {
+    background: rgba(211, 47, 15, 0.15);
+}
+
+.book-detail-cover,
 .book-details-cover {
-    width: 240px;
-    height: 350px;
+    position: relative;
+    width: 280px;
+    height: 410px;
     overflow: hidden;
     border-radius: 14px;
     background: #121110;
     box-shadow:
-        0 12px 25px rgba(0,0,0,0.5);
+        0 12px 25px rgba(0, 0, 0, 0.5);
 }
 
+.book-detail-cover::after,
+.book-details-cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.04),
+            transparent 35%,
+            rgba(0, 0, 0, 0.12) 55%,
+            rgba(0, 0, 0, 0.92) 100%
+        );
+}
+
+.book-detail-cover img,
 .book-details-cover img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
+.book-details-cover::before,
+.book-detail-cover::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    height: 100px;
+    z-index: 2;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(0, 0, 0, 0.75)
+        );
+}
+
+.book-detail-info,
 .book-details-info {
+    position: relative;
     padding: 10px 25px 10px 0;
 }
 
+.book-detail-info::before,
+.book-details-info::before {
+    content: "Una historia guardada en tu baúl";
+    display: block;
+    margin-bottom: 12px;
+    color: rgba(243, 230, 208, 0.42);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.book-detail-genre,
 .book-details-genre {
     display: inline-block;
     padding: 5px 9px;
     border-radius: 7px;
     background:
-        rgba(211,47,15,0.16);
+        rgba(211, 47, 15, 0.16);
     color: #d9856e;
     font-size: 0.78rem;
 }
 
+.book-detail-info h2,
 .book-details-info h2 {
-    margin-top: 12px;
-    color: #f3e6d0;
+    position: absolute;
+    left: -310px;
+    width: 280px;
+    bottom: 70px;
+    z-index: 4;
+    margin: 0;
+    padding: 0 20px;
+    color: #ffffff;
     font-family:
         "Cormorant Garamond",
         serif;
-    font-size: 2.3rem;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.05;
+    text-align: center;
+    text-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.95),
+        0 1px 15px rgba(0, 0, 0, 0.85);
+    pointer-events: none;
 }
 
+.book-detail-author,
 .book-details-author {
-    margin-top: 4px;
-    color:
-        rgba(243,230,208,0.65);
+    position: absolute;
+    left: -300px;
+    width: 260px;
+    bottom: 45px;
+    z-index: 4;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.90);
+    font-size: 0.82rem;
+    text-align: center;
+    text-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.95);
+    pointer-events: none;
 }
 
+.book-detail-section,
 .book-details-section {
     margin-top: 22px;
+    padding: 15px 16px;
+    border-radius: 12px;
+    background: rgba(243, 230, 208, 0.035);
+    border: 1px solid rgba(243, 230, 208, 0.06);
 }
 
+.book-detail-section h3,
 .book-details-section h3 {
     margin-bottom: 7px;
     color: #e7b06c;
@@ -1493,60 +1803,107 @@ body {
     font-size: 1.2rem;
 }
 
+.book-detail-section p,
 .book-details-section p {
     color:
-        rgba(243,230,208,0.78);
+        rgba(243, 230, 208, 0.78);
     line-height: 1.6;
     white-space: pre-wrap;
 }
 
+.book-detail-section:first-of-type::before,
+.book-details-section:first-of-type::before {
+    content: "Tu primera impresión";
+    display: block;
+    margin-bottom: 5px;
+    color: rgba(243, 230, 208, 0.40);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.book-detail-section:nth-of-type(2)::before,
+.book-details-section:nth-of-type(2)::before {
+    content: "Tu experiencia";
+    display: block;
+    margin-bottom: 5px;
+    color: rgba(243, 230, 208, 0.40);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.book-detail-favorite,
 .book-details-favorite {
     display: flex;
     align-items: center;
     gap: 7px;
     margin-top: 18px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(231, 176, 108, 0.07);
     color: #e7b06c;
 }
 
+.book-detail-favorite i,
 .book-details-favorite i {
     width: 17px;
     height: 17px;
 }
 
-@media (max-width: 900px) {
-
+@media (max-width: 850px) {
     .content-window {
-        width: 92vw;
-        height: 84vh;
-        padding: 25px;
+        width: min(760px, 90vw);
     }
 
     .books-grid {
         grid-template-columns:
-            repeat(auto-fill, minmax(175px, 1fr));
+            repeat(auto-fill, minmax(165px, 1fr));
     }
 
-    .book-cover-container {
-        height: 250px;
+    .book-cover-container,
+    .book-cover-wrapper {
+        height: 225px;
     }
 
+    .book-card-info h3 {
+        bottom: 245px;
+    }
+
+    .book-author {
+        bottom: 225px;
+    }
+
+    .book-details-window,
+    .book-detail-window {
+        grid-template-columns: 240px 1fr;
+        gap: 22px;
+    }
+
+    .book-details-cover,
+    .book-detail-cover {
+        width: 240px;
+        height: 365px;
+    }
+
+    .book-detail-info h2,
+    .book-details-info h2 {
+        left: -262px;
+        width: 240px;
+    }
+
+    .book-detail-author,
+    .book-details-author {
+        left: -252px;
+        width: 220px;
+    }
 }
 
 @media (max-width: 700px) {
-
-    .content-overlay {
-        padding: 12px;
-    }
-
     .content-window {
-        width: 94vw;
-        height: 88vh;
-        padding: 20px;
-        border-radius: 22px;
-    }
-
-    .content-window-header {
-        padding-bottom: 14px;
+        width: 92vw;
+        height: 82vh;
+        padding: 25px 20px;
     }
 
     .content-window-header h2 {
@@ -1554,19 +1911,7 @@ body {
     }
 
     .content-window-header p {
-        font-size: 0.75rem;
-    }
-
-    .close-window {
-        top: 12px;
-        right: 12px;
-        width: 34px;
-        height: 34px;
-    }
-
-    .content-window-body {
-        height: calc(100% - 68px);
-        padding-top: 18px;
+        font-size: 0.78rem;
     }
 
     .books-grid {
@@ -1576,73 +1921,50 @@ body {
     }
 
     .book-card {
-        padding: 8px;
-        border-radius: 13px;
+        padding: 9px;
     }
 
-    .book-cover-container {
-        height: 220px;
-        border-radius: 9px;
+    .book-cover-container,
+    .book-cover-wrapper {
+        height: 210px;
     }
 
-    .book-card-info {
-        top: 8px;
-        left: 8px;
-        right: 8px;
-        padding: 14px 7px 8px;
-    }
-
-    .book-card h3 {
-        font-size: 1.12rem;
+    .book-card-info h3 {
+        left: 12px;
+        right: 12px;
+        bottom: 228px;
+        font-size: 1.15rem;
     }
 
     .book-author {
-        font-size: 0.72rem;
+        left: 12px;
+        right: 12px;
+        bottom: 209px;
+        font-size: 0.7rem;
     }
 
-    .book-genre {
-        font-size: 0.62rem;
-        padding: 3px 6px;
+    .book-card-buttons {
+        flex-direction: column;
     }
 
-    .book-actions {
-        gap: 4px;
+    .book-card-buttons button {
+        width: 100%;
     }
 
-    .book-actions button {
-        min-height: 32px;
-        font-size: 0.58rem;
-        padding: 6px 3px;
-    }
-
-    .book-actions button i {
-        width: 12px;
-        height: 12px;
-    }
-
-    .books-toolbar {
-        margin-bottom: 12px;
-    }
-
-    .add-book-btn {
-        padding: 10px 13px;
-        font-size: 0.78rem;
-    }
-
-    .book-detail-window,
-    .book-details-window {
-        grid-template-columns: 1fr;
-        width: 94vw;
+    .book-details-window,
+    .book-detail-window {
+        width: 92vw;
         max-height: 88vh;
+        grid-template-columns: 1fr;
         gap: 20px;
-        padding: 22px;
+        padding: 25px 20px;
     }
 
-    .book-detail-cover,
-    .book-details-cover {
-        width: 180px;
-        height: 270px;
-        margin: auto;
+    .book-details-cover,
+    .book-detail-cover {
+        width: 210px;
+        height: 315px;
+        margin: 0 auto;
     }
 
     .book-detail-info,
@@ -1652,60 +1974,61 @@ body {
 
     .book-detail-info h2,
     .book-details-info h2 {
-        font-size: 2rem;
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 50px);
+        transform: translateX(-50%);
+        width: 190px;
+        font-size: 1.5rem;
     }
 
-    .book-form {
-        width: 94vw;
-        padding: 24px;
+    .book-detail-author,
+    .book-details-author {
+        left: 50%;
+        bottom: calc(100% + 25px);
+        transform: translateX(-50%);
+        width: 190px;
+        font-size: 0.72rem;
     }
 
+    .book-detail-info::before,
+    .book-details-info::before {
+        margin-top: 5px;
+    }
 }
 
-@media (max-width: 450px) {
-
-    .back-home {
-        top: 12px;
-        left: 12px;
-        width: 42px;
-        height: 42px;
-    }
-
+@media (max-width: 480px) {
     .books-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-        gap: 9px;
+        grid-template-columns: 1fr;
     }
 
-    .book-cover-container {
-        height: 195px;
+    .book-cover-container,
+    .book-cover-wrapper {
+        height: 280px;
     }
 
-    .book-card-info {
-        top: 8px;
-        left: 8px;
-        right: 8px;
-    }
-
-    .book-card h3 {
-        font-size: 1rem;
+    .book-card-info h3 {
+        bottom: 299px;
     }
 
     .book-author {
-        font-size: 0.65rem;
+        bottom: 280px;
     }
 
-    .book-actions button {
-        font-size: 0;
+    .book-card-buttons {
+        flex-direction: row;
     }
 
-    .book-actions button i {
-        width: 15px;
-        height: 15px;
+    .baul-window {
+        width: 125px;
+        height: 95px;
     }
 
-    .form-buttons {
-        flex-direction: column;
+    .recipes-window {
+        left: 32%;
     }
 
+    .travel-window {
+        left: 68%;
+    }
 }
