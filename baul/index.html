@@ -32,19 +32,9 @@
 
 <body>
 
-
-<!-- =====================================
-     TRANSICIÓN DE LAVA
-===================================== -->
-
 <div class="lava-transition">
     <div class="lava-body"></div>
 </div>
-
-
-<!-- =====================================
-     PARTÍCULAS
-===================================== -->
 
 <div class="ash-particles">
 
@@ -82,17 +72,8 @@
 
 </div>
 
-
-<!-- =====================================
-     ESPACIO PRINCIPAL
-===================================== -->
-
 <main class="baul-workspace">
 
-
-    <!-- =====================================
-         BOTÓN HOME
-    ===================================== -->
 
     <button
         class="back-home"
@@ -103,19 +84,9 @@
 
     </button>
 
-
-    <!-- =====================================
-         BAÚL
-    ===================================== -->
-
     <section class="baul-chamber">
 
         <div class="baul-rock">
-
-
-            <!-- =====================================
-                 BOTÓN LIBROS
-            ===================================== -->
 
             <button
                 class="baul-window books-window"
@@ -127,11 +98,6 @@
 
             </button>
 
-
-            <!-- =====================================
-                 BOTÓN RECETAS
-            ===================================== -->
-
             <button
                 class="baul-window recipes-window"
                 type="button">
@@ -141,11 +107,6 @@
                 <span>Recetas</span>
 
             </button>
-
-
-            <!-- =====================================
-                 BOTÓN VIAJES
-            ===================================== -->
 
             <button
                 class="baul-window travel-window"
@@ -163,16 +124,8 @@
     </section>
 
 
-    <!-- =====================================
-         VENTANAS DEL BAÚL
-    ===================================== -->
-
     <div class="content-overlay">
 
-
-        <!-- =====================================
-             LIBROS
-        ===================================== -->
 
         <section class="content-window books-content">
 
@@ -208,8 +161,6 @@
             <div class="content-window-body">
 
 
-                <!-- BOTÓN AGREGAR -->
-
                 <div class="books-toolbar">
 
                     <button
@@ -226,16 +177,12 @@
                 </div>
 
 
-                <!-- LIBROS -->
-
                 <div
                     class="books-grid"
                     id="booksGrid">
 
                 </div>
 
-
-                <!-- MENSAJE CUANDO NO HAY LIBROS -->
 
                 <div
                     class="empty-books"
@@ -255,13 +202,72 @@
 
             </div>
 
+<div class="book-detail-overlay" id="bookDetailOverlay">
+
+    <div class="book-detail-window">
+
+        <button
+            class="close-book-detail"
+            id="closeBookDetail"
+            type="button"
+            aria-label="Cerrar">
+
+            <i data-lucide="x"></i>
+
+        </button>
+
+        <div class="book-detail-cover">
+
+            <img
+                id="detailBookCover"
+                src=""
+                alt="Portada del libro">
+
+        </div>
+
+        <div class="book-detail-info">
+
+            <span
+                class="book-detail-genre"
+                id="detailBookGenre">
+            </span>
+
+            <h2 id="detailBookTitle"></h2>
+
+            <p
+                class="book-detail-author"
+                id="detailBookAuthor">
+            </p>
+
+            <div class="book-detail-section">
+
+                <h3>Antes de leerlo</h3>
+
+                <p id="detailBookExpectations"></p>
+
+            </div>
+
+            <div class="book-detail-section">
+
+                <h3>Después de leerlo</h3>
+
+                <p id="detailBookReview"></p>
+
+            </div>
+
+            <div
+                class="book-detail-favorite"
+                id="detailBookFavorite">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
         </section>
 
-
-
-        <!-- =====================================
-             RECETAS
-        ===================================== -->
 
         <section class="content-window recipes-content">
 
@@ -313,11 +319,6 @@
 
         </section>
 
-
-
-        <!-- =====================================
-             VIAJES
-        ===================================== -->
 
         <section class="content-window travel-content">
 
@@ -373,11 +374,6 @@
     </div>
 
 
-
-    <!-- =====================================
-         FORMULARIO PARA AGREGAR LIBRO
-    ===================================== -->
-
     <div
         class="book-form-overlay"
         id="bookFormOverlay">
@@ -386,8 +382,6 @@
         <div
             class="book-form">
 
-
-            <!-- CERRAR -->
 
             <button
                 class="close-book-form"
@@ -505,8 +499,8 @@
                             Fantasía
                         </option>
 
-                        <option value="Historico">
-                            Historico
+                        <option value="Histórico">
+                            Histórico
                         </option>
 
                         <option value="Misterio">
@@ -662,6 +656,87 @@
         </div>
 
     </div>
+
+
+<div
+    class="book-details-overlay"
+    id="bookDetailsOverlay">
+
+    <div class="book-details-window">
+
+        <button
+            class="close-book-details"
+            id="closeBookDetails"
+            type="button"
+            aria-label="Cerrar">
+
+            <i data-lucide="x"></i>
+
+        </button>
+
+
+        <div class="book-details-cover">
+
+            <img
+                id="detailsCover"
+                src=""
+                alt="Portada del libro">
+
+        </div>
+
+
+        <div class="book-details-info">
+
+            <span
+                class="book-details-genre"
+                id="detailsGenre">
+            </span>
+
+
+            <h2 id="detailsTitle">
+                Título
+            </h2>
+
+
+            <p
+                class="book-details-author"
+                id="detailsAuthor">
+            </p>
+
+
+            <div class="book-details-section">
+
+                <h3>Antes de leerlo</h3>
+
+                <p id="detailsExpectations"></p>
+
+            </div>
+
+
+            <div class="book-details-section">
+
+                <h3>Después de leerlo</h3>
+
+                <p id="detailsReview"></p>
+
+            </div>
+
+
+            <div
+                class="book-details-favorite"
+                id="detailsFavorite">
+
+                <i data-lucide="star"></i>
+
+                Libro favorito
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 
 </main>
