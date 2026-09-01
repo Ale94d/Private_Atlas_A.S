@@ -1,9 +1,6 @@
-
-
 if (typeof lucide !== "undefined") {
     lucide.createIcons();
 }
-
 
 const homeButton = document.querySelector(".back-home");
 
@@ -16,7 +13,6 @@ if (homeButton) {
     });
 
 }
-
 
 const overlay = document.querySelector(".content-overlay");
 
@@ -31,14 +27,11 @@ const travelContent = document.querySelector(".travel-content");
 const closeButtons =
     document.querySelectorAll(".close-window");
 
-
 function openWindow(content) {
 
     if (!overlay || !content) {
         return;
     }
-
-
 
     document
         .querySelectorAll(".content-window")
@@ -50,11 +43,9 @@ function openWindow(content) {
 
         });
 
-
     overlay.classList.add("active");
 
     content.style.display = "block";
-
 
     requestAnimationFrame(() => {
 
@@ -62,13 +53,11 @@ function openWindow(content) {
 
     });
 
-
     if (typeof lucide !== "undefined") {
         lucide.createIcons();
     }
 
 }
-
 
 function closeWindow() {
 
@@ -76,17 +65,14 @@ function closeWindow() {
         return;
     }
 
-
     const activeWindow =
         document.querySelector(
             ".content-window.active"
         );
 
-
     if (activeWindow) {
 
         activeWindow.classList.remove("active");
-
 
         setTimeout(() => {
 
@@ -96,7 +82,6 @@ function closeWindow() {
 
     }
 
-
     setTimeout(() => {
 
         overlay.classList.remove("active");
@@ -104,7 +89,6 @@ function closeWindow() {
     }, 250);
 
 }
-
 
 if (booksButton) {
 
@@ -116,7 +100,6 @@ if (booksButton) {
 
 }
 
-
 if (recipesButton) {
 
     recipesButton.addEventListener("click", () => {
@@ -126,7 +109,6 @@ if (recipesButton) {
     });
 
 }
-
 
 if (travelButton) {
 
@@ -138,8 +120,6 @@ if (travelButton) {
 
 }
 
-
-
 closeButtons.forEach(button => {
 
     button.addEventListener("click", () => {
@@ -150,12 +130,11 @@ closeButtons.forEach(button => {
 
 });
 
-
 if (overlay) {
 
     overlay.addEventListener("click", event => {
 
-        if (event.target === overlay) {
+        if (event.target == overlay) {
 
             closeWindow();
 
@@ -164,7 +143,6 @@ if (overlay) {
     });
 
 }
-
 
 const openAddBook =
     document.getElementById("openAddBook");
@@ -187,17 +165,25 @@ const booksGrid =
 const emptyBooks =
     document.getElementById("emptyBooks");
 
-
 if (openAddBook) {
 
     openAddBook.addEventListener("click", () => {
+
+        if (bookForm) {
+            bookForm.reset();
+            delete bookForm.dataset.editingId;
+        }
+
+        if (fileName) {
+            fileName.textContent =
+                "Seleccionar portada";
+        }
 
         bookFormOverlay.classList.add("active");
 
     });
 
 }
-
 
 function closeBookFormWindow() {
 
@@ -209,7 +195,6 @@ function closeBookFormWindow() {
 
 }
 
-
 if (closeBookForm) {
 
     closeBookForm.addEventListener(
@@ -218,7 +203,6 @@ if (closeBookForm) {
     );
 
 }
-
 
 if (cancelBook) {
 
@@ -229,14 +213,13 @@ if (cancelBook) {
 
 }
 
-
 if (bookFormOverlay) {
 
     bookFormOverlay.addEventListener(
         "click",
         event => {
 
-            if (event.target === bookFormOverlay) {
+            if (event.target == bookFormOverlay) {
 
                 closeBookFormWindow();
 
@@ -247,13 +230,11 @@ if (bookFormOverlay) {
 
 }
 
-
 const coverInput =
     document.getElementById("bookCover");
 
 const fileName =
     document.getElementById("fileName");
-
 
 if (coverInput) {
 
@@ -278,10 +259,8 @@ if (coverInput) {
 
 }
 
-
 const genericCover =
     "assets/portadas/Aventura/P1.png";
-
 
 const genericCovers = {
 
@@ -359,12 +338,11 @@ const genericCovers = {
 
 };
 
-
 function getRandomCover(genre) {
 
     const covers = genericCovers[genre];
 
-    if (!covers || covers.length === 0) {
+    if (!covers || covers.length == 0) {
 
         return genericCover;
 
@@ -378,23 +356,31 @@ function getRandomCover(genre) {
     return covers[randomIndex];
 
 }
+
+function escapeHTML(text) {
+
+    const div = document.createElement("div");
+
+    div.textContent = text || "";
+
+    return div.innerHTML;
+
+}
+
 function loadBooks() {
 
     if (!booksGrid) {
         return;
     }
 
-
     booksGrid.innerHTML = "";
-
 
     const books =
         JSON.parse(
             localStorage.getItem("privateAtlasBooks")
         ) || [];
 
-
-    if (books.length === 0) {
+    if (books.length == 0) {
 
         if (emptyBooks) {
 
@@ -406,20 +392,17 @@ function loadBooks() {
 
     }
 
-
     if (emptyBooks) {
 
         emptyBooks.style.display = "none";
 
     }
 
-
     books.forEach(book => {
 
         createBookCard(book);
 
     });
-
 
     if (typeof lucide !== "undefined") {
 
@@ -437,7 +420,7 @@ function createBookCard(book) {
 
     card.innerHTML = `
 
-        <div class="book-cover-wrapper">
+        <div class="book-cover-container">
 
             <img
                 src="${book.cover}"
@@ -470,7 +453,7 @@ function createBookCard(book) {
                     : ""
             }
 
-            <div class="book-card-buttons">
+            <div class="book-actions">
 
                 <button
                     class="view-book-btn"
@@ -516,7 +499,6 @@ function createBookCard(book) {
     const deleteButton =
         card.querySelector(".delete-book-btn");
 
-
     if (viewButton) {
 
         viewButton.addEventListener("click", () => {
@@ -527,7 +509,6 @@ function createBookCard(book) {
 
     }
 
-
     if (editButton) {
 
         editButton.addEventListener("click", () => {
@@ -537,7 +518,6 @@ function createBookCard(book) {
         });
 
     }
-
 
     if (deleteButton) {
 
@@ -577,48 +557,55 @@ function showBookDetails(book) {
     const detailsFavorite =
         document.getElementById("detailsFavorite");
 
-
     if (!detailsOverlay) {
         return;
     }
 
-
     if (detailsCover) {
+
         detailsCover.src = book.cover;
+
         detailsCover.alt =
             `Portada de ${escapeHTML(book.title)}`;
-    }
 
+    }
 
     if (detailsTitle) {
-        detailsTitle.textContent = book.title;
-    }
 
+        detailsTitle.textContent =
+            book.title || "";
+
+    }
 
     if (detailsAuthor) {
-        detailsAuthor.textContent =
-            `Por ${book.author}`;
-    }
 
+        detailsAuthor.textContent =
+            `Por ${book.author || ""}`;
+
+    }
 
     if (detailsGenre) {
-        detailsGenre.textContent = book.genre;
+
+        detailsGenre.textContent =
+            book.genre || "";
+
     }
 
-
     if (detailsExpectations) {
+
         detailsExpectations.textContent =
             book.expectations ||
             "Todavía no has escrito qué esperabas encontrar.";
+
     }
 
-
     if (detailsReview) {
+
         detailsReview.textContent =
             book.review ||
             "Todavía no has escrito tu opinión sobre el libro.";
-    }
 
+    }
 
     if (detailsFavorite) {
 
@@ -627,9 +614,7 @@ function showBookDetails(book) {
 
     }
 
-
     detailsOverlay.classList.add("active");
-
 
     if (typeof lucide !== "undefined") {
         lucide.createIcons();
@@ -639,45 +624,38 @@ function showBookDetails(book) {
 
 function editBook(book) {
 
-    if (!bookFormOverlay) {
+    if (!bookFormOverlay || !bookForm) {
         return;
     }
-
 
     document.getElementById("bookTitle").value =
         book.title || "";
 
-
     document.getElementById("bookAuthor").value =
         book.author || "";
-
 
     document.getElementById("bookGenre").value =
         book.genre || "";
 
-
     document.getElementById("bookExpectations").value =
         book.expectations || "";
-
 
     document.getElementById("bookReview").value =
         book.review || "";
 
-
     document.getElementById("bookFavorite").checked =
         !!book.favorite;
-
 
     bookForm.dataset.editingId =
         book.id;
 
-
     bookFormOverlay.classList.add("active");
 
-
     if (fileName) {
+
         fileName.textContent =
             "Conservar portada actual";
+
     }
 
 }
@@ -689,16 +667,13 @@ function deleteBook(bookId) {
             localStorage.getItem("privateAtlasBooks")
         ) || [];
 
-
     const updatedBooks =
-        books.filter(book => book.id !== bookId);
-
+        books.filter(book => book.id != bookId);
 
     localStorage.setItem(
         "privateAtlasBooks",
         JSON.stringify(updatedBooks)
     );
-
 
     loadBooks();
 
@@ -709,7 +684,6 @@ const closeBookDetails =
 
 const bookDetailsOverlay =
     document.getElementById("bookDetailsOverlay");
-
 
 if (closeBookDetails) {
 
@@ -724,14 +698,13 @@ if (closeBookDetails) {
 
 }
 
-
 if (bookDetailsOverlay) {
 
     bookDetailsOverlay.addEventListener(
         "click",
         event => {
 
-            if (event.target === bookDetailsOverlay) {
+            if (event.target == bookDetailsOverlay) {
 
                 bookDetailsOverlay.classList.remove("active");
 
@@ -742,13 +715,11 @@ if (bookDetailsOverlay) {
 
 }
 
-
 if (bookForm) {
 
     bookForm.addEventListener("submit", event => {
 
         event.preventDefault();
-
 
         const title =
             document
@@ -756,19 +727,16 @@ if (bookForm) {
                 .value
                 .trim();
 
-
         const author =
             document
                 .getElementById("bookAuthor")
                 .value
                 .trim();
 
-
         const genre =
             document
                 .getElementById("bookGenre")
                 .value;
-
 
         const expectations =
             document
@@ -776,49 +744,41 @@ if (bookForm) {
                 .value
                 .trim();
 
-
         const review =
             document
                 .getElementById("bookReview")
                 .value
                 .trim();
 
-
         const favorite =
             document
                 .getElementById("bookFavorite")
                 .checked;
 
-
         const editingId =
             bookForm.dataset.editingId;
-
 
         const books =
             JSON.parse(
                 localStorage.getItem("privateAtlasBooks")
             ) || [];
 
-
         if (editingId) {
 
             const bookIndex =
                 books.findIndex(
                     book =>
-                        String(book.id) ===
+                        String(book.id) ==
                         String(editingId)
                 );
 
-
-            if (bookIndex !== -1) {
+            if (bookIndex != -1) {
 
                 const oldBook =
                     books[bookIndex];
 
-
                 let cover =
                     oldBook.cover;
-
 
                 if (
                     coverInput &&
@@ -832,7 +792,6 @@ if (bookForm) {
                         );
 
                 }
-
 
                 books[bookIndex] = {
 
@@ -856,13 +815,9 @@ if (bookForm) {
 
             }
 
-        }
-
-
-        else {
+        } else {
 
             let cover;
-
 
             if (
                 coverInput &&
@@ -881,7 +836,6 @@ if (bookForm) {
                     getRandomCover(genre);
 
             }
-
 
             const newBook = {
 
@@ -906,7 +860,6 @@ if (bookForm) {
 
             };
 
-
             books.push(newBook);
 
         }
@@ -916,11 +869,9 @@ if (bookForm) {
             JSON.stringify(books)
         );
 
-
         bookForm.reset();
 
         delete bookForm.dataset.editingId;
-
 
         if (fileName) {
 
@@ -929,18 +880,15 @@ if (bookForm) {
 
         }
 
-
         loadBooks();
 
         closeBookFormWindow();
-
 
     });
 
 }
 
 loadBooks();
-
 
 if (typeof lucide !== "undefined") {
 
