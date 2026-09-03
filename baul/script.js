@@ -3,7 +3,9 @@ if (typeof lucide !== "undefined") {
 }
 
 
-const homeButton = document.querySelector(".back-home");
+const homeButton =
+    document.querySelector(".back-home");
+
 
 if (homeButton) {
 
@@ -16,15 +18,33 @@ if (homeButton) {
 }
 
 
-const overlay = document.querySelector(".content-overlay");
+const overlay =
+    document.querySelector(".content-overlay");
 
-const booksButton = document.querySelector(".books-window");
-const recipesButton = document.querySelector(".recipes-window");
-const travelButton = document.querySelector(".travel-window");
 
-const booksContent = document.querySelector(".books-content");
-const recipesContent = document.querySelector(".recipes-content");
-const travelContent = document.querySelector(".travel-content");
+const booksButton =
+    document.querySelector(".books-window");
+
+
+const recipesButton =
+    document.querySelector(".recipes-window");
+
+
+const travelButton =
+    document.querySelector(".travel-window");
+
+
+const booksContent =
+    document.querySelector(".books-content");
+
+
+const recipesContent =
+    document.querySelector(".recipes-content");
+
+
+const travelContent =
+    document.querySelector(".travel-content");
+
 
 const closeButtons =
     document.querySelectorAll(".close-window");
@@ -50,7 +70,7 @@ function openWindow(content) {
 
     overlay.classList.add("active");
 
-    content.style.display = "block";
+    content.style.display = "flex";
 
 
     requestAnimationFrame(() => {
@@ -61,7 +81,9 @@ function openWindow(content) {
 
 
     if (typeof lucide !== "undefined") {
+
         lucide.createIcons();
+
     }
 
 }
@@ -89,7 +111,7 @@ function closeWindow() {
 
             activeWindow.style.display = "none";
 
-        }, 250);
+        }, 300);
 
     }
 
@@ -98,7 +120,7 @@ function closeWindow() {
 
         overlay.classList.remove("active");
 
-    }, 250);
+    }, 300);
 
 }
 
@@ -136,7 +158,6 @@ if (travelButton) {
 }
 
 
-
 closeButtons.forEach(button => {
 
     button.addEventListener("click", () => {
@@ -152,7 +173,7 @@ if (overlay) {
 
     overlay.addEventListener("click", event => {
 
-        if (event.target == overlay) {
+        if (event.target === overlay) {
 
             closeWindow();
 
@@ -166,20 +187,26 @@ if (overlay) {
 const openAddBook =
     document.getElementById("openAddBook");
 
+
 const closeBookForm =
     document.getElementById("closeBookForm");
+
 
 const cancelBook =
     document.getElementById("cancelBook");
 
+
 const bookFormOverlay =
     document.getElementById("bookFormOverlay");
+
 
 const bookForm =
     document.getElementById("bookForm");
 
+
 const booksGrid =
     document.getElementById("booksGrid");
+
 
 const emptyBooks =
     document.getElementById("emptyBooks");
@@ -187,6 +214,7 @@ const emptyBooks =
 
 const coverInput =
     document.getElementById("bookCover");
+
 
 const fileName =
     document.getElementById("fileName");
@@ -204,12 +232,14 @@ if (openAddBook) {
 
         }
 
+
         if (fileName) {
 
             fileName.textContent =
                 "Seleccionar portada";
 
         }
+
 
         if (bookFormOverlay) {
 
@@ -259,7 +289,7 @@ if (bookFormOverlay) {
         "click",
         event => {
 
-            if (event.target == bookFormOverlay) {
+            if (event.target === bookFormOverlay) {
 
                 closeBookFormWindow();
 
@@ -310,75 +340,154 @@ const genericCover =
 const genericCovers = {
 
     "Aventura": [
+
         "assets/portadas/Aventura/P1.png",
         "assets/portadas/Aventura/P2.png",
         "assets/portadas/Aventura/P3.png",
         "assets/portadas/Aventura/P4.png",
         "assets/portadas/Aventura/P5.png",
         "assets/portadas/Aventura/P6.png"
+
     ],
 
-    "Ciencia ficción": [
-        "assets/portadas/Ciencia Ficción/P1.png",
-        "assets/portadas/Ciencia Ficción/P2.png",
-        "assets/portadas/Ciencia Ficción/P3.png",
-        "assets/portadas/Ciencia Ficción/P4.png",
-        "assets/portadas/Ciencia Ficción/P5.png",
-        "assets/portadas/Ciencia Ficción/P6.png"
+
+    "Ciencia-ficcion": [
+
+        "assets/portadas/Ciencia-Ficcion/P1.png",
+        "assets/portadas/Ciencia-Ficcion/P2.png",
+        "assets/portadas/Ciencia-Ficcion/P3.png",
+        "assets/portadas/Ciencia-Ficcion/P4.png",
+        "assets/portadas/Ciencia-Ficcion/P5.png",
+        "assets/portadas/Ciencia-Ficcion/P6.png"
+
     ],
 
-    "Dark Romance": [
-        "assets/portadas/Dark Romance/P1.png",
-        "assets/portadas/Dark Romance/P2.png",
-        "assets/portadas/Dark Romance/P3.png",
-        "assets/portadas/Dark Romance/P4.png",
-        "assets/portadas/Dark Romance/P5.png",
-        "assets/portadas/Dark Romance/P6.png"
+
+    "Dark-Romance": [
+
+        "assets/portadas/Dark-Romance/P1.png",
+        "assets/portadas/Dark-Romance/P2.png",
+        "assets/portadas/Dark-Romance/P3.png",
+        "assets/portadas/Dark-Romance/P4.png",
+        "assets/portadas/Dark-Romance/P5.png",
+        "assets/portadas/Dark-Romance/P6.png"
+
     ],
 
-    "Distopía": [
-        "assets/portadas/Distopía/P1.png",
-        "assets/portadas/Distopía/P2.png",
-        "assets/portadas/Distopía/P3.png",
-        "assets/portadas/Distopía/P4.png",
-        "assets/portadas/Distopía/P5.png",
-        "assets/portadas/Distopía/P6.png"
+
+    "Distopia": [
+
+        "assets/portadas/Distopia/P1.png",
+        "assets/portadas/Distopia/P2.png",
+        "assets/portadas/Distopia/P3.png",
+        "assets/portadas/Distopia/P4.png",
+        "assets/portadas/Distopia/P5.png",
+        "assets/portadas/Distopia/P6.png"
+
     ],
 
-    "Fantasía": [
-        "assets/portadas/Fantasía/P1.png",
-        "assets/portadas/Fantasía/P2.png",
-        "assets/portadas/Fantasía/P3.png",
-        "assets/portadas/Fantasía/P4.png",
-        "assets/portadas/Fantasía/P5.png",
-        "assets/portadas/Fantasía/P6.png"
+
+    "Fantasia": [
+
+        "assets/portadas/Fantasia/P1.png",
+        "assets/portadas/Fantasia/P2.png",
+        "assets/portadas/Fantasia/P3.png",
+        "assets/portadas/Fantasia/P4.png",
+        "assets/portadas/Fantasia/P5.png",
+        "assets/portadas/Fantasia/P6.png"
+
     ],
 
-    "Histórico": [
-        "assets/portadas/Histórico/P1.png",
-        "assets/portadas/Histórico/P2.png",
-        "assets/portadas/Histórico/P3.png",
-        "assets/portadas/Histórico/P4.png",
-        "assets/portadas/Histórico/P5.png",
-        "assets/portadas/Histórico/P6.png"
+
+    "Historico": [
+
+        "assets/portadas/Historico/P1.png",
+        "assets/portadas/Historico/P2.png",
+        "assets/portadas/Historico/P3.png",
+        "assets/portadas/Historico/P4.png",
+        "assets/portadas/Historico/P5.png",
+        "assets/portadas/Historico/P6.png"
+
     ],
+
 
     "Misterio": [
+
         "assets/portadas/Misterio/P1.png",
         "assets/portadas/Misterio/P2.png",
         "assets/portadas/Misterio/P3.png",
         "assets/portadas/Misterio/P4.png",
         "assets/portadas/Misterio/P5.png",
         "assets/portadas/Misterio/P6.png"
+
     ],
 
+    "Romance": [
+
+        "assets/portadas/Romance/P1.png",
+        "assets/portadas/Romance/P2.png",
+        "assets/portadas/Romance/P3.png",
+        "assets/portadas/Romance/P4.png",
+        "assets/portadas/Romance/P5.png",
+        "assets/portadas/Romance/P6.png"
+
+    ],
+
+    "Policial": [
+
+        "assets/portadas/Policial/P1.png",
+        "assets/portadas/Policial/P2.png",
+        "assets/portadas/Policial/P3.png",
+        "assets/portadas/Policial/P4.png",
+        "assets/portadas/Policial/P5.png",
+        "assets/portadas/Policial/P6.png"
+
+    ],
+
+    "Suspenso": [
+
+        "assets/portadas/Suspenso/P1.png",
+        "assets/portadas/Suspenso/P2.png",
+        "assets/portadas/Suspenso/P3.png",
+        "assets/portadas/Suspenso/P4.png",
+        "assets/portadas/Suspenso/P5.png",
+        "assets/portadas/Suspenso/P6.png"
+
+    ],
+
+    "Terror": [
+
+        "assets/portadas/Terror/P1.png",
+        "assets/portadas/Terror/P2.png",
+        "assets/portadas/Terror/P3.png",
+        "assets/portadas/Terror/P4.png",
+        "assets/portadas/Terror/P5.png",
+        "assets/portadas/Terror/P6.png"
+
+    ],
+
+    "Thriller": [
+
+        "assets/portadas/Thriller/P1.png",
+        "assets/portadas/Thriller/P2.png",
+        "assets/portadas/Thriller/P3.png",
+        "assets/portadas/Thriller/P4.png",
+        "assets/portadas/Thriller/P5.png",
+        "assets/portadas/Thriller/P6.png"
+
+    ],
+
+
+
     "Otro": [
+
         "assets/portadas/Comodines/P1.png",
         "assets/portadas/Comodines/P2.png",
         "assets/portadas/Comodines/P3.png",
         "assets/portadas/Comodines/P4.png",
         "assets/portadas/Comodines/P5.png",
         "assets/portadas/Comodines/P6.png"
+
     ]
 
 };
@@ -386,18 +495,25 @@ const genericCovers = {
 
 function getRandomCover(genre) {
 
-    const covers = genericCovers[genre];
+    const covers =
+        genericCovers[genre];
 
-    if (!covers || covers.length == 0) {
+
+    if (
+        !covers ||
+        covers.length === 0
+    ) {
 
         return genericCover;
 
     }
 
+
     const randomIndex =
         Math.floor(
             Math.random() * covers.length
         );
+
 
     return covers[randomIndex];
 
@@ -406,11 +522,29 @@ function getRandomCover(genre) {
 
 function escapeHTML(text) {
 
-    const div = document.createElement("div");
+    const div =
+        document.createElement("div");
 
-    div.textContent = text || "";
+
+    div.textContent =
+        text || "";
+
 
     return div.innerHTML;
+
+}
+
+
+function isGenericCover(book) {
+
+    if (!book || !book.cover) {
+        return false;
+    }
+
+
+    return book.cover.startsWith(
+        "assets/portadas/"
+    );
 
 }
 
@@ -427,15 +561,18 @@ function loadBooks() {
 
     const books =
         JSON.parse(
-            localStorage.getItem("privateAtlasBooks")
+            localStorage.getItem(
+                "privateAtlasBooks"
+            )
         ) || [];
 
 
-    if (books.length == 0) {
+    if (books.length === 0) {
 
         if (emptyBooks) {
 
-            emptyBooks.style.display = "flex";
+            emptyBooks.style.display =
+                "flex";
 
         }
 
@@ -446,7 +583,8 @@ function loadBooks() {
 
     if (emptyBooks) {
 
-        emptyBooks.style.display = "none";
+        emptyBooks.style.display =
+            "none";
 
     }
 
@@ -469,9 +607,15 @@ function loadBooks() {
 
 function createBookCard(book) {
 
-    const card = document.createElement("article");
+    const card =
+        document.createElement("article");
+
 
     card.classList.add("book-card");
+
+
+    const generic =
+        isGenericCover(book);
 
 
     card.innerHTML = `
@@ -482,40 +626,50 @@ function createBookCard(book) {
                 src="${book.cover}"
                 alt="Portada de ${escapeHTML(book.title)}">
 
-            <div class="book-card-info">
+            ${
+                generic
+                    ? `
+                        <div class="book-card-info">
 
-                <h3>
-                    ${escapeHTML(book.title)}
-                </h3>
+                            <h3>
+                                ${escapeHTML(book.title)}
+                            </h3>
 
-                <p class="book-author">
-                    ${escapeHTML(book.author)}
-                </p>
+                            <p class="book-author">
+                                Por ${escapeHTML(book.author)}
+                            </p>
 
-            </div>
+                        </div>
+                    `
+                    : ""
+            }
 
         </div>
 
 
         <div class="book-card-bottom">
 
-            <span class="book-genre">
-                ${escapeHTML(book.genre)}
-            </span>
+            <div class="book-card-meta">
 
-            ${
-                book.favorite
-                    ? `
-                        <span class="book-favorite">
+                <span class="book-genre">
+                    ${escapeHTML(book.genre)}
+                </span>
 
-                            <i data-lucide="star"></i>
+                ${
+                    book.favorite
+                        ? `
+                            <span class="book-favorite">
 
-                            Favorito
+                                <i data-lucide="star"></i>
 
-                        </span>
-                    `
-                    : ""
-            }
+                                Favorito
+
+                            </span>
+                        `
+                        : ""
+                }
+
+            </div>
 
 
             <div class="book-card-buttons">
@@ -565,8 +719,10 @@ function createBookCard(book) {
     const viewButton =
         card.querySelector(".view-book-btn");
 
+
     const editButton =
         card.querySelector(".edit-book-btn");
+
 
     const deleteButton =
         card.querySelector(".delete-book-btn");
@@ -604,34 +760,64 @@ function createBookCard(book) {
 
     }
 
+
+    if (typeof lucide !== "undefined") {
+
+        lucide.createIcons();
+
+    }
+
 }
 
 
 function showBookDetails(book) {
 
     const detailsOverlay =
-        document.getElementById("bookDetailsOverlay");
+        document.getElementById(
+            "bookDetailsOverlay"
+        );
+
 
     const detailsCover =
-        document.getElementById("detailsCover");
+        document.getElementById(
+            "detailsCover"
+        );
+
 
     const detailsTitle =
-        document.getElementById("detailsTitle");
+        document.getElementById(
+            "detailsTitle"
+        );
+
 
     const detailsAuthor =
-        document.getElementById("detailsAuthor");
+        document.getElementById(
+            "detailsAuthor"
+        );
+
 
     const detailsGenre =
-        document.getElementById("detailsGenre");
+        document.getElementById(
+            "detailsGenre"
+        );
+
 
     const detailsExpectations =
-        document.getElementById("detailsExpectations");
+        document.getElementById(
+            "detailsExpectations"
+        );
+
 
     const detailsReview =
-        document.getElementById("detailsReview");
+        document.getElementById(
+            "detailsReview"
+        );
+
 
     const detailsFavorite =
-        document.getElementById("detailsFavorite");
+        document.getElementById(
+            "detailsFavorite"
+        );
 
 
     if (!detailsOverlay) {
@@ -644,8 +830,9 @@ function showBookDetails(book) {
         detailsCover.src =
             book.cover;
 
+
         detailsCover.alt =
-            `Portada de ${escapeHTML(book.title)}`;
+            `Portada de ${book.title || "libro"}`;
 
     }
 
@@ -695,7 +882,9 @@ function showBookDetails(book) {
     if (detailsFavorite) {
 
         detailsFavorite.style.display =
-            book.favorite ? "flex" : "none";
+            book.favorite
+                ? "flex"
+                : "none";
 
     }
 
@@ -714,40 +903,95 @@ function showBookDetails(book) {
 
 function editBook(book) {
 
-    if (!bookFormOverlay || !bookForm) {
+    if (
+        !bookFormOverlay ||
+        !bookForm
+    ) {
+
         return;
+
     }
 
 
-    document.getElementById("bookTitle").value =
-        book.title || "";
+    const titleInput =
+        document.getElementById("bookTitle");
 
 
-    document.getElementById("bookAuthor").value =
-        book.author || "";
+    const authorInput =
+        document.getElementById("bookAuthor");
 
 
-    document.getElementById("bookGenre").value =
-        book.genre || "";
+    const genreInput =
+        document.getElementById("bookGenre");
 
 
-    document.getElementById("bookExpectations").value =
-        book.expectations || "";
+    const expectationsInput =
+        document.getElementById("bookExpectations");
 
 
-    document.getElementById("bookReview").value =
-        book.review || "";
+    const reviewInput =
+        document.getElementById("bookReview");
 
 
-    document.getElementById("bookFavorite").checked =
-        !!book.favorite;
+    const favoriteInput =
+        document.getElementById("bookFavorite");
+
+
+    if (titleInput) {
+
+        titleInput.value =
+            book.title || "";
+
+    }
+
+
+    if (authorInput) {
+
+        authorInput.value =
+            book.author || "";
+
+    }
+
+
+    if (genreInput) {
+
+        genreInput.value =
+            book.genre || "";
+
+    }
+
+
+    if (expectationsInput) {
+
+        expectationsInput.value =
+            book.expectations || "";
+
+    }
+
+
+    if (reviewInput) {
+
+        reviewInput.value =
+            book.review || "";
+
+    }
+
+
+    if (favoriteInput) {
+
+        favoriteInput.checked =
+            !!book.favorite;
+
+    }
 
 
     bookForm.dataset.editingId =
         book.id;
 
 
-    bookFormOverlay.classList.add("active");
+    bookFormOverlay.classList.add(
+        "active"
+    );
 
 
     if (fileName) {
@@ -764,7 +1008,9 @@ function deleteBook(bookId) {
 
     const books =
         JSON.parse(
-            localStorage.getItem("privateAtlasBooks")
+            localStorage.getItem(
+                "privateAtlasBooks"
+            )
         ) || [];
 
 
@@ -787,10 +1033,15 @@ function deleteBook(bookId) {
 
 
 const closeBookDetails =
-    document.getElementById("closeBookDetails");
+    document.getElementById(
+        "closeBookDetails"
+    );
+
 
 const bookDetailsOverlay =
-    document.getElementById("bookDetailsOverlay");
+    document.getElementById(
+        "bookDetailsOverlay"
+    );
 
 
 if (closeBookDetails) {
@@ -801,7 +1052,9 @@ if (closeBookDetails) {
 
             if (bookDetailsOverlay) {
 
-                bookDetailsOverlay.classList.remove("active");
+                bookDetailsOverlay.classList.remove(
+                    "active"
+                );
 
             }
 
@@ -817,9 +1070,14 @@ if (bookDetailsOverlay) {
         "click",
         event => {
 
-            if (event.target == bookDetailsOverlay) {
+            if (
+                event.target ===
+                bookDetailsOverlay
+            ) {
 
-                bookDetailsOverlay.classList.remove("active");
+                bookDetailsOverlay.classList.remove(
+                    "active"
+                );
 
             }
 
@@ -831,79 +1089,179 @@ if (bookDetailsOverlay) {
 
 if (bookForm) {
 
-    bookForm.addEventListener("submit", event => {
+    bookForm.addEventListener(
+        "submit",
+        event => {
 
-        event.preventDefault();
-
-
-        const title =
-            document
-                .getElementById("bookTitle")
-                .value
-                .trim();
+            event.preventDefault();
 
 
-        const author =
-            document
-                .getElementById("bookAuthor")
-                .value
-                .trim();
-
-
-        const genre =
-            document
-                .getElementById("bookGenre")
-                .value;
-
-
-        const expectations =
-            document
-                .getElementById("bookExpectations")
-                .value
-                .trim();
-
-
-        const review =
-            document
-                .getElementById("bookReview")
-                .value
-                .trim();
-
-
-        const favorite =
-            document
-                .getElementById("bookFavorite")
-                .checked;
-
-
-        const editingId =
-            bookForm.dataset.editingId;
-
-
-        const books =
-            JSON.parse(
-                localStorage.getItem("privateAtlasBooks")
-            ) || [];
-
-
-        if (editingId) {
-
-            const bookIndex =
-                books.findIndex(
-                    book =>
-                        String(book.id) ==
-                        String(editingId)
+            const titleInput =
+                document.getElementById(
+                    "bookTitle"
                 );
 
 
-            if (bookIndex != -1) {
+            const authorInput =
+                document.getElementById(
+                    "bookAuthor"
+                );
 
-                const oldBook =
-                    books[bookIndex];
+
+            const genreInput =
+                document.getElementById(
+                    "bookGenre"
+                );
 
 
-                let cover =
-                    oldBook.cover;
+            const expectationsInput =
+                document.getElementById(
+                    "bookExpectations"
+                );
+
+
+            const reviewInput =
+                document.getElementById(
+                    "bookReview"
+                );
+
+
+            const favoriteInput =
+                document.getElementById(
+                    "bookFavorite"
+                );
+
+
+            const title =
+                titleInput
+                    ? titleInput.value.trim()
+                    : "";
+
+
+            const author =
+                authorInput
+                    ? authorInput.value.trim()
+                    : "";
+
+
+            const genre =
+                genreInput
+                    ? genreInput.value
+                    : "";
+
+
+            const expectations =
+                expectationsInput
+                    ? expectationsInput.value.trim()
+                    : "";
+
+
+            const review =
+                reviewInput
+                    ? reviewInput.value.trim()
+                    : "";
+
+
+            const favorite =
+                favoriteInput
+                    ? favoriteInput.checked
+                    : false;
+
+
+            const editingId =
+                bookForm.dataset.editingId;
+
+
+            const books =
+                JSON.parse(
+                    localStorage.getItem(
+                        "privateAtlasBooks"
+                    )
+                ) || [];
+
+
+            if (editingId) {
+
+                const bookIndex =
+                    books.findIndex(
+                        book =>
+                            String(book.id) ===
+                            String(editingId)
+                    );
+
+
+                if (bookIndex !== -1) {
+
+                    const oldBook =
+                        books[bookIndex];
+
+
+                    let cover =
+                        oldBook.cover;
+
+
+                    let customCover =
+                        oldBook.customCover === true;
+
+
+                    if (
+                        coverInput &&
+                        coverInput.files &&
+                        coverInput.files.length > 0
+                    ) {
+
+                        cover =
+                            URL.createObjectURL(
+                                coverInput.files[0]
+                            );
+
+
+                        customCover =
+                            true;
+
+                    }
+
+
+                    books[bookIndex] = {
+
+                        ...oldBook,
+
+                        title:
+                            title,
+
+                        author:
+                            author,
+
+                        genre:
+                            genre,
+
+                        cover:
+                            cover,
+
+                        customCover:
+                            customCover,
+
+                        expectations:
+                            expectations,
+
+                        review:
+                            review,
+
+                        favorite:
+                            favorite
+
+                    };
+
+                }
+
+            }
+
+            else {
+
+                let cover;
+
+                let customCover =
+                    false;
 
 
                 if (
@@ -917,113 +1275,209 @@ if (bookForm) {
                             coverInput.files[0]
                         );
 
+
+                    customCover =
+                        true;
+
+                }
+
+                else {
+
+                    cover =
+                        getRandomCover(
+                            genre
+                        );
+
                 }
 
 
-                books[bookIndex] = {
+                const newBook = {
 
-                    ...oldBook,
+                    id:
+                        Date.now(),
 
-                    title: title,
+                    title:
+                        title,
 
-                    author: author,
+                    author:
+                        author,
 
-                    genre: genre,
+                    genre:
+                        genre,
 
-                    cover: cover,
+                    cover:
+                        cover,
 
-                    expectations: expectations,
+                    customCover:
+                        customCover,
 
-                    review: review,
+                    expectations:
+                        expectations,
 
-                    favorite: favorite
+                    review:
+                        review,
+
+                    favorite:
+                        favorite,
+
+                    dateAdded:
+                        new Date().toISOString()
 
                 };
 
-            }
 
-        } else {
-
-            let cover;
-
-
-            if (
-                coverInput &&
-                coverInput.files &&
-                coverInput.files.length > 0
-            ) {
-
-                cover =
-                    URL.createObjectURL(
-                        coverInput.files[0]
-                    );
-
-            } else {
-
-                cover =
-                    getRandomCover(genre);
+                books.push(
+                    newBook
+                );
 
             }
 
 
-            const newBook = {
-
-                id: Date.now(),
-
-                title: title,
-
-                author: author,
-
-                genre: genre,
-
-                cover: cover,
-
-                expectations: expectations,
-
-                review: review,
-
-                favorite: favorite,
-
-                dateAdded:
-                    new Date().toISOString()
-
-            };
+            localStorage.setItem(
+                "privateAtlasBooks",
+                JSON.stringify(books)
+            );
 
 
-            books.push(newBook);
-
-        }
+            bookForm.reset();
 
 
-        localStorage.setItem(
-            "privateAtlasBooks",
-            JSON.stringify(books)
-        );
+            delete bookForm.dataset.editingId;
 
 
-        bookForm.reset();
+            if (fileName) {
 
-        delete bookForm.dataset.editingId;
+                fileName.textContent =
+                    "Seleccionar portada";
+
+            }
 
 
-        if (fileName) {
+            loadBooks();
 
-            fileName.textContent =
-                "Seleccionar portada";
+
+            closeBookFormWindow();
 
         }
-
-
-        loadBooks();
-
-        closeBookFormWindow();
-
-    });
+    );
 
 }
 
 
+function createAmbientParticles() {
+
+    const ash =
+        document.querySelector(".ash-particles");
+
+
+    const embers =
+        document.querySelector(".embers");
+
+
+    const flames =
+        document.querySelector(".flames");
+
+
+    if (ash && ash.children.length === 0) {
+
+        for (let i = 0; i < 10; i++) {
+
+            const particle =
+                document.createElement("span");
+
+
+            ash.appendChild(
+                particle
+            );
+
+        }
+
+    }
+
+
+    if (embers && embers.children.length === 0) {
+
+        for (let i = 0; i < 6; i++) {
+
+            const ember =
+                document.createElement("span");
+
+
+            embers.appendChild(
+                ember
+            );
+
+        }
+
+    }
+
+
+    if (flames && flames.children.length === 0) {
+
+        for (let i = 0; i < 3; i++) {
+
+            const flame =
+                document.createElement("span");
+
+
+            flames.appendChild(
+                flame
+            );
+
+        }
+
+    }
+
+}
+
+
+function restartLavaAnimation() {
+
+    const lavaTransition =
+        document.querySelector(
+            ".lava-transition"
+        );
+
+
+    const lavaBody =
+        document.querySelector(
+            ".lava-body"
+        );
+
+
+    if (!lavaTransition || !lavaBody) {
+        return;
+    }
+
+
+    lavaTransition.style.animation =
+        "none";
+
+
+    lavaBody.style.animation =
+        "none";
+
+
+    void lavaTransition.offsetWidth;
+
+
+    lavaTransition.style.animation =
+        "";
+
+
+    lavaBody.style.animation =
+        "";
+
+}
+
+
+createAmbientParticles();
+
+
 loadBooks();
+
+
+restartLavaAnimation();
 
 
 if (typeof lucide !== "undefined") {
