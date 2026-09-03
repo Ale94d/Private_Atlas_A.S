@@ -1,6 +1,6 @@
-/* =====================================
+/* =========================================
    RESET
-===================================== */
+========================================= */
 
 * {
     margin: 0;
@@ -17,250 +17,156 @@ body {
 
 
 body {
-
-    font-family:
-        "Plus Jakarta Sans",
-        sans-serif;
-
+    font-family: "Inter", sans-serif;
     overflow: hidden;
-
-    color: #3b2417;
-
-    background:
-        #2b1b13;
+    color: #493326;
 }
 
 
-/* =====================================
-   DAILY JOURNAL
-===================================== */
+/* =========================================
+   FONDO PRINCIPAL
+========================================= */
 
-.daily-journal {
+.apothecary {
+    position: fixed;
+    inset: 0;
 
-    position: relative;
-
-    width: 100vw;
-    height: 100vh;
-
-    min-width: 900px;
-    min-height: 650px;
+    width: 100%;
+    height: 100%;
 
     overflow: hidden;
 
     background:
-
         radial-gradient(
-            circle at 50% 45%,
-            rgba(125, 77, 39, 0.20),
-            transparent 42%
-        ),
-
-        linear-gradient(
-            90deg,
-            #1e120d 0%,
-            #392318 15%,
-            #513321 50%,
-            #392318 85%,
-            #1e120d 100%
+            circle at 50% 35%,
+            #6d4b36 0%,
+            #493326 45%,
+            #2c1d16 100%
         );
 
+    display: flex;
+    flex-direction: column;
 }
 
 
-/* =====================================
-   PARED DE LA BOTICA
-===================================== */
+/* =========================================
+   TEXTURA DEL FONDO
+========================================= */
 
-.daily-journal::before {
-
+.apothecary::before {
     content: "";
 
     position: absolute;
-
     inset: 0;
 
-    z-index: 0;
+    pointer-events: none;
 
-    background:
+    opacity: 0.18;
 
+    background-image:
         repeating-linear-gradient(
             90deg,
-            rgba(255,255,255,0.018) 0px,
-            rgba(255,255,255,0.018) 2px,
-            transparent 2px,
-            transparent 85px
-        ),
-
-        linear-gradient(
-            180deg,
-            #4a2e20 0%,
-            #5a3926 45%,
-            #382116 100%
+            transparent 0px,
+            transparent 90px,
+            rgba(255,255,255,0.035) 91px,
+            transparent 93px
         );
-
-    opacity: 0.95;
-
 }
 
 
-/* =====================================
-   ILUMINACIÓN AMBIENTAL
-===================================== */
+/* =========================================
+   LUCES AMBIENTALES
+========================================= */
 
-.ambient-light {
-
+.ambient-glow {
     position: absolute;
 
-    left: 50%;
-    top: 42%;
-
-    width: 75vw;
-    height: 75vh;
-
-    transform:
-        translate(-50%, -50%);
-
-    z-index: 1;
-
-    pointer-events: none;
-
-    background:
-
-        radial-gradient(
-            ellipse,
-            rgba(239, 185, 91, 0.22) 0%,
-            rgba(190, 119, 43, 0.10) 35%,
-            transparent 72%
-        );
-
-    filter: blur(18px);
-
-}
-
-
-/* =====================================
-   PARTÍCULAS
-===================================== */
-
-.floating-particles {
-
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 8;
-
-    pointer-events: none;
-
-}
-
-
-.floating-particles span {
-
-    position: absolute;
-
-    width: 4px;
-    height: 4px;
+    width: 500px;
+    height: 500px;
 
     border-radius: 50%;
 
-    background:
-        rgba(242, 205, 139, 0.55);
+    pointer-events: none;
 
-    box-shadow:
-        0 0 8px
-        rgba(240, 191, 104, 0.55);
+    filter: blur(80px);
 
-    animation:
-        floatParticle
-        8s
-        ease-in-out
-        infinite;
-
+    opacity: 0.18;
 }
 
 
-.floating-particles span:nth-child(1) {
-    left: 18%;
-    top: 28%;
-    animation-delay: 0s;
+.glow-one {
+    top: -250px;
+    left: -150px;
+
+    background: #d2a45f;
 }
 
 
-.floating-particles span:nth-child(2) {
-    left: 31%;
-    top: 64%;
-    animation-delay: 2s;
+.glow-two {
+    right: -220px;
+    bottom: -250px;
+
+    background: #a76d3f;
 }
 
 
-.floating-particles span:nth-child(3) {
-    left: 52%;
-    top: 22%;
-    animation-delay: 4s;
-}
+/* =========================================
+   PARTÍCULAS
+========================================= */
 
-
-.floating-particles span:nth-child(4) {
-    left: 68%;
-    top: 55%;
-    animation-delay: 1s;
-}
-
-
-.floating-particles span:nth-child(5) {
-    left: 81%;
-    top: 31%;
-    animation-delay: 3s;
-}
-
-
-.floating-particles span:nth-child(6) {
-    left: 74%;
-    top: 76%;
-    animation-delay: 5s;
-}
-
-
-@keyframes floatParticle {
-
-    0%,
-    100% {
-
-        transform:
-            translateY(0);
-
-        opacity: 0.25;
-
-    }
-
-    50% {
-
-        transform:
-            translateY(-22px);
-
-        opacity: 0.8;
-
-    }
-
-}
-
-
-/* =====================================
-   BARRA SUPERIOR
-===================================== */
-
-.journal-header {
-
+.particle {
     position: absolute;
 
-    top: 0;
-    left: 0;
-    right: 0;
+    color: #d9b477;
 
-    height: 82px;
+    opacity: 0.35;
 
-    z-index: 50;
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+.particle-one {
+    top: 18%;
+    left: 12%;
+
+    font-size: 20px;
+}
+
+
+.particle-two {
+    top: 28%;
+    right: 15%;
+
+    font-size: 14px;
+}
+
+
+.particle-three {
+    bottom: 22%;
+    left: 35%;
+
+    font-size: 28px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.top-bar {
+    position: relative;
+
+    z-index: 10;
+
+    width: 100%;
+
+    min-height: 92px;
+
+    padding:
+        20px
+        48px;
 
     display: flex;
 
@@ -268,1736 +174,1220 @@ body {
 
     justify-content: space-between;
 
-    padding:
-        0 32px;
-
-    background:
-
-        linear-gradient(
-            180deg,
-            rgba(32, 18, 12, 0.92),
-            rgba(48, 27, 17, 0.78)
-        );
-
     border-bottom:
         1px solid
-        rgba(190, 137, 69, 0.30);
+        rgba(222, 190, 143, 0.28);
 
-    box-shadow:
+    background:
+        rgba(39, 25, 18, 0.38);
 
-        0 8px 20px
-        rgba(0,0,0,0.30);
-
+    backdrop-filter: blur(8px);
 }
 
 
-/* =====================================
-   BOTÓN HOME
-===================================== */
-
-.home-button {
-
-    width: 46px;
-    height: 46px;
-
+.brand {
     display: flex;
 
-    align-items: center;
-    justify-content: center;
-
-    border:
-        1px solid
-        rgba(208, 166, 101, 0.45);
-
-    border-radius: 50%;
-
-    background:
-
-        radial-gradient(
-            circle at 35% 30%,
-            #d9bc8b,
-            #74502f
-        );
-
-    color:
-        #fff0d0;
-
-    cursor: pointer;
-
-    box-shadow:
-
-        0 5px 15px
-        rgba(0,0,0,0.35),
-
-        inset 0 1px 3px
-        rgba(255,255,255,0.35);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-
+    flex-direction: column;
 }
 
 
-.home-button:hover {
+.brand-small {
+    font-size: 9px;
 
-    transform:
-        translateY(-2px);
+    letter-spacing: 4px;
 
-    box-shadow:
-
-        0 8px 20px
-        rgba(0,0,0,0.45),
-
-        0 0 14px
-        rgba(211,165,88,0.30);
-
+    color: #c8a576;
 }
 
 
-.home-button svg {
-
-    width: 20px;
-    height: 20px;
-
-}
-
-
-/* =====================================
-   TÍTULO
-===================================== */
-
-.journal-title {
-
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%, -50%);
-
-    text-align: center;
-
-}
-
-
-.journal-title span {
-
-    display: block;
-
-    margin-bottom: 1px;
-
-    font-size: 0.58rem;
-
-    letter-spacing: 0.28em;
-
-    color:
-        #c5a16d;
-
-}
-
-
-.journal-title h1 {
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 2rem;
-
-    font-weight: 600;
-
-    letter-spacing: 0.04em;
-
-    color:
-        #f2dfbd;
-
-    text-shadow:
-        0 2px 8px
-        rgba(0,0,0,0.45);
-
-}
-
-
-/* =====================================
-   HERRAMIENTAS
-===================================== */
-
-.journal-tools {
-
-    display: flex;
-
-    gap: 10px;
-
-}
-
-
-.tool-button {
-
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border:
-        1px solid
-        rgba(196, 151, 86, 0.35);
-
-    border-radius: 8px;
-
-    background:
-        rgba(87, 54, 33, 0.75);
-
-    color:
-        #d9bc8b;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-
-}
-
-
-.tool-button:hover {
-
-    background:
-        rgba(122, 77, 43, 0.85);
-
-    transform:
-        translateY(-2px);
-
-}
-
-
-.tool-button svg {
-
-    width: 19px;
-    height: 19px;
-
-}
-
-
-/* =====================================
-   HABITACIÓN
-===================================== */
-
-.apothecary-room {
-
-    position: absolute;
-
-    inset: 82px 0 72px 0;
-
-    z-index: 5;
-
-}
-
-
-/* =====================================
-   ESTANTERÍAS
-===================================== */
-
-.apothecary-shelf {
-
-    position: absolute;
-
-    top: 5%;
-
-    width: 225px;
-    height: 86%;
-
-    padding:
-        28px 18px 20px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #24150e 0%,
-            #4a2a18 18%,
-            #5f3820 50%,
-            #412317 82%,
-            #1f120c 100%
-        );
-
-    border:
-        4px solid
-        #25140d;
-
-    box-shadow:
-
-        0 15px 30px
-        rgba(0,0,0,0.45),
-
-        inset 0 0 20px
-        rgba(0,0,0,0.45);
-
-}
-
-
-.shelf-left {
-
-    left: 0;
-
-    border-left:
-        none;
-
-}
-
-
-.shelf-right {
-
-    right: 0;
-
-    border-right:
-        none;
-
-}
-
-
-/* =====================================
-   PARTE SUPERIOR DEL MUEBLE
-===================================== */
-
-.shelf-top {
-
-    position: absolute;
-
-    top: 0;
-    left: -5px;
-    right: -5px;
-
-    height: 20px;
-
-    background:
-
-        linear-gradient(
-            180deg,
-            #8b5a31,
-            #3a2114
-        );
-
-    border-bottom:
-        3px solid
-        #1f110b;
-
-    box-shadow:
-        0 4px 8px
-        rgba(0,0,0,0.35);
-
-}
-
-
-/* =====================================
-   ESTANTE
-===================================== */
-
-.wooden-shelf {
-
-    width: 100%;
-    height: 15px;
-
-    margin:
-        4px 0 14px;
-
-    background:
-
-        linear-gradient(
-            180deg,
-            #8b5a31,
-            #4a2818 50%,
-            #2b170e
-        );
-
-    border-top:
-        2px solid
-        #a87543;
-
-    border-bottom:
-        3px solid
-        #211109;
-
-    box-shadow:
-
-        0 5px 8px
-        rgba(0,0,0,0.40);
-
-}
-
-
-/* =====================================
-   FILA
-===================================== */
-
-.shelf-row {
-
-    height: 145px;
-
-    display: flex;
-
-    align-items: flex-end;
-
-    justify-content: space-around;
-
-    gap: 8px;
-
-}
-
-
-/* =====================================
-   FRASCOS
-===================================== */
-
-.bottle {
-
-    position: relative;
-
-    width: 42px;
-    height: 82px;
-
-    border-radius:
-        7px 7px 10px 10px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #56351f,
-            #b27a3e 35%,
-            #e0bd7e 55%,
-            #79502d 80%,
-            #382014
-        );
-
-    border:
-        2px solid
-        rgba(30,16,9,0.8);
-
-    box-shadow:
-
-        4px 8px 10px
-        rgba(0,0,0,0.40),
-
-        inset 4px 0 5px
-        rgba(255,255,255,0.20);
-
-}
-
-
-.bottle::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: 9px;
-    right: 9px;
-
-    top: -14px;
-
-    height: 16px;
-
-    border-radius:
-        3px 3px 1px 1px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #3a2113,
-            #a06a37,
-            #3a2113
-        );
-
-    border:
-        2px solid
-        #24130b;
-
-}
-
-
-.bottle span {
-
-    position: absolute;
-
-    left: 4px;
-    right: 4px;
-
-    top: 30px;
-
-    height: 25px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background:
-        #dbc59a;
-
-    color:
-        #5a351d;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 0.52rem;
-
-    letter-spacing: 0.04em;
-
-    writing-mode:
-        vertical-rl;
-
-    transform:
-        rotate(180deg);
-
-}
-
-
-.bottle-small {
-
-    width: 34px;
-    height: 62px;
-
-}
-
-
-.bottle-small span {
-
-    top: 23px;
-
-}
-
-
-.bottle-tall {
-
-    width: 39px;
-    height: 102px;
-
-}
-
-
-.bottle-round {
-
-    width: 56px;
-    height: 62px;
-
-    border-radius:
-        50% 50% 9px 9px;
-
-}
-
-
-.bottle-square {
-
-    width: 48px;
-    height: 76px;
-
-    border-radius:
-        3px;
-
-}
-
-
-/* =====================================
-   CAJONES
-===================================== */
-
-.drawer {
-
-    width: 88px;
-    height: 54px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background:
-
-        linear-gradient(
-            180deg,
-            #684126,
-            #382014
-        );
-
-    border:
-        2px solid
-        #25140c;
-
-    box-shadow:
-
-        inset 0 2px 3px
-        rgba(255,255,255,0.12),
-
-        0 4px 7px
-        rgba(0,0,0,0.35);
-
-}
-
-
-.drawer::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background:
-        #c79a5a;
-
-    box-shadow:
-        0 0 4px
-        rgba(235,190,108,0.45);
-
-}
-
-
-.drawer span {
-
-    margin-top: 25px;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size:
-        0.54rem;
-
-    letter-spacing:
-        0.08em;
-
-    color:
-        #cdb181;
-
-}
-
-
-/* =====================================
-   BOTÁNICA
-===================================== */
-
-.botanical {
-
-    position: absolute;
-
-    bottom: 8%;
-
-    width: 150px;
-    height: 250px;
-
-    z-index: 12;
-
-}
-
-
-.botanical-left {
-
-    left: 14%;
-
-}
-
-
-.botanical-right {
-
-    right: 14%;
-
-    transform:
-        scaleX(-1);
-
-}
-
-
-.plant-stem {
-
-    position: absolute;
-
-    left: 50%;
-    bottom: 0;
-
-    width: 5px;
-    height: 220px;
-
-    transform:
-        translateX(-50%)
-        rotate(8deg);
-
-    border-radius: 999px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #27351e,
-            #637348,
-            #28371f
-        );
-
-}
-
-
-.leaf {
-
-    position: absolute;
-
-    width: 52px;
-    height: 25px;
-
-    border-radius:
-        100% 0 100% 0;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #718354,
-            #29391f
-        );
-
-    box-shadow:
-        inset 2px 2px 4px
-        rgba(255,255,255,0.15);
-
-}
-
-
-.leaf-one {
-
-    left: 28px;
-    bottom: 130px;
-
-    transform:
-        rotate(-30deg);
-
-}
-
-
-.leaf-two {
-
-    right: 18px;
-    bottom: 155px;
-
-    transform:
-        rotate(30deg);
-
-}
-
-
-.leaf-three {
-
-    left: 20px;
-    bottom: 78px;
-
-    transform:
-        rotate(-45deg);
-
-}
-
-
-.leaf-four {
-
-    right: 22px;
-    bottom: 55px;
-
-    transform:
-        rotate(38deg);
-
-}
-
-
-/* =====================================
-   MOSTRADOR CENTRAL
-===================================== */
-
-.apothecary-counter {
-
-    position: absolute;
-
-    left: 50%;
-    bottom: 2%;
-
-    width: min(720px, 56vw);
-    height: 76%;
-
-    transform:
-        translateX(-50%);
-
-    z-index: 20;
-
-}
-
-
-/* =====================================
-   PARTE SUPERIOR
-===================================== */
-
-.counter-top {
-
-    position: relative;
-
-    width: 100%;
-    height: 65px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background:
-
-        linear-gradient(
-            180deg,
-            #9b673a,
-            #563018 48%,
-            #321a0f
-        );
-
-    border:
-        4px solid
-        #241209;
-
-    box-shadow:
-
-        0 8px 12px
-        rgba(0,0,0,0.45);
-
-}
-
-
-.counter-label {
-
-    padding:
-        7px 35px;
-
-    text-align: center;
-
-    background:
-        #d6bd8d;
-
-    border:
-        1px solid
-        #8d6638;
-
-    box-shadow:
-        inset 0 0 8px
-        rgba(76,44,19,0.20);
-
-}
-
-
-.counter-label span {
-
-    display: block;
-
-    font-size:
-        0.50rem;
-
-    letter-spacing:
-        0.20em;
-
-    color:
-        #77522d;
-
-}
-
-
-.counter-label strong {
-
-    display: block;
-
+.brand h1 {
     margin-top: 2px;
 
     font-family:
         "Cormorant Garamond",
         serif;
 
-    font-size:
-        1.05rem;
+    font-size: 38px;
 
-    letter-spacing:
-        0.08em;
+    line-height: 1;
 
-    color:
-        #402414;
+    font-weight: 600;
 
+    color: #f0dfc1;
 }
 
 
-/* =====================================
-   CUERPO
-===================================== */
-
-.counter-body {
-
-    width: 100%;
-    height: calc(100% - 125px);
-
-    display: flex;
-
-    gap: 15px;
-
-    padding:
-        22px 18px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #2a160d,
-            #5a321c 12%,
-            #4a2918 50%,
-            #5a321c 88%,
-            #2a160d
-        );
-
-    border-left:
-        5px solid
-        #251309;
-
-    border-right:
-        5px solid
-        #251309;
-
-    box-shadow:
-
-        inset 0 0 30px
-        rgba(0,0,0,0.50);
-
-}
-
-
-/* =====================================
-   FRASCOS DEL MOSTRADOR
-===================================== */
-
-.counter-bottles {
-
-    width: 90px;
-
+.date-display {
     display: flex;
 
     flex-direction: column;
 
-    align-items: center;
-
-    justify-content: space-around;
-
+    align-items: flex-end;
 }
 
 
-.mini-bottle {
+.date-label {
+    font-size: 9px;
 
+    letter-spacing: 3px;
+
+    color: #ad8c62;
+}
+
+
+.date-display strong {
+    margin-top: 3px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 21px;
+
+    font-weight: 500;
+
+    color: #e3c99e;
+}
+
+
+/* =========================================
+   ÁREA PRINCIPAL
+========================================= */
+
+.apothecary-room {
     position: relative;
 
-    width: 54px;
-    height: 74px;
+    z-index: 5;
+
+    flex: 1;
+
+    min-height: 0;
+
+    width: 100%;
+
+    padding:
+        26px
+        40px
+        15px;
+
+    display: grid;
+
+    grid-template-columns:
+        210px
+        minmax(400px, 1fr)
+        250px;
+
+    gap: 30px;
+}
+
+
+/* =========================================
+   PANEL IZQUIERDO
+========================================= */
+
+.shelf-panel {
+    position: relative;
+
+    min-height: 0;
+
+    padding:
+        18px
+        14px;
+
+    border:
+        1px solid
+        rgba(189, 151, 100, 0.35);
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(64, 39, 26, 0.88),
+            rgba(38, 23, 16, 0.94)
+        );
+
+    box-shadow:
+        inset 0 0 25px
+        rgba(0,0,0,0.3),
+
+        0 15px 35px
+        rgba(0,0,0,0.22);
+}
+
+
+.panel-title {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding-bottom: 14px;
+
+    border-bottom:
+        1px solid
+        rgba(205, 169, 112, 0.25);
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    color: #cba774;
+}
+
+
+.wood-shelf {
+    position: relative;
+
+    height: 105px;
+
+    margin-top: 15px;
+
+    padding:
+        10px;
 
     display: flex;
 
     align-items: flex-end;
-    justify-content: center;
 
-    padding-bottom: 8px;
+    justify-content: space-around;
+
+    border-bottom:
+        9px solid
+        #3b2418;
 
     background:
-
         linear-gradient(
             90deg,
-            #4a2a18,
-            #b97d3f 38%,
-            #d4aa67 54%,
-            #60391f 82%
+            #392218,
+            #68422b,
+            #402719
         );
 
-    border:
-        2px solid
-        #29160c;
-
-    border-radius:
-        5px 5px 12px 12px;
-
     box-shadow:
-
-        0 6px 10px
-        rgba(0,0,0,0.45);
-
+        0 5px 8px
+        rgba(0,0,0,0.35);
 }
 
 
-.mini-bottle::before {
+/* =========================================
+   FRASCOS
+========================================= */
 
+.bottle {
+    position: relative;
+
+    width: 38px;
+    height: 62px;
+
+    border-radius:
+        5px
+        5px
+        9px
+        9px;
+
+    box-shadow:
+        inset 5px 0 7px
+        rgba(255,255,255,0.12),
+
+        4px 5px 8px
+        rgba(0,0,0,0.35);
+}
+
+
+.bottle::before {
     content: "";
 
     position: absolute;
 
-    top: -13px;
-
-    width: 19px;
-    height: 15px;
-
-    background:
-        #4a2b18;
-
-    border:
-        2px solid
-        #251309;
-
-    border-radius:
-        3px 3px 0 0;
-
-}
-
-
-.mini-bottle span {
-
-    width: 43px;
-
-    padding: 4px 2px;
-
-    text-align: center;
-
-    background:
-        #d9c49a;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size:
-        0.44rem;
-
-    letter-spacing:
-        0.04em;
-
-    color:
-        #55351d;
-
-}
-
-
-/* =====================================
-   ZONA DEL DIARIO
-===================================== */
-
-.journal-display {
-
-    flex: 1;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding:
-        15px;
-
-    text-align: center;
-
-    background:
-
-        radial-gradient(
-            circle at center,
-            rgba(215,174,105,0.10),
-            transparent 70%
-        );
-
-}
-
-
-/* =====================================
-   FECHA
-===================================== */
-
-.date-label {
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 4px;
-
-    margin-bottom: 18px;
-
-}
-
-.date-label span {
-
-    font-size:
-        0.52rem;
-
-    letter-spacing:
-        0.22em;
-
-    color:
-        #c7a46d;
-
-}
-
-
-.date-label strong {
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size:
-        1.05rem;
-
-    font-weight:
-        500;
-
-    letter-spacing:
-        0.10em;
-
-    color:
-        #ecd6ad;
-
-}
-
-
-/* =====================================
-   TÍTULO CENTRAL
-===================================== */
-
-.journal-display h2 {
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size:
-        clamp(2rem, 3vw, 2.8rem);
-
-    font-weight:
-        500;
-
-    color:
-        #f0ddba;
-
-    text-shadow:
-        0 3px 8px
-        rgba(0,0,0,0.45);
-
-}
-
-
-.journal-display > p {
-
-    max-width: 390px;
-
-    margin-top: 7px;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size:
-        0.95rem;
-
-    line-height:
-        1.4;
-
-    color:
-        #bfa37a;
-
-}
-
-
-/* =====================================
-   PAPEL / ÁREA DE ESCRITURA
-===================================== */
-
-.journal-paper {
-
-    width: 100%;
-    max-width: 430px;
-
-    min-height: 115px;
-
-    margin-top: 20px;
-
-    padding:
-        22px;
-
-    display: flex;
-
-    align-items: flex-start;
-
-    text-align: left;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #e9d8b5,
-            #d6bd8e
-        );
-
-    border:
-        1px solid
-        #a17a48;
-
-    border-radius:
-        3px;
-
-    box-shadow:
-
-        0 10px 20px
-        rgba(0,0,0,0.35),
-
-        inset 0 0 15px
-        rgba(90,55,25,0.14);
-
-}
-
-
-.journal-paper span {
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size:
-        1rem;
-
-    color:
-        #806444;
-
-}
-
-
-/* =====================================
-   CAJONES INFERIORES
-===================================== */
-
-.counter-drawers {
-
-    position: absolute;
-
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    height: 60px;
-
-    display: flex;
-
-    gap: 5px;
-
-    padding:
-        5px;
-
-    background:
-        #28150c;
-
-    border:
-        4px solid
-        #1b0d08;
-
-}
-
-.counter-drawer {
-
-    flex: 1;
-
-    border:
-        1px solid
-        #8a5b31;
-
-    background:
-
-        linear-gradient(
-            180deg,
-            #704528,
-            #3b2113
-        );
-
-    color:
-        #d5b77f;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size:
-        0.66rem;
-
-    letter-spacing:
-        0.07em;
-
-    cursor: pointer;
-
-    box-shadow:
-        inset 0 2px 3px
-        rgba(255,255,255,0.10);
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-
-}
-
-
-.counter-drawer:hover {
-
-    background:
-
-        linear-gradient(
-            180deg,
-            #895733,
-            #4b2817
-        );
-
-    transform:
-        translateY(-2px);
-
-}
-
-
-/* =====================================
-   LÁMPARA
-===================================== */
-
-.apothecary-lamp {
-
-    position: absolute;
+    width: 17px;
+    height: 9px;
 
     left: 50%;
 
     top: -8px;
 
-    width: 100px;
-    height: 150px;
-
     transform:
         translateX(-50%);
 
-    z-index: 18;
-
-}
-
-
-.lamp-glow {
-
-    position: absolute;
-
-    left: 50%;
-    top: 35px;
-
-    width: 260px;
-    height: 260px;
-
-    transform:
-        translate(-50%, -50%);
-
-    border-radius: 50%;
+    border-radius: 2px 2px 0 0;
 
     background:
-
-        radial-gradient(
-            circle,
-            rgba(241, 188, 94, 0.30),
-            rgba(211, 142, 49, 0.08) 40%,
-            transparent 70%
-        );
-
-    filter: blur(8px);
-   
+        #8a6b4a;
 }
 
-.lamp-shade {
+
+.bottle::after {
+    content: "";
 
     position: absolute;
 
-    top: 25px;
-    left: 50%;
+    left: 5px;
+    right: 5px;
 
-    width: 95px;
-    height: 55px;
+    bottom: 14px;
 
-    transform:
-        translateX(-50%);
-
-    border-radius:
-        50% 50% 12px 12px;
+    height: 16px;
 
     background:
+        #e5d2ad;
 
-        linear-gradient(
-            180deg,
-            #d9b773,
-            #7b512d
-        );
+    opacity: 0.85;
 
-    border:
-        3px solid
-        #422514;
-
-    box-shadow:
-        0 8px 12px
-        rgba(0,0,0,0.35);
+    border-radius: 2px;
 }
 
-.lamp-body {
 
-    position: absolute;
-
-    left: 50%;
-    top: 5px;
-
-    width: 12px;
-    height: 35px;
-
-    transform:
-        translateX(-50%);
-
+.bottle-green {
     background:
-        #2a170d;
-
-    border-radius:
-        5px;
-}
-
-/* =====================================
-   VELA
-===================================== */
-
-.candle {
-    position: absolute;
-
-    right: 25%;
-
-    bottom: 7%;
-
-    width: 34px;
-    height: 80px;
-
-    z-index: 25;
-}
-
-.candle-body {
-
-    position: absolute;
-
-    bottom: 0;
-
-    width: 34px;
-    height: 62px;
-
-    border-radius:
-        5px 5px 3px 3px;
-
-    background:
-
         linear-gradient(
             90deg,
-            #8f7048,
-            #ead5a7 45%,
-            #a98552
+            #263c31,
+            #4f6955,
+            #20352b
         );
-
-    border:
-        1px solid
-        #60452a;
-
-    box-shadow:
-        0 8px 12px
-        rgba(0,0,0,0.35);
 }
 
-.flame {
 
-    position: absolute;
-
-    left: 50%;
-    top: -2px;
-
-    width: 17px;
-    height: 27px;
-
-    transform:
-        translateX(-50%);
-
-    border-radius:
-        50% 50% 50% 50%;
+.bottle-brown {
+    height: 69px;
 
     background:
-
-        radial-gradient(
-            ellipse at center bottom,
-            #fff1a8 0%,
-            #e9a735 55%,
-            #b65d20 100%
+        linear-gradient(
+            90deg,
+            #573321,
+            #9a6040,
+            #422619
         );
-
-    box-shadow:
-
-        0 0 18px
-        rgba(235,166,57,0.85);
-
-    animation:
-        flicker
-        1.2s
-        ease-in-out
-        infinite alternate;
-
 }
 
 
-@keyframes flicker {
+.bottle-clear {
+    width: 34px;
 
-    from {
-
-        transform:
-            translateX(-50%)
-            scale(0.9)
-            rotate(-2deg);
-
-    }
-
-    to {
-
-        transform:
-            translateX(-50%)
-            scale(1.08)
-            rotate(3deg);
-
-    }
-
+    background:
+        linear-gradient(
+            90deg,
+            #bca98a,
+            #e4d6b8,
+            #8e7b60
+        );
 }
 
 
-/* =====================================
-   NAVEGACIÓN INFERIOR
-===================================== */
+.small-bottle {
+    position: relative;
 
-.journal-navigation {
+    width: 24px;
+    height: 40px;
+
+    border-radius: 4px 4px 7px 7px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #687057,
+            #9b9c77,
+            #4b5340
+        );
+}
+
+
+.small-bottle::before {
+    content: "";
 
     position: absolute;
 
-    left: 50%;
-    bottom: 0;
+    width: 12px;
+    height: 6px;
 
-    width: min(760px, 80vw);
-    height: 72px;
+    left: 6px;
+    top: -6px;
 
-    transform:
-        translateX(-50%);
+    background: #836747;
+}
 
-    z-index: 60;
+
+.small-bottle::after {
+    content: "";
+
+    position: absolute;
+
+    left: 3px;
+    right: 3px;
+
+    bottom: 8px;
+
+    height: 10px;
+
+    background: #e1ceb0;
+}
+
+
+.small-bottle.dark {
+    background:
+        linear-gradient(
+            90deg,
+            #30251d,
+            #63503c,
+            #282019
+        );
+}
+
+
+.small-bottle.amber {
+    background:
+        linear-gradient(
+            90deg,
+            #70401f,
+            #b97838,
+            #5c3219
+        );
+}
+
+
+/* =========================================
+   HERBARIO
+========================================= */
+
+.herb-decoration {
+    margin-top: 22px;
+
+    padding: 14px;
 
     display: flex;
 
+    gap: 12px;
+
     align-items: center;
-    justify-content: center;
 
-    gap: 8px;
-
-    padding:
-        8px 12px;
-
-    background:
-
-        linear-gradient(
-            180deg,
-            rgba(45,25,15,0.96),
-            rgba(25,13,9,0.98)
-        );
-
-    border:
+    border-top:
         1px solid
-        rgba(178,126,59,0.38);
-
-    border-bottom:
-        none;
-
-    border-radius:
-        14px 14px 0 0;
-
-    box-shadow:
-
-        0 -8px 25px
-        rgba(0,0,0,0.40);
-
+        rgba(207, 169, 111, 0.25);
 }
 
 
-.nav-label {
+.herb-decoration > span {
+    font-size: 27px;
+}
 
-    min-width: 105px;
 
-    height: 50px;
+.herb-decoration small {
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color: #a88a64;
+}
+
+
+.herb-decoration p {
+    margin-top: 3px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 18px;
+
+    color: #dec69e;
+}
+
+
+/* =========================================
+   ÁREA CENTRAL
+========================================= */
+
+.journal-area {
+    min-width: 0;
+
+    min-height: 0;
 
     display: flex;
 
     flex-direction: column;
 
     align-items: center;
-    justify-content: center;
 
-    gap: 4px;
+    overflow: hidden;
+}
+
+
+.welcome {
+    text-align: center;
+
+    flex-shrink: 0;
+
+    margin-bottom: 15px;
+}
+
+
+.ornament {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: #c59b61;
+
+    font-size: 14px;
+}
+
+
+.welcome h2 {
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 30px;
+
+    font-weight: 600;
+
+    color: #ead8b8;
+}
+
+
+.welcome p {
+    margin-top: 1px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 16px;
+
+    color: #bda487;
+}
+
+
+/* =========================================
+   TARJETA DEL DIARIO
+========================================= */
+
+.entry-card {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 720px;
+
+    min-height: 0;
+
+    flex: 1;
+
+    padding:
+        22px
+        25px;
+
+    overflow: auto;
 
     border:
         1px solid
-        transparent;
+        rgba(157, 119, 72, 0.48);
 
-    border-radius: 7px;
+    border-radius: 4px;
 
     background:
-        transparent;
+        linear-gradient(
+            145deg,
+            #ead9b9,
+            #d8c09b
+        );
 
-    color:
-        #9d805d;
+    box-shadow:
+        0 20px 45px
+        rgba(0,0,0,0.30),
+
+        inset 0 0 35px
+        rgba(104, 70, 39, 0.12);
+}
+
+
+.entry-card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 8px;
+
+    pointer-events: none;
+
+    border:
+        1px solid
+        rgba(125, 88, 48, 0.16);
+}
+
+
+.card-header {
+    position: relative;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    padding-bottom: 13px;
+
+    border-bottom:
+        1px solid
+        rgba(115, 77, 39, 0.25);
+}
+
+
+.label,
+.section-label {
+    font-size: 8px;
+
+    letter-spacing: 2.5px;
+
+    color: #96734e;
+}
+
+
+.card-header h3 {
+    margin-top: 3px;
 
     font-family:
-        "Plus Jakarta Sans",
-        sans-serif;
+        "Cormorant Garamond",
+        serif;
 
-    font-size:
-        0.62rem;
+    font-size: 27px;
+
+    font-weight: 600;
+
+    color: #4c3324;
+}
+
+
+.card-number {
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 16px;
+
+    color: #96734e;
+}
+
+
+/* =========================================
+   ESCRITURA
+========================================= */
+
+.writing-area {
+    position: relative;
+
+    margin-top: 15px;
+
+    height: 150px;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 29px,
+            rgba(121, 91, 59, 0.18) 30px
+        );
+}
+
+
+.writing-area textarea {
+    width: 100%;
+    height: 100%;
+
+    resize: none;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 19px;
+
+    line-height: 30px;
+
+    color: #523a29;
+}
+
+
+.writing-area textarea::placeholder {
+    color: #987b5b;
+
+    opacity: 0.8;
+}
+
+
+/* =========================================
+   EMOCIONES
+========================================= */
+
+.mood-section {
+    margin-top: 14px;
+}
+
+
+.moods {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 8px;
+}
+
+
+.mood {
+    padding:
+        7px
+        12px;
+
+    border:
+        1px solid
+        rgba(117, 80, 43, 0.22);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,0.16);
+
+    color: #604735;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 10px;
 
     cursor: pointer;
 
     transition:
-        color 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
-
+        0.2s ease;
 }
 
 
-.nav-label svg {
+.mood span {
+    margin-right: 4px;
 
-    width: 18px;
-    height: 18px;
-
+    color: #906838;
 }
 
 
-.nav-label:hover {
-
-    color:
-        #e0c28b;
-
+.mood:hover,
+.mood.selected {
     background:
-        rgba(130,83,42,0.20);
-
-}
-
-
-.nav-label.active {
-
-    color:
-        #eed19a;
-
-    background:
-        rgba(153,101,49,0.25);
+        rgba(133, 91, 46, 0.15);
 
     border-color:
-        rgba(194,145,76,0.30);
+        rgba(117, 80, 43, 0.45);
 
+    transform:
+        translateY(-1px);
 }
 
 
-/* =====================================
-   ADAPTACIÓN
-===================================== */
+/* =========================================
+   ETIQUETAS
+========================================= */
 
-@media (max-width: 1100px) {
-
-    .apothecary-shelf {
-
-        width: 180px;
-
-    }
-
-    .botanical-left {
-
-        left: 9%;
-
-    }
-
-    .botanical-right {
-
-        right: 9%;
-
-    }
-
-    .apothecary-counter {
-
-        width: 58vw;
-
-    }
-
-    .nav-label {
-
-        min-width: 85px;
-
-    }
-
+.tags-section {
+    margin-top: 12px;
 }
 
 
-@media (max-height: 750px) {
+.tags {
+    display: flex;
 
-    .apothecary-shelf {
+    gap: 7px;
 
-        top: 2%;
-        height: 87%;
-
-    }
-
-    .shelf-row {
-
-        height: 125px;
-
-    }
-
-    .botanical {
-
-        transform:
-            scale(0.85);
-
-        transform-origin:
-            bottom center;
-
-    }
-
-    .botanical-right {
-
-        transform:
-            scaleX(-1)
-            scale(0.85);
-
-    }
-
+    margin-top: 7px;
 }
 
 
-/* =====================================
-   SELECCIÓN
-===================================== */
+.tag {
+    padding:
+        5px
+        10px;
 
-::selection {
+    border:
+        1px solid
+        rgba(117, 80, 43, 0.20);
+
+    border-radius: 3px;
+
+    font-size: 9px;
+
+    color: #725238;
 
     background:
-        rgba(190,140,67,0.45);
+        rgba(255,255,255,0.14);
+}
 
-    color:
-        #fff2d0;
 
+/* =========================================
+   BOTÓN GUARDAR
+========================================= */
+
+.save-button {
+    display: block;
+
+    margin:
+        16px
+        auto
+        0;
+
+    padding:
+        9px
+        20px;
+
+    border:
+        1px solid
+        #87643e;
+
+    border-radius: 3px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #795536,
+            #563823
+        );
+
+    color: #ead7b7;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 10px
+        rgba(53, 31, 18, 0.22);
+
+    transition:
+        0.2s ease;
+}
+
+
+.save-button:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 15px
+        rgba(53, 31, 18, 0.30);
+}
+
+
+.save-button span {
+    margin-right: 7px;
+
+    color: #d5ad72;
+}
+
+
+/* =========================================
+   PANEL DERECHO
+========================================= */
+
+.memory-panel {
+    min-height: 0;
+
+    padding:
+        20px
+        17px;
+
+    border-left:
+        1px solid
+        rgba(208, 169, 111, 0.25);
+}
+
+
+.memory-title span {
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: #a88a65;
+}
+
+
+.memory-title h3 {
+    margin-top: 2px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 26px;
+
+    font-weight: 600;
+
+    color: #e4d1af;
+}
+
+
+/* =========================================
+   UN DÍA COMO HOY
+========================================= */
+
+.memory-box {
+    margin-top: 18px;
+
+    padding:
+        18px
+        15px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(190, 149, 95, 0.32);
+
+    border-radius: 4px;
+
+    background:
+        rgba(63, 39, 26, 0.72);
+
+    box-shadow:
+        inset 0 0 20px
+        rgba(0,0,0,0.18);
+}
+
+
+.memory-icon {
+    display: block;
+
+    font-size: 20px;
+
+    color: #c49a61;
+}
+
+
+.memory-box h4 {
+    margin-top: 5px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 20px;
+
+    color: #dfc59c;
+}
+
+
+.memory-box p {
+    margin-top: 5px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 14px;
+
+    line-height: 1.35;
+
+    color: #b89b78;
+}
+
+
+.memory-box button {
+    margin-top: 12px;
+
+    padding:
+        6px
+        12px;
+
+    border:
+        1px solid
+        rgba(194, 153, 96, 0.5);
+
+    background:
+        transparent;
+
+    color: #d3b282;
+
+    font-size: 9px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   BUSCADOR
+========================================= */
+
+.search-box {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 20px;
+
+    padding:
+        8px
+        10px;
+
+    border-bottom:
+        1px solid
+        rgba(198, 159, 105, 0.35);
+}
+
+
+.search-box span {
+    font-size: 12px;
+
+    opacity: 0.7;
+}
+
+
+.search-box input {
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #d9c19e;
+
+    font-size: 10px;
+}
+
+
+.search-box input::placeholder {
+    color: #987b5d;
+}
+
+
+/* =========================================
+   ARCHIVO
+========================================= */
+
+.archive-list {
+    margin-top: 15px;
+}
+
+
+.archive-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+        10px
+        0;
+
+    border-bottom:
+        1px solid
+        rgba(198, 159, 105, 0.15);
+}
+
+
+.archive-date {
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 15px;
+
+    color: #c59d69;
+}
+
+
+.archive-item strong {
+    display: block;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    color: #d8c09b;
+}
+
+
+.archive-item small {
+    display: block;
+
+    margin-top: 1px;
+
+    font-size: 8px;
+
+    color: #96785a;
+}
+
+
+/* =========================================
+   NAVEGACIÓN INFERIOR
+========================================= */
+
+.bottom-nav {
+    position: relative;
+
+    z-index: 20;
+
+    height: 65px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 45px;
+
+    border-top:
+        1px solid
+        rgba(211, 174, 117, 0.25);
+
+    background:
+        rgba(34, 21, 15, 0.75);
+}
+
+
+.nav-item {
+    position: relative;
+
+    height: 50px;
+
+    min-width: 65px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #987b5c;
+
+    cursor: pointer;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 3px;
+
+    transition:
+        0.2s ease;
+}
+
+
+.nav-item span {
+    font-size: 17px;
+}
+
+
+.nav-item small {
+    font-size: 8px;
+
+    letter-spacing: 0.8px;
+}
+
+
+.nav-item:hover,
+.nav-item.active {
+    color: #d6b27c;
+}
+
+
+.nav-item.active::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 35px;
+
+    height: 2px;
+
+    background:
+        #bd9156;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1050px) {
+
+    .apothecary-room {
+        grid-template-columns:
+            170px
+            minmax(350px, 1fr)
+            200px;
+
+        gap: 18px;
+
+        padding:
+            20px;
+    }
+
+    .bottom-nav {
+        gap: 20px;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .top-bar {
+        padding:
+            15px
+            25px;
+    }
+
+    .brand h1 {
+        font-size: 30px;
+    }
+
+    .apothecary-room {
+        grid-template-columns:
+            1fr;
+
+        overflow-y: auto;
+    }
+
+    .shelf-panel,
+    .memory-panel {
+        display: none;
+    }
+
+    .journal-area {
+        min-height: 600px;
+    }
+
+    .bottom-nav {
+        gap: 8px;
+    }
+
+    .nav-item {
+        min-width: 55px;
+    }
 }
