@@ -4,422 +4,536 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Daily Journal | Private Atlas A.S.</title>
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
           rel="stylesheet">
 
-    <link rel="stylesheet"
-          href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 
 <body>
 
-    <main class="apothecary">
+<main class="apothecary">
+
+
+    <!-- =================================
+         DECORACIÓN
+    ================================== -->
+
+    <div class="ambient-glow glow-one"></div>
+    <div class="ambient-glow glow-two"></div>
+
+    <div class="particle particle-one">✦</div>
+    <div class="particle particle-two">✧</div>
+    <div class="particle particle-three">·</div>
+    <div class="particle particle-four">✦</div>
+
+
+    <!-- =================================
+         ENCABEZADO
+    ================================== -->
+
+    <header class="top-bar">
+
+        <div class="brand">
+
+            <span class="brand-small">
+                PRIVATE ATLAS A.S.
+            </span>
+
+            <h1>
+                Daily Journal
+            </h1>
+
+            <span class="brand-subtitle">
+                ARCHIVO DE EXPERIENCIAS Y EMOCIONES
+            </span>
+
+        </div>
+
+
+        <div class="date-display">
+
+            <span class="date-label">
+                REGISTRO DE HOY
+            </span>
+
+            <strong id="currentDate">
+                03 SEPTIEMBRE 2026
+            </strong>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================
+         SALA PRINCIPAL
+    ================================== -->
+
+    <section class="apothecary-room">
+
 
         <!-- =================================
-             DECORACIÓN
+             PANEL IZQUIERDO
         ================================== -->
 
-        <div class="ambient-glow glow-one"></div>
-        <div class="ambient-glow glow-two"></div>
+        <aside class="shelf-panel">
 
-        <div class="particle particle-one">✦</div>
-        <div class="particle particle-two">✧</div>
-        <div class="particle particle-three">·</div>
+            <div class="panel-title">
+                <span>✦</span>
+                BOTICA
+                <span>✦</span>
+            </div>
 
 
-        <!-- =================================
-             ENCABEZADO
-        ================================== -->
+            <div class="cabinet-label">
+                ESTANTE I
+            </div>
 
-        <header class="top-bar">
 
-            <div class="brand">
+            <div class="wood-shelf">
 
-                <span class="brand-small">
-                    PRIVATE ATLAS
-                </span>
+                <div class="bottle bottle-green">
+                    <span></span>
+                </div>
 
-                <h1>
-                    Daily Journal
-                </h1>
+                <div class="bottle bottle-brown">
+                    <span></span>
+                </div>
+
+                <div class="bottle bottle-clear">
+                    <span></span>
+                </div>
 
             </div>
 
 
-            <div class="date-display">
+            <div class="cabinet-label">
+                ESTANTE II
+            </div>
 
-                <span class="date-label">
-                    HOY
-                </span>
 
-                <strong id="currentDate">
-                    03 SEPTIEMBRE 2026
-                </strong>
+            <div class="wood-shelf small-shelf">
+
+                <div class="small-bottle">
+                    <span></span>
+                </div>
+
+                <div class="small-bottle dark">
+                    <span></span>
+                </div>
+
+                <div class="small-bottle amber">
+                    <span></span>
+                </div>
+
+                <div class="small-bottle">
+                    <span></span>
+                </div>
 
             </div>
 
-        </header>
+
+            <!-- HERBARIO -->
+
+            <div class="herbarium">
+
+                <div class="herbarium-icon">
+                    🌿
+                </div>
+
+                <div>
+
+                    <small>
+                        HERBARIO
+                    </small>
+
+                    <p>
+                        Recuerdos
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PEQUEÑA DECORACIÓN -->
+
+            <div class="cabinet-note">
+
+                <span>✧</span>
+
+                <p>
+                    Cada día guarda
+                    una historia.
+                </p>
+
+                <span>✧</span>
+
+            </div>
+
+        </aside>
+
 
 
         <!-- =================================
-             CONTENIDO PRINCIPAL
+             CENTRO
         ================================== -->
 
-        <section class="apothecary-room">
+        <section class="journal-area">
+
+
+            <div class="welcome">
+
+                <span class="ornament">
+                    ✦
+                </span>
+
+                <h2>
+                    Conserva tu día
+                </h2>
+
+                <p>
+                    Cada experiencia merece un pequeño lugar
+                    en tu historia.
+                </p>
+
+            </div>
+
 
 
             <!-- =================================
-                 ESTANTERÍA IZQUIERDA
+                 TARJETA DEL DIARIO
             ================================== -->
 
-            <aside class="shelf-panel">
-
-                <div class="panel-title">
-                    <span>✦</span>
-                    BOTICA
-                    <span>✦</span>
-                </div>
+            <div class="entry-card">
 
 
-                <div class="wood-shelf">
-
-                    <div class="bottle bottle-green">
-                        <span></span>
-                    </div>
-
-                    <div class="bottle bottle-brown">
-                        <span></span>
-                    </div>
-
-                    <div class="bottle bottle-clear">
-                        <span></span>
-                    </div>
-
-                </div>
-
-
-                <div class="wood-shelf">
-
-                    <div class="small-bottle">
-                        <span></span>
-                    </div>
-
-                    <div class="small-bottle dark">
-                        <span></span>
-                    </div>
-
-                    <div class="small-bottle amber">
-                        <span></span>
-                    </div>
-
-                    <div class="small-bottle">
-                        <span></span>
-                    </div>
-
-                </div>
-
-
-                <div class="herb-decoration">
-
-                    <span>🌿</span>
+                <div class="card-header">
 
                     <div>
-                        <small>
-                            HERBARIO
-                        </small>
 
-                        <p>
-                            Recuerdos
-                        </p>
+                        <span class="label">
+                            REGISTRO DEL DÍA
+                        </span>
+
+                        <h3>
+                            ¿Cómo fue tu día?
+                        </h3>
+
                     </div>
 
-                </div>
 
-            </aside>
-
-
-
-            <!-- =================================
-                 ÁREA CENTRAL
-            ================================== -->
-
-            <section class="journal-area">
-
-                <div class="welcome">
-
-                    <span class="ornament">
-                        ✦
+                    <span class="card-number">
+                        Nº 001
                     </span>
 
-                    <h2>
-                        Conserva tu día
-                    </h2>
+                </div>
 
-                    <p>
-                        Cada experiencia merece un pequeño lugar
-                        en tu historia.
-                    </p>
+
+
+                <!-- ESCRITURA -->
+
+                <div class="writing-area">
+
+                    <textarea
+                        id="journalText"
+                        placeholder="Escribe aquí aquello que quieras conservar de este día..."
+                    ></textarea>
 
                 </div>
 
 
-                <!-- TARJETA PRINCIPAL -->
 
-                <div class="entry-card">
+                <!-- EMOCIONES -->
 
-                    <div class="card-header">
+                <div class="mood-section">
 
-                        <div>
-                            <span class="label">
-                                REGISTRO DEL DÍA
-                            </span>
-
-                            <h3>
-                                ¿Cómo fue tu día?
-                            </h3>
-                        </div>
-
-                        <span class="card-number">
-                            Nº 001
-                        </span>
-
-                    </div>
-
-
-                    <div class="writing-area">
-
-                        <textarea
-                            id="journalText"
-                            placeholder="Escribe aquí aquello que quieras conservar de este día..."
-                        ></textarea>
-
-                    </div>
-
-
-                    <!-- ESTADO DE ÁNIMO -->
-
-                    <div class="mood-section">
-
-                        <span class="section-label">
-                            ESTADO DE ÁNIMO
-                        </span>
-
-
-                        <div class="moods">
-
-                            <button class="mood" type="button">
-                                <span>☀</span>
-                                Feliz
-                            </button>
-
-                            <button class="mood" type="button">
-                                <span>♡</span>
-                                Tranquilo
-                            </button>
-
-                            <button class="mood" type="button">
-                                <span>✦</span>
-                                Emocionado
-                            </button>
-
-                            <button class="mood" type="button">
-                                <span>☾</span>
-                                Nostálgico
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- ETIQUETAS -->
-
-                    <div class="tags-section">
-
-                        <span class="section-label">
-                            ETIQUETAS
-                        </span>
-
-                        <div class="tags">
-
-                            <span class="tag">
-                                #hoy
-                            </span>
-
-                            <span class="tag">
-                                #recuerdo
-                            </span>
-
-                            <span class="tag">
-                                + añadir
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <button class="save-button">
-                        <span>✦</span>
-                        Guardar recuerdo
-                    </button>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =================================
-                 PANEL DERECHO
-            ================================== -->
-
-            <aside class="memory-panel">
-
-                <div class="memory-title">
-
-                    <span>
-                        ARCHIVO
+                    <span class="section-label">
+                        ESTADO DE ÁNIMO
                     </span>
 
-                    <h3>
-                        Tus recuerdos
-                    </h3>
 
-                </div>
+                    <div class="moods">
 
+                        <button class="mood" type="button">
+                            <span>☀</span>
+                            Feliz
+                        </button>
 
-                <div class="memory-box">
+                        <button class="mood" type="button">
+                            <span>♡</span>
+                            Tranquilo
+                        </button>
 
-                    <span class="memory-icon">
-                        ◇
-                    </span>
+                        <button class="mood" type="button">
+                            <span>✦</span>
+                            Emocionado
+                        </button>
 
-                    <h4>
-                        Un día como hoy
-                    </h4>
+                        <button class="mood" type="button">
+                            <span>☾</span>
+                            Nostálgico
+                        </button>
 
-                    <p>
-                        Descubre qué estabas viviendo
-                        en esta misma fecha.
-                    </p>
-
-                    <button>
-                        Ver recuerdos
-                    </button>
-
-                </div>
-
-
-                <div class="search-box">
-
-                    <span>
-                        🔎
-                    </span>
-
-                    <input
-                        type="text"
-                        placeholder="Buscar por fecha..."
-                    >
-
-                </div>
-
-
-                <div class="archive-list">
-
-                    <div class="archive-item">
-
-                        <span class="archive-date">
-                            27 AGO
-                        </span>
-
-                        <div>
-                            <strong>
-                                Un día especial
-                            </strong>
-
-                            <small>
-                                Hace 7 días
-                            </small>
-                        </div>
-
-                    </div>
-
-
-                    <div class="archive-item">
-
-                        <span class="archive-date">
-                            18 AGO
-                        </span>
-
-                        <div>
-                            <strong>
-                                Pequeños momentos
-                            </strong>
-
-                            <small>
-                                Hace 16 días
-                            </small>
-                        </div>
+                        <button class="mood" type="button">
+                            <span>☁</span>
+                            Pensativo
+                        </button>
 
                     </div>
 
                 </div>
 
-            </aside>
+
+
+                <!-- ETIQUETAS -->
+
+                <div class="tags-section">
+
+                    <span class="section-label">
+                        ETIQUETAS
+                    </span>
+
+
+                    <div class="tags">
+
+                        <span class="tag">
+                            #hoy
+                        </span>
+
+                        <span class="tag">
+                            #recuerdo
+                        </span>
+
+                        <button class="add-tag" type="button">
+                            + añadir
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- GUARDAR -->
+
+                <button class="save-button" type="button">
+
+                    <span>✦</span>
+
+                    Guardar recuerdo
+
+                </button>
+
+            </div>
 
         </section>
 
 
+
         <!-- =================================
-             NAVEGACIÓN
+             PANEL DERECHO
         ================================== -->
 
-        <nav class="bottom-nav">
-
-            <button class="nav-item active">
-                <span>✎</span>
-                <small>Diario</small>
-            </button>
-
-            <button class="nav-item">
-                <span>📚</span>
-                <small>Libros</small>
-            </button>
-
-            <button class="nav-item">
-                <span>⚗</span>
-                <small>Recetas</small>
-            </button>
-
-            <button class="nav-item">
-                <span>♡</span>
-                <small>Emociones</small>
-            </button>
-
-            <button class="nav-item">
-                <span>◉</span>
-                <small>Películas</small>
-            </button>
-
-        </nav>
-
-    </main>
+        <aside class="memory-panel">
 
 
-    <script src="script.js"></script>
+            <div class="memory-title">
+
+                <span>
+                    ARCHIVO PERSONAL
+                </span>
+
+                <h3>
+                    Tus recuerdos
+                </h3>
+
+            </div>
+
+
+
+            <!-- UN DÍA COMO HOY -->
+
+            <div class="memory-box">
+
+                <span class="memory-icon">
+                    ◇
+                </span>
+
+                <h4>
+                    Un día como hoy
+                </h4>
+
+                <p>
+                    Descubre qué estabas viviendo
+                    en esta misma fecha.
+                </p>
+
+                <button type="button">
+                    Ver recuerdos
+                </button>
+
+            </div>
+
+
+
+            <!-- BUSCADOR -->
+
+            <div class="search-box">
+
+                <span>
+                    ⌕
+                </span>
+
+                <input
+                    type="text"
+                    placeholder="Buscar por fecha..."
+                >
+
+            </div>
+
+
+
+            <!-- ARCHIVO -->
+
+            <div class="archive-heading">
+                ÚLTIMOS REGISTROS
+            </div>
+
+
+            <div class="archive-list">
+
+
+                <div class="archive-item">
+
+                    <span class="archive-date">
+                        27 AGO
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Un día especial
+                        </strong>
+
+                        <small>
+                            Hace 7 días
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="archive-item">
+
+                    <span class="archive-date">
+                        18 AGO
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Pequeños momentos
+                        </strong>
+
+                        <small>
+                            Hace 16 días
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="archive-item">
+
+                    <span class="archive-date">
+                        11 AGO
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Una tarde tranquila
+                        </strong>
+
+                        <small>
+                            Hace 23 días
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- DECORACIÓN -->
+
+            <div class="memory-footer">
+
+                ✦ &nbsp; ARCHIVADO &nbsp; ✦
+
+            </div>
+
+        </aside>
+
+    </section>
+
+
+
+    <!-- =================================
+         NAVEGACIÓN
+    ================================== -->
+
+    <nav class="bottom-nav">
+
+        <button class="nav-item active" type="button">
+
+            <span>✎</span>
+
+            <small>
+                Diario
+            </small>
+
+        </button>
+
+
+        <div class="nav-divider"></div>
+
+
+        <button class="nav-item" type="button">
+
+            <span>♡</span>
+
+            <small>
+                Emociones
+            </small>
+
+        </button>
+
+    </nav>
+
+
+</main>
+
+
+<script src="script.js"></script>
 
 </body>
+
 </html>
