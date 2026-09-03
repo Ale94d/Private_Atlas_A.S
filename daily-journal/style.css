@@ -18,46 +18,275 @@ body {
 
 body {
 
-    font-family: "Plus Jakarta Sans", sans-serif;
+    font-family:
+        "Plus Jakarta Sans",
+        sans-serif;
 
     overflow: hidden;
 
-    background: #3d2b20;
+    color: #3b2417;
 
-    color: #3d2b20;
-
+    background:
+        #2b1b13;
 }
 
 
 /* =====================================
-   WORKSPACE
+   DAILY JOURNAL
 ===================================== */
 
-.journal-workspace {
+.daily-journal {
 
-    position: fixed;
+    position: relative;
 
-    inset: 0;
+    width: 100vw;
+    height: 100vh;
 
-    width: 100%;
-    height: 100%;
+    min-width: 900px;
+    min-height: 650px;
 
     overflow: hidden;
 
     background:
 
         radial-gradient(
-            circle at center,
-            rgba(214, 183, 133, 0.18),
-            transparent 55%
+            circle at 50% 45%,
+            rgba(125, 77, 39, 0.20),
+            transparent 42%
         ),
 
         linear-gradient(
-            135deg,
-            #38271e,
-            #5a4030 45%,
-            #2e211a
+            90deg,
+            #1e120d 0%,
+            #392318 15%,
+            #513321 50%,
+            #392318 85%,
+            #1e120d 100%
         );
+
+}
+
+
+/* =====================================
+   PARED DE LA BOTICA
+===================================== */
+
+.daily-journal::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 0;
+
+    background:
+
+        repeating-linear-gradient(
+            90deg,
+            rgba(255,255,255,0.018) 0px,
+            rgba(255,255,255,0.018) 2px,
+            transparent 2px,
+            transparent 85px
+        ),
+
+        linear-gradient(
+            180deg,
+            #4a2e20 0%,
+            #5a3926 45%,
+            #382116 100%
+        );
+
+    opacity: 0.95;
+
+}
+
+
+/* =====================================
+   ILUMINACIÓN AMBIENTAL
+===================================== */
+
+.ambient-light {
+
+    position: absolute;
+
+    left: 50%;
+    top: 42%;
+
+    width: 75vw;
+    height: 75vh;
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+
+        radial-gradient(
+            ellipse,
+            rgba(239, 185, 91, 0.22) 0%,
+            rgba(190, 119, 43, 0.10) 35%,
+            transparent 72%
+        );
+
+    filter: blur(18px);
+
+}
+
+
+/* =====================================
+   PARTÍCULAS
+===================================== */
+
+.floating-particles {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 8;
+
+    pointer-events: none;
+
+}
+
+
+.floating-particles span {
+
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(242, 205, 139, 0.55);
+
+    box-shadow:
+        0 0 8px
+        rgba(240, 191, 104, 0.55);
+
+    animation:
+        floatParticle
+        8s
+        ease-in-out
+        infinite;
+
+}
+
+
+.floating-particles span:nth-child(1) {
+    left: 18%;
+    top: 28%;
+    animation-delay: 0s;
+}
+
+
+.floating-particles span:nth-child(2) {
+    left: 31%;
+    top: 64%;
+    animation-delay: 2s;
+}
+
+
+.floating-particles span:nth-child(3) {
+    left: 52%;
+    top: 22%;
+    animation-delay: 4s;
+}
+
+
+.floating-particles span:nth-child(4) {
+    left: 68%;
+    top: 55%;
+    animation-delay: 1s;
+}
+
+
+.floating-particles span:nth-child(5) {
+    left: 81%;
+    top: 31%;
+    animation-delay: 3s;
+}
+
+
+.floating-particles span:nth-child(6) {
+    left: 74%;
+    top: 76%;
+    animation-delay: 5s;
+}
+
+
+@keyframes floatParticle {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+        opacity: 0.25;
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-22px);
+
+        opacity: 0.8;
+
+    }
+
+}
+
+
+/* =====================================
+   BARRA SUPERIOR
+===================================== */
+
+.journal-header {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 82px;
+
+    z-index: 50;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        0 32px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(32, 18, 12, 0.92),
+            rgba(48, 27, 17, 0.78)
+        );
+
+    border-bottom:
+        1px solid
+        rgba(190, 137, 69, 0.30);
+
+    box-shadow:
+
+        0 8px 20px
+        rgba(0,0,0,0.30);
 
 }
 
@@ -66,14 +295,7 @@ body {
    BOTÓN HOME
 ===================================== */
 
-.back-home {
-
-    position: fixed;
-
-    top: 22px;
-    left: 22px;
-
-    z-index: 100;
+.home-button {
 
     width: 46px;
     height: 46px;
@@ -83,56 +305,57 @@ body {
     align-items: center;
     justify-content: center;
 
-    border: 1px solid
-        rgba(226, 208, 177, 0.45);
+    border:
+        1px solid
+        rgba(208, 166, 101, 0.45);
 
     border-radius: 50%;
 
     background:
 
-        linear-gradient(
-            145deg,
-            #eadfce,
-            #a9957b
+        radial-gradient(
+            circle at 35% 30%,
+            #d9bc8b,
+            #74502f
         );
 
-    color: #4b3728;
+    color:
+        #fff0d0;
 
     cursor: pointer;
 
     box-shadow:
 
-        0 7px 18px
-        rgba(0, 0, 0, 0.35),
+        0 5px 15px
+        rgba(0,0,0,0.35),
 
-        inset 0 2px 4px
-        rgba(255,255,255,0.55);
+        inset 0 1px 3px
+        rgba(255,255,255,0.35);
 
     transition:
-
         transform 0.2s ease,
         box-shadow 0.2s ease;
 
 }
 
 
-.back-home:hover {
+.home-button:hover {
 
     transform:
         translateY(-2px);
 
     box-shadow:
 
-        0 10px 22px
-        rgba(0, 0, 0, 0.42),
+        0 8px 20px
+        rgba(0,0,0,0.45),
 
-        inset 0 2px 5px
-        rgba(255,255,255,0.65);
+        0 0 14px
+        rgba(211,165,88,0.30);
 
 }
 
 
-.back-home i {
+.home-button svg {
 
     width: 20px;
     height: 20px;
@@ -141,540 +364,41 @@ body {
 
 
 /* =====================================
-   FONDO
+   TÍTULO
 ===================================== */
 
-.journal-background {
-
-    position: absolute;
-
-    inset: 0;
-
-    overflow: hidden;
-
-    pointer-events: none;
-
-}
-
-
-/* =====================================
-   LUZ CENTRAL
-===================================== */
-
-.background-light {
+.journal-title {
 
     position: absolute;
 
     left: 50%;
     top: 50%;
-
-    width: 900px;
-    height: 700px;
 
     transform:
         translate(-50%, -50%);
 
-    border-radius: 50%;
-
-    background:
-
-        radial-gradient(
-            ellipse,
-            rgba(232, 204, 155, 0.22),
-            rgba(232, 204, 155, 0.08) 40%,
-            transparent 72%
-        );
-
-    filter: blur(20px);
-
-}
-
-
-/* =====================================
-   DECORACIÓN LATERAL
-===================================== */
-
-.background-decoration {
-
-    position: absolute;
-
-    top: 50%;
-
-    width: 260px;
-    height: 500px;
-
-    transform:
-        translateY(-50%);
-
-    opacity: 0.25;
-
-    border: 1px solid
-        rgba(215, 187, 145, 0.25);
-
-}
-
-
-.decoration-left {
-
-    left: -160px;
-
-    border-radius:
-        0 50% 50% 0;
-
-}
-
-
-.decoration-right {
-
-    right: -160px;
-
-    border-radius:
-        50% 0 0 50%;
-
-}
-
-
-/* =====================================
-   ESCENA DEL JOURNAL
-===================================== */
-
-.journal-scene {
-
-    position: absolute;
-
-    inset: 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    perspective: 1800px;
-
-}
-
-
-/* =====================================
-   LIBRO
-===================================== */
-
-.journal-book {
-
-    position: relative;
-
-    width: min(1050px, 88vw);
-
-    height: min(650px, 76vh);
-
-    display: flex;
-
-    transform:
-        rotateX(2deg);
-
-    filter:
-        drop-shadow(
-            0 35px 35px
-            rgba(0,0,0,0.45)
-        );
-
-}
-
-
-/* =====================================
-   LOMO
-===================================== */
-
-.book-spine {
-
-    position: absolute;
-
-    left: 50%;
-
-    top: 0;
-
-    width: 34px;
-    height: 100%;
-
-    transform:
-        translateX(-50%);
-
-    z-index: 10;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #5a3d29,
-            #8b6242 35%,
-            #4a3021 70%,
-            #281b14
-        );
-
-    box-shadow:
-
-        inset 7px 0 10px
-        rgba(0,0,0,0.35),
-
-        inset -7px 0 10px
-        rgba(0,0,0,0.35);
-
-}
-
-
-/* =====================================
-   PÁGINAS
-===================================== */
-
-.book-page {
-
-    position: relative;
-
-    width: 50%;
-    height: 100%;
-
-    overflow: hidden;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #f5ead6,
-            #ead9bd 55%,
-            #d8c19d
-        );
-
-    box-shadow:
-
-        inset 0 0 35px
-        rgba(104, 72, 40, 0.16);
-
-}
-
-
-/* =====================================
-   PÁGINA IZQUIERDA
-===================================== */
-
-.book-page-left {
-
-    padding:
-        65px 70px 55px 80px;
-
-    border-radius:
-        18px 0 0 18px;
-
-    box-shadow:
-
-        inset -18px 0 25px
-        rgba(75, 47, 27, 0.18),
-
-        inset 0 0 30px
-        rgba(110, 75, 40, 0.12);
-
-}
-
-
-/* =====================================
-   PÁGINA DERECHA
-===================================== */
-
-.book-page-right {
-
-    padding:
-        65px 80px 45px 70px;
-
-    border-radius:
-        0 18px 18px 0;
-
-    box-shadow:
-
-        inset 18px 0 25px
-        rgba(75, 47, 27, 0.18),
-
-        inset 0 0 30px
-        rgba(110, 75, 40, 0.12);
-
-}
-
-
-/* =====================================
-   TEXTURA DEL PAPEL
-===================================== */
-
-.book-page::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    opacity: 0.22;
-
-    background:
-
-        repeating-linear-gradient(
-            0deg,
-            transparent 0px,
-            transparent 5px,
-            rgba(100, 72, 42, 0.08) 6px
-        );
-
-}
-
-
-/* =====================================
-   ORNAMENTO
-===================================== */
-
-.page-ornament {
-
-    position: relative;
-
-    text-align: center;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 24px;
-
-    color: #9a6b37;
-
-}
-
-
-/* =====================================
-   ENCABEZADO
-===================================== */
-
-.journal-heading {
-
-    position: relative;
-
-    margin-top: 35px;
-
     text-align: center;
 
 }
 
 
-.heading-small {
+.journal-title span {
 
     display: block;
 
-    font-size: 0.65rem;
+    margin-bottom: 1px;
+
+    font-size: 0.58rem;
 
     letter-spacing: 0.28em;
 
-    color: #94704a;
+    color:
+        #c5a16d;
 
 }
 
 
-.journal-heading h1 {
-
-    margin-top: 8px;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: clamp(
-        2.8rem,
-        5vw,
-        4.6rem
-    );
-
-    font-weight: 600;
-
-    line-height: 0.95;
-
-    color: #4a3020;
-
-}
-
-
-/* =====================================
-   LÍNEA DEL TÍTULO
-===================================== */
-
-.heading-line {
-
-    width: 95px;
-    height: 1px;
-
-    margin:
-        20px auto 0;
-
-    background:
-        #a47a45;
-
-}
-
-
-/* =====================================
-   INTRODUCCIÓN
-===================================== */
-
-.journal-intro {
-
-    max-width: 390px;
-
-    margin:
-        35px auto 0;
-
-    text-align: center;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 1.2rem;
-
-    line-height: 1.6;
-
-    color: #70583f;
-
-}
-
-
-/* =====================================
-   FECHA
-===================================== */
-
-.journal-date {
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 16px;
-
-    margin-top: 48px;
-
-}
-
-
-.date-day {
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 4rem;
-
-    line-height: 0.8;
-
-    color: #81572e;
-
-}
-
-
-.date-info {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 3px;
-
-    font-size: 0.68rem;
-
-    letter-spacing: 0.18em;
-
-    color: #8c6a46;
-
-}
-
-
-/* =====================================
-   DIVISOR
-===================================== */
-
-.page-divider {
-
-    width: 70%;
-
-    height: 1px;
-
-    margin:
-        45px auto 0;
-
-    background:
-        rgba(137, 101, 61, 0.4);
-
-}
-
-
-/* =====================================
-   FRASE INFERIOR
-===================================== */
-
-.page-note {
-
-    margin-top: 25px;
-
-    text-align: center;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-style: italic;
-
-    font-size: 1rem;
-
-    color: #8a7054;
-
-}
-
-
-/* =====================================
-   ENCABEZADO PÁGINA DERECHA
-===================================== */
-
-.page-header {
-
-    position: relative;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    padding-bottom: 12px;
-
-    border-bottom:
-        1px solid
-        rgba(126, 92, 53, 0.35);
-
-    font-size: 0.65rem;
-
-    letter-spacing: 0.2em;
-
-    color: #92704b;
-
-}
-
-
-/* =====================================
-   CONTENIDO
-===================================== */
-
-.journal-content {
-
-    position: relative;
-
-    margin-top: 30px;
-
-}
-
-
-.journal-content h2 {
+.journal-title h1 {
 
     font-family:
         "Cormorant Garamond",
@@ -684,48 +408,628 @@ body {
 
     font-weight: 600;
 
-    color: #4c3221;
+    letter-spacing: 0.04em;
 
-}
+    color:
+        #f2dfbd;
 
-
-.writing-placeholder {
-
-    margin-top: 12px;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 1.05rem;
-
-    line-height: 1.8;
-
-    color: #8b7358;
+    text-shadow:
+        0 2px 8px
+        rgba(0,0,0,0.45);
 
 }
 
 
 /* =====================================
-   SECCIONES
+   HERRAMIENTAS
 ===================================== */
 
-.journal-sections {
+.journal-tools {
 
-    position: absolute;
+    display: flex;
 
-    left: 55px;
-    right: 55px;
+    gap: 10px;
 
-    bottom: 40px;
+}
+
+
+.tool-button {
+
+    width: 42px;
+    height: 42px;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
+    border:
+        1px solid
+        rgba(196, 151, 86, 0.35);
+
+    border-radius: 8px;
+
+    background:
+        rgba(87, 54, 33, 0.75);
+
+    color:
+        #d9bc8b;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.tool-button:hover {
+
+    background:
+        rgba(122, 77, 43, 0.85);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.tool-button svg {
+
+    width: 19px;
+    height: 19px;
+
+}
+
+
+/* =====================================
+   HABITACIÓN
+===================================== */
+
+.apothecary-room {
+
+    position: absolute;
+
+    inset: 82px 0 72px 0;
+
+    z-index: 5;
+
+}
+
+
+/* =====================================
+   ESTANTERÍAS
+===================================== */
+
+.apothecary-shelf {
+
+    position: absolute;
+
+    top: 5%;
+
+    width: 225px;
+    height: 86%;
+
+    padding:
+        28px 18px 20px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #24150e 0%,
+            #4a2a18 18%,
+            #5f3820 50%,
+            #412317 82%,
+            #1f120c 100%
+        );
+
+    border:
+        4px solid
+        #25140d;
+
+    box-shadow:
+
+        0 15px 30px
+        rgba(0,0,0,0.45),
+
+        inset 0 0 20px
+        rgba(0,0,0,0.45);
+
+}
+
+
+.shelf-left {
+
+    left: 0;
+
+    border-left:
+        none;
+
+}
+
+
+.shelf-right {
+
+    right: 0;
+
+    border-right:
+        none;
+
+}
+
+
+/* =====================================
+   PARTE SUPERIOR DEL MUEBLE
+===================================== */
+
+.shelf-top {
+
+    position: absolute;
+
+    top: 0;
+    left: -5px;
+    right: -5px;
+
+    height: 20px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #8b5a31,
+            #3a2114
+        );
+
+    border-bottom:
+        3px solid
+        #1f110b;
+
+    box-shadow:
+        0 4px 8px
+        rgba(0,0,0,0.35);
+
+}
+
+
+/* =====================================
+   ESTANTE
+===================================== */
+
+.wooden-shelf {
+
+    width: 100%;
+    height: 15px;
+
+    margin:
+        4px 0 14px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #8b5a31,
+            #4a2818 50%,
+            #2b170e
+        );
+
+    border-top:
+        2px solid
+        #a87543;
+
+    border-bottom:
+        3px solid
+        #211109;
+
+    box-shadow:
+
+        0 5px 8px
+        rgba(0,0,0,0.40);
+
+}
+
+
+/* =====================================
+   FILA
+===================================== */
+
+.shelf-row {
+
+    height: 145px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-around;
+
     gap: 8px;
+
+}
+
+
+/* =====================================
+   FRASCOS
+===================================== */
+
+.bottle {
+
+    position: relative;
+
+    width: 42px;
+    height: 82px;
+
+    border-radius:
+        7px 7px 10px 10px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #56351f,
+            #b27a3e 35%,
+            #e0bd7e 55%,
+            #79502d 80%,
+            #382014
+        );
+
+    border:
+        2px solid
+        rgba(30,16,9,0.8);
+
+    box-shadow:
+
+        4px 8px 10px
+        rgba(0,0,0,0.40),
+
+        inset 4px 0 5px
+        rgba(255,255,255,0.20);
+
+}
+
+
+.bottle::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 9px;
+    right: 9px;
+
+    top: -14px;
+
+    height: 16px;
+
+    border-radius:
+        3px 3px 1px 1px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #3a2113,
+            #a06a37,
+            #3a2113
+        );
+
+    border:
+        2px solid
+        #24130b;
+
+}
+
+
+.bottle span {
+
+    position: absolute;
+
+    left: 4px;
+    right: 4px;
+
+    top: 30px;
+
+    height: 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        #dbc59a;
+
+    color:
+        #5a351d;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 0.52rem;
+
+    letter-spacing: 0.04em;
+
+    writing-mode:
+        vertical-rl;
+
+    transform:
+        rotate(180deg);
+
+}
+
+
+.bottle-small {
+
+    width: 34px;
+    height: 62px;
+
+}
+
+
+.bottle-small span {
+
+    top: 23px;
+
+}
+
+
+.bottle-tall {
+
+    width: 39px;
+    height: 102px;
+
+}
+
+
+.bottle-round {
+
+    width: 56px;
+    height: 62px;
+
+    border-radius:
+        50% 50% 9px 9px;
+
+}
+
+
+.bottle-square {
+
+    width: 48px;
+    height: 76px;
+
+    border-radius:
+        3px;
+
+}
+
+
+/* =====================================
+   CAJONES
+===================================== */
+
+.drawer {
+
+    width: 88px;
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #684126,
+            #382014
+        );
+
+    border:
+        2px solid
+        #25140c;
+
+    box-shadow:
+
+        inset 0 2px 3px
+        rgba(255,255,255,0.12),
+
+        0 4px 7px
+        rgba(0,0,0,0.35);
+
+}
+
+
+.drawer::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        #c79a5a;
+
+    box-shadow:
+        0 0 4px
+        rgba(235,190,108,0.45);
+
+}
+
+
+.drawer span {
+
+    margin-top: 25px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        0.54rem;
+
+    letter-spacing:
+        0.08em;
+
+    color:
+        #cdb181;
+
+}
+
+
+/* =====================================
+   BOTÁNICA
+===================================== */
+
+.botanical {
+
+    position: absolute;
+
+    bottom: 8%;
+
+    width: 150px;
+    height: 250px;
+
+    z-index: 12;
+
+}
+
+
+.botanical-left {
+
+    left: 14%;
+
+}
+
+
+.botanical-right {
+
+    right: 14%;
+
+    transform:
+        scaleX(-1);
+
+}
+
+
+.plant-stem {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    width: 5px;
+    height: 220px;
+
+    transform:
+        translateX(-50%)
+        rotate(8deg);
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #27351e,
+            #637348,
+            #28371f
+        );
+
+}
+
+
+.leaf {
+
+    position: absolute;
+
+    width: 52px;
+    height: 25px;
+
+    border-radius:
+        100% 0 100% 0;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #718354,
+            #29391f
+        );
+
+    box-shadow:
+        inset 2px 2px 4px
+        rgba(255,255,255,0.15);
+
+}
+
+
+.leaf-one {
+
+    left: 28px;
+    bottom: 130px;
+
+    transform:
+        rotate(-30deg);
+
+}
+
+
+.leaf-two {
+
+    right: 18px;
+    bottom: 155px;
+
+    transform:
+        rotate(30deg);
+
+}
+
+
+.leaf-three {
+
+    left: 20px;
+    bottom: 78px;
+
+    transform:
+        rotate(-45deg);
+
+}
+
+
+.leaf-four {
+
+    right: 22px;
+    bottom: 55px;
+
+    transform:
+        rotate(38deg);
+
+}
+
+
+/* =====================================
+   MOSTRADOR CENTRAL
+===================================== */
+
+.apothecary-counter {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 2%;
+
+    width: min(720px, 56vw);
+    height: 76%;
+
+    transform:
+        translateX(-50%);
 
     z-index: 20;
 
@@ -733,10 +1037,810 @@ body {
 
 
 /* =====================================
-   BOTÓN DE SECCIÓN
+   PARTE SUPERIOR
 ===================================== */
 
-.journal-section {
+.counter-top {
+
+    position: relative;
+
+    width: 100%;
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #9b673a,
+            #563018 48%,
+            #321a0f
+        );
+
+    border:
+        4px solid
+        #241209;
+
+    box-shadow:
+
+        0 8px 12px
+        rgba(0,0,0,0.45);
+
+}
+
+
+.counter-label {
+
+    padding:
+        7px 35px;
+
+    text-align: center;
+
+    background:
+        #d6bd8d;
+
+    border:
+        1px solid
+        #8d6638;
+
+    box-shadow:
+        inset 0 0 8px
+        rgba(76,44,19,0.20);
+
+}
+
+
+.counter-label span {
+
+    display: block;
+
+    font-size:
+        0.50rem;
+
+    letter-spacing:
+        0.20em;
+
+    color:
+        #77522d;
+
+}
+
+
+.counter-label strong {
+
+    display: block;
+
+    margin-top: 2px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        1.05rem;
+
+    letter-spacing:
+        0.08em;
+
+    color:
+        #402414;
+
+}
+
+
+/* =====================================
+   CUERPO
+===================================== */
+
+.counter-body {
+
+    width: 100%;
+    height: calc(100% - 125px);
+
+    display: flex;
+
+    gap: 15px;
+
+    padding:
+        22px 18px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #2a160d,
+            #5a321c 12%,
+            #4a2918 50%,
+            #5a321c 88%,
+            #2a160d
+        );
+
+    border-left:
+        5px solid
+        #251309;
+
+    border-right:
+        5px solid
+        #251309;
+
+    box-shadow:
+
+        inset 0 0 30px
+        rgba(0,0,0,0.50);
+
+}
+
+
+/* =====================================
+   FRASCOS DEL MOSTRADOR
+===================================== */
+
+.counter-bottles {
+
+    width: 90px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: space-around;
+
+}
+
+
+.mini-bottle {
+
+    position: relative;
+
+    width: 54px;
+    height: 74px;
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+
+    padding-bottom: 8px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #4a2a18,
+            #b97d3f 38%,
+            #d4aa67 54%,
+            #60391f 82%
+        );
+
+    border:
+        2px solid
+        #29160c;
+
+    border-radius:
+        5px 5px 12px 12px;
+
+    box-shadow:
+
+        0 6px 10px
+        rgba(0,0,0,0.45);
+
+}
+
+
+.mini-bottle::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -13px;
+
+    width: 19px;
+    height: 15px;
+
+    background:
+        #4a2b18;
+
+    border:
+        2px solid
+        #251309;
+
+    border-radius:
+        3px 3px 0 0;
+
+}
+
+
+.mini-bottle span {
+
+    width: 43px;
+
+    padding: 4px 2px;
+
+    text-align: center;
+
+    background:
+        #d9c49a;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        0.44rem;
+
+    letter-spacing:
+        0.04em;
+
+    color:
+        #55351d;
+
+}
+
+
+/* =====================================
+   ZONA DEL DIARIO
+===================================== */
+
+.journal-display {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        15px;
+
+    text-align: center;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(215,174,105,0.10),
+            transparent 70%
+        );
+
+}
+
+
+/* =====================================
+   FECHA
+===================================== */
+
+.date-label {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 4px;
+
+    margin-bottom: 18px;
+
+}
+
+.date-label span {
+
+    font-size:
+        0.52rem;
+
+    letter-spacing:
+        0.22em;
+
+    color:
+        #c7a46d;
+
+}
+
+
+.date-label strong {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        1.05rem;
+
+    font-weight:
+        500;
+
+    letter-spacing:
+        0.10em;
+
+    color:
+        #ecd6ad;
+
+}
+
+
+/* =====================================
+   TÍTULO CENTRAL
+===================================== */
+
+.journal-display h2 {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(2rem, 3vw, 2.8rem);
+
+    font-weight:
+        500;
+
+    color:
+        #f0ddba;
+
+    text-shadow:
+        0 3px 8px
+        rgba(0,0,0,0.45);
+
+}
+
+
+.journal-display > p {
+
+    max-width: 390px;
+
+    margin-top: 7px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        0.95rem;
+
+    line-height:
+        1.4;
+
+    color:
+        #bfa37a;
+
+}
+
+
+/* =====================================
+   PAPEL / ÁREA DE ESCRITURA
+===================================== */
+
+.journal-paper {
+
+    width: 100%;
+    max-width: 430px;
+
+    min-height: 115px;
+
+    margin-top: 20px;
+
+    padding:
+        22px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    text-align: left;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #e9d8b5,
+            #d6bd8e
+        );
+
+    border:
+        1px solid
+        #a17a48;
+
+    border-radius:
+        3px;
+
+    box-shadow:
+
+        0 10px 20px
+        rgba(0,0,0,0.35),
+
+        inset 0 0 15px
+        rgba(90,55,25,0.14);
+
+}
+
+
+.journal-paper span {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        1rem;
+
+    color:
+        #806444;
+
+}
+
+
+/* =====================================
+   CAJONES INFERIORES
+===================================== */
+
+.counter-drawers {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 60px;
+
+    display: flex;
+
+    gap: 5px;
+
+    padding:
+        5px;
+
+    background:
+        #28150c;
+
+    border:
+        4px solid
+        #1b0d08;
+
+}
+
+.counter-drawer {
+
+    flex: 1;
+
+    border:
+        1px solid
+        #8a5b31;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #704528,
+            #3b2113
+        );
+
+    color:
+        #d5b77f;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        0.66rem;
+
+    letter-spacing:
+        0.07em;
+
+    cursor: pointer;
+
+    box-shadow:
+        inset 0 2px 3px
+        rgba(255,255,255,0.10);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.counter-drawer:hover {
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #895733,
+            #4b2817
+        );
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =====================================
+   LÁMPARA
+===================================== */
+
+.apothecary-lamp {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: -8px;
+
+    width: 100px;
+    height: 150px;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 18;
+
+}
+
+
+.lamp-glow {
+
+    position: absolute;
+
+    left: 50%;
+    top: 35px;
+
+    width: 260px;
+    height: 260px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(241, 188, 94, 0.30),
+            rgba(211, 142, 49, 0.08) 40%,
+            transparent 70%
+        );
+
+    filter: blur(8px);
+   
+}
+
+.lamp-shade {
+
+    position: absolute;
+
+    top: 25px;
+    left: 50%;
+
+    width: 95px;
+    height: 55px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius:
+        50% 50% 12px 12px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #d9b773,
+            #7b512d
+        );
+
+    border:
+        3px solid
+        #422514;
+
+    box-shadow:
+        0 8px 12px
+        rgba(0,0,0,0.35);
+}
+
+.lamp-body {
+
+    position: absolute;
+
+    left: 50%;
+    top: 5px;
+
+    width: 12px;
+    height: 35px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        #2a170d;
+
+    border-radius:
+        5px;
+}
+
+/* =====================================
+   VELA
+===================================== */
+
+.candle {
+    position: absolute;
+
+    right: 25%;
+
+    bottom: 7%;
+
+    width: 34px;
+    height: 80px;
+
+    z-index: 25;
+}
+
+.candle-body {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 34px;
+    height: 62px;
+
+    border-radius:
+        5px 5px 3px 3px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #8f7048,
+            #ead5a7 45%,
+            #a98552
+        );
+
+    border:
+        1px solid
+        #60452a;
+
+    box-shadow:
+        0 8px 12px
+        rgba(0,0,0,0.35);
+}
+
+.flame {
+
+    position: absolute;
+
+    left: 50%;
+    top: -2px;
+
+    width: 17px;
+    height: 27px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius:
+        50% 50% 50% 50%;
+
+    background:
+
+        radial-gradient(
+            ellipse at center bottom,
+            #fff1a8 0%,
+            #e9a735 55%,
+            #b65d20 100%
+        );
+
+    box-shadow:
+
+        0 0 18px
+        rgba(235,166,57,0.85);
+
+    animation:
+        flicker
+        1.2s
+        ease-in-out
+        infinite alternate;
+
+}
+
+
+@keyframes flicker {
+
+    from {
+
+        transform:
+            translateX(-50%)
+            scale(0.9)
+            rotate(-2deg);
+
+    }
+
+    to {
+
+        transform:
+            translateX(-50%)
+            scale(1.08)
+            rotate(3deg);
+
+    }
+
+}
+
+
+/* =====================================
+   NAVEGACIÓN INFERIOR
+===================================== */
+
+.journal-navigation {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    width: min(760px, 80vw);
+    height: 72px;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 60;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding:
+        8px 12px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(45,25,15,0.96),
+            rgba(25,13,9,0.98)
+        );
+
+    border:
+        1px solid
+        rgba(178,126,59,0.38);
+
+    border-bottom:
+        none;
+
+    border-radius:
+        14px 14px 0 0;
+
+    box-shadow:
+
+        0 -8px 25px
+        rgba(0,0,0,0.40);
+
+}
+
+
+.nav-label {
+
+    min-width: 105px;
+
+    height: 50px;
 
     display: flex;
 
@@ -745,34 +1849,38 @@ body {
     align-items: center;
     justify-content: center;
 
-    gap: 5px;
+    gap: 4px;
 
-    min-width: 70px;
+    border:
+        1px solid
+        transparent;
 
-    padding:
-        8px 7px;
-
-    border: 0;
-
-    border-radius: 6px;
+    border-radius: 7px;
 
     background:
         transparent;
 
-    color: #81684c;
+    color:
+        #9d805d;
+
+    font-family:
+        "Plus Jakarta Sans",
+        sans-serif;
+
+    font-size:
+        0.62rem;
 
     cursor: pointer;
 
     transition:
-
-        background 0.2s ease,
         color 0.2s ease,
-        transform 0.2s ease;
+        background 0.2s ease,
+        border-color 0.2s ease;
 
 }
 
 
-.journal-section i {
+.nav-label svg {
 
     width: 18px;
     height: 18px;
@@ -780,223 +1888,116 @@ body {
 }
 
 
-.journal-section span {
-
-    font-size: 0.62rem;
-
-    letter-spacing: 0.04em;
-
-}
-
-
-.journal-section:hover {
-
-    background:
-        rgba(132, 94, 52, 0.08);
-
-    color: #5b3b24;
-
-    transform:
-        translateY(-2px);
-
-}
-
-
-.journal-section.active {
-
-    background:
-        rgba(132, 94, 52, 0.12);
-
-    color: #684421;
-
-}
-
-
-/* =====================================
-   PLUMA
-===================================== */
-
-.journal-feather {
-
-    position: absolute;
-
-    right: 5%;
-
-    bottom: 7%;
-
-    z-index: 30;
-
-    width: 54px;
-    height: 54px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background:
-        rgba(232, 211, 178, 0.12);
+.nav-label:hover {
 
     color:
-        rgba(221, 191, 146, 0.65);
+        #e0c28b;
+
+    background:
+        rgba(130,83,42,0.20);
 
 }
 
 
-.journal-feather i {
+.nav-label.active {
 
-    width: 28px;
-    height: 28px;
+    color:
+        #eed19a;
 
-    transform:
-        rotate(-25deg);
+    background:
+        rgba(153,101,49,0.25);
 
-}
-
-
-/* =====================================
-   RESPONSIVE
-===================================== */
-
-@media (max-width: 900px) {
-
-    .journal-book {
-
-        width: 94vw;
-
-        height: 70vh;
-
-    }
-
-
-    .book-page-left {
-
-        padding:
-            45px 40px;
-
-    }
-
-
-    .book-page-right {
-
-        padding:
-            45px 40px;
-
-    }
-
-
-    .journal-heading h1 {
-
-        font-size: 3rem;
-
-    }
-
-
-    .journal-intro {
-
-        font-size: 1rem;
-
-    }
-
-
-    .journal-sections {
-
-        left: 25px;
-        right: 25px;
-
-        gap: 3px;
-
-    }
-
-
-    .journal-section {
-
-        min-width: 58px;
-
-    }
+    border-color:
+        rgba(194,145,76,0.30);
 
 }
 
 
 /* =====================================
-   PANTALLAS PEQUEÑAS
+   ADAPTACIÓN
 ===================================== */
 
-@media (max-width: 650px) {
+@media (max-width: 1100px) {
 
-    .journal-book {
+    .apothecary-shelf {
 
-        width: 96vw;
-
-        height: 72vh;
+        width: 180px;
 
     }
 
+    .botanical-left {
 
-    .book-page-left {
-
-        padding:
-            35px 25px;
+        left: 9%;
 
     }
 
+    .botanical-right {
 
-    .book-page-right {
-
-        padding:
-            35px 25px;
+        right: 9%;
 
     }
 
+    .apothecary-counter {
 
-    .journal-heading h1 {
-
-        font-size: 2.3rem;
-
-    }
-
-
-    .journal-intro {
-
-        font-size: 0.9rem;
+        width: 58vw;
 
     }
 
+    .nav-label {
 
-    .journal-date {
-
-        margin-top: 30px;
-
-    }
-
-
-    .date-day {
-
-        font-size: 3rem;
+        min-width: 85px;
 
     }
 
-
-    .journal-sections {
-
-        bottom: 25px;
-
-    }
+}
 
 
-    .journal-section span {
+@media (max-height: 750px) {
 
-        display: none;
+    .apothecary-shelf {
+
+        top: 2%;
+        height: 87%;
 
     }
 
+    .shelf-row {
 
-    .journal-section {
-
-        min-width: 42px;
+        height: 125px;
 
     }
+
+    .botanical {
+
+        transform:
+            scale(0.85);
+
+        transform-origin:
+            bottom center;
+
+    }
+
+    .botanical-right {
+
+        transform:
+            scaleX(-1)
+            scale(0.85);
+
+    }
+
+}
+
+
+/* =====================================
+   SELECCIÓN
+===================================== */
+
+::selection {
+
+    background:
+        rgba(190,140,67,0.45);
+
+    color:
+        #fff2d0;
 
 }
