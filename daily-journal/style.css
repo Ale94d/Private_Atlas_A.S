@@ -23,8 +23,9 @@ body {
 }
 
 
+
 /* =========================================
-   FONDO PRINCIPAL
+   BOTICA PRINCIPAL
 ========================================= */
 
 .apothecary {
@@ -36,21 +37,22 @@ body {
 
     overflow: hidden;
 
+    display: flex;
+    flex-direction: column;
+
     background:
         radial-gradient(
             circle at 50% 35%,
-            #6d4b36 0%,
-            #493326 45%,
-            #2c1d16 100%
+            #76553b 0%,
+            #513725 42%,
+            #291a13 100%
         );
-
-    display: flex;
-    flex-direction: column;
 }
 
 
+
 /* =========================================
-   TEXTURA DEL FONDO
+   TEXTURA ANTIGUA
 ========================================= */
 
 .apothecary::before {
@@ -66,48 +68,71 @@ body {
     background-image:
         repeating-linear-gradient(
             90deg,
-            transparent 0px,
-            transparent 90px,
-            rgba(255,255,255,0.035) 91px,
-            transparent 93px
+            transparent 0,
+            transparent 75px,
+            rgba(255,255,255,0.025) 76px,
+            transparent 78px
         );
 }
 
 
+.apothecary::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.08;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            #e9c98d 0,
+            transparent 2px
+        );
+
+    background-size: 70px 70px;
+}
+
+
+
 /* =========================================
-   LUCES AMBIENTALES
+   LUCES
 ========================================= */
 
 .ambient-glow {
     position: absolute;
 
-    width: 500px;
-    height: 500px;
+    width: 520px;
+    height: 520px;
 
     border-radius: 50%;
 
+    filter: blur(90px);
+
     pointer-events: none;
 
-    filter: blur(80px);
-
-    opacity: 0.18;
+    opacity: 0.17;
 }
 
 
 .glow-one {
-    top: -250px;
-    left: -150px;
+    top: -260px;
+    left: -180px;
 
-    background: #d2a45f;
+    background: #d8a35d;
 }
 
 
 .glow-two {
-    right: -220px;
-    bottom: -250px;
+    right: -250px;
+    bottom: -260px;
 
-    background: #a76d3f;
+    background: #9c633b;
 }
+
 
 
 /* =========================================
@@ -117,38 +142,70 @@ body {
 .particle {
     position: absolute;
 
-    color: #d9b477;
-
-    opacity: 0.35;
+    z-index: 2;
 
     pointer-events: none;
 
-    z-index: 2;
+    color: #e1bd7e;
+
+    opacity: 0.35;
+
+    animation: floating 5s ease-in-out infinite;
 }
 
 
 .particle-one {
-    top: 18%;
-    left: 12%;
+    top: 17%;
+    left: 10%;
 
-    font-size: 20px;
+    font-size: 18px;
 }
 
 
 .particle-two {
-    top: 28%;
-    right: 15%;
+    top: 27%;
+    right: 14%;
 
-    font-size: 14px;
+    font-size: 13px;
+
+    animation-delay: 1s;
 }
 
 
 .particle-three {
-    bottom: 22%;
-    left: 35%;
+    bottom: 25%;
+    left: 34%;
 
-    font-size: 28px;
+    font-size: 25px;
+
+    animation-delay: 2s;
 }
+
+
+.particle-four {
+    bottom: 18%;
+    right: 27%;
+
+    font-size: 14px;
+
+    animation-delay: 3s;
+}
+
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.25;
+    }
+
+    50% {
+        transform: translateY(-8px);
+        opacity: 0.5;
+    }
+}
+
 
 
 /* =========================================
@@ -162,11 +219,9 @@ body {
 
     width: 100%;
 
-    min-height: 92px;
+    min-height: 100px;
 
-    padding:
-        20px
-        48px;
+    padding: 18px 48px;
 
     display: flex;
 
@@ -176,10 +231,10 @@ body {
 
     border-bottom:
         1px solid
-        rgba(222, 190, 143, 0.28);
+        rgba(221, 187, 133, 0.25);
 
     background:
-        rgba(39, 25, 18, 0.38);
+        rgba(36, 22, 15, 0.48);
 
     backdrop-filter: blur(8px);
 }
@@ -187,34 +242,44 @@ body {
 
 .brand {
     display: flex;
-
     flex-direction: column;
 }
 
 
 .brand-small {
-    font-size: 9px;
+    font-size: 8px;
 
     letter-spacing: 4px;
 
-    color: #c8a576;
+    color: #c6a273;
 }
 
 
 .brand h1 {
-    margin-top: 2px;
+    margin-top: 3px;
 
     font-family:
         "Cormorant Garamond",
         serif;
 
-    font-size: 38px;
+    font-size: 39px;
 
-    line-height: 1;
+    line-height: 0.95;
 
     font-weight: 600;
 
-    color: #f0dfc1;
+    color: #f0ddbd;
+}
+
+
+.brand-subtitle {
+    margin-top: 5px;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: #9e805d;
 }
 
 
@@ -228,27 +293,28 @@ body {
 
 
 .date-label {
-    font-size: 9px;
+    font-size: 8px;
 
     letter-spacing: 3px;
 
-    color: #ad8c62;
+    color: #a98a64;
 }
 
 
 .date-display strong {
-    margin-top: 3px;
+    margin-top: 4px;
 
     font-family:
         "Cormorant Garamond",
         serif;
 
-    font-size: 21px;
+    font-size: 22px;
 
     font-weight: 500;
 
-    color: #e3c99e;
+    color: #e1c59a;
 }
+
 
 
 /* =========================================
@@ -266,20 +332,18 @@ body {
 
     width: 100%;
 
-    padding:
-        26px
-        40px
-        15px;
+    padding: 25px 40px 15px;
 
     display: grid;
 
     grid-template-columns:
-        210px
-        minmax(400px, 1fr)
-        250px;
+        220px
+        minmax(420px, 1fr)
+        270px;
 
     gap: 30px;
 }
+
 
 
 /* =========================================
@@ -291,64 +355,79 @@ body {
 
     min-height: 0;
 
-    padding:
-        18px
-        14px;
+    padding: 18px 15px;
 
     border:
         1px solid
-        rgba(189, 151, 100, 0.35);
+        rgba(194, 151, 94, 0.34);
 
-    border-radius: 5px;
+    border-radius: 4px;
 
     background:
         linear-gradient(
             180deg,
-            rgba(64, 39, 26, 0.88),
-            rgba(38, 23, 16, 0.94)
+            rgba(69, 42, 27, 0.93),
+            rgba(35, 21, 14, 0.97)
         );
 
     box-shadow:
-        inset 0 0 25px
-        rgba(0,0,0,0.3),
-
-        0 15px 35px
-        rgba(0,0,0,0.22);
+        inset 0 0 35px rgba(0,0,0,0.35),
+        0 18px 35px rgba(0,0,0,0.25);
 }
 
 
 .panel-title {
     display: flex;
 
+    align-items: center;
     justify-content: center;
 
-    align-items: center;
+    gap: 9px;
 
-    gap: 8px;
-
-    padding-bottom: 14px;
+    padding-bottom: 12px;
 
     border-bottom:
         1px solid
-        rgba(205, 169, 112, 0.25);
+        rgba(205, 167, 108, 0.25);
 
-    font-size: 10px;
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 15px;
 
     letter-spacing: 3px;
 
-    color: #cba774;
+    color: #d1ad75;
 }
 
+
+.cabinet-label {
+    margin-top: 13px;
+
+    text-align: center;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: #8e7050;
+}
+
+
+
+/* =========================================
+   ESTANTES
+========================================= */
 
 .wood-shelf {
     position: relative;
 
-    height: 105px;
+    height: 93px;
 
-    margin-top: 15px;
+    margin-top: 5px;
 
-    padding:
-        10px;
+    padding: 9px;
 
     display: flex;
 
@@ -357,21 +436,26 @@ body {
     justify-content: space-around;
 
     border-bottom:
-        9px solid
-        #3b2418;
+        8px solid
+        #342015;
 
     background:
         linear-gradient(
             90deg,
-            #392218,
-            #68422b,
-            #402719
+            #3a2418,
+            #70472d,
+            #3e271a
         );
 
     box-shadow:
-        0 5px 8px
-        rgba(0,0,0,0.35);
+        0 5px 8px rgba(0,0,0,0.4);
 }
+
+
+.small-shelf {
+    height: 70px;
+}
+
 
 
 /* =========================================
@@ -381,21 +465,18 @@ body {
 .bottle {
     position: relative;
 
-    width: 38px;
-    height: 62px;
+    width: 37px;
+    height: 60px;
 
     border-radius:
         5px
         5px
-        9px
-        9px;
+        8px
+        8px;
 
     box-shadow:
-        inset 5px 0 7px
-        rgba(255,255,255,0.12),
-
-        4px 5px 8px
-        rgba(0,0,0,0.35);
+        inset 5px 0 7px rgba(255,255,255,0.12),
+        4px 5px 8px rgba(0,0,0,0.38);
 }
 
 
@@ -408,16 +489,13 @@ body {
     height: 9px;
 
     left: 50%;
-
     top: -8px;
 
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
 
     border-radius: 2px 2px 0 0;
 
-    background:
-        #8a6b4a;
+    background: #846344;
 }
 
 
@@ -429,16 +507,15 @@ body {
     left: 5px;
     right: 5px;
 
-    bottom: 14px;
+    bottom: 13px;
 
-    height: 16px;
-
-    background:
-        #e5d2ad;
-
-    opacity: 0.85;
+    height: 15px;
 
     border-radius: 2px;
+
+    background: #e4d0aa;
+
+    opacity: 0.86;
 }
 
 
@@ -446,53 +523,62 @@ body {
     background:
         linear-gradient(
             90deg,
-            #263c31,
-            #4f6955,
-            #20352b
+            #263b30,
+            #56705b,
+            #20342a
         );
 }
 
 
 .bottle-brown {
-    height: 69px;
+    height: 67px;
 
     background:
         linear-gradient(
             90deg,
-            #573321,
-            #9a6040,
-            #422619
+            #533020,
+            #965c3d,
+            #3e2418
         );
 }
 
 
 .bottle-clear {
-    width: 34px;
+    width: 33px;
 
     background:
         linear-gradient(
             90deg,
-            #bca98a,
-            #e4d6b8,
-            #8e7b60
+            #b5a182,
+            #e1d2b4,
+            #88755b
         );
 }
 
 
+
+/* =========================================
+   FRASCOS PEQUEÑOS
+========================================= */
+
 .small-bottle {
     position: relative;
 
-    width: 24px;
-    height: 40px;
+    width: 23px;
+    height: 39px;
 
-    border-radius: 4px 4px 7px 7px;
+    border-radius:
+        4px
+        4px
+        7px
+        7px;
 
     background:
         linear-gradient(
             90deg,
-            #687057,
-            #9b9c77,
-            #4b5340
+            #626a50,
+            #979876,
+            #454c3b
         );
 }
 
@@ -505,10 +591,10 @@ body {
     width: 12px;
     height: 6px;
 
-    left: 6px;
+    left: 5px;
     top: -6px;
 
-    background: #836747;
+    background: #806245;
 }
 
 
@@ -524,7 +610,7 @@ body {
 
     height: 10px;
 
-    background: #e1ceb0;
+    background: #dfcba8;
 }
 
 
@@ -533,8 +619,8 @@ body {
         linear-gradient(
             90deg,
             #30251d,
-            #63503c,
-            #282019
+            #62503d,
+            #272019
         );
 }
 
@@ -543,59 +629,107 @@ body {
     background:
         linear-gradient(
             90deg,
-            #70401f,
-            #b97838,
-            #5c3219
+            #6d3d1d,
+            #b77637,
+            #573019
         );
 }
+
 
 
 /* =========================================
    HERBARIO
 ========================================= */
 
-.herb-decoration {
-    margin-top: 22px;
+.herbarium {
+    margin-top: 18px;
 
-    padding: 14px;
+    padding: 13px;
 
     display: flex;
 
-    gap: 12px;
-
     align-items: center;
+
+    gap: 11px;
 
     border-top:
         1px solid
-        rgba(207, 169, 111, 0.25);
+        rgba(207, 169, 111, 0.2);
+
+    border-bottom:
+        1px solid
+        rgba(207, 169, 111, 0.2);
 }
 
 
-.herb-decoration > span {
+.herbarium-icon {
     font-size: 27px;
+
+    filter: grayscale(0.3);
 }
 
 
-.herb-decoration small {
-    font-size: 8px;
+.herbarium small {
+    font-size: 7px;
 
     letter-spacing: 2px;
 
-    color: #a88a64;
+    color: #9d805d;
 }
 
 
-.herb-decoration p {
-    margin-top: 3px;
+.herbarium p {
+    margin-top: 2px;
 
     font-family:
         "Cormorant Garamond",
         serif;
 
-    font-size: 18px;
+    font-size: 19px;
 
-    color: #dec69e;
+    color: #d8bc8d;
 }
+
+
+
+/* =========================================
+   NOTA
+========================================= */
+
+.cabinet-note {
+    margin-top: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    text-align: center;
+
+    color: #987955;
+}
+
+
+.cabinet-note p {
+    max-width: 120px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 14px;
+
+    line-height: 1.2;
+}
+
+
+.cabinet-note span {
+    font-size: 9px;
+}
+
 
 
 /* =========================================
@@ -604,7 +738,6 @@ body {
 
 .journal-area {
     min-width: 0;
-
     min-height: 0;
 
     display: flex;
@@ -618,22 +751,22 @@ body {
 
 
 .welcome {
-    text-align: center;
-
     flex-shrink: 0;
 
-    margin-bottom: 15px;
+    margin-bottom: 14px;
+
+    text-align: center;
 }
 
 
 .ornament {
     display: block;
 
-    margin-bottom: 2px;
+    margin-bottom: 1px;
 
-    color: #c59b61;
+    color: #c69b60;
 
-    font-size: 14px;
+    font-size: 13px;
 }
 
 
@@ -642,11 +775,11 @@ body {
         "Cormorant Garamond",
         serif;
 
-    font-size: 30px;
+    font-size: 31px;
 
     font-weight: 600;
 
-    color: #ead8b8;
+    color: #ead7b6;
 }
 
 
@@ -657,52 +790,47 @@ body {
         "Cormorant Garamond",
         serif;
 
-    font-size: 16px;
+    font-size: 15px;
 
-    color: #bda487;
+    color: #b99b76;
 }
 
 
+
 /* =========================================
-   TARJETA DEL DIARIO
+   TARJETA
 ========================================= */
 
 .entry-card {
     position: relative;
 
     width: 100%;
-
-    max-width: 720px;
+    max-width: 750px;
 
     min-height: 0;
 
     flex: 1;
 
-    padding:
-        22px
-        25px;
+    padding: 22px 25px;
 
     overflow: auto;
 
     border:
         1px solid
-        rgba(157, 119, 72, 0.48);
+        rgba(145, 107, 64, 0.52);
 
-    border-radius: 4px;
+    border-radius: 3px;
 
     background:
         linear-gradient(
             145deg,
             #ead9b9,
-            #d8c09b
+            #d6bc94
         );
 
     box-shadow:
-        0 20px 45px
-        rgba(0,0,0,0.30),
-
-        inset 0 0 35px
-        rgba(104, 70, 39, 0.12);
+        0 20px 45px rgba(0,0,0,0.3),
+        inset 0 0 35px rgba(104,70,39,0.12);
 }
 
 
@@ -717,9 +845,14 @@ body {
 
     border:
         1px solid
-        rgba(125, 88, 48, 0.16);
+        rgba(125,88,48,0.17);
 }
 
+
+
+/* =========================================
+   CABECERA DE TARJETA
+========================================= */
 
 .card-header {
     position: relative;
@@ -734,7 +867,7 @@ body {
 
     border-bottom:
         1px solid
-        rgba(115, 77, 39, 0.25);
+        rgba(115,77,39,0.25);
 }
 
 
@@ -744,7 +877,7 @@ body {
 
     letter-spacing: 2.5px;
 
-    color: #96734e;
+    color: #94704a;
 }
 
 
@@ -755,11 +888,11 @@ body {
         "Cormorant Garamond",
         serif;
 
-    font-size: 27px;
+    font-size: 28px;
 
     font-weight: 600;
 
-    color: #4c3324;
+    color: #4b3223;
 }
 
 
@@ -770,8 +903,9 @@ body {
 
     font-size: 16px;
 
-    color: #96734e;
+    color: #92704a;
 }
+
 
 
 /* =========================================
@@ -783,14 +917,14 @@ body {
 
     margin-top: 15px;
 
-    height: 150px;
+    height: 155px;
 
     background:
         repeating-linear-gradient(
             to bottom,
-            transparent 0px,
+            transparent 0,
             transparent 29px,
-            rgba(121, 91, 59, 0.18) 30px
+            rgba(121,91,59,0.18) 30px
         );
 }
 
@@ -802,7 +936,6 @@ body {
     resize: none;
 
     border: none;
-
     outline: none;
 
     background: transparent;
@@ -826,6 +959,7 @@ body {
 }
 
 
+
 /* =========================================
    EMOCIONES
 ========================================= */
@@ -847,18 +981,16 @@ body {
 
 
 .mood {
-    padding:
-        7px
-        12px;
+    padding: 7px 12px;
 
     border:
         1px solid
-        rgba(117, 80, 43, 0.22);
+        rgba(117,80,43,0.22);
 
     border-radius: 20px;
 
     background:
-        rgba(255,255,255,0.16);
+        rgba(255,255,255,0.15);
 
     color: #604735;
 
@@ -868,8 +1000,7 @@ body {
 
     cursor: pointer;
 
-    transition:
-        0.2s ease;
+    transition: 0.2s ease;
 }
 
 
@@ -883,14 +1014,14 @@ body {
 .mood:hover,
 .mood.selected {
     background:
-        rgba(133, 91, 46, 0.15);
+        rgba(133,91,46,0.16);
 
     border-color:
-        rgba(117, 80, 43, 0.45);
+        rgba(117,80,43,0.45);
 
-    transform:
-        translateY(-1px);
+    transform: translateY(-1px);
 }
+
 
 
 /* =========================================
@@ -905,20 +1036,21 @@ body {
 .tags {
     display: flex;
 
+    align-items: center;
+
     gap: 7px;
 
     margin-top: 7px;
 }
 
 
-.tag {
-    padding:
-        5px
-        10px;
+.tag,
+.add-tag {
+    padding: 5px 10px;
 
     border:
         1px solid
-        rgba(117, 80, 43, 0.20);
+        rgba(117,80,43,0.20);
 
     border-radius: 3px;
 
@@ -931,6 +1063,14 @@ body {
 }
 
 
+.add-tag {
+    border-style: dashed;
+
+    cursor: pointer;
+}
+
+
+
 /* =========================================
    BOTÓN GUARDAR
 ========================================= */
@@ -938,14 +1078,9 @@ body {
 .save-button {
     display: block;
 
-    margin:
-        16px
-        auto
-        0;
+    margin: 16px auto 0;
 
-    padding:
-        9px
-        20px;
+    padding: 9px 21px;
 
     border:
         1px solid
@@ -972,20 +1107,18 @@ body {
 
     box-shadow:
         0 5px 10px
-        rgba(53, 31, 18, 0.22);
+        rgba(53,31,18,0.22);
 
-    transition:
-        0.2s ease;
+    transition: 0.2s ease;
 }
 
 
 .save-button:hover {
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 
     box-shadow:
         0 8px 15px
-        rgba(53, 31, 18, 0.30);
+        rgba(53,31,18,0.30);
 }
 
 
@@ -996,6 +1129,7 @@ body {
 }
 
 
+
 /* =========================================
    PANEL DERECHO
 ========================================= */
@@ -1003,18 +1137,16 @@ body {
 .memory-panel {
     min-height: 0;
 
-    padding:
-        20px
-        17px;
+    padding: 19px 17px;
 
     border-left:
         1px solid
-        rgba(208, 169, 111, 0.25);
+        rgba(208,169,111,0.23);
 }
 
 
 .memory-title span {
-    font-size: 8px;
+    font-size: 7px;
 
     letter-spacing: 3px;
 
@@ -1029,7 +1161,7 @@ body {
         "Cormorant Garamond",
         serif;
 
-    font-size: 26px;
+    font-size: 27px;
 
     font-weight: 600;
 
@@ -1037,31 +1169,29 @@ body {
 }
 
 
+
 /* =========================================
    UN DÍA COMO HOY
 ========================================= */
 
 .memory-box {
-    margin-top: 18px;
+    margin-top: 17px;
 
-    padding:
-        18px
-        15px;
+    padding: 18px 15px;
 
     text-align: center;
 
     border:
         1px solid
-        rgba(190, 149, 95, 0.32);
+        rgba(190,149,95,0.32);
 
     border-radius: 4px;
 
     background:
-        rgba(63, 39, 26, 0.72);
+        rgba(63,39,26,0.72);
 
     box-shadow:
-        inset 0 0 20px
-        rgba(0,0,0,0.18);
+        inset 0 0 20px rgba(0,0,0,0.18);
 }
 
 
@@ -1081,7 +1211,7 @@ body {
         "Cormorant Garamond",
         serif;
 
-    font-size: 20px;
+    font-size: 21px;
 
     color: #dfc59c;
 }
@@ -1105,16 +1235,13 @@ body {
 .memory-box button {
     margin-top: 12px;
 
-    padding:
-        6px
-        12px;
+    padding: 6px 12px;
 
     border:
         1px solid
-        rgba(194, 153, 96, 0.5);
+        rgba(194,153,96,0.5);
 
-    background:
-        transparent;
+    background: transparent;
 
     color: #d3b282;
 
@@ -1122,6 +1249,7 @@ body {
 
     cursor: pointer;
 }
+
 
 
 /* =========================================
@@ -1135,22 +1263,20 @@ body {
 
     gap: 8px;
 
-    margin-top: 20px;
+    margin-top: 19px;
 
-    padding:
-        8px
-        10px;
+    padding: 8px 10px;
 
     border-bottom:
         1px solid
-        rgba(198, 159, 105, 0.35);
+        rgba(198,159,105,0.35);
 }
 
 
 .search-box span {
-    font-size: 12px;
+    font-size: 17px;
 
-    opacity: 0.7;
+    color: #bc986a;
 }
 
 
@@ -1158,7 +1284,6 @@ body {
     width: 100%;
 
     border: none;
-
     outline: none;
 
     background: transparent;
@@ -1174,12 +1299,24 @@ body {
 }
 
 
+
 /* =========================================
    ARCHIVO
 ========================================= */
 
+.archive-heading {
+    margin-top: 17px;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: #8e7050;
+}
+
+
 .archive-list {
-    margin-top: 15px;
+    margin-top: 7px;
 }
 
 
@@ -1190,13 +1327,11 @@ body {
 
     gap: 10px;
 
-    padding:
-        10px
-        0;
+    padding: 10px 0;
 
     border-bottom:
         1px solid
-        rgba(198, 159, 105, 0.15);
+        rgba(198,159,105,0.15);
 }
 
 
@@ -1237,6 +1372,25 @@ body {
 }
 
 
+
+/* =========================================
+   PIE DEL ARCHIVO
+========================================= */
+
+.memory-footer {
+    margin-top: 18px;
+
+    text-align: center;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+
+    color: #765a40;
+}
+
+
+
 /* =========================================
    NAVEGACIÓN INFERIOR
 ========================================= */
@@ -1246,7 +1400,7 @@ body {
 
     z-index: 20;
 
-    height: 65px;
+    height: 61px;
 
     flex-shrink: 0;
 
@@ -1256,23 +1410,23 @@ body {
 
     align-items: center;
 
-    gap: 45px;
+    gap: 30px;
 
     border-top:
         1px solid
-        rgba(211, 174, 117, 0.25);
+        rgba(211,174,117,0.25);
 
     background:
-        rgba(34, 21, 15, 0.75);
+        rgba(31,19,13,0.82);
 }
 
 
 .nav-item {
     position: relative;
 
-    height: 50px;
+    height: 48px;
 
-    min-width: 65px;
+    min-width: 75px;
 
     border: none;
 
@@ -1290,10 +1444,9 @@ body {
 
     justify-content: center;
 
-    gap: 3px;
+    gap: 2px;
 
-    transition:
-        0.2s ease;
+    transition: 0.2s ease;
 }
 
 
@@ -1305,7 +1458,7 @@ body {
 .nav-item small {
     font-size: 8px;
 
-    letter-spacing: 0.8px;
+    letter-spacing: 1px;
 }
 
 
@@ -1326,68 +1479,114 @@ body {
 
     height: 2px;
 
-    background:
-        #bd9156;
+    background: #bd9156;
 }
+
+
+.nav-divider {
+    width: 1px;
+
+    height: 27px;
+
+    background:
+        rgba(190,149,95,0.25);
+}
+
+
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+.entry-card::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+.entry-card::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.entry-card::-webkit-scrollbar-thumb {
+    background: rgba(111,77,43,0.4);
+
+    border-radius: 10px;
+}
+
 
 
 /* =========================================
    RESPONSIVE
 ========================================= */
 
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
 
     .apothecary-room {
         grid-template-columns:
-            170px
+            180px
             minmax(350px, 1fr)
-            200px;
+            220px;
 
         gap: 18px;
 
-        padding:
-            20px;
+        padding-left: 22px;
+        padding-right: 22px;
     }
 
-    .bottom-nav {
-        gap: 20px;
-    }
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
+
+    body {
+        overflow: auto;
+    }
+
+
+    .apothecary {
+        position: relative;
+
+        min-height: 100vh;
+
+        height: auto;
+
+        overflow: visible;
+    }
+
 
     .top-bar {
-        padding:
-            15px
-            25px;
+        padding: 15px 22px;
     }
+
 
     .brand h1 {
-        font-size: 30px;
+        font-size: 31px;
     }
+
 
     .apothecary-room {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
 
-        overflow-y: auto;
+        overflow: visible;
     }
+
 
     .shelf-panel,
     .memory-panel {
         display: none;
     }
 
+
     .journal-area {
-        min-height: 600px;
+        min-height: 650px;
     }
+
 
     .bottom-nav {
-        gap: 8px;
+        position: sticky;
+
+        bottom: 0;
     }
 
-    .nav-item {
-        min-width: 55px;
-    }
 }
