@@ -10,10 +10,7 @@
 
     <title>Daily Journal | Private Atlas A.S.</title>
 
-    <!-- =====================================
-         FUENTES
-    ====================================== -->
-
+    <!-- FUENTES -->
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
 
@@ -21,22 +18,17 @@
           href="https://fonts.gstatic.com"
           crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
           rel="stylesheet">
 
+    <!-- ICONOS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- =====================================
-         CSS
-    ====================================== -->
-
+    <!-- CSS -->
     <link rel="stylesheet"
           href="style.css">
 
-
-    <!-- =====================================
-         FAVICON
-    ====================================== -->
-
+    <!-- FAVICON -->
     <link rel="icon"
           type="image/png"
           href="assets/icons/favicon-daily-journal.png">
@@ -46,285 +38,466 @@
 
 <body>
 
-
     <!-- =====================================
-         ESPACIO PRINCIPAL
+         DAILY JOURNAL
     ====================================== -->
 
-    <main class="journal-workspace">
+    <main class="daily-journal">
 
 
         <!-- =====================================
-             BOTÓN HOME
+             ILUMINACIÓN AMBIENTAL
         ====================================== -->
 
-        <button
-            class="back-home"
-            type="button"
-            aria-label="Volver al Home">
+        <div class="ambient-light"></div>
 
-            <i data-lucide="house"></i>
+        <div class="floating-particles">
 
-        </button>
-
-
-
-        <!-- =====================================
-             AMBIENTE / FONDO
-        ====================================== -->
-
-        <div class="journal-background">
-
-
-            <!-- LUZ DECORATIVA -->
-
-            <div class="background-light"></div>
-
-
-            <!-- DECORACIÓN -->
-
-            <div class="background-decoration decoration-left"></div>
-
-            <div class="background-decoration decoration-right"></div>
-
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
 
         </div>
 
 
-
         <!-- =====================================
-             CONTENEDOR DEL LIBRO
+             BARRA SUPERIOR
         ====================================== -->
 
-        <section class="journal-scene">
+        <header class="journal-header">
 
 
-            <!-- =====================================
-                 LIBRO
-            ====================================== -->
+            <!-- BOTÓN HOME -->
 
-            <div class="journal-book">
+            <button
+                class="home-button"
+                type="button"
+                aria-label="Volver al Home">
 
+                <i data-lucide="house"></i>
 
-                <!-- =================================
-                     LOMO DEL LIBRO
-                ================================== -->
-
-                <div class="book-spine"></div>
+            </button>
 
 
+            <!-- TÍTULO -->
 
-                <!-- =================================
-                     PÁGINA IZQUIERDA
-                ================================== -->
+            <div class="journal-title">
 
-                <div class="book-page book-page-left">
+                <span>
+                    PRIVATE ATLAS
+                </span>
+
+                <h1>
+                    Daily Journal
+                </h1>
+
+            </div>
 
 
-                    <!-- DECORACIÓN SUPERIOR -->
+            <!-- HERRAMIENTAS -->
 
-                    <div class="page-ornament">
-                        ✦
+            <div class="journal-tools">
+
+                <button
+                    class="tool-button"
+                    type="button"
+                    aria-label="Buscar">
+
+                    <i data-lucide="search"></i>
+
+                </button>
+
+                <button
+                    class="tool-button"
+                    type="button"
+                    aria-label="Calendario">
+
+                    <i data-lucide="calendar-days"></i>
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================
+             HABITACIÓN DE BOTICA
+        ====================================== -->
+
+        <section class="apothecary-room">
+
+
+            <!-- =================================
+                 ESTANTERÍA IZQUIERDA
+            ================================== -->
+
+            <aside class="apothecary-shelf shelf-left">
+
+                <div class="shelf-top"></div>
+
+
+                <div class="shelf-row">
+
+                    <div class="bottle bottle-small">
+                        <span></span>
                     </div>
 
+                    <div class="bottle bottle-tall">
+                        <span></span>
+                    </div>
 
-                    <!-- TÍTULO -->
+                    <div class="bottle bottle-round">
+                        <span></span>
+                    </div>
 
-                    <div class="journal-heading">
+                </div>
 
-                        <span class="heading-small">
-                            PRIVATE ATLAS
+
+                <div class="wooden-shelf"></div>
+
+
+                <div class="shelf-row">
+
+                    <div class="bottle bottle-tall">
+                        <span></span>
+                    </div>
+
+                    <div class="bottle bottle-small">
+                        <span></span>
+                    </div>
+
+                    <div class="bottle bottle-square">
+                        <span></span>
+                    </div>
+
+                </div>
+
+
+                <div class="wooden-shelf"></div>
+
+
+                <div class="shelf-row">
+
+                    <div class="drawer">
+                        <span>HERBAS</span>
+                    </div>
+
+                    <div class="drawer">
+                        <span>RAÍCES</span>
+                    </div>
+
+                </div>
+
+
+                <div class="wooden-shelf"></div>
+
+            </aside>
+
+
+
+            <!-- =================================
+                 ESTANTERÍA DERECHA
+            ================================== -->
+
+            <aside class="apothecary-shelf shelf-right">
+
+                <div class="shelf-top"></div>
+
+
+                <div class="shelf-row">
+
+                    <div class="bottle bottle-round">
+                        <span></span>
+                    </div>
+
+                    <div class="bottle bottle-small">
+                        <span></span>
+                    </div>
+
+                    <div class="bottle bottle-tall">
+                        <span></span>
+                    </div>
+
+                </div>
+
+
+                <div class="wooden-shelf"></div>
+
+
+                <div class="shelf-row">
+
+                    <div class="bottle bottle-square">
+                        <span></span>
+                    </div>
+
+                    <div class="bottle bottle-tall">
+                        <span></span>
+                    </div>
+
+                    <div class="bottle bottle-small">
+                        <span></span>
+                    </div>
+
+                </div>
+
+
+                <div class="wooden-shelf"></div>
+
+
+                <div class="shelf-row">
+
+                    <div class="drawer">
+                        <span>FLORES</span>
+                    </div>
+
+                    <div class="drawer">
+                        <span>SEMILLAS</span>
+                    </div>
+
+                </div>
+
+
+                <div class="wooden-shelf"></div>
+
+            </aside>
+
+
+
+            <!-- =================================
+                 PLANTA IZQUIERDA
+            ================================== -->
+
+            <div class="botanical botanical-left">
+
+                <div class="plant-stem"></div>
+
+                <div class="leaf leaf-one"></div>
+                <div class="leaf leaf-two"></div>
+                <div class="leaf leaf-three"></div>
+                <div class="leaf leaf-four"></div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 PLANTA DERECHA
+            ================================== -->
+
+            <div class="botanical botanical-right">
+
+                <div class="plant-stem"></div>
+
+                <div class="leaf leaf-one"></div>
+                <div class="leaf leaf-two"></div>
+                <div class="leaf leaf-three"></div>
+                <div class="leaf leaf-four"></div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 MUEBLE CENTRAL
+            ================================== -->
+
+            <div class="apothecary-counter">
+
+
+                <!-- PARTE SUPERIOR -->
+
+                <div class="counter-top">
+
+                    <div class="counter-label">
+
+                        <span>
+                            ARCHIVO PERSONAL
                         </span>
 
-                        <h1>
-                            Daily Journal
-                        </h1>
-
-                        <div class="heading-line"></div>
+                        <strong>
+                            REGISTRO DIARIO
+                        </strong>
 
                     </div>
 
-
-                    <!-- FRASE -->
-
-                    <p class="journal-intro">
-                        Un lugar para guardar los pequeños
-                        momentos que hacen parte de tu historia.
-                    </p>
+                </div>
 
 
-                    <!-- FECHA -->
+                <!-- CUERPO -->
 
-                    <div class="journal-date">
+                <div class="counter-body">
 
-                        <span class="date-day">
-                            27
-                        </span>
 
-                        <div class="date-info">
+                    <!-- FRASCOS -->
 
-                            <span>
-                                AGOSTO
-                            </span>
+                    <div class="counter-bottles">
 
-                            <span>
-                                2026
-                            </span>
+                        <div class="mini-bottle">
+                            <span>CALMA</span>
+                        </div>
 
+                        <div class="mini-bottle">
+                            <span>ALEGRÍA</span>
+                        </div>
+
+                        <div class="mini-bottle">
+                            <span>SUEÑOS</span>
                         </div>
 
                     </div>
 
 
-                    <!-- DECORACIÓN -->
+                    <!-- ZONA CENTRAL -->
 
-                    <div class="page-divider"></div>
-
-
-                    <!-- TEXTO -->
-
-                    <p class="page-note">
-                        Cada página guarda una parte de ti.
-                    </p>
+                    <div class="journal-display">
 
 
-                </div>
+                        <div class="date-label">
 
+                            <span>
+                                REGISTRO DEL DÍA
+                            </span>
 
+                            <strong>
+                                03 · SEPTIEMBRE · 2026
+                            </strong>
 
-                <!-- =================================
-                     PÁGINA DERECHA
-                ================================== -->
-
-                <div class="book-page book-page-right">
-
-
-                    <!-- ENCABEZADO -->
-
-                    <div class="page-header">
-
-                        <span>
-                            MI HISTORIA
-                        </span>
-
-                        <span>
-                            01
-                        </span>
-
-                    </div>
-
-
-                    <!-- ESPACIO PRINCIPAL -->
-
-                    <div class="journal-content">
+                        </div>
 
 
                         <h2>
-                            Hoy...
+                            ¿Cómo fue tu día?
                         </h2>
 
 
-                        <p class="writing-placeholder">
-                            Escribe aquí lo que quieras recordar
-                            de este día.
+                        <p>
+                            Conserva aquí aquello que quieras
+                            recordar de este momento.
                         </p>
+
+
+                        <div class="journal-paper">
+
+                            <span>
+                                Escribe tu recuerdo...
+                            </span>
+
+                        </div>
 
 
                     </div>
 
 
-                    <!-- SECCIONES DEL JOURNAL -->
+                    <!-- FRASCOS -->
 
-                    <nav class="journal-sections"
-                         aria-label="Secciones del Daily Journal">
+                    <div class="counter-bottles">
 
+                        <div class="mini-bottle">
+                            <span>ENERGÍA</span>
+                        </div>
 
-                        <button
-                            class="journal-section active"
-                            type="button"
-                            data-section="diary">
+                        <div class="mini-bottle">
+                            <span>PAZ</span>
+                        </div>
 
-                            <i data-lucide="feather"></i>
+                        <div class="mini-bottle">
+                            <span>MEMORIA</span>
+                        </div>
 
-                            <span>
-                                Diario
-                            </span>
-
-                        </button>
-
-
-                        <button
-                            class="journal-section"
-                            type="button"
-                            data-section="books">
-
-                            <i data-lucide="book-open"></i>
-
-                            <span>
-                                Libros
-                            </span>
-
-                        </button>
-
-
-                        <button
-                            class="journal-section"
-                            type="button"
-                            data-section="recipes">
-
-                            <i data-lucide="utensils"></i>
-
-                            <span>
-                                Recetas
-                            </span>
-
-                        </button>
-
-
-                        <button
-                            class="journal-section"
-                            type="button"
-                            data-section="emotions">
-
-                            <i data-lucide="heart"></i>
-
-                            <span>
-                                Emociones
-                            </span>
-
-                        </button>
-
-
-                        <button
-                            class="journal-section"
-                            type="button"
-                            data-section="movies">
-
-                            <i data-lucide="clapperboard"></i>
-
-                            <span>
-                                Películas
-                            </span>
-
-                        </button>
-
-
-                    </nav>
-
+                    </div>
 
                 </div>
 
+
+                <!-- CAJONES -->
+
+                <div class="counter-drawers">
+
+                    <button
+                        class="counter-drawer"
+                        type="button">
+
+                        <span>
+                            DIARIO
+                        </span>
+
+                    </button>
+
+                    <button
+                        class="counter-drawer"
+                        type="button">
+
+                        <span>
+                            LIBROS
+                        </span>
+
+                    </button>
+
+                    <button
+                        class="counter-drawer"
+                        type="button">
+
+                        <span>
+                            RECETAS
+                        </span>
+
+                    </button>
+
+                    <button
+                        class="counter-drawer"
+                        type="button">
+
+                        <span>
+                            EMOCIONES
+                        </span>
+
+                    </button>
+
+                    <button
+                        class="counter-drawer"
+                        type="button">
+
+                        <span>
+                            PELÍCULAS
+                        </span>
+
+                    </button>
+
+                </div>
 
             </div>
 
 
-            <!-- =====================================
-                 PLUMA DECORATIVA
-            ====================================== -->
 
-            <div class="journal-feather">
+            <!-- =================================
+                 LÁMPARA
+            ================================== -->
 
-                <i data-lucide="feather"></i>
+            <div class="apothecary-lamp">
+
+                <div class="lamp-glow"></div>
+
+                <div class="lamp-shade"></div>
+
+                <div class="lamp-body"></div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 VELA
+            ================================== -->
+
+            <div class="candle">
+
+                <div class="flame"></div>
+
+                <div class="candle-body"></div>
 
             </div>
 
@@ -332,15 +505,83 @@
         </section>
 
 
+
+        <!-- =====================================
+             MENÚ INFERIOR
+        ====================================== -->
+
+        <nav class="journal-navigation">
+
+
+            <button
+                class="nav-label active"
+                type="button">
+
+                <i data-lucide="notebook-pen"></i>
+
+                <span>
+                    Diario
+                </span>
+
+            </button>
+
+
+            <button
+                class="nav-label"
+                type="button">
+
+                <i data-lucide="book-open"></i>
+
+                <span>
+                    Libros
+                </span>
+
+            </button>
+
+
+            <button
+                class="nav-label"
+                type="button">
+
+                <i data-lucide="utensils"></i>
+
+                <span>
+                    Recetas
+                </span>
+
+            </button>
+
+
+            <button
+                class="nav-label"
+                type="button">
+
+                <i data-lucide="heart"></i>
+
+                <span>
+                    Emociones
+                </span>
+
+            </button>
+
+
+            <button
+                class="nav-label"
+                type="button">
+
+                <i data-lucide="clapperboard"></i>
+
+                <span>
+                    Películas
+                </span>
+
+            </button>
+
+
+        </nav>
+
+
     </main>
-
-
-
-    <!-- =====================================
-         ICONOS
-    ====================================== -->
-
-    <script src="https://unpkg.com/lucide@latest"></script>
 
 
     <!-- =====================================
@@ -348,7 +589,6 @@
     ====================================== -->
 
     <script src="script.js"></script>
-
 
 </body>
 
