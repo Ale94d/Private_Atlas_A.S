@@ -2,7 +2,6 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -10,7 +9,6 @@
 
     <title>Daily Journal | Private Atlas A.S.</title>
 
-    <!-- FUENTES -->
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
 
@@ -18,75 +16,38 @@
           href="https://fonts.gstatic.com"
           crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
           rel="stylesheet">
 
-    <!-- ICONOS -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- CSS -->
     <link rel="stylesheet"
           href="style.css">
-
-    <!-- FAVICON -->
-    <link rel="icon"
-          type="image/png"
-          href="assets/icons/favicon-daily-journal.png">
-
 </head>
-
 
 <body>
 
-    <!-- =====================================
-         DAILY JOURNAL
-    ====================================== -->
+    <main class="apothecary">
 
-    <main class="daily-journal">
+        <!-- =================================
+             DECORACIÓN
+        ================================== -->
 
+        <div class="ambient-glow glow-one"></div>
+        <div class="ambient-glow glow-two"></div>
 
-        <!-- =====================================
-             ILUMINACIÓN AMBIENTAL
-        ====================================== -->
-
-        <div class="ambient-light"></div>
-
-        <div class="floating-particles">
-
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-
-        </div>
+        <div class="particle particle-one">✦</div>
+        <div class="particle particle-two">✧</div>
+        <div class="particle particle-three">·</div>
 
 
-        <!-- =====================================
-             BARRA SUPERIOR
-        ====================================== -->
+        <!-- =================================
+             ENCABEZADO
+        ================================== -->
 
-        <header class="journal-header">
+        <header class="top-bar">
 
+            <div class="brand">
 
-            <!-- BOTÓN HOME -->
-
-            <button
-                class="home-button"
-                type="button"
-                aria-label="Volver al Home">
-
-                <i data-lucide="house"></i>
-
-            </button>
-
-
-            <!-- TÍTULO -->
-
-            <div class="journal-title">
-
-                <span>
+                <span class="brand-small">
                     PRIVATE ATLAS
                 </span>
 
@@ -97,36 +58,24 @@
             </div>
 
 
-            <!-- HERRAMIENTAS -->
+            <div class="date-display">
 
-            <div class="journal-tools">
+                <span class="date-label">
+                    HOY
+                </span>
 
-                <button
-                    class="tool-button"
-                    type="button"
-                    aria-label="Buscar">
-
-                    <i data-lucide="search"></i>
-
-                </button>
-
-                <button
-                    class="tool-button"
-                    type="button"
-                    aria-label="Calendario">
-
-                    <i data-lucide="calendar-days"></i>
-
-                </button>
+                <strong id="currentDate">
+                    03 SEPTIEMBRE 2026
+                </strong>
 
             </div>
 
         </header>
 
 
-        <!-- =====================================
-             HABITACIÓN DE BOTICA
-        ====================================== -->
+        <!-- =================================
+             CONTENIDO PRINCIPAL
+        ================================== -->
 
         <section class="apothecary-room">
 
@@ -135,461 +84,342 @@
                  ESTANTERÍA IZQUIERDA
             ================================== -->
 
-            <aside class="apothecary-shelf shelf-left">
+            <aside class="shelf-panel">
 
-                <div class="shelf-top"></div>
+                <div class="panel-title">
+                    <span>✦</span>
+                    BOTICA
+                    <span>✦</span>
+                </div>
 
 
-                <div class="shelf-row">
+                <div class="wood-shelf">
 
-                    <div class="bottle bottle-small">
+                    <div class="bottle bottle-green">
                         <span></span>
                     </div>
 
-                    <div class="bottle bottle-tall">
+                    <div class="bottle bottle-brown">
                         <span></span>
                     </div>
 
-                    <div class="bottle bottle-round">
+                    <div class="bottle bottle-clear">
                         <span></span>
                     </div>
 
                 </div>
 
 
-                <div class="wooden-shelf"></div>
+                <div class="wood-shelf">
 
-
-                <div class="shelf-row">
-
-                    <div class="bottle bottle-tall">
+                    <div class="small-bottle">
                         <span></span>
                     </div>
 
-                    <div class="bottle bottle-small">
+                    <div class="small-bottle dark">
                         <span></span>
                     </div>
 
-                    <div class="bottle bottle-square">
+                    <div class="small-bottle amber">
+                        <span></span>
+                    </div>
+
+                    <div class="small-bottle">
                         <span></span>
                     </div>
 
                 </div>
 
 
-                <div class="wooden-shelf"></div>
+                <div class="herb-decoration">
 
+                    <span>🌿</span>
 
-                <div class="shelf-row">
+                    <div>
+                        <small>
+                            HERBARIO
+                        </small>
 
-                    <div class="drawer">
-                        <span>HERBAS</span>
-                    </div>
-
-                    <div class="drawer">
-                        <span>RAÍCES</span>
+                        <p>
+                            Recuerdos
+                        </p>
                     </div>
 
                 </div>
-
-
-                <div class="wooden-shelf"></div>
 
             </aside>
 
 
 
             <!-- =================================
-                 ESTANTERÍA DERECHA
+                 ÁREA CENTRAL
             ================================== -->
 
-            <aside class="apothecary-shelf shelf-right">
+            <section class="journal-area">
 
-                <div class="shelf-top"></div>
+                <div class="welcome">
 
+                    <span class="ornament">
+                        ✦
+                    </span>
 
-                <div class="shelf-row">
+                    <h2>
+                        Conserva tu día
+                    </h2>
 
-                    <div class="bottle bottle-round">
-                        <span></span>
-                    </div>
-
-                    <div class="bottle bottle-small">
-                        <span></span>
-                    </div>
-
-                    <div class="bottle bottle-tall">
-                        <span></span>
-                    </div>
+                    <p>
+                        Cada experiencia merece un pequeño lugar
+                        en tu historia.
+                    </p>
 
                 </div>
 
 
-                <div class="wooden-shelf"></div>
+                <!-- TARJETA PRINCIPAL -->
 
+                <div class="entry-card">
 
-                <div class="shelf-row">
+                    <div class="card-header">
 
-                    <div class="bottle bottle-square">
-                        <span></span>
-                    </div>
-
-                    <div class="bottle bottle-tall">
-                        <span></span>
-                    </div>
-
-                    <div class="bottle bottle-small">
-                        <span></span>
-                    </div>
-
-                </div>
-
-
-                <div class="wooden-shelf"></div>
-
-
-                <div class="shelf-row">
-
-                    <div class="drawer">
-                        <span>FLORES</span>
-                    </div>
-
-                    <div class="drawer">
-                        <span>SEMILLAS</span>
-                    </div>
-
-                </div>
-
-
-                <div class="wooden-shelf"></div>
-
-            </aside>
-
-
-
-            <!-- =================================
-                 PLANTA IZQUIERDA
-            ================================== -->
-
-            <div class="botanical botanical-left">
-
-                <div class="plant-stem"></div>
-
-                <div class="leaf leaf-one"></div>
-                <div class="leaf leaf-two"></div>
-                <div class="leaf leaf-three"></div>
-                <div class="leaf leaf-four"></div>
-
-            </div>
-
-
-
-            <!-- =================================
-                 PLANTA DERECHA
-            ================================== -->
-
-            <div class="botanical botanical-right">
-
-                <div class="plant-stem"></div>
-
-                <div class="leaf leaf-one"></div>
-                <div class="leaf leaf-two"></div>
-                <div class="leaf leaf-three"></div>
-                <div class="leaf leaf-four"></div>
-
-            </div>
-
-
-
-            <!-- =================================
-                 MUEBLE CENTRAL
-            ================================== -->
-
-            <div class="apothecary-counter">
-
-
-                <!-- PARTE SUPERIOR -->
-
-                <div class="counter-top">
-
-                    <div class="counter-label">
-
-                        <span>
-                            ARCHIVO PERSONAL
-                        </span>
-
-                        <strong>
-                            REGISTRO DIARIO
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <!-- CUERPO -->
-
-                <div class="counter-body">
-
-
-                    <!-- FRASCOS -->
-
-                    <div class="counter-bottles">
-
-                        <div class="mini-bottle">
-                            <span>CALMA</span>
-                        </div>
-
-                        <div class="mini-bottle">
-                            <span>ALEGRÍA</span>
-                        </div>
-
-                        <div class="mini-bottle">
-                            <span>SUEÑOS</span>
-                        </div>
-
-                    </div>
-
-
-                    <!-- ZONA CENTRAL -->
-
-                    <div class="journal-display">
-
-
-                        <div class="date-label">
-
-                            <span>
+                        <div>
+                            <span class="label">
                                 REGISTRO DEL DÍA
                             </span>
 
-                            <strong>
-                                03 · SEPTIEMBRE · 2026
-                            </strong>
+                            <h3>
+                                ¿Cómo fue tu día?
+                            </h3>
+                        </div>
+
+                        <span class="card-number">
+                            Nº 001
+                        </span>
+
+                    </div>
+
+
+                    <div class="writing-area">
+
+                        <textarea
+                            id="journalText"
+                            placeholder="Escribe aquí aquello que quieras conservar de este día..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- ESTADO DE ÁNIMO -->
+
+                    <div class="mood-section">
+
+                        <span class="section-label">
+                            ESTADO DE ÁNIMO
+                        </span>
+
+
+                        <div class="moods">
+
+                            <button class="mood" type="button">
+                                <span>☀</span>
+                                Feliz
+                            </button>
+
+                            <button class="mood" type="button">
+                                <span>♡</span>
+                                Tranquilo
+                            </button>
+
+                            <button class="mood" type="button">
+                                <span>✦</span>
+                                Emocionado
+                            </button>
+
+                            <button class="mood" type="button">
+                                <span>☾</span>
+                                Nostálgico
+                            </button>
 
                         </div>
 
-
-                        <h2>
-                            ¿Cómo fue tu día?
-                        </h2>
+                    </div>
 
 
-                        <p>
-                            Conserva aquí aquello que quieras
-                            recordar de este momento.
-                        </p>
+                    <!-- ETIQUETAS -->
 
+                    <div class="tags-section">
 
-                        <div class="journal-paper">
+                        <span class="section-label">
+                            ETIQUETAS
+                        </span>
 
-                            <span>
-                                Escribe tu recuerdo...
+                        <div class="tags">
+
+                            <span class="tag">
+                                #hoy
+                            </span>
+
+                            <span class="tag">
+                                #recuerdo
+                            </span>
+
+                            <span class="tag">
+                                + añadir
                             </span>
 
                         </div>
 
+                    </div>
+
+
+                    <button class="save-button">
+                        <span>✦</span>
+                        Guardar recuerdo
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================
+                 PANEL DERECHO
+            ================================== -->
+
+            <aside class="memory-panel">
+
+                <div class="memory-title">
+
+                    <span>
+                        ARCHIVO
+                    </span>
+
+                    <h3>
+                        Tus recuerdos
+                    </h3>
+
+                </div>
+
+
+                <div class="memory-box">
+
+                    <span class="memory-icon">
+                        ◇
+                    </span>
+
+                    <h4>
+                        Un día como hoy
+                    </h4>
+
+                    <p>
+                        Descubre qué estabas viviendo
+                        en esta misma fecha.
+                    </p>
+
+                    <button>
+                        Ver recuerdos
+                    </button>
+
+                </div>
+
+
+                <div class="search-box">
+
+                    <span>
+                        🔎
+                    </span>
+
+                    <input
+                        type="text"
+                        placeholder="Buscar por fecha..."
+                    >
+
+                </div>
+
+
+                <div class="archive-list">
+
+                    <div class="archive-item">
+
+                        <span class="archive-date">
+                            27 AGO
+                        </span>
+
+                        <div>
+                            <strong>
+                                Un día especial
+                            </strong>
+
+                            <small>
+                                Hace 7 días
+                            </small>
+                        </div>
 
                     </div>
 
 
-                    <!-- FRASCOS -->
+                    <div class="archive-item">
 
-                    <div class="counter-bottles">
+                        <span class="archive-date">
+                            18 AGO
+                        </span>
 
-                        <div class="mini-bottle">
-                            <span>ENERGÍA</span>
-                        </div>
+                        <div>
+                            <strong>
+                                Pequeños momentos
+                            </strong>
 
-                        <div class="mini-bottle">
-                            <span>PAZ</span>
-                        </div>
-
-                        <div class="mini-bottle">
-                            <span>MEMORIA</span>
+                            <small>
+                                Hace 16 días
+                            </small>
                         </div>
 
                     </div>
 
                 </div>
 
-
-                <!-- CAJONES -->
-
-                <div class="counter-drawers">
-
-                    <button
-                        class="counter-drawer"
-                        type="button">
-
-                        <span>
-                            DIARIO
-                        </span>
-
-                    </button>
-
-                    <button
-                        class="counter-drawer"
-                        type="button">
-
-                        <span>
-                            LIBROS
-                        </span>
-
-                    </button>
-
-                    <button
-                        class="counter-drawer"
-                        type="button">
-
-                        <span>
-                            RECETAS
-                        </span>
-
-                    </button>
-
-                    <button
-                        class="counter-drawer"
-                        type="button">
-
-                        <span>
-                            EMOCIONES
-                        </span>
-
-                    </button>
-
-                    <button
-                        class="counter-drawer"
-                        type="button">
-
-                        <span>
-                            PELÍCULAS
-                        </span>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================
-                 LÁMPARA
-            ================================== -->
-
-            <div class="apothecary-lamp">
-
-                <div class="lamp-glow"></div>
-
-                <div class="lamp-shade"></div>
-
-                <div class="lamp-body"></div>
-
-            </div>
-
-
-
-            <!-- =================================
-                 VELA
-            ================================== -->
-
-            <div class="candle">
-
-                <div class="flame"></div>
-
-                <div class="candle-body"></div>
-
-            </div>
-
+            </aside>
 
         </section>
 
 
+        <!-- =================================
+             NAVEGACIÓN
+        ================================== -->
 
-        <!-- =====================================
-             MENÚ INFERIOR
-        ====================================== -->
+        <nav class="bottom-nav">
 
-        <nav class="journal-navigation">
-
-
-            <button
-                class="nav-label active"
-                type="button">
-
-                <i data-lucide="notebook-pen"></i>
-
-                <span>
-                    Diario
-                </span>
-
+            <button class="nav-item active">
+                <span>✎</span>
+                <small>Diario</small>
             </button>
 
-
-            <button
-                class="nav-label"
-                type="button">
-
-                <i data-lucide="book-open"></i>
-
-                <span>
-                    Libros
-                </span>
-
+            <button class="nav-item">
+                <span>📚</span>
+                <small>Libros</small>
             </button>
 
-
-            <button
-                class="nav-label"
-                type="button">
-
-                <i data-lucide="utensils"></i>
-
-                <span>
-                    Recetas
-                </span>
-
+            <button class="nav-item">
+                <span>⚗</span>
+                <small>Recetas</small>
             </button>
 
-
-            <button
-                class="nav-label"
-                type="button">
-
-                <i data-lucide="heart"></i>
-
-                <span>
-                    Emociones
-                </span>
-
+            <button class="nav-item">
+                <span>♡</span>
+                <small>Emociones</small>
             </button>
 
-
-            <button
-                class="nav-label"
-                type="button">
-
-                <i data-lucide="clapperboard"></i>
-
-                <span>
-                    Películas
-                </span>
-
+            <button class="nav-item">
+                <span>◉</span>
+                <small>Películas</small>
             </button>
-
 
         </nav>
-
 
     </main>
 
 
-    <!-- =====================================
-         JAVASCRIPT
-    ====================================== -->
-
     <script src="script.js"></script>
 
 </body>
-
 </html>
