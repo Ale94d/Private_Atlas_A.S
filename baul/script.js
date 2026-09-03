@@ -323,38 +323,38 @@ const genericCovers = {
     ],
 
 
-    "Ciencia ficcion": [
+    "Ciencia-ficcion": [
 
-        "assets/portadas/Ciencia Ficcion/P1.png",
-        "assets/portadas/Ciencia Ficcion/P2.png",
-        "assets/portadas/Ciencia Ficcion/P3.png",
-        "assets/portadas/Ciencia Ficcion/P4.png",
-        "assets/portadas/Ciencia Ficcion/P5.png",
-        "assets/portadas/Ciencia Ficcion/P6.png"
-
-    ],
-
-
-    "Dark Romance": [
-
-        "assets/portadas/Dark Romance/P1.png",
-        "assets/portadas/Dark Romance/P2.png",
-        "assets/portadas/Dark Romance/P3.png",
-        "assets/portadas/Dark Romance/P4.png",
-        "assets/portadas/Dark Romance/P5.png",
-        "assets/portadas/Dark Romance/P6.png"
+        "assets/portadas/Ciencia-Ficcion/P1.png",
+        "assets/portadas/Ciencia-Ficcion/P2.png",
+        "assets/portadas/Ciencia-Ficcion/P3.png",
+        "assets/portadas/Ciencia-Ficcion/P4.png",
+        "assets/portadas/Ciencia-Ficcion/P5.png",
+        "assets/portadas/Ciencia-Ficcion/P6.png"
 
     ],
 
 
-    "Distopía": [
+    "Dark-Romance": [
 
-        "assets/portadas/Distopía/P1.png",
-        "assets/portadas/Distopía/P2.png",
-        "assets/portadas/Distopía/P3.png",
-        "assets/portadas/Distopía/P4.png",
-        "assets/portadas/Distopía/P5.png",
-        "assets/portadas/Distopía/P6.png"
+        "assets/portadas/Dark-Romance/P1.png",
+        "assets/portadas/Dark-Romance/P2.png",
+        "assets/portadas/Dark-Romance/P3.png",
+        "assets/portadas/Dark-Romance/P4.png",
+        "assets/portadas/Dark-Romance/P5.png",
+        "assets/portadas/Dark-Romance/P6.png"
+
+    ],
+
+
+    "Distopia": [
+
+        "assets/portadas/Distopia/P1.png",
+        "assets/portadas/Distopia/P2.png",
+        "assets/portadas/Distopia/P3.png",
+        "assets/portadas/Distopia/P4.png",
+        "assets/portadas/Distopia/P5.png",
+        "assets/portadas/Distopia/P6.png"
 
     ],
 
@@ -371,14 +371,14 @@ const genericCovers = {
     ],
 
 
-    "Histórico": [
+    "Historico": [
 
-        "assets/portadas/Histórico/P1.png",
-        "assets/portadas/Histórico/P2.png",
-        "assets/portadas/Histórico/P3.png",
-        "assets/portadas/Histórico/P4.png",
-        "assets/portadas/Histórico/P5.png",
-        "assets/portadas/Histórico/P6.png"
+        "assets/portadas/Historico/P1.png",
+        "assets/portadas/Historico/P2.png",
+        "assets/portadas/Historico/P3.png",
+        "assets/portadas/Historico/P4.png",
+        "assets/portadas/Historico/P5.png",
+        "assets/portadas/Historico/P6.png"
 
     ],
 
