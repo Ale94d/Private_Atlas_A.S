@@ -333,9 +333,6 @@ if (coverInput) {
 }
 
 
-const genericCover =
-    "assets/portadas/Aventura/P1.png";
-
 
 const genericCovers = {
 
