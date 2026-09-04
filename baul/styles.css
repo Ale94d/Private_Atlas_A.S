@@ -17,7 +17,6 @@ body {
     font-family: "Plus Jakarta Sans", sans-serif;
 }
 
-
 .baul-workspace {
     position: fixed;
     inset: 0;
@@ -84,7 +83,6 @@ body {
         );
     z-index: 2;
 }
-
 
 .back-home {
     position: fixed;
@@ -198,7 +196,6 @@ body {
 .books-window {
     left: 50%;
     top: 32%;
-
     transform: translate(-50%, -50%);
 }
 
@@ -209,7 +206,6 @@ body {
 .recipes-window {
     left: 35%;
     top: 55%;
-
     transform: translate(-50%, -50%);
 }
 
@@ -220,14 +216,12 @@ body {
 .travel-window {
     left: 65%;
     top: 55%;
-
     transform: translate(-50%, -50%);
 }
 
 .travel-window:hover {
     transform: translate(-50%, -56%) scale(1.03);
 }
-
 
 .ash-particles {
     position: absolute;
@@ -315,7 +309,6 @@ body {
             translateY(0)
             translateX(0)
             scale(0.7);
-
         opacity: 0;
     }
 
@@ -328,7 +321,6 @@ body {
             translateY(-35vh)
             translateX(20px)
             scale(1);
-
         opacity: 0.5;
     }
 
@@ -341,11 +333,9 @@ body {
             translateY(-75vh)
             translateX(-15px)
             scale(0.5);
-
         opacity: 0;
     }
 }
-
 
 .embers {
     position: absolute;
@@ -417,7 +407,6 @@ body {
     }
 }
 
-
 .flames {
     position: absolute;
     inset: 0;
@@ -485,7 +474,6 @@ body {
         opacity: 1;
     }
 }
-
 
 .lava-transition {
     position: fixed;
@@ -813,7 +801,6 @@ body {
     }
 }
 
-
 .content-overlay {
     position: fixed;
     inset: 0;
@@ -833,8 +820,6 @@ body {
     opacity: 1;
     visibility: visible;
 }
-
-
 
 .content-window {
     position: relative;
@@ -991,7 +976,6 @@ body {
     border-radius: 10px;
 }
 
-
 .books-content {
     display: flex;
     flex-direction: column;
@@ -1041,7 +1025,6 @@ body {
     height: 15px;
 }
 
-
 .books-grid {
     display: grid;
     grid-template-columns:
@@ -1056,8 +1039,10 @@ body {
 .book-card {
     position: relative;
     min-width: 0;
+    width: 100%;
     padding: 10px;
     border-radius: 16px;
+    overflow: hidden;
     background:
         linear-gradient(
             145deg,
@@ -1078,7 +1063,6 @@ body {
         0 12px 25px rgba(0, 0, 0, 0.55),
         0 0 12px rgba(211, 47, 15, 0.10);
 }
-
 
 .book-cover-container,
 .book-cover-wrapper {
@@ -1136,7 +1120,6 @@ body {
         );
 }
 
-
 .book-card-info {
     position: absolute;
     inset: 0;
@@ -1148,6 +1131,10 @@ body {
     text-align: center;
     padding: 25px;
     pointer-events: none;
+}
+
+.book-card.custom-cover .book-card-info {
+    display: none;
 }
 
 .book-card-info h3 {
@@ -1179,12 +1166,6 @@ body {
         0 2px 5px rgba(0, 0, 0, 0.95);
 }
 
-
-.book-card.custom-cover .book-card-info {
-    display: none;
-}
-
-
 .book-card-bottom {
     width: 100%;
     padding-top: 10px;
@@ -1207,6 +1188,10 @@ body {
         rgba(211, 47, 15, 0.15);
     color: #d9856e;
     font-size: 0.75rem;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .book-favorite {
@@ -1217,6 +1202,7 @@ body {
     margin-left: 5px;
     color: #e7b06c;
     font-size: 0.8rem;
+    flex-shrink: 0;
 }
 
 .book-favorite i {
@@ -1224,19 +1210,26 @@ body {
     height: 13px;
 }
 
-
 .book-card-buttons,
 .book-actions {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 7px;
     margin-top: 12px;
     position: relative;
     z-index: 5;
+    width: 100%;
+}
+
+.book-card-buttons .delete-book-btn,
+.book-actions .delete-book-btn {
+    grid-column: 1 / -1;
 }
 
 .book-card-buttons button,
 .book-actions button {
-    flex: 1;
+    width: 100%;
+    min-width: 0;
     min-height: 36px;
     display: inline-flex;
     align-items: center;
@@ -1244,12 +1237,12 @@ body {
     gap: 5px;
     border: none;
     border-radius: 8px;
-    padding: 8px 7px;
+    padding: 8px 5px;
     cursor: pointer;
     font-family:
         "Plus Jakarta Sans",
         sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.70rem;
     transition:
         transform 0.2s ease,
         filter 0.2s ease,
@@ -1266,6 +1259,7 @@ body {
 .book-actions button i {
     width: 14px;
     height: 14px;
+    flex-shrink: 0;
 }
 
 .view-book-btn {
@@ -1285,7 +1279,6 @@ body {
         rgba(180, 30, 20, 0.18);
     color: #d9856e;
 }
-
 
 .empty-books {
     min-height: 220px;
@@ -1321,7 +1314,6 @@ body {
     font-size: 0.78rem;
     line-height: 1.5;
 }
-
 
 .book-form-overlay,
 .book-details-overlay,
@@ -1485,7 +1477,6 @@ body {
     font-size: 0.68rem;
 }
 
-
 .file-input-wrapper {
     position: relative;
 }
@@ -1535,7 +1526,6 @@ body {
     color: #d32f0f;
 }
 
-
 .favorite-option {
     display: flex;
     align-items: center;
@@ -1550,7 +1540,6 @@ body {
 .favorite-option input {
     accent-color: #d32f0f;
 }
-
 
 .form-buttons {
     display: flex;
@@ -1603,8 +1592,6 @@ body {
     width: 15px;
     height: 15px;
 }
-
-
 
 .book-detail-window,
 .book-details-window {
@@ -1664,7 +1651,6 @@ body {
         rgba(211, 47, 15, 0.15);
 }
 
-
 .book-detail-cover,
 .book-details-cover {
     position: relative;
@@ -1719,8 +1705,6 @@ body {
         );
 }
 
-
-
 .book-detail-info,
 .book-details-info {
     position: relative;
@@ -1752,7 +1736,6 @@ body {
     color: #d9856e;
     font-size: 0.78rem;
 }
-
 
 .book-detail-info h2,
 .book-details-info h2 {
@@ -1794,21 +1777,16 @@ body {
     pointer-events: none;
 }
 
-
 .book-details-window.custom-cover
 .book-details-info h2,
-
 .book-details-window.custom-cover
 .book-details-info .book-details-author,
-
 .book-detail-window.custom-cover
 .book-detail-info h2,
-
 .book-detail-window.custom-cover
 .book-detail-info .book-detail-author {
     display: none;
 }
-
 
 .book-detail-section,
 .book-details-section {
@@ -1866,7 +1844,6 @@ body {
     letter-spacing: 1px;
 }
 
-
 .book-detail-favorite,
 .book-details-favorite {
     display: flex;
@@ -1885,7 +1862,6 @@ body {
     width: 17px;
     height: 17px;
 }
-
 
 @media (max-width: 850px) {
 
@@ -1932,7 +1908,6 @@ body {
     }
 }
 
-
 @media (max-width: 700px) {
 
     .content-window {
@@ -1956,7 +1931,6 @@ body {
                 2,
                 minmax(0, 1fr)
             );
-
         gap: 12px;
     }
 
@@ -1982,7 +1956,11 @@ body {
     }
 
     .book-card-buttons {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+    }
+
+    .book-card-buttons .delete-book-btn {
+        grid-column: auto;
     }
 
     .book-card-buttons button {
@@ -2043,42 +2021,46 @@ body {
         margin-top: 5px;
     }
 
-
     .book-details-window.custom-cover
     .book-details-info h2,
-
     .book-details-window.custom-cover
     .book-details-info .book-details-author,
-
     .book-detail-window.custom-cover
     .book-detail-info h2,
-
     .book-detail-window.custom-cover
     .book-detail-info .book-detail-author {
         display: none;
     }
 }
 
-
 @media (max-width: 480px) {
 
     .books-grid {
         grid-template-columns: 1fr;
     }
+
     .book-cover-container,
     .book-cover-wrapper {
         height: 280px;
     }
+
     .book-card-buttons {
-        flex-direction: row;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .book-card-buttons .delete-book-btn {
+        grid-column: 1 / -1;
+    }
+
     .baul-window {
         width: 125px;
         height: 95px;
     }
+
     .recipes-window {
         left: 32%;
-   }
+    }
+
     .travel-window {
         left: 68%;
     }
