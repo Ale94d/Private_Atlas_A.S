@@ -218,7 +218,7 @@ const genericCovers = {
         "assets/portadas/Aventura/P6.png"
     ],
 
-    "Ciencia-ficcion": [
+    "Ciencia ficción": [
         "assets/portadas/Ciencia-Ficcion/P1.png",
         "assets/portadas/Ciencia-Ficcion/P2.png",
         "assets/portadas/Ciencia-Ficcion/P3.png",
@@ -227,7 +227,7 @@ const genericCovers = {
         "assets/portadas/Ciencia-Ficcion/P6.png"
     ],
 
-    "Dark-Romance": [
+    "Dark Romance": [
         "assets/portadas/Dark-Romance/P1.png",
         "assets/portadas/Dark-Romance/P2.png",
         "assets/portadas/Dark-Romance/P3.png",
@@ -245,7 +245,7 @@ const genericCovers = {
         "assets/portadas/Distopía/P6.png"
     ],
 
-    "Fantasia": [
+    "Fantasía": [
         "assets/portadas/Fantasia/P1.png",
         "assets/portadas/Fantasia/P2.png",
         "assets/portadas/Fantasia/P3.png",
@@ -254,7 +254,7 @@ const genericCovers = {
         "assets/portadas/Fantasia/P6.png"
     ],
 
-    "Historico": [
+    "Histórico": [
         "assets/portadas/Historico/P1.png",
         "assets/portadas/Historico/P2.png",
         "assets/portadas/Historico/P3.png",
