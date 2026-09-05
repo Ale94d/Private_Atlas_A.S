@@ -3666,4 +3666,3 @@ if (recipeDetailsOverlay) {
 }
 
 loadRecipes();
-loadRecipes();
