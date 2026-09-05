@@ -22,8 +22,7 @@ html, body {
     overflow: hidden;
     font-family: var(--font-sans);
     color: var(--text-main);
-    /* Fondo general de la habitación (puedes cambiar el nombre si la foto de la sala tiene otro nombre en tu carpeta Iconos) */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("Iconos/sala-fondo.jpg");
+    background-image: linear-gradient(rgba(10, 25, 40, 0.4), rgba(5, 12, 20, 0.6)), url("Iconos/IMG-20260905-WA0011.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
