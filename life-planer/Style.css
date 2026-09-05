@@ -25,10 +25,9 @@ html, body {
     overflow: hidden;
     font-family: var(--font-sans);
     color: var(--text-main);
-    background: #0b131a url("Icons/IMG-20260905-WA0011.jpg") no-repeat center center fixed;
+    background: #0b131a url("IMG-20260905-WA0011.jpg") no-repeat center center fixed;
     background-size: cover;
 }
-
 /* =====================================
    LAYOUT PRINCIPAL (MACRO-UI)
 ===================================== */
