@@ -939,30 +939,14 @@ if (bookForm) {
 
                     books[bookIndex] = {
                         ...oldBook,
-
-                        title:
-                            title,
-
-                        author:
-                            author,
-
-                        genre:
-                            genre,
-
-                        cover:
-                            cover,
-
-                        customCover:
-                            customCover,
-
-                        expectations:
-                            expectations,
-
-                        review:
-                            review,
-
-                        favorite:
-                            favorite
+                        title,
+                        author,
+                        genre,
+                        cover,
+                        customCover,
+                        expectations,
+                        review,
+                        favorite
                     };
                 }
 
@@ -989,37 +973,18 @@ if (bookForm) {
                 }
 
                 const newBook = {
-
                     id:
                         Date.now(),
-
-                    title:
-                        title,
-
-                    author:
-                        author,
-
-                    genre:
-                        genre,
-
-                    cover:
-                        cover,
-
-                    customCover:
-                        customCover,
-
-                    expectations:
-                        expectations,
-
-                    review:
-                        review,
-
-                    favorite:
-                        favorite,
-
+                    title,
+                    author,
+                    genre,
+                    cover,
+                    customCover,
+                    expectations,
+                    review,
+                    favorite,
                     dateAdded:
                         new Date().toISOString()
-
                 };
 
                 books.push(
@@ -1148,7 +1113,7 @@ const openAddRecipe =
     document.getElementById("openAddRecipe");
 
 const closeRecipeForm =
-    document.getElemntById("closeRecipeForm");
+    document.getElementById("recipeFormClose");
 
 const cancelRecipe =
     document.getElementById("cancelRecipe");
@@ -1175,7 +1140,7 @@ const recipeDetailsOverlay =
     document.getElementById("recipeDetailsOverlay");
 
 const closeRecipeDetails =
-    document.getElementById("closeRecipeDetails");
+    document.getElementById("recipeDetailsClose");
 
 function addIngredientRow(value = "") {
 
@@ -1214,27 +1179,24 @@ function addIngredientRow(value = "") {
             ".remove-ingredient-btn"
         );
 
-    removeButton.addEventListener(
-        "click",
-        () => {
+    if (removeButton) {
+        removeButton.addEventListener(
+            "click",
+            () => {
 
-            if (
-                ingredientsList.children.length > 1
-            ) {
-
-                row.remove();
+                if (
+                    ingredientsList.children.length > 1
+                ) {
+                    row.remove();
+                }
 
             }
-
-        }
-    );
-
-    if (typeof lucide !== "undefined") {
-
-        lucide.createIcons();
-
+        );
     }
 
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+    }
 }
 
 if (ingredientsList) {
@@ -1256,18 +1218,14 @@ if (ingredientsList) {
                     );
 
                 if (
+                    row &&
                     ingredientsList.children.length > 1
                 ) {
-
                     row.remove();
-
                 }
-
             }
-
         }
     );
-
 }
 
 if (addIngredient) {
@@ -1275,12 +1233,9 @@ if (addIngredient) {
     addIngredient.addEventListener(
         "click",
         () => {
-
             addIngredientRow();
-
         }
     );
-
 }
 
 if (openAddRecipe) {
@@ -1290,44 +1245,32 @@ if (openAddRecipe) {
         () => {
 
             if (recipeForm) {
-
                 recipeForm.reset();
-
                 delete recipeForm.dataset.editingId;
-
             }
 
             if (ingredientsList) {
-
                 ingredientsList.innerHTML = "";
-
                 addIngredientRow();
-
             }
 
             if (recipeFormOverlay) {
-
                 recipeFormOverlay.classList.add(
                     "active"
                 );
-
             }
 
         }
     );
-
 }
 
 function closeRecipeFormWindow() {
 
     if (recipeFormOverlay) {
-
         recipeFormOverlay.classList.remove(
             "active"
         );
-
     }
-
 }
 
 if (closeRecipeForm) {
@@ -1336,7 +1279,6 @@ if (closeRecipeForm) {
         "click",
         closeRecipeFormWindow
     );
-
 }
 
 if (cancelRecipe) {
@@ -1345,7 +1287,6 @@ if (cancelRecipe) {
         "click",
         closeRecipeFormWindow
     );
-
 }
 
 if (recipeFormOverlay) {
@@ -1358,14 +1299,11 @@ if (recipeFormOverlay) {
                 event.target ===
                 recipeFormOverlay
             ) {
-
                 closeRecipeFormWindow();
-
             }
 
         }
     );
-
 }
 
 function loadRecipes() {
@@ -1386,35 +1324,25 @@ function loadRecipes() {
     if (recipes.length === 0) {
 
         if (emptyRecipes) {
-
             emptyRecipes.style.display =
                 "flex";
-
         }
 
         return;
-
     }
 
     if (emptyRecipes) {
-
         emptyRecipes.style.display =
             "none";
-
     }
 
     recipes.forEach(recipe => {
-
         createRecipeCard(recipe);
-
     });
 
     if (typeof lucide !== "undefined") {
-
         lucide.createIcons();
-
     }
-
 }
 
 function createRecipeCard(recipe) {
@@ -1512,7 +1440,6 @@ function createRecipeCard(recipe) {
             </button>
 
         </div>
-
     `;
 
     recipesGrid.appendChild(card);
@@ -1532,33 +1459,32 @@ function createRecipeCard(recipe) {
             ".delete-recipe-btn"
         );
 
-    viewButton.addEventListener(
-        "click",
-        () => {
+    if (viewButton) {
+        viewButton.addEventListener(
+            "click",
+            () => {
+                showRecipeDetails(recipe);
+            }
+        );
+    }
 
-            showRecipeDetails(recipe);
+    if (editButton) {
+        editButton.addEventListener(
+            "click",
+            () => {
+                editRecipe(recipe);
+            }
+        );
+    }
 
-        }
-    );
-
-    editButton.addEventListener(
-        "click",
-        () => {
-
-            editRecipe(recipe);
-
-        }
-    );
-
-    deleteButton.addEventListener(
-        "click",
-        () => {
-
-            deleteRecipe(recipe.id);
-
-        }
-    );
-
+    if (deleteButton) {
+        deleteButton.addEventListener(
+            "click",
+            () => {
+                deleteRecipe(recipe.id);
+            }
+        );
+    }
 }
 
 if (recipeForm) {
@@ -1632,9 +1558,7 @@ if (recipeForm) {
                 );
 
             if (ingredients.length === 0) {
-
                 return;
-
             }
 
             const recipes =
@@ -1659,9 +1583,7 @@ if (recipeForm) {
                 if (index !== -1) {
 
                     recipes[index] = {
-
                         ...recipes[index],
-
                         name,
                         category,
                         ingredients,
@@ -1669,17 +1591,14 @@ if (recipeForm) {
                         time,
                         servings,
                         favorite
-
                     };
-
                 }
 
             } else {
 
                 recipes.push({
-
-                    id: Date.now(),
-
+                    id:
+                        Date.now(),
                     name,
                     category,
                     ingredients,
@@ -1687,9 +1606,7 @@ if (recipeForm) {
                     time,
                     servings,
                     favorite
-
                 });
-
             }
 
             localStorage.setItem(
@@ -1700,10 +1617,8 @@ if (recipeForm) {
             loadRecipes();
 
             closeRecipeFormWindow();
-
         }
     );
-
 }
 
 function editRecipe(recipe) {
@@ -1712,9 +1627,7 @@ function editRecipe(recipe) {
         !recipeForm ||
         !recipeFormOverlay
     ) {
-
         return;
-
     }
 
     document.getElementById(
@@ -1753,12 +1666,12 @@ function editRecipe(recipe) {
     ingredientsList.innerHTML = "";
 
     const recipeIngredients =
-        Array.isArray(recipeIngredients)
-            ? recipeIngredients
+        Array.isArray(recipe.ingredients)
+            ? recipe.ingredients
             : [""];
 
     recipeIngredients.forEach(
-        ingredient =>{
+        ingredient => {
             addIngredientRow(
                 ingredient
             );
@@ -1768,7 +1681,6 @@ function editRecipe(recipe) {
     recipeFormOverlay.classList.add(
         "active"
     );
-
 }
 
 function deleteRecipe(recipeId) {
@@ -1792,7 +1704,6 @@ function deleteRecipe(recipeId) {
     );
 
     loadRecipes();
-
 }
 
 function showRecipeDetails(recipe) {
@@ -1851,8 +1762,8 @@ function showRecipeDetails(recipe) {
     ingredients.innerHTML = "";
 
     const recipeIngredients =
-        Array.isArray(recipeIngredients)
-            ? recipeIngredients
+        Array.isArray(recipe.ingredients)
+            ? recipe.ingredients
             : [];
 
     recipeIngredients.forEach(
@@ -1865,7 +1776,6 @@ function showRecipeDetails(recipe) {
                 ingredient;
 
             ingredients.appendChild(li);
-
         }
     );
 
@@ -1882,11 +1792,8 @@ function showRecipeDetails(recipe) {
     );
 
     if (typeof lucide !== "undefined") {
-
         lucide.createIcons();
-
     }
-
 }
 
 if (closeRecipeDetails) {
@@ -1895,13 +1802,14 @@ if (closeRecipeDetails) {
         "click",
         () => {
 
-            recipeDetailsOverlay.classList.remove(
-                "active"
-            );
+            if (recipeDetailsOverlay) {
+                recipeDetailsOverlay.classList.remove(
+                    "active"
+                );
+            }
 
         }
     );
-
 }
 
 if (recipeDetailsOverlay) {
@@ -1918,12 +1826,24 @@ if (recipeDetailsOverlay) {
                 recipeDetailsOverlay.classList.remove(
                     "active"
                 );
-
             }
 
         }
     );
-
 }
 
 loadRecipes();
+MUY IMPORTANTE: hay que sincronizar 2 IDs en tu HTML
+Como ahora el script.js busca nombres nuevos, en el HTML cambia solamente esto:
+Formulario de Recetas:
+HTML
+id="closeRecipeForm"
+por:
+HTML
+id="recipeFormClose"
+Detalles de Recetas:
+HTML
+id="closeRecipeForm"
+por:
+HTML
+id="recipeDetailsClose"
