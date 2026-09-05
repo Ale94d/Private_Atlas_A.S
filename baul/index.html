@@ -568,6 +568,270 @@
     </div>
 
     <div
+        class="recipe-form-overlay"
+        id="recipeFormOverlay">
+
+        <div class="recipe-form">
+
+            <button
+                class="close-recipe-form"
+                id="closeRecipeForm"
+                type="button"
+                aria-label="Cerrar">
+            </button>
+
+            <div class="recipe-form-header">
+                <i data-lucide="chat-hat"></i>
+
+                <div>
+                    <h2>Agregar receta</h2>
+
+                    <p>
+                        Guarda tus recetas favoritas.
+                    </p>
+                </div>
+            </div>
+
+        <form id="recipeForm">
+
+            <div class="form-group">
+                <label for="recipeName">
+                    Nombre
+                </label>
+                <input 
+                    type="text"
+                    id="recipeName"
+                    placeholder="Nombre de la receta"
+                    required>
+            </div>
+
+            <div class="form-group">
+
+                <label for="recipeCategory">
+                    Categoría
+                </label>
+
+                <select
+                    id="recipeCategory"
+                    requiered>
+
+                    <option value="">
+                        Seleccione una categoria
+                    </option>
+
+                    <option value="Desayuno">
+                        Desayuno
+                    </option>
+
+                    <option value="Almuerzo">
+                        Almuerzo
+                    </option>
+
+                    <option value="Cena">
+                        Cena
+                    </option>
+
+                    <option value="Postre">
+                        Postre
+                    </option>
+
+                    <option value="Bebida">
+                        Bebida
+                    </option>
+
+                    <option value="Snack">
+                        Snack
+                    </option>
+
+                </select>
+            </div>
+
+        <div class="form-group">
+            <label>
+                Ingredientes
+            </label>
+
+            <div
+                class="ingredients-list"
+                id="ingredientsList">
+            </div>
+
+            <button
+                type="button"
+                class="add-ingredients-btn"
+                id="addingredients">
+
+                <i data-lucide="plus"></i>
+
+                Agregar Ingrediente
+
+            </button>
+        </div>
+
+        <div class="form-group">
+
+            <label for="recipePreparantion">
+                Preparacíon
+            </label>
+
+            <textarea
+                id="recipePreparantion"
+                placeholder="Escribe los apsos de preparación..."
+                required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="recipeTime">
+                Tiempo de preparación
+            </label>
+
+            <input
+                type="text"
+                id="recipeTime"
+                placeholder="Ejemplo: 40 minutos"
+                required>
+        </div>
+
+        <div class="foprm-group">
+
+            <label for="recipeServings">
+                Poriones
+            </label> 
+
+            <input 
+                type="number"
+                id="recipeServings"
+                placeholder="Ejemplo: 4"
+                min="1"
+                required>
+        </div>
+
+        <label class="favorite-option">
+            <input
+                type="checkbox"
+                id="recipeFavorite">
+
+            <span>
+                Marcar como favorita
+            </span>
+        </label>
+
+        <div class="form-buttons">
+
+            <button
+                type="button"
+                class="cancel-recipe-btn"
+                id="cancelRecipe">
+
+                Cancelar
+
+            </button>
+
+            <button
+                 type="submit"
+                 class="save-recipe-btn">
+
+                 <i data-lucide="save"></i>
+
+                 Guardar  receta
+
+            </button>
+        </div>
+
+        </form>
+        </div>
+    </div>
+
+   <div
+    class="recipe-details-overlay"
+    id="recipeDetailsOverlay">
+
+    <div class="recipe-details-window">
+
+        <button
+            class="close-recipe-details"
+            id="closeRecipeDetails"
+            type="button"
+            aria-label="Cerrar">
+
+            <i data-lucide="x"></i>
+
+        </button>
+
+        <div class="recipe-details-header">
+
+            <i data-lucide="chef-hat"></i>
+
+            <div>
+
+                <span
+                    class="recipe-details-category"
+                    id="detailsRecipeCategory">
+                </span>
+
+                <h2 id="detailsRecipeName">
+                    Receta
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="recipe-details-meta">
+
+            <div>
+
+                <i data-lucide="clock"></i>
+
+                <span id="detailsRecipeTime">
+                </span>
+
+            </div>
+
+            <div>
+
+                <i data-lucide="users"></i>
+
+                <span id="detailsRecipeServings">
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="recipe-details-section">
+
+            <h3>Ingredientes</h3>
+
+            <ul id="detailsRecipeIngredients">
+            </ul>
+
+        </div>
+
+        <div class="recipe-details-section">
+
+            <h3>Preparación</h3>
+
+            <p id="detailsRecipePreparation">
+            </p>
+
+        </div>
+
+        <div
+            class="recipe-details-favorite"
+            id="detailsRecipeFavorite">
+
+            <i data-lucide="star"></i>
+
+            Receta favorita
+
+        </div>
+
+    </div>
+
+</div>
+
+    <div
         class="book-details-overlay"
         id="bookDetailsOverlay">
 
