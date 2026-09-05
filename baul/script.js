@@ -1148,7 +1148,7 @@ const openAddRecipe =
     document.getElementById("openAddRecipe");
 
 const closeRecipeForm =
-    document.getElementById("closeRecipeForm");
+    document.getElementById(#recipeFormOverlay# #closeRecipeForm#);
 
 const cancelRecipe =
     document.getElementById("cancelRecipe");
@@ -1752,13 +1752,15 @@ function editRecipe(recipe) {
 
     ingredientsList.innerHTML = "";
 
-    recipe.ingredients.forEach(
-        ingredient => {
+    const recipeIngredients =
+        Array.isArray(recipe.ingredients)
+            ? recipe.ingredients: [""];
 
+    recipeIngredients.forEach(
+        ingredient =>{
             addIngredientRow(
                 ingredient
             );
-
         }
     );
 
@@ -1846,6 +1848,11 @@ function showRecipeDetails(recipe) {
         `${recipe.servings} porciones`;
 
     ingredients.innerHTML = "";
+
+    const recipeIngredients =
+        Array.isArray(recipe.ingredients)
+            ? recipe.ingredients
+            : [];
 
     recipe.ingredients.forEach(
         ingredient => {
