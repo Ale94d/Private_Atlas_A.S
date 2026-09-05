@@ -1148,7 +1148,7 @@ const openAddRecipe =
     document.getElementById("openAddRecipe");
 
 const closeRecipeForm =
-    document.querySelector("#recipeFormOverlay# #closeRecipeForm#");
+    document.querySelector("closeRecipeForm");
 
 const cancelRecipe =
     document.getElementById("cancelRecipe");
