@@ -1833,17 +1833,3 @@ if (recipeDetailsOverlay) {
 }
 
 loadRecipes();
-MUY IMPORTANTE: hay que sincronizar 2 IDs en tu HTML
-Como ahora el script.js busca nombres nuevos, en el HTML cambia solamente esto:
-Formulario de Recetas:
-HTML
-id="closeRecipeForm"
-por:
-HTML
-id="recipeFormClose"
-Detalles de Recetas:
-HTML
-id="closeRecipeForm"
-por:
-HTML
-id="recipeDetailsClose"
