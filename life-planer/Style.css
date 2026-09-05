@@ -8,28 +8,31 @@
 }
 
 :root {
-    --glass-border: rgba(255, 255, 255, 0.35);
-    --text-main: #13222d;
-    --text-muted: #4a5d6e;
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --text-main: #ffffff;
+    --text-muted: #d0e0ed;
     --accent-gold: #d9a441;
     --font-serif: "Cormorant Garamond", serif;
     --font-sans: "Plus Jakarta Sans", sans-serif;
 }
 
+/* =====================================
+   FONDO GENERAL CON TU IMAGEN DE LOS PINOS
+===================================== */
 html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
     font-family: var(--font-sans);
     color: var(--text-main);
-    background-image: linear-gradient(rgba(10, 25, 40, 0.4), rgba(5, 12, 20, 0.6)), url("Icons/IMG-20260905-WA0011.jpg");
+    background-image: linear-gradient(rgba(10, 20, 30, 0.35), rgba(5, 12, 20, 0.5)), url("./Icons/IMG-20260905-WA0011.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 /* =====================================
-   LAYOUT PRINCIPAL (ESTILO MACRO-UI)
+   LAYOUT PRINCIPAL (MACRO-UI)
 ===================================== */
 .planner-workspace {
     position: fixed;
@@ -46,12 +49,13 @@ html, body {
     max-width: 1320px;
     height: 85vh;
     max-height: 800px;
-    background: rgba(240, 245, 250, 0.35);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    /* Paneles de cristal puros sin fondo gris sólido */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
     border-radius: 36px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
     display: grid;
     grid-template-columns: 88px 1fr;
     overflow: hidden;
@@ -61,9 +65,9 @@ html, body {
    BARRA LATERAL DE NAVEGACIÓN
 ===================================== */
 .macro-sidebar {
-    background: rgba(15, 28, 38, 0.45);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background: rgba(10, 20, 30, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -86,7 +90,7 @@ html, body {
     border-radius: 50%;
     border: none;
     background: rgba(255, 255, 255, 0.12);
-    color: #c5d4e2;
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -114,7 +118,7 @@ html, body {
 }
 
 /* =====================================
-   CONTENIDO CENTRAL / WORKSPACE
+   CONTENIDO CENTRAL
 ===================================== */
 .macro-content {
     position: relative;
@@ -129,24 +133,24 @@ html, body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     padding: 16px 28px;
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .header-brand span {
     font-size: 9px;
     letter-spacing: 3px;
-    color: var(--text-muted);
+    color: var(--accent-gold);
     font-weight: 700;
 }
 
 .header-brand h2 {
     font-family: var(--font-serif);
     font-size: 26px;
-    color: #192c3a;
+    color: #ffffff;
 }
 
 .header-filters {
@@ -157,10 +161,10 @@ html, body {
 .filter-pill {
     padding: 10px 20px;
     border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(8px);
-    color: var(--text-main);
+    color: #ffffff;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
@@ -171,13 +175,13 @@ html, body {
 }
 
 .filter-pill.active, .filter-pill:hover {
-    background: #13222d;
-    color: #f0f5fa;
-    border-color: #13222d;
+    background: var(--accent-gold);
+    color: #13222d;
+    border-color: var(--accent-gold);
 }
 
 /* =====================================
-   BANNER HERO CON TU IMAGEN DE LOS PINOS
+   BANNER HERO
 ===================================== */
 .hero-banner {
     position: relative;
@@ -189,15 +193,15 @@ html, body {
     align-items: center;
     padding: 0 50px;
     margin-bottom: 30px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .hero-banner::before {
     content: "";
     position: absolute;
     inset: 0;
-    /* Aquí se integra tu imagen exacta (IMG-20260905-WA0011.jpg) con un degradado elegante */
-    background: linear-gradient(90deg, rgba(15, 30, 45, 0.85) 0%, rgba(15, 30, 45, 0.3) 60%, transparent 100%), url("Iconos/IMG-20260905-WA0011.jpg");
+    background: linear-gradient(90deg, rgba(10, 20, 30, 0.85) 0%, rgba(10, 20, 30, 0.3) 60%, transparent 100%), url("./Icons/IMG-20260905-WA0011.jpg");
     background-size: cover;
     background-position: center;
     z-index: 1;
@@ -207,13 +211,13 @@ html, body {
     position: relative;
     z-index: 2;
     max-width: 550px;
-    color: #f0f5fa;
+    color: #ffffff;
 }
 
 .hero-tag {
     font-size: 10px;
     letter-spacing: 3px;
-    color: #d9a441;
+    color: var(--accent-gold);
     font-weight: 700;
 }
 
@@ -228,12 +232,12 @@ html, body {
 .hero-content p {
     font-size: 14px;
     line-height: 1.6;
-    color: #d0e0ed;
+    color: var(--text-muted);
     margin-bottom: 20px;
 }
 
 .hero-action-btn {
-    background: #d9a441;
+    background: var(--accent-gold);
     border: none;
     color: #13222d;
 }
@@ -249,13 +253,13 @@ html, body {
 }
 
 .glass-card {
-    background: rgba(255, 255, 255, 0.38);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 24px;
     padding: 28px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
 }
@@ -269,7 +273,7 @@ html, body {
 .card-title-sm {
     font-size: 10px;
     letter-spacing: 2px;
-    color: var(--text-muted);
+    color: var(--accent-gold);
     font-weight: 700;
     margin-bottom: 8px;
 }
@@ -277,7 +281,7 @@ html, body {
 .card-main-title {
     font-family: var(--font-serif);
     font-size: 24px;
-    color: #192c3a;
+    color: #ffffff;
     margin-bottom: 12px;
 }
 
@@ -302,7 +306,7 @@ html, body {
     font-family: var(--font-serif);
     font-size: 38px;
     font-weight: 700;
-    color: #13222d;
+    color: #ffffff;
 }
 
 .stat-sub {
@@ -317,8 +321,8 @@ html, body {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: #13222d;
-    color: #f0f5fa;
+    background: var(--accent-gold);
+    color: #13222d;
     border: none;
     display: flex;
     align-items: center;
@@ -329,17 +333,16 @@ html, body {
 
 .action-circle-btn:hover {
     transform: scale(1.1);
-    background: var(--accent-gold);
-    color: #13222d;
+    background: #ffffff;
 }
 
 .floating-info-card {
-    background: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -351,12 +354,12 @@ html, body {
     align-items: center;
     font-size: 13px;
     color: var(--text-muted);
-    border-bottom: 1px card-border solid rgba(74, 93, 110, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 8px;
 }
 
 .info-row strong {
-    color: var(--text-main);
+    color: #ffffff;
 }
 
 /* Scrollbar personalizado */
@@ -367,6 +370,6 @@ html, body {
     background: transparent;
 }
 .macro-content::-webkit-scrollbar-thumb {
-    background: rgba(83, 104, 120, 0.2);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-   }
+}
