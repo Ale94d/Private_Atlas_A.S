@@ -2722,3 +2722,85 @@ body {
         width: 36px;
     }
 }
+
+.recipe-form .form-buttons {
+    margin-top: 10px;
+}
+
+.recipe-form .form-buttons button {
+    min-width: 125px;
+    min-height: 42px;
+    padding: 10px 16px;
+    border-radius: 9px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.cancel-recipe-btn {
+    background:
+        rgba(243, 230, 208, 0.08);
+    color: #f3e6d0;
+    border:
+        1px solid
+        rgba(243, 230, 208, 0.08);
+}
+
+.cancel-recipe-btn:hover {
+    background:
+        rgba(243, 230, 208, 0.14);
+}
+
+.save-recipe-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background:
+        linear-gradient(
+            145deg,
+            #d32f0f,
+            #8f1f0a
+        );
+    color: #ffffff;
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.35);
+}
+
+.save-recipe-btn:hover {
+    filter: brightness(1.1);
+}
+
+.save-recipe-btn i {
+    width: 15px;
+    height: 15px;
+}
+
+.recipe-form .add-ingredient-btn {
+    min-height: 38px;
+    padding: 9px 13px;
+    border-radius: 9px;
+    font-weight: 600;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.recipe-form .add-ingredient-btn:hover {
+    transform: translateY(-2px);
+    border-color:
+        rgba(211, 47, 15, 0.45);
+    background:
+        rgba(211, 47, 15, 0.14);
+}
+
+.recipe-form #recipeServings {
+    appearance: textfield;
+    text-align: center;
+    font-weight: 600;
+}
+
+.recipe-form #recipeServings::-webkit-inner-spin-button,
+.recipe-form #recipeServings::-webkit-outer-spin-button {
+    opacity: 1;
+}

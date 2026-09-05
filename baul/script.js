@@ -1237,6 +1237,39 @@ function addIngredientRow(value = "") {
 
 }
 
+if (ingredientsList) {
+
+    ingredientsList.addEventListener(
+        "click",
+        event => {
+
+            const removeButton =
+                event.target.closest(
+                    ".remove-ingredient-btn"
+                );
+
+            if (removeButton) {
+
+                const row =
+                    removeButton.closest(
+                        ".ingredient-row"
+                    );
+
+                if (
+                    ingredientsList.children.length > 1
+                ) {
+
+                    row.remove();
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
 if (addIngredient) {
 
     addIngredient.addEventListener(
