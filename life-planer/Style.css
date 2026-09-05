@@ -25,10 +25,8 @@ html, body {
     overflow: hidden;
     font-family: var(--font-sans);
     color: var(--text-main);
-    background-image: linear-gradient(rgba(10, 20, 30, 0.35), rgba(5, 12, 20, 0.5)), url("./Icons/IMG-20260905-WA0011.jpg");
+    background: #0b131a url("Icons/IMG-20260905-WA0011.jpg") no-repeat center center fixed;
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 /* =====================================
