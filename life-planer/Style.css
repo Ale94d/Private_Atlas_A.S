@@ -22,7 +22,7 @@ html, body {
     overflow: hidden;
     font-family: var(--font-sans);
     color: var(--text-main);
-    background-image: linear-gradient(rgba(10, 25, 40, 0.4), rgba(5, 12, 20, 0.6)), url("Iconos/IMG-20260905-WA0011.jpg");
+    background-image: linear-gradient(rgba(10, 25, 40, 0.4), rgba(5, 12, 20, 0.6)), url("Icons/IMG-20260905-WA0011.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
