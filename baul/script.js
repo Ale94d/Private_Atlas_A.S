@@ -33,7 +33,7 @@ const travelContent =
     document.querySelector(".travel-content");
 
 const closeButtons =
-    document.querySelectorAll("content-window > .close-window");
+    document.querySelectorAll(".close-window");
 
 function openWindow(content) {
     if (!overlay || !content) {
