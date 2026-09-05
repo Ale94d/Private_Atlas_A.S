@@ -1,1 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Planner | Private Atlas A.S.</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.css">
+
+    <!-- CSS Externo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="planner-workspace">
+
+        <!-- VENTANA MACRO UI -->
+        <div class="macro-window">
+
+            <!-- BARRA LATERAL DE ICONOS -->
+            <aside class="macro-sidebar">
+                <div class="sidebar-top">
+                    <button class="nav-icon-btn active" type="button" title="Panel Principal">
+                        <i class="icon-home"></i>
+                    </button>
+                    <button class="nav-icon-btn" type="button" title="Buscador de Metas">
+                        <i class="icon-search"></i>
+                    </button>
+                    <button class="nav-icon-btn" type="button" title="Panel de Hábitos">
+                        <i class="icon-layout-grid"></i>
+                    </button>
+                    <button class="nav-icon-btn" type="button" title="Diario de Bitácora">
+                        <i class="icon-book-open"></i>
+                    </button>
+                </div>
+
+                <div class="sidebar-bottom">
+                    <button class="nav-icon-btn" type="button" title="Configuración">
+                        <i class="icon-settings"></i>
+                    </button>
+                    <img src="assets/icons/favicon-atlas.png" alt="Perfil Private Atlas" class="user-avatar" title="Private Atlas A.S.">
+                </div>
+            </aside>
+
+            <!-- CONTENIDO PRINCIPAL -->
+            <section class="macro-content">
+
+                <!-- ENCABEZADO INTERNO -->
+                <header class="macro-header">
+                    <div class="header-brand">
+                        <span>PRIVATE ATLAS A.S.</span>
+                        <h2>Life Planner</h2>
+                    </div>
+
+                    <div class="header-filters">
+                        <button class="filter-pill active" type="button">
+                            <i class="icon-compass"></i> Proyectos Activos
+                        </button>
+                        <button class="filter-pill" type="button">
+                            <i class="icon-star"></i> Destacados
+                        </button>
+                    </div>
+                </header>
+
+                <!-- BANNER HERO -->
+                <div class="hero-banner">
+                    <div class="hero-content">
+                        <span class="hero-tag">EXPLORACIÓN PERSONAL</span>
+                        <h1>Tu Vida, Diseñada con Precisión</h1>
+                        <p>Organiza tus metas, registra tus hábitos diarios y supervisa la evolución de tu propio atlas de experiencias con un entorno clásico y sofisticado.</p>
+                        <button class="filter-pill hero-action-btn" type="button" id="exploreBtn">
+                            Explorar Bitácora <i class="icon-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN DE TARJETAS INFERIORES -->
+                <div class="cards-grid">
+
+                    <!-- Tarjeta 1: Resumen de Metas -->
+                    <div class="glass-card">
+                        <div class="card-title-sm">ESTADÍSTICAS VITALES</div>
+                        <h3 class="card-main-title">Progreso Global</h3>
+                        <p class="card-desc">Tu constancia en el desarrollo personal y académico se mantiene en constante ascenso.</p>
+                        
+                        <div class="stat-display">
+                            <div>
+                                <span class="stat-number" id="counterVal">88%</span>
+                                <div class="stat-sub">Hitos cumplidos este mes</div>
+                            </div>
+                        </div>
+
+                        <button class="action-circle-btn" type="button" id="nextGoalBtn" title="Avanzar meta">
+                            <i class="icon-arrow-up-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Tarjeta 2: Panel Descriptivo / Próximo Hito -->
+                    <div class="glass-card card-flex-between">
+                        <div>
+                            <div class="card-title-sm">PRÓXIMO OBJETIVO</div>
+                            <h3 class="card-main-title title-spaced">Atlas Expedition 2026</h3>
+                        </div>
+
+                        <div class="floating-info-card">
+                            <div class="info-row">
+                                <span>Estado actual</span>
+                                <strong>En ejecución</strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Enfoque principal</span>
+                                <strong>Desarrollo Web & Rutinas</strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Sincronización</span>
+                                <strong>Diario de Botica Activo</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- JavaScript Externo -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
