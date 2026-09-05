@@ -1148,7 +1148,7 @@ const openAddRecipe =
     document.getElementById("openAddRecipe");
 
 const closeRecipeForm =
-    document.getElementById("#recipeFormOverlay# #closeRecipeForm#");
+    document.querySelector("#recipeFormOverlay# #closeRecipeForm#");
 
 const cancelRecipe =
     document.getElementById("cancelRecipe");
@@ -1754,7 +1754,7 @@ function editRecipe(recipe) {
 
     const recipeIngredients =
         Array.isArray(recipeIngredients)
-            ? recipe.ingredients
+            ? recipeIngredients
             : [""];
 
     recipeIngredients.forEach(
