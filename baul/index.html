@@ -216,9 +216,9 @@
 
             </div>
 
-                <div class=""content-window-body>
+                <div class="content-window-body">
 
-                    <div class=""recipes-toolbar>
+                    <div class="recipes-toolbar">
                        
                     <button
                         class="add-recipe-btn"
@@ -252,14 +252,14 @@
                     </div>
                 </div>
 
-            </div>
 
         </section>
 
         <section class="content-window travel-content">
 
             <button
-                class="close-window"
+                class="close-recipe-form"
+                id="closeRecipeForm"
                 type="button"
                 aria-label="Cerrar">
 
@@ -581,7 +581,7 @@
             </button>
 
             <div class="recipe-form-header">
-                <i data-lucide="chat-hat"></i>
+                <i data-lucide="chet-hat"></i>
 
                 <div>
                     <h2>Agregar receta</h2>
@@ -613,7 +613,7 @@
 
                 <select
                     id="recipeCategory"
-                    requiered>
+                    required>
 
                     <option value="">
                         Seleccione una categoria
@@ -659,7 +659,7 @@
             <button
                 type="button"
                 class="add-ingredients-btn"
-                id="addingredients">
+                id="addingredient">
 
                 <i data-lucide="plus"></i>
 
@@ -671,7 +671,7 @@
         <div class="form-group">
 
             <label for="recipePreparantion">
-                Preparacíon
+                Preparación
             </label>
 
             <textarea
@@ -688,20 +688,20 @@
             <input
                 type="text"
                 id="recipeTime"
-                placeholder="Ejemplo: 40 minutos"
+                placeholder="Ej: 40 minutos"
                 required>
         </div>
 
-        <div class="foprm-group">
+        <div class="form-group">
 
             <label for="recipeServings">
-                Poriones
+                Porciones
             </label> 
 
             <input 
                 type="number"
                 id="recipeServings"
-                placeholder="Ejemplo: 4"
+                placeholder="Ej: 4"
                 min="1"
                 required>
         </div>
