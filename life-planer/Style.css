@@ -378,9 +378,15 @@ html, body {
 .nav-icon-btn.clicked {
     transform: scale(0.85);
 }
-.nav-icon-btn.active::before,
-.nav-icon-btn.active::after {
+aside.macro-sidebar .sidebar-top a::before,
+aside.macro-sidebar .sidebar-top a::after,
+aside.macro-sidebar .sidebar-top button::before,
+aside.macro-sidebar .sidebar-top button::after {
     display: none !important;
-    content: none !important;
+    content: "" !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+    border: none !important;
 }
 }
