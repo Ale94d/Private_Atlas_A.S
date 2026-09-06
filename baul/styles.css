@@ -2804,3 +2804,63 @@ body {
 .recipe-form #recipeServings::-webkit-outer-spin-button {
     opacity: 1;
 }
+
+@media (max-width: 900px) {
+
+    .baul-window {
+        width: 145px;
+        height: 105px;
+    }
+
+    .baul-window span {
+        font-size: 1.1rem;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .baul-workspace {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .back-home {
+        top: 12px;
+        left: 12px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .baul-window {
+        width: 125px;
+        height: 95px;
+        border-radius: 15px;
+    }
+
+    .baul-window i {
+        width: 24px;
+        height: 24px;
+    }
+
+    .baul-window span {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .books-window {
+        left: 50%;
+        top: 30%;
+    }
+
+    .recipes-window {
+        left: 32%;
+        top: 55%;
+    }
+
+    .travel-window {
+        left: 68%;
+        top: 55%;
+    }
+
+}
