@@ -1,208 +1,107 @@
 const workspaces = document.querySelectorAll(".workspace");
 
+const workspaceLinks = {
+    atlas: "atlas/index.html",
+    planner: "life-planner/index.html",
+    journal: "daily-journal/index.html",
+    baul: "baul/index.html",
+    timeline: "timeline/index.html"
+};
+
 workspaces.forEach(workspace => {
-
     workspace.addEventListener("click", () => {
+        const destination = workspaceLinks[
+            [...workspace.classList].find(className =>
+                Object.prototype.hasOwnProperty.call(workspaceLinks, className)
+            )
+        ];
 
-        if (workspace.classList.contains("selected")) {
-
-            workspaces.forEach(item => {
-
-                item.classList.remove("selected");
-                item.classList.remove("hidden");
-
-            });
-
-            return;
-
-        }
+        if (!destination) return;
 
         workspaces.forEach(item => {
-
-            if (item !== workspace) {
-
-                item.classList.add("hidden");
-
-            } else {
-
-                item.classList.remove("hidden");
-
-            }
-
             item.classList.remove("selected");
-
+            item.classList.remove("hidden");
         });
 
         workspace.classList.add("selected");
 
+        setTimeout(() => {
+            window.location.href = destination;
+        }, 350);
     });
-
 });
 
 window.addEventListener("pageshow", () => {
-
-    workspaces.forEach(item => {
-
-        item.classList.remove("selected");
-        item.classList.remove("hidden");
-
+    workspaces.forEach(workspace => {
+        workspace.classList.remove("selected");
+        workspace.classList.remove("hidden");
     });
-
 });
-const atlasWorkspace = document.querySelector(".atlas");
-
-if (atlasWorkspace) {
-
-    atlasWorkspace.addEventListener("click", () => {
-
-        setTimeout(() => {
-
-            window.location.href = "atlas/index.html";
-
-        }, 350);
-
-    });
-}
-
-const lifeplannerWorkspace = document.querySelector(".planner");
-
-if (lifeplannerWorkspace) {
-
-    lifeplannerWorkspace.addEventListener("click", () => {
-
-        setTimeout(() => {
-
-            window.location.href = "life-planner/index.html";
-
-        }, 350);
-
-    });
-
-}
-
-const dailyjournalWorkspace = document.querySelector(".journal");
-
-if (dailyjournalWorkspace) {
-
-    dailyjournalWorkspace.addEventListener("click", () => {
-
-        setTimeout(() => {
-
-            window.location.href = "daily-journal/index.html";
-
-        }, 350);
-
-    });
-
-}
-
-const baulWorkspace = document.querySelector(".baul");
-
-if (baulWorkspace) {
-
-    baulWorkspace.addEventListener("click", () => {
-
-        setTimeout(() => {
-
-            window.location.href = "baul/index.html";
-
-        }, 350);
-
-    });
-
-}
-
-
-const timelineWorkspace = document.querySelector(".timeline");
-
-if (timelineWorkspace) {
-
-    timelineWorkspace.addEventListener("click", () => {
-
-        setTimeout(() => {
-
-            window.location.href = "timeline/index.html";
-
-        }, 350);
-
-    });
-
-}
 
 const customize = document.querySelector(".customize-btn");
 const appearancePanel = document.querySelector(".appearance-panel");
 const closeAppearance = document.querySelector(".close-appearance");
 
+const profileBtn = document.querySelector(".profile-btn");
+const closeProfile = document.querySelector(".close-profile");
+
+const inputBackground = document.getElementById("background-input");
+const uploadButton = document.querySelector(".upload-background");
+const defaultTheme = document.querySelector(".theme-btn");
+
 if (customize && appearancePanel) {
-
-    customize.addEventListener("click", (e) => {
-
-        e.stopPropagation();
+    customize.addEventListener("click", event => {
+        event.stopPropagation();
 
         appearancePanel.classList.toggle("active");
 
         if (profileBtn) {
             profileBtn.classList.remove("active");
         }
-
     });
-
 }
 
-if (closeAppearance) {
-
-    closeAppearance.addEventListener("click", () => {
-
+if (closeAppearance && appearancePanel) {
+    closeAppearance.addEventListener("click", event => {
+        event.stopPropagation();
         appearancePanel.classList.remove("active");
-
     });
-
 }
-
-const inputBackground = document.getElementById("background-input");
-const uploadButton = document.querySelector(".upload-background");
 
 if (uploadButton && inputBackground) {
-
-    uploadButton.addEventListener("click", () => {
-
+    uploadButton.addEventListener("click", event => {
+        event.stopPropagation();
         inputBackground.click();
-
     });
 
-    inputBackground.addEventListener("change", (event) => {
-
+    inputBackground.addEventListener("change", event => {
         const file = event.target.files[0];
 
         if (!file) return;
 
         const reader = new FileReader();
 
-        reader.onload = function (e) {
+        reader.onload = event => {
+            const background = event.target.result;
 
-            document.body.style.backgroundImage = `url('${e.target.result}')`;
+            document.body.style.backgroundImage = `url("${background}")`;
             document.body.style.backgroundSize = "cover";
             document.body.style.backgroundPosition = "center";
             document.body.style.backgroundRepeat = "no-repeat";
 
             localStorage.setItem(
                 "privateAtlasBackground",
-                e.target.result
+                background
             );
-
         };
 
         reader.readAsDataURL(file);
-
     });
-
 }
 
-const defaultTheme = document.querySelector(".theme-btn");
-
 if (defaultTheme) {
-
-    defaultTheme.addEventListener("click", () => {
+    defaultTheme.addEventListener("click", event => {
+        event.stopPropagation();
 
         document.body.style.backgroundImage =
             "url('assets/images/default.jpg')";
@@ -212,80 +111,57 @@ if (defaultTheme) {
         document.body.style.backgroundRepeat = "no-repeat";
 
         localStorage.removeItem("privateAtlasBackground");
-
     });
-
 }
 
-const savedBackground = localStorage.getItem("privateAtlasBackground");
+const savedBackground =
+    localStorage.getItem("privateAtlasBackground");
 
 if (savedBackground) {
-
-    document.body.style.backgroundImage = `url('${savedBackground}')`;
-
+    document.body.style.backgroundImage =
+        `url("${savedBackground}")`;
 } else {
-
     document.body.style.backgroundImage =
         "url('assets/images/default.jpg')";
-
 }
 
 document.body.style.backgroundSize = "cover";
 document.body.style.backgroundPosition = "center";
 document.body.style.backgroundRepeat = "no-repeat";
 
-const profileBtn = document.querySelector(".profile-btn");
-const profileMenu = document.querySelector(".profile-menu");
-const closeProfile = document.querySelector(".close-profile");
-
 if (profileBtn) {
-
-    profileBtn.addEventListener("click", (e) => {
-
-        e.stopPropagation();
+    profileBtn.addEventListener("click", event => {
+        event.stopPropagation();
 
         profileBtn.classList.toggle("active");
 
         if (appearancePanel) {
             appearancePanel.classList.remove("active");
         }
-
     });
-
 }
 
-if (closeProfile) {
-
-    closeProfile.addEventListener("click", (e) => {
-
-        e.stopPropagation();
-
+if (closeProfile && profileBtn) {
+    closeProfile.addEventListener("click", event => {
+        event.stopPropagation();
         profileBtn.classList.remove("active");
-
     });
-
 }
 
-
-document.addEventListener("click", (e) => {
-
+document.addEventListener("click", event => {
     if (
         appearancePanel &&
-        !appearancePanel.contains(e.target) &&
-        !customize.contains(e.target)
+        !appearancePanel.contains(event.target) &&
+        customize &&
+        !customize.contains(event.target)
     ) {
-
         appearancePanel.classList.remove("active");
-
     }
 
     if (
         profileBtn &&
-        !profileBtn.contains(e.target)
+        !profileBtn.contains(event.target)
     ) {
-
         profileBtn.classList.remove("active");
-
     }
-
 });
