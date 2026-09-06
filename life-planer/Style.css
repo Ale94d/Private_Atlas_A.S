@@ -378,3 +378,8 @@ html, body {
 .nav-icon-btn.clicked {
     transform: scale(0.85);
 }
+#homeBtn::before,
+#homeBtn::after {
+    display: none !important;
+    content: none !important;
+}
