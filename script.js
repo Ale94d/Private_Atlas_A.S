@@ -54,15 +54,15 @@ if (atlasWorkspace) {
     });
 }
 
-const lifeplanerWorkspace = document.querySelector(".planner");
+const lifeplannerWorkspace = document.querySelector(".planner");
 
-if (lifeplanerWorkspace) {
+if (lifeplannerWorkspace) {
 
-    lifeplanerWorkspace.addEventListener("click", () => {
+    lifeplannerWorkspace.addEventListener("click", () => {
 
         setTimeout(() => {
 
-            window.location.href = "life-planer/index.html";
+            window.location.href = "life-planner/index.html";
 
         }, 350);
 
