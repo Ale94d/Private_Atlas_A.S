@@ -28,3 +28,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+// =====================================
+// ANIMACIÓN DE RETORNO / CLIC EN BOTONES
+// =====================================
+document.addEventListener("DOMContentLoaded", () => {
+    const homeBtn = document.querySelector(".nav-icon-btn.active, .nav-icon-btn");
+
+    if (homeBtn) {
+        homeBtn.addEventListener("click", function(e) {
+            // Efecto de pulso / rebote al presionar
+            this.style.transform = "scale(0.9)";
+            setTimeout(() => {
+                this.style.transform = "scale(1)";
+            }, 150);
+        });
+    }
+});
