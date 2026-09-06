@@ -1,7 +1,3 @@
-/* =========================================
-   RESET
-========================================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -22,11 +18,6 @@ body {
     color: #493326;
 }
 
-
-
-/* =========================================
-   BOTICA PRINCIPAL
-========================================= */
 
 .apothecary {
     position: fixed;
@@ -49,11 +40,6 @@ body {
         );
 }
 
-
-
-/* =========================================
-   TEXTURA ANTIGUA
-========================================= */
 
 .apothecary::before {
     content: "";
@@ -97,11 +83,6 @@ body {
 }
 
 
-
-/* =========================================
-   LUCES
-========================================= */
-
 .ambient-glow {
     position: absolute;
 
@@ -133,11 +114,6 @@ body {
     background: #9c633b;
 }
 
-
-
-/* =========================================
-   PARTÍCULAS
-========================================= */
 
 .particle {
     position: absolute;
@@ -205,12 +181,6 @@ body {
         opacity: 0.5;
     }
 }
-
-
-
-/* =========================================
-   HEADER
-========================================= */
 
 .top-bar {
     position: relative;
@@ -315,12 +285,6 @@ body {
     color: #e1c59a;
 }
 
-
-
-/* =========================================
-   ÁREA PRINCIPAL
-========================================= */
-
 .apothecary-room {
     position: relative;
 
@@ -343,12 +307,6 @@ body {
 
     gap: 30px;
 }
-
-
-
-/* =========================================
-   PANEL IZQUIERDO
-========================================= */
 
 .shelf-panel {
     position: relative;
@@ -415,11 +373,6 @@ body {
 }
 
 
-
-/* =========================================
-   ESTANTES
-========================================= */
-
 .wood-shelf {
     position: relative;
 
@@ -456,11 +409,6 @@ body {
     height: 70px;
 }
 
-
-
-/* =========================================
-   FRASCOS
-========================================= */
 
 .bottle {
     position: relative;
@@ -555,12 +503,6 @@ body {
         );
 }
 
-
-
-/* =========================================
-   FRASCOS PEQUEÑOS
-========================================= */
-
 .small-bottle {
     position: relative;
 
@@ -635,12 +577,6 @@ body {
         );
 }
 
-
-
-/* =========================================
-   HERBARIO
-========================================= */
-
 .herbarium {
     margin-top: 18px;
 
@@ -690,12 +626,6 @@ body {
     color: #d8bc8d;
 }
 
-
-
-/* =========================================
-   NOTA
-========================================= */
-
 .cabinet-note {
     margin-top: 17px;
 
@@ -729,12 +659,6 @@ body {
 .cabinet-note span {
     font-size: 9px;
 }
-
-
-
-/* =========================================
-   ÁREA CENTRAL
-========================================= */
 
 .journal-area {
     min-width: 0;
@@ -796,11 +720,6 @@ body {
 }
 
 
-
-/* =========================================
-   TARJETA
-========================================= */
-
 .entry-card {
     position: relative;
 
@@ -848,11 +767,6 @@ body {
         rgba(125,88,48,0.17);
 }
 
-
-
-/* =========================================
-   CABECERA DE TARJETA
-========================================= */
 
 .card-header {
     position: relative;
@@ -907,11 +821,6 @@ body {
 }
 
 
-
-/* =========================================
-   ESCRITURA
-========================================= */
-
 .writing-area {
     position: relative;
 
@@ -958,11 +867,6 @@ body {
     opacity: 0.8;
 }
 
-
-
-/* =========================================
-   EMOCIONES
-========================================= */
 
 .mood-section {
     margin-top: 14px;
@@ -1022,12 +926,6 @@ body {
     transform: translateY(-1px);
 }
 
-
-
-/* =========================================
-   ETIQUETAS
-========================================= */
-
 .tags-section {
     margin-top: 12px;
 }
@@ -1068,12 +966,6 @@ body {
 
     cursor: pointer;
 }
-
-
-
-/* =========================================
-   BOTÓN GUARDAR
-========================================= */
 
 .save-button {
     display: block;
@@ -1128,12 +1020,6 @@ body {
     color: #d5ad72;
 }
 
-
-
-/* =========================================
-   PANEL DERECHO
-========================================= */
-
 .memory-panel {
     min-height: 0;
 
@@ -1167,12 +1053,6 @@ body {
 
     color: #e4d1af;
 }
-
-
-
-/* =========================================
-   UN DÍA COMO HOY
-========================================= */
 
 .memory-box {
     margin-top: 17px;
@@ -1250,12 +1130,6 @@ body {
     cursor: pointer;
 }
 
-
-
-/* =========================================
-   BUSCADOR
-========================================= */
-
 .search-box {
     display: flex;
 
@@ -1298,11 +1172,6 @@ body {
     color: #987b5d;
 }
 
-
-
-/* =========================================
-   ARCHIVO
-========================================= */
 
 .archive-heading {
     margin-top: 17px;
@@ -1371,12 +1240,6 @@ body {
     color: #96785a;
 }
 
-
-
-/* =========================================
-   PIE DEL ARCHIVO
-========================================= */
-
 .memory-footer {
     margin-top: 18px;
 
@@ -1389,11 +1252,6 @@ body {
     color: #765a40;
 }
 
-
-
-/* =========================================
-   NAVEGACIÓN INFERIOR
-========================================= */
 
 .bottom-nav {
     position: relative;
@@ -1470,33 +1328,21 @@ body {
 
 .nav-item.active::after {
     content: "";
-
     position: absolute;
-
     bottom: 0;
-
     width: 35px;
-
     height: 2px;
-
     background: #bd9156;
 }
 
 
 .nav-divider {
     width: 1px;
-
     height: 27px;
-
     background:
         rgba(190,149,95,0.25);
 }
 
-
-
-/* =========================================
-   SCROLLBAR
-========================================= */
 
 .entry-card::-webkit-scrollbar {
     width: 5px;
@@ -1515,10 +1361,6 @@ body {
 }
 
 
-
-/* =========================================
-   RESPONSIVE
-========================================= */
 
 @media (max-width: 1100px) {
 
@@ -1546,11 +1388,8 @@ body {
 
     .apothecary {
         position: relative;
-
         min-height: 100vh;
-
         height: auto;
-
         overflow: visible;
     }
 
@@ -1585,8 +1424,83 @@ body {
 
     .bottom-nav {
         position: sticky;
-
         bottom: 0;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .apothecary {
+        padding: 20px;
+    }
+
+    .top-bar {
+        gap: 20px;
+    }
+
+    .apothecary-room {
+        grid-template-columns: 220px minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .shelf-panel {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    body {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .apothecary {
+        width: 100%;
+        min-height: 100vh;
+        padding: 15px;
+    }
+
+    .top-bar {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .brand h1 {
+        font-size: 2rem;
+    }
+
+    .brand-subtitle {
+        font-size: 0.7rem;
+    }
+
+    .date-display {
+        width: 100%;
+    }
+
+    .apothecary-room {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .shelf-panel {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .journal-area {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .entry-card {
+        width: 100%;
+        max-width: 100%;
     }
 
 }
