@@ -377,18 +377,8 @@ html, body {
 
 .nav-icon-btn.clicked {
     transform: scale(0.85);
-}
-.nav-icon-btn.active::before,
-.nav-icon-btn.active::after {
-    content: "" !important;
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    position: static !important;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-}
+
+
 
 
 }
