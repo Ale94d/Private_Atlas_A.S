@@ -19,28 +19,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Cambio de estado activo en los botones de navegación lateral
+    // Navegación lateral: estado activo y animación de rebote unificada para todos
     const navButtons = document.querySelectorAll(".nav-icon-btn:not(.user-avatar)");
+    
     navButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", function() {
+            // Cambiar clase activa
             navButtons.forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-        });
-    });
-});
-// =====================================
-// ANIMACIÓN DE RETORNO / CLIC EN BOTONES
-// =====================================
-document.addEventListener("DOMContentLoaded", () => {
-    const homeBtn = document.querySelector(".nav-icon-btn.active, .nav-icon-btn");
+            this.classList.add("active");
 
-    if (homeBtn) {
-        homeBtn.addEventListener("click", function(e) {
-            // Efecto de pulso / rebote al presionar
-            this.style.transform = "scale(0.9)";
+            // Animación fluida de rebote / retorno
+            this.style.transform = "scale(0.85)";
+            setTimeout(() => {
+                this.style.transform = "scale(1.08)";
+            }, 120);
             setTimeout(() => {
                 this.style.transform = "scale(1)";
-            }, 150);
+            }, 250);
         });
-    }
+    });
 });
