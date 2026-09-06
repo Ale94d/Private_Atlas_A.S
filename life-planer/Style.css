@@ -370,3 +370,11 @@ html, body {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
 }
+/* Transición y animación de rebote para los botones */
+.nav-icon-btn {
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease, color 0.3s ease;
+}
+
+.nav-icon-btn.clicked {
+    transform: scale(0.85);
+}
