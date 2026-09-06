@@ -39,15 +39,16 @@ workspaces.forEach(workspace => {
 
 });
 
-window.addEventListener("pageshow", ()
-    =>{
-        workspaces.forEach(item =>{
-            item.classList.remove("selected");
+window.addEventListener("pageshow", () => {
 
-            item.classList.remove("hidden");
-        });
+    workspaces.forEach(item => {
+
+        item.classList.remove("selected");
+        item.classList.remove("hidden");
+
     });
 
+});
 const atlasWorkspace = document.querySelector(".atlas");
 
 if (atlasWorkspace) {
