@@ -557,64 +557,49 @@ body{
 }
 
 @media (max-width: 900px) {
-
     .workspaces {
         width: 90%;
         max-width: 650px;
         grid-template-columns: repeat(3, 1fr);
-        row-gap: 55px;
+        gap: 30px;
     }
 
-    .home {
-        min-height: 65vh;
+    .workspace {
+        width: 100px;
+        min-width: 100px;
     }
 
-    .hero {
-        margin-top: 25px;
-        padding: 18px 30px;
+    .workspace-circle {
+        width: 100px;
+        height: 100px;
     }
 
-    .logo {
-        width: 180px;
+    .workspace-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+    .workspace-name {
+        font-size: 0.9rem;
     }
 
     .slogan {
-        font-size: 24px;
+        font-size: 0.9rem;
+        text-align: center;
     }
-
 }
 
 @media (max-width: 600px) {
-
     body {
         overflow-x: hidden;
         overflow-y: auto;
     }
 
-    .hero {
-        width: 90%;
-        margin-top: 18px;
-        padding: 15px 20px;
-    }
-
-    .logo {
-        width: 150px;
-    }
-
-    .slogan {
-        font-size: 21px;
-        text-align: center;
-    }
-
-    .home {
-        min-height: auto;
-        padding: 45px 15px 100px;
-    }
-
     .workspaces {
         width: 100%;
+        max-width: 360px;
         grid-template-columns: repeat(2, 1fr);
-        gap: 55px 20px;
+        gap: 25px 20px;
     }
 
     .workspace {
@@ -622,31 +607,25 @@ body{
         min-width: 0;
     }
 
-    .circle {
-        width: 68px;
-        height: 68px;
+    .workspace-circle {
+        width: 85px;
+        height: 85px;
     }
 
-    .circle i {
-        font-size: 29px;
+    .workspace-logo {
+        width: 36px;
+        height: 36px;
     }
 
-    .workspace span {
-        opacity: 1;
-        visibility: visible;
-        position: static;
-        transform: none;
-        margin-top: 2px;
-        background: transparent;
-        box-shadow: none;
-        padding: 0;
-        font-size: 16px;
+    .workspace-name {
+        font-size: 0.8rem;
         text-align: center;
+        white-space: normal;
     }
 
-    .customize-btn {
-        right: 18px;
-        bottom: 18px;
+    .slogan {
+        font-size: 0.8rem;
+        line-height: 1.4;
+        padding: 0 15px;
     }
-
 }
