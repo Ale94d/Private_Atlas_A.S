@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- ESTILOS EMBEBIDOS PARA EVITAR ERRORES DE RUTAS EN GITHUB PAGES -->
     <style>
         :root {
             --abyss-deep: #030a17;
@@ -114,7 +115,6 @@
             padding: 10px;
             border-radius: 8px;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
         .sidebar-icon:hover, .sidebar-icon.active {
@@ -137,7 +137,6 @@
             display: flex;
             flex-direction: column;
             gap: 25px;
-            scroll-behavior: smooth;
         }
 
         .top-filter-bar {
@@ -178,7 +177,7 @@
         .text-cyan { color: var(--cyan-glow); }
 
         .hero-cover-banner {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(3, 10, 23, 0.9)), center/cover;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(3, 10, 23, 0.9)), url('Icons/Perfil.jpg') center/cover;
             border: 1px solid var(--abyss-border);
             border-radius: 12px;
             padding: 35px;
@@ -374,8 +373,7 @@
             
             <aside class="macro-sidebar">
                 <div class="sidebar-top">
-                    <!-- Botón de la casa configurado directamente con JavaScript -->
-                    <a href="#" id="home-btn" class="sidebar-icon active" title="Inicio"><i class="fas fa-home"></i></a>
+                    <a href="#" id="home-btn" class="sidebar-icon active" title="Inicio" onclick="document.querySelector('.macro-content').scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fas fa-home"></i></a>
                     <a href="#" class="sidebar-icon" data-target="buscar" title="Buscar"><i class="fas fa-search"></i></a>
                     <a href="#" class="sidebar-icon" data-target="grid" title="Cuadrícula"><i class="fas fa-th-large"></i></a>
                     <a href="#" class="sidebar-icon" data-target="registros" title="Registros"><i class="fas fa-folder-open"></i></a>
@@ -385,7 +383,7 @@
                 </div>
             </aside>
 
-            <main class="macro-content" id="main-content-scroll">
+            <main class="macro-content">
                 
                 <header class="top-filter-bar">
                     <div class="filter-dropdown primary-pill">
@@ -448,7 +446,6 @@
                                 <h3>Tareas y Fechas Clave</h3>
                             </div>
                             <span class="status-badge">3 Activas</span>
-</head><body>
                         </div>
                         <div class="tasks-stack">
                             <div class="task-item done">
@@ -482,7 +479,8 @@
                                 <div class="finance-info">
                                     <strong>Necesidades (50%)</strong>
                                     <span>Gastos fijos y esenciales</span>
-                               ...
+                                </div>
+                                <span class="finance-val">Restante: $450k</span>
                             </div>
                             <div class="finance-row">
                                 <div class="finance-info">
@@ -507,16 +505,6 @@
         </div>
     </div>
 
-    <!-- Script integrado para hacer funcionar el botón de la casa de forma garantizada -->
-    <script>
-        document.getElementById('home-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            const contentArea = document.getElementById('main-content-scroll');
-            contentArea.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
