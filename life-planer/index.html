@@ -3,132 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Atlas A.S. / Abyssal Life Planner</title>
+    <title>Private Atlas A.S. / Santuario Submarino</title>
     <link rel="stylesheet" href="Style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- FONDO SUBMARINO AMBIENTAL -->
+    <!-- FONDO AMBIENTAL SUBMARINO -->
     <div class="ocean-background">
         <div class="sunrays"></div>
         <div class="bubbles-container">
-            <span style="left: 12%; animation-duration: 9s; animation-delay: 0s;"></span>
-            <span style="left: 28%; animation-duration: 11s; animation-delay: 2s;"></span>
-            <span style="left: 45%; animation-duration: 8s; animation-delay: 4s;"></span>
-            <span style="left: 65%; animation-duration: 13s; animation-delay: 1s;"></span>
-            <span style="left: 82%; animation-duration: 10s; animation-delay: 3s;"></span>
+            <span style="left: 10%; animation-duration: 8s;"></span>
+            <span style="left: 30%; animation-duration: 12s; animation-delay: 2s;"></span>
+            <span style="left: 50%; animation-duration: 9s; animation-delay: 1s;"></span>
+            <span style="left: 70%; animation-duration: 11s; animation-delay: 3s;"></span>
+            <span style="left: 90%; animation-duration: 7s; animation-delay: 2s;"></span>
         </div>
     </div>
 
-    <!-- CONTENEDOR FLOTANTE TIPO MACRO-VENTANA -->
+    <!-- CONTENEDOR MACRO VENTANA -->
     <div class="macro-workspace">
-        <div class="macro-window abyssal-window">
+        <div class="macro-window">
             
-            <!-- BARRA LATERAL DE ICONOS -->
+            <!-- BARRA LATERAL IZQUIERDA (Iconos circulares minimalistas) -->
             <aside class="macro-sidebar">
                 <div class="sidebar-top">
-                    <a href="../index.html" class="nav-icon-btn active" title="Inicio">
-                        <i class="fas fa-home"></i>
-                    </a>
-                    <button class="nav-icon-btn" title="Búsqueda">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <button class="nav-icon-btn" title="Cuadrícula">
-                        <i class="fas fa-th-large"></i>
-                    </button>
-                    <button class="nav-icon-btn" title="Baúl / Registros">
-                        <i class="fas fa-archive"></i>
-                    </button>
+                    <a href="#" class="sidebar-icon active" title="Inicio"><i class="fas fa-home"></i></a>
+                    <a href="#" class="sidebar-icon" title="Buscar"><i class="fas fa-search"></i></a>
+                    <a href="#" class="sidebar-icon" title="Cuadrícula"><i class="fas fa-th-large"></i></a>
+                    <a href="#" class="sidebar-icon" title="Registros"><i class="fas fa-folder-open"></i></a>
                 </div>
                 <div class="sidebar-bottom">
-                    <img src="Icons/Perfil.jpg" alt="Perfil" class="user-avatar">
+                    <img src="Icons/Perfil.jpg" alt="Perfil" class="sidebar-avatar">
                 </div>
             </aside>
 
-            <!-- ÁREA DE CONTENIDO PRINCIPAL -->
+            <!-- ÁREA PRINCIPAL -->
             <main class="macro-content">
                 
-                <!-- BARRA SUPERIOR DE FILTROS -->
-                <header class="top-nav-bar">
-                    <div class="brand-title">PRIVATE ATLAS A.S.</div>
-                    <div class="nav-pills-group">
-                        <button class="pill-btn active"><i class="fas fa-landmark"></i> Santuario Activo</button>
-                        <button class="pill-btn"><i class="fas fa-coins"></i> Presupuesto 50/30/20</button>
+                <!-- BARRA SUPERIOR DE FILTROS (Estilo la referencia de diseño) -->
+                <header class="top-filter-bar">
+                    <button class="filter-dropdown primary-pill">
+                        <i class="fas fa-compass"></i>
+                        <span>Explorar</span>
+                    </button>
+                    <div class="filter-dropdown">
+                        <i class="fas fa-map-marker-alt text-cyan"></i>
+                        <span>Soacha</span>
+                        <i class="fas fa-chevron-down arrow-icon"></i>
                     </div>
+                    <div class="filter-dropdown">
+                        <i class="fas fa-layer-group text-cyan"></i>
+                        <span>Santuario Activo</span>
+                        <i class="fas fa-chevron-down arrow-icon"></i>
+                    </div>
+                    <div class="filter-dropdown">
+                        <i class="fas fa-coins text-cyan"></i>
+                        <span>Presupuesto 50/30/20</span>
+                        <i class="fas fa-chevron-down arrow-icon"></i>
+                    </div>
+                    <button class="filter-dropdown primary-pill action-pill">
+                        <span>Acceder</span>
+                    </button>
                 </header>
 
-                <!-- BANNER PRINCIPAL (ESTILO TARJETA GRANDE) -->
-                <section class="hero-banner-floating">
-                    <div class="hero-text-content">
-                        <span class="sub-tag">PROFUNDIDADES DE ATLÁNTIDA</span>
-                        <h1>New Way Of Living</h1>
-                        <p>Organiza tus expediciones y gestiona tus recursos bajo una estética milenaria, rodeado de misterio, corrientes serenas y estructuras sumergidas.</p>
+                <!-- BANNER CENTRAL GRANDE (ESTILO PORTADA DE REFERENCIA) -->
+                <section class="hero-cover-banner">
+                    <div class="hero-text-box">
+                        <span class="badge-tag">PROFUNDIDADES DE ATLÁNTIDA</span>
+                        <h2>New Way Of Living</h2>
+                        <p>Organiza tus tareas y gestiona tus recursos bajo una estética milenaria, rodeado de misterio, corrientes serenas y estructuras sumergidas.</p>
+                    </div>
+                    
+                    <!-- Tarjeta flotante superpuesta derecha (Estilo "Lunar Oasis Villa") -->
+                    <div class="floating-overlay-card">
+                        <div class="overlay-card-header">
+                            <div>
+                                <span class="card-mini-title">SANTUARIO ABISAL</span>
+                                <h4>Expedición Activa</h4>
+                            </div>
+                            <a href="#" class="arrow-circle-btn"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <p class="overlay-desc">Monitoreo de corrientes profundas y control de recursos en tiempo real para optimizar tu rendimiento.</p>
+                        <div class="overlay-footer-stats">
+                            <div class="stat-group">
+                                <i class="fas fa-check-circle text-cyan"></i> <span>3 Tareas</span>
+                            </div>
+                            <div class="stat-group">
+                                <i class="fas fa-wallet text-cyan"></i> <span>50/30/20 Activo</span>
+                            </div>
+                            <div class="card-mini-actions">
+                                <button class="mini-icon-btn"><i class="far fa-heart"></i></button>
+                                <button class="mini-icon-btn"><i class="far fa-bookmark"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
-                <!-- SECCIÓN DE TARJETAS INFERIORES EN GRID -->
-                <div class="floating-cards-grid">
+                <!-- SECCIÓN INFERIOR DE TARJETAS -->
+                <div class="bottom-cards-grid">
                     
-                    <!-- Tarjeta de Tareas -->
-                    <div class="floating-card">
+                    <!-- Cronograma de Expedición -->
+                    <div class="content-card">
                         <div class="card-header-flex">
                             <div>
-                                <span class="card-tag">CRONOGRAMA DE EXPEDICIÓN</span>
+                                <span class="card-mini-title">CRONOGRAMA DE EXPEDICIÓN</span>
                                 <h3>Tareas y Fechas Clave</h3>
                             </div>
-                            <span class="badge-pill">3 Activas</span>
+                            <span class="status-badge">3 Activas</span>
                         </div>
-                        <div class="task-list-modern">
-                            <div class="task-row completed">
+                        <div class="tasks-stack">
+                            <div class="task-item done">
                                 <i class="fas fa-check-circle"></i>
-                                <span>Calibrar corrientes en Soacha</span>
-                                <small>Completado</small>
+                                <span>Calibrar mapa de corrientes en Soacha</span>
+                                <span class="task-tag-status">Completado</span>
                             </div>
-                            <div class="task-row">
+                            <div class="task-item">
                                 <i class="far fa-circle"></i>
-                                <span>Diseñar interfaces de bitácora</span>
-                                <small>10 Sep</small>
+                                <span>Diseñar interfaces de bitácora web</span>
+                                <span class="task-tag-date">Vence: 10 Sep</span>
                             </div>
-                            <div class="task-row">
+                            <div class="task-item">
                                 <i class="far fa-circle"></i>
-                                <span>Registrar método 50/30/20</span>
-                                <small>15 Sep</small>
+                                <span>Actualizar registros del método 50/30/20</span>
+                                <span class="task-tag-date">Vence: 15 Sep</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tarjeta de Finanzas (Método 50/30/20) -->
-                    <div class="floating-card">
+                    <!-- Tesoros y Finanzas -->
+                    <div class="content-card">
                         <div class="card-header-flex">
                             <div>
-                                <span class="card-tag">TESOROS Y FINANZAS</span>
+                                <span class="card-mini-title">TESOROS Y FINANZAS</span>
                                 <h3>Método 50/30/20</h3>
                             </div>
-                            <button class="circle-add-btn"><i class="fas fa-plus"></i></button>
+                            <button class="add-circle-btn"><i class="fas fa-plus"></i></button>
                         </div>
-                        <div class="finance-list-modern">
-                            <div class="finance-item">
-                                <div>
+                        <div class="finance-stack">
+                            <div class="finance-row">
+                                <div class="finance-info">
                                     <strong>Necesidades (50%)</strong>
-                                    <span>Gastos fijos esenciales</span>
+                                    <span>Gastos fijos y esenciales</span>
                                 </div>
-                                <span class="val-highlight">Restante: $450k</span>
+                                <span class="finance-val">Restante: $450k</span>
                             </div>
-                            <div class="finance-item">
-                                <div>
+                            <div class="finance-row">
+                                <div class="finance-info">
                                     <strong>Deseos (30%)</strong>
                                     <span>Inversión personal & proyectos</span>
                                 </div>
-                                <span class="val-highlight">Restante: $270k</span>
+                                <span class="finance-val">Restante: $270k</span>
                             </div>
-                            <div class="finance-item border-none">
-                                <div>
+                            <div class="finance-row border-none">
+                                <div class="finance-info">
                                     <strong>Ahorro / Futuro (20%)</strong>
                                     <span>Fondo de reserva abisal</span>
                                 </div>
-                                <span class="val-highlight">Meta: $180k</span>
+                                <span class="finance-val highlight-gold">Meta: $180k</span>
                             </div>
                         </div>
                     </div>
