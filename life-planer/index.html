@@ -1,116 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Life Planner | Private Atlas A.S.</title>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Lucide Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.css">
-
-    <!-- CSS Externo -->
+    <title>Private Atlas A.S. / Life Planner</title>
     <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-    <main class="planner-workspace">
-
-        <!-- VENTANA MACRO UI -->
-        <div class="macro-window">
-
-            <!-- BARRA LATERAL DE ICONOS -->
+    <div class="planner-workspace">
+        <main class="macro-window">
+            
+            <!-- Barra Lateral -->
             <aside class="macro-sidebar">
                 <div class="sidebar-top">
-                    <button class="nav-icon-btn active" type="button" title="Panel Principal">
-                        <i class="icon-home"></i>
+                    <!-- Casita convertida en enlace directo a indice.html -->
+                    <a href="indice.html" class="nav-icon-btn active" id="homeBtn" title="Inicio">
+                        <i class="fas fa-home"></i>
+                    </a>
+                    <button class="nav-icon-btn" title="Buscar">
+                        <i class="fas fa-search"></i>
                     </button>
-                    <button class="nav-icon-btn" type="button" title="Buscador de Metas">
-                        <i class="icon-search"></i>
+                    <button class="nav-icon-btn" title="Dashboard">
+                        <i class="fas fa-th-large"></i>
                     </button>
-                    <button class="nav-icon-btn" type="button" title="Panel de Hábitos">
-                        <i class="icon-layout-grid"></i>
-                    </button>
-                    <button class="nav-icon-btn" type="button" title="Diario de Bitácora">
-                        <i class="icon-book-open"></i>
+                    <button class="nav-icon-btn" title="Calendario">
+                        <i class="fas fa-calendar-alt"></i>
                     </button>
                 </div>
-
                 <div class="sidebar-bottom">
-                    <button class="nav-icon-btn" type="button" title="Configuración">
-                        <i class="icon-settings"></i>
-                    </button>
-                    <img src="assets/icons/favicon-atlas.png" alt="Perfil Private Atlas" class="user-avatar" title="Private Atlas A.S.">
+                    <img src="Icons/Perfil.jpg" alt="Perfil" class="user-avatar">
                 </div>
             </aside>
 
-            <!-- CONTENIDO PRINCIPAL -->
+            <!-- Contenido Principal -->
             <section class="macro-content">
-
-                <!-- ENCABEZADO INTERNO -->
                 <header class="macro-header">
                     <div class="header-brand">
                         <span>PRIVATE ATLAS A.S.</span>
                         <h2>Life Planner</h2>
                     </div>
-
                     <div class="header-filters">
-                        <button class="filter-pill active" type="button">
-                            <i class="icon-compass"></i> Proyectos Activos
-                        </button>
-                        <button class="filter-pill" type="button">
-                            <i class="icon-star"></i> Destacados
-                        </button>
+                        <button class="filter-pill active"><i class="fas fa-star"></i> Proyectos Activos</button>
+                        <button class="filter-pill"><i class="fas fa-bookmark"></i> Destacados</button>
                     </div>
                 </header>
 
-                <!-- BANNER HERO -->
+                <!-- Banner Hero -->
                 <div class="hero-banner">
                     <div class="hero-content">
-                        <span class="hero-tag">EXPLORACIÓN PERSONAL</span>
+                        <span class="hero-tag">NÚCLEO PRINCIPAL</span>
                         <h1>Tu Vida, Diseñada con Precisión</h1>
                         <p>Organiza tus metas, registra tus hábitos diarios y supervisa la evolución de tu propio atlas de experiencias con un entorno clásico y sofisticado.</p>
-                        <button class="filter-pill hero-action-btn" type="button" id="exploreBtn">
-                            Explorar Bitácora <i class="icon-arrow-right"></i>
-                        </button>
+                        <button class="filter-pill hero-action-btn" id="exploreBtn">Explorar Módulo</button>
                     </div>
                 </div>
 
-                <!-- SECCIÓN DE TARJETAS INFERIORES -->
+                <!-- Grid de Tarjetas -->
                 <div class="cards-grid">
-
-                    <!-- Tarjeta 1: Resumen de Metas -->
-                    <div class="glass-card">
-                        <div class="card-title-sm">ESTADÍSTICAS VITALES</div>
-                        <h3 class="card-main-title">Progreso Global</h3>
-                        <p class="card-desc">Tu constancia en el desarrollo personal y académico se mantiene en constante ascenso.</p>
-                        
-                        <div class="stat-display">
-                            <div>
-                                <span class="stat-number" id="counterVal">88%</span>
-                                <div class="stat-sub">Hitos cumplidos este mes</div>
-                            </div>
-                        </div>
-
-                        <button class="action-circle-btn" type="button" id="nextGoalBtn" title="Avanzar meta">
-                            <i class="icon-arrow-up-right"></i>
-                        </button>
-                    </div>
-
-                    <!-- Tarjeta 2: Panel Descriptivo / Próximo Hito -->
                     <div class="glass-card card-flex-between">
                         <div>
-                            <div class="card-title-sm">PRÓXIMO OBJETIVO</div>
-                            <h3 class="card-main-title title-spaced">Atlas Expedition 2026</h3>
+                            <span class="card-title-sm">ESTADÍSTICAS VITALES</span>
+                            <h3 class="card-main-title">Progreso Global</h3>
+                            <p class="card-desc">Tu constancia en el desarrollo personal y académico se mantiene en constante ascenso.</p>
                         </div>
+                        <div class="stat-display">
+                            <span class="stat-number" id="counterVal">88%</span>
+                            <span class="stat-sub">Hitos cumplidos este mes</span>
+                        </div>
+                        <button class="action-circle-btn" id="nextGoalBtn"><i class="fas fa-arrow-right"></i></button>
+                    </div>
 
-                        <div class="floating-info-card">
+                    <div class="glass-card">
+                        <span class="card-title-sm title-spaced">PRÓXIMO OBJETIVO</span>
+                        <h3 class="card-main-title">Atlas Expedition 2026</h3>
+                        <div class="floating-info-card" style="margin-top: 15px;">
                             <div class="info-row">
                                 <span>Estado actual</span>
                                 <strong>En ejecución</strong>
@@ -119,24 +85,18 @@
                                 <span>Enfoque principal</span>
                                 <strong>Desarrollo Web & Rutinas</strong>
                             </div>
-                            <div class="info-row">
+                            <div class="info-row" style="border: none; padding-bottom: 0;">
                                 <span>Sincronización</span>
-                                <strong>Diario de Botica Activo</strong>
+                                <strong>Diario de Bitácora Activo</strong>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </section>
 
-        </div>
+        </main>
+    </div>
 
-    </main>
-
-    <!-- JavaScript Externo -->
     <script src="script.js"></script>
-
 </body>
-
 </html>
