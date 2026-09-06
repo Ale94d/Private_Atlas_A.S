@@ -378,15 +378,16 @@ html, body {
 .nav-icon-btn.clicked {
     transform: scale(0.85);
 }
-aside.macro-sidebar .sidebar-top a::before,
-aside.macro-sidebar .sidebar-top a::after,
-aside.macro-sidebar .sidebar-top button::before,
-aside.macro-sidebar .sidebar-top button::after {
-    display: none !important;
+.nav-icon-btn::before,
+.nav-icon-btn::after,
+.nav-icon-btn.active::before,
+.nav-icon-btn.active::after {
     content: "" !important;
+    display: none !important;
     width: 0 !important;
     height: 0 !important;
-    background: transparent !important;
-    border: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
 }
+
 }
