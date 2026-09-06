@@ -1756,3 +1756,458 @@ if (recipeDetailsOverlay) {
 if (typeof lucide !== "undefined") {
     lucide.createIcons();
 }
+
+const openAddTravel =
+    document.getElementById("openAddTravel");
+
+const closeTravelForm =
+    document.getElementById("closeTravelForm");
+
+const cancelTravel =
+    document.getElementById("cancelTravel");
+
+const travelFormOverlay =
+    document.getElementById("travelFormOverlay");
+
+const travelForm =
+    document.getElementById("travelForm");
+
+const travelGrid =
+    document.getElementById("travelGrid");
+
+const emptyTravel =
+    document.getElementById("emptyTravel");
+
+function closeTravelFormWindow() {
+
+    if (travelFormOverlay) {
+        travelFormOverlay.classList.remove("active");
+    }
+
+}
+
+if (openAddTravel) {
+
+    openAddTravel.addEventListener("click", () => {
+
+        if (travelForm) {
+
+            travelForm.reset();
+
+            delete travelForm.dataset.editingId;
+
+        }
+
+        if (travelFormOverlay) {
+            travelFormOverlay.classList.add("active");
+        }
+
+    });
+
+}
+
+if (closeTravelForm) {
+
+    closeTravelForm.addEventListener(
+        "click",
+        closeTravelFormWindow
+    );
+
+}
+
+if (cancelTravel) {
+
+    cancelTravel.addEventListener(
+        "click",
+        closeTravelFormWindow
+    );
+
+}
+
+if (travelFormOverlay) {
+
+    travelFormOverlay.addEventListener(
+        "click",
+        event => {
+
+            if (event.target === travelFormOverlay) {
+                closeTravelFormWindow();
+            }
+
+        }
+    );
+
+}
+
+function loadTravel() {
+
+    if (!travelGrid) {
+        return;
+    }
+
+    travelGrid.innerHTML = "";
+
+    const travels =
+        JSON.parse(
+            localStorage.getItem(
+                "privateAtlasTravels"
+            )
+        ) || [];
+
+    if (travels.length === 0) {
+
+        if (emptyTravel) {
+            emptyTravel.style.display = "flex";
+        }
+
+        return;
+    }
+
+    if (emptyTravel) {
+        emptyTravel.style.display = "none";
+    }
+
+    travels.forEach(travel => {
+        createTravelCard(travel);
+    });
+
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+    }
+
+}
+
+function createTravelCard(travel) {
+
+    const card =
+        document.createElement("article");
+
+    card.className = "travel-card";
+
+    card.innerHTML = `
+
+        <div class="travel-card-icon">
+
+            <i data-lucide="map-pin"></i>
+
+        </div>
+
+        <div class="travel-card-info">
+
+            <h3>
+                ${escapeHTML(travel.destination)}
+            </h3>
+
+            <span>
+                ${escapeHTML(travel.country || "Lugar no especificado")}
+            </span>
+
+        </div>
+
+        <div class="travel-card-date">
+
+            <i data-lucide="calendar-days"></i>
+
+            <span>
+                ${escapeHTML(travel.start || "")}
+                ${travel.end ? " — " + escapeHTML(travel.end) : ""}
+            </span>
+
+        </div>
+
+        <div class="travel-card-memory">
+
+            ${escapeHTML(
+                travel.memory ||
+                "Sin recuerdo escrito todavía."
+            )}
+
+        </div>
+
+        ${
+            travel.favorite
+            ? `
+                <div class="travel-card-favorite">
+
+                    <i data-lucide="star"></i>
+
+                    Favorito
+
+                </div>
+            `
+            : ""
+        }
+
+        <div class="travel-card-buttons">
+
+            <button
+                type="button"
+                class="view-travel-btn">
+
+                <i data-lucide="eye"></i>
+
+                Ver
+
+            </button>
+
+            <button
+                type="button"
+                class="edit-travel-btn">
+
+                <i data-lucide="pencil"></i>
+
+                Editar
+
+            </button>
+
+            <button
+                type="button"
+                class="delete-travel-btn">
+
+                <i data-lucide="trash-2"></i>
+
+                Eliminar
+
+            </button>
+
+        </div>
+
+    `;
+
+    travelGrid.appendChild(card);
+
+    const viewButton =
+        card.querySelector(".view-travel-btn");
+
+    const editButton =
+        card.querySelector(".edit-travel-btn");
+
+    const deleteButton =
+        card.querySelector(".delete-travel-btn");
+
+    if (viewButton) {
+
+        viewButton.addEventListener(
+            "click",
+            () => {
+
+                alert(
+                    `${travel.destination}\n\n${travel.memory || "Sin recuerdo escrito."}`
+                );
+
+            }
+        );
+
+    }
+
+    if (editButton) {
+
+        editButton.addEventListener(
+            "click",
+            () => {
+
+                editTravel(travel);
+
+            }
+        );
+
+    }
+
+    if (deleteButton) {
+
+        deleteButton.addEventListener(
+            "click",
+            () => {
+
+                deleteTravel(travel.id);
+
+            }
+        );
+
+    }
+
+}
+
+function editTravel(travel) {
+
+    if (!travelForm || !travelFormOverlay) {
+        return;
+    }
+
+    document.getElementById(
+        "travelDestination"
+    ).value = travel.destination || "";
+
+    document.getElementById(
+        "travelCountry"
+    ).value = travel.country || "";
+
+    document.getElementById(
+        "travelStart"
+    ).value = travel.start || "";
+
+    document.getElementById(
+        "travelEnd"
+    ).value = travel.end || "";
+
+    document.getElementById(
+        "travelCompanions"
+    ).value = travel.companions || "";
+
+    document.getElementById(
+        "travelMemory"
+    ).value = travel.memory || "";
+
+    document.getElementById(
+        "travelFavorite"
+    ).checked = !!travel.favorite;
+
+    travelForm.dataset.editingId =
+        travel.id;
+
+    travelFormOverlay.classList.add("active");
+
+}
+
+function deleteTravel(travelId) {
+
+    const travels =
+        JSON.parse(
+            localStorage.getItem(
+                "privateAtlasTravels"
+            )
+        ) || [];
+
+    const updatedTravels =
+        travels.filter(
+            travel =>
+                String(travel.id) !==
+                String(travelId)
+        );
+
+    localStorage.setItem(
+        "privateAtlasTravels",
+        JSON.stringify(updatedTravels)
+    );
+
+    loadTravel();
+
+}
+
+if (travelForm) {
+
+    travelForm.addEventListener(
+        "submit",
+        event => {
+
+            event.preventDefault();
+
+            const destination =
+                document.getElementById(
+                    "travelDestination"
+                ).value.trim();
+
+            const country =
+                document.getElementById(
+                    "travelCountry"
+                ).value.trim();
+
+            const start =
+                document.getElementById(
+                    "travelStart"
+                ).value;
+
+            const end =
+                document.getElementById(
+                    "travelEnd"
+                ).value;
+
+            const companions =
+                document.getElementById(
+                    "travelCompanions"
+                ).value.trim();
+
+            const memory =
+                document.getElementById(
+                    "travelMemory"
+                ).value.trim();
+
+            const favorite =
+                document.getElementById(
+                    "travelFavorite"
+                ).checked;
+
+            const travels =
+                JSON.parse(
+                    localStorage.getItem(
+                        "privateAtlasTravels"
+                    )
+                ) || [];
+
+            const editingId =
+                travelForm.dataset.editingId;
+
+            if (editingId) {
+
+                const index =
+                    travels.findIndex(
+                        travel =>
+                            String(travel.id) ===
+                            String(editingId)
+                    );
+
+                if (index !== -1) {
+
+                    travels[index] = {
+
+                        ...travels[index],
+
+                        destination,
+                        country,
+                        start,
+                        end,
+                        companions,
+                        memory,
+                        favorite
+
+                    };
+
+                }
+
+            } else {
+
+                travels.push({
+
+                    id: Date.now(),
+
+                    destination,
+                    country,
+                    start,
+                    end,
+                    companions,
+                    memory,
+                    favorite
+
+                });
+
+            }
+
+            localStorage.setItem(
+                "privateAtlasTravels",
+                JSON.stringify(travels)
+            );
+
+            loadTravel();
+
+            closeTravelFormWindow();
+
+        }
+    );
+
+}
+
+loadTravel();
+
+if (typeof lucide !== "undefined") {
+    lucide.createIcons();
+}

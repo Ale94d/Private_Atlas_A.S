@@ -269,19 +269,38 @@
 
             <div class="content-window-header">
 
+                <div class="travel-toolbar">
+                    <button
+                        class="add-travel-btn"
+                        id="openAddTravel"
+                        type="button">
+
+                        <i data-lucide="plus"></i>
+
+                        Nuevo viaje
+
+                    </button>
+
+            <div
+
+                     class="travel-grid"
+                id="travelGrid">
+            </div>
+
+            <div
+                class="empty-travel"
+                id="emptyTravel">
+
                 <i data-lucide="plane"></i>
 
-                <div>
+                <h3>Aún no tienes viajes</h3>
 
-                    <h2>Mis viajes</h2>
-
-                    <p>
-                        Guarda los recuerdos de tus viajes.
-                    </p>
-
-                </div>
-
+                <p>
+                    Guarda los lugares que has conocido y los recuerdos de cada viaje.
+                </p>
             </div>
+            </div>
+               
 
             <div class="content-window-body">
 
@@ -826,6 +845,162 @@
             Receta favorita
 
         </div>
+
+    </div>
+
+</div>
+
+<div
+    class="travel-form-overlay"
+    id="travelFormOverlay">
+
+    <div class="travel-form">
+
+        <button
+            class="close-travel-form"
+            id="closeTravelForm"
+            type="button"
+            aria-label="Cerrar">
+
+            <i data-lucide="x"></i>
+
+        </button>
+
+        <div class="travel-form-header">
+
+            <i data-lucide="plane"></i>
+
+            <div>
+
+                <h2>Nuevo viaje</h2>
+
+                <p>
+                    Guarda los detalles de tu viaje.
+                </p>
+
+            </div>
+
+        </div>
+
+        <form id="travelForm">
+
+            <div class="form-group">
+
+                <label for="travelDestination">
+                    Destino
+                </label>
+
+                <input
+                    type="text"
+                    id="travelDestination"
+                    placeholder="¿A dónde viajaste?"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="travelCountry">
+                    País o lugar
+                </label>
+
+                <input
+                    type="text"
+                    id="travelCountry"
+                    placeholder="País, ciudad o región">
+
+            </div>
+
+            <div class="travel-dates">
+
+                <div class="form-group">
+
+                    <label for="travelStart">
+                        Fecha de inicio
+                    </label>
+
+                    <input
+                        type="date"
+                        id="travelStart"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="travelEnd">
+                        Fecha de regreso
+                    </label>
+
+                    <input
+                        type="date"
+                        id="travelEnd">
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="travelCompanions">
+                    ¿Con quién viajaste?
+                </label>
+
+                <input
+                    type="text"
+                    id="travelCompanions"
+                    placeholder="Familia, amigos, solo...">
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="travelMemory">
+                    Mi recuerdo
+                </label>
+
+                <textarea
+                    id="travelMemory"
+                    placeholder="Escribe lo que recuerdas de este viaje..."></textarea>
+
+            </div>
+
+            <label class="favorite-option">
+
+                <input
+                    type="checkbox"
+                    id="travelFavorite">
+
+                <span>
+                    Marcar como favorito
+                </span>
+
+            </label>
+
+            <div class="form-buttons">
+
+                <button
+                    type="button"
+                    class="cancel-travel-btn"
+                    id="cancelTravel">
+
+                    Cancelar
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-travel-btn">
+
+                    <i data-lucide="save"></i>
+
+                    Guardar viaje
+
+                </button>
+
+            </div>
+
+        </form>
 
     </div>
 
