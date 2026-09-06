@@ -1378,83 +1378,13 @@ body {
 
 }
 
-
-@media (max-width: 850px) {
-
-    body {
-        overflow: auto;
-    }
-
-
-    .apothecary {
-        position: relative;
-        min-height: 100vh;
-        height: auto;
-        overflow: visible;
-    }
-
-
-    .top-bar {
-        padding: 15px 22px;
-    }
-
-
-    .brand h1 {
-        font-size: 31px;
-    }
-
-
-    .apothecary-room {
-        grid-template-columns: 1fr;
-
-        overflow: visible;
-    }
-
-
-    .shelf-panel,
-    .memory-panel {
-        display: none;
-    }
-
-
-    .journal-area {
-        min-height: 650px;
-    }
-
-
-    .bottom-nav {
-        position: sticky;
-        bottom: 0;
-    }
-
-}
-
-@media (max-width: 900px) {
-
-    .apothecary {
-        padding: 20px;
-    }
-
-    .top-bar {
-        gap: 20px;
-    }
-
-    .apothecary-room {
-        grid-template-columns: 220px minmax(0, 1fr);
-        gap: 20px;
-    }
-
-    .shelf-panel {
-        width: 100%;
-    }
-
-}
-
 @media (max-width: 600px) {
-
+    html,
     body {
-        overflow-y: auto;
+        width: 100%;
+        min-height: 100%;
         overflow-x: hidden;
+        overflow-y: auto;
     }
 
     .apothecary {
@@ -1465,16 +1395,12 @@ body {
 
     .top-bar {
         flex-direction: column;
-        text-align: center;
         gap: 12px;
+        text-align: center;
     }
 
     .brand h1 {
         font-size: 2rem;
-    }
-
-    .brand-subtitle {
-        font-size: 0.7rem;
     }
 
     .date-display {
@@ -1484,13 +1410,12 @@ body {
     .apothecary-room {
         display: flex;
         flex-direction: column;
-        gap: 25px;
+        gap: 20px;
     }
 
     .shelf-panel {
         width: 100%;
-        max-width: 500px;
-        margin: 0 auto;
+        max-width: 100%;
     }
 
     .journal-area {
@@ -1502,5 +1427,4 @@ body {
         width: 100%;
         max-width: 100%;
     }
-
 }
