@@ -19,22 +19,35 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Navegación lateral: estado activo y animación de rebote robusta
-    const navButtons = document.querySelectorAll(".nav-icon-btn");
-    
-    navButtons.forEach(btn => {
-        // Evitamos afectar el avatar del usuario si lo tuviera
-        if (btn.classList.contains('user-avatar')) return;
+    // Navegación lateral con estado activo y animación de rebote fluida
+    const navButtons = document.querySelectorAll(".nav-icon-btn:not(.user-avatar)");
+    const homeBtn = document.getElementById("homeBtn");
 
+    navButtons.forEach(btn => {
         btn.addEventListener("click", function() {
             navButtons.forEach(b => b.classList.remove("active"));
             this.classList.add("active");
 
-            // Aplicar clase de animación de rebote
-            this.classList.add("clicked");
+            // Animación elástica de rebote al presionar
+            this.style.transform = "scale(0.82)";
             setTimeout(() => {
-                this.classList.remove("clicked");
-            }, 200);
+                this.style.transform = "scale(1.1)";
+            }, 120);
+            setTimeout(() => {
+                this.style.transform = "scale(1)";
+            }, 250);
         });
     });
+
+    // Casita: vuelve al inicio de la vista con scroll suave sin recargar
+    if (homeBtn) {
+        homeBtn.addEventListener("click", () => {
+            const content = document.querySelector(".macro-content");
+            if (content) {
+                content.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        });
+    }
 });
