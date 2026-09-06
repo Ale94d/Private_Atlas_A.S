@@ -26,7 +26,8 @@
             
             <aside class="macro-sidebar">
                 <div class="sidebar-top">
-                    <a href="#" id="home-btn" class="sidebar-icon active" title="Inicio"><i class="fas fa-home"></i></a>
+                    <!-- Botón de inicio con evento onclick directo para garantizar que funcione -->
+                    <a href="#" id="home-btn" class="sidebar-icon active" title="Inicio" onclick="document.querySelector('.macro-content').scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fas fa-home"></i></a>
                     <a href="#" class="sidebar-icon" data-target="buscar" title="Buscar"><i class="fas fa-search"></i></a>
                     <a href="#" class="sidebar-icon" data-target="grid" title="Cuadrícula"><i class="fas fa-th-large"></i></a>
                     <a href="#" class="sidebar-icon" data-target="registros" title="Registros"><i class="fas fa-folder-open"></i></a>
