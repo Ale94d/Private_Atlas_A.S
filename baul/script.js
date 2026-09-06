@@ -1835,14 +1835,6 @@ if (typeof lucide !== "undefined") {
     lucide.createIcons();
 }
 
-const homeButton =
-    document.querySelector(".back-home");
-
-if (homeButton) {
-    homeButton.addEventListener("click", () => {
-        window.location.href = "../index.html";
-    });
-}
 
 const overlay =
     document.querySelector(".content-overlay");
