@@ -1,7 +1,3 @@
-/* =====================================
-   RESET
-===================================== */
-
 * {
     margin: 0;
     padding: 0;
@@ -24,10 +20,6 @@ body {
     color: #3b2a1c;
 }
 
-
-/* =====================================
-   TIMELINE WORKSPACE
-===================================== */
 
 .timeline-workspace {
 
@@ -58,10 +50,6 @@ body {
         both;
 }
 
-
-/* =====================================
-   HOME — INTEGRADO AL ENTABLAMENTO
-===================================== */
 
 .back-home {
 
@@ -131,11 +119,6 @@ body {
     height: 20px;
 }
 
-
-/* =====================================
-   CONTENEDOR
-===================================== */
-
 .timeline-container {
 
     position: absolute;
@@ -153,10 +136,6 @@ body {
 }
 
 
-/* =====================================
-   MUNDO
-===================================== */
-
 .timeline-world {
 
     position: absolute;
@@ -170,10 +149,6 @@ body {
     min-height: 700px;
 }
 
-
-/* =====================================
-   PARED DE MÁRMOL
-===================================== */
 
 .marble-wall {
 
@@ -213,19 +188,11 @@ body {
 }
 
 
-/* =====================================
-   VETAS DEL MÁRMOL
-===================================== */
-
 .marble-wall::before {
 
     content: none;
 }
 
-
-/* =====================================
-   ENTABLAMENTO GRIEGO
-===================================== */
 
 .greek-border {
 
@@ -262,10 +229,6 @@ body {
 }
 
 
-/* =====================================
-   RELIEVES / DENTÍCULOS
-===================================== */
-
 .greek-border::before {
 
     content: "";
@@ -298,11 +261,6 @@ body {
         rgba(60,52,43,0.22);
 }
 
-
-/* =====================================
-   MOLDURA INFERIOR
-===================================== */
-
 .greek-border::after {
 
     content: "";
@@ -331,10 +289,6 @@ body {
 }
 
 
-/* =====================================
-   COLUMNAS INTEGRADAS
-===================================== */
-
 .background-columns {
 
     position: absolute;
@@ -349,11 +303,6 @@ body {
     align-items: stretch;
     gap: 0;
 }
-
-
-/* =====================================
-   COLUMNA
-===================================== */
 
 .column {
 
@@ -370,10 +319,6 @@ body {
     align-items: center;
 }
 
-
-/* =====================================
-   CAPITEL
-===================================== */
 
 .column-capital {
 
@@ -457,10 +402,6 @@ body {
         rgba(45,35,25,0.18);
 }
 
-/* =====================================
-   FUSTE DE COLUMNA
-   MÁRMOL + FLAUTAS
-===================================== */
 
 .column-shaft {
 
@@ -541,9 +482,6 @@ body {
 }
 
 
-/* =====================================
-   BASE DE COLUMNA
-===================================== */
 
 .column-base {
 
@@ -578,10 +516,6 @@ body {
         rgba(45,35,25,0.25);
 }
 
-
-/* =====================================
-   FRISO INFERIOR CONTINUO
-===================================== */
 
 .marble-wall::after {
 
@@ -618,10 +552,6 @@ body {
 }
 
 
-/* =====================================
-   TIMELINE
-===================================== */
-
 .timeline-line {
 
     position: absolute;
@@ -653,10 +583,6 @@ body {
         rgba(213, 168, 63, 0.65);
 }
 
-
-/* =====================================
-   RECUERDOS
-===================================== */
 
 .timeline-event {
 
@@ -780,11 +706,6 @@ body {
 }
 
 
-/* =====================================
-   PUERTA
-   POR AHORA SOLO ESTRUCTURA
-===================================== */
-
 .timeline-entrance {
 
     position: fixed;
@@ -803,10 +724,6 @@ body {
     perspective: 1400px;
 }
 
-
-/* =====================================
-   PUERTAS DE ENTRADA — TEMPLO GRIEGO
-===================================== */
 
 .timeline-door {
 
@@ -839,10 +756,6 @@ body {
 }
 
 
-/* =====================================
-   MARCO MONUMENTAL
-===================================== */
-
 .timeline-door::before {
 
     content: "";
@@ -871,10 +784,6 @@ body {
     pointer-events: none;
 }
 
-
-/* =====================================
-   PANEL GRIEGO CENTRAL
-===================================== */
 
 .timeline-door::after {
 
@@ -916,9 +825,6 @@ body {
     z-index: 2;
 }
 
-/* =====================================
-   DETALLE SUPERIOR TIPO FRONTÓN
-===================================== */
 
 .timeline-door-left {
 
@@ -934,17 +840,12 @@ body {
 }
 
 
-/* =====================================
-   DETALLE GEOMÉTRICO SOBRE LA PUERTA
-===================================== */
 
 .timeline-door {
 
     background-color: #d8d2c7;
 }
 
-
-/* Línea decorativa superior */
 
 .timeline-door-left::after,
 .timeline-door-right::after {
@@ -954,9 +855,6 @@ body {
 }
 
 
-/* =====================================
-   APERTURA
-===================================== */
 
 .timeline-entrance.open .timeline-door-left {
 
@@ -989,11 +887,6 @@ body {
 
 
 
-
-/* =====================================
-   ANIMACIÓN PUERTA IZQUIERDA
-===================================== */
-
 @keyframes openLeftDoor {
 
     0% {
@@ -1021,11 +914,6 @@ body {
     }
 
 }
-
-
-/* =====================================
-   ANIMACIÓN PUERTA DERECHA
-===================================== */
 
 @keyframes openRightDoor {
 
@@ -1055,9 +943,6 @@ body {
 
 }
 
-/* =====================================
-   ZOOM DESPUÉS DE ABRIR LAS PUERTAS
-===================================== */
 
 .timeline-container {
 
@@ -1092,4 +977,45 @@ body {
         transform:
             scale(1);
     }
+}
+
+@media (max-width: 900px) {
+
+    .timeline-world {
+        min-height: 600px;
+    }
+
+    .back-home {
+        width: 44px;
+        height: 44px;
+        top: 12px;
+        left: 12px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .timeline-workspace {
+        width: 100%;
+        height: 100%;
+    }
+
+    .timeline-container {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .timeline-world {
+        min-height: 500px;
+    }
+
+    .back-home {
+        width: 42px;
+        height: 42px;
+        top: 10px;
+        left: 10px;
+    }
+
 }
