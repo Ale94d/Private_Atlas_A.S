@@ -1,5 +1,5 @@
 /* ==========================================
-   RESET Y BASE GENERAL
+   RESET Y CONFIGURACIÓN GENERAL
    ========================================== */
 * {
     box-sizing: border-box;
@@ -8,10 +8,13 @@
 }
 
 body {
-    background: linear-gradient(135deg, #010c18 0%, #04182d 50%, #020b14 100%);
+    background: #020912;
     color: #e2e8f0;
     font-family: 'Plus Jakarta Sans', sans-serif;
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow-x: hidden;
 }
 
@@ -27,65 +30,57 @@ body {
     pointer-events: none;
     z-index: -1;
     overflow: hidden;
+    background: radial-gradient(circle at 50% 30%, #061c33 0%, #020b16 60%, #01050a 100%);
 }
 
 .sunrays {
     position: absolute;
-    top: -50%;
-    left: -20%;
-    width: 140%;
-    height: 150%;
-    background: radial-gradient(circle at 35% 0%, rgba(56, 189, 248, 0.12) 0%, rgba(14, 116, 144, 0.04) 40%, transparent 70%);
-    transform: rotate(-15deg);
-    animation: swayLight 12s ease-in-out infinite alternate;
-}
-
-@keyframes swayLight {
-    0% { transform: rotate(-15deg) translateY(0); opacity: 0.8; }
-    100% { transform: rotate(-10deg) translateY(-20px); opacity: 1; }
+    top: -40%;
+    left: -10%;
+    width: 130%;
+    height: 140%;
+    background: radial-gradient(circle at 30% 10%, rgba(56, 189, 248, 0.1) 0%, rgba(14, 116, 144, 0.03) 45%, transparent 70%);
+    transform: rotate(-10deg);
 }
 
 .bubbles-container span {
     position: absolute;
-    bottom: -50px;
-    width: 6px;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.2);
+    bottom: -30px;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.25);
     border-radius: 50%;
-    box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
-    animation: riseBubble linear infinite;
+    box-shadow: 0 0 6px rgba(56, 189, 248, 0.5);
+    animation: riseBubbles linear infinite;
 }
 
-@keyframes riseBubble {
+@keyframes riseBubbles {
     0% { transform: translateY(0) scale(0.8); opacity: 0; }
-    20% { opacity: 0.5; }
-    80% { opacity: 0.5; }
-    100% { transform: translateY(-105vh) scale(1.2); opacity: 0; }
+    30% { opacity: 0.6; }
+    80% { opacity: 0.4; }
+    100% { transform: translateY(-105vh) scale(1.3); opacity: 0; }
 }
 
 /* ==========================================
    MACRO VENTANA FLOTANTE (ESTILO REFERENCIA)
    ========================================== */
 .macro-workspace {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 30px 20px;
+    width: 100%;
+    max-width: 1350px;
+    padding: 20px;
 }
 
 .macro-window {
     width: 100%;
-    max-width: 1250px;
-    min-height: 750px;
+    height: 840px;
     display: flex;
-    border-radius: 32px;
+    border-radius: 36px;
     overflow: hidden;
-    background: rgba(6, 25, 45, 0.82);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(56, 189, 248, 0.18);
-    box-shadow: 0 30px 60px rgba(1, 6, 12, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    background: rgba(6, 23, 42, 0.78);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    box-shadow: 0 35px 70px rgba(1, 6, 14, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 /* ==========================================
@@ -93,273 +88,384 @@ body {
    ========================================== */
 .macro-sidebar {
     width: 85px;
-    background: rgba(3, 14, 27, 0.65);
-    border-right: 1px solid rgba(56, 189, 248, 0.1);
+    background: rgba(3, 13, 24, 0.75);
+    border-right: 1px solid rgba(56, 189, 248, 0.12);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 0;
+    padding: 30px 0;
     flex-shrink: 0;
 }
 
 .sidebar-top {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 18px;
     align-items: center;
 }
 
-.nav-icon-btn {
-    width: 46px;
-    height: 46px;
-    border-radius: 16px;
+.sidebar-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 18px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.06);
     color: #94a3b8;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    transition: all 0.25s ease;
     text-decoration: none;
+    transition: all 0.25s ease;
 }
 
-.nav-icon-btn:hover {
-    background: rgba(56, 189, 248, 0.12);
+.sidebar-icon:hover {
+    background: rgba(56, 189, 248, 0.15);
     color: #38bdf8;
     border-color: rgba(56, 189, 248, 0.3);
 }
 
-.nav-icon-btn.active {
+.sidebar-icon.active {
     background: #facc15 !important;
     color: #0f172a !important;
-    box-shadow: 0 0 18px rgba(250, 204, 21, 0.45);
     border-color: #facc15 !important;
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
 }
 
-.user-avatar {
-    width: 42px;
-    height: 42px;
+.sidebar-avatar {
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(56, 189, 248, 0.35);
+    border: 2px solid rgba(56, 189, 248, 0.4);
 }
 
 /* ==========================================
-   CONTENIDO INTERNO
+   CONTENIDO PRINCIPAL INTERNO
    ========================================== */
 .macro-content {
     flex: 1;
-    padding: 35px;
+    padding: 35px 40px;
     display: flex;
     flex-direction: column;
     gap: 24px;
     overflow-y: auto;
 }
 
-/* Barra superior dentro de la ventana */
-.top-nav-bar {
+/* Barra superior de filtros flotantes */
+.top-filter-bar {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: rgba(4, 18, 33, 0.6);
+    padding: 10px 16px;
+    border-radius: 24px;
+    border: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+.filter-dropdown {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    color: #cbd5e1;
+    padding: 10px 18px;
+    border-radius: 18px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-dropdown:hover {
+    border-color: rgba(56, 189, 248, 0.3);
+    background: rgba(56, 189, 248, 0.06);
+}
+
+.primary-pill {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-weight: 700;
+    border: none !important;
+}
+
+.action-pill {
+    margin-left: auto;
+}
+
+.text-cyan {
+    color: #38bdf8;
+}
+
+.arrow-icon {
+    font-size: 0.7rem;
+    color: #64748b;
+    margin-left: 4px;
+}
+
+/* Banner de Portada Central (Estilo Hero Card) */
+.hero-cover-banner {
+    position: relative;
+    padding: 45px 40px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(12, 100, 130, 0.35), rgba(3, 16, 31, 0.9));
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    overflow: hidden;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 280px;
 }
 
-.brand-title {
-    font-size: 0.75rem;
-    letter-spacing: 2.5px;
-    color: #38bdf8;
-    font-weight: 700;
+.hero-text-box {
+    max-width: 520px;
 }
 
-.nav-pills-group {
-    display: flex;
-    gap: 12px;
-}
-
-.pill-btn {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: #cbd5e1;
-    padding: 8px 18px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.pill-btn.active {
-    background: rgba(56, 189, 248, 0.18);
-    border-color: rgba(56, 189, 248, 0.4);
-    color: #38bdf8;
-}
-
-/* Banner Principal Flotante */
-.hero-banner-floating {
-    padding: 40px 35px;
-    border-radius: 24px;
-    background: linear-gradient(135deg, rgba(14, 116, 144, 0.3), rgba(4, 20, 38, 0.85));
-    border: 1px solid rgba(56, 189, 248, 0.22);
-    position: relative;
-    overflow: hidden;
-}
-
-.sub-tag {
-    font-size: 0.75rem;
+.badge-tag {
+    font-size: 0.72rem;
     font-weight: 700;
     color: #38bdf8;
     letter-spacing: 1.5px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: block;
 }
 
-.hero-banner-floating h1 {
+.hero-cover-banner h2 {
     font-family: 'Cinzel', serif;
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     color: #ffffff;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
-.hero-banner-floating p {
-    font-size: 0.95rem;
+.hero-cover-banner p {
+    font-size: 0.92rem;
     color: #94a3b8;
-    max-width: 580px;
     line-height: 1.6;
 }
 
-/* Grid de tarjetas flotantes inferiores */
-.floating-cards-grid {
+/* Tarjeta flotante superpuesta (derecha del banner) */
+.floating-overlay-card {
+    width: 360px;
+    background: rgba(8, 30, 53, 0.85);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 22px;
+    padding: 22px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.overlay-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.card-mini-title {
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+    color: #38bdf8;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.floating-overlay-card h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: #f1f5f9;
+}
+
+.arrow-circle-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #0f172a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.arrow-circle-btn:hover {
+    transform: scale(1.08);
+}
+
+.overlay-desc {
+    font-size: 0.82rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.overlay-footer-stats {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.8rem;
+    color: #cbd5e1;
+}
+
+.stat-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-mini-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.mini-icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.mini-icon-btn:hover {
+    background: rgba(56, 189, 248, 0.2);
+    color: #38bdf8;
+}
+
+/* ==========================================
+   GRID DE TARJETAS INFERIORES
+   ========================================== */
+.bottom-cards-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 22px;
 }
 
-@media (max-width: 950px) {
-    .floating-cards-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.floating-card {
-    padding: 26px;
-    border-radius: 24px;
-    background: rgba(10, 35, 62, 0.65);
+.content-card {
+    background: rgba(9, 32, 56, 0.65);
     border: 1px solid rgba(56, 189, 248, 0.18);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.floating-card:hover {
-    border-color: rgba(56, 189, 248, 0.38);
-    transform: translateY(-3px);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .card-header-flex {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 }
 
-.card-tag {
-    font-size: 0.7rem;
-    letter-spacing: 1.2px;
-    color: #38bdf8;
-    font-weight: 700;
-    display: block;
-    margin-bottom: 4px;
-}
-
-.floating-card h3 {
+.content-card h3 {
     font-family: 'Cinzel', serif;
-    font-size: 1.15rem;
+    font-size: 1.12rem;
     color: #f1f5f9;
 }
 
-.badge-pill {
+.status-badge {
     background: rgba(56, 189, 248, 0.15);
     color: #38bdf8;
     padding: 4px 12px;
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: 0.74rem;
     font-weight: 600;
     border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
-/* Listas internas modernas */
-.task-list-modern {
+/* Tareas */
+.tasks-stack {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.task-row {
+.task-item {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: rgba(2, 12, 22, 0.45);
-    padding: 12px 15px;
+    background: rgba(2, 12, 22, 0.5);
+    padding: 11px 14px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.04);
-    font-size: 0.88rem;
+    font-size: 0.86rem;
 }
 
-.task-row.completed {
+.task-item.done {
     opacity: 0.5;
     text-decoration: line-through;
 }
 
-.task-row small {
+.task-tag-status {
     margin-left: auto;
+    font-size: 0.72rem;
     color: #38bdf8;
-    font-size: 0.75rem;
-    flex-shrink: 0;
 }
 
-.finance-list-modern {
+.task-tag-date {
+    margin-left: auto;
+    font-size: 0.72rem;
+    color: #facc15;
+    background: rgba(250, 204, 21, 0.1);
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+/* Finanzas */
+.finance-stack {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.finance-item {
+.finance-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 11px;
+    padding-bottom: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.finance-item.border-none {
+.finance-row.border-none {
     border-bottom: none;
     padding-bottom: 0;
 }
 
-.finance-item strong {
+.finance-info strong {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: #f1f5f9;
 }
 
-.finance-item span {
-    font-size: 0.75rem;
+.finance-info span {
+    font-size: 0.74rem;
     color: #94a3b8;
 }
 
-.val-highlight {
+.finance-val {
     font-weight: 600;
-    color: #38bdf8;
     font-size: 0.85rem;
+    color: #38bdf8;
 }
 
-.circle-add-btn {
-    width: 36px;
-    height: 36px;
+.highlight-gold {
+    color: #facc15;
+}
+
+.add-circle-btn {
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background: rgba(56, 189, 248, 0.15);
     border: 1px solid rgba(56, 189, 248, 0.3);
@@ -368,10 +474,9 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
-.circle-add-btn:hover {
-    background: rgba(56, 189, 248, 0.3);
-    transform: scale(1.05);
+.add-circle-btn:hover {
+    transform: scale(1.1);
 }
