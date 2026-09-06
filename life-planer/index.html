@@ -3,29 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Atlas A.S. / Life Planner</title>
+    <title>Private Atlas A.S. / Abyssal Life Planner</title>
     <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="Style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- EFECTOS AMBIENTALES SUBMARINOS -->
+    <div class="ocean-background">
+        <div class="sunrays"></div>
+        <div class="bubbles-container">
+            <span style="left: 10%; animation-duration: 8s; animation-delay: 0s;"></span>
+            <span style="left: 25%; animation-duration: 12s; animation-delay: 2s;"></span>
+            <span style="left: 40%; animation-duration: 9s; animation-delay: 4s;"></span>
+            <span style="left: 60%; animation-duration: 14s; animation-delay: 1s;"></span>
+            <span style="left: 75%; animation-duration: 10s; animation-delay: 3s;"></span>
+            <span style="left: 90%; animation-duration: 11s; animation-delay: 5s;"></span>
+        </div>
+    </div>
+
     <div class="planner-workspace">
-        <main class="macro-window">
+        <main class="macro-window abyssal-window">
             
+            <!-- BARRA LATERAL -->
             <aside class="macro-sidebar">
                 <div class="sidebar-top">
-                    <a href="../index.html" class="nav-icon-btn active" id="homeBtn">
+                    <a href="../index.html" class="nav-icon-btn active" id="homeBtn" title="Santuario Principal">
                         <i class="fas fa-home"></i>
                     </a>
-                    <button class="nav-icon-btn">
+                    <button class="nav-icon-btn" title="Explorar Archivos">
                         <i class="fas fa-search"></i>
                     </button>
-                    <button class="nav-icon-btn">
-                        <i class="fas fa-th-large"></i>
+                    <button class="nav-icon-btn" title="Mapeo de Gastos">
+                        <i class="fas fa-coins"></i>
                     </button>
-                    <button class="nav-icon-btn">
+                    <button class="nav-icon-btn" title="Cronograma Abisal">
                         <i class="fas fa-calendar-alt"></i>
                     </button>
                 </div>
@@ -34,56 +48,87 @@
                 </div>
             </aside>
 
+            <!-- CONTENIDO PRINCIPAL -->
             <section class="macro-content">
                 <header class="macro-header">
                     <div class="header-brand">
                         <span>PRIVATE ATLAS A.S.</span>
-                        <h2>Life Planner</h2>
+                        <h2>Santuario Submarino</h2>
                     </div>
                     <div class="header-filters">
-                        <button class="filter-pill active"><i class="fas fa-star"></i> Proyectos Activos</button>
-                        <button class="filter-pill"><i class="fas fa-bookmark"></i> Destacados</button>
+                        <button class="filter-pill active"><i class="fas fa-landmark"></i> Ruinas Activas</button>
+                        <button class="filter-pill"><i class="fas fa-chart-pie"></i> Presupuesto 50/30/20</button>
                     </div>
                 </header>
 
-                <div class="hero-banner">
+                <div class="hero-banner abyssal-hero">
                     <div class="hero-content">
-                        <span class="hero-tag">NÚCLEO PRINCIPAL</span>
-                        <h1>Tu Vida, Diseñada con Precisión</h1>
-                        <p>Organiza tus metas, registra tus hábitos diarios y supervisa la evolución de tu propio atlas de experiencias con un entorno clásico y sofisticado.</p>
-                        <button class="filter-pill hero-action-btn" id="exploreBtn">Explorar Módulo</button>
+                        <span class="hero-tag">PROFUNDIDADES DE ATLÁNTIDA</span>
+                        <h1>Tu Vida Bajo el Océano Profundo</h1>
+                        <p>Organiza tus tareas y gestiona tus recursos bajo una estética milenaria, rodeado de misterio, corrientes serenas y estructuras sumergidas.</p>
+                        <button class="filter-pill hero-action-btn" id="exploreBtn">Descender al Registro</button>
                     </div>
                 </div>
 
                 <div class="cards-grid">
-                    <div class="glass-card card-flex-between">
-                        <div>
-                            <span class="card-title-sm">ESTADÍSTICAS VITALES</span>
-                            <h3 class="card-main-title">Progreso Global</h3>
-                            <p class="card-desc">Tu constancia en el desarrollo personal y académico se mantiene en constante ascenso.</p>
+                    <!-- SECCIÓN DE TAREAS Y FECHAS -->
+                    <div class="glass-card abyssal-card">
+                        <div class="card-header-flex">
+                            <div>
+                                <span class="card-title-sm">CRONOGRAMA DE EXPEDICIÓN</span>
+                                <h3 class="card-main-title">Tareas y Fechas Clave</h3>
+                            </div>
+                            <span class="badge-abyssal">3 Activas</span>
                         </div>
-                        <div class="stat-display">
-                            <span class="stat-number" id="counterVal">88%</span>
-                            <span class="stat-sub">Hitos cumplidos este mes</span>
+                        <div class="task-list">
+                            <div class="task-item completed">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Calibrar mapa de corrientes en Soacha</span>
+                                <small>Completado</small>
+                            </div>
+                            <div class="task-item">
+                                <i class="far fa-circle"></i>
+                                <span>Diseñar interfaces de bitácora web</span>
+                                <small>Vence: 10 Sep</small>
+                            </div>
+                            <div class="task-item">
+                                <i class="far fa-circle"></i>
+                                <span>Actualizar registros del método 50/30/20</span>
+                                <small>Vence: 15 Sep</small>
+                            </div>
                         </div>
-                        <button class="action-circle-btn" id="nextGoalBtn"><i class="fas fa-arrow-right"></i></button>
                     </div>
 
-                    <div class="glass-card">
-                        <span class="card-title-sm title-spaced">PRÓXIMO OBJETIVO</span>
-                        <h3 class="card-main-title">Atlas Expedition 2026</h3>
-                        <div class="floating-info-card" style="margin-top: 15px;">
-                            <div class="info-row">
-                                <span>Estado actual</span>
-                                <strong>En ejecución</strong>
+                    <!-- SECCIÓN DE GASTOS Y MÉTODO 50/30/20 -->
+                    <div class="glass-card abyssal-card">
+                        <div class="card-header-flex">
+                            <div>
+                                <span class="card-title-sm">TESOROS Y FINANZAS</span>
+                                <h3 class="card-main-title">Método 50/30/20</h3>
                             </div>
-                            <div class="info-row">
-                                <span>Enfoque principal</span>
-                                <strong>Desarrollo Web & Rutinas</strong>
+                            <button class="action-circle-btn" title="Añadir Gasto"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <div class="finance-breakdown">
+                            <div class="finance-row">
+                                <div class="finance-info">
+                                    <strong>Necesidades (50%)</strong>
+                                    <span>Gastos fijos y esenciales</span>
+                                </div>
+                                <span class="finance-val">Restante: $450k</span>
                             </div>
-                            <div class="info-row" style="border: none; padding-bottom: 0;">
-                                <span>Sincronización</span>
-                                <strong>Diario de Bitácora Activo</strong>
+                            <div class="finance-row">
+                                <div class="finance-info">
+                                    <strong>Deseos (30%)</strong>
+                                    <span>Inversión personal & proyectos</span>
+                                </div>
+                                <span class="finance-val">Restante: $270k</span>
+                            </div>
+                            <div class="finance-row border-none">
+                                <div class="finance-info">
+                                    <strong>Ahorro / Futuro (20%)</strong>
+                                    <span>Fondo de reserva abisal</span>
+                                </div>
+                                <span class="finance-val">Meta: $180k</span>
                             </div>
                         </div>
                     </div>
