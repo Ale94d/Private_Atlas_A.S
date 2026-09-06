@@ -39,15 +39,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Casita: vuelve al inicio de la vista con scroll suave sin recargar
+    // Casita: Fuerza el retorno al inicio absoluto de la página y contenedor
     if (homeBtn) {
         homeBtn.addEventListener("click", () => {
-            const content = document.querySelector(".macro-content");
-            if (content) {
-                content.scrollTo({ top: 0, behavior: "smooth" });
-            } else {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            }
+            // Sube la ventana principal del navegador
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            
+            // Sube cualquier contenedor interno por si acaso
+            document.querySelectorAll(".macro-content, .planner-workspace, main, body, html").forEach(el => {
+                el.scrollTop = 0;
+            });
         });
     }
 });
