@@ -381,5 +381,6 @@ html, body {
 .nav-icon-btn.active::before,
 .nav-icon-btn.active::after {
     display: none !important;
+    content: none !important;
 }
 }
