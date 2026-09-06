@@ -359,7 +359,7 @@ body {
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.04);
     font-size: 0.86rem;
-    cursor: pointer;
+    cursor: pointer; /* Añadido para que el mouse muestre la mano al pasar por las tareas */
 }
 
 .task-item.done {
