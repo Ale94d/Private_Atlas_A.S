@@ -1,97 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Atlas A.S.</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.css">
-    <link rel="icon" type="image/png" href="assets/icons/favicon-home.png">
+    <title>Private Atlas A.S. / Life Planner</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<header class="hero">
-    <img src="assets/images/logo.png" alt="Private Atlas" class="logo">
-    <p class="slogan">Tus recuerdos viajan contigo</p>
-</header>
+    <div class="planner-workspace">
+        <main class="macro-window">
+            
+            <aside class="macro-sidebar">
+                <div class="sidebar-top">
+                    <a href="../index.html" class="nav-icon-btn active" id="homeBtn">
+                        <i class="fas fa-home"></i>
+                    </a>
+                    <button class="nav-icon-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="nav-icon-btn">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <button class="nav-icon-btn">
+                        <i class="fas fa-calendar-alt"></i>
+                    </button>
+                </div>
+                <div class="sidebar-bottom">
+                    <img src="Icons/Perfil.jpg" alt="Perfil" class="user-avatar">
+                </div>
+            </aside>
 
-<main class="home">
-    <div class="workspaces">
-        <div class="workspace atlas">
-            <div class="circle">
-                <i class="icon-compass"></i>
-            </div>
-            <span>Atlas</span>
-        </div>
+            <section class="macro-content">
+                <header class="macro-header">
+                    <div class="header-brand">
+                        <span>PRIVATE ATLAS A.S.</span>
+                        <h2>Life Planner</h2>
+                    </div>
+                    <div class="header-filters">
+                        <button class="filter-pill active"><i class="fas fa-star"></i> Proyectos Activos</button>
+                        <button class="filter-pill"><i class="fas fa-bookmark"></i> Destacados</button>
+                    </div>
+                </header>
 
-        <div class="workspace planner">
-            <div class="circle">
-                <i class="icon-calendar-days"></i>
-            </div>
-            <span>Life Planner</span>
-        </div>
+                <div class="hero-banner">
+                    <div class="hero-content">
+                        <span class="hero-tag">NÚCLEO PRINCIPAL</span>
+                        <h1>Tu Vida, Diseñada con Precisión</h1>
+                        <p>Organiza tus metas, registra tus hábitos diarios y supervisa la evolución de tu propio atlas de experiencias con un entorno clásico y sofisticado.</p>
+                        <button class="filter-pill hero-action-btn" id="exploreBtn">Explorar Módulo</button>
+                    </div>
+                </div>
 
-        <div class="workspace journal">
-            <div class="circle">
-                <i class="icon-book-open"></i>
-            </div>
-            <span>Daily Journal</span>
-        </div>
+                <div class="cards-grid">
+                    <div class="glass-card card-flex-between">
+                        <div>
+                            <span class="card-title-sm">ESTADÍSTICAS VITALES</span>
+                            <h3 class="card-main-title">Progreso Global</h3>
+                            <p class="card-desc">Tu constancia en el desarrollo personal y académico se mantiene en constante ascenso.</p>
+                        </div>
+                        <div class="stat-display">
+                            <span class="stat-number" id="counterVal">88%</span>
+                            <span class="stat-sub">Hitos cumplidos este mes</span>
+                        </div>
+                        <button class="action-circle-btn" id="nextGoalBtn"><i class="fas fa-arrow-right"></i></button>
+                    </div>
 
-        <div class="workspace baul">
-            <div class="circle">
-                <i class="icon-package"></i>
-            </div>
-            <span>Baúl</span>
-        </div>
+                    <div class="glass-card">
+                        <span class="card-title-sm title-spaced">PRÓXIMO OBJETIVO</span>
+                        <h3 class="card-main-title">Atlas Expedition 2026</h3>
+                        <div class="floating-info-card" style="margin-top: 15px;">
+                            <div class="info-row">
+                                <span>Estado actual</span>
+                                <strong>En ejecución</strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Enfoque principal</span>
+                                <strong>Desarrollo Web & Rutinas</strong>
+                            </div>
+                            <div class="info-row" style="border: none; padding-bottom: 0;">
+                                <span>Sincronización</span>
+                                <strong>Diario de Bitácora Activo</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <div class="workspace timeline">
-            <div class="circle">
-                <i class="icon-clock-3"></i>
-            </div>
-            <span>Timeline</span>
-        </div>
+        </main>
     </div>
-</main>
 
-<div class="profile-btn">
-    <div class="profile-circle">
-        <img src="assets/images/profile.png" alt="Perfil">
-    </div>
-    <div class="profile-menu">
-        <h2>Perfil</h2>
-        <button class="login-btn">Iniciar sesión</button>
-        <button class="register-btn">Registrarse</button>
-        <button class="close-profile">Volver</button>
-    </div>
-</div>
-
-<div class="customize-btn">
-    <div class="circle">
-        <i class="icon-palette"></i>
-    </div>
-    <span>Personalizar</span>
-</div>
-
-<div class="appearance-panel">
-    <h2>Apariencia</h2>
-    <button class="upload-background">Subir imagen</button>
-    <input type="file" id="background-input" accept="image/*" hidden>
-    <div class="theme-list">
-        <button class="theme-btn" data-theme="default">Fondo clásico</button>
-    </div>
-    <button class="close-appearance">Volver</button>
-</div>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
-
 </html>
