@@ -19,23 +19,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Navegación lateral: estado activo y animación de rebote unificada para todos
-    const navButtons = document.querySelectorAll(".nav-icon-btn:not(.user-avatar)");
+    // Navegación lateral: estado activo y animación de rebote robusta
+    const navButtons = document.querySelectorAll(".nav-icon-btn");
     
     navButtons.forEach(btn => {
+        // Evitamos afectar el avatar del usuario si lo tuviera
+        if (btn.classList.contains('user-avatar')) return;
+
         btn.addEventListener("click", function() {
-            // Cambiar clase activa
             navButtons.forEach(b => b.classList.remove("active"));
             this.classList.add("active");
 
-            // Animación fluida de rebote / retorno
-            this.style.transform = "scale(0.85)";
+            // Aplicar clase de animación de rebote
+            this.classList.add("clicked");
             setTimeout(() => {
-                this.style.transform = "scale(1.08)";
-            }, 120);
-            setTimeout(() => {
-                this.style.transform = "scale(1)";
-            }, 250);
+                this.classList.remove("clicked");
+            }, 200);
         });
     });
 });
