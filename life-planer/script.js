@@ -25,6 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     navButtons.forEach(btn => {
         btn.addEventListener("click", function() {
+            // Si es la casita, no bloqueamos su comportamiento de enlace
+            if (this.id === "homeBtn") return;
+
             navButtons.forEach(b => b.classList.remove("active"));
             this.classList.add("active");
 
@@ -39,16 +42,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Casita: Fuerza el retorno al inicio absoluto de la página y contenedor
+    // Casita: Reproduce la animación de rebote y regresa al indice.html
     if (homeBtn) {
-        homeBtn.addEventListener("click", () => {
-            // Sube la ventana principal del navegador
-            window.scrollTo({ top: 0, behavior: "smooth" });
+        homeBtn.addEventListener("click", function(e) {
+            e.preventDefault(); // Pausa un segundo para lucir el rebote
             
-            // Sube cualquier contenedor interno por si acaso
-            document.querySelectorAll(".macro-content, .planner-workspace, main, body, html").forEach(el => {
-                el.scrollTop = 0;
-            });
+            // Animación de rebote antes de salir
+            this.style.transform = "scale(0.82)";
+            setTimeout(() => {
+                this.style.transform = "scale(1.1)";
+            }, 100);
+            
+            // Redirige a tu pantalla principal (indice.html)
+            setTimeout(() => {
+                window.location.href = "indice.html";
+            }, 220);
         });
     }
 });
