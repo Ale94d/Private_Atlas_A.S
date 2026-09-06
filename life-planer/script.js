@@ -11,22 +11,20 @@
 
         sidebarIcons.forEach(icon => {
             icon.addEventListener('click', function(e) {
-                // Si es el botón de la casa, forzamos un reset suave de la vista o recarga limpia
+                e.preventDefault(); // Evita que la página brinque o recargue con el '#'
+                
+                sidebarIcons.forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+
                 if (this === homeBtn) {
-                    e.preventDefault();
-                    // Subir el scroll de la ventana principal al inicio suavemente
                     if (macroContent) {
                         macroContent.scrollTo({ top: 0, behavior: 'smooth' });
                     }
-                    // Limpiar selecciones y marcar la casa como activa
-                    sidebarIcons.forEach(item => item.classList.remove('active'));
-                    this.classList.add('active');
-                    return;
+                    console.log("Regresando al inicio del santuario...");
+                } else {
+                    const targetName = this.getAttribute('data-target');
+                    console.log(`Navegando a la sección: ${targetName}`);
                 }
-
-                // Comportamiento para los demás iconos
-                sidebarIcons.forEach(item => item.classList.remove('active'));
-                this.classList.add('active');
             });
         });
 
