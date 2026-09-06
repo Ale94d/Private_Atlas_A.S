@@ -1,7 +1,3 @@
-/* =====================================
-   VOLVER AL HOME
-===================================== */
-
 const homeButton = document.querySelector(".back-home");
 
 if (homeButton) {
@@ -15,17 +11,8 @@ if (homeButton) {
 }
 
 
-/* =====================================
-   ELEMENTOS DEL MAPA
-===================================== */
-
 const mapContainer = document.getElementById("map-container");
 const mapArea = document.querySelector(".map-background");
-
-
-/* =====================================
-   VARIABLES
-===================================== */
 
 let isDragging = false;
 
@@ -37,11 +24,6 @@ let currentY = -350;
 
 let scale = 1;
 
-
-/* =====================================
-   ACTUALIZAR MAPA
-===================================== */
-
 function updateMap() {
 
     if (!mapContainer) return;
@@ -50,11 +32,6 @@ function updateMap() {
         `translate(${currentX}px, ${currentY}px) scale(${scale})`;
 
 }
-
-
-/* =====================================
-   MOVIMIENTO DEL MAPA
-===================================== */
 
 if (mapContainer && mapArea) {
 
@@ -111,11 +88,6 @@ if (mapContainer && mapArea) {
 
     });
 
-
-    /* =====================================
-       ZOOM CON RUEDA
-    ===================================== */
-
     mapArea.addEventListener("wheel", (e) => {
 
         e.preventDefault();
@@ -140,9 +112,6 @@ if (mapContainer && mapArea) {
     }, { passive: false });
 
 
-    /* =====================================
-       DOBLE CLIC = CENTRAR
-    ===================================== */
 
     mapArea.addEventListener("dblclick", () => {
 
@@ -156,18 +125,11 @@ if (mapContainer && mapArea) {
     });
 
 
-    /* =====================================
-       POSICIÓN INICIAL
-    ===================================== */
 
     updateMap();
 
 }
 
-
-/* =====================================
-   CONECTAR CON EL WORLD.SVG
-===================================== */
 
 const worldMap = document.getElementById("world-map");
 

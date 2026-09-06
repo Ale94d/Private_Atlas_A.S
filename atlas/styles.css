@@ -120,9 +120,6 @@ background-repeat: no-repeat;
     color:#7D6A58;
 }
 
-/* =====================================
-        ROLLOS DEL PERGAMINO
-===================================== */
 
 .scroll-left,
 .scroll-right{
@@ -165,10 +162,6 @@ background-repeat: no-repeat;
 
 
 
-/* =====================================
-        TEXTURA DEL PERGAMINO
-===================================== */
-
 .atlas-map::before{
     content:"";
     position:absolute;
@@ -202,10 +195,6 @@ object{
     display:block;
 }
 
-/* =====================================
-        ANIMACIÓN DEL PERGAMINO
-===================================== */
-
 .atlas-map{
 
     transform-origin:center;
@@ -237,9 +226,6 @@ object{
 
 }
 
-/* =====================================
-        BOTONES DEL PERGAMINO
-===================================== */
 
 .scroll-left,
 .scroll-right{
@@ -412,9 +398,6 @@ object{
     color: #8B5E3C;
 }
 
-/* =====================================
-        BOTONES DEL PERGAMINO
-===================================== */
 
 .scroll-btn{
 
@@ -470,3 +453,69 @@ object{
     line-height:1;
 }
 
+@media (max-width: 600px) {
+
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .hero {
+        width: 90%;
+        margin-top: 18px;
+        padding: 15px 20px;
+    }
+
+    .logo {
+        width: 150px;
+    }
+
+    .slogan {
+        font-size: 21px;
+        text-align: center;
+    }
+
+    .home {
+        min-height: auto;
+        padding: 45px 15px 100px;
+    }
+
+    .workspaces {
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 55px 20px;
+    }
+
+    .workspace {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .circle {
+        width: 68px;
+        height: 68px;
+    }
+
+    .circle i {
+        font-size: 29px;
+    }
+
+    .workspace span {
+        opacity: 1;
+        visibility: visible;
+        position: static;
+        transform: none;
+        margin-top: 2px;
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .customize-btn {
+        right: 18px;
+        bottom: 18px;
+    }
+
+}
