@@ -1,12 +1,3 @@
-/* =====================================
-   TIMELINE
-===================================== */
-
-
-/* =====================================
-   ELEMENTOS
-===================================== */
-
 const entrance =
     document.querySelector(".timeline-entrance");
 
@@ -23,20 +14,12 @@ const homeButton =
     document.querySelector(".back-home");
 
 
-/* =====================================
-   ICONOS
-===================================== */
-
 if (typeof lucide !== "undefined") {
 
     lucide.createIcons();
 
 }
 
-
-/* =====================================
-   ENTRADA
-===================================== */
 
 if (entrance) {
 
@@ -50,10 +33,6 @@ if (timeline) {
 
 }
 
-
-/* =====================================
-   VOLVER AL HOME
-===================================== */
 
 if (homeButton) {
 
@@ -70,9 +49,6 @@ if (homeButton) {
 }
 
 
-/* =====================================
-   MOVIMIENTO HORIZONTAL
-===================================== */
 
 let isDragging = false;
 
@@ -80,10 +56,6 @@ let startX = 0;
 
 let currentX = 0;
 
-
-/* =====================================
-   ACTUALIZAR POSICIÓN
-===================================== */
 
 function updateTimelinePosition() {
 
@@ -124,9 +96,6 @@ function updateTimelinePosition() {
 }
 
 
-/* =====================================
-   MOVIMIENTO CON MOUSE
-===================================== */
 
 if (
     timelineContainer &&
@@ -208,9 +177,6 @@ if (
 }
 
 
-/* =====================================
-   MOVIMIENTO CON TECLADO
-===================================== */
 
 document.addEventListener(
     "keydown",
