@@ -2805,21 +2805,7 @@ body {
     opacity: 1;
 }
 
-@media (max-width: 900px) {
-
-    .baul-window {
-        width: 145px;
-        height: 105px;
-    }
-
-    .baul-window span {
-        font-size: 1.1rem;
-    }
-
-}
-
 @media (max-width: 600px) {
-
     .baul-workspace {
         overflow-y: auto;
         overflow-x: hidden;
@@ -2835,17 +2821,16 @@ body {
     .baul-window {
         width: 125px;
         height: 95px;
-        border-radius: 15px;
-    }
-
-    .baul-window i {
-        width: 24px;
-        height: 24px;
     }
 
     .baul-window span {
         font-size: 1rem;
         text-align: center;
+    }
+
+    .baul-window i {
+        width: 24px;
+        height: 24px;
     }
 
     .books-window {
@@ -2863,4 +2848,23 @@ body {
         top: 55%;
     }
 
+    .content-window {
+        width: 94vw;
+        height: 86vh;
+        max-height: 86vh;
+        padding: 20px 15px;
+    }
+
+    .content-window-header {
+        gap: 10px;
+    }
+
+    .content-window-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .content-window-body {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 }
