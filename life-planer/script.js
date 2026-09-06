@@ -1,62 +1,102 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Botón de exploración del banner
-    const exploreBtn = document.getElementById("exploreBtn");
-    if (exploreBtn) {
-        exploreBtn.addEventListener("click", () => {
-            alert("¡Bienvenido al núcleo de Private Atlas A.S.! Tu viaje está en marcha.");
-        });
-    }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Atlas A.S. / Life Planner</title>
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-    // Incremento dinámico de estadísticas vitales
-    const nextGoalBtn = document.getElementById("nextGoalBtn");
-    const counterVal = document.getElementById("counterVal");
-    let progress = 88;
-
-    if (nextGoalBtn && counterVal) {
-        nextGoalBtn.addEventListener("click", () => {
-            progress = progress >= 98 ? 75 : progress + 3;
-            counterVal.textContent = progress + "%";
-        });
-    }
-
-    // Navegación lateral con estado activo y animación de rebote fluida
-    const navButtons = document.querySelectorAll(".nav-icon-btn:not(.user-avatar)");
-    const homeBtn = document.getElementById("homeBtn");
-
-    navButtons.forEach(btn => {
-        btn.addEventListener("click", function() {
-            // Si es la casita, no bloqueamos su comportamiento de enlace
-            if (this.id === "homeBtn") return;
-
-            navButtons.forEach(b => b.classList.remove("active"));
-            this.classList.add("active");
-
-            // Animación elástica de rebote al presionar
-            this.style.transform = "scale(0.82)";
-            setTimeout(() => {
-                this.style.transform = "scale(1.1)";
-            }, 120);
-            setTimeout(() => {
-                this.style.transform = "scale(1)";
-            }, 250);
-        });
-    });
-
-    // Casita: Reproduce la animación de rebote y regresa al indice.html
-    if (homeBtn) {
-        homeBtn.addEventListener("click", function(e) {
-            e.preventDefault(); // Pausa un segundo para lucir el rebote
+    <div class="planner-workspace">
+        <main class="macro-window">
             
-            // Animación de rebote antes de salir
-            this.style.transform = "scale(0.82)";
-            setTimeout(() => {
-                this.style.transform = "scale(1.1)";
-            }, 100);
-            
-            // Redirige a tu pantalla principal (indice.html)
-            setTimeout(() => {
-                window.location.href = "indice.html";
-            }, 220);
-        });
-    }
-});
+            <!-- Barra Lateral -->
+            <aside class="macro-sidebar">
+                <div class="sidebar-top">
+                    <!-- Casita convertida en enlace directo a indice.html -->
+                    <a href="indice.html" class="nav-icon-btn active" id="homeBtn" title="Inicio">
+                        <i class="fas fa-home"></i>
+                    </a>
+                    <button class="nav-icon-btn" title="Buscar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="nav-icon-btn" title="Dashboard">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <button class="nav-icon-btn" title="Calendario">
+                        <i class="fas fa-calendar-alt"></i>
+                    </button>
+                </div>
+                <div class="sidebar-bottom">
+                    <img src="Icons/Perfil.jpg" alt="Perfil" class="user-avatar">
+                </div>
+            </aside>
+
+            <!-- Contenido Principal -->
+            <section class="macro-content">
+                <header class="macro-header">
+                    <div class="header-brand">
+                        <span>PRIVATE ATLAS A.S.</span>
+                        <h2>Life Planner</h2>
+                    </div>
+                    <div class="header-filters">
+                        <button class="filter-pill active"><i class="fas fa-star"></i> Proyectos Activos</button>
+                        <button class="filter-pill"><i class="fas fa-bookmark"></i> Destacados</button>
+                    </div>
+                </header>
+
+                <!-- Banner Hero -->
+                <div class="hero-banner">
+                    <div class="hero-content">
+                        <span class="hero-tag">NÚCLEO PRINCIPAL</span>
+                        <h1>Tu Vida, Diseñada con Precisión</h1>
+                        <p>Organiza tus metas, registra tus hábitos diarios y supervisa la evolución de tu propio atlas de experiencias con un entorno clásico y sofisticado.</p>
+                        <button class="filter-pill hero-action-btn" id="exploreBtn">Explorar Módulo</button>
+                    </div>
+                </div>
+
+                <!-- Grid de Tarjetas -->
+                <div class="cards-grid">
+                    <div class="glass-card card-flex-between">
+                        <div>
+                            <span class="card-title-sm">ESTADÍSTICAS VITALES</span>
+                            <h3 class="card-main-title">Progreso Global</h3>
+                            <p class="card-desc">Tu constancia en el desarrollo personal y académico se mantiene en constante ascenso.</p>
+                        </div>
+                        <div class="stat-display">
+                            <span class="stat-number" id="counterVal">88%</span>
+                            <span class="stat-sub">Hitos cumplidos este mes</span>
+                        </div>
+                        <button class="action-circle-btn" id="nextGoalBtn"><i class="fas fa-arrow-right"></i></button>
+                    </div>
+
+                    <div class="glass-card">
+                        <span class="card-title-sm title-spaced">PRÓXIMO OBJETIVO</span>
+                        <h3 class="card-main-title">Atlas Expedition 2026</h3>
+                        <div class="floating-info-card" style="margin-top: 15px;">
+                            <div class="info-row">
+                                <span>Estado actual</span>
+                                <strong>En ejecución</strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Enfoque principal</span>
+                                <strong>Desarrollo Web & Rutinas</strong>
+                            </div>
+                            <div class="info-row" style="border: none; padding-bottom: 0;">
+                                <span>Sincronización</span>
+                                <strong>Diario de Bitácora Activo</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
