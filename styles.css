@@ -1,7 +1,3 @@
-/* =====================================
-   PRIVATE ATLAS A.S.
-===================================== */
-
 *{
     margin:0;
     padding:0;
@@ -16,10 +12,6 @@ body{
     overflow:hidden;
 
 }
-
-/* =====================================
-        CABECERA
-===================================== */
 
 .hero{
 
@@ -59,9 +51,6 @@ body{
 
 }
 
-/* =====================================
-        HOME
-===================================== */
 
 .home{
 
@@ -83,10 +72,6 @@ body{
     align-items: center;
 
 }
-
-/* =====================================
-        MEDALLONES
-===================================== */
 
 .workspace{
 
@@ -193,10 +178,6 @@ body{
 
 }
 
-/* =====================================
-        PERSONALIZAR
-===================================== */
-
 .customize-btn{
 
     position:fixed;
@@ -256,10 +237,6 @@ body{
 
 }
 
-/* =====================================
-        PANEL
-===================================== */
-
 .appearance-panel{
 
     position:fixed;
@@ -309,9 +286,6 @@ body{
     cursor:pointer;
 
 }
-/* =====================================
-        COLORES
-===================================== */
 
 .atlas .circle{
     background:linear-gradient(180deg,#8A6244,#6B4B33);
@@ -332,10 +306,6 @@ body{
 .timeline .circle{
     background:linear-gradient(180deg,#6A97E5,#4472C4);
 }
-
-/* =====================================
-        BOTONES PANEL
-===================================== */
 
 .theme-btn,
 .upload-background,
@@ -370,10 +340,6 @@ body{
 
 }
 
-/* =====================================
-        ANIMACIONES
-===================================== */
-
 @keyframes aparecer{
 
     from{
@@ -403,10 +369,6 @@ body{
     animation:aparecer .7s ease;
 
 }
-
-/* =====================================
-        RESPONSIVE
-===================================== */
 
 @media(max-width:900px){
 
@@ -494,10 +456,6 @@ body{
     transform:translateY(25px);
 
 }
-
-/* =====================================
-        PERFIL
-===================================== */
 
 .profile-btn{
 
@@ -595,5 +553,100 @@ body{
 .close-profile:hover{
 
     background:#5E402A;
+
+}
+
+@media (max-width: 900px) {
+
+    .workspaces {
+        width: 90%;
+        max-width: 650px;
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 55px;
+    }
+
+    .home {
+        min-height: 65vh;
+    }
+
+    .hero {
+        margin-top: 25px;
+        padding: 18px 30px;
+    }
+
+    .logo {
+        width: 180px;
+    }
+
+    .slogan {
+        font-size: 24px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .hero {
+        width: 90%;
+        margin-top: 18px;
+        padding: 15px 20px;
+    }
+
+    .logo {
+        width: 150px;
+    }
+
+    .slogan {
+        font-size: 21px;
+        text-align: center;
+    }
+
+    .home {
+        min-height: auto;
+        padding: 45px 15px 100px;
+    }
+
+    .workspaces {
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 55px 20px;
+    }
+
+    .workspace {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .circle {
+        width: 68px;
+        height: 68px;
+    }
+
+    .circle i {
+        font-size: 29px;
+    }
+
+    .workspace span {
+        opacity: 1;
+        visibility: visible;
+        position: static;
+        transform: none;
+        margin-top: 2px;
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .customize-btn {
+        right: 18px;
+        bottom: 18px;
+    }
 
 }

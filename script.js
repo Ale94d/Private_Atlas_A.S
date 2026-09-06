@@ -1,11 +1,3 @@
-/* =====================================
-   PRIVATE ATLAS
-===================================== */
-
-// ===============================
-// WORKSPACES
-// ===============================
-
 const workspaces = document.querySelectorAll(".workspace");
 
 workspaces.forEach(workspace => {
@@ -47,10 +39,6 @@ workspaces.forEach(workspace => {
 
 });
 
-// ===============================
-// ABRIR ATLAS
-// ===============================
-
 const atlasWorkspace = document.querySelector(".atlas");
 
 if (atlasWorkspace) {
@@ -65,10 +53,6 @@ if (atlasWorkspace) {
 
     });
 }
-
-// ===============================
-// ABRIR LIFE-PLANER
-// ===============================
 
 const lifeplanerWorkspace = document.querySelector(".planner");
 
@@ -86,10 +70,6 @@ if (lifeplanerWorkspace) {
 
 }
 
-// ===============================
-// ABRIR DAILY-JOURNAL
-// ===============================
-
 const dailyjournalWorkspace = document.querySelector(".journal");
 
 if (dailyjournalWorkspace) {
@@ -105,10 +85,6 @@ if (dailyjournalWorkspace) {
     });
 
 }
-
-// ===============================
-// ABRIR BAUL
-// ===============================
 
 const baulWorkspace = document.querySelector(".baul");
 
@@ -126,9 +102,6 @@ if (baulWorkspace) {
 
 }
 
-// ===============================
-// ABRIR TIMELINE
-// ===============================
 
 const timelineWorkspace = document.querySelector(".timeline");
 
@@ -145,11 +118,6 @@ if (timelineWorkspace) {
     });
 
 }
-
-
-// ===============================
-// PANEL PERSONALIZAR
-// ===============================
 
 const customize = document.querySelector(".customize-btn");
 const appearancePanel = document.querySelector(".appearance-panel");
@@ -180,10 +148,6 @@ if (closeAppearance) {
     });
 
 }
-
-// ===============================
-// CAMBIAR FONDO
-// ===============================
 
 const inputBackground = document.getElementById("background-input");
 const uploadButton = document.querySelector(".upload-background");
@@ -224,10 +188,6 @@ if (uploadButton && inputBackground) {
 
 }
 
-// ===============================
-// FONDO CLÁSICO
-// ===============================
-
 const defaultTheme = document.querySelector(".theme-btn");
 
 if (defaultTheme) {
@@ -247,10 +207,6 @@ if (defaultTheme) {
 
 }
 
-// ===============================
-// CARGAR FONDO
-// ===============================
-
 const savedBackground = localStorage.getItem("privateAtlasBackground");
 
 if (savedBackground) {
@@ -267,10 +223,6 @@ if (savedBackground) {
 document.body.style.backgroundSize = "cover";
 document.body.style.backgroundPosition = "center";
 document.body.style.backgroundRepeat = "no-repeat";
-
-// ===============================
-// PERFIL
-// ===============================
 
 const profileBtn = document.querySelector(".profile-btn");
 const profileMenu = document.querySelector(".profile-menu");
@@ -304,9 +256,6 @@ if (closeProfile) {
 
 }
 
-// ===============================
-// CERRAR PANELES
-// ===============================
 
 document.addEventListener("click", (e) => {
 
