@@ -4,43 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Atlas A.S. / Abyssal Life Planner</title>
-    <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="Style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- EFECTOS AMBIENTALES SUBMARINOS -->
+    <!-- FONDO SUBMARINO AMBIENTAL -->
     <div class="ocean-background">
         <div class="sunrays"></div>
         <div class="bubbles-container">
-            <span style="left: 10%; animation-duration: 8s; animation-delay: 0s;"></span>
-            <span style="left: 25%; animation-duration: 12s; animation-delay: 2s;"></span>
-            <span style="left: 40%; animation-duration: 9s; animation-delay: 4s;"></span>
-            <span style="left: 60%; animation-duration: 14s; animation-delay: 1s;"></span>
-            <span style="left: 75%; animation-duration: 10s; animation-delay: 3s;"></span>
-            <span style="left: 90%; animation-duration: 11s; animation-delay: 5s;"></span>
+            <span style="left: 12%; animation-duration: 9s; animation-delay: 0s;"></span>
+            <span style="left: 28%; animation-duration: 11s; animation-delay: 2s;"></span>
+            <span style="left: 45%; animation-duration: 8s; animation-delay: 4s;"></span>
+            <span style="left: 65%; animation-duration: 13s; animation-delay: 1s;"></span>
+            <span style="left: 82%; animation-duration: 10s; animation-delay: 3s;"></span>
         </div>
     </div>
 
-    <div class="planner-workspace">
-        <main class="macro-window abyssal-window">
+    <!-- CONTENEDOR FLOTANTE TIPO MACRO-VENTANA -->
+    <div class="macro-workspace">
+        <div class="macro-window abyssal-window">
             
-            <!-- BARRA LATERAL -->
+            <!-- BARRA LATERAL DE ICONOS -->
             <aside class="macro-sidebar">
                 <div class="sidebar-top">
-                    <a href="../index.html" class="nav-icon-btn active" id="homeBtn" title="Santuario Principal">
+                    <a href="../index.html" class="nav-icon-btn active" title="Inicio">
                         <i class="fas fa-home"></i>
                     </a>
-                    <button class="nav-icon-btn" title="Explorar Archivos">
+                    <button class="nav-icon-btn" title="Búsqueda">
                         <i class="fas fa-search"></i>
                     </button>
-                    <button class="nav-icon-btn" title="Mapeo de Gastos">
-                        <i class="fas fa-coins"></i>
+                    <button class="nav-icon-btn" title="Cuadrícula">
+                        <i class="fas fa-th-large"></i>
                     </button>
-                    <button class="nav-icon-btn" title="Cronograma Abisal">
-                        <i class="fas fa-calendar-alt"></i>
+                    <button class="nav-icon-btn" title="Baúl / Registros">
+                        <i class="fas fa-archive"></i>
                     </button>
                 </div>
                 <div class="sidebar-bottom">
@@ -48,94 +47,96 @@
                 </div>
             </aside>
 
-            <!-- CONTENIDO PRINCIPAL -->
-            <section class="macro-content">
-                <header class="macro-header">
-                    <div class="header-brand">
-                        <span>PRIVATE ATLAS A.S.</span>
-                        <h2>Santuario Submarino</h2>
-                    </div>
-                    <div class="header-filters">
-                        <button class="filter-pill active"><i class="fas fa-landmark"></i> Ruinas Activas</button>
-                        <button class="filter-pill"><i class="fas fa-chart-pie"></i> Presupuesto 50/30/20</button>
+            <!-- ÁREA DE CONTENIDO PRINCIPAL -->
+            <main class="macro-content">
+                
+                <!-- BARRA SUPERIOR DE FILTROS -->
+                <header class="top-nav-bar">
+                    <div class="brand-title">PRIVATE ATLAS A.S.</div>
+                    <div class="nav-pills-group">
+                        <button class="pill-btn active"><i class="fas fa-landmark"></i> Santuario Activo</button>
+                        <button class="pill-btn"><i class="fas fa-coins"></i> Presupuesto 50/30/20</button>
                     </div>
                 </header>
 
-                <div class="hero-banner abyssal-hero">
-                    <div class="hero-content">
-                        <span class="hero-tag">PROFUNDIDADES DE ATLÁNTIDA</span>
-                        <h1>Tu Vida Bajo el Océano Profundo</h1>
-                        <p>Organiza tus tareas y gestiona tus recursos bajo una estética milenaria, rodeado de misterio, corrientes serenas y estructuras sumergidas.</p>
-                        <button class="filter-pill hero-action-btn" id="exploreBtn">Descender al Registro</button>
+                <!-- BANNER PRINCIPAL (ESTILO TARJETA GRANDE) -->
+                <section class="hero-banner-floating">
+                    <div class="hero-text-content">
+                        <span class="sub-tag">PROFUNDIDADES DE ATLÁNTIDA</span>
+                        <h1>New Way Of Living</h1>
+                        <p>Organiza tus expediciones y gestiona tus recursos bajo una estética milenaria, rodeado de misterio, corrientes serenas y estructuras sumergidas.</p>
                     </div>
-                </div>
+                </section>
 
-                <div class="cards-grid">
-                    <!-- SECCIÓN DE TAREAS Y FECHAS -->
-                    <div class="glass-card abyssal-card">
+                <!-- SECCIÓN DE TARJETAS INFERIORES EN GRID -->
+                <div class="floating-cards-grid">
+                    
+                    <!-- Tarjeta de Tareas -->
+                    <div class="floating-card">
                         <div class="card-header-flex">
                             <div>
-                                <span class="card-title-sm">CRONOGRAMA DE EXPEDICIÓN</span>
-                                <h3 class="card-main-title">Tareas y Fechas Clave</h3>
+                                <span class="card-tag">CRONOGRAMA DE EXPEDICIÓN</span>
+                                <h3>Tareas y Fechas Clave</h3>
                             </div>
-                            <span class="badge-abyssal">3 Activas</span>
+                            <span class="badge-pill">3 Activas</span>
                         </div>
-                        <div class="task-list">
-                            <div class="task-item completed">
+                        <div class="task-list-modern">
+                            <div class="task-row completed">
                                 <i class="fas fa-check-circle"></i>
-                                <span>Calibrar mapa de corrientes en Soacha</span>
+                                <span>Calibrar corrientes en Soacha</span>
                                 <small>Completado</small>
                             </div>
-                            <div class="task-item">
+                            <div class="task-row">
                                 <i class="far fa-circle"></i>
-                                <span>Diseñar interfaces de bitácora web</span>
-                                <small>Vence: 10 Sep</small>
+                                <span>Diseñar interfaces de bitácora</span>
+                                <small>10 Sep</small>
                             </div>
-                            <div class="task-item">
+                            <div class="task-row">
                                 <i class="far fa-circle"></i>
-                                <span>Actualizar registros del método 50/30/20</span>
-                                <small>Vence: 15 Sep</small>
+                                <span>Registrar método 50/30/20</span>
+                                <small>15 Sep</small>
                             </div>
                         </div>
                     </div>
 
-                    <!-- SECCIÓN DE GASTOS Y MÉTODO 50/30/20 -->
-                    <div class="glass-card abyssal-card">
+                    <!-- Tarjeta de Finanzas (Método 50/30/20) -->
+                    <div class="floating-card">
                         <div class="card-header-flex">
                             <div>
-                                <span class="card-title-sm">TESOROS Y FINANZAS</span>
-                                <h3 class="card-main-title">Método 50/30/20</h3>
+                                <span class="card-tag">TESOROS Y FINANZAS</span>
+                                <h3>Método 50/30/20</h3>
                             </div>
-                            <button class="action-circle-btn" title="Añadir Gasto"><i class="fas fa-plus"></i></button>
+                            <button class="circle-add-btn"><i class="fas fa-plus"></i></button>
                         </div>
-                        <div class="finance-breakdown">
-                            <div class="finance-row">
-                                <div class="finance-info">
+                        <div class="finance-list-modern">
+                            <div class="finance-item">
+                                <div>
                                     <strong>Necesidades (50%)</strong>
-                                    <span>Gastos fijos y esenciales</span>
+                                    <span>Gastos fijos esenciales</span>
                                 </div>
-                                <span class="finance-val">Restante: $450k</span>
+                                <span class="val-highlight">Restante: $450k</span>
                             </div>
-                            <div class="finance-row">
-                                <div class="finance-info">
+                            <div class="finance-item">
+                                <div>
                                     <strong>Deseos (30%)</strong>
                                     <span>Inversión personal & proyectos</span>
                                 </div>
-                                <span class="finance-val">Restante: $270k</span>
+                                <span class="val-highlight">Restante: $270k</span>
                             </div>
-                            <div class="finance-row border-none">
-                                <div class="finance-info">
+                            <div class="finance-item border-none">
+                                <div>
                                     <strong>Ahorro / Futuro (20%)</strong>
                                     <span>Fondo de reserva abisal</span>
                                 </div>
-                                <span class="finance-val">Meta: $180k</span>
+                                <span class="val-highlight">Meta: $180k</span>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
 
-        </main>
+                </div>
+
+            </main>
+        </div>
     </div>
 
     <script src="script.js"></script>
