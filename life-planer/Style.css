@@ -378,16 +378,14 @@ html, body {
 .nav-icon-btn.clicked {
     transform: scale(0.85);
 }
-.nav-icon-btn::before,
-.nav-icon-btn::after,
+.nav-icon-btn.active,
 .nav-icon-btn.active::before,
 .nav-icon-btn.active::after {
-    content: "" !important;
+    content: none !important;
     display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
 }
 
 }
