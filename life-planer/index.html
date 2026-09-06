@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Atlas A.S. / Santuario Submarino</title>
-    <!-- Ruta relativa limpia y directa -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- Apunta exactamente a Estilo.css con la E mayúscula para que coincida con tu repositorio -->
+    <link rel="stylesheet" href="Estilo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -27,6 +27,7 @@
             
             <aside class="macro-sidebar">
                 <div class="sidebar-top">
+                    <!-- Botón de inicio con scroll hacia arriba directo -->
                     <a href="#" id="home-btn" class="sidebar-icon active" title="Inicio" onclick="document.querySelector('.macro-content').scrollTo({top: 0, behavior: 'smooth'}); return false;"><i class="fas fa-home"></i></a>
                     <a href="#" class="sidebar-icon" data-target="buscar" title="Buscar"><i class="fas fa-search"></i></a>
                     <a href="#" class="sidebar-icon" data-target="grid" title="Cuadrícula"><i class="fas fa-th-large"></i></a>
