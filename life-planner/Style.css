@@ -1,525 +1,160 @@
-html {
-    background-color: #050b14;
-    height: 100%;
-}
+/* ==========================================================================
+   ESTILOS NUEVOS PARA LA VENTANA MODAL DE GASTOS
+   ========================================================================== */
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Outfit', sans-serif;
-}
-
-body {
-    min-height: 100vh;
-    height: 100%;
-    background-color: #050b14;
-    background-image: linear-gradient(rgba(2, 6, 23, 0.4), rgba(15, 23, 42, 0.65)), url('assets/background/marino.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #f8fafc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow-x: hidden;
-    padding: 20px;
-}
-
-.bubbles-container {
+.expenses-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background: rgba(2, 6, 23, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
     pointer-events: none;
-    z-index: 1;
+    transition: opacity 0.3s ease;
 }
 
-.bubble {
-    position: absolute;
-    bottom: -30px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    animation: riseUp linear infinite;
+.expenses-modal-overlay.show-modal {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-@keyframes riseUp {
-    0% { transform: translateY(0) scale(1); opacity: 0; }
-    20% { opacity: 0.7; }
-    100% { transform: translateY(-105vh) scale(1.2); opacity: 0; }
-}
-
-.spatial-viewport {
+.expenses-modal-card {
     width: 100%;
-    max-width: 1300px;
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    z-index: 10;
-    position: relative;
-}
-
-.floating-left-dock {
-    background: rgba(15, 23, 42, 0.45);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 40px;
-    padding: 16px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
-
-.dock-icon {
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: #94a3b8;
-    font-size: 16px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.dock-icon:hover, .dock-icon.active {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #0f172a;
-    box-shadow: 0 4px 15px rgba(255,255,255,0.3);
-}
-
-.hologram-main-card {
-    flex-grow: 1;
-    background: rgba(15, 23, 42, 0.38);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 36px;
-    padding: 35px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-}
-
-.holo-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    color: #cbd5e1;
-    font-size: 18px;
-}
-
-.holo-nav-links {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.user-avatar-small {
-    width: 36px;
-    height: 36px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #38bdf8;
-}
-
-.holo-intro {
-    margin-bottom: 35px;
-}
-
-.holo-intro h2 {
-    font-size: 38px;
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: -0.5px;
-    line-height: 1.2;
-    margin-bottom: 12px;
-}
-
-.holo-intro p {
-    font-size: 13px;
-    color: #94a3b8;
-    max-width: 550px;
-    line-height: 1.5;
-}
-
-.holo-cards-carousel {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin-bottom: 35px;
-}
-
-.carousel-card {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 20px;
-    padding: 16px;
-    height: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.carousel-card:hover, .carousel-card.active-card {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(56, 189, 248, 0.5);
-    transform: translateY(-4px);
-}
-
-.card-top-tag {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 10px;
-    font-weight: 700;
-    color: #94a3b8;
-    text-transform: uppercase;
-}
-
-.card-top-tag i {
-    color: #f43f5e;
-}
-
-.card-content-text h4 {
-    font-size: 13px;
-    font-weight: 700;
-    color: #f8fafc;
-    margin-bottom: 4px;
-}
-
-.card-content-text p {
-    font-size: 11px;
-    color: #cbd5e1;
-}
-
-.carousel-step {
-    font-size: 12px;
-    font-weight: 800;
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.holo-action-footer {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.holo-btn {
-    border: none;
-    padding: 12px 28px;
-    border-radius: 30px;
-    font-weight: 700;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.primary-btn {
-    background: rgba(255, 255, 255, 0.9);
-    color: #0f172a;
-    box-shadow: 0 4px 15px rgba(255,255,255,0.2);
-}
-
-.primary-btn:hover {
-    background: #ffffff;
-}
-
-.secondary-btn {
-    background: transparent;
-    color: #cbd5e1;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.secondary-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.footer-icon-pill {
-    width: 42px;
-    height: 42px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #cbd5e1;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.footer-icon-pill:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* Tarjeta lateral derecha */
-.hologram-side-card {
-    width: 290px;
-    height: 520px;
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('assets/background/marino.jpg');
-    background-size: cover;
-    background-position: center;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 36px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-    position: relative;
-    flex-shrink: 0;
-}
-
-.side-badge {
-    background: rgba(10, 15, 30, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 16px;
-    border-radius: 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    color: #ffffff;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-}
-
-.side-badge-header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    color: #38bdf8;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 2px;
-}
-
-.realtime-clock {
-    font-size: 24px;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 1px;
-}
-
-.realtime-date {
-    font-size: 12px;
-    font-weight: 500;
-    color: #cbd5e1;
-    text-transform: capitalize;
-}
-
-.side-location {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    color: #94a3b8;
-    margin-top: 4px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 6px;
-}
-
-.side-location i {
-    color: #f43f5e;
-}
-
-.read-more-link {
-    font-size: 9px;
-    color: #34d399;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-top: 2px;
-}
-
-/* ================= MÓDULO FINANCIERO ================= */
-.hidden-view {
-    display: none !important;
-}
-
-.finance-layout-grid {
-    display: flex;
-    gap: 20px;
-    align-items: stretch;
-}
-
-.finance-categories-dock {
-    width: 170px;
-    background: rgba(10, 15, 30, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 22px;
-    padding: 15px 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex-shrink: 0;
-}
-
-.fin-cat-item {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 12px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    color: #94a3b8;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-.fin-cat-item i {
-    font-size: 16px;
-    color: #38bdf8;
-}
-
-.fin-cat-item:hover, .fin-cat-item.active {
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(14, 116, 144, 0.4));
-    border-color: rgba(56, 189, 248, 0.5);
-    color: #ffffff;
-    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
-}
-
-.finance-form-container {
-    flex-grow: 1;
-    background: rgba(10, 15, 30, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 24px;
+    max-width: 480px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    border-radius: 28px;
     padding: 25px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
     gap: 16px;
-    backdrop-filter: blur(12px);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
 }
 
-.plan-journey-title h3 {
-    font-size: 20px;
+.expenses-modal-overlay.show-modal .expenses-modal-card {
+    transform: scale(1);
+}
+
+.expenses-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 12px;
+}
+
+.expenses-modal-header h3 {
+    font-size: 16px;
     font-weight: 700;
     color: #ffffff;
-    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.plan-journey-title p {
-    font-size: 12px;
+.close-modal-icon {
+    font-size: 18px;
     color: #94a3b8;
+    cursor: pointer;
+    transition: color 0.2s;
 }
 
-.finance-input-group {
+.close-modal-icon:hover {
+    color: #ffffff;
+}
+
+.expenses-list-container {
+    max-height: 250px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    width: 100%;
+    gap: 10px;
+    padding-right: 4px;
 }
 
-.finance-input-group label {
-    font-size: 11px;
-    font-weight: 600;
-    color: #cbd5e1;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.fin-input-box {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+/* Estilo de cada gasto listado */
+.expense-item-row {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 14px;
     padding: 10px 14px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    color: #ffffff;
 }
 
-.fin-input-box i {
-    color: #38bdf8;
-    font-size: 14px;
-}
-
-.fin-input-box input, .fin-input-box select {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #ffffff;
-    font-size: 13px;
-    width: 100%;
-    font-family: 'Outfit', sans-serif;
-}
-
-.fin-input-box select option {
-    background: #0f172a;
-    color: #ffffff;
-}
-
-.finance-row-inputs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.finance-actions-footer {
+.expense-info {
     display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.expense-info strong {
+    font-size: 13px;
+    color: #f8fafc;
+}
+
+.expense-info small {
+    font-size: 10px;
+    color: #38bdf8;
+}
+
+.expense-right-side {
+    display: flex;
+    align-items: center;
     gap: 12px;
-    margin-top: 5px;
 }
 
-.budget-feedback {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 10px 14px;
-    border-radius: 12px;
-    font-size: 12px;
-    color: #cbd5e1;
+.expense-amount-tag {
+    font-size: 13px;
+    font-weight: 700;
+    color: #34d399;
 }
 
-@media (max-width: 1024px) {
-    .spatial-viewport {
-        flex-direction: column;
-    }
-    .floating-left-dock {
-        flex-direction: row;
-        width: 100%;
-        justify-content: space-around;
-        border-radius: 30px;
-    }
-    .hologram-side-card {
-        width: 100%;
-        height: 280px;
-    }
-    .holo-cards-carousel {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.delete-single-btn {
+    background: rgba(244, 63, 94, 0.15);
+    border: 1px solid rgba(244, 63, 94, 0.3);
+    color: #f43f5e;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.2s;
 }
 
-@media (max-width: 768px) {
-    .finance-layout-grid {
-        flex-direction: column;
-    }
-    .finance-categories-dock {
-        width: 100%;
-        flex-direction: row;
-        overflow-x: auto;
-    }
-    .finance-row-inputs {
-        grid-template-columns: 1fr;
-    }
+.delete-single-btn:hover {
+    background: #f43f5e;
+    color: #ffffff;
+}
+
+.expenses-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 12px;
+}
+
+.danger-btn {
+    background: rgba(244, 63, 94, 0.2);
+    color: #f43f5e;
+    border: 1px solid rgba(244, 63, 94, 0.4);
+}
+
+.danger-btn:hover {
+    background: #f43f5e;
+    color: #ffffff;
 }
