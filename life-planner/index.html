@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Atlas A.S | Life Planner Holográfico</title>
     <link rel="stylesheet" href="Style.css">
-    <!-- Iconos de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Burbujas animadas de fondo -->
     <div class="bubbles-container">
         <span class="bubble" style="left: 15%; width: 12px; height: 12px; animation-duration: 9s;"></span>
         <span class="bubble" style="left: 45%; width: 20px; height: 20px; animation-duration: 11s; animation-delay: 2s;"></span>
@@ -18,21 +17,17 @@
         <span class="bubble" style="left: 90%; width: 22px; height: 22px; animation-duration: 10s; animation-delay: 3s;"></span>
     </div>
 
-    <!-- Contenedor general al estilo VisionOS espacial -->
     <div class="spatial-viewport">
 
-        <!-- 1. Barra lateral flotante izquierda -->
         <nav class="floating-left-dock">
-            <a href="#" class="dock-icon active"><i class="fa-solid fa-house"></i></a>
-            <a href="#" class="dock-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="#" class="dock-icon"><i class="fa-solid fa-chart-pie"></i></a>
-            <a href="#" class="dock-icon"><i class="fa-solid fa-circle-question"></i></a>
+            <a href="#" class="dock-icon active" title="Inicio"><i class="fa-solid fa-house"></i></a>
+            <a href="#" class="dock-icon" title="Buscar"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="#" class="dock-icon" title="Finanzas"><i class="fa-solid fa-chart-pie"></i></a>
+            <a href="#" class="dock-icon" title="Ayuda"><i class="fa-solid fa-circle-question"></i></a>
         </nav>
 
-        <!-- 2. Ventana de Cristal Principal (Centro) -->
         <main class="hologram-main-card">
             
-            <!-- Cabecera de la ventana principal -->
             <div class="holo-header">
                 <i class="fa-solid fa-bars"></i>
                 <div class="holo-nav-links">
@@ -42,16 +37,12 @@
                 </div>
             </div>
 
-            <!-- Título y descripción principal -->
             <div class="holo-intro">
                 <h2>Get ready to organize<br>your abyssal life!</h2>
                 <p>Gestiona tus tareas submarinas, controla tu presupuesto 50/30/20 y explora santuarios marinos con claridad absoluta.</p>
             </div>
 
-            <!-- Carrusel de tarjetas / Módulos de contenido -->
             <div class="holo-cards-carousel">
-                
-                <!-- Tarjeta 1: Tareas -->
                 <div class="carousel-card active-card">
                     <div class="card-top-tag"><span>Tareas Activas</span><i class="fa-regular fa-heart"></i></div>
                     <div class="card-content-text">
@@ -61,9 +52,8 @@
                     <span class="carousel-step">01</span>
                 </div>
 
-                <!-- Tarjeta 2: Finanzas -->
                 <div class="carousel-card">
-                    <div class="card-top-tag"><span>Finanzas 50/30/20</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-top-tag"><span>Finanzas</span><i class="fa-regular fa-heart"></i></div>
                     <div class="card-content-text">
                         <h4>Presupuesto Abisal</h4>
                         <p><i class="fa-solid fa-wallet"></i> $4,500 USD Totales</p>
@@ -71,7 +61,6 @@
                     <span class="carousel-step">02</span>
                 </div>
 
-                <!-- Tarjeta 3: Ruinas -->
                 <div class="carousel-card">
                     <div class="card-top-tag"><span>Exploración</span><i class="fa-regular fa-heart"></i></div>
                     <div class="card-content-text">
@@ -81,7 +70,6 @@
                     <span class="carousel-step">03</span>
                 </div>
 
-                <!-- Tarjeta 4: Ajustes -->
                 <div class="carousel-card">
                     <div class="card-top-tag"><span>Sistema</span><i class="fa-regular fa-heart"></i></div>
                     <div class="card-content-text">
@@ -90,10 +78,8 @@
                     </div>
                     <span class="carousel-step">04</span>
                 </div>
-
             </div>
 
-            <!-- Barra de acciones inferiores dentro de la ventana -->
             <div class="holo-action-footer">
                 <button class="holo-btn primary-btn">Get Started</button>
                 <button class="holo-btn secondary-btn">Contact Us</button>
@@ -103,16 +89,20 @@
 
         </main>
 
-        <!-- 3. Tarjeta Lateral Derecha (Vertical / Escenario Abisal) -->
         <aside class="hologram-side-card">
             <div class="side-badge">
-                <i class="fa-solid fa-star"></i>
-                <span>Abyssal Trench</span>
-                <small>read more</small>
+                <div class="realtime-clock" id="live-clock">00:00:00</div>
+                <div class="realtime-date" id="live-date">Cargando fecha...</div>
+                <div class="side-location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span id="live-location">Sector Abisal • Soacha</span>
+                </div>
+                <small class="read-more-link">en vivo</small>
             </div>
         </aside>
 
     </div>
 
+    <script src="js/script.js"></script>
 </body>
 </html>
