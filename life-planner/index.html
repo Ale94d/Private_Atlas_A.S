@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Atlas A.S | Life Planner Holográfico</title>
+    <!-- Asegúrate de que el nombre del archivo CSS coincida exactamente -->
     <link rel="stylesheet" href="Style.css">
-    <!-- Tipografía moderna geométrica -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -26,7 +26,6 @@
         <nav class="floating-left-dock">
             <a href="#" class="dock-icon active" id="nav-home" title="Inicio" onclick="switchView('home')"><i class="fa-solid fa-house"></i></a>
             <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <!-- Botón de Finanzas con la Moneda solicitado -->
             <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></a>
             <a href="#" class="dock-icon" id="nav-help" title="Ayuda"><i class="fa-solid fa-circle-question"></i></a>
         </nav>
@@ -96,7 +95,7 @@
         </main>
 
 
-        <!-- ================= VISTA 2: FINANZAS 50/30/20 (ESTILO REFERENCIA) ================= -->
+        <!-- ================= VISTA 2: FINANZAS 50/30/20 ================= -->
         <main class="hologram-main-card hidden-view" id="view-finance">
             
             <div class="holo-header">
@@ -113,7 +112,7 @@
 
             <div class="finance-layout-grid">
                 
-                <!-- Barra de Categorías Izquierda (Estilo Selector Vertical de la referencia) -->
+                <!-- Barra de Categorías Izquierda -->
                 <div class="finance-categories-dock">
                     <div class="fin-cat-item active" title="Necesidades (50%)">
                         <i class="fa-solid fa-house-chimney"></i>
@@ -133,7 +132,7 @@
                     </div>
                 </div>
 
-                <!-- Tarjeta de Formulario y Control (Panel Derecho Estilo Planner) -->
+                <!-- Tarjeta de Formulario y Control -->
                 <div class="finance-form-container">
                     <div class="plan-journey-title">
                         <h3>Control 50 / 30 / 20</h3>
@@ -187,7 +186,6 @@
                         </button>
                     </div>
 
-                    <!-- Pequeño resumen dinámico -->
                     <div class="budget-feedback" id="budget-feedback-msg">
                         💡 Ingresa un monto y haz clic en Guardar para registrar tus datos.
                     </div>
@@ -198,7 +196,7 @@
         </main>
 
 
-        <!-- Tarjeta Lateral Derecha (Estable, vertical, con hora y fecha dinámica integrada) -->
+        <!-- Tarjeta Lateral Derecha -->
         <aside class="hologram-side-card">
             <div class="side-badge">
                 <div class="side-badge-header">
@@ -217,7 +215,6 @@
 
     </div>
 
-    <!-- Script para el reloj en tiempo real y la alternancia de pestañas/finanzas -->
     <script>
         function updateRealtimeInfo() {
             const now = new Date();
@@ -240,7 +237,6 @@
             const btnSearch = document.getElementById('nav-search');
             const btnFinance = document.getElementById('nav-finance');
 
-            // Quitar clase active a todos los botones del dock
             btnHome.classList.remove('active');
             btnSearch.classList.remove('active');
             btnFinance.classList.remove('active');
@@ -270,7 +266,6 @@
             feedback.innerHTML = `✅ ¡Guardado con éxito! Gasto '${name}' por $${amount} registrado en tu presupuesto abisal.`;
             feedback.style.color = "#34d399";
 
-            // Limpiar campos de texto secundarios
             document.getElementById('expense-name').value = '';
             document.getElementById('expense-amount').value = '';
         }
