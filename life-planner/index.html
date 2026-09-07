@@ -58,11 +58,12 @@
                     <span class="carousel-step">01</span>
                 </div>
 
-                <div class="carousel-card">
+                <!-- Tarjeta interactiva del Carrusel para ir directo al monedero -->
+                <div class="carousel-card" onclick="switchView('finance')">
                     <div class="card-top-tag"><span>Finanzas</span><i class="fa-regular fa-heart"></i></div>
                     <div class="card-content-text">
                         <h4>Presupuesto Abisal</h4>
-                        <p><i class="fa-solid fa-wallet"></i> $4,500 USD Totales</p>
+                        <p><i class="fa-solid fa-wallet"></i> Ver Gastos Guardados</p>
                     </div>
                     <span class="carousel-step">02</span>
                 </div>
@@ -113,7 +114,7 @@
 
             <div class="finance-layout-grid">
                 
-                <!-- Barra de Categorías Izquierda con la función selectCategory conectada -->
+                <!-- Barra de Categorías Izquierda -->
                 <div class="finance-categories-dock">
                     <div class="fin-cat-item active" onclick="selectCategory('50', this)" title="Necesidades (50%)">
                         <i class="fa-solid fa-house-chimney"></i>
@@ -133,26 +134,44 @@
                     </div>
                 </div>
 
-                <!-- Tarjeta de Formulario y Control -->
+                <!-- Tarjeta de Formulario, Cálculo 50/30/20 y Listado Profesional de Gastos Guardados -->
                 <div class="finance-form-container">
                     <div class="plan-journey-title">
                         <h3>Control 50 / 30 / 20</h3>
-                        <p>Distribuye tus ingresos submarinos con precisión matemática y guarda tus registros.</p>
+                        <p>Distribuye tus ingresos submarinos y administra tus registros guardados.</p>
                     </div>
 
-                    <div class="finance-input-group">
-                        <label>Ingreso Total Mensual (USD)</label>
-                        <div class="fin-input-box">
-                            <i class="fa-solid fa-dollar-sign"></i>
-                            <input type="number" id="total-income" placeholder="Ej: 4500" value="4500">
+                    <!-- Resumen matemático 50/30/20 en tiempo real -->
+                    <div class="summary-cards-row">
+                        <div class="summary-card-mini">
+                            <span>50% Necesidades</span>
+                            <h4 id="calc-50">$2,250</h4>
+                        </div>
+                        <div class="summary-card-mini">
+                            <span>30% Deseos</span>
+                            <h4 id="calc-30">$1,350</h4>
+                        </div>
+                        <div class="summary-card-mini">
+                            <span>20% Ahorro</span>
+                            <h4 id="calc-20">$900</h4>
                         </div>
                     </div>
 
-                    <div class="finance-input-group">
-                        <label>Descripción del Gasto / Asignación</label>
-                        <div class="fin-input-box">
-                            <i class="fa-solid fa-pen-nib"></i>
-                            <input type="text" id="expense-name" placeholder="Ej: Mantenimiento de Cúpula / Alimentos">
+                    <div class="finance-row-inputs">
+                        <div class="finance-input-group">
+                            <label>Ingreso Total Mensual (USD)</label>
+                            <div class="fin-input-box">
+                                <i class="fa-solid fa-dollar-sign"></i>
+                                <input type="number" id="total-income" placeholder="Ej: 4500" value="4500" oninput="updateBudgetCalculations()">
+                            </div>
+                        </div>
+
+                        <div class="finance-input-group">
+                            <label>Descripción del Gasto</label>
+                            <div class="fin-input-box">
+                                <i class="fa-solid fa-pen-nib"></i>
+                                <input type="text" id="expense-name" placeholder="Ej: Mantenimiento de Cúpula">
+                            </div>
                         </div>
                     </div>
 
@@ -187,6 +206,11 @@
                         </button>
                     </div>
 
+                    <!-- Contenedor profesional de gastos guardados (con scroll y botón de eliminar) -->
+                    <div class="expenses-list-container" id="expenses-list-box">
+                        <!-- Los gastos se cargan dinámicamente aquí -->
+                    </div>
+
                     <div class="budget-feedback" id="budget-feedback-msg">
                         💡 Ingresa un monto y haz clic en Guardar para registrar tus datos.
                     </div>
@@ -216,7 +240,7 @@
 
     </div>
 
-    <!-- Script completo con control de vistas, reloj y botones interactivos -->
+    <!-- Script completo con almacenamiento localStorage, listado y eliminación de gastos -->
     <script>
         function updateRealtimeInfo() {
             const now = new Date();
@@ -247,6 +271,8 @@
                 if(homeView) homeView.classList.add('hidden-view');
                 if(financeView) financeView.classList.remove('hidden-view');
                 if(btnFinance) btnFinance.classList.add('active');
+                renderExpenses(); // Carga y muestra los gastos guardados al entrar
+                updateBudgetCalculations();
             } else {
                 if(financeView) financeView.classList.add('hidden-view');
                 if(homeView) homeView.classList.remove('hidden-view');
@@ -254,7 +280,6 @@
             }
         }
 
-        // Función para que los botones laterales cambien la categoría automáticamente
         function selectCategory(categoryValue, element) {
             const selectElement = document.getElementById('expense-category');
             if (selectElement) {
@@ -269,35 +294,114 @@
             }
         }
 
+        // Cálculo matemático automático de la regla 50/30/20
+        function updateBudgetCalculations() {
+            const incomeInput = document.getElementById('total-income');
+            const income = incomeInput ? parseFloat(incomeInput.value) || 0 : 0;
+
+            document.getElementById('calc-50').textContent = `$${(income * 0.50).toLocaleString()}`;
+            document.getElementById('calc-30').textContent = `$${(income * 0.30).toLocaleString()}`;
+            document.getElementById('calc-20').textContent = `$${(income * 0.20).toLocaleString()}`;
+        }
+
+        // Gestión de Gastos con localStorage
+        function getStoredExpenses() {
+            try {
+                return JSON.parse(localStorage.getItem('private_atlas_expenses')) || [];
+            } catch (e) {
+                return [];
+            }
+        }
+
         function saveExpense() {
-            const name = document.getElementById('expense-name').value;
-            const amount = document.getElementById('expense-amount').value;
+            const nameInput = document.getElementById('expense-name');
+            const amountInput = document.getElementById('expense-amount');
+            const categorySelect = document.getElementById('expense-category');
             const feedback = document.getElementById('budget-feedback-msg');
 
-            if(!name || !amount) {
-                feedback.innerHTML = "⚠️ Por favor completa el nombre y el monto del gasto.";
+            const name = nameInput.value.trim();
+            const amount = parseFloat(amountInput.value);
+            const category = categorySelect.value;
+
+            if(!name || isNaN(amount) || amount <= 0) {
+                feedback.innerHTML = "⚠️ Por favor ingresa un nombre y un monto válido para el gasto.";
                 feedback.style.color = "#f43f5e";
                 return;
             }
 
-            feedback.innerHTML = `✅ ¡Guardado con éxito! Gasto '${name}' por $${amount} registrado en tu presupuesto abisal.`;
+            const expenses = getStoredExpenses();
+            const newExpense = {
+                id: Date.now(),
+                name: name,
+                amount: amount,
+                category: category === '50' ? 'Necesidades (50%)' : category === '30' ? 'Deseos (30%)' : 'Ahorro (20%)'
+            };
+
+            expenses.push(newExpense);
+            localStorage.setItem('private_atlas_expenses', JSON.stringify(expenses));
+
+            feedback.innerHTML = `✅ ¡Gasto '${name}' de $${amount.toLocaleString()} guardado correctamente!`;
             feedback.style.color = "#34d399";
 
-            document.getElementById('expense-name').value = '';
-            document.getElementById('expense-amount').value = '';
+            nameInput.value = '';
+            amountInput.value = '';
+            renderExpenses();
+        }
+
+        function deleteExpense(id) {
+            let expenses = getStoredExpenses();
+            expenses = expenses.filter(item => item.id !== id);
+            localStorage.setItem('private_atlas_expenses', JSON.stringify(expenses));
+            renderExpenses();
+
+            const feedback = document.getElementById('budget-feedback-msg');
+            feedback.innerHTML = "🗑️ Gasto eliminado del registro abisal.";
+            feedback.style.color = "#f43f5e";
+        }
+
+        function renderExpenses() {
+            const container = document.getElementById('expenses-list-box');
+            if(!container) return;
+
+            const expenses = getStoredExpenses();
+
+            if (expenses.length === 0) {
+                container.innerHTML = `<div style="text-align: center; color: #94a3b8; font-size: 11px; padding: 15px;">No hay gastos registrados todavía.</div>`;
+                return;
+            }
+
+            let html = '';
+            expenses.forEach(item => {
+                html += `
+                    <div class="expense-item-row">
+                        <div class="expense-info-main">
+                            <b>${item.name}</b>
+                            <small>${item.category}</small>
+                        </div>
+                        <div class="expense-item-right">
+                            <span>$${item.amount.toLocaleString()}</span>
+                            <button class="delete-expense-btn" onclick="deleteExpense(${item.id})" title="Eliminar gasto">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
         }
 
         function completeBudget() {
             const income = document.getElementById('total-income').value;
             const feedback = document.getElementById('budget-feedback-msg');
             
-            feedback.innerHTML = `🏆 ¡Ciclo de presupuesto completado para tus ingresos de $${income} USD! Distribución 50/30/20 validada.`;
+            feedback.innerHTML = `🏆 ¡Ciclo de presupuesto completado para tus ingresos de $${Number(income).toLocaleString()} USD! Regla 50/30/20 validada.`;
             feedback.style.color = "#38bdf8";
         }
 
         document.addEventListener("DOMContentLoaded", () => {
             updateRealtimeInfo();
             setInterval(updateRealtimeInfo, 1000);
+            updateBudgetCalculations();
         });
     </script>
 </body>
