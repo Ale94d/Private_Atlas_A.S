@@ -6,10 +6,10 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Fondo principal usando tu imagen marina con capa oscura de contraste */
+/* Fondo principal con tu imagen marina y capa de contraste */
 body {
     min-height: 100vh;
-    background-image: linear-gradient(rgba(0, 15, 35, 0.45), rgba(0, 25, 50, 0.6)), url('planificador%20de%20vida/activos/fondo/marino.jpg');
+    background-image: linear-gradient(rgba(0, 15, 30, 0.4), rgba(0, 25, 45, 0.5)), url('../planificador%20de%20vida/activos/fondo/marino.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -21,17 +21,17 @@ body {
     padding: 20px;
 }
 
-/* Contenedor general */
+/* Contenedor principal estilo cristal esmerilado */
 .app-container {
     width: 100%;
     max-width: 1100px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 36px;
     padding: 25px 35px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
 }
 
 /* Cabecera superior */
@@ -47,12 +47,14 @@ body {
     font-weight: 700;
     letter-spacing: 1px;
     font-size: 14px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .best-shots {
     font-weight: 600;
     letter-spacing: 1px;
     font-size: 14px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .header-filters {
@@ -88,7 +90,7 @@ body {
 
 /* Sidebar lateral */
 .sidebar {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(8px);
     border-radius: 24px;
     padding: 20px 12px;
@@ -131,7 +133,7 @@ body {
 /* Tarjeta flotante central */
 .glass-card {
     flex-grow: 1;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 30px;
     padding: 35px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.15);
@@ -175,7 +177,7 @@ body {
 }
 
 .property-tag {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.92);
     padding: 10px 14px;
     border-radius: 12px;
 }
@@ -320,7 +322,7 @@ body {
     box-shadow: 0 4px 15px rgba(15, 23, 42, 0.4);
 }
 
-/* Barra inferior exterior */
+/* Pie de página exterior */
 .bottom-bar {
     display: flex;
     justify-content: space-between;
@@ -329,10 +331,11 @@ body {
     color: #ffffff;
     font-size: 14px;
     font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .swipe-btn {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.9);
     color: #0f172a;
     padding: 8px 18px;
     border-radius: 20px;
@@ -340,7 +343,7 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Ajuste responsive para pantallas pequeñas o tablets */
+/* Ajuste responsive */
 @media (max-width: 768px) {
     .card-hero {
         flex-direction: column;
