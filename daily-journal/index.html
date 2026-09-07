@@ -16,21 +16,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
 
 <main class="apothecary">
 
-    <!-- Ambiente -->
-    <div class="ambient-glow glow-one"></div>
-    <div class="ambient-glow glow-two"></div>
+    <!-- NAVIGACIÓN -->
 
-    <div class="particle particle-one">✦</div>
-    <div class="particle particle-two">✧</div>
-    <div class="particle particle-three">·</div>
-
-
-    <!-- Navegación -->
     <header class="journal-navigation">
 
         <a href="../index.html" class="home-button">
@@ -39,11 +30,11 @@
         </a>
 
         <div class="journal-brand">
-            <span>PRIVATE ATLAS</span>
+            <span>PRIVATE ATLAS A.S.</span>
             <h1>Daily Journal</h1>
         </div>
 
-        <div class="section-navigation">
+        <nav class="section-navigation">
 
             <button
                 class="section-button active"
@@ -59,42 +50,39 @@
                 Emociones
             </button>
 
-        </div>
+        </nav>
 
     </header>
 
 
-    <!-- Contenido principal -->
+    <!-- CONTENIDO -->
+
     <section class="journal-content">
 
 
-        <!-- Decoración boticaria -->
-        <aside class="botanical-side">
+        <!-- DECORACIÓN BOTÁNICA -->
+
+        <div class="botanical-side">
 
             <div class="botanical-line"></div>
 
-            <div class="glass-bottle bottle-one">
-                <span></span>
-            </div>
-
-            <div class="glass-bottle bottle-two">
-                <span></span>
-            </div>
-
-            <div class="glass-bottle bottle-three">
-                <span></span>
-            </div>
+            <div class="glass-bottle bottle-one"></div>
+            <div class="glass-bottle bottle-two"></div>
+            <div class="glass-bottle bottle-three"></div>
 
             <div class="botanical-leaf leaf-one">❧</div>
             <div class="botanical-leaf leaf-two">❧</div>
 
-        </aside>
+        </div>
 
 
-        <!-- DIARIO -->
+        <!-- =========================
+             DIARIO
+        ========================== -->
+
         <section
-            class="journal-section active-section"
-            id="diario">
+            id="diario"
+            class="journal-section active-section">
 
             <div class="section-intro">
 
@@ -113,15 +101,17 @@
             </div>
 
 
-            <article class="journal-paper">
+            <div class="journal-paper">
 
                 <div class="paper-decoration">
                     ✦
                 </div>
 
+
                 <div class="paper-header">
 
                     <div>
+
                         <span class="paper-label">
                             DIARIO
                         </span>
@@ -129,11 +119,11 @@
                         <h3>
                             ¿Cómo fue tu día?
                         </h3>
+
                     </div>
 
-                    <span
-                        class="today-date"
-                        id="todayDate">
+                    <span class="today-date">
+                        Hoy
                     </span>
 
                 </div>
@@ -152,6 +142,7 @@
                 <div class="paper-bottom">
 
                     <div class="selected-mood">
+
                         <span>
                             ESTADO DE ÁNIMO
                         </span>
@@ -159,6 +150,7 @@
                         <strong id="selectedMood">
                             Selecciona una emoción
                         </strong>
+
                     </div>
 
 
@@ -174,16 +166,19 @@
 
                 </div>
 
-            </article>
+            </div>
 
         </section>
 
 
 
-        <!-- EMOCIONES -->
+        <!-- =========================
+             EMOCIONES
+        ========================== -->
+
         <section
-            class="journal-section"
-            id="emociones">
+            id="emociones"
+            class="journal-section">
 
             <div class="section-intro">
 
@@ -202,11 +197,7 @@
             </div>
 
 
-            <article class="emotion-paper">
-
-                <div class="paper-decoration">
-                    ❧
-                </div>
+            <div class="emotion-paper">
 
                 <div class="emotion-header">
 
@@ -225,55 +216,70 @@
 
                     <button
                         class="emotion"
-                        data-emotion="Feliz"
+                        data-mood="Feliz"
                         type="button">
 
                         <span>☀</span>
-                        <small>Feliz</small>
+
+                        <small>
+                            Feliz
+                        </small>
 
                     </button>
 
 
                     <button
                         class="emotion"
-                        data-emotion="Tranquilo"
+                        data-mood="Tranquilo"
                         type="button">
 
                         <span>♡</span>
-                        <small>Tranquilo</small>
+
+                        <small>
+                            Tranquilo
+                        </small>
 
                     </button>
 
 
                     <button
                         class="emotion"
-                        data-emotion="Emocionado"
+                        data-mood="Emocionado"
                         type="button">
 
                         <span>✦</span>
-                        <small>Emocionado</small>
+
+                        <small>
+                            Emocionado
+                        </small>
 
                     </button>
 
 
                     <button
                         class="emotion"
-                        data-emotion="Nostálgico"
+                        data-mood="Nostálgico"
                         type="button">
 
                         <span>☾</span>
-                        <small>Nostálgico</small>
+
+                        <small>
+                            Nostálgico
+                        </small>
 
                     </button>
 
 
                     <button
                         class="emotion"
-                        data-emotion="Pensativo"
+                        data-mood="Pensativo"
                         type="button">
 
                         <span>☁</span>
-                        <small>Pensativo</small>
+
+                        <small>
+                            Pensativo
+                        </small>
 
                     </button>
 
@@ -284,31 +290,30 @@
 
                     <span>✧</span>
 
-                    <p id="emotionMessage">
-                        Selecciona una emoción para guardarla en tu diario.
+                    <p>
+                        Cada emoción también forma parte de tu historia.
                     </p>
 
                     <span>✧</span>
 
                 </div>
 
-            </article>
+            </div>
 
         </section>
 
 
+        <!-- DECORACIÓN INFERIOR -->
+
+        <div class="bottom-botanical botanical-left">
+            ❧
+        </div>
+
+        <div class="bottom-botanical botanical-right">
+            ❧
+        </div>
+
     </section>
-
-
-    <!-- Elementos botánicos inferiores -->
-    <div class="bottom-botanical botanical-left">
-        ❧
-    </div>
-
-    <div class="bottom-botanical botanical-right">
-        ❧
-    </div>
-
 
 </main>
 
