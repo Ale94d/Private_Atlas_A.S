@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Atlas A.S - Life Planner Submarino</title>
+    <title>Life Planner | Private Atlas A.S</title>
     <link rel="stylesheet" href="Style.css">
-    <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Video de fondo fijo optimizado -->
+    <!-- Video de fondo fijo -->
     <div class="video-background">
         <video autoplay muted loop playsinline preload="auto">
             <source src="../VID-20260906-WA0000.mp4" type="video/mp4">
@@ -19,49 +18,75 @@
         <div class="video-overlay"></div>
     </div>
 
-    <!-- Botón flotante para volver atrás (La Casa) -->
-    <a href="../indice.html" class="home-return-btn" title="Volver al Atlas Principal">
-        <i class="fa-solid fa-house"></i>
-    </a>
+    <!-- Barra de navegación lateral flotante -->
+    <nav class="sidebar-nav">
+        <a href="../indice.html" class="nav-icon" title="Inicio"><i class="fa-solid fa-house"></i></a>
+        <a href="#dashboard" class="nav-icon" title="Dashboard"><i class="fa-solid fa-chart-pie"></i></a>
+        <a href="#tasks" class="nav-icon active" title="Bitácora"><i class="fa-solid fa-compass"></i></a>
+        <a href="#treasury" class="nav-icon" title="Tesorería"><i class="fa-solid fa-coins"></i></a>
+        <a href="#profile" class="nav-icon" title="Perfil"><i class="fa-solid fa-user"></i></a>
+    </nav>
 
-    <!-- Contenedor Principal Estilo Dashboard -->
+    <!-- Contenedor Principal -->
     <div class="main-dashboard-container">
         
-        <!-- Cabecera del Módulo -->
         <header class="dashboard-header">
-            <h1 class="dashboard-title">Life Planner Submarino</h1>
-            <p class="dashboard-subtitle">"Tus memorias y finanzas bajo las mareas del tiempo"</p>
+            <div class="header-badge">PRIVATE ATLAS A.S</div>
+            <h1 class="dashboard-title">Tu vida, Diseñada con Precisión</h1>
+            <p class="dashboard-subtitle">Organiza tus metas, registra tus hábitos diarios y supervisa la evolución de tu propio atlas de experiencias con un entorno clásico y sofisticado.</p>
         </header>
 
-        <!-- Cuadrícula de 2 columnas -->
         <div class="dashboard-grid">
             
             <!-- TARJETA 1: BITÁCORA DE TAREAS -->
-            <section class="glass-card">
+            <section class="glass-card" id="tasks">
                 <div class="card-header">
-                    <h2><i class="fa-solid fa-anchor"></i> Bitácora de Tareas</h2>
+                    <h2><i class="fa-solid fa-anchor"></i> Progreso Global</h2>
+                    <span class="card-tag">Bitácora Activa</span>
                 </div>
+                <p class="card-desc">Tu consistencia en el desarrollo personal y académico se mantiene en constante ascenso.</p>
                 
-                <div class="form-group">
+                <div class="progress-box">
+                    <div class="progress-info">
+                        <span>78%</span>
+                        <span class="sub-label">Meta completa este mes</span>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 15px;">
                     <input type="text" id="taskInput" placeholder="Nueva tarea o inmersión...">
                     <input type="date" id="taskDate">
                     <button type="button" id="addTaskBtn" class="action-btn">Añadir Inmersión</button>
                 </div>
 
                 <div class="list-scroll-container">
-                    <ul id="taskList">
-                        <!-- Las tareas se inyectan dinámicamente -->
-                    </ul>
+                    <ul id="taskList"></ul>
                 </div>
             </section>
 
-            <!-- TARJETA 2: TESORERÍA 50/30/20 -->
-            <section class="glass-card">
+            <!-- TARJETA 2: TESORERÍA -->
+            <section class="glass-card" id="treasury">
                 <div class="card-header">
-                    <h2><i class="fa-solid fa-coins"></i> Tesorería (50/30/20)</h2>
+                    <h2><i class="fa-solid fa-coins"></i> Atlas Expedition 2026</h2>
+                    <span class="card-tag">Presupuesto</span>
                 </div>
-                
-                <div class="form-group">
+
+                <div class="expedition-specs">
+                    <div class="spec-row">
+                        <span>Estructura base</span>
+                        <strong>50 / 30 / 20</strong>
+                    </div>
+                    <div class="spec-row">
+                        <span>Enfoque principal</span>
+                        <strong>Desarrollo Web & Rutinas</strong>
+                    </div>
+                    <div class="spec-row">
+                        <span>Sincronización</span>
+                        <strong>Diario de Bitácora Activa</strong>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 15px;">
                     <input type="text" id="expenseDesc" placeholder="Descripción del gasto...">
                     <input type="number" id="expenseAmount" placeholder="Valor ($)">
                     <select id="expenseCategory">
@@ -72,7 +97,6 @@
                     <button type="button" id="addExpenseBtn" class="action-btn">Registrar Gasto</button>
                 </div>
 
-                <!-- Resumen Presupuestario -->
                 <div class="budget-summary-box">
                     <div class="budget-item">
                         <span>Necesidades</span>
@@ -89,104 +113,13 @@
                 </div>
 
                 <div class="list-scroll-container">
-                    <ul id="expenseList">
-                        <!-- Los gastos se inyectan dinámicamente -->
-                    </ul>
+                    <ul id="expenseList"></ul>
                 </div>
             </section>
 
         </div>
     </div>
 
-    <script>
-        // --- LÓGICA DE TAREAS ---
-        const taskInput = document.getElementById('taskInput');
-        const taskDate = document.getElementById('taskDate');
-        const addTaskBtn = document.getElementById('addTaskBtn');
-        const taskList = document.getElementById('taskList');
-
-        addTaskBtn.addEventListener('click', () => {
-            const text = taskInput.value.trim();
-            const date = taskDate.value;
-            if(!text) return;
-
-            const li = document.createElement('li');
-            li.innerHTML = `
-                <div class="item-details">
-                    <span class="item-text">${text}</span>
-                    <span class="item-sub"><i class="fa-regular fa-calendar"></i> ${date || 'Sin fecha'}</span>
-                </div>
-                <div class="item-actions">
-                    <button class="check-btn" onclick="toggleTask(this)"><i class="fa-solid fa-check"></i></button>
-                    <button class="trash-btn" onclick="deleteItem(this)"><i class="fa-solid fa-trash"></i></button>
-                </div>
-            `;
-            taskList.appendChild(li);
-            taskInput.value = '';
-            taskDate.value = '';
-        });
-
-        function toggleTask(btn) {
-            const li = btn.closest('li');
-            li.classList.toggle('completed');
-        }
-
-        function deleteItem(btn) {
-            btn.closest('li').remove();
-        }
-
-        // --- LÓGICA DE FINANZAS 50/30/20 ---
-        const expenseDesc = document.getElementById('expenseDesc');
-        const expenseAmount = document.getElementById('expenseAmount');
-        const expenseCategory = document.getElementById('expenseCategory');
-        const addExpenseBtn = document.getElementById('addExpenseBtn');
-        const expenseList = document.getElementById('expenseList');
-
-        let categoryTotals = { necesidades: 0, deseos: 0, ahorro: 0 };
-
-        addExpenseBtn.addEventListener('click', () => {
-            const desc = expenseDesc.value.trim();
-            const amount = parseFloat(expenseAmount.value);
-            const cat = expenseCategory.value;
-
-            if(!desc || isNaN(amount) || amount <= 0) return;
-
-            categoryTotals[cat] += amount;
-
-            const li = document.createElement('li');
-            li.dataset.category = cat;
-            li.dataset.amount = amount;
-            li.innerHTML = `
-                <div class="item-details">
-                    <span class="item-text"><strong>${desc}</strong></span>
-                    <span class="item-sub uppercase">${cat} - $${amount.toLocaleString()}</span>
-                </div>
-                <button class="trash-btn" onclick="removeExpense(this)"><i class="fa-solid fa-trash"></i></button>
-            `;
-            expenseList.appendChild(li);
-
-            expenseDesc.value = '';
-            expenseAmount.value = '';
-            updateBudget();
-        });
-
-        function removeExpense(btn) {
-            btn.closest('li').remove();
-            updateBudget();
-        }
-
-        function updateBudget() {
-            categoryTotals = { necesidades: 0, deseos: 0, ahorro: 0 };
-            document.querySelectorAll('#expenseList li').forEach(item => {
-                const cat = item.dataset.category;
-                const amt = parseFloat(item.dataset.amount);
-                categoryTotals[cat] += amt;
-            });
-
-            document.getElementById('totalNecesidades').innerText = `$${categoryTotals.necesidades.toLocaleString()}`;
-            document.getElementById('totalDeseos').innerText = `$${categoryTotals.deseos.toLocaleString()}`;
-            document.getElementById('totalAhorro').innerText = `$${categoryTotals.ahorro.toLocaleString()}`;
-        }
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
