@@ -26,7 +26,7 @@
         <nav class="floating-left-dock">
             <a href="#" class="dock-icon active" id="nav-home" title="Inicio" onclick="switchView('home')"><i class="fa-solid fa-house"></i></a>
             <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <!-- Botón de Finanzas con la Moneda -->
+            <!-- Botón de Finanzas con la Moneda (Restaurado el onclick para que abra el 50/30/20) -->
             <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></a>
             <a href="#" class="dock-icon" id="nav-help" title="Ayuda"><i class="fa-solid fa-circle-question"></i></a>
         </nav>
@@ -250,7 +250,7 @@
 
     </div>
 
-    <!-- Script completo con almacenamiento localStorage, listado, eliminación y selector de moneda -->
+    <!-- Script completo -->
     <script>
         function updateRealtimeInfo() {
             const now = new Date();
@@ -281,7 +281,7 @@
                 if(homeView) homeView.classList.add('hidden-view');
                 if(financeView) financeView.classList.remove('hidden-view');
                 if(btnFinance) btnFinance.classList.add('active');
-                renderExpenses(); // Carga y muestra los gastos guardados al entrar
+                renderExpenses();
                 updateBudgetCalculations();
             } else {
                 if(financeView) financeView.classList.add('hidden-view');
@@ -304,9 +304,9 @@
             }
         }
 
-        // Obtener símbolo según la moneda seleccionada
         function getCurrencySymbol() {
-            const currency = document.getElementById('global-currency-select').value;
+            const currencyElement = document.getElementById('global-currency-select');
+            const currency = currencyElement ? currencyElement.value : 'USD';
             switch(currency) {
                 case 'EUR': return '€';
                 case 'USD': return '$';
@@ -317,18 +317,17 @@
             }
         }
 
-        // Cambiar moneda y actualizar textos e inputs en tiempo real
         function changeCurrency() {
-            const currency = document.getElementById('global-currency-select').value;
+            const currencyElement = document.getElementById('global-currency-select');
+            if(!currencyElement) return;
+            const currency = currencyElement.value;
             localStorage.setItem('private_atlas_currency', currency);
             
-            // Actualizar etiqueta del input principal
             const labelIncome = document.getElementById('label-total-income');
             if(labelIncome) {
                 labelIncome.textContent = `Ingreso Total Mensual (${currency})`;
             }
 
-            // Actualizar icono del input
             const iconSymbol = document.getElementById('currency-icon-symbol');
             if(iconSymbol) {
                 if(currency === 'EUR') iconSymbol.className = "fa-solid fa-euro-sign";
@@ -339,18 +338,20 @@
             renderExpenses();
         }
 
-        // Cálculo matemático automático de la regla 50/30/20 adaptado a la moneda
         function updateBudgetCalculations() {
             const incomeInput = document.getElementById('total-income');
             const income = incomeInput ? parseFloat(incomeInput.value) || 0 : 0;
             const symbol = getCurrencySymbol();
 
-            document.getElementById('calc-50').textContent = `${symbol}${(income * 0.50).toLocaleString()}`;
-            document.getElementById('calc-30').textContent = `${symbol}${(income * 0.30).toLocaleString()}`;
-            document.getElementById('calc-20').textContent = `${symbol}${(income * 0.20).toLocaleString()}`;
+            const c50 = document.getElementById('calc-50');
+            const c30 = document.getElementById('calc-30');
+            const c20 = document.getElementById('calc-20');
+
+            if(c50) c50.textContent = `${symbol}${(income * 0.50).toLocaleString()}`;
+            if(c30) c30.textContent = `${symbol}${(income * 0.30).toLocaleString()}`;
+            if(c20) c20.textContent = `${symbol}${(income * 0.20).toLocaleString()}`;
         }
 
-        // Gestión de Gastos con localStorage
         function getStoredExpenses() {
             try {
                 return JSON.parse(localStorage.getItem('private_atlas_expenses')) || [];
@@ -365,6 +366,8 @@
             const categorySelect = document.getElementById('expense-category');
             const feedback = document.getElementById('budget-feedback-msg');
             const symbol = getCurrencySymbol();
+
+            if(!nameInput || !amountInput || !categorySelect || !feedback) return;
 
             const name = nameInput.value.trim();
             const amount = parseFloat(amountInput.value);
@@ -402,4 +405,5 @@
             localStorage.setItem('private_atlas_expenses', JSON.stringify(expenses));
             renderExpenses();
 
-            const feedback = document.getElemen
+            const feedback = document.getElementById('budget-feedback-msg');
+            if(feedback) {
