@@ -101,7 +101,10 @@
                 <div class="holo-nav-links">
                     <span>$ USD</span>
                     <span>Manage Budget</span>
-                    <div class="user-avatar-small"><i class="fa-solid fa-wallet"></i></div>
+                    <!-- BOTÓN CLICKEABLE PARA VER GASTOS -->
+                    <div class="user-avatar-small" id="open-expenses-btn" title="Ver Gastos Guardados" onclick="toggleExpensesModal()" style="cursor: pointer;">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
                 </div>
             </div>
 
@@ -210,6 +213,28 @@
 
     </div>
 
+    <!-- VENTANA MODAL FLOTANTE PARA VER / ELIMINAR GASTOS -->
+    <div class="expenses-modal-overlay" id="expenses-modal">
+        <div class="expenses-modal-card">
+            <div class="expenses-modal-header">
+                <h3><i class="fa-solid fa-wallet" style="color: #38bdf8;"></i> Registro de Gastos Abisales</h3>
+                <i class="fa-solid fa-xmark close-modal-icon" onclick="toggleExpensesModal()"></i>
+            </div>
+            
+            <div class="expenses-list-container" id="modal-expenses-list">
+                <!-- Aquí se cargan dinámicamente los gastos -->
+                <p style="color: #94a3b8; text-align: center; font-size: 13px; margin-top: 20px;">No hay gastos registrados todavía.</p>
+            </div>
+
+            <div class="expenses-modal-footer">
+                <button class="holo-btn danger-btn" onclick="clearAllExpenses()">
+                    <i class="fa-solid fa-trash-can"></i> Eliminar Todos
+                </button>
+                <button class="holo-btn secondary-btn" onclick="toggleExpensesModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         let expensesList = [];
 
@@ -268,7 +293,6 @@
             const limit30 = income * 0.30;
             const limit20 = income * 0.20;
 
-            // Calcular gastado actual por categoría
             let sum50 = 0, sum30 = 0, sum20 = 0;
             expensesList.forEach(exp => {
                 if(exp.cat === '50') sum50 += exp.amount;
@@ -279,6 +303,8 @@
             document.getElementById('total-cat-50').textContent = `$${sum50} / $${limit50}`;
             document.getElementById('total-cat-30').textContent = `$${sum30} / $${limit30}`;
             document.getElementById('total-cat-20').textContent = `$${sum20} / $${limit20}`;
+            
+            renderExpensesModalList();
         }
 
         function saveExpense() {
@@ -311,6 +337,51 @@
             const feedback = document.getElementById('budget-feedback-msg');
             feedback.innerHTML = `🏆 Ingreso: $${income} | Gastado: $${totalSpent}. Regla 50/30/20 activa en tu base.`;
             feedback.style.color = "#38bdf8";
+        }
+
+        /* Funciones nuevas para la ventana modal de gastos */
+        function toggleExpensesModal() {
+            const modal = document.getElementById('expenses-modal');
+            modal.classList.toggle('show-modal');
+            renderExpensesModalList();
+        }
+
+        function renderExpensesModalList() {
+            const container = document.getElementById('modal-expenses-list');
+            if (!container) return;
+
+            if (expensesList.length === 0) {
+                container.innerHTML = `<p style="color: #94a3b8; text-align: center; font-size: 13px; margin-top: 20px;">No hay gastos registrados todavía.</p>`;
+                return;
+            }
+
+            let html = '';
+            expensesList.forEach((exp, index) => {
+                let catName = exp.cat === '50' ? 'Necesidades (50%)' : exp.cat === '30' ? 'Deseos (30%)' : 'Ahorro (20%)';
+                html += `
+                    <div class="expense-item-row">
+                        <div class="expense-info">
+                            <strong>${exp.name}</strong>
+                            <small>${catName}</small>
+                        </div>
+                        <div class="expense-right-side">
+                            <span class="expense-amount-tag">$${exp.amount}</span>
+                            <button class="delete-single-btn" onclick="deleteSingleExpense(${index})" title="Eliminar gasto"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function deleteSingleExpense(index) {
+            expensesList.splice(index, 1);
+            updateBudgetLimits();
+        }
+
+        function clearAllExpenses() {
+            expensesList = [];
+            updateBudgetLimits();
         }
 
         document.addEventListener("DOMContentLoaded", () => {
