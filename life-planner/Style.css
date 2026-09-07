@@ -7,9 +7,10 @@
 }
 
 /* Fondo principal con tu imagen marina y capa de contraste */
+
 body {
     min-height: 100vh;
-    background-image: linear-gradient(rgba(0, 15, 30, 0.4), rgba(0, 25, 45, 0.5)), url('../planificador%20de%20vida/activos/fondo/marino.jpg');
+    background-image: linear-gradient(rgba(0, 15, 30, 0.4), rgba(0, 25, 45, 0.5)), url('assets/background/marino.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -20,7 +21,6 @@ body {
     align-items: center;
     padding: 20px;
 }
-
 /* Contenedor principal estilo cristal esmerilado */
 .app-container {
     width: 100%;
