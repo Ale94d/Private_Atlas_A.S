@@ -8,8 +8,8 @@
 }
 
 body {
-    background-color: #3f2d22;
-    color: #e0cca9;
+    background-color: #0b131a;
+    color: #d1dcde;
     font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
     display: flex;
@@ -19,7 +19,7 @@ body {
     position: relative;
 }
 
-/* Video de fondo fijo */
+/* --- VIDEO DE FONDO FIJO --- */
 .video-background {
     position: fixed;
     top: 0;
@@ -28,6 +28,7 @@ body {
     height: 100vh;
     z-index: -99;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .video-background video {
@@ -42,114 +43,266 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(63, 45, 34, 0.65) 0%, rgba(63, 45, 34, 0.88) 100%);
+    background: linear-gradient(180deg, rgba(11, 19, 26, 0.65) 0%, rgba(14, 28, 38, 0.88) 100%);
 }
 
-.main-wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-}
-
-/* Contenedor principal */
-.container {
-    width: 90%;
-    max-width: 650px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    position: relative;
-    padding-top: 60px;
-    padding-bottom: 80px;
-    z-index: 1;
-}
-
-/* Sección editorial inicial */
-.top-editorial-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    background: rgba(63, 45, 34, 0.75);
-    padding: 30px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(6px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-.top-subtitle {
-    font-family: 'Alex Brush', cursive;
-    font-size: 2.8rem;
-    font-weight: normal;
-    color: #ed8ea2;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-    text-align: center;
-    letter-spacing: 1px;
-}
-
-.top-editorial-desc {
-    width: 100%;
-    font-size: 0.9rem;
-    color: #e0cca9;
-    line-height: 1.8;
-    font-weight: 300;
-}
-
-/* Tarjetas de Secciones */
-.seccion-card {
-    width: 100%;
-    background: rgba(63, 45, 34, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    padding: 30px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    backdrop-filter: blur(6px);
-}
-
-.seccion-card h3 {
-    font-family: 'Alex Brush', cursive;
-    font-size: 2.6rem;
-    font-weight: normal;
-    color: #ed8ea2;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Botón flotante para volver atrás (La Casa) con animación */
+/* --- BOTÓN FLOTANTE HOME --- */
 .home-return-btn {
     position: fixed;
     top: 25px;
     left: 25px;
-    width: 48px;
-    height: 48px;
-    background: rgba(63, 45, 34, 0.9);
-    border: 2px solid #ed8ea2;
+    width: 46px;
+    height: 46px;
+    background: rgba(18, 34, 48, 0.85);
+    border: 1px solid rgba(138, 180, 204, 0.4);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ed8ea2;
-    font-size: 1.2rem;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-    z-index: 99999;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: #8ab4cc;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    z-index: 9999;
+    transition: all 0.3s ease;
     text-decoration: none;
 }
 
 .home-return-btn:hover {
-    background: #ed8ea2;
-    color: #3f2d22;
-    transform: scale(1.15) rotate(-10deg);
-    box-shadow: 0 0 20px rgba(237, 142, 162, 0.8);
+    background: #8ab4cc;
+    color: #0b131a;
+    transform: scale(1.1) rotate(-8deg);
+    box-shadow: 0 0 15px rgba(138, 180, 204, 0.6);
 }
+
+/* --- CONTENEDOR PRINCIPAL TIPO DASHBOARD --- */
+.main-dashboard-container {
+    width: 92%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    padding: 50px 0 70px 0;
+    z-index: 10;
+}
+
+/* --- CABECERA --- */
+.dashboard-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dashboard-title {
+    font-family: 'Alex Brush', cursive;
+    font-size: 3.2rem;
+    font-weight: normal;
+    color: #8ab4cc;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+
+.dashboard-subtitle {
+    font-size: 0.85rem;
+    color: #a2b8c2;
+    font-style: italic;
+    font-weight: 300;
+}
+
+/* --- CUADRÍCULA DE DOS COLUMNAS (Estilo Referencia) --- */
+.dashboard-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+@media (min-width: 850px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* --- TARJETAS ESTILO GLASSMORPHISM MARINO --- */
+.glass-card {
+    background: rgba(18, 34, 48, 0.72);
+    border: 1px solid rgba(138, 180, 204, 0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 22px;
+    padding: 28px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card-header h2 {
+    font-family: 'Alex Brush', cursive;
+    font-size: 2.3rem;
+    font-weight: normal;
+    color: #8ab4cc;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-header i {
+    font-size: 1.4rem;
+    color: #5c8ca6;
+}
+
+/* --- FORMULARIOS Y CONTROLES --- */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group input,
+.form-group select {
+    background: rgba(10, 20, 28, 0.85);
+    border: 1px solid rgba(138, 180, 204, 0.2);
+    border-radius: 10px;
+    padding: 11px 14px;
+    color: #d1dcde;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #8ab4cc;
+    box-shadow: 0 0 8px rgba(138, 180, 204, 0.3);
+}
+
+.action-btn {
+    background: #1b364a;
+    border: 1px solid rgba(138, 180, 204, 0.4);
+    color: #8ab4cc;
+    padding: 11px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    background: #244863;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* --- RESUMEN DE PRESUPUESTO --- */
+.budget-summary-box {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    background: rgba(10, 20, 28, 0.75);
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(138, 180, 204, 0.12);
+}
+
+.budget-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.7rem;
+    color: #a2b8c2;
+    gap: 4px;
+    text-align: center;
+}
+
+.budget-item strong {
+    font-size: 0.85rem;
+    color: #8ab4cc;
+}
+
+/* --- LISTAS DE TAREAS Y GASTOS --- */
+.list-scroll-container {
+    max-height: 220px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.list-scroll-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.list-scroll-container::-webkit-scrollbar-thumb {
+    background: rgba(138, 180, 204, 0.3);
+    border-radius: 4px;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+ul li {
+    background: rgba(10, 20, 28, 0.8);
+    border: 1px solid rgba(138, 180, 204, 0.15);
+    padding: 10px 14px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+ul li.completed {
+    opacity: 0.45;
+    text-decoration: line-through;
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.item-text {
+    color: #d1dcde;
+}
+
+.item-sub {
+    font-size: 0.7rem;
+    color: #8ab4cc;
+}
+
+.item-sub.uppercase {
+    text-transform: uppercase;
+}
+
+.item-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.check-btn, .trash-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 4px;
+    transition: color 0.2s ease;
+}
+
+.check-btn { color: #6ee7b7; }
+.check-btn:hover { color: #34d399; }
+
+.trash-btn { color: #fca5a5; }
+.trash-btn:hover { color: #f87171; }
