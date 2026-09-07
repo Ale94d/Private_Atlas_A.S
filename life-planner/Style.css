@@ -1,5 +1,5 @@
 /* ==========================================
-   PRIVATE ATLAS A.S - ESTILOS PRINCIPALES
+   ESTILOS ORIGINALES - PRIVATE ATLAS A.S
    ========================================== */
 
 * {
@@ -19,40 +19,6 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-}
-
-/* Contenedor de burbujas animadas de fondo */
-.bubbles-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.bubble {
-    position: absolute;
-    bottom: -50px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    animation: riseBubble linear infinite;
-}
-
-@keyframes riseBubble {
-    0% {
-        transform: translateY(0);
-        opacity: 0;
-    }
-    50% {
-        opacity: 0.6;
-    }
-    100% {
-        transform: translateY(-105vh);
-        opacity: 0;
-    }
 }
 
 /* Contenedor espacial general */
@@ -276,7 +242,7 @@ body {
     color: rgba(255, 255, 255, 0.8);
 }
 
-/* Tarjeta Lateral Derecha */
+/* Tarjeta Lateral Derecha Original */
 .hologram-side-card {
     width: 260px;
     flex-shrink: 0;
@@ -305,7 +271,7 @@ body {
     margin-bottom: 15px;
 }
 
-.realtime-clock {
+.side-badge-time {
     font-size: 1.8rem;
     font-weight: 800;
     letter-spacing: 1px;
@@ -313,11 +279,10 @@ body {
     color: #ffffff;
 }
 
-.realtime-date {
+.side-badge-date {
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.6);
     margin-bottom: 20px;
-    text-transform: capitalize;
 }
 
 .side-location {
@@ -343,19 +308,4 @@ body {
     font-weight: 700;
     letter-spacing: 1.5px;
     color: #00ffcc;
-}
-
-/* Responsividad para móviles o pantallas pequeñas */
-@media (max-width: 900px) {
-    .spatial-viewport {
-        flex-direction: column;
-    }
-    .hologram-side-card {
-        width: 100%;
-    }
-    .floating-left-dock {
-        flex-direction: row;
-        width: 100%;
-        justify-content: center;
-    }
 }
