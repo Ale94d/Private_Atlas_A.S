@@ -5,115 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Atlas A.S | Ocean Life</title>
     <link rel="stylesheet" href="Style.css">
-    <!-- Iconos de FontAwesome para el menú lateral -->
+    <!-- Iconos de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Contenedor principal de la aplicación -->
-    <div class="app-container">
+    <!-- Cabecera de la página exterior -->
+    <header class="outer-header">
+        <span class="orizon-logo">ORIZON DESIGN</span>
+        <span class="best-shots">BEST SHOTS</span>
+    </header>
 
-        <!-- Barra superior (Header) -->
-        <header class="top-header">
-            <span class="brand">PRIVATE ATLAS A.S</span>
-            <div class="header-filters">
-                <div class="filter-item"><i class="fa-solid fa-water"></i> Océano <i class="fa-solid fa-chevron-down"></i></div>
-                <div class="filter-item"><i class="fa-solid fa-compass"></i> Estilo <i class="fa-solid fa-chevron-down"></i></div>
-                <div class="filter-item"><i class="fa-solid fa-anchor"></i> Profundidad <i class="fa-solid fa-chevron-down"></i></div>
+    <!-- Contenedor principal estilo Glassmorphism -->
+    <div class="dashboard-shell">
+        
+        <!-- Barra de filtros superior flotante -->
+        <div class="top-filters-bar">
+            <button class="filter-btn active-buy">Buy</button>
+            <div class="filter-dropdown">
+                <span class="label">Location</span>
+                <span class="value">Océano <i class="fa-solid fa-chevron-down"></i></span>
             </div>
-            <span class="best-shots">VISTAS MARINAS</span>
-        </header>
-
-        <!-- Contenido Central y Panel Flotante -->
-        <div class="main-layout">
-            
-            <!-- Barra de navegación lateral (Sidebar) -->
-            <nav class="sidebar">
-                <a href="#" class="nav-icon active"><i class="fa-solid fa-house"></i></a>
-                <a href="#" class="nav-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-                <a href="#" class="nav-icon"><i class="fa-solid fa-layer-group"></i></a>
-                <a href="#" class="nav-icon"><i class="fa-solid fa-bookmark"></i></a>
-                <div class="sidebar-spacer"></div>
-                <a href="#" class="nav-icon user-avatar"><i class="fa-solid fa-user"></i></a>
-                <a href="#" class="nav-icon"><i class="fa-solid fa-gear"></i></a>
-            </nav>
-
-            <!-- Tarjeta Flotante Principal estilo Dashboard -->
-            <main class="glass-card">
-                
-                <!-- Sección superior dentro de la tarjeta -->
-                <div class="card-hero">
-                    <div class="hero-text">
-                        <h1>Nuevo Estilo<br>De Vida Marino</h1>
-                        <p>Descubre propiedades extraordinarias y santuarios oceánicos disponibles para explorar. Tu viaje hacia el horizonte azul comienza aquí.</p>
-                    </div>
-                    <div class="hero-image-box">
-                        <div class="property-tag">
-                            <span>Santuario Azul</span>
-                            <p><i class="fa-solid fa-location-dot"></i> Costa Principal, Océano Pacífico</p>
-                        </div>
-                        <div class="arrow-btn"><i class="fa-solid fa-arrow-trend-up"></i></div>
-                    </div>
-                </div>
-
-                <!-- Sección inferior dentro de la tarjeta -->
-                <div class="card-bottom">
-                    <div class="info-block">
-                        <h3>Explora el Océano</h3>
-                        <p>Nuestra plataforma te conecta con los horizontes más buscados del mundo.</p>
-                        <div class="stat-box">
-                            <h2>10K+</h2>
-                            <span>Horizontes Activos</span>
-                            <div class="mini-avatars">
-                                <i class="fa-solid fa-fish"></i>
-                                <i class="fa-solid fa-water"></i>
-                                <i class="fa-solid fa-sailboat"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stats-overview">
-                        <div class="metric-row">
-                            <span><i class="fa-solid fa-ruler-combined"></i> Superficie Marina</span>
-                            <strong>695m²</strong>
-                        </div>
-                        <div class="metric-row">
-                            <span><i class="fa-solid fa-compass"></i> Coordenadas</span>
-                            <strong>126m Prof.</strong>
-                        </div>
-                        <div class="metric-row">
-                            <span><i class="fa-solid fa-ship"></i> Ecosistemas</span>
-                            <strong>3 Zonas</strong>
-                        </div>
-                        <div class="metric-row">
-                            <span><i class="fa-solid fa-anchor"></i> Puertos</span>
-                            <strong>2 Bahías</strong>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Barra de interacción final de la tarjeta -->
-                <div class="card-footer-actions">
-                    <div class="action-icons">
-                        <span><i class="fa-regular fa-heart"></i> 4.4K</span>
-                        <span><i class="fa-regular fa-bookmark"></i> 157</span>
-                        <span><i class="fa-solid fa-share-nodes"></i></span>
-                    </div>
-                    <div class="explore-badge">
-                        <i class="fa-solid fa-compass"></i>
-                    </div>
-                </div>
-
-            </main>
+            <div class="filter-dropdown">
+                <span class="label">Property Type</span>
+                <span class="value">Santuario <i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="filter-dropdown">
+                <span class="label">Max Price</span>
+                <span class="value">$300 000 <i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <button class="filter-btn rent-btn">Rent</button>
         </div>
 
-        <!-- Pie de página exterior -->
-        <footer class="bottom-bar">
-            <span>Like & Follow <i class="fa-regular fa-heart"></i></span>
-            <span class="swipe-btn">Deslizar &gt;&gt;</span>
-        </footer>
+        <!-- Cuerpo central (Sidebar + Contenido Visual con Imagen de Fondo Interna) -->
+        <div class="inner-workspace">
+            
+            <!-- Barra lateral de navegación -->
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i></a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-layer-group"></i></a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-square-poll-horizontal"></i></a>
+                <div class="sidebar-spacer"></div>
+                <a href="#" class="nav-item avatar-item"><i class="fa-solid fa-user"></i></a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i></a>
+            </nav>
+
+            <!-- Contenedor visual principal con la imagen marina dentro -->
+            <div class="hero-display-box">
+                
+                <!-- Título Gigante Superpuesto -->
+                <h1 class="huge-title">New Way Of Living</h1>
+
+                <!-- Tarjeta flotante inferior izquierda: Find The Perfect Place -->
+                <div class="floating-card left-card">
+                    <h3>Find The Perfect Place</h3>
+                    <p>Nuestra plataforma te conecta con extraordinarios horizontes marinos. Comienza tu viaje.</p>
+                    <div class="stats-pill">
+                        <div>
+                            <span class="num">10K+</span>
+                            <span class="txt">Properties</span>
+                        </div>
+                        <div class="pill-avatars">
+                            <i class="fa-solid fa-water"></i>
+                            <i class="fa-solid fa-fish"></i>
+                        </div>
+                        <div class="arrow-circle"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta flotante inferior derecha: Lunar Oasis Villa -->
+                <div class="floating-card right-card">
+                    <div class="card-top-row">
+                        <div>
+                            <h4>Santuario Azul</h4>
+                            <p><i class="fa-solid fa-location-dot"></i> Costa Principal, Océano Pacífico</p>
+                        </div>
+                        <div class="arrow-circle dark-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                    <p class="card-desc">Este santuario marino se integra fluidamente con las vistas del océano. Diseño arquitectónico innovador.</p>
+                    <div class="metrics-grid">
+                        <span><i class="fa-regular fa-square"></i> 695m²</span>
+                        <span><i class="fa-solid fa-compass"></i> 126m prof.</span>
+                        <span><i class="fa-solid fa-bed"></i> 3 zonas</span>
+                        <span><i class="fa-solid fa-bath"></i> 2 bahías</span>
+                    </div>
+                    <div class="card-footer-row">
+                        <div class="social-actions">
+                            <span><i class="fa-regular fa-heart"></i> 4.4K</span>
+                            <span><i class="fa-regular fa-bookmark"></i> 157</span>
+                            <span><i class="fa-solid fa-share-nodes"></i></span>
+                        </div>
+                        <div class="brand-badge"><i class="fa-solid fa-anchor"></i></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
     </div>
+
+    <!-- Pie de página exterior -->
+    <footer class="outer-footer">
+        <span>Like & Follow <i class="fa-regular fa-heart"></i></span>
+        <span class="swipe-action">Swipe &gt;&gt;</span>
+    </footer>
 
 </body>
 </html>
