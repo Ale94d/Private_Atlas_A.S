@@ -1,3 +1,9 @@
+/* Asegurar que la raíz del navegador sea totalmente abisal para que no aparezcan bordes blancos ni azules */
+html {
+    background-color: #050b14;
+    height: 100%;
+}
+
 /* Reseteo general */
 * {
     box-sizing: border-box;
@@ -6,11 +12,11 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Fondo principal: Imagen marina cubriendo TODA la pantalla sin bordes blancos */
+/* Fondo principal: Imagen marina cubriendo TODA la pantalla */
 body {
     min-height: 100vh;
     height: 100%;
-    background-color: #020617; /* Color base abisal para que jamás aparezca blanco */
+    background-color: #050b14;
     background-image: linear-gradient(rgba(2, 6, 23, 0.45), rgba(15, 23, 42, 0.6)), url('assets/background/marino.jpg');
     background-size: cover;
     background-position: center;
