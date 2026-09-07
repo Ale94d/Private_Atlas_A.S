@@ -248,7 +248,7 @@
 
     </div>
 
-    <!-- Script completo con almacenamiento de Moneda y Gastos -->
+    <!-- Script completo con la hora, la moneda y el almacenamiento -->
     <script>
         function updateRealtimeInfo() {
             const now = new Date();
@@ -303,9 +303,9 @@
             }
         }
 
-        // Gestión de Moneda con localStorage
         function changeCurrency() {
             const selector = document.getElementById('currency-selector');
+            if(!selector) return;
             const currency = selector.value;
             localStorage.setItem('private_atlas_currency', currency);
             updateBudgetCalculations();
@@ -333,19 +333,22 @@
             }
         }
 
-        // Cálculo matemático automático con la moneda seleccionada
         function updateBudgetCalculations() {
             const incomeInput = document.getElementById('total-income');
             const income = incomeInput ? parseFloat(incomeInput.value) || 0 : 0;
             const symbol = getCurrencySymbol();
 
-            document.getElementById('calc-50').textContent = `${symbol}${(income * 0.50).toLocaleString()}`;
-            document.getElementById('calc-30').textContent = `${symbol}${(income * 0.30).toLocaleString()}`;
-            document.getElementById('calc-20').textContent = `${symbol}${(income * 0.20).toLocaleString()}`;
-            document.getElementById('currency-symbol-icon').textContent = symbol;
+            const c50 = document.getElementById('calc-50');
+            const c30 = document.getElementById('calc-30');
+            const c20 = document.getElementById('calc-20');
+            const iconSymbol = document.getElementById('currency-symbol-icon');
+
+            if(c50) c50.textContent = `${symbol}${(income * 0.50).toLocaleString()}`;
+            if(c30) c30.textContent = `${symbol}${(income * 0.30).toLocaleString()}`;
+            if(c20) c20.textContent = `${symbol}${(income * 0.20).toLocaleString()}`;
+            if(iconSymbol) iconSymbol.textContent = symbol;
         }
 
-        // Gestión de Gastos con localStorage
         function getStoredExpenses() {
             try {
                 return JSON.parse(localStorage.getItem('private_atlas_expenses')) || [];
@@ -420,4 +423,3 @@
                         <div class="expense-info-main">
                             <b>${item.name}</b>
                             <small>${item.category}</small>
-                        </div>
