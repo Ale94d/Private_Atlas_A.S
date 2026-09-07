@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Atlas A.S | Life Planner Holográfico</title>
     <link rel="stylesheet" href="Style.css">
+    <!-- Tipografía moderna geométrica desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -89,15 +91,20 @@
 
         </main>
 
+        <!-- Tarjeta vertical orientada apaisada/girada como en la imagen de referencia -->
         <aside class="hologram-side-card">
             <div class="side-badge">
-                <div class="realtime-clock" id="live-clock">00:00:00</div>
-                <div class="realtime-date" id="live-date">Cargando fecha...</div>
+                <div class="side-badge-header">
+                    <i class="fa-solid fa-compass"></i>
+                    <span>Santuario Marino</span>
+                </div>
+                <div class="realtime-clock" id="live-clock">--:--:--</div>
+                <div class="realtime-date" id="live-date">Sincronizando...</div>
                 <div class="side-location">
                     <i class="fa-solid fa-location-dot"></i>
-                    <span id="live-location">Sector Abisal • Soacha</span>
+                    <span id="live-location">Soacha • Sector Abisal</span>
                 </div>
-                <small class="read-more-link">en vivo</small>
+                <small class="read-more-link">EN VIVO</small>
             </div>
         </aside>
 
