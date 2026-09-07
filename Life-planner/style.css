@@ -1,1 +1,62 @@
 
+/* =====================================
+   ESTILOS GENERALES Y VIDEO DE FONDO
+===================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background: transparent !important;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: #e2e8f0;
+}
+
+/* Estilo para que el video cubra toda la pantalla al fondo */
+.background-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -9999; /* Lo manda por detrás de todo */
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* Llena la pantalla sin deformar el video */
+    pointer-events: none; /* Evita que bloquee clics */
+}
+
+/* Contenedor del texto para que se lea bien sobre el video */
+.content-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3); /* Una ligera capa oscura opcional para que resalte el texto */
+}
+
+.content-container h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.content-container p {
+    font-size: 1.2rem;
+    color: #cbd5e1;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+}
