@@ -1,4 +1,4 @@
-/* Reseteo general y prevención de bordes blancos/azules */
+/* Style.css */
 html {
     background-color: #050b14;
     height: 100%;
@@ -11,7 +11,6 @@ html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Fondo general de pantalla completa con la imagen marina */
 body {
     min-height: 100vh;
     height: 100%;
@@ -29,7 +28,6 @@ body {
     padding: 20px;
 }
 
-/* Burbujas flotantes animadas */
 .bubbles-container {
     position: fixed;
     top: 0;
@@ -55,10 +53,9 @@ body {
     100% { transform: translateY(-105vh) scale(1.2); opacity: 0; }
 }
 
-/* Contenedor espacial tipo VisionOS */
 .spatial-viewport {
     width: 100%;
-    max-width: 1250px;
+    max-width: 1300px;
     display: flex;
     align-items: center;
     gap: 25px;
@@ -66,7 +63,6 @@ body {
     position: relative;
 }
 
-/* 1. Barra lateral flotante izquierda (Dock) */
 .floating-left-dock {
     background: rgba(15, 23, 42, 0.45);
     backdrop-filter: blur(18px);
@@ -100,7 +96,6 @@ body {
     box-shadow: 0 4px 15px rgba(255,255,255,0.3);
 }
 
-/* 2. Ventana central principal de cristal */
 .hologram-main-card {
     flex-grow: 1;
     background: rgba(15, 23, 42, 0.38);
@@ -161,7 +156,6 @@ body {
     line-height: 1.5;
 }
 
-/* Carrusel de tarjetas inferiores dentro de la ventana */
 .holo-cards-carousel {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -220,7 +214,6 @@ body {
     color: rgba(255, 255, 255, 0.4);
 }
 
-/* Pie de página con botones de acción */
 .holo-action-footer {
     display: flex;
     align-items: center;
@@ -275,11 +268,10 @@ body {
     background: rgba(255, 255, 255, 0.2);
 }
 
-/* 3. Tarjeta Lateral Derecha (Vertical con paisaje marino integrado) */
 .hologram-side-card {
-    width: 280px;
+    width: 290px;
     height: 520px;
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('assets/background/marino.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5)), url('assets/background/marino.jpg');
     background-size: cover;
     background-position: center;
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -290,38 +282,58 @@ body {
     justify-content: flex-end;
     box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     position: relative;
+    flex-shrink: 0;
 }
 
 .side-badge {
-    background: rgba(15, 23, 42, 0.6);
+    background: rgba(15, 23, 42, 0.65);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 12px 18px;
+    padding: 16px;
     border-radius: 24px;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 6px;
     color: #ffffff;
 }
 
-.side-badge i {
-    color: #fbbf24;
-    font-size: 12px;
-    margin-bottom: 2px;
+.realtime-clock {
+    font-size: 22px;
+    font-weight: 800;
+    color: #38bdf8;
+    letter-spacing: 0.5px;
 }
 
-.side-badge span {
+.realtime-date {
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
+    color: #e2e8f0;
+    text-transform: capitalize;
 }
 
-.side-badge small {
-    font-size: 10px;
+.side-location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
     color: #94a3b8;
+    margin-top: 4px;
 }
 
-/* Responsive para pantallas menores */
+.side-location i {
+    color: #f43f5e;
+}
+
+.read-more-link {
+    font-size: 10px;
+    color: #34d399;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 4px;
+    letter-spacing: 1px;
+}
+
 @media (max-width: 1024px) {
     .spatial-viewport {
         flex-direction: column;
@@ -334,7 +346,7 @@ body {
     }
     .hologram-side-card {
         width: 100%;
-        height: 300px;
+        height: 250px;
     }
     .holo-cards-carousel {
         grid-template-columns: repeat(2, 1fr);
