@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Atlas A.S | Life Planner Holográfico</title>
     <link rel="stylesheet" href="Style.css">
-    <!-- Tipografía moderna geométrica -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Burbujas animadas de fondo -->
     <div class="bubbles-container">
         <span class="bubble" style="left: 15%; width: 12px; height: 12px; animation-duration: 9s;"></span>
         <span class="bubble" style="left: 45%; width: 20px; height: 20px; animation-duration: 11s; animation-delay: 2s;"></span>
@@ -19,21 +17,18 @@
         <span class="bubble" style="left: 90%; width: 22px; height: 22px; animation-duration: 10s; animation-delay: 3s;"></span>
     </div>
 
-    <!-- Contenedor espacial tipo VisionOS -->
     <div class="spatial-viewport">
 
         <!-- Barra lateral flotante izquierda -->
         <nav class="floating-left-dock">
             <a href="#" class="dock-icon active" id="nav-home" title="Inicio" onclick="switchView('home')"><i class="fa-solid fa-house"></i></a>
             <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <!-- Botón de Finanzas con la Moneda -->
             <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></a>
             <a href="#" class="dock-icon" id="nav-help" title="Ayuda"><i class="fa-solid fa-circle-question"></i></a>
         </nav>
 
-        <!-- ================= VISTA 1: INICIO (PRINCIPAL) ================= -->
+        <!-- ================= VISTA 1: INICIO ================= -->
         <main class="hologram-main-card" id="view-home">
-            
             <div class="holo-header">
                 <i class="fa-solid fa-bars"></i>
                 <div class="holo-nav-links">
@@ -62,7 +57,7 @@
                     <div class="card-top-tag"><span>Finanzas</span><i class="fa-regular fa-heart"></i></div>
                     <div class="card-content-text">
                         <h4>Presupuesto Abisal</h4>
-                        <p><i class="fa-solid fa-wallet"></i> $4,500 USD Totales</p>
+                        <p><i class="fa-solid fa-wallet"></i> Control 50/30/20</p>
                     </div>
                     <span class="carousel-step">02</span>
                 </div>
@@ -92,11 +87,10 @@
                 <div class="footer-icon-pill"><i class="fa-solid fa-bookmark"></i></div>
                 <div class="footer-icon-pill"><i class="fa-solid fa-share-nodes"></i></div>
             </div>
-
         </main>
 
 
-        <!-- ================= VISTA 2: FINANZAS 50/30/20 ================= -->
+        <!-- ================= VISTA 2: FINANZAS 50/30/20 FUNCIONAL ================= -->
         <main class="hologram-main-card hidden-view" id="view-finance">
             
             <div class="holo-header">
@@ -113,46 +107,46 @@
 
             <div class="finance-layout-grid">
                 
-                <!-- Barra de Categorías Izquierda con la función selectCategory conectada -->
+                <!-- Botones de categoría izquierda -->
                 <div class="finance-categories-dock">
                     <div class="fin-cat-item active" onclick="selectCategory('50', this)" title="Necesidades (50%)">
                         <i class="fa-solid fa-house-chimney"></i>
                         <span>Necesidades (50%)</span>
+                        <small id="total-cat-50" style="font-size:10px; color:#38bdf8;">$0</small>
                     </div>
                     <div class="fin-cat-item" onclick="selectCategory('30', this)" title="Deseos (30%)">
                         <i class="fa-solid fa-gamepad"></i>
                         <span>Deseos (30%)</span>
+                        <small id="total-cat-30" style="font-size:10px; color:#38bdf8;">$0</small>
                     </div>
                     <div class="fin-cat-item" onclick="selectCategory('20', this)" title="Ahorro (20%)">
                         <i class="fa-solid fa-piggy-bank"></i>
                         <span>Ahorro (20%)</span>
-                    </div>
-                    <div class="fin-cat-item" onclick="selectCategory('20', this)" title="Inversión">
-                        <i class="fa-solid fa-chart-line"></i>
-                        <span>Inversiones</span>
+                        <small id="total-cat-20" style="font-size:10px; color:#38bdf8;">$0</small>
                     </div>
                 </div>
 
-                <!-- Tarjeta de Formulario y Control -->
+                <!-- Formulario y Resumen -->
                 <div class="finance-form-container">
                     <div class="plan-journey-title">
                         <h3>Control 50 / 30 / 20</h3>
-                        <p>Distribuye tus ingresos submarinos con precisión matemática y guarda tus registros.</p>
+                        <p>Ingresa tus gastos para calcular automáticamente los límites de tu presupuesto.</p>
                     </div>
 
-                    <div class="finance-input-group">
-                        <label>Ingreso Total Mensual (USD)</label>
-                        <div class="fin-input-box">
-                            <i class="fa-solid fa-dollar-sign"></i>
-                            <input type="number" id="total-income" placeholder="Ej: 4500" value="4500">
+                    <div class="finance-row-inputs">
+                        <div class="finance-input-group">
+                            <label>Ingreso Total Mensual (USD)</label>
+                            <div class="fin-input-box">
+                                <i class="fa-solid fa-dollar-sign"></i>
+                                <input type="number" id="total-income" placeholder="Ej: 3000" value="3000" oninput="updateBudgetLimits()">
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="finance-input-group">
-                        <label>Descripción del Gasto / Asignación</label>
-                        <div class="fin-input-box">
-                            <i class="fa-solid fa-pen-nib"></i>
-                            <input type="text" id="expense-name" placeholder="Ej: Mantenimiento de Cúpula / Alimentos">
+                        <div class="finance-input-group">
+                            <label>Descripción del Gasto</label>
+                            <div class="fin-input-box">
+                                <i class="fa-solid fa-pen-nib"></i>
+                                <input type="text" id="expense-name" placeholder="Ej: Comida / Alquiler">
+                            </div>
                         </div>
                     </div>
 
@@ -164,7 +158,7 @@
                                 <select id="expense-category">
                                     <option value="50">Necesidades (50%)</option>
                                     <option value="30">Deseos (30%)</option>
-                                    <option value="20">Ahorro/Deudas (20%)</option>
+                                    <option value="20">Ahorro/Inversión (20%)</option>
                                 </select>
                             </div>
                         </div>
@@ -173,7 +167,7 @@
                             <label>Monto Asignado ($)</label>
                             <div class="fin-input-box">
                                 <i class="fa-solid fa-coins"></i>
-                                <input type="number" id="expense-amount" placeholder="Ej: 500">
+                                <input type="number" id="expense-amount" placeholder="Ej: 50">
                             </div>
                         </div>
                     </div>
@@ -183,12 +177,12 @@
                             <i class="fa-solid fa-floppy-disk"></i> Guardar Gasto
                         </button>
                         <button class="holo-btn secondary-btn" onclick="completeBudget()">
-                            <i class="fa-solid fa-check-circle"></i> Completar Ciclo
+                            <i class="fa-solid fa-check-circle"></i> Ver Estado
                         </button>
                     </div>
 
-                    <div class="budget-feedback" id="budget-feedback-msg">
-                        💡 Ingresa un monto y haz clic en Guardar para registrar tus datos.
+                    <div class="budget-feedback" id="budget-feedback-msg" style="max-height: 80px; overflow-y: auto;">
+                        💡 Ingresa un gasto para sumarlo a tu distribución abisal.
                     </div>
                 </div>
 
@@ -197,7 +191,7 @@
         </main>
 
 
-        <!-- Tarjeta Lateral Derecha (Reloj en vivo) -->
+        <!-- Reloj lateral derecho -->
         <aside class="hologram-side-card">
             <div class="side-badge">
                 <div class="side-badge-header">
@@ -216,15 +210,15 @@
 
     </div>
 
-    <!-- Script completo con control de vistas, reloj y botones interactivos -->
     <script>
+        let expensesList = [];
+
         function updateRealtimeInfo() {
             const now = new Date();
             const clockElement = document.getElementById('live-clock');
             if (clockElement) {
                 clockElement.textContent = now.toLocaleTimeString('es-ES', { hour12: false });
             }
-
             const dateElement = document.getElementById('live-date');
             if (dateElement) {
                 const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
@@ -247,6 +241,7 @@
                 if(homeView) homeView.classList.add('hidden-view');
                 if(financeView) financeView.classList.remove('hidden-view');
                 if(btnFinance) btnFinance.classList.add('active');
+                updateBudgetLimits();
             } else {
                 if(financeView) financeView.classList.add('hidden-view');
                 if(homeView) homeView.classList.remove('hidden-view');
@@ -254,13 +249,11 @@
             }
         }
 
-        // Función para que los botones laterales cambien la categoría automáticamente
         function selectCategory(categoryValue, element) {
             const selectElement = document.getElementById('expense-category');
             if (selectElement) {
                 selectElement.value = categoryValue;
             }
-
             document.querySelectorAll('.fin-cat-item').forEach(item => {
                 item.classList.remove('active');
             });
@@ -269,18 +262,41 @@
             }
         }
 
+        function updateBudgetLimits() {
+            const income = parseFloat(document.getElementById('total-income').value) || 0;
+            const limit50 = income * 0.50;
+            const limit30 = income * 0.30;
+            const limit20 = income * 0.20;
+
+            // Calcular gastado actual por categoría
+            let sum50 = 0, sum30 = 0, sum20 = 0;
+            expensesList.forEach(exp => {
+                if(exp.cat === '50') sum50 += exp.amount;
+                if(exp.cat === '30') sum30 += exp.amount;
+                if(exp.cat === '20') sum20 += exp.amount;
+            });
+
+            document.getElementById('total-cat-50').textContent = `$${sum50} / $${limit50}`;
+            document.getElementById('total-cat-30').textContent = `$${sum30} / $${limit30}`;
+            document.getElementById('total-cat-20').textContent = `$${sum20} / $${limit20}`;
+        }
+
         function saveExpense() {
             const name = document.getElementById('expense-name').value;
-            const amount = document.getElementById('expense-amount').value;
+            const amount = parseFloat(document.getElementById('expense-amount').value);
+            const category = document.getElementById('expense-category').value;
             const feedback = document.getElementById('budget-feedback-msg');
 
-            if(!name || !amount) {
-                feedback.innerHTML = "⚠️ Por favor completa el nombre y el monto del gasto.";
+            if(!name || isNaN(amount)) {
+                feedback.innerHTML = "⚠️ Completa el nombre y un monto válido.";
                 feedback.style.color = "#f43f5e";
                 return;
             }
 
-            feedback.innerHTML = `✅ ¡Guardado con éxito! Gasto '${name}' por $${amount} registrado en tu presupuesto abisal.`;
+            expensesList.push({ name, amount, cat: category });
+            updateBudgetLimits();
+
+            feedback.innerHTML = `✅ Gasto '${name}' ($${amount}) guardado. Total de registros: ${expensesList.length}.`;
             feedback.style.color = "#34d399";
 
             document.getElementById('expense-name').value = '';
@@ -288,16 +304,19 @@
         }
 
         function completeBudget() {
-            const income = document.getElementById('total-income').value;
+            const income = parseFloat(document.getElementById('total-income').value) || 0;
+            let totalSpent = 0;
+            expensesList.forEach(exp => totalSpent += exp.amount);
+
             const feedback = document.getElementById('budget-feedback-msg');
-            
-            feedback.innerHTML = `🏆 ¡Ciclo de presupuesto completado para tus ingresos de $${income} USD! Distribución 50/30/20 validada.`;
+            feedback.innerHTML = `🏆 Ingreso: $${income} | Gastado: $${totalSpent}. Regla 50/30/20 activa en tu base.`;
             feedback.style.color = "#38bdf8";
         }
 
         document.addEventListener("DOMContentLoaded", () => {
             updateRealtimeInfo();
             setInterval(updateRealtimeInfo, 1000);
+            updateBudgetLimits();
         });
     </script>
 </body>
