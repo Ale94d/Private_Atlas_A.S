@@ -3,162 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Atlas A.S</title>
-    <link rel="stylesheet" href="Estilo.css">
+    <title>Private Atlas A.S - Life Planner Submarino</title>
+    <link rel="stylesheet" href="Style.css">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Video de fondo fijo -->
-    <div class="video-background">
-        <video autoplay muted loop playsinline>
-            <source src="VID-20260906-WA0000.mp4" type="video/mp4">
-            Tu navegador no soporta videos HTML5.
-        </video>
-        <div class="video-overlay"></div>
+    <!-- Fondo de Océano Profundo con Ruinas y Elementos Animados -->
+    <div class="ocean-background">
+        <div class="light-rays"></div>
+        <div class="ruins-silhouette"></div>
+        <div class="bubbles">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="sea-particles"></div>
     </div>
 
-    <div class="main-wrapper">
-        <header class="hero">
-            <div class="hero-card">
-                <img src="recursos/iconos/Logo.png" alt="Private Atlas A.S Logo" class="hero-logo" onerror="this.style.display='none';">
-            </div>
+    <!-- Botón flotante para volver atrás (La Casa) con animación -->
+    <a href="../indice.html" class="home-return-btn" title="Volver al Atlas Principal">
+        <i class="fa-solid fa-house"></i>
+    </a>
+
+    <div class="planner-wrapper">
+        <!-- Cabecera del Módulo -->
+        <header class="planner-header">
+            <h1 class="planner-title">Life Planner Submarino</h1>
+            <p class="planner-subtitle">"Tus memorias y finanzas bajo las mareas del tiempo"</p>
         </header>
 
-        <div class="container">
-            <!-- Sección Nosotros -->
-            <section class="top-editorial-section" id="nosotros">
-                <h2 class="top-subtitle">Private Atlas A.S</h2>
-                <div class="top-editorial-desc">
-                    <p>A partir de esta problemática nace PRIVATE ATLAS A.S., una propuesta que busca realizar un traslado de lo físico a lo digital de una forma interactiva. Nuestro objetivo es ofrecer a cada usuario un espacio en el que pueda registrar, organizar y conservar sus memorias y datos importantes de sus viajes.</p>
+        <!-- Contenedor de Secciones Principales -->
+        <div class="planner-grid">
+            
+            <!-- SECCIÓN 1: TAREAS Y CALENDARIO -->
+            <section class="planner-card">
+                <div class="card-title-bar">
+                    <h2><i class="fa-solid fa-anchor"></i> Bitácora de Tareas</h2>
+                </div>
+                <div class="form-control-group">
+                    <input type="text" id="taskInput" placeholder="Nueva tarea o inmersión...">
+                    <input type="date" id="taskDate">
+                    <button type="button" id="addTaskBtn" class="sub-btn">Añadir</button>
+                </div>
+                <div class="tasks-container">
+                    <ul id="taskList">
+                        <!-- Las tareas se inyectan dinámicamente -->
+                    </ul>
                 </div>
             </section>
 
-            <!-- Cuadrícula de imágenes -->
-            <div class="quad-images-container">
-                <div class="quad-image-card lightbox-trigger"><img src="recursos/iconos/53493.jpg" alt="Globo terráqueo"></div>
-                <div class="quad-image-card lightbox-trigger"><img src="recursos/iconos/53197.jpg" alt="Maletas"></div>
-                <div class="quad-image-card lightbox-trigger"><img src="recursos/iconos/53201.jpg" alt="Arte"></div>
-                <div class="quad-image-card lightbox-trigger"><img src="recursos/iconos/53508.jpg" alt="Mapa"></div>
-            </div>
-
-            <!-- Sección Propósito (Tabs) -->
-            <section class="tabs-container" id="proposito">
-                <div class="tabs-header">
-                    <button type="button" class="tab-btn active" onclick="switchTab('mision', this)">Misión</button>
-                    <button type="button" class="tab-btn" onclick="switchTab('vision', this)">Visión</button>
-                    <button type="button" class="tab-btn" onclick="switchTab('valores', this)">Valores</button>
+            <!-- SECCIÓN 2: FINANZAS Y MÉTODO 50/30/20 -->
+            <section class="planner-card">
+                <div class="card-title-bar">
+                    <h2><i class="fa-solid fa-coins"></i> Tesorería (50/30/20)</h2>
                 </div>
-
-                <div class="tab-content-panel">
-                    <div id="mision" class="tab-pane active">
-                        <div class="card-text">
-                            <h3>Misión</h3>
-                            <p>Desarrollar una plataforma digital eficiente e innovadora que permita a los usuarios plasmar de forma segura sus momentos más emblemáticos, planificar y gestionar sus viajes tanto nacionales como internacionales de manera organizada, segura y personalizada, integrando herramientas tecnológicas que optimicen la creación de itinerarios interactivos y mejoren la experiencia del usuario, garantizando la privacidad, la autonomía y la calidad en cada momento.</p>
-                        </div>
+                <div class="form-control-group finance-form">
+                    <input type="text" id="expenseDesc" placeholder="Descripción del gasto...">
+                    <input type="number" id="expenseAmount" placeholder="Valor ($)">
+                    <select id="expenseCategory">
+                        <option value="necesidades">Necesidades (50%)</option>
+                        <option value="deseos">Deseos (30%)</option>
+                        <option value="ahorro">Ahorro/Inversión (20%)</option>
+                    </select>
+                    <button type="button" id="addExpenseBtn" class="sub-btn">Registrar</button>
+                </div>
+                
+                <!-- Resumen de Distribución 50/30/20 -->
+                <div class="budget-summary">
+                    <div class="budget-box">
+                        <span>Necesidades (50%)</span>
+                        <strong id="totalNecesidades">$0</strong>
                     </div>
-
-                    <div id="vision" class="tab-pane">
-                        <div class="card-text">
-                            <h3>Visión</h3>
-                            <p>Para el año 2036 proyectamos convertirnos en la página web de viaje número uno para quienes buscan explorar el mundo con propósito. Aspiramos a ser líderes en diarios de ruta personalizados, buscamos mejorar la gestión de sus viajes y el seguimiento de sus momentos para que gocen de un viaje cómodo y seguro.</p>
-                        </div>
+                    <div class="budget-box">
+                        <span>Deseos (30%)</span>
+                        <strong id="totalDeseos">$0</strong>
                     </div>
-
-                    <div id="valores" class="tab-pane">
-                        <div class="card-text">
-                            <h3>Valores</h3>
-                            <p><strong>Responsabilidad:</strong> Nos comprometemos con total responsabilidad a dar soluciones eficientes a las problemáticas reales que puedan llegar a surgir en la comunidad de viajes mediante un adecuado desarrollo en nuestra página web.</p>
-                            <p><strong>Trabajo en equipo:</strong> Promovemos un ambiente de trabajo unificado que constantemente busca innovar sus técnicas de trabajo para una mejor eficiencia tanto laboral como en las relaciones personales de nuestro equipo.</p>
-                            <p><strong>Innovación:</strong> Empleamos herramientas digitales modernas según lo que cubra las necesidades del entorno, innovando de la mano con el avance tecnológico.</p>
-                            <p><strong>Transparencia:</strong> Promovemos la confianza con nuestros usuarios al ser claros y veraces con la información proporcionada tanto en nuestras redes de comunicación como en el sitio web.</p>
-                        </div>
+                    <div class="budget-box">
+                        <span>Ahorro (20%)</span>
+                        <strong id="totalAhorro">$0</strong>
                     </div>
                 </div>
-            </section>
 
-            <!-- Sección Colorimetría -->
-            <section class="seccion-card">
-                <h3>Colorimetría</h3>
-                <div class="seccion-media lightbox-trigger">
-                    <img src="recursos/iconos/equipo.jpg" alt="Colorimetría">
+                <div class="expenses-container">
+                    <ul id="expenseList">
+                        <!-- Los gastos se inyectan dinámicamente -->
+                    </ul>
                 </div>
             </section>
 
-            <!-- Sección Nuestro Equipo -->
-            <section class="seccion-card" id="equipo">
-                <h3>Nuestro Equipo</h3>
-                <div class="seccion-media lightbox-trigger">
-                    <img src="recursos/iconos/Postal.jpg" alt="Nuestro Equipo">
-                </div>
-                <p>Somos un grupo enfocado en unir el diseño editorial con la tecnología. Trabajamos juntos para transformar cada itinerario en una experiencia visual única e inolvidable.</p>
-            </section>
         </div>
-
-        <!-- Footer -->
-        <footer class="brand-bottom-section">
-            <div class="brand-bottom-container">
-                <h3 class="brand-logo-text">Private Atlas A.S</h3>
-                <nav class="footer-nav">
-                    <a href="#nosotros" class="footer-link">Nosotros</a>
-                    <a href="#proposito" class="footer-link">Propósito</a>
-                    <a href="#equipo" class="footer-link">Equipo</a>
-                </nav>
-                <p class="brand-slogan">"Tus recuerdos viajan contigo"</p>
-                <p class="copyright">© 2026 Private Atlas A.S. Todos los derechos reservados.</p>
-            </div>
-        </footer>
     </div>
-
-    <!-- Modal Lightbox -->
-    <div class="lightbox-modal" id="lightboxModal">
-        <img src="" alt="Vista ampliada">
-    </div>
-
-    <!-- Botón Subir -->
-    <button type="button" class="scroll-top-btn" id="scrollTopBtn" title="Volver arriba">↑</button>
 
     <script>
-        function switchTab(targetId, btnElement) {
-            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        // --- LÓGICA DE TAREAS ---
+        const taskInput = document.getElementById('taskInput');
+        const taskDate = document.getElementById('taskDate');
+        const addTaskBtn = document.getElementById('addTaskBtn');
+        const taskList = document.getElementById('taskList');
 
-            const targetPane = document.getElementById(targetId);
-            if (targetPane) {
-                targetPane.classList.add('active');
-            }
-            btnElement.classList.add('active');
+        addTaskBtn.addEventListener('click', () => {
+            const text = taskInput.value.trim();
+            const date = taskDate.value;
+            if(!text) return;
+
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <div class="task-info">
+                    <span class="t-text">${text}</span>
+                    <span class="t-date"><i class="fa-regular fa-calendar"></i> ${date || 'Sin fecha'}</span>
+                </div>
+                <div class="task-actions">
+                    <button class="complete-btn" onclick="toggleTask(this)"><i class="fa-solid fa-check"></i></button>
+                    <button class="delete-btn" onclick="deleteItem(this)"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `;
+            taskList.appendChild(li);
+            taskInput.value = '';
+            taskDate.value = '';
+        });
+
+        function toggleTask(btn) {
+            const li = btn.closest('li');
+            li.classList.toggle('completed');
         }
 
-        const scrollTopBtn = document.getElementById('scrollTopBtn');
-        window.addEventListener('scroll', function () {
-            if (window.scrollY > 200) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
+        function deleteItem(btn) {
+            btn.closest('li').remove();
+            updateBudget();
+        }
+
+        // --- LÓGICA DE FINANZAS 50/30/20 ---
+        const expenseDesc = document.getElementById('expenseDesc');
+        const expenseAmount = document.getElementById('expenseAmount');
+        const expenseCategory = document.getElementById('expenseCategory');
+        const addExpenseBtn = document.getElementById('addExpenseBtn');
+        const expenseList = document.getElementById('expenseList');
+
+        let categoryTotals = { necesidades: 0, deseos: 0, ahorro: 0 };
+
+        addExpenseBtn.addEventListener('click', () => {
+            const desc = expenseDesc.value.trim();
+            const amount = parseFloat(expenseAmount.value);
+            const cat = expenseCategory.value;
+
+            if(!desc || isNaN(amount) || amount <= 0) return;
+
+            categoryTotals[cat] += amount;
+
+            const li = document.createElement('li');
+            li.dataset.category = cat;
+            li.dataset.amount = amount;
+            li.innerHTML = `
+                <div class="expense-info">
+                    <span><strong>${desc}</strong> (${cat.toUpperCase()})</span>
+                    <span class="exp-val">$${amount.toLocaleString()}</span>
+                </div>
+                <button class="delete-btn" onclick="removeExpense(this)"><i class="fa-solid fa-trash"></i></button>
+            `;
+            expenseList.appendChild(li);
+
+            expenseDesc.value = '';
+            expenseAmount.value = '';
+            updateBudget();
         });
 
-        scrollTopBtn.addEventListener('click', function () {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        const lightboxModal = document.getElementById('lightboxModal');
-        const modalImg = lightboxModal.querySelector('img');
-        const triggers = document.querySelectorAll('.lightbox-trigger');
-
-        triggers.forEach(trigger => {
-            trigger.addEventListener('click', function () {
-                const img = this.querySelector('img');
-                if (img && modalImg) {
-                    modalImg.src = img.src;
-                    lightboxModal.style.display = 'flex';
-                }
+        function updateBudget() {
+            categoryTotals = { necesidades: 0, deseos: 0, ahorro: 0 };
+            document.querySelectorAll('#expenseList li').forEach(item => {
+                const cat = item.dataset.category;
+                const amt = parseFloat(item.dataset.amount);
+                categoryTotals[cat] += amt;
             });
-        });
 
-        lightboxModal.addEventListener('click', function () {
-            lightboxModal.style.display = 'none';
-        });
+            document.getElementById('totalNecesidades').innerText = `$${categoryTotals.necesidades.toLocaleString()}`;
+            document.getElementById('totalDeseos').innerText = `$${categoryTotals.deseos.toLocaleString()}`;
+            document.getElementById('totalAhorro').innerText = `$${categoryTotals.ahorro.toLocaleString()}`;
+        }
     </script>
 </body>
 </html>
