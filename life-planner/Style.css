@@ -109,7 +109,7 @@ body {
     font-weight: 300;
 }
 
-/* --- CUADRÍCULA DE DOS COLUMNAS (Estilo Referencia) --- */
+/* --- CUADRÍCULA DE DOS COLUMNAS --- */
 .dashboard-grid {
     width: 100%;
     display: grid;
