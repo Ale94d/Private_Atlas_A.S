@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Atlas A.S | Life Planner Holográfico</title>
-    <!-- Asegúrate de que el nombre del archivo CSS coincida exactamente -->
     <link rel="stylesheet" href="Style.css">
+    <!-- Tipografía moderna geométrica -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -26,6 +26,7 @@
         <nav class="floating-left-dock">
             <a href="#" class="dock-icon active" id="nav-home" title="Inicio" onclick="switchView('home')"><i class="fa-solid fa-house"></i></a>
             <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <!-- Botón de Finanzas con la Moneda -->
             <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></a>
             <a href="#" class="dock-icon" id="nav-help" title="Ayuda"><i class="fa-solid fa-circle-question"></i></a>
         </nav>
@@ -112,21 +113,21 @@
 
             <div class="finance-layout-grid">
                 
-                <!-- Barra de Categorías Izquierda -->
+                <!-- Barra de Categorías Izquierda con la función selectCategory conectada -->
                 <div class="finance-categories-dock">
-                    <div class="fin-cat-item active" title="Necesidades (50%)">
+                    <div class="fin-cat-item active" onclick="selectCategory('50', this)" title="Necesidades (50%)">
                         <i class="fa-solid fa-house-chimney"></i>
                         <span>Necesidades (50%)</span>
                     </div>
-                    <div class="fin-cat-item" title="Deseos (30%)">
+                    <div class="fin-cat-item" onclick="selectCategory('30', this)" title="Deseos (30%)">
                         <i class="fa-solid fa-gamepad"></i>
                         <span>Deseos (30%)</span>
                     </div>
-                    <div class="fin-cat-item" title="Ahorro (20%)">
+                    <div class="fin-cat-item" onclick="selectCategory('20', this)" title="Ahorro (20%)">
                         <i class="fa-solid fa-piggy-bank"></i>
                         <span>Ahorro (20%)</span>
                     </div>
-                    <div class="fin-cat-item" title="Inversión">
+                    <div class="fin-cat-item" onclick="selectCategory('20', this)" title="Inversión">
                         <i class="fa-solid fa-chart-line"></i>
                         <span>Inversiones</span>
                     </div>
@@ -196,7 +197,7 @@
         </main>
 
 
-        <!-- Tarjeta Lateral Derecha -->
+        <!-- Tarjeta Lateral Derecha (Reloj en vivo) -->
         <aside class="hologram-side-card">
             <div class="side-badge">
                 <div class="side-badge-header">
@@ -215,6 +216,7 @@
 
     </div>
 
+    <!-- Script completo con control de vistas, reloj y botones interactivos -->
     <script>
         function updateRealtimeInfo() {
             const now = new Date();
@@ -237,18 +239,33 @@
             const btnSearch = document.getElementById('nav-search');
             const btnFinance = document.getElementById('nav-finance');
 
-            btnHome.classList.remove('active');
-            btnSearch.classList.remove('active');
-            btnFinance.classList.remove('active');
+            if(btnHome) btnHome.classList.remove('active');
+            if(btnSearch) btnSearch.classList.remove('active');
+            if(btnFinance) btnFinance.classList.remove('active');
 
             if (viewName === 'finance') {
-                homeView.classList.add('hidden-view');
-                financeView.classList.remove('hidden-view');
-                btnFinance.classList.add('active');
+                if(homeView) homeView.classList.add('hidden-view');
+                if(financeView) financeView.classList.remove('hidden-view');
+                if(btnFinance) btnFinance.classList.add('active');
             } else {
-                financeView.classList.add('hidden-view');
-                homeView.classList.remove('hidden-view');
-                btnHome.classList.add('active');
+                if(financeView) financeView.classList.add('hidden-view');
+                if(homeView) homeView.classList.remove('hidden-view');
+                if(btnHome) btnHome.classList.add('active');
+            }
+        }
+
+        // Función para que los botones laterales cambien la categoría automáticamente
+        function selectCategory(categoryValue, element) {
+            const selectElement = document.getElementById('expense-category');
+            if (selectElement) {
+                selectElement.value = categoryValue;
+            }
+
+            document.querySelectorAll('.fin-cat-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            if (element) {
+                element.classList.add('active');
             }
         }
 
