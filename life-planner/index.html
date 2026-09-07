@@ -3,132 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Atlas A.S | Life Planner Submarino</title>
+    <title>Private Atlas A.S | Life Planner Holográfico</title>
     <link rel="stylesheet" href="Style.css">
     <!-- Iconos de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Efecto de burbujas flotantes de fondo -->
+    <!-- Burbujas animadas de fondo -->
     <div class="bubbles-container">
-        <span class="bubble" style="left: 10%; width: 15px; height: 15px; animation-duration: 8s; animation-delay: 0s;"></span>
-        <span class="bubble" style="left: 25%; width: 25px; height: 25px; animation-duration: 12s; animation-delay: 2s;"></span>
-        <span class="bubble" style="left: 40%; width: 10px; height: 10px; animation-duration: 6s; animation-delay: 1s;"></span>
-        <span class="bubble" style="left: 65%; width: 20px; height: 20px; animation-duration: 10s; animation-delay: 4s;"></span>
-        <span class="bubble" style="left: 80%; width: 12px; height: 12px; animation-duration: 7s; animation-delay: 3s;"></span>
-        <span class="bubble" style="left: 90%; width: 22px; height: 22px; animation-duration: 11s; animation-delay: 1.5s;"></span>
+        <span class="bubble" style="left: 15%; width: 12px; height: 12px; animation-duration: 9s;"></span>
+        <span class="bubble" style="left: 45%; width: 20px; height: 20px; animation-duration: 11s; animation-delay: 2s;"></span>
+        <span class="bubble" style="left: 75%; width: 15px; height: 15px; animation-duration: 7s; animation-delay: 1s;"></span>
+        <span class="bubble" style="left: 90%; width: 22px; height: 22px; animation-duration: 10s; animation-delay: 3s;"></span>
     </div>
 
-    <!-- Cabecera flotante superior -->
-    <header class="floating-header">
-        <span class="brand-title">PRIVATE ATLAS A.S</span>
-        <div class="header-status">
-            <span class="status-pill"><i class="fa-solid fa-water"></i> Ruinas Sumergidas</span>
-            <span class="status-pill"><i class="fa-solid fa-shield-halved"></i> Modo Abisal</span>
-        </div>
-        <span class="workspace-name">LIFE PLANNER</span>
-    </header>
+    <!-- Contenedor general al estilo VisionOS espacial -->
+    <div class="spatial-viewport">
 
-    <!-- Contenedor principal de pantalla completa -->
-    <main class="fullscreen-workspace">
-
-        <!-- Barra lateral de navegación flotante semi-transparente -->
-        <nav class="glass-sidebar">
-            <a href="#" class="nav-icon active" title="Inicio"><i class="fa-solid fa-house"></i></a>
-            <a href="#" class="nav-icon" title="Tareas y Fechas"><i class="fa-solid fa-calendar-check"></i></a>
-            <a href="#" class="nav-icon" title="Finanzas 50/30/20"><i class="fa-solid fa-wallet"></i></a>
-            <a href="#" class="nav-icon" title="Ruinas & Ecosistema"><i class="fa-solid fa-landmark"></i></a>
-            <div class="sidebar-spacer"></div>
-            <a href="#" class="nav-icon user-avatar" title="Perfil"><i class="fa-solid fa-user-astronaut"></i></a>
-            <a href="#" class="nav-icon" title="Ajustes"><i class="fa-solid fa-gear"></i></a>
+        <!-- 1. Barra lateral flotante izquierda -->
+        <nav class="floating-left-dock">
+            <a href="#" class="dock-icon active"><i class="fa-solid fa-house"></i></a>
+            <a href="#" class="dock-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="#" class="dock-icon"><i class="fa-solid fa-chart-pie"></i></a>
+            <a href="#" class="dock-icon"><i class="fa-solid fa-circle-question"></i></a>
         </nav>
 
-        <!-- Área central con título gigante y ventanas flotantes organizadas -->
-        <div class="content-grid">
+        <!-- 2. Ventana de Cristal Principal (Centro) -->
+        <main class="hologram-main-card">
+            
+            <!-- Cabecera de la ventana principal -->
+            <div class="holo-header">
+                <i class="fa-solid fa-bars"></i>
+                <div class="holo-nav-links">
+                    <span>Discover</span>
+                    <span>Planner</span>
+                    <div class="user-avatar-small"><i class="fa-solid fa-user-astronaut"></i></div>
+                </div>
+            </div>
 
-            <!-- Título central gigante inspirado en la referencia -->
-            <h1 class="hero-huge-title">Abyssal Sanctuary</h1>
+            <!-- Título y descripción principal -->
+            <div class="holo-intro">
+                <h2>Get ready to organize<br>your abyssal life!</h2>
+                <p>Gestiona tus tareas submarinas, controla tu presupuesto 50/30/20 y explora santuarios marinos con claridad absoluta.</p>
+            </div>
 
-            <!-- Fila de ventanas flotantes semi-transparentes -->
-            <div class="windows-container">
-
-                <!-- Ventana 1: Tareas, Fechas y Completadas -->
-                <div class="glass-window task-window">
-                    <div class="window-header">
-                        <h3><i class="fa-solid fa-list-check"></i> Tareas Submarinas</h3>
-                        <span class="badge-date"><i class="fa-regular fa-calendar"></i> Hoy</span>
+            <!-- Carrusel de tarjetas / Módulos de contenido -->
+            <div class="holo-cards-carousel">
+                
+                <!-- Tarjeta 1: Tareas -->
+                <div class="carousel-card active-card">
+                    <div class="card-top-tag"><span>Tareas Activas</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-content-text">
+                        <h4>Mantenimiento de Coral</h4>
+                        <p><i class="fa-solid fa-calendar-days"></i> 06 Sep • Completado</p>
                     </div>
-                    <div class="task-list">
-                        <div class="task-item completed">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <div>
-                                <p>Mantenimiento del escudo de coral</p>
-                                <small>Completado • Fecha: 06 Sep</small>
-                            </div>
-                        </div>
-                        <div class="task-item pending">
-                            <i class="fa-regular fa-circle"></i>
-                            <div>
-                                <p>Explorar sector ruinas antiguas</p>
-                                <small>Pendiente • Vence: 08 Sep</small>
-                            </div>
-                        </div>
-                        <div class="task-item pending">
-                            <i class="fa-regular fa-circle"></i>
-                            <div>
-                                <p>Calibrar sensores de presión abisal</p>
-                                <small>Pendiente • Vence: 10 Sep</small>
-                            </div>
-                        </div>
-                    </div>
+                    <span class="carousel-step">01</span>
                 </div>
 
-                <!-- Ventana 2: Finanzas & Método 50/30/20 -->
-                <div class="glass-window finance-window">
-                    <div class="window-header">
-                        <h3><i class="fa-solid fa-coins"></i> Gastos & Método 50/30/20</h3>
-                        <span class="badge-budget">$4,500 USD</span>
+                <!-- Tarjeta 2: Finanzas -->
+                <div class="carousel-card">
+                    <div class="card-top-tag"><span>Finanzas 50/30/20</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-content-text">
+                        <h4>Presupuesto Abisal</h4>
+                        <p><i class="fa-solid fa-wallet"></i> $4,500 USD Totales</p>
                     </div>
-                    <p class="window-desc">Distribución inteligente del tesoro sumergido para mantener el equilibrio financiero.</p>
-                    
-                    <div class="budget-bars">
-                        <div class="budget-row">
-                            <span>Necesidades (50%)</span>
-                            <strong>$2,250</strong>
-                        </div>
-                        <div class="progress-bar"><div class="fill" style="width: 50%; background: #38bdf8;"></div></div>
+                    <span class="carousel-step">02</span>
+                </div>
 
-                        <div class="budget-row">
-                            <span>Deseos / Ocio (30%)</span>
-                            <strong>$1,350</strong>
-                        </div>
-                        <div class="progress-bar"><div class="fill" style="width: 30%; background: #818cf8;"></div></div>
-
-                        <div class="budget-row">
-                            <span>Ahorro / Fondo (20%)</span>
-                            <strong>$900</strong>
-                        </div>
-                        <div class="progress-bar"><div class="fill" style="width: 20%; background: #34d399;"></div></div>
+                <!-- Tarjeta 3: Ruinas -->
+                <div class="carousel-card">
+                    <div class="card-top-tag"><span>Exploración</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-content-text">
+                        <h4>Santuario Antiguo</h4>
+                        <p><i class="fa-solid fa-location-dot"></i> Sector 7</p>
                     </div>
+                    <span class="carousel-step">03</span>
+                </div>
 
-                    <div class="finance-footer">
-                        <span><i class="fa-solid fa-tag"></i> Categoría: Operaciones</span>
-                        <div class="mini-icon-btn"><i class="fa-solid fa-arrow-right"></i></div>
+                <!-- Tarjeta 4: Ajustes -->
+                <div class="carousel-card">
+                    <div class="card-top-tag"><span>Sistema</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-content-text">
+                        <h4>Filtros de Presión</h4>
+                        <p><i class="fa-solid fa-shield"></i> Modo Óptimo</p>
                     </div>
+                    <span class="carousel-step">04</span>
                 </div>
 
             </div>
 
-        </div>
+            <!-- Barra de acciones inferiores dentro de la ventana -->
+            <div class="holo-action-footer">
+                <button class="holo-btn primary-btn">Get Started</button>
+                <button class="holo-btn secondary-btn">Contact Us</button>
+                <div class="footer-icon-pill"><i class="fa-solid fa-bookmark"></i></div>
+                <div class="footer-icon-pill"><i class="fa-solid fa-share-nodes"></i></div>
+            </div>
 
-    </main>
+        </main>
 
-    <!-- Pie de página flotante inferior -->
-    <footer class="floating-footer">
-        <span class="footer-note"><i class="fa-regular fa-heart"></i> Life Planner • Fondo Submarino Activo</span>
-        <span class="swipe-indicator">Deslizar Abismo &gt;&gt;</span>
-    </footer>
+        <!-- 3. Tarjeta Lateral Derecha (Vertical / Escenario Abisal) -->
+        <aside class="hologram-side-card">
+            <div class="side-badge">
+                <i class="fa-solid fa-star"></i>
+                <span>Abyssal Trench</span>
+                <small>read more</small>
+            </div>
+        </aside>
+
+    </div>
 
 </body>
 </html>
