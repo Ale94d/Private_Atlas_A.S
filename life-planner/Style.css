@@ -8,7 +8,7 @@ html {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Outfit', sans-serif; /* Tipografía moderna y limpia */
+    font-family: 'Outfit', sans-serif;
 }
 
 body {
@@ -267,7 +267,7 @@ body {
     background: rgba(255, 255, 255, 0.2);
 }
 
-/* Tarjeta lateral vertical con orientación apaisada girada y diseño limpio */
+/* Tarjeta lateral derecha limpia, vertical y sin giros molestos */
 .hologram-side-card {
     width: 290px;
     height: 520px;
@@ -279,26 +279,18 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Posiciona la placa de info abajo como en la referencia */
+    justify-content: flex-end;
     box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     position: relative;
     flex-shrink: 0;
-    /* Rotación de diseño 3D horizontal/apaisado simulado en tarjeta vertical */
-    transform: perspective(1000px) rotateY(-12deg) rotateX(4deg);
-    transform-style: preserve-3d;
-    transition: transform 0.4s ease;
 }
 
-.hologram-side-card:hover {
-    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
-}
-
-/* Placa interior de cristal translúcida */
+/* Placa interior translúcida perfectamente alineada */
 .side-badge {
-    background: rgba(10, 15, 30, 0.72);
+    background: rgba(10, 15, 30, 0.75);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     padding: 16px;
     border-radius: 22px;
     display: flex;
@@ -371,7 +363,6 @@ body {
     .hologram-side-card {
         width: 100%;
         height: 280px;
-        transform: none;
     }
     .holo-cards-carousel {
         grid-template-columns: repeat(2, 1fr);
