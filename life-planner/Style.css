@@ -1,8 +1,6 @@
-/* Style.css */
-html {
-    background-color: #050b14;
-    height: 100%;
-}
+/* ==========================================
+   PRIVATE ATLAS A.S - ESTILOS HOLOGRÁFICOS V2
+   ================================---------- */
 
 * {
     box-sizing: border-box;
@@ -12,359 +10,459 @@ html {
 }
 
 body {
+    background-color: #030b18;
+    background-image: radial-gradient(circle at 50% 30%, #081b33 0%, #02060d 100%);
+    color: #ffffff;
     min-height: 100vh;
-    height: 100%;
-    background-color: #050b14;
-    background-image: linear-gradient(rgba(2, 6, 23, 0.4), rgba(15, 23, 42, 0.65)), url('assets/background/marino.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #f8fafc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow-x: hidden;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.bubbles-container {
+/* Capa de atmósfera submarina sutil */
+.abyssal-bg-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background: linear-gradient(180deg, rgba(0, 150, 255, 0.03) 0%, rgba(0, 10, 30, 0.4) 100%);
     pointer-events: none;
     z-index: 1;
 }
 
+/* Burbujas animadas mejoradas */
+.bubbles-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+}
+
 .bubble {
     position: absolute;
-    bottom: -30px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    bottom: -50px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(100, 200, 255, 0.05));
     border-radius: 50%;
-    animation: riseUp linear infinite;
+    box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.3), 0 0 8px rgba(0, 180, 255, 0.2);
+    animation: riseBubble linear infinite;
 }
 
-@keyframes riseUp {
-    0% { transform: translateY(0) scale(1); opacity: 0; }
-    20% { opacity: 0.7; }
-    100% { transform: translateY(-105vh) scale(1.2); opacity: 0; }
+@keyframes riseBubble {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.7;
+    }
+    80% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(-105vh) scale(1.2);
+        opacity: 0;
+    }
 }
 
+/* Contenedor tipo VisionOS */
 .spatial-viewport {
-    width: 100%;
-    max-width: 1300px;
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    z-index: 10;
     position: relative;
+    z-index: 5;
+    display: flex;
+    gap: 20px;
+    max-width: 1250px;
+    width: 95%;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
+/* Barra lateral flotante izquierda */
 .floating-left-dock {
-    background: rgba(15, 23, 42, 0.45);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 40px;
+    background: rgba(10, 25, 45, 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 30px;
     padding: 16px 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    gap: 18px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    animation: floatDock 6s ease-in-out infinite;
+}
+
+@keyframes floatDock {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
 .dock-icon {
     width: 45px;
     height: 45px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    color: #94a3b8;
-    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
-    transition: all 0.3s ease;
 }
 
 .dock-icon:hover, .dock-icon.active {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #0f172a;
-    box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(0, 162, 255, 0.4);
+    transform: scale(1.08);
 }
 
+/* Ventana de Cristal Principal */
 .hologram-main-card {
-    flex-grow: 1;
-    background: rgba(15, 23, 42, 0.38);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 36px;
+    flex: 1;
+    background: rgba(15, 32, 58, 0.45);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 28px;
     padding: 35px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 1px 3px rgba(255, 255, 255, 0.25);
+    position: relative;
+    overflow: hidden;
 }
 
+.hologram-main-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+    animation: glassShine 8s linear infinite;
+}
+
+@keyframes glassShine {
+    0% { left: -100%; }
+    20% { left: 100%; }
+    100% { left: 100%; }
+}
+
+/* Cabecera interna */
 .holo-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
-    color: #cbd5e1;
-    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.holo-header i.menu-toggle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.holo-header i.menu-toggle:hover {
+    color: #00a2ff;
 }
 
 .holo-nav-links {
     display: flex;
     align-items: center;
     gap: 20px;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 0.95srem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.nav-item-hover {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.nav-item-hover:hover {
+    color: #00a2ff;
+    text-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
 }
 
 .user-avatar-small {
-    width: 36px;
-    height: 36px;
-    background: rgba(255, 255, 255, 0.15);
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #38bdf8;
+    color: #00a2ff;
+    box-shadow: 0 0 10px rgba(0, 162, 255, 0.2);
 }
 
+/* Intro Text */
 .holo-intro {
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
 .holo-intro h2 {
-    font-size: 38px;
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: -0.5px;
+    font-size: 2.3rem;
+    font-weight: 700;
     line-height: 1.2;
     margin-bottom: 12px;
+    background: linear-gradient(135deg, #ffffff 30%, #a0d8ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .holo-intro p {
-    font-size: 13px;
-    color: #94a3b8;
-    max-width: 550px;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 600px;
     line-height: 1.5;
 }
 
+/* Tarjetas Carrusel de Tareas/Finanzas */
 .holo-cards-carousel {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 15px;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
 .carousel-card {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(25, 45, 75, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
-    padding: 16px;
-    height: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.3s ease;
+    padding: 20px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
+    backdrop-filter: blur(10px);
 }
 
 .carousel-card:hover, .carousel-card.active-card {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(56, 189, 248, 0.5);
-    transform: translateY(-4px);
+    background: rgba(30, 60, 100, 0.55);
+    border-color: rgba(0, 162, 255, 0.4);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 162, 255, 0.2);
 }
 
 .card-top-tag {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 10px;
-    font-weight: 700;
-    color: #94a3b8;
+    font-size: 0.75rem;
+    font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 15px;
 }
 
 .card-top-tag i {
-    color: #f43f5e;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.3s;
+}
+
+.carousel-card:hover .card-top-tag i {
+    color: #ff4757;
 }
 
 .card-content-text h4 {
-    font-size: 13px;
-    font-weight: 700;
-    color: #f8fafc;
-    margin-bottom: 4px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #ffffff;
 }
 
 .card-content-text p {
-    font-size: 11px;
-    color: #cbd5e1;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .carousel-step {
-    font-size: 12px;
-    font-weight: 800;
-    color: rgba(255, 255, 255, 0.4);
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.25);
 }
 
+/* Footer de acciones */
 .holo-action-footer {
     display: flex;
     align-items: center;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .holo-btn {
-    border: none;
-    padding: 12px 28px;
-    border-radius: 30px;
-    font-weight: 700;
-    font-size: 13px;
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    border: none;
 }
 
 .primary-btn {
-    background: rgba(255, 255, 255, 0.9);
-    color: #0f172a;
-    box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+    background: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
 }
 
 .primary-btn:hover {
-    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 114, 255, 0.6);
 }
 
 .secondary-btn {
-    background: transparent;
-    color: #cbd5e1;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .secondary-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
 }
 
 .footer-icon-pill {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #cbd5e1;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.3s;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .footer-icon-pill:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.18);
+    color: #00a2ff;
+    transform: scale(1.05);
 }
 
-/* Tarjeta lateral derecha limpia, vertical y sin giros molestos */
+/* Tarjeta Lateral Derecha (Widget en vivo) */
 .hologram-side-card {
-    width: 290px;
-    height: 520px;
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('assets/background/marino.jpg');
-    background-size: cover;
-    background-position: center;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 36px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-    position: relative;
+    width: 260px;
     flex-shrink: 0;
 }
 
-/* Placa interior translúcida perfectamente alineada */
 .side-badge {
-    background: rgba(10, 15, 30, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 16px;
-    border-radius: 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    color: #ffffff;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    background: rgba(15, 32, 58, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 3px rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
 .side-badge-header {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 11px;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.8rem;
     font-weight: 600;
-    color: #38bdf8;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 2px;
+    letter-spacing: 1px;
+    color: #00a2ff;
+    margin-bottom: 15px;
 }
 
 .realtime-clock {
-    font-size: 24px;
-    font-weight: 700;
-    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 800;
     letter-spacing: 1px;
+    margin-bottom: 5px;
+    background: linear-gradient(135deg, #ffffff 20%, #70c2ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .realtime-date {
-    font-size: 12px;
-    font-weight: 500;
-    color: #cbd5e1;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 20px;
     text-transform: capitalize;
 }
 
 .side-location {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
-    font-size: 11px;
-    color: #94a3b8;
-    margin-top: 4px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 6px;
+    margin-bottom: 15px;
 }
 
 .side-location i {
-    color: #f43f5e;
+    color: #ff4757;
 }
 
 .read-more-link {
-    font-size: 9px;
-    color: #34d399;
+    font-size: 0.7rem;
     font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 1.5px;
-    margin-top: 2px;
+    color: #00ffcc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
 
-@media (max-width: 1024px) {
+.pulsing-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #00ffcc;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ffcc;
+    animation: pulseGlow 1.5s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(0.95); opacity: 0.8; box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.7); }
+    70% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 6px rgba(0, 255, 204, 0); }
+    100% { transform: scale(0.95); opacity: 0.8; box-shadow: 0 0 0 0 rgba(0, 255, 204, 0); }
+}
+
+/* Responsividad básica para pantallas pequeñas */
+@media (max-width: 900px) {
     .spatial-viewport {
         flex-direction: column;
+    }
+    .hologram-side-card {
+        width: 100%;
     }
     .floating-left-dock {
         flex-direction: row;
         width: 100%;
-        justify-content: space-around;
-        border-radius: 30px;
-    }
-    .hologram-side-card {
-        width: 100%;
-        height: 280px;
-    }
-    .holo-cards-carousel {
-        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
     }
 }
