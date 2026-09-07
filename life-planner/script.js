@@ -1,4 +1,18 @@
-// Script principal para Private Atlas A.S - Planificador de Vida
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("Private Atlas A.S cargado correctamente.");
-});
+/* js/script.js */
+function updateRealtimeInfo() {
+    const now = new Date();
+    
+    const clockElement = document.getElementById('live-clock');
+    if (clockElement) {
+        clockElement.textContent = now.toLocaleTimeString('es-ES');
+    }
+
+    const dateElement = document.getElementById('live-date');
+    if (dateElement) {
+        const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
+        dateElement.textContent = now.toLocaleDateString('es-ES', options);
+    }
+}
+
+setInterval(updateRealtimeInfo, 1000);
+updateRealtimeInfo();
