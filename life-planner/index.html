@@ -24,14 +24,15 @@
 
         <!-- Barra lateral flotante izquierda -->
         <nav class="floating-left-dock">
-            <a href="#" class="dock-icon active" title="Inicio"><i class="fa-solid fa-house"></i></a>
-            <a href="#" class="dock-icon" title="Buscar"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="#" class="dock-icon" title="Finanzas"><i class="fa-solid fa-chart-pie"></i></a>
-            <a href="#" class="dock-icon" title="Ayuda"><i class="fa-solid fa-circle-question"></i></a>
+            <a href="#" class="dock-icon active" id="nav-home" title="Inicio" onclick="switchView('home')"><i class="fa-solid fa-house"></i></a>
+            <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <!-- Botón de Finanzas con la Moneda solicitado -->
+            <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></a>
+            <a href="#" class="dock-icon" id="nav-help" title="Ayuda"><i class="fa-solid fa-circle-question"></i></a>
         </nav>
 
-        <!-- Ventana de Cristal Principal (Centro) -->
-        <main class="hologram-main-card">
+        <!-- ================= VISTA 1: INICIO (PRINCIPAL) ================= -->
+        <main class="hologram-main-card" id="view-home">
             
             <div class="holo-header">
                 <i class="fa-solid fa-bars"></i>
@@ -86,13 +87,116 @@
             </div>
 
             <div class="holo-action-footer">
-                <button class="holo-btn primary-btn">Get Started</button>
+                <button class="holo-btn primary-btn" onclick="switchView('finance')">Get Started</button>
                 <button class="holo-btn secondary-btn">Contact Us</button>
                 <div class="footer-icon-pill"><i class="fa-solid fa-bookmark"></i></div>
                 <div class="footer-icon-pill"><i class="fa-solid fa-share-nodes"></i></div>
             </div>
 
         </main>
+
+
+        <!-- ================= VISTA 2: FINANZAS 50/30/20 (ESTILO REFERENCIA) ================= -->
+        <main class="hologram-main-card hidden-view" id="view-finance">
+            
+            <div class="holo-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-arrow-left" style="cursor: pointer;" onclick="switchView('home')" title="Volver"></i>
+                    <span style="font-weight: 700; color: #fff;">Private Atlas • Finanzas Abisales</span>
+                </div>
+                <div class="holo-nav-links">
+                    <span>$ USD</span>
+                    <span>Manage Budget</span>
+                    <div class="user-avatar-small"><i class="fa-solid fa-wallet"></i></div>
+                </div>
+            </div>
+
+            <div class="finance-layout-grid">
+                
+                <!-- Barra de Categorías Izquierda (Estilo Selector Vertical de la referencia) -->
+                <div class="finance-categories-dock">
+                    <div class="fin-cat-item active" title="Necesidades (50%)">
+                        <i class="fa-solid fa-house-chimney"></i>
+                        <span>Necesidades (50%)</span>
+                    </div>
+                    <div class="fin-cat-item" title="Deseos (30%)">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span>Deseos (30%)</span>
+                    </div>
+                    <div class="fin-cat-item" title="Ahorro (20%)">
+                        <i class="fa-solid fa-piggy-bank"></i>
+                        <span>Ahorro (20%)</span>
+                    </div>
+                    <div class="fin-cat-item" title="Inversión">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Inversiones</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Formulario y Control (Panel Derecho Estilo Planner) -->
+                <div class="finance-form-container">
+                    <div class="plan-journey-title">
+                        <h3>Control 50 / 30 / 20</h3>
+                        <p>Distribuye tus ingresos submarinos con precisión matemática y guarda tus registros.</p>
+                    </div>
+
+                    <div class="finance-input-group">
+                        <label>Ingreso Total Mensual (USD)</label>
+                        <div class="fin-input-box">
+                            <i class="fa-solid fa-dollar-sign"></i>
+                            <input type="number" id="total-income" placeholder="Ej: 4500" value="4500">
+                        </div>
+                    </div>
+
+                    <div class="finance-input-group">
+                        <label>Descripción del Gasto / Asignación</label>
+                        <div class="fin-input-box">
+                            <i class="fa-solid fa-pen-nib"></i>
+                            <input type="text" id="expense-name" placeholder="Ej: Mantenimiento de Cúpula / Alimentos">
+                        </div>
+                    </div>
+
+                    <div class="finance-row-inputs">
+                        <div class="finance-input-group">
+                            <label>Categoría</label>
+                            <div class="fin-input-box">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <select id="expense-category">
+                                    <option value="50">Necesidades (50%)</option>
+                                    <option value="30">Deseos (30%)</option>
+                                    <option value="20">Ahorro/Deudas (20%)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="finance-input-group">
+                            <label>Monto Asignado ($)</label>
+                            <div class="fin-input-box">
+                                <i class="fa-solid fa-coins"></i>
+                                <input type="number" id="expense-amount" placeholder="Ej: 500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="finance-actions-footer">
+                        <button class="holo-btn primary-btn" onclick="saveExpense()">
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar Gasto
+                        </button>
+                        <button class="holo-btn secondary-btn" onclick="completeBudget()">
+                            <i class="fa-solid fa-check-circle"></i> Completar Ciclo
+                        </button>
+                    </div>
+
+                    <!-- Pequeño resumen dinámico -->
+                    <div class="budget-feedback" id="budget-feedback-msg">
+                        💡 Ingresa un monto y haz clic en Guardar para registrar tus datos.
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
 
         <!-- Tarjeta Lateral Derecha (Estable, vertical, con hora y fecha dinámica integrada) -->
         <aside class="hologram-side-card">
@@ -101,7 +205,6 @@
                     <i class="fa-solid fa-compass"></i>
                     <span>Santuario Marino</span>
                 </div>
-                <!-- IDs exactos para el script integrado -->
                 <div class="realtime-clock" id="live-clock">00:00:00</div>
                 <div class="realtime-date" id="live-date">Cargando fecha...</div>
                 <div class="side-location">
@@ -114,18 +217,15 @@
 
     </div>
 
-    <!-- Script de JavaScript integrado directamente para evitar fallos de rutas -->
+    <!-- Script para el reloj en tiempo real y la alternancia de pestañas/finanzas -->
     <script>
         function updateRealtimeInfo() {
             const now = new Date();
-            
-            // Actualizar hora en formato 24h
             const clockElement = document.getElementById('live-clock');
             if (clockElement) {
                 clockElement.textContent = now.toLocaleTimeString('es-ES', { hour12: false });
             }
 
-            // Actualizar fecha en español (Ej: dom, 6 sept 2026)
             const dateElement = document.getElementById('live-date');
             if (dateElement) {
                 const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
@@ -133,7 +233,56 @@
             }
         }
 
-        // Ejecutar de inmediato al cargar la página y actualizar cada segundo
+        function switchView(viewName) {
+            const homeView = document.getElementById('view-home');
+            const financeView = document.getElementById('view-finance');
+            const btnHome = document.getElementById('nav-home');
+            const btnSearch = document.getElementById('nav-search');
+            const btnFinance = document.getElementById('nav-finance');
+
+            // Quitar clase active a todos los botones del dock
+            btnHome.classList.remove('active');
+            btnSearch.classList.remove('active');
+            btnFinance.classList.remove('active');
+
+            if (viewName === 'finance') {
+                homeView.classList.add('hidden-view');
+                financeView.classList.remove('hidden-view');
+                btnFinance.classList.add('active');
+            } else {
+                financeView.classList.add('hidden-view');
+                homeView.classList.remove('hidden-view');
+                btnHome.classList.add('active');
+            }
+        }
+
+        function saveExpense() {
+            const name = document.getElementById('expense-name').value;
+            const amount = document.getElementById('expense-amount').value;
+            const feedback = document.getElementById('budget-feedback-msg');
+
+            if(!name || !amount) {
+                feedback.innerHTML = "⚠️ Por favor completa el nombre y el monto del gasto.";
+                feedback.style.color = "#f43f5e";
+                return;
+            }
+
+            feedback.innerHTML = `✅ ¡Guardado con éxito! Gasto '${name}' por $${amount} registrado en tu presupuesto abisal.`;
+            feedback.style.color = "#34d399";
+
+            // Limpiar campos de texto secundarios
+            document.getElementById('expense-name').value = '';
+            document.getElementById('expense-amount').value = '';
+        }
+
+        function completeBudget() {
+            const income = document.getElementById('total-income').value;
+            const feedback = document.getElementById('budget-feedback-msg');
+            
+            feedback.innerHTML = `🏆 ¡Ciclo de presupuesto completado para tus ingresos de $${income} USD! Distribución 50/30/20 validada.`;
+            feedback.style.color = "#38bdf8";
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             updateRealtimeInfo();
             setInterval(updateRealtimeInfo, 1000);
