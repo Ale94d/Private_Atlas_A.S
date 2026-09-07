@@ -3,23 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Atlas A.S | Life Planner Holográfico</title>
+    <title>Private Atlas A.S | Life Planner</title>
     <link rel="stylesheet" href="Style.css">
-    <!-- Tipografía moderna -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Burbujas animadas de fondo -->
-    <div class="bubbles-container">
-        <span class="bubble" style="left: 15%; width: 12px; height: 12px; animation-duration: 9s;"></span>
-        <span class="bubble" style="left: 45%; width: 20px; height: 20px; animation-duration: 11s; animation-delay: 2s;"></span>
-        <span class="bubble" style="left: 75%; width: 15px; height: 15px; animation-duration: 7s; animation-delay: 1s;"></span>
-        <span class="bubble" style="left: 90%; width: 22px; height: 22px; animation-duration: 10s; animation-delay: 3s;"></span>
-    </div>
-
-    <!-- Contenedor espacial tipo VisionOS -->
     <div class="spatial-viewport">
 
         <!-- Barra lateral flotante izquierda -->
@@ -94,19 +84,18 @@
 
         </main>
 
-        <!-- Tarjeta Lateral Derecha (Estable, vertical, con hora y fecha dinámica integrada) -->
+        <!-- Tarjeta Lateral Derecha Original -->
         <aside class="hologram-side-card">
             <div class="side-badge">
                 <div class="side-badge-header">
                     <i class="fa-solid fa-compass"></i>
-                    <span>Santuario Marino</span>
+                    <span>SANTUARIO MARINO</span>
                 </div>
-                <!-- IDs exactos que lee el script -->
-                <div class="realtime-clock" id="live-clock">00:00:00</div>
-                <div class="realtime-date" id="live-date">Cargando fecha...</div>
+                <div class="side-badge-time">23:17:59</div>
+                <div class="side-badge-date">Dom, 6 Sept 2026</div>
                 <div class="side-location">
                     <i class="fa-solid fa-location-dot"></i>
-                    <span id="live-location">Soacha • Sector Abisal</span>
+                    <span>Soacha • Sector Abisal</span>
                 </div>
                 <small class="read-more-link">EN VIVO</small>
             </div>
@@ -114,30 +103,5 @@
 
     </div>
 
-    <!-- Script de JavaScript integrado para el reloj y fecha en tiempo real -->
-    <script>
-        function updateRealtimeInfo() {
-            const now = new Date();
-            
-            // Actualizar hora en formato 24h
-            const clockElement = document.getElementById('live-clock');
-            if (clockElement) {
-                clockElement.textContent = now.toLocaleTimeString('es-ES', { hour12: false });
-            }
-
-            // Actualizar fecha en español
-            const dateElement = document.getElementById('live-date');
-            if (dateElement) {
-                const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
-                dateElement.textContent = now.toLocaleDateString('es-ES', options);
-            }
-        }
-
-        // Ejecutar de inmediato y actualizar cada segundo
-        document.addEventListener("DOMContentLoaded", () => {
-            updateRealtimeInfo();
-            setInterval(updateRealtimeInfo, 1000);
-        });
-    </script>
 </body>
 </html>
