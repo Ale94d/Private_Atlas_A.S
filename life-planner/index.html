@@ -3,118 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Atlas A.S | Ocean Life</title>
+    <title>Private Atlas A.S | Life Planner Submarino</title>
     <link rel="stylesheet" href="Style.css">
     <!-- Iconos de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Cabecera exterior -->
-    <header class="outer-header">
-        <span class="orizon-logo">ORIZON DESIGN</span>
-        <span class="best-shots">BEST SHOTS</span>
+    <!-- Efecto de burbujas flotantes de fondo -->
+    <div class="bubbles-container">
+        <span class="bubble" style="left: 10%; width: 15px; height: 15px; animation-duration: 8s; animation-delay: 0s;"></span>
+        <span class="bubble" style="left: 25%; width: 25px; height: 25px; animation-duration: 12s; animation-delay: 2s;"></span>
+        <span class="bubble" style="left: 40%; width: 10px; height: 10px; animation-duration: 6s; animation-delay: 1s;"></span>
+        <span class="bubble" style="left: 65%; width: 20px; height: 20px; animation-duration: 10s; animation-delay: 4s;"></span>
+        <span class="bubble" style="left: 80%; width: 12px; height: 12px; animation-duration: 7s; animation-delay: 3s;"></span>
+        <span class="bubble" style="left: 90%; width: 22px; height: 22px; animation-duration: 11s; animation-delay: 1.5s;"></span>
+    </div>
+
+    <!-- Cabecera flotante superior -->
+    <header class="floating-header">
+        <span class="brand-title">PRIVATE ATLAS A.S</span>
+        <div class="header-status">
+            <span class="status-pill"><i class="fa-solid fa-water"></i> Ruinas Sumergidas</span>
+            <span class="status-pill"><i class="fa-solid fa-shield-halved"></i> Modo Abisal</span>
+        </div>
+        <span class="workspace-name">LIFE PLANNER</span>
     </header>
 
-    <!-- Contenedor principal con la imagen marina integrada de fondo -->
-    <div class="dashboard-shell">
-        
-        <!-- Barra de filtros superior flotante -->
-        <div class="top-filters-bar">
-            <button class="filter-btn active-buy">Buy</button>
-            <div class="filter-dropdown">
-                <span class="label">Location</span>
-                <span class="value">Océano <i class="fa-solid fa-chevron-down"></i></span>
-            </div>
-            <div class="filter-dropdown">
-                <span class="label">Property Type</span>
-                <span class="value">Santuario <i class="fa-solid fa-chevron-down"></i></span>
-            </div>
-            <div class="filter-dropdown">
-                <span class="label">Max Price</span>
-                <span class="value">$300 000 <i class="fa-solid fa-chevron-down"></i></span>
-            </div>
-            <button class="filter-btn rent-btn">Rent</button>
-        </div>
+    <!-- Contenedor principal de pantalla completa -->
+    <main class="fullscreen-workspace">
 
-        <!-- Área de trabajo central (Sidebar + Contenido superpuesto) -->
-        <div class="workspace-layout">
-            
-            <!-- Barra lateral de navegación -->
-            <nav class="sidebar-nav">
-                <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i></a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-magnifying-glass"></i></a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-layer-group"></i></a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-square-poll-horizontal"></i></a>
-                <div class="sidebar-spacer"></div>
-                <a href="#" class="nav-item avatar-item"><i class="fa-solid fa-user"></i></a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i></a>
-            </nav>
+        <!-- Barra lateral de navegación flotante semi-transparente -->
+        <nav class="glass-sidebar">
+            <a href="#" class="nav-icon active" title="Inicio"><i class="fa-solid fa-house"></i></a>
+            <a href="#" class="nav-icon" title="Tareas y Fechas"><i class="fa-solid fa-calendar-check"></i></a>
+            <a href="#" class="nav-icon" title="Finanzas 50/30/20"><i class="fa-solid fa-wallet"></i></a>
+            <a href="#" class="nav-icon" title="Ruinas & Ecosistema"><i class="fa-solid fa-landmark"></i></a>
+            <div class="sidebar-spacer"></div>
+            <a href="#" class="nav-icon user-avatar" title="Perfil"><i class="fa-solid fa-user-astronaut"></i></a>
+            <a href="#" class="nav-icon" title="Ajustes"><i class="fa-solid fa-gear"></i></a>
+        </nav>
 
-            <!-- Zona central derecha que contiene el título gigante y las tarjetas flotantes -->
-            <div class="center-content-area">
-                
-                <!-- Título Gigante Superpuesto -->
-                <h1 class="huge-title">New Way Of Living</h1>
+        <!-- Área central con título gigante y ventanas flotantes organizadas -->
+        <div class="content-grid">
 
-                <!-- Contenedor inferior para las dos tarjetas -->
-                <div class="bottom-cards-container">
+            <!-- Título central gigante inspirado en la referencia -->
+            <h1 class="hero-huge-title">Abyssal Sanctuary</h1>
+
+            <!-- Fila de ventanas flotantes semi-transparentes -->
+            <div class="windows-container">
+
+                <!-- Ventana 1: Tareas, Fechas y Completadas -->
+                <div class="glass-window task-window">
+                    <div class="window-header">
+                        <h3><i class="fa-solid fa-list-check"></i> Tareas Submarinas</h3>
+                        <span class="badge-date"><i class="fa-regular fa-calendar"></i> Hoy</span>
+                    </div>
+                    <div class="task-list">
+                        <div class="task-item completed">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div>
+                                <p>Mantenimiento del escudo de coral</p>
+                                <small>Completado • Fecha: 06 Sep</small>
+                            </div>
+                        </div>
+                        <div class="task-item pending">
+                            <i class="fa-regular fa-circle"></i>
+                            <div>
+                                <p>Explorar sector ruinas antiguas</p>
+                                <small>Pendiente • Vence: 08 Sep</small>
+                            </div>
+                        </div>
+                        <div class="task-item pending">
+                            <i class="fa-regular fa-circle"></i>
+                            <div>
+                                <p>Calibrar sensores de presión abisal</p>
+                                <small>Pendiente • Vence: 10 Sep</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ventana 2: Finanzas & Método 50/30/20 -->
+                <div class="glass-window finance-window">
+                    <div class="window-header">
+                        <h3><i class="fa-solid fa-coins"></i> Gastos & Método 50/30/20</h3>
+                        <span class="badge-budget">$4,500 USD</span>
+                    </div>
+                    <p class="window-desc">Distribución inteligente del tesoro sumergido para mantener el equilibrio financiero.</p>
                     
-                    <!-- Tarjeta izquierda -->
-                    <div class="floating-card left-card">
-                        <h3>Find The Perfect Place</h3>
-                        <p>Nuestra plataforma te conecta con extraordinarios horizontes marinos. Comienza tu viaje.</p>
-                        <div class="stats-pill">
-                            <div>
-                                <span class="num">10K+</span>
-                                <span class="txt">Properties</span>
-                            </div>
-                            <div class="pill-avatars">
-                                <i class="fa-solid fa-water"></i>
-                                <i class="fa-solid fa-fish"></i>
-                            </div>
-                            <div class="arrow-circle"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="budget-bars">
+                        <div class="budget-row">
+                            <span>Necesidades (50%)</span>
+                            <strong>$2,250</strong>
                         </div>
+                        <div class="progress-bar"><div class="fill" style="width: 50%; background: #38bdf8;"></div></div>
+
+                        <div class="budget-row">
+                            <span>Deseos / Ocio (30%)</span>
+                            <strong>$1,350</strong>
+                        </div>
+                        <div class="progress-bar"><div class="fill" style="width: 30%; background: #818cf8;"></div></div>
+
+                        <div class="budget-row">
+                            <span>Ahorro / Fondo (20%)</span>
+                            <strong>$900</strong>
+                        </div>
+                        <div class="progress-bar"><div class="fill" style="width: 20%; background: #34d399;"></div></div>
                     </div>
 
-                    <!-- Tarjeta derecha -->
-                    <div class="floating-card right-card">
-                        <div class="card-top-row">
-                            <div>
-                                <h4>Santuario Azul</h4>
-                                <p><i class="fa-solid fa-location-dot"></i> Costa Principal, Océano Pacífico</p>
-                            </div>
-                            <div class="arrow-circle dark-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-                        </div>
-                        <p class="card-desc">Este santuario marino se integra fluidamente con las vistas del océano. Diseño arquitectónico innovador.</p>
-                        <div class="metrics-grid">
-                            <span><i class="fa-regular fa-square"></i> 695m²</span>
-                            <span><i class="fa-solid fa-compass"></i> 126m prof.</span>
-                            <span><i class="fa-solid fa-bed"></i> 3 zonas</span>
-                            <span><i class="fa-solid fa-bath"></i> 2 bahías</span>
-                        </div>
-                        <div class="card-footer-row">
-                            <div class="social-actions">
-                                <span><i class="fa-regular fa-heart"></i> 4.4K</span>
-                                <span><i class="fa-regular fa-bookmark"></i> 157</span>
-                                <span><i class="fa-solid fa-share-nodes"></i></span>
-                            </div>
-                            <div class="brand-badge"><i class="fa-solid fa-anchor"></i></div>
-                        </div>
+                    <div class="finance-footer">
+                        <span><i class="fa-solid fa-tag"></i> Categoría: Operaciones</span>
+                        <div class="mini-icon-btn"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-
                 </div>
 
             </div>
 
         </div>
 
-    </div>
+    </main>
 
-    <!-- Pie de página exterior -->
-    <footer class="outer-footer">
-        <span>Like & Follow <i class="fa-regular fa-heart"></i></span>
-        <span class="swipe-action">Swipe &gt;&gt;</span>
+    <!-- Pie de página flotante inferior -->
+    <footer class="floating-footer">
+        <span class="footer-note"><i class="fa-regular fa-heart"></i> Life Planner • Fondo Submarino Activo</span>
+        <span class="swipe-indicator">Deslizar Abismo &gt;&gt;</span>
     </footer>
 
 </body>
