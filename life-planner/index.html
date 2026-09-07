@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Atlas A.S | Life Planner Holográfico</title>
     <link rel="stylesheet" href="Style.css">
-    <!-- Tipografía moderna y limpia -->
+    <!-- Tipografía moderna geométrica -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -94,14 +94,14 @@
 
         </main>
 
-        <!-- Tarjeta Lateral Derecha (Estable, vertical, con hora, fecha y ubicación real) -->
+        <!-- Tarjeta Lateral Derecha (Estable, vertical, con hora y fecha dinámica integrada) -->
         <aside class="hologram-side-card">
             <div class="side-badge">
                 <div class="side-badge-header">
                     <i class="fa-solid fa-compass"></i>
                     <span>Santuario Marino</span>
                 </div>
-                <!-- IDs exactos para que el script actualice en tiempo real -->
+                <!-- IDs exactos para el script integrado -->
                 <div class="realtime-clock" id="live-clock">00:00:00</div>
                 <div class="realtime-date" id="live-date">Cargando fecha...</div>
                 <div class="side-location">
@@ -114,7 +114,30 @@
 
     </div>
 
-    <!-- Enlace al script externo -->
-    <script src="js/script.js"></script>
+    <!-- Script de JavaScript integrado directamente para evitar fallos de rutas -->
+    <script>
+        function updateRealtimeInfo() {
+            const now = new Date();
+            
+            // Actualizar hora en formato 24h
+            const clockElement = document.getElementById('live-clock');
+            if (clockElement) {
+                clockElement.textContent = now.toLocaleTimeString('es-ES', { hour12: false });
+            }
+
+            // Actualizar fecha en español (Ej: dom, 6 sept 2026)
+            const dateElement = document.getElementById('live-date');
+            if (dateElement) {
+                const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
+                dateElement.textContent = now.toLocaleDateString('es-ES', options);
+            }
+        }
+
+        // Ejecutar de inmediato al cargar la página y actualizar cada segundo
+        document.addEventListener("DOMContentLoaded", () => {
+            updateRealtimeInfo();
+            setInterval(updateRealtimeInfo, 1000);
+        });
+    </script>
 </body>
 </html>
