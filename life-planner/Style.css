@@ -6,20 +6,16 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Fondo principal de la página exterior con la imagen marina */
+/* Fondo de la página exterior (suave para enmarcar) */
 body {
     min-height: 100vh;
-    background-image: linear-gradient(rgba(5, 15, 30, 0.45), rgba(10, 25, 45, 0.6)), url('assets/background/marino.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-color: #0b1329;
     color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 30px;
+    padding: 15px 25px;
 }
 
 /* Cabecera exterior */
@@ -32,28 +28,31 @@ body {
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 1.5px;
-    padding: 0 10px;
+    padding: 0 5px;
+    color: rgba(255, 255, 255, 0.85);
 }
 
-/* Contenedor principal de cristal esmerilado (Glassmorphism) */
+/* Contenedor principal con la imagen marina de fondo integrada */
 .dashboard-shell {
     width: 100%;
     max-width: 1150px;
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255, 255, 255, 0.35);
+    background-image: linear-gradient(rgba(0, 10, 25, 0.35), rgba(0, 15, 30, 0.5)), url('assets/background/marino.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-radius: 36px;
-    padding: 25px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    padding: 24px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
     position: relative;
-    margin: 15px 0;
+    margin: 10px 0;
+    overflow: hidden;
 }
 
 /* Barra de filtros superior flotante */
 .top-filters-bar {
     background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 50px;
     padding: 8px 12px;
     display: flex;
@@ -114,23 +113,25 @@ body {
     color: #64748b;
 }
 
-/* Workspace interno (Sidebar + Cuadro con foto) */
-.inner-workspace {
+/* Layout Workspace (Sidebar + Contenido) */
+.workspace-layout {
     display: flex;
     gap: 20px;
+    align-items: flex-start;
 }
 
-/* Barra lateral de navegación */
+/* Barra lateral translúcida */
 .sidebar-nav {
     background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 24px;
     padding: 20px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 .nav-item {
@@ -154,7 +155,7 @@ body {
 
 .sidebar-spacer {
     flex-grow: 1;
-    min-height: 120px;
+    min-height: 180px;
 }
 
 .avatar-item {
@@ -163,39 +164,36 @@ body {
     color: #334155;
 }
 
-/* Contenedor visual que contiene la imagen interna exactamente igual a la referencia */
-.hero-display-box {
+/* Área central que organiza título y tarjetas */
+.center-content-area {
     flex-grow: 1;
-    height: 500px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('assets/background/marino.jpg');
-    background-size: cover;
-    background-position: center;
-    border-radius: 28px;
-    position: relative;
-    padding: 35px;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
     justify-content: space-between;
-    overflow: hidden;
-    box-shadow: inset 0 0 40px rgba(0,0,0,0.2);
+    min-height: 440px;
 }
 
-/* Título gigante centrado arriba */
+/* Título gigante integrado flotando sobre la imagen */
 .huge-title {
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 56px;
+    font-size: 58px;
     font-weight: 800;
     color: rgba(255, 255, 255, 0.95);
     text-align: center;
     letter-spacing: -1px;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    text-shadow: 0 4px 25px rgba(0,0,0,0.5);
+    margin: 30px 0 50px 0;
     width: 100%;
 }
 
-/* Tarjetas flotantes inferiores */
+/* Contenedor de las dos tarjetas inferiores */
+.bottom-cards-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+/* Estilo común para tarjetas flotantes de cristal */
 .floating-card {
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(14px);
@@ -208,11 +206,12 @@ body {
 
 /* Tarjeta izquierda */
 .left-card {
-    width: 320px;
+    width: 33%;
+    min-width: 280px;
 }
 
 .left-card h3 {
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 800;
     margin-bottom: 8px;
     color: #0f172a;
@@ -268,7 +267,8 @@ body {
 
 /* Tarjeta derecha */
 .right-card {
-    width: 380px;
+    width: 63%;
+    min-width: 340px;
 }
 
 .card-top-row {
@@ -358,7 +358,8 @@ body {
     align-items: center;
     font-size: 13px;
     font-weight: 600;
-    padding: 0 10px;
+    padding: 0 5px;
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .swipe-action {
@@ -369,26 +370,19 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Ajuste responsive para pantallas menores */
+/* Responsive */
 @media (max-width: 900px) {
-    .inner-workspace {
+    .workspace-layout {
         flex-direction: column;
     }
-    .hero-display-box {
+    .bottom-cards-container {
         flex-direction: column;
-        height: auto;
-        padding: 20px;
-        gap: 20px;
+    }
+    .left-card, .right-card {
+        width: 100%;
     }
     .huge-title {
-        position: relative;
-        top: 0;
-        left: 0;
-        transform: none;
-        font-size: 36px;
-        margin-bottom: 20px;
-    }
-    .floating-card {
-        width: 100%;
+        font-size: 38px;
+        margin: 20px 0;
     }
 }
