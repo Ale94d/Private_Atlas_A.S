@@ -10,78 +10,91 @@
 </head>
 <body>
 
-    <!-- Video de fondo fijo -->
+    <!-- Video de fondo fijo (Asegúrate de que el nombre y ruta del archivo de video coincidan exactamente) -->
     <div class="video-background">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline id="bgVideo">
             <source src="../VID-20260906-WA0000.mp4" type="video/mp4">
             Tu navegador no soporta videos HTML5.
         </video>
         <div class="video-overlay"></div>
     </div>
 
-    <!-- Botón flotante para volver atrás (La Casa) con animación -->
+    <!-- Botón flotante para volver atrás (La Casa) -->
     <a href="../indice.html" class="home-return-btn" title="Volver al Atlas Principal">
         <i class="fa-solid fa-house"></i>
     </a>
 
-    <div class="main-wrapper">
-        <div class="container">
+    <!-- Contenedor Principal Estilo "Glassmorphism" con referencias modernas -->
+    <div class="main-dashboard-container">
+        
+        <!-- Cabecera del Módulo -->
+        <header class="dashboard-header">
+            <h1 class="dashboard-title">Life Planner Submarino</h1>
+            <p class="dashboard-subtitle">"Tus memorias y finanzas bajo las mareas del tiempo"</p>
+        </header>
+
+        <!-- Cuadrícula de 2 columnas (Estilo Referencia) -->
+        <div class="dashboard-grid">
             
-            <!-- Cabecera del Módulo -->
-            <header class="top-editorial-section">
-                <h2 class="top-subtitle">Life Planner Submarino</h2>
-                <div class="top-editorial-desc" style="text-align: center;">
-                    <p>"Tus memorias y finanzas bajo las mareas del tiempo"</p>
+            <!-- TARJETA 1: BITÁCORA DE TAREAS -->
+            <section class="glass-card">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-anchor"></i> Bitácora de Tareas</h2>
                 </div>
-            </header>
-
-            <!-- Contenedor de Secciones (Grid) -->
-            <div class="planner-grid" style="width: 100%; display: flex; flex-direction: column; gap: 30px;">
                 
-                <!-- SECCIÓN 1: TAREAS Y CALENDARIO -->
-                <section class="seccion-card">
-                    <h3><i class="fa-solid fa-anchor"></i> Bitácora de Tareas</h3>
-                    <div class="form-control-group" style="width: 100%; display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px;">
-                        <input type="text" id="taskInput" placeholder="Nueva tarea o inmersión..." style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #e0cca9; outline: none;">
-                        <input type="date" id="taskDate" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #e0cca9; outline: none;">
-                        <button type="button" id="addTaskBtn" class="sub-btn" style="padding: 12px; border-radius: 10px; background: #533a2c; border: 1px solid #ed8ea2; color: #ed8ea2; cursor: pointer; font-weight: bold;">Añadir Tarea</button>
-                    </div>
-                    <div class="tasks-container" style="width: 100%;">
-                        <ul id="taskList" style="list-style: none; display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                            <!-- Las tareas se inyectan dinámicamente -->
-                        </ul>
-                    </div>
-                </section>
+                <div class="form-group">
+                    <input type="text" id="taskInput" placeholder="Nueva tarea o inmersión...">
+                    <input type="date" id="taskDate">
+                    <button type="button" id="addTaskBtn" class="action-btn">Añadir Inmersión</button>
+                </div>
 
-                <!-- SECCIÓN 2: FINANZAS Y MÉTODO 50/30/20 -->
-                <section class="seccion-card">
-                    <h3><i class="fa-solid fa-coins"></i> Tesorería (50/30/20)</h3>
-                    <div class="form-control-group" style="width: 100%; display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px;">
-                        <input type="text" id="expenseDesc" placeholder="Descripción del gasto..." style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #e0cca9; outline: none;">
-                        <input type="number" id="expenseAmount" placeholder="Valor ($)" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #e0cca9; outline: none;">
-                        <select id="expenseCategory" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(30,20,15,0.9); color: #e0cca9; outline: none;">
-                            <option value="necesidades">Necesidades (50%)</option>
-                            <option value="deseos">Deseos (30%)</option>
-                            <option value="ahorro">Ahorro / Inversión (20%)</option>
-                        </select>
-                        <button type="button" id="addExpenseBtn" class="sub-btn" style="padding: 12px; border-radius: 10px; background: #533a2c; border: 1px solid #ed8ea2; color: #ed8ea2; cursor: pointer; font-weight: bold;">Registrar Gasto</button>
-                    </div>
-                    
-                    <!-- Resumen de Distribución 50/30/20 -->
-                    <div class="budget-summary" style="width: 100%; display: flex; justify-content: space-between; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 10px; margin-bottom: 15px;">
-                        <div class="budget-box" style="text-align: center; font-size: 0.75rem;"><span>Necesidades</span><br><strong id="totalNecesidades" style="color:#ed8ea2;">$0</strong></div>
-                        <div class="budget-box" style="text-align: center; font-size: 0.75rem;"><span>Deseos</span><br><strong id="totalDeseos" style="color:#ed8ea2;">$0</strong></div>
-                        <div class="budget-box" style="text-align: center; font-size: 0.75rem;"><span>Ahorro</span><br><strong id="totalAhorro" style="color:#ed8ea2;">$0</strong></div>
-                    </div>
+                <div class="list-scroll-container">
+                    <ul id="taskList">
+                        <!-- Las tareas se inyectan dinámicamente -->
+                    </ul>
+                </div>
+            </section>
 
-                    <div class="expenses-container" style="width: 100%;">
-                        <ul id="expenseList" style="list-style: none; display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                            <!-- Los gastos se inyectan dinámicamente -->
-                        </ul>
-                    </div>
-                </section>
+            <!-- TARJETA 2: TESORERÍA 50/30/20 -->
+            <section class="glass-card">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-coins"></i> Tesorería (50/30/20)</h2>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" id="expenseDesc" placeholder="Descripción del gasto...">
+                    <input type="number" id="expenseAmount" placeholder="Valor ($)">
+                    <select id="expenseCategory">
+                        <option value="necesidades">Necesidades (50%)</option>
+                        <option value="deseos">Deseos (30%)</option>
+                        <option value="ahorro">Ahorro / Inversión (20%)</option>
+                    </select>
+                    <button type="button" id="addExpenseBtn" class="action-btn">Registrar Gasto</button>
+                </div>
 
-            </div>
+                <!-- Resumen Presupuestario -->
+                <div class="budget-summary-box">
+                    <div class="budget-item">
+                        <span>Necesidades</span>
+                        <strong id="totalNecesidades">$0</strong>
+                    </div>
+                    <div class="budget-item">
+                        <span>Deseos</span>
+                        <strong id="totalDeseos">$0</strong>
+                    </div>
+                    <div class="budget-item">
+                        <span>Ahorro</span>
+                        <strong id="totalAhorro">$0</strong>
+                    </div>
+                </div>
+
+                <div class="list-scroll-container">
+                    <ul id="expenseList">
+                        <!-- Los gastos se inyectan dinámicamente -->
+                    </ul>
+                </div>
+            </section>
+
         </div>
     </div>
 
@@ -98,15 +111,14 @@
             if(!text) return;
 
             const li = document.createElement('li');
-            li.style.cssText = "display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);";
             li.innerHTML = `
-                <div style="display: flex; flex-direction: column;">
-                    <span>${text}</span>
-                    <small style="color: #ed8ea2; opacity: 0.8;">${date || 'Sin fecha'}</small>
+                <div class="item-details">
+                    <span class="item-text">${text}</span>
+                    <span class="item-sub"><i class="fa-regular fa-calendar"></i> ${date || 'Sin fecha'}</span>
                 </div>
-                <div style="display: flex; gap: 8px;">
-                    <button onclick="toggleTask(this)" style="background:none; border:none; color:#86efac; cursor:pointer;"><i class="fa-solid fa-check"></i></button>
-                    <button onclick="deleteItem(this)" style="background:none; border:none; color:#f87171; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+                <div class="item-actions">
+                    <button class="check-btn" onclick="toggleTask(this)"><i class="fa-solid fa-check"></i></button>
+                    <button class="trash-btn" onclick="deleteItem(this)"><i class="fa-solid fa-trash"></i></button>
                 </div>
             `;
             taskList.appendChild(li);
@@ -116,8 +128,7 @@
 
         function toggleTask(btn) {
             const li = btn.closest('li');
-            li.style.opacity = li.style.opacity === '0.4' ? '1' : '0.4';
-            li.style.textDecoration = li.style.textDecoration === 'line-through' ? 'none' : 'line-through';
+            li.classList.toggle('completed');
         }
 
         function deleteItem(btn) {
@@ -145,13 +156,12 @@
             const li = document.createElement('li');
             li.dataset.category = cat;
             li.dataset.amount = amount;
-            li.style.cssText = "display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);";
             li.innerHTML = `
-                <div style="display: flex; flex-direction: column;">
-                    <span><strong>${desc}</strong></span>
-                    <small style="color: #ed8ea2; text-transform: uppercase;">${cat} - $${amount.toLocaleString()}</small>
+                <div class="item-details">
+                    <span class="item-text"><strong>${desc}</strong></span>
+                    <span class="item-sub uppercase">${cat} - $${amount.toLocaleString()}</span>
                 </div>
-                <button onclick="removeExpense(this)" style="background:none; border:none; color:#f87171; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+                <button class="trash-btn" onclick="removeExpense(this)"><i class="fa-solid fa-trash"></i></button>
             `;
             expenseList.appendChild(li);
 
