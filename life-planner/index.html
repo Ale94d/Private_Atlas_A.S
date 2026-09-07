@@ -106,7 +106,17 @@
                     <span style="font-weight: 700; color: #fff;">Private Atlas • Finanzas Abisales</span>
                 </div>
                 <div class="holo-nav-links">
-                    <span>$ USD</span>
+                    <!-- SELECTOR DE MONEDA ENCABEZADO -->
+                    <div style="display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15);">
+                        <i class="fa-solid fa-coins" style="font-size: 11px; color: #38bdf8;"></i>
+                        <select id="global-currency-select" onchange="changeCurrency()" style="background: transparent; border: none; color: #fff; font-size: 12px; font-weight: 600; outline: none; cursor: pointer; font-family: 'Outfit', sans-serif;">
+                            <option value="USD" style="background: #0f172a;">USD ($)</option>
+                            <option value="EUR" style="background: #0f172a;">EUR (€)</option>
+                            <option value="COP" style="background: #0f172a;">COP ($)</option>
+                            <option value="MXN" style="background: #0f172a;">MXN ($)</option>
+                            <option value="ARS" style="background: #0f172a;">ARS ($)</option>
+                        </select>
+                    </div>
                     <span>Manage Budget</span>
                     <div class="user-avatar-small"><i class="fa-solid fa-wallet"></i></div>
                 </div>
@@ -159,9 +169,9 @@
 
                     <div class="finance-row-inputs">
                         <div class="finance-input-group">
-                            <label>Ingreso Total Mensual (USD)</label>
+                            <label id="label-total-income">Ingreso Total Mensual (USD)</label>
                             <div class="fin-input-box">
-                                <i class="fa-solid fa-dollar-sign"></i>
+                                <i class="fa-solid fa-dollar-sign" id="currency-icon-symbol"></i>
                                 <input type="number" id="total-income" placeholder="Ej: 4500" value="4500" oninput="updateBudgetCalculations()">
                             </div>
                         </div>
@@ -189,7 +199,7 @@
                         </div>
 
                         <div class="finance-input-group">
-                            <label>Monto Asignado ($)</label>
+                            <label>Monto Asignado</label>
                             <div class="fin-input-box">
                                 <i class="fa-solid fa-coins"></i>
                                 <input type="number" id="expense-amount" placeholder="Ej: 500">
@@ -240,7 +250,7 @@
 
     </div>
 
-    <!-- Script completo con almacenamiento localStorage, listado y eliminación de gastos -->
+    <!-- Script completo con almacenamiento localStorage, listado, eliminación y selector de moneda -->
     <script>
         function updateRealtimeInfo() {
             const now = new Date();
@@ -294,14 +304,50 @@
             }
         }
 
-        // Cálculo matemático automático de la regla 50/30/20
+        // Obtener símbolo según la moneda seleccionada
+        function getCurrencySymbol() {
+            const currency = document.getElementById('global-currency-select').value;
+            switch(currency) {
+                case 'EUR': return '€';
+                case 'USD': return '$';
+                case 'COP': return '$';
+                case 'MXN': return '$';
+                case 'ARS': return '$';
+                default: return '$';
+            }
+        }
+
+        // Cambiar moneda y actualizar textos e inputs en tiempo real
+        function changeCurrency() {
+            const currency = document.getElementById('global-currency-select').value;
+            localStorage.setItem('private_atlas_currency', currency);
+            
+            // Actualizar etiqueta del input principal
+            const labelIncome = document.getElementById('label-total-income');
+            if(labelIncome) {
+                labelIncome.textContent = `Ingreso Total Mensual (${currency})`;
+            }
+
+            // Actualizar icono del input
+            const iconSymbol = document.getElementById('currency-icon-symbol');
+            if(iconSymbol) {
+                if(currency === 'EUR') iconSymbol.className = "fa-solid fa-euro-sign";
+                else iconSymbol.className = "fa-solid fa-dollar-sign";
+            }
+
+            updateBudgetCalculations();
+            renderExpenses();
+        }
+
+        // Cálculo matemático automático de la regla 50/30/20 adaptado a la moneda
         function updateBudgetCalculations() {
             const incomeInput = document.getElementById('total-income');
             const income = incomeInput ? parseFloat(incomeInput.value) || 0 : 0;
+            const symbol = getCurrencySymbol();
 
-            document.getElementById('calc-50').textContent = `$${(income * 0.50).toLocaleString()}`;
-            document.getElementById('calc-30').textContent = `$${(income * 0.30).toLocaleString()}`;
-            document.getElementById('calc-20').textContent = `$${(income * 0.20).toLocaleString()}`;
+            document.getElementById('calc-50').textContent = `${symbol}${(income * 0.50).toLocaleString()}`;
+            document.getElementById('calc-30').textContent = `${symbol}${(income * 0.30).toLocaleString()}`;
+            document.getElementById('calc-20').textContent = `${symbol}${(income * 0.20).toLocaleString()}`;
         }
 
         // Gestión de Gastos con localStorage
@@ -318,6 +364,7 @@
             const amountInput = document.getElementById('expense-amount');
             const categorySelect = document.getElementById('expense-category');
             const feedback = document.getElementById('budget-feedback-msg');
+            const symbol = getCurrencySymbol();
 
             const name = nameInput.value.trim();
             const amount = parseFloat(amountInput.value);
@@ -334,13 +381,14 @@
                 id: Date.now(),
                 name: name,
                 amount: amount,
+                symbol: symbol,
                 category: category === '50' ? 'Necesidades (50%)' : category === '30' ? 'Deseos (30%)' : 'Ahorro (20%)'
             };
 
             expenses.push(newExpense);
             localStorage.setItem('private_atlas_expenses', JSON.stringify(expenses));
 
-            feedback.innerHTML = `✅ ¡Gasto '${name}' de $${amount.toLocaleString()} guardado correctamente!`;
+            feedback.innerHTML = `✅ ¡Gasto '${name}' de ${symbol}${amount.toLocaleString()} guardado correctamente!`;
             feedback.style.color = "#34d399";
 
             nameInput.value = '';
@@ -354,55 +402,4 @@
             localStorage.setItem('private_atlas_expenses', JSON.stringify(expenses));
             renderExpenses();
 
-            const feedback = document.getElementById('budget-feedback-msg');
-            feedback.innerHTML = "🗑️ Gasto eliminado del registro abisal.";
-            feedback.style.color = "#f43f5e";
-        }
-
-        function renderExpenses() {
-            const container = document.getElementById('expenses-list-box');
-            if(!container) return;
-
-            const expenses = getStoredExpenses();
-
-            if (expenses.length === 0) {
-                container.innerHTML = `<div style="text-align: center; color: #94a3b8; font-size: 11px; padding: 15px;">No hay gastos registrados todavía.</div>`;
-                return;
-            }
-
-            let html = '';
-            expenses.forEach(item => {
-                html += `
-                    <div class="expense-item-row">
-                        <div class="expense-info-main">
-                            <b>${item.name}</b>
-                            <small>${item.category}</small>
-                        </div>
-                        <div class="expense-item-right">
-                            <span>$${item.amount.toLocaleString()}</span>
-                            <button class="delete-expense-btn" onclick="deleteExpense(${item.id})" title="Eliminar gasto">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
-
-        function completeBudget() {
-            const income = document.getElementById('total-income').value;
-            const feedback = document.getElementById('budget-feedback-msg');
-            
-            feedback.innerHTML = `🏆 ¡Ciclo de presupuesto completado para tus ingresos de $${Number(income).toLocaleString()} USD! Regla 50/30/20 validada.`;
-            feedback.style.color = "#38bdf8";
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            updateRealtimeInfo();
-            setInterval(updateRealtimeInfo, 1000);
-            updateBudgetCalculations();
-        });
-    </script>
-</body>
-</html>
+            const feedback = document.getElemen
