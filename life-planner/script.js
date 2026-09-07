@@ -1,70 +1,83 @@
-(function() {
-    'use strict';
+const taskInput = document.getElementById('taskInput');
+const taskDate = document.getElementById('taskDate');
+const addTaskBtn = document.getElementById('addTaskBtn');
+const taskList = document.getElementById('taskList');
 
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log("Private Atlas A.S. / Sistema abisal inicializado.");
+addTaskBtn.addEventListener('click', () => {
+    const text = taskInput.value.trim();
+    const date = taskDate.value;
+    if(!text) return;
 
-        // 1. Control del botón de la casa y barra lateral
-        const sidebarIcons = document.querySelectorAll('.sidebar-icon');
-        const homeBtn = document.getElementById('home-btn');
-        const macroContent = document.querySelector('.macro-content');
+    const li = document.createElement('li');
+    li.innerHTML = `
+        <div class="item-details">
+            <span class="item-text">${text}</span>
+            <span class="item-sub"><i class="fa-regular fa-calendar"></i> ${date || 'Sin fecha'}</span>
+        </div>
+        <div class="item-actions">
+            <button class="check-btn" onclick="toggleTask(this)"><i class="fa-solid fa-check"></i></button>
+            <button class="trash-btn" onclick="deleteItem(this)"><i class="fa-solid fa-trash"></i></button>
+        </div>
+    `;
+    taskList.appendChild(li);
+    taskInput.value = '';
+    taskDate.value = '';
+});
 
-        sidebarIcons.forEach(icon => {
-            icon.addEventListener('click', function(e) {
-                e.preventDefault(); // Evita que la página brinque o recargue con el '#'
-                
-                sidebarIcons.forEach(item => item.classList.remove('active'));
-                this.classList.add('active');
+function toggleTask(btn) {
+    btn.closest('li').classList.toggle('completed');
+}
 
-                if (this === homeBtn) {
-                    if (macroContent) {
-                        macroContent.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
-                    console.log("Regresando al inicio del santuario...");
-                } else {
-                    const targetName = this.getAttribute('data-target');
-                    console.log(`Navegando a la sección: ${targetName}`);
-                }
-            });
-        });
+function deleteItem(btn) {
+    btn.closest('li').remove();
+}
 
-        // 2. Interactividad en las tareas (Marcar/Desmarcar)
-        const taskItems = document.querySelectorAll('.task-item');
-        
-        taskItems.forEach(task => {
-            task.addEventListener('click', function() {
-                this.classList.toggle('done');
-                
-                const icon = this.querySelector('i');
-                const statusTag = this.querySelector('.task-tag-status, .task-tag-date');
-                
-                if (this.classList.contains('done')) {
-                    if (icon) {
-                        icon.className = 'fas fa-check-circle text-cyan';
-                    }
-                    if (statusTag) {
-                        statusTag.className = 'task-tag-status';
-                        statusTag.textContent = 'Completado';
-                    }
-                } else {
-                    if (icon) {
-                        icon.className = 'far fa-circle';
-                    }
-                    if (statusTag) {
-                        statusTag.className = 'task-tag-date';
-                        statusTag.textContent = 'Vence: 10 Sep';
-                    }
-                }
-            });
-        });
+const expenseDesc = document.getElementById('expenseDesc');
+const expenseAmount = document.getElementById('expenseAmount');
+const expenseCategory = document.getElementById('expenseCategory');
+const addExpenseBtn = document.getElementById('addExpenseBtn');
+const expenseList = document.getElementById('expenseList');
 
-        // 3. Botón flotante de finanzas / añadir
-        const addFinanceBtn = document.querySelector('.add-circle-btn');
-        if (addFinanceBtn) {
-            addFinanceBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                alert("Panel del método 50/30/20: Listo para registrar nuevo movimiento.");
-            });
-        }
+let categoryTotals = { necesidades: 0, deseos: 0, ahorro: 0 };
+
+addExpenseBtn.addEventListener('click', () => {
+    const desc = expenseDesc.value.trim();
+    const amount = parseFloat(expenseAmount.value);
+    const cat = expenseCategory.value;
+
+    if(!desc || isNaN(amount) || amount <= 0) return;
+
+    const li = document.createElement('li');
+    li.dataset.category = cat;
+    li.dataset.amount = amount;
+    li.innerHTML = `
+        <div class="item-details">
+            <span class="item-text"><strong>${desc}</strong></span>
+            <span class="item-sub uppercase">${cat} - $${amount.toLocaleString()}</span>
+        </div>
+        <button class="trash-btn" onclick="removeExpense(this)"><i class="fa-solid fa-trash"></i></button>
+    `;
+    expenseList.appendChild(li);
+
+    expenseDesc.value = '';
+    expenseAmount.value = '';
+    updateBudget();
+});
+
+function removeExpense(btn) {
+    btn.closest('li').remove();
+    updateBudget();
+}
+
+function updateBudget() {
+    categoryTotals = { necesidades: 0, deseos: 0, ahorro: 0 };
+    document.querySelectorAll('#expenseList li').forEach(item => {
+        const cat = item.dataset.category;
+        const amt = parseFloat(item.dataset.amount);
+        categoryTotals[cat] += amt;
     });
-})();
+
+    document.getElementById('totalNecesidades').innerText = `$${categoryTotals.necesidades.toLocaleString()}`;
+    document.getElementById('totalDeseos').innerText = `$${categoryTotals.deseos.toLocaleString()}`;
+    document.getElementById('totalAhorro').innerText = `$${categoryTotals.ahorro.toLocaleString()}`;
+}
