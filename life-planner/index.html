@@ -5,27 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Private Atlas A.S | Life Planner Holográfico</title>
     <link rel="stylesheet" href="Style.css">
-    <!-- Tipografía moderna geométrica -->
+    <!-- Tipografía moderna -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Fondo dinámico submarino con capas de profundidad y burbujas mejoradas -->
-    <div class="abyssal-bg-overlay"></div>
+    <!-- Burbujas animadas de fondo -->
     <div class="bubbles-container">
-        <span class="bubble" style="left: 10%; width: 10px; height: 10px; animation-duration: 12s; animation-delay: 0s;"></span>
-        <span class="bubble" style="left: 25%; width: 18px; height: 18px; animation-duration: 9s; animation-delay: 2s;"></span>
-        <span class="bubble" style="left: 40%; width: 8px; height: 8px; animation-duration: 14s; animation-delay: 1s;"></span>
-        <span class="bubble" style="left: 60%; width: 22px; height: 22px; animation-duration: 10s; animation-delay: 4s;"></span>
-        <span class="bubble" style="left: 75%; width: 14px; height: 14px; animation-duration: 8s; animation-delay: 2.5s;"></span>
-        <span class="bubble" style="left: 90%; width: 25px; height: 25px; animation-duration: 11s; animation-delay: 0.5s;"></span>
+        <span class="bubble" style="left: 15%; width: 12px; height: 12px; animation-duration: 9s;"></span>
+        <span class="bubble" style="left: 45%; width: 20px; height: 20px; animation-duration: 11s; animation-delay: 2s;"></span>
+        <span class="bubble" style="left: 75%; width: 15px; height: 15px; animation-duration: 7s; animation-delay: 1s;"></span>
+        <span class="bubble" style="left: 90%; width: 22px; height: 22px; animation-duration: 10s; animation-delay: 3s;"></span>
     </div>
 
     <!-- Contenedor espacial tipo VisionOS -->
     <div class="spatial-viewport">
 
-        <!-- Barra lateral flotante izquierda con efectos de luz -->
+        <!-- Barra lateral flotante izquierda -->
         <nav class="floating-left-dock">
             <a href="#" class="dock-icon active" title="Inicio"><i class="fa-solid fa-house"></i></a>
             <a href="#" class="dock-icon" title="Buscar"><i class="fa-solid fa-magnifying-glass"></i></a>
@@ -37,10 +34,10 @@
         <main class="hologram-main-card">
             
             <div class="holo-header">
-                <i class="fa-solid fa-bars menu-toggle"></i>
+                <i class="fa-solid fa-bars"></i>
                 <div class="holo-nav-links">
-                    <span class="nav-item-hover">Discover</span>
-                    <span class="nav-item-hover">Planner</span>
+                    <span>Discover</span>
+                    <span>Planner</span>
                     <div class="user-avatar-small"><i class="fa-solid fa-user-astronaut"></i></div>
                 </div>
             </div>
@@ -104,20 +101,20 @@
                     <i class="fa-solid fa-compass"></i>
                     <span>Santuario Marino</span>
                 </div>
-                <!-- IDs exactos para el script integrado -->
+                <!-- IDs exactos que lee el script -->
                 <div class="realtime-clock" id="live-clock">00:00:00</div>
                 <div class="realtime-date" id="live-date">Cargando fecha...</div>
                 <div class="side-location">
                     <i class="fa-solid fa-location-dot"></i>
                     <span id="live-location">Soacha • Sector Abisal</span>
                 </div>
-                <small class="read-more-link">EN VIVO <span class="pulsing-dot"></span></small>
+                <small class="read-more-link">EN VIVO</small>
             </div>
         </aside>
 
     </div>
 
-    <!-- Script de JavaScript integrado para el reloj y efectos dinámicos -->
+    <!-- Script de JavaScript integrado exactamente con los IDs que usa tu CSS -->
     <script>
         function updateRealtimeInfo() {
             const now = new Date();
@@ -128,7 +125,7 @@
                 clockElement.textContent = now.toLocaleTimeString('es-ES', { hour12: false });
             }
 
-            // Actualizar fecha en español (Ej: dom, 6 sept 2026)
+            // Actualizar fecha en español
             const dateElement = document.getElementById('live-date');
             if (dateElement) {
                 const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
@@ -136,7 +133,7 @@
             }
         }
 
-        // Ejecutar de inmediato al cargar la página y actualizar cada segundo
+        // Ejecutar de inmediato y actualizar cada segundo
         document.addEventListener("DOMContentLoaded", () => {
             updateRealtimeInfo();
             setInterval(updateRealtimeInfo, 1000);
