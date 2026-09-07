@@ -11,18 +11,21 @@
 </head>
 <body>
 
-    <!-- Burbujas animadas de fondo -->
+    <!-- Fondo dinámico submarino con capas de profundidad y burbujas mejoradas -->
+    <div class="abyssal-bg-overlay"></div>
     <div class="bubbles-container">
-        <span class="bubble" style="left: 15%; width: 12px; height: 12px; animation-duration: 9s;"></span>
-        <span class="bubble" style="left: 45%; width: 20px; height: 20px; animation-duration: 11s; animation-delay: 2s;"></span>
-        <span class="bubble" style="left: 75%; width: 15px; height: 15px; animation-duration: 7s; animation-delay: 1s;"></span>
-        <span class="bubble" style="left: 90%; width: 22px; height: 22px; animation-duration: 10s; animation-delay: 3s;"></span>
+        <span class="bubble" style="left: 10%; width: 10px; height: 10px; animation-duration: 12s; animation-delay: 0s;"></span>
+        <span class="bubble" style="left: 25%; width: 18px; height: 18px; animation-duration: 9s; animation-delay: 2s;"></span>
+        <span class="bubble" style="left: 40%; width: 8px; height: 8px; animation-duration: 14s; animation-delay: 1s;"></span>
+        <span class="bubble" style="left: 60%; width: 22px; height: 22px; animation-duration: 10s; animation-delay: 4s;"></span>
+        <span class="bubble" style="left: 75%; width: 14px; height: 14px; animation-duration: 8s; animation-delay: 2.5s;"></span>
+        <span class="bubble" style="left: 90%; width: 25px; height: 25px; animation-duration: 11s; animation-delay: 0.5s;"></span>
     </div>
 
     <!-- Contenedor espacial tipo VisionOS -->
     <div class="spatial-viewport">
 
-        <!-- Barra lateral flotante izquierda -->
+        <!-- Barra lateral flotante izquierda con efectos de luz -->
         <nav class="floating-left-dock">
             <a href="#" class="dock-icon active" title="Inicio"><i class="fa-solid fa-house"></i></a>
             <a href="#" class="dock-icon" title="Buscar"><i class="fa-solid fa-magnifying-glass"></i></a>
@@ -34,10 +37,10 @@
         <main class="hologram-main-card">
             
             <div class="holo-header">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars menu-toggle"></i>
                 <div class="holo-nav-links">
-                    <span>Discover</span>
-                    <span>Planner</span>
+                    <span class="nav-item-hover">Discover</span>
+                    <span class="nav-item-hover">Planner</span>
                     <div class="user-avatar-small"><i class="fa-solid fa-user-astronaut"></i></div>
                 </div>
             </div>
@@ -108,13 +111,13 @@
                     <i class="fa-solid fa-location-dot"></i>
                     <span id="live-location">Soacha • Sector Abisal</span>
                 </div>
-                <small class="read-more-link">EN VIVO</small>
+                <small class="read-more-link">EN VIVO <span class="pulsing-dot"></span></small>
             </div>
         </aside>
 
     </div>
 
-    <!-- Script de JavaScript integrado directamente para evitar fallos de rutas -->
+    <!-- Script de JavaScript integrado para el reloj y efectos dinámicos -->
     <script>
         function updateRealtimeInfo() {
             const now = new Date();
