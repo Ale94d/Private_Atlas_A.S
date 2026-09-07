@@ -3,16 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Atlas A.S</title>
+    <title>Private Atlas A.S | Ocean Life</title>
     <link rel="stylesheet" href="Estilo.css">
+    <!-- Iconos de FontAwesome para el menú lateral -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Imagen de fondo marino fija -->
-    <img src="planificador%20de%20vida/activos/fondo/marino.jpg" class="background-img" alt="Fondo marino">
 
-    <div class="content">
-        <h1>Private Atlas A.S</h1>
-        <p>Bienvenido al planificador de vida.</p>
+    <!-- Contenedor principal de la aplicación -->
+    <div class="app-container">
+
+        <!-- Barra superior (Header) -->
+        <header class="top-header">
+            <span class="brand">PRIVATE ATLAS A.S</span>
+            <div class="header-filters">
+                <div class="filter-item"><i class="fa-solid fa-water"></i> Océano <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="filter-item"><i class="fa-solid fa-compass"></i> Estilo <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="filter-item"><i class="fa-solid fa-anchor"></i> Profundidad <i class="fa-solid fa-chevron-down"></i></div>
+            </div>
+            <span class="best-shots">VISTAS MARINAS</span>
+        </header>
+
+        <!-- Contenido Central y Panel Flotante -->
+        <div class="main-layout">
+            
+            <!-- Barra de navegación lateral (Sidebar) -->
+            <nav class="sidebar">
+                <a href="#" class="nav-icon active"><i class="fa-solid fa-house"></i></a>
+                <a href="#" class="nav-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a href="#" class="nav-icon"><i class="fa-solid fa-layer-group"></i></a>
+                <a href="#" class="nav-icon"><i class="fa-solid fa-bookmark"></i></a>
+                <div class="sidebar-spacer"></div>
+                <a href="#" class="nav-icon user-avatar"><i class="fa-solid fa-user"></i></a>
+                <a href="#" class="nav-icon"><i class="fa-solid fa-gear"></i></a>
+            </nav>
+
+            <!-- Tarjeta Flotante Principal estilo Dashboard -->
+            <main class="glass-card">
+                
+                <!-- Sección superior dentro de la tarjeta -->
+                <div class="card-hero">
+                    <div class="hero-text">
+                        <h1>Nuevo Estilo<br>De Vida Marino</h1>
+                        <p>Descubre propiedades extraordinarias y santuarios oceánicos disponibles para explorar. Tu viaje hacia el horizonte azul comienza aquí.</p>
+                    </div>
+                    <div class="hero-image-box">
+                        <div class="property-tag">
+                            <span>Santuario Azul</span>
+                            <p><i class="fa-solid fa-location-dot"></i> Costa Principal, Océano Pacífico</p>
+                        </div>
+                        <div class="arrow-btn"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                    </div>
+                </div>
+
+                <!-- Sección inferior dentro de la tarjeta -->
+                <div class="card-bottom">
+                    <div class="info-block">
+                        <h3>Explora el Océano</h3>
+                        <p>Nuestra plataforma te conecta con los horizontes más buscados del mundo.</p>
+                        <div class="stat-box">
+                            <h2>10K+</h2>
+                            <span>Horizontes Activos</span>
+                            <div class="mini-avatars">
+                                <i class="fa-solid fa-fish"></i>
+                                <i class="fa-solid fa-water"></i>
+                                <i class="fa-solid fa-sailboat"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stats-overview">
+                        <div class="metric-row">
+                            <span><i class="fa-solid fa-ruler-combined"></i> Superficie Marina</span>
+                            <strong>695m²</strong>
+                        </div>
+                        <div class="metric-row">
+                            <span><i class="fa-solid fa-compass"></i> Coordenadas</span>
+                            <strong>126m Prof.</strong>
+                        </div>
+                        <div class="metric-row">
+                            <span><i class="fa-solid fa-ship"></i> Ecosistemas</span>
+                            <strong>3 Zonas</strong>
+                        </div>
+                        <div class="metric-row">
+                            <span><i class="fa-solid fa-anchor"></i> Puertos</span>
+                            <strong>2 Bahías</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Barra de interacción final de la tarjeta -->
+                <div class="card-footer-actions">
+                    <div class="action-icons">
+                        <span><i class="fa-regular fa-heart"></i> 4.4K</span>
+                        <span><i class="fa-regular fa-bookmark"></i> 157</span>
+                        <span><i class="fa-solid fa-share-nodes"></i></span>
+                    </div>
+                    <div class="explore-badge">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+
+        <!-- Pie de página exterior -->
+        <footer class="bottom-bar">
+            <span>Like & Follow <i class="fa-regular fa-heart"></i></span>
+            <span class="swipe-btn">Deslizar &gt;&gt;</span>
+        </footer>
+
     </div>
+
 </body>
 </html>
