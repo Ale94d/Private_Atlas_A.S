@@ -491,6 +491,112 @@ body {
     color: #cbd5e1;
 }
 
+/* ================= LISTADO PROFESIONAL DE GASTOS Y RESUMEN 50/30/20 ================= */
+.summary-cards-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.summary-card-mini {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 10px;
+    text-align: center;
+}
+
+.summary-card-mini span {
+    font-size: 10px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.summary-card-mini h4 {
+    font-size: 14px;
+    color: #38bdf8;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.expenses-list-container {
+    max-height: 160px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 4px;
+}
+
+.expenses-list-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.expenses-list-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.expense-item-row {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+.expense-info-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.expense-info-main b {
+    color: #f8fafc;
+    font-size: 12px;
+}
+
+.expense-info-main small {
+    color: #94a3b8;
+    font-size: 10px;
+}
+
+.expense-item-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.expense-item-right span {
+    font-weight: 700;
+    color: #34d399;
+}
+
+.delete-expense-btn {
+    background: rgba(244, 63, 94, 0.2);
+    border: 1px solid rgba(244, 63, 94, 0.4);
+    color: #f43f5e;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.2s;
+}
+
+.delete-expense-btn:hover {
+    background: #f43f5e;
+    color: #ffffff;
+}
+
 @media (max-width: 1024px) {
     .spatial-viewport {
         flex-direction: column;
@@ -520,6 +626,9 @@ body {
         overflow-x: auto;
     }
     .finance-row-inputs {
+        grid-template-columns: 1fr;
+    }
+    .summary-cards-row {
         grid-template-columns: 1fr;
     }
 }
