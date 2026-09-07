@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Daily Journal | Private Atlas A.S.</title>
@@ -12,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
-          rel="stylesheet">
+        rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -22,121 +21,85 @@
 
 <main class="apothecary">
 
-
+    <!-- Ambiente -->
     <div class="ambient-glow glow-one"></div>
     <div class="ambient-glow glow-two"></div>
 
     <div class="particle particle-one">✦</div>
     <div class="particle particle-two">✧</div>
     <div class="particle particle-three">·</div>
-    <div class="particle particle-four">✦</div>
 
 
-    <section class="apothecary-room">
+    <!-- Navegación -->
+    <header class="journal-navigation">
+
+        <a href="../index.html" class="home-button">
+            <span>⌂</span>
+            Home
+        </a>
+
+        <div class="journal-brand">
+            <span>PRIVATE ATLAS</span>
+            <h1>Daily Journal</h1>
+        </div>
+
+        <div class="section-navigation">
+
+            <button
+                class="section-button active"
+                data-section="diario"
+                type="button">
+                Diario
+            </button>
+
+            <button
+                class="section-button"
+                data-section="emociones"
+                type="button">
+                Emociones
+            </button>
+
+        </div>
+
+    </header>
 
 
-        <aside class="shelf-panel">
+    <!-- Contenido principal -->
+    <section class="journal-content">
 
-            <div class="panel-title">
-                <span>✦</span>
-                BOTICA
-                <span>✦</span>
+
+        <!-- Decoración boticaria -->
+        <aside class="botanical-side">
+
+            <div class="botanical-line"></div>
+
+            <div class="glass-bottle bottle-one">
+                <span></span>
             </div>
 
-
-            <div class="cabinet-label">
-                ESTANTE I
+            <div class="glass-bottle bottle-two">
+                <span></span>
             </div>
 
-
-            <div class="wood-shelf">
-
-                <div class="bottle bottle-green">
-                    <span></span>
-                </div>
-
-                <div class="bottle bottle-brown">
-                    <span></span>
-                </div>
-
-                <div class="bottle bottle-clear">
-                    <span></span>
-                </div>
-
+            <div class="glass-bottle bottle-three">
+                <span></span>
             </div>
 
-
-            <div class="cabinet-label">
-                ESTANTE II
-            </div>
-
-
-            <div class="wood-shelf small-shelf">
-
-                <div class="small-bottle">
-                    <span></span>
-                </div>
-
-                <div class="small-bottle dark">
-                    <span></span>
-                </div>
-
-                <div class="small-bottle amber">
-                    <span></span>
-                </div>
-
-                <div class="small-bottle">
-                    <span></span>
-                </div>
-
-            </div>
-
-
-
-            <div class="herbarium">
-
-                <div class="herbarium-icon">
-                    🌿
-                </div>
-
-                <div>
-
-                    <small>
-                        HERBARIO
-                    </small>
-
-                    <p>
-                        Recuerdos
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="cabinet-note">
-
-                <span>✧</span>
-
-                <p>
-                    Cada día guarda
-                    una historia.
-                </p>
-
-                <span>✧</span>
-
-            </div>
+            <div class="botanical-leaf leaf-one">❧</div>
+            <div class="botanical-leaf leaf-two">❧</div>
 
         </aside>
 
 
-        <section class="journal-area">
+        <!-- DIARIO -->
+        <section
+            class="journal-section active-section"
+            id="diario">
 
+            <div class="section-intro">
 
-            <div class="welcome">
-
-                <span class="ornament">
-                    ✦
+                <span class="small-title">
+                    CUADERNO PERSONAL
                 </span>
 
                 <h2>
@@ -144,32 +107,33 @@
                 </h2>
 
                 <p>
-                    Cada experiencia merece un pequeño lugar
-                    en tu historia.
+                    Un espacio para guardar aquello que quieras recordar.
                 </p>
 
             </div>
 
-            <div class="entry-card">
 
+            <article class="journal-paper">
 
-                <div class="card-header">
+                <div class="paper-decoration">
+                    ✦
+                </div>
+
+                <div class="paper-header">
 
                     <div>
-
-                        <span class="label">
-                            REGISTRO DEL DÍA
+                        <span class="paper-label">
+                            DIARIO
                         </span>
 
                         <h3>
                             ¿Cómo fue tu día?
                         </h3>
-
                     </div>
 
-
-                    <span class="card-number">
-                        Nº 001
+                    <span
+                        class="today-date"
+                        id="todayDate">
                     </span>
 
                 </div>
@@ -185,250 +149,165 @@
                 </div>
 
 
-                <div class="mood-section">
+                <div class="paper-bottom">
 
-                    <span class="section-label">
-                        ESTADO DE ÁNIMO
-                    </span>
+                    <div class="selected-mood">
+                        <span>
+                            ESTADO DE ÁNIMO
+                        </span>
 
-
-                    <div class="moods">
-
-                        <button class="mood" type="button">
-                            <span>☀</span>
-                            Feliz
-                        </button>
-
-                        <button class="mood" type="button">
-                            <span>♡</span>
-                            Tranquilo
-                        </button>
-
-                        <button class="mood" type="button">
-                            <span>✦</span>
-                            Emocionado
-                        </button>
-
-                        <button class="mood" type="button">
-                            <span>☾</span>
-                            Nostálgico
-                        </button>
-
-                        <button class="mood" type="button">
-                            <span>☁</span>
-                            Pensativo
-                        </button>
-
+                        <strong id="selectedMood">
+                            Selecciona una emoción
+                        </strong>
                     </div>
+
+
+                    <button
+                        class="save-button"
+                        id="saveButton"
+                        type="button">
+
+                        <span>✦</span>
+                        Guardar recuerdo
+
+                    </button>
 
                 </div>
 
-                <div class="tags-section">
-
-                    <span class="section-label">
-                        ETIQUETAS
-                    </span>
-
-
-                    <div class="tags">
-
-                        <span class="tag">
-                            #hoy
-                        </span>
-
-                        <span class="tag">
-                            #recuerdo
-                        </span>
-
-                        <button class="add-tag" type="button">
-                            + añadir
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-
-                <button class="save-button" type="button">
-
-                    <span>✦</span>
-
-                    Guardar recuerdo
-
-                </button>
-
-            </div>
+            </article>
 
         </section>
 
 
 
-        <aside class="memory-panel">
+        <!-- EMOCIONES -->
+        <section
+            class="journal-section"
+            id="emociones">
 
+            <div class="section-intro">
 
-            <div class="memory-title">
-
-                <span>
-                    ARCHIVO PERSONAL
+                <span class="small-title">
+                    HERBARIO INTERIOR
                 </span>
 
-                <h3>
-                    Tus recuerdos
-                </h3>
-
-            </div>
-
-
-            <div class="memory-box">
-
-                <span class="memory-icon">
-                    ◇
-                </span>
-
-                <h4>
-                    Un día como hoy
-                </h4>
+                <h2>
+                    ¿Cómo te sentiste?
+                </h2>
 
                 <p>
-                    Descubre qué estabas viviendo
-                    en esta misma fecha.
+                    Elige la emoción que mejor representa tu día.
                 </p>
 
-                <button type="button">
-                    Ver recuerdos
-                </button>
-
             </div>
 
 
-            <div class="search-box">
+            <article class="emotion-paper">
 
-                <span>
-                    ⌕
-                </span>
+                <div class="paper-decoration">
+                    ❧
+                </div>
 
-                <input
-                    type="text"
-                    placeholder="Buscar por fecha..."
-                >
+                <div class="emotion-header">
 
-            </div>
-
-
-            <div class="archive-heading">
-                ÚLTIMOS REGISTROS
-            </div>
-
-
-            <div class="archive-list">
-
-
-                <div class="archive-item">
-
-                    <span class="archive-date">
-                        27 AGO
+                    <span class="paper-label">
+                        EMOCIONES
                     </span>
 
-                    <div>
-
-                        <strong>
-                            Un día especial
-                        </strong>
-
-                        <small>
-                            Hace 7 días
-                        </small>
-
-                    </div>
+                    <h3>
+                        Guarda cómo te sentiste
+                    </h3>
 
                 </div>
 
 
+                <div class="emotion-grid">
 
-                <div class="archive-item">
+                    <button
+                        class="emotion"
+                        data-emotion="Feliz"
+                        type="button">
 
-                    <span class="archive-date">
-                        18 AGO
-                    </span>
+                        <span>☀</span>
+                        <small>Feliz</small>
 
-                    <div>
+                    </button>
 
-                        <strong>
-                            Pequeños momentos
-                        </strong>
 
-                        <small>
-                            Hace 16 días
-                        </small>
+                    <button
+                        class="emotion"
+                        data-emotion="Tranquilo"
+                        type="button">
 
-                    </div>
+                        <span>♡</span>
+                        <small>Tranquilo</small>
+
+                    </button>
+
+
+                    <button
+                        class="emotion"
+                        data-emotion="Emocionado"
+                        type="button">
+
+                        <span>✦</span>
+                        <small>Emocionado</small>
+
+                    </button>
+
+
+                    <button
+                        class="emotion"
+                        data-emotion="Nostálgico"
+                        type="button">
+
+                        <span>☾</span>
+                        <small>Nostálgico</small>
+
+                    </button>
+
+
+                    <button
+                        class="emotion"
+                        data-emotion="Pensativo"
+                        type="button">
+
+                        <span>☁</span>
+                        <small>Pensativo</small>
+
+                    </button>
 
                 </div>
 
 
+                <div class="emotion-note">
 
-                <div class="archive-item">
+                    <span>✧</span>
 
-                    <span class="archive-date">
-                        11 AGO
-                    </span>
+                    <p id="emotionMessage">
+                        Selecciona una emoción para guardarla en tu diario.
+                    </p>
 
-                    <div>
-
-                        <strong>
-                            Una tarde tranquila
-                        </strong>
-
-                        <small>
-                            Hace 23 días
-                        </small>
-
-                    </div>
+                    <span>✧</span>
 
                 </div>
 
-            </div>
+            </article>
 
+        </section>
 
-            <div class="memory-footer">
-
-                ✦ &nbsp; ARCHIVADO &nbsp; ✦
-
-            </div>
-
-        </aside>
 
     </section>
 
 
-    <nav class="bottom-nav">
+    <!-- Elementos botánicos inferiores -->
+    <div class="bottom-botanical botanical-left">
+        ❧
+    </div>
 
-        <button class="nav-item active" type="button">
-
-            <span>✎</span>
-
-            <small>
-                Diario
-            </small>
-
-        </button>
-
-
-        <div class="nav-divider"></div>
-
-
-        <button class="nav-item" type="button">
-
-            <span>♡</span>
-
-            <small>
-                Emociones
-            </small>
-
-        </button>
-
-    </nav>
+    <div class="bottom-botanical botanical-right">
+        ❧
+    </div>
 
 
 </main>
