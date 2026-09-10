@@ -1,4 +1,4 @@
-/* =================================================================aya
+/* =================================================================
    PRIVATE ATLAS A.S | LIFE PLANNER HLOGRÁFICO - ESTILOS CSS
    ================================================================= */
 
@@ -61,7 +61,7 @@ body {
     display: flex;
     gap: 20px;
     align-items: flex-start;
-    max-width: 1400px;
+    max-width: 1450px;
     width: 100%;
     padding: 20px;
     justify-content: center;
@@ -100,19 +100,17 @@ body {
     box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
 }
 
-/* =================================================================
-   TARJETA PRINCIPAL HOLOGRÁFICA (MÁS ANCHA Y ALTA HACIA ARRIBA)
-   ================================================================= */
+/* Tarjeta Principal Holográfica (Más ancha y alta hacia arriba) */
 .hologram-main-card {
     background: rgba(15, 23, 42, 0.55);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 32px;
-    width: 880px;            /* Más ancha */
+    width: 920px;          /* Más ancha */
     max-width: 95vw;
-    min-height: 640px;       /* Más alta hacia arriba y abajo */
-    padding: 45px;           /* Mayor espacio interno */
+    min-height: 660px;     /* Más alta hacia arriba */
+    padding: 45px;         /* Más espacio interno */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -176,9 +174,7 @@ body {
     margin-bottom: 30px;
 }
 
-/* =================================================================
-   TARJETAS DEL CARRUSEL (MÁS ANCHAS Y ALTAS)
-   ================================================================= */
+/* Tarjetas del Carrusel (Más anchas y altas hacia arriba) */
 .holo-cards-carousel {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -190,8 +186,8 @@ body {
     background: rgba(30, 41, 59, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 22px;
-    padding: 30px;            /* Más espacio interno */
-    min-height: 175px;        /* Más altas hacia arriba */
+    padding: 30px;          /* Mayor espacio interior */
+    min-height: 185px;      /* Más altas hacia arriba */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -300,9 +296,7 @@ body {
     background: rgba(56, 189, 248, 0.15);
 }
 
-/* =================================================================
-   VISTA DE FINANZAS
-   ================================================================= */
+/* Vista de Finanzas */
 .finance-layout-grid {
     display: grid;
     grid-template-columns: 240px 1fr;
@@ -425,7 +419,6 @@ body {
     gap: 12px;
 }
 
-/* Listado de gastos guardados */
 .expenses-list-container {
     max-height: 140px;
     overflow-y: auto;
@@ -498,9 +491,7 @@ body {
     border-radius: 10px;
 }
 
-/* =================================================================
-   TARJETA LATERAL DERECHA (RELOJ EN VIVO)
-   ================================================================= */
+/* Tarjeta Lateral Derecha */
 .hologram-side-card {
     display: flex;
     flex-direction: column;
