@@ -1,245 +1,217 @@
-/* =================================================================
-   PRIVATE ATLAS A.S | LIFE PLANNER HLOGRÁFICO - ESTILOS CSS
-   ================================================================= */
+html {
+    background-color: #050b14;
+    height: 100%;
+}
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: 'Outfit', sans-serif;
 }
 
 body {
-    background: radial-gradient(circle at center, #0a192f 0%, #020c1b 100%);
-    color: #f8fafc;
     min-height: 100vh;
-    overflow-x: hidden;
+    height: 100%;
+    background-color: #050b14;
+    background-image: linear-gradient(rgba(2, 6, 23, 0.4), rgba(15, 23, 42, 0.65)), url('assets/background/marino.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #f8fafc;
     display: flex;
-    justify-content: center;
     align-items: center;
-    position: relative;
+    justify-content: center;
+    overflow-x: hidden;
+    padding: 20px;
 }
 
-/* Burbujas animadas de fondo */
 .bubbles-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
-    overflow: hidden;
     z-index: 1;
 }
 
 .bubble {
     position: absolute;
-    bottom: -50px;
-    background: rgba(56, 189, 248, 0.15);
+    bottom: -30px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    animation: riseBubbles linear infinite;
+    animation: riseUp linear infinite;
 }
 
-@keyframes riseBubbles {
-    0% {
-        transform: translateY(0) scale(1);
-        opacity: 0;
-    }
-    20% {
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(-105vh) scale(1.2);
-        opacity: 0;
-    }
+@keyframes riseUp {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    20% { opacity: 0.7; }
+    100% { transform: translateY(-105vh) scale(1.2); opacity: 0; }
 }
 
-/* Contenedor espacial tipo VisionOS */
 .spatial-viewport {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    max-width: 1450px;
     width: 100%;
-    padding: 20px;
-    justify-content: center;
+    max-width: 1300px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    z-index: 10;
+    position: relative;
 }
 
-/* Barra lateral flotante izquierda */
 .floating-left-dock {
-    background: rgba(15, 23, 42, 0.65);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    padding: 15px 10px;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    padding: 16px 10px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
 .dock-icon {
     width: 45px;
     height: 45px;
-    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 50%;
     color: #94a3b8;
-    font-size: 18px;
+    font-size: 16px;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .dock-icon:hover, .dock-icon.active {
-    background: rgba(56, 189, 248, 0.2);
-    color: #38bdf8;
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #0f172a;
+    box-shadow: 0 4px 15px rgba(255,255,255,0.3);
 }
 
-/* Tarjeta Principal Holográfica (Más ancha y alta hacia arriba) */
 .hologram-main-card {
-    background: rgba(15, 23, 42, 0.55);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 32px;
-    width: 920px;          /* Más ancha */
-    max-width: 95vw;
-    min-height: 660px;     /* Más alta hacia arriba */
-    padding: 45px;         /* Más espacio interno */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    transition: all 0.4s ease;
+    flex-grow: 1;
+    background: rgba(15, 23, 42, 0.38);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 36px;
+    padding: 35px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
 }
 
-.hidden-view {
-    display: none !important;
-}
-
-/* Cabecera interna */
 .holo-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
-}
-
-.holo-header i {
-    font-size: 20px;
-    color: #94a3b8;
-    cursor: pointer;
+    margin-bottom: 30px;
+    color: #cbd5e1;
+    font-size: 18px;
 }
 
 .holo-nav-links {
     display: flex;
     align-items: center;
     gap: 20px;
-    font-size: 14px;
-    color: #94a3b8;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .user-avatar-small {
     width: 36px;
     height: 36px;
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 50%;
-    background: rgba(56, 189, 248, 0.2);
-    border: 1px solid rgba(56, 189, 248, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #38bdf8;
 }
 
-/* Introducción */
+.holo-intro {
+    margin-bottom: 35px;
+}
+
 .holo-intro h2 {
     font-size: 38px;
     font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
     line-height: 1.2;
     margin-bottom: 12px;
-    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .holo-intro p {
-    font-size: 15px;
+    font-size: 13px;
     color: #94a3b8;
-    max-width: 600px;
-    margin-bottom: 30px;
+    max-width: 550px;
+    line-height: 1.5;
 }
 
-/* Tarjetas del Carrusel (Más anchas y altas hacia arriba) */
 .holo-cards-carousel {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-    margin-bottom: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 35px;
 }
 
 .carousel-card {
-    background: rgba(30, 41, 59, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 22px;
-    padding: 30px;          /* Mayor espacio interior */
-    min-height: 185px;      /* Más altas hacia arriba */
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 16px;
+    height: 140px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-.carousel-card:hover {
-    border-color: rgba(56, 189, 248, 0.4);
-    transform: translateY(-5px);
-    background: rgba(30, 41, 59, 0.7);
-    box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15);
-}
-
-.active-card {
-    background: rgba(56, 189, 248, 0.1);
-    border-color: rgba(56, 189, 248, 0.3);
+.carousel-card:hover, .carousel-card.active-card {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(56, 189, 248, 0.5);
+    transform: translateY(-4px);
 }
 
 .card-top-tag {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 12px;
-    color: #38bdf8;
-    font-weight: 600;
+    font-size: 10px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+.card-top-tag i {
+    color: #f43f5e;
 }
 
 .card-content-text h4 {
-    font-size: 18px;
+    font-size: 13px;
     font-weight: 700;
-    color: #fff;
-    margin: 8px 0 4px 0;
+    color: #f8fafc;
+    margin-bottom: 4px;
 }
 
 .card-content-text p {
-    font-size: 13px;
-    color: #94a3b8;
+    font-size: 11px;
+    color: #cbd5e1;
 }
 
 .carousel-step {
-    position: absolute;
-    bottom: 15px;
-    right: 20px;
-    font-size: 28px;
+    font-size: 12px;
     font-weight: 800;
-    color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.4);
 }
 
-/* Footer de acciones */
 .holo-action-footer {
     display: flex;
     align-items: center;
@@ -247,129 +219,255 @@ body {
 }
 
 .holo-btn {
-    padding: 12px 24px;
-    border-radius: 14px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
     border: none;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .primary-btn {
-    background: #38bdf8;
-    color: #020c1b;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    background: rgba(255, 255, 255, 0.9);
+    color: #0f172a;
+    box-shadow: 0 4px 15px rgba(255,255,255,0.2);
 }
 
 .primary-btn:hover {
-    background: #7dd3fc;
-    box-shadow: 0 0 25px rgba(56, 189, 248, 0.7);
+    background: #ffffff;
 }
 
 .secondary-btn {
-    background: rgba(255, 255, 255, 0.06);
-    color: #f8fafc;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    color: #cbd5e1;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .secondary-btn:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .footer-icon-pill {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #94a3b8;
+    color: #cbd5e1;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.2s;
 }
 
 .footer-icon-pill:hover {
-    color: #38bdf8;
-    background: rgba(56, 189, 248, 0.15);
+    background: rgba(255, 255, 255, 0.2);
 }
 
-/* Vista de Finanzas */
+/* Tarjeta lateral derecha */
+.hologram-side-card {
+    width: 290px;
+    height: 520px;
+    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('assets/background/marino.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 36px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.side-badge {
+    background: rgba(10, 15, 30, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 16px;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.side-badge-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.realtime-clock {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.realtime-date {
+    font-size: 12px;
+    font-weight: 500;
+    color: #cbd5e1;
+    text-transform: capitalize;
+}
+
+.side-location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 6px;
+}
+
+.side-location i {
+    color: #f43f5e;
+}
+
+.read-more-link {
+    font-size: 9px;
+    color: #34d399;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 2px;
+}
+
+/* ================= MÓDULO FINANCIERO ================= */
+.hidden-view {
+    display: none !important;
+}
+
 .finance-layout-grid {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 25px;
-    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
 }
 
 .finance-categories-dock {
+    width: 170px;
+    background: rgba(10, 15, 30, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    padding: 15px 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    flex-shrink: 0;
 }
 
 .fin-cat-item {
-    background: rgba(30, 41, 59, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 12px 16px;
-    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 12px 10px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 12px;
-    font-size: 13px;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
     color: #94a3b8;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-align: center;
+}
+
+.fin-cat-item i {
+    font-size: 16px;
+    color: #38bdf8;
 }
 
 .fin-cat-item:hover, .fin-cat-item.active {
-    background: rgba(56, 189, 248, 0.15);
-    border-color: rgba(56, 189, 248, 0.3);
-    color: #38bdf8;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(14, 116, 144, 0.4));
+    border-color: rgba(56, 189, 248, 0.5);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
 }
 
 .finance-form-container {
+    flex-grow: 1;
+    background: rgba(10, 15, 30, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
+    backdrop-filter: blur(12px);
 }
 
 .plan-journey-title h3 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
-    color: #fff;
+    color: #ffffff;
+    margin-bottom: 4px;
 }
 
 .plan-journey-title p {
-    font-size: 13px;
+    font-size: 12px;
     color: #94a3b8;
 }
 
-.summary-cards-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+.finance-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
 }
 
-.summary-card-mini {
-    background: rgba(30, 41, 59, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 14px;
-    border-radius: 14px;
-}
-
-.summary-card-mini span {
+.finance-input-group label {
     font-size: 11px;
-    color: #94a3b8;
+    font-weight: 600;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.summary-card-mini h4 {
-    font-size: 18px;
-    font-weight: 700;
+.fin-input-box {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+}
+
+.fin-input-box i {
     color: #38bdf8;
-    margin-top: 4px;
+    font-size: 14px;
+}
+
+.fin-input-box input, .fin-input-box select {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 13px;
+    width: 100%;
+    font-family: 'Outfit', sans-serif;
+}
+
+.fin-input-box select option {
+    background: #0f172a;
+    color: #ffffff;
 }
 
 .finance-row-inputs {
@@ -378,54 +476,58 @@ body {
     gap: 15px;
 }
 
-.finance-input-group label {
-    font-size: 12px;
-    color: #94a3b8;
-    margin-bottom: 6px;
-    display: block;
-}
-
-.fin-input-box {
-    background: rgba(30, 41, 59, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.fin-input-box i {
-    color: #94a3b8;
-    font-size: 14px;
-}
-
-.fin-input-box input, .fin-input-box select {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #fff;
-    font-size: 14px;
-    width: 100%;
-}
-
-.fin-input-box select option {
-    background: #0f172a;
-    color: #fff;
-}
-
 .finance-actions-footer {
     display: flex;
     gap: 12px;
+    margin-top: 5px;
+}
+
+.budget-feedback {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #cbd5e1;
+}
+
+/* ================= LISTADO PROFESIONAL DE GASTOS Y RESUMEN 50/30/20 ================= */
+.summary-cards-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.summary-card-mini {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 10px;
+    text-align: center;
+}
+
+.summary-card-mini span {
+    font-size: 10px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.summary-card-mini h4 {
+    font-size: 14px;
+    color: #38bdf8;
+    font-weight: 700;
+    margin-top: 2px;
 }
 
 .expenses-list-container {
-    max-height: 140px;
+    max-height: 160px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding-right: 5px;
+    padding-right: 4px;
 }
 
 .expenses-list-container::-webkit-scrollbar {
@@ -433,119 +535,237 @@ body {
 }
 
 .expenses-list-container::-webkit-scrollbar-thumb {
-    background: rgba(56, 189, 248, 0.3);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 4px;
 }
 
 .expense-item-row {
-    background: rgba(30, 41, 59, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
+    padding: 8px 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 12px;
+}
+
+.expense-info-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .expense-info-main b {
-    font-size: 13px;
-    color: #fff;
-    display: block;
+    color: #f8fafc;
+    font-size: 12px;
 }
 
 .expense-info-main small {
-    font-size: 11px;
     color: #94a3b8;
+    font-size: 10px;
 }
 
 .expense-item-right {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 }
 
 .expense-item-right span {
-    font-size: 14px;
     font-weight: 700;
-    color: #38bdf8;
+    color: #34d399;
 }
 
 .delete-expense-btn {
-    background: transparent;
-    border: none;
+    background: rgba(244, 63, 94, 0.2);
+    border: 1px solid rgba(244, 63, 94, 0.4);
     color: #f43f5e;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    font-size: 14px;
-    transition: transform 0.2s;
+    font-size: 11px;
+    transition: all 0.2s;
 }
 
 .delete-expense-btn:hover {
-    transform: scale(1.2);
+    background: #f43f5e;
+    color: #ffffff;
 }
 
-.budget-feedback {
-    font-size: 12px;
-    color: #94a3b8;
-    background: rgba(30, 41, 59, 0.3);
-    padding: 10px;
-    border-radius: 10px;
+@media (max-width: 1024px) {
+    .spatial-viewport {
+        flex-direction: column;
+    }
+    .floating-left-dock {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        border-radius: 30px;
+    }
+    .hologram-side-card {
+        width: 100%;
+        height: 280px;
+    }
+    .holo-cards-carousel {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-/* Tarjeta Lateral Derecha */
-.hologram-side-card {
-    display: flex;
-    flex-direction: column;
+@media (max-width: 768px) {
+    .finance-layout-grid {
+        flex-direction: column;
+    }
+    .finance-categories-dock {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+    }
+    .finance-row-inputs {
+        grid-template-columns: 1fr;
+    }
+    .summary-cards-row {
+        grid-template-columns: 1fr;
+    }
 }
+[7/9, 12:12 a.m.] Alejandro: <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Atlas A.S | Life Planner Holográfico</title>
+    <link rel="stylesheet" href="Style.css">
+    <!-- Tipografía moderna geométrica -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
 
-.side-badge {
-    background: rgba(15, 23, 42, 0.55);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 24px;
-    padding: 25px;
-    width: 240px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
+    <!-- Burbujas animadas de fondo -->
+    <div class="bubbles-container">
+        <span class="bubble" style="left: 15%; width: 12px; height: 12px; animation-duration: 9s;"></span>
+        <span class="bubble" style="left: 45%; width: 20px; height: 20px; animation-duration: 11s; animation-delay: 2s;"></span>
+        <span class="bubble" style="left: 75%; width: 15px; height: 15px; animation-duration: 7s; animation-delay: 1s;"></span>
+        <span class="bubble" style="left: 90%; width: 22px; height: 22px; animation-duration: 10s; animation-delay: 3s;"></span>
+    </div>
 
-.side-badge-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #38bdf8;
-}
+    <!-- Contenedor espacial tipo VisionOS -->
+    <div class="spatial-viewport">
 
-.realtime-clock {
-    font-size: 26px;
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: 1px;
-}
+        <!-- Barra lateral flotante izquierda -->
+        <nav class="floating-left-dock">
+            <a href="#" class="dock-icon active" id="nav-home" title="Inicio" onclick="switchView('home')"><i class="fa-solid fa-house"></i></a>
+            <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <!-- Botón de Finanzas con la Moneda -->
+            <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></a>
+            <a href="#" class="dock-icon" id="nav-help" title="Ayuda"><i class="fa-solid fa-circle-question"></i></a>
+        </nav>
 
-.realtime-date {
-    font-size: 12px;
-    color: #94a3b8;
-}
+        <!-- ================= VISTA 1: INICIO (PRINCIPAL) ================= -->
+        <main class="hologram-main-card" id="view-home">
+            
+            <div class="holo-header">
+                <i class="fa-solid fa-bars"></i>
+                <div class="holo-nav-links">
+                    <span>Discover</span>
+                    <span>Planner</span>
+                    <div class="user-avatar-small"><i class="fa-solid fa-user-astronaut"></i></div>
+                </div>
+            </div>
 
-.side-location {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    color: #cbd5e1;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: 12px;
-}
+            <div class="holo-intro">
+                <h2>Get ready to organize<br>your abyssal life!</h2>
+                <p>Gestiona tus tareas submarinas, controla tu presupuesto 50/30/20 y explora santuarios marinos con claridad absoluta.</p>
+            </div>
 
-.read-more-link {
-    font-size: 10px;
-    font-weight: 700;
-    color: #38bdf8;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
+            <div class="holo-cards-carousel">
+                <div class="carousel-card active-card">
+                    <div class="card-top-tag"><span>Tareas Activas</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-content-text">
+                        <h4>Mantenimiento de Coral</h4>
+                        <p><i class="fa-solid fa-calendar-days"></i> 06 Sep • Completado</p>
+                    </div>
+                    <span class="carousel-step">01</span>
+                </div>
+
+                <!-- Tarjeta interactiva del Carrusel para ir directo al monedero -->
+                <div class="carousel-card" onclick="switchView('finance')">
+                    <div class="card-top-tag"><span>Finanzas</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-content-text">
+                        <h4>Presupuesto Abisal</h4>
+                        <p><i class="fa-solid fa-wallet"></i> Ver Gastos Guardados</p>
+                    </div>
+                    <span class="carousel-step">02</span>
+                </div>
+
+                <div class="carousel-card">
+                    <div class="card-top-tag"><span>Exploración</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-content-text">
+                        <h4>Santuario Antiguo</h4>
+                        <p><i class="fa-solid fa-location-dot"></i> Sector 7</p>
+                    </div>
+                    <span class="carousel-step">03</span>
+                </div>
+
+                <div class="carousel-card">
+                    <div class="card-top-tag"><span>Sistema</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-content-text">
+                        <h4>Filtros de Presión</h4>
+                        <p><i class="fa-solid fa-shield"></i> Modo Óptimo</p>
+                    </div>
+                    <span class="carousel-step">04</span>
+                </div>
+            </div>
+
+            <div class="holo-action-footer">
+                <button class="holo-btn primary-btn" onclick="switchView('finance')">Get Started</button>
+                <button class="holo-btn secondary-btn">Contact Us</button>
+                <div class="footer-icon-pill"><i class="fa-solid fa-bookmark"></i></div>
+                <div class="footer-icon-pill"><i class="fa-solid fa-share-nodes"></i></div>
+            </div>
+
+        </main>
+
+
+        <!-- ================= VISTA 2: FINANZAS 50/30/20 ================= -->
+        <main class="hologram-main-card hidden-view" id="view-finance">
+            
+            <div class="holo-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-arrow-left" style="cursor: pointer;" onclick="switchView('home')" title="Volver"></i>
+                    <span style="font-weight: 700; color: #fff;">Private Atlas • Finanzas Abisales</span>
+                </div>
+                <div class="holo-nav-links">
+                    <span>$ USD</span>
+                    <span>Manage Budget</span>
+                    <div class="user-avatar-small"><i class="fa-solid fa-wallet"></i></div>
+                </div>
+            </div>
+
+            <div class="finance-layout-grid">
+                
+                <!-- Barra de Categorías Izquierda -->
+                <div class="finance-categories-dock">
+                    <div class="fin-cat-item active" onclick="selectCategory('50', this)" title="Necesidades (50%)">
+                        <i class="fa-solid fa-house-chimney"></i>
+                        <span>Necesidades (50%)</span>
+                    </div>
+                    <div class="fin-cat-item" onclick="selectCategory('30', this)" title="Deseos (30%)">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span>Deseos (30%)</span>
+                    </div>
+                    <div class="fin-cat-item" onclick="selectCategory('20', this)" title="Ahorro (20%)">
+                        <i class="fa-solid fa-piggy-bank"></i>
+                        <span>Ahorro (20%)</span>
+                    </div>
+                    <div class="fin-cat-item" onclick="selectCategory('20', this)" title="Inversión">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Inversiones</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Formulario, Cálculo 50/30/20 y Listad
