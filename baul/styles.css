@@ -484,7 +484,7 @@ body {
     background: transparent;
     animation:
         lavaDown
-        12s linear
+        3.5s linear
         forwards;
 }
 
@@ -532,9 +532,9 @@ body {
         saturate(1.45);
     transform: scale(1.08);
     animation:
-        lavaDown 12s linear forwards,
-        lavaMovement 5s ease-in-out infinite alternate,
-        lavaHeat 3s ease-in-out infinite;
+        lavaDown 3.5s linear forwards,
+        lavaMovement 7s ease-in-out infinite alternate,
+        lavaHeat 5s ease-in-out infinite;
     clip-path:
         inset(
             -10%,
