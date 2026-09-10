@@ -28,8 +28,8 @@
             <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
             <!-- Botón de Finanzas con la Moneda -->
             <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></a>
-            <!-- Botón del Cuaderno para la sección de tareas -->
-            <a href="#" class="dock-icon" id="nav-tasks" title="Tareas y Notas" onclick="switchView('tasks')"><i class="fa-solid fa-book"></i></a>
+            <!-- Botón del Cuaderno (Reemplaza el símbolo de interrogación) -->
+            <a href="#" class="dock-icon" id="nav-tasks" title="Cuaderno de Tareas" onclick="switchView('tasks')"><i class="fa-solid fa-book"></i></a>
         </nav>
 
         <!-- ================= VISTA 1: INICIO (PRINCIPAL) ================= -->
@@ -50,16 +50,17 @@
             </div>
 
             <div class="holo-cards-carousel" style="grid-template-columns: repeat(2, 1fr);">
+                <!-- Tarjeta 1: Tareas Activas -->
                 <div class="carousel-card active-card" onclick="switchView('tasks')">
                     <div class="card-top-tag"><span>Tareas Activas</span><i class="fa-regular fa-heart"></i></div>
                     <div class="card-content-text">
                         <h4>Mantenimiento de Coral</h4>
-                        <p><i class="fa-solid fa-calendar-days"></i> 06 Sep • Completado</p>
+                        <p><i class="fa-solid fa-calendar-days"></i> 06 Sep • Ver Tareas</p>
                     </div>
                     <span class="carousel-step">01</span>
                 </div>
 
-                <!-- Tarjeta interactiva del Carrusel para ir directo al monedero -->
+                <!-- Tarjeta 2: Presupuesto Abisal -->
                 <div class="carousel-card" onclick="switchView('finance')">
                     <div class="card-top-tag"><span>Finanzas</span><i class="fa-regular fa-heart"></i></div>
                     <div class="card-content-text">
@@ -117,7 +118,7 @@
                     </div>
                 </div>
 
-                <!-- Tarjeta de Formulario, Cálculo 50/30/20 y Listado Profesional de Gastos Guardados -->
+                <!-- Formulario y Cálculo 50/30/20 -->
                 <div class="finance-form-container">
                     <div class="plan-journey-title">
                         <h3>Control 50 / 30 / 20</h3>
@@ -189,10 +190,8 @@
                         </button>
                     </div>
 
-                    <!-- Contenedor profesional de gastos guardados (con scroll y botón de eliminar) -->
-                    <div class="expenses-list-container" id="expenses-list-box">
-                        <!-- Los gastos se cargan dinámicamente aquí -->
-                    </div>
+                    <!-- Contenedor de gastos guardados -->
+                    <div class="expenses-list-container" id="expenses-list-box"></div>
 
                     <div class="budget-feedback" id="budget-feedback-msg">
                         💡 Ingresa un monto y haz clic en Guardar para registrar tus datos.
@@ -204,7 +203,7 @@
         </main>
 
 
-        <!-- ================= VISTA 3: TAREAS (CUADERNO) ================= -->
+        <!-- ================= VISTA 3: TAREAS (CUADERNO ABISAL) ================= -->
         <main class="hologram-main-card hidden-view" id="view-tasks">
             
             <div class="holo-header">
@@ -248,9 +247,7 @@
                     </button>
                 </div>
 
-                <div class="expenses-list-container" id="tasks-list-box" style="margin-top: 20px;">
-                    <!-- Tareas cargadas dinámicamente -->
-                </div>
+                <div class="expenses-list-container" id="tasks-list-box" style="margin-top: 20px;"></div>
 
                 <div class="budget-feedback" id="task-feedback-msg">
                     📖 Anota tus pendientes en el cuaderno abisal.
@@ -279,7 +276,7 @@
 
     </div>
 
-    <!-- Script completo -->
+    <!-- Script JavaScript Restaurado y Limpio -->
     <script>
         function updateRealtimeInfo() {
             const now = new Date();
@@ -347,9 +344,13 @@
             const incomeInput = document.getElementById('total-income');
             const income = incomeInput ? parseFloat(incomeInput.value) || 0 : 0;
 
-            document.getElementById('calc-50').textContent = `$${(income * 0.50).toLocaleString()}`;
-            document.getElementById('calc-30').textContent = `$${(income * 0.30).toLocaleString()}`;
-            document.getElementById('calc-20').textContent = `$${(income * 0.20).toLocaleString()}`;
+            const calc50 = document.getElementById('calc-50');
+            const calc30 = document.getElementById('calc-30');
+            const calc20 = document.getElementById('calc-20');
+
+            if(calc50) calc50.textContent = `$${(income * 0.50).toLocaleString()}`;
+            if(calc30) calc30.textContent = `$${(income * 0.30).toLocaleString()}`;
+            if(calc20) calc20.textContent = `$${(income * 0.20).toLocaleString()}`;
         }
 
         function getStoredExpenses() {
@@ -413,4 +414,6 @@
             const expenses = getStoredExpenses();
 
             if (expenses.length === 0) {
-                container.innerHTML = `<div style="text-align: center; color: #94a3b8; font-size: 11px; padding: 15px;">No hay gastos registrados todaví
+                container.innerHTML = `<div style="text-align: center; color: #94a3b8; font-size: 11px; padding: 15px;">No hay gastos registrados todavía.</div>`;
+                return;
+            }
