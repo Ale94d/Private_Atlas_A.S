@@ -1,107 +1,185 @@
 if (typeof lucide !== "undefined") {
-    lucide.createIcons(); }
+    lucide.createIcons();
+}
+
 const homeButton =
     document.querySelector(".back-home");
+
 if (homeButton) {
     homeButton.addEventListener("click", () => {
-        window.location.href = "../index.html"; }); }
+        window.location.href = "../index.html";
+    });
+}
+
 const overlay =
     document.querySelector(".content-overlay");
+
 const booksButton =
     document.querySelector(".books-window");
+
 const recipesButton =
     document.querySelector(".recipes-window");
+
 const travelButton =
     document.querySelector(".travel-window");
+
 const booksContent =
     document.querySelector(".books-content");
+
 const recipesContent =
     document.querySelector(".recipes-content");
+
 const travelContent =
     document.querySelector(".travel-content");
+
 const closeButtons =
     document.querySelectorAll(".content-window > .close-window");
+
 function openWindow(content) {
     if (!overlay || !content) {
-        return; }
+        return;
+    }
+
     document
         .querySelectorAll(".content-window")
         .forEach(window => {
             window.classList.remove("active");
-            window.style.display = "none"; });
+            window.style.display = "none";
+        });
+
     overlay.classList.add("active");
+
     content.style.display = "flex";
+
     requestAnimationFrame(() => {
-        content.classList.add("active"); });
+        content.classList.add("active");
+    });
+
     if (typeof lucide !== "undefined") {
-        lucide.createIcons(); } }
+        lucide.createIcons();
+    }
+}
+
 function closeWindow() {
     if (!overlay) {
-        return; }
+        return;
+    }
+
     const activeWindow =
         document.querySelector(".content-window.active");
+
     if (activeWindow) {
         activeWindow.classList.remove("active");
+
         setTimeout(() => {
-            activeWindow.style.display = "none"; }, 300); }
+            activeWindow.style.display = "none";
+        }, 300);
+    }
+
     setTimeout(() => {
-        overlay.classList.remove("active"); }, 300);  }
+        overlay.classList.remove("active");
+    }, 300);
+}
+
 if (booksButton) {
     booksButton.addEventListener("click", () => {
-        openWindow(booksContent); }); }
+        openWindow(booksContent);
+    });
+}
+
 if (recipesButton) {
     recipesButton.addEventListener("click", () => {
-        openWindow(recipesContent); }); }
+        openWindow(recipesContent);
+    });
+}
+
 if (travelButton) {
     travelButton.addEventListener("click", () => {
-        openWindow(travelContent); }); }
+        openWindow(travelContent);
+    });
+}
+
 closeButtons.forEach(button => {
     button.addEventListener("click", () => {
-        closeWindow();});});
+        closeWindow();
+    });
+});
+
 if (overlay) {
     overlay.addEventListener("click", event => {
         if (event.target === overlay) {
-            closeWindow(); } }); }
+            closeWindow();
+        }
+    });
+}
+
 const openAddBook =
     document.getElementById("openAddBook");
+
 const closeBookForm =
     document.getElementById("closeBookForm");
+
 const cancelBook =
     document.getElementById("cancelBook");
+
 const bookFormOverlay =
     document.getElementById("bookFormOverlay");
+
 const bookForm =
     document.getElementById("bookForm");
+
 const booksGrid =
     document.getElementById("booksGrid");
+
 const emptyBooks =
     document.getElementById("emptyBooks");
+
 const coverInput =
     document.getElementById("bookCover");
+
 const fileName =
     document.getElementById("fileName");
+
 if (openAddBook) {
     openAddBook.addEventListener("click", () => {
+
         if (bookForm) {
             bookForm.reset();
             delete bookForm.dataset.editingId;
-            delete bookForm.dataset.currentCover; }
+            delete bookForm.dataset.currentCover;
+        }
+
         if (fileName) {
             fileName.textContent =
-                "Seleccionar portada"; }
+                "Seleccionar portada";
+        }
+
         if (bookFormOverlay) {
-            bookFormOverlay.classList.add("active"); }  }); }
+            bookFormOverlay.classList.add("active");
+        }
+    });
+}
+
 function closeBookFormWindow() {
     if (bookFormOverlay) {
-        bookFormOverlay.classList.remove("active");  } }
+        bookFormOverlay.classList.remove("active");
+    }
+}
+
 if (closeBookForm) {
     closeBookForm.addEventListener(
         "click",
-        closeBookFormWindow);  }
+        closeBookFormWindow
+    );
+}
+
 if (cancelBook) {
     cancelBook.addEventListener(
         "click",
-        closeBookFormWindow ); }
+        closeBookFormWindow
+    );
+}
+
 if (bookFormOverlay) {
     bookFormOverlay.addEventListener(
         "click",
@@ -115,15 +193,19 @@ if (bookFormOverlay) {
 
 if (coverInput) {
     coverInput.addEventListener("change", () => {
+
         if (
             coverInput.files &&
             coverInput.files.length > 0
         ) {
+
             if (fileName) {
                 fileName.textContent =
                     coverInput.files[0].name;
             }
+
         } else {
+
             if (fileName) {
                 fileName.textContent =
                     "Conservar portada actual";
@@ -133,6 +215,7 @@ if (coverInput) {
 }
 
 const genericCovers = {
+
     "Aventura": [
         "assets/portadas/Aventura/P1.png",
         "assets/portadas/Aventura/P2.png",
@@ -255,6 +338,7 @@ const genericCover =
     "assets/portadas/Comodines/P1.png";
 
 function getRandomCover(genre) {
+
     const covers =
         genericCovers[genre];
 
@@ -274,6 +358,7 @@ function getRandomCover(genre) {
 }
 
 function escapeHTML(text) {
+
     const div =
         document.createElement("div");
 
@@ -284,6 +369,7 @@ function escapeHTML(text) {
 }
 
 function isGenericCover(book) {
+
     if (!book || !book.cover) {
         return false;
     }
@@ -298,6 +384,7 @@ function isGenericCover(book) {
 }
 
 function loadBooks() {
+
     if (!booksGrid) {
         return;
     }
@@ -312,6 +399,7 @@ function loadBooks() {
         ) || [];
 
     if (books.length === 0) {
+
         if (emptyBooks) {
             emptyBooks.style.display =
                 "flex";
@@ -335,6 +423,7 @@ function loadBooks() {
 }
 
 function createBookCard(book) {
+
     const card =
         document.createElement("article");
 
@@ -447,7 +536,8 @@ function createBookCard(book) {
         card.querySelector(".delete-book-btn");
 
     if (viewButton) {
-        viewButton.addEventListener("click", () => {            showBookDetails(book);
+        viewButton.addEventListener("click", () => {
+            showBookDetails(book);
         });
     }
 
@@ -469,6 +559,7 @@ function createBookCard(book) {
 }
 
 function showBookDetails(book) {
+
     const detailsOverlay =
         document.getElementById(
             "bookDetailsOverlay"
@@ -522,6 +613,7 @@ function showBookDetails(book) {
         isGenericCover(book);
 
     if (detailsWindow) {
+
         detailsWindow.classList.remove(
             "custom-cover",
             "generic-cover"
@@ -588,6 +680,7 @@ function showBookDetails(book) {
 }
 
 function editBook(book) {
+
     if (
         !bookFormOverlay ||
         !bookForm
@@ -664,6 +757,7 @@ function editBook(book) {
 }
 
 function deleteBook(bookId) {
+
     const books =
         JSON.parse(
             localStorage.getItem(
@@ -697,36 +791,46 @@ const bookDetailsOverlay =
     );
 
 if (closeBookDetails) {
+
     closeBookDetails.addEventListener(
         "click",
         () => {
+
             if (bookDetailsOverlay) {
                 bookDetailsOverlay.classList.remove(
                     "active"
                 );
             }
+
         }
     );
 }
 
 if (bookDetailsOverlay) {
+
     bookDetailsOverlay.addEventListener(
         "click",
         event => {
+
             if (
                 event.target ===
                 bookDetailsOverlay
             ) {
+
                 bookDetailsOverlay.classList.remove(
                     "active"
                 );
+
             }
+
         }
     );
 }
 
 function readFileAsDataURL(file) {
+
     return new Promise((resolve, reject) => {
+
         const reader =
             new FileReader();
 
@@ -739,10 +843,12 @@ function readFileAsDataURL(file) {
         };
 
         reader.readAsDataURL(file);
+
     });
 }
 
 if (bookForm) {
+
     bookForm.addEventListener(
         "submit",
         async event => {
@@ -826,6 +932,7 @@ if (bookForm) {
                 coverInput.files &&
                 coverInput.files.length > 0
             ) {
+
                 selectedCover =
                     await readFileAsDataURL(
                         coverInput.files[0]
@@ -853,6 +960,7 @@ if (bookForm) {
                         oldBook.customCover === true;
 
                     if (selectedCover) {
+
                         cover =
                             selectedCover;
 
@@ -876,6 +984,7 @@ if (bookForm) {
             } else {
 
                 let cover;
+
                 let customCover =
                     false;
 
@@ -894,10 +1003,9 @@ if (bookForm) {
                             genre
                         );
                 }
-        
-        const newBook = {
-            id:
-                Date.now(),
+
+                const newBook = {
+                    id: Date.now(),
                     title,
                     author,
                     genre,
@@ -910,9 +1018,7 @@ if (bookForm) {
                         new Date().toISOString()
                 };
 
-                books.push(
-                    newBook
-                );
+                books.push(newBook);
             }
 
             try {
@@ -949,6 +1055,7 @@ if (bookForm) {
 }
 
 function createAmbientParticles() {
+
     const ash =
         document.querySelector(".ash-particles");
 
@@ -959,40 +1066,41 @@ function createAmbientParticles() {
         document.querySelector(".flames");
 
     if (ash && ash.children.length === 0) {
+
         for (let i = 0; i < 10; i++) {
+
             const particle =
                 document.createElement("span");
 
-            ash.appendChild(
-                particle
-            );
+            ash.appendChild(particle);
         }
     }
 
     if (embers && embers.children.length === 0) {
+
         for (let i = 0; i < 6; i++) {
+
             const ember =
                 document.createElement("span");
 
-            embers.appendChild(
-                ember
-            );
+            embers.appendChild(ember);
         }
     }
 
     if (flames && flames.children.length === 0) {
+
         for (let i = 0; i < 3; i++) {
+
             const flame =
                 document.createElement("span");
 
-            flames.appendChild(
-                flame
-            );
+            flames.appendChild(flame);
         }
     }
 }
 
 function restartLavaAnimation() {
+
     const lavaTransition =
         document.querySelector(
             ".lava-transition"
@@ -1103,6 +1211,7 @@ function addIngredientRow(value = "") {
         );
 
     if (removeButton) {
+
         removeButton.addEventListener(
             "click",
             () => {
@@ -1168,16 +1277,21 @@ if (openAddRecipe) {
         () => {
 
             if (recipeForm) {
+
                 recipeForm.reset();
+
                 delete recipeForm.dataset.editingId;
             }
 
             if (ingredientsList) {
+
                 ingredientsList.innerHTML = "";
+
                 addIngredientRow();
             }
 
             if (recipeFormOverlay) {
+
                 recipeFormOverlay.classList.add(
                     "active"
                 );
@@ -1190,6 +1304,7 @@ if (openAddRecipe) {
 function closeRecipeFormWindow() {
 
     if (recipeFormOverlay) {
+
         recipeFormOverlay.classList.remove(
             "active"
         );
@@ -1247,6 +1362,7 @@ function loadRecipes() {
     if (recipes.length === 0) {
 
         if (emptyRecipes) {
+
             emptyRecipes.style.display =
                 "flex";
         }
@@ -1255,6 +1371,7 @@ function loadRecipes() {
     }
 
     if (emptyRecipes) {
+
         emptyRecipes.style.display =
             "none";
     }
@@ -1347,6 +1464,7 @@ function createRecipeCard(recipe) {
                 class="edit-recipe-btn">
 
                 <i data-lucide="pencil"></i>
+
                 Editar
 
             </button>
@@ -1382,6 +1500,7 @@ function createRecipeCard(recipe) {
         );
 
     if (viewButton) {
+
         viewButton.addEventListener(
             "click",
             () => {
@@ -1391,6 +1510,7 @@ function createRecipeCard(recipe) {
     }
 
     if (editButton) {
+
         editButton.addEventListener(
             "click",
             () => {
@@ -1400,6 +1520,7 @@ function createRecipeCard(recipe) {
     }
 
     if (deleteButton) {
+
         deleteButton.addEventListener(
             "click",
             () => {
@@ -1519,8 +1640,10 @@ if (recipeForm) {
             } else {
 
                 recipes.push({
+
                     id:
                         Date.now(),
+
                     name,
                     category,
                     ingredients,
@@ -1528,6 +1651,7 @@ if (recipeForm) {
                     time,
                     servings,
                     favorite
+
                 });
             }
 
@@ -1725,6 +1849,7 @@ if (closeRecipeDetails) {
         () => {
 
             if (recipeDetailsOverlay) {
+
                 recipeDetailsOverlay.classList.remove(
                     "active"
                 );
@@ -1753,6 +1878,7 @@ if (recipeDetailsOverlay) {
         }
     );
 }
+
 if (typeof lucide !== "undefined") {
     lucide.createIcons();
 }
@@ -1783,7 +1909,6 @@ function closeTravelFormWindow() {
     if (travelFormOverlay) {
         travelFormOverlay.classList.remove("active");
     }
-
 }
 
 if (openAddTravel) {
@@ -1795,7 +1920,6 @@ if (openAddTravel) {
             travelForm.reset();
 
             delete travelForm.dataset.editingId;
-
         }
 
         if (travelFormOverlay) {
@@ -1803,7 +1927,6 @@ if (openAddTravel) {
         }
 
     });
-
 }
 
 if (closeTravelForm) {
@@ -1812,7 +1935,6 @@ if (closeTravelForm) {
         "click",
         closeTravelFormWindow
     );
-
 }
 
 if (cancelTravel) {
@@ -1821,7 +1943,6 @@ if (cancelTravel) {
         "click",
         closeTravelFormWindow
     );
-
 }
 
 if (travelFormOverlay) {
@@ -1836,7 +1957,6 @@ if (travelFormOverlay) {
 
         }
     );
-
 }
 
 function loadTravel() {
@@ -1857,14 +1977,16 @@ function loadTravel() {
     if (travels.length === 0) {
 
         if (emptyTravel) {
-            emptyTravel.style.display = "flex";
+            emptyTravel.style.display =
+                "flex";
         }
 
         return;
     }
 
     if (emptyTravel) {
-        emptyTravel.style.display = "none";
+        emptyTravel.style.display =
+            "none";
     }
 
     travels.forEach(travel => {
@@ -1874,7 +1996,6 @@ function loadTravel() {
     if (typeof lucide !== "undefined") {
         lucide.createIcons();
     }
-
 }
 
 function createTravelCard(travel) {
@@ -1882,7 +2003,8 @@ function createTravelCard(travel) {
     const card =
         document.createElement("article");
 
-    card.className = "travel-card";
+    card.className =
+        "travel-card";
 
     card.innerHTML = `
 
@@ -1899,7 +2021,10 @@ function createTravelCard(travel) {
             </h3>
 
             <span>
-                ${escapeHTML(travel.country || "Lugar no especificado")}
+                ${escapeHTML(
+                    travel.country ||
+                    "Lugar no especificado"
+                )}
             </span>
 
         </div>
@@ -1910,7 +2035,12 @@ function createTravelCard(travel) {
 
             <span>
                 ${escapeHTML(travel.start || "")}
-                ${travel.end ? " — " + escapeHTML(travel.end) : ""}
+                ${
+                    travel.end
+                        ? " — " +
+                          escapeHTML(travel.end)
+                        : ""
+                }
             </span>
 
         </div>
@@ -1926,16 +2056,16 @@ function createTravelCard(travel) {
 
         ${
             travel.favorite
-            ? `
-                <div class="travel-card-favorite">
+                ? `
+                    <div class="travel-card-favorite">
 
-                    <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
 
-                    Favorito
+                        Favorito
 
-                </div>
-            `
-            : ""
+                    </div>
+                `
+                : ""
         }
 
         <div class="travel-card-buttons">
@@ -1971,7 +2101,6 @@ function createTravelCard(travel) {
             </button>
 
         </div>
-
     `;
 
     travelGrid.appendChild(card);
@@ -1992,12 +2121,14 @@ function createTravelCard(travel) {
             () => {
 
                 alert(
-                    `${travel.destination}\n\n${travel.memory || "Sin recuerdo escrito."}`
+                    `${travel.destination}\n\n${
+                        travel.memory ||
+                        "Sin recuerdo escrito."
+                    }`
                 );
 
             }
         );
-
     }
 
     if (editButton) {
@@ -2005,12 +2136,9 @@ function createTravelCard(travel) {
         editButton.addEventListener(
             "click",
             () => {
-
                 editTravel(travel);
-
             }
         );
-
     }
 
     if (deleteButton) {
@@ -2018,55 +2146,62 @@ function createTravelCard(travel) {
         deleteButton.addEventListener(
             "click",
             () => {
-
                 deleteTravel(travel.id);
-
             }
         );
-
     }
-
 }
 
 function editTravel(travel) {
 
-    if (!travelForm || !travelFormOverlay) {
+    if (
+        !travelForm ||
+        !travelFormOverlay
+    ) {
         return;
     }
 
     document.getElementById(
         "travelDestination"
-    ).value = travel.destination || "";
+    ).value =
+        travel.destination || "";
 
     document.getElementById(
         "travelCountry"
-    ).value = travel.country || "";
+    ).value =
+        travel.country || "";
 
     document.getElementById(
         "travelStart"
-    ).value = travel.start || "";
+    ).value =
+        travel.start || "";
 
     document.getElementById(
         "travelEnd"
-    ).value = travel.end || "";
+    ).value =
+        travel.end || "";
 
     document.getElementById(
         "travelCompanions"
-    ).value = travel.companions || "";
+    ).value =
+        travel.companions || "";
 
     document.getElementById(
         "travelMemory"
-    ).value = travel.memory || "";
+    ).value =
+        travel.memory || "";
 
     document.getElementById(
         "travelFavorite"
-    ).checked = !!travel.favorite;
+    ).checked =
+        !!travel.favorite;
 
     travelForm.dataset.editingId =
         travel.id;
 
-    travelFormOverlay.classList.add("active");
-
+    travelFormOverlay.classList.add(
+        "active"
+    );
 }
 
 function deleteTravel(travelId) {
@@ -2091,7 +2226,6 @@ function deleteTravel(travelId) {
     );
 
     loadTravel();
-
 }
 
 if (travelForm) {
@@ -2169,9 +2303,7 @@ if (travelForm) {
                         companions,
                         memory,
                         favorite
-
                     };
-
                 }
 
             } else {
@@ -2187,9 +2319,7 @@ if (travelForm) {
                     companions,
                     memory,
                     favorite
-
                 });
-
             }
 
             localStorage.setItem(
@@ -2200,10 +2330,8 @@ if (travelForm) {
             loadTravel();
 
             closeTravelFormWindow();
-
         }
     );
-
 }
 
 loadTravel();
@@ -2211,4 +2339,3 @@ loadTravel();
 if (typeof lucide !== "undefined") {
     lucide.createIcons();
 }
-
