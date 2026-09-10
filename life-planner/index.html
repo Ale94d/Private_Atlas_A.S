@@ -99,29 +99,25 @@
                 
                 <!-- Barra de Categorías Izquierda -->
                 <div class="finance-categories-dock">
-                    <div class="fin-cat-item active" onclick="selectCategory('50', this)" title="Necesidades (50%)">
+                    <div class="fin-cat-item active" onclick="setCategory('needs', 50, this)" title="Necesidades (50%)">
                         <i class="fa-solid fa-house-chimney"></i>
                         <span>Necesidades (50%)</span>
                     </div>
-                    <div class="fin-cat-item" onclick="selectCategory('30', this)" title="Deseos (30%)">
+                    <div class="fin-cat-item" onclick="setCategory('wants', 30, this)" title="Deseos (30%)">
                         <i class="fa-solid fa-gamepad"></i>
                         <span>Deseos (30%)</span>
                     </div>
-                    <div class="fin-cat-item" onclick="selectCategory('20', this)" title="Ahorro (20%)">
+                    <div class="fin-cat-item" onclick="setCategory('savings', 20, this)" title="Ahorro (20%)">
                         <i class="fa-solid fa-piggy-bank"></i>
                         <span>Ahorro (20%)</span>
-                    </div>
-                    <div class="fin-cat-item" onclick="selectCategory('20', this)" title="Inversión">
-                        <i class="fa-solid fa-chart-line"></i>
-                        <span>Inversiones</span>
                     </div>
                 </div>
 
                 <!-- Tarjeta de Formulario y Gastos -->
                 <div class="finance-form-container">
                     <div class="plan-journey-title">
-                        <h3>Control Presupuestario</h3>
-                        <p>Distribuye tus ingresos bajo la regla 50/30/20 y registra tus movimientos.</p>
+                        <h3 id="currentCategoryTitle">Control Presupuestario: Necesidades (50%)</h3>
+                        <p id="currentCategoryDesc">Establece tu ingreso mensual para calcular el límite ideal o registra tus gastos en esta categoría.</p>
                     </div>
 
                     <div class="summary-cards-row">
@@ -130,34 +126,42 @@
                             <h4 id="summaryTotalIncome">$0.00</h4>
                         </div>
                         <div class="summary-card-mini">
-                            <span>Gastos Totales</span>
-                            <h4 id="summaryTotalExpenses">$0.00</h4>
+                            <span>Límite Categoría</span>
+                            <h4 id="summaryCategoryLimit">$0.00</h4>
                         </div>
                         <div class="summary-card-mini">
-                            <span>Balance Restante</span>
-                            <h4 id="summaryBalance">$0.00</h4>
+                            <span>Gastado en Cat.</span>
+                            <h4 id="summaryCategorySpent">$0.00</h4>
                         </div>
                     </div>
 
                     <div class="finance-row-inputs">
                         <div class="finance-input-group">
-                            <label>Monto de Ingreso / Gasto</label>
+                            <label>Establecer Ingreso Total (Opcional/Actualizar)</label>
                             <div class="fin-input-box">
                                 <i class="fa-solid fa-dollar-sign"></i>
-                                <input type="number" id="financeAmountInput" placeholder="Ej: 150">
+                                <input type="number" id="financeIncomeInput" placeholder="Ej: 1000 (Ingreso)">
                             </div>
                         </div>
                         <div class="finance-input-group">
-                            <label>Descripción</label>
+                            <label>Monto del Gasto</label>
                             <div class="fin-input-box">
                                 <i class="fa-solid fa-tag"></i>
-                                <input type="text" id="financeDescInput" placeholder="Ej: Supermercado, Videojuego...">
+                                <input type="number" id="financeAmountInput" placeholder="Ej: 150 (Gasto)">
                             </div>
                         </div>
                     </div>
 
+                    <div class="finance-input-group">
+                        <label>Descripción del Movimiento</label>
+                        <div class="fin-input-box">
+                            <i class="fa-solid fa-pen"></i>
+                            <input type="text" id="financeDescInput" placeholder="Ej: Alquiler, Videojuego, Cuenta de ahorros...">
+                        </div>
+                    </div>
+
                     <div class="finance-actions-footer">
-                        <button class="holo-btn primary-btn" onclick="addFinanceItem()">Registrar Movimiento</button>
+                        <button class="holo-btn primary-btn" onclick="addFinanceItem()">Registrar en Categoría</button>
                         <button class="holo-btn secondary-btn" onclick="switchView('home')">Volver al Inicio</button>
                     </div>
 
@@ -255,50 +259,94 @@
             }
         }
 
-        function selectCategory(type, element) {
+        // Lógica de Presupuesto 50 / 30 / 20
+        let totalIncome = 0;
+        let currentCategoryKey = 'needs';
+        let currentCategoryPercent = 50;
+        let categoriesData = {
+            needs: { name: 'Necesidades', percent: 50, spent: 0, items: [] },
+            wants: { name: 'Deseos', percent: 30, spent: 0, items: [] },
+            savings: { name: 'Ahorro', percent: 20, spent: 0, items: [] }
+        };
+
+        function setCategory(key, percent, element) {
             document.querySelectorAll('.fin-cat-item').forEach(item => item.classList.remove('active'));
             element.classList.add('active');
+
+            currentCategoryKey = key;
+            currentCategoryPercent = percent;
+
+            document.getElementById('currentCategoryTitle').textContent = `Control Presupuestario: ${categoriesData[key].name} (${percent}%)`;
+            document.getElementById('currentCategoryDesc').textContent = `Límite recomendado: ${percent}% de tus ingresos totales.`;
+            
+            updateFinanceUI();
         }
 
-        let totalIncome = 0;
-        let totalExpenses = 0;
-
         function addFinanceItem() {
+            const incomeInput = document.getElementById('financeIncomeInput');
             const amountInput = document.getElementById('financeAmountInput');
             const descInput = document.getElementById('financeDescInput');
+
+            const newIncome = parseFloat(incomeInput.value);
+            if (!isNaN(newIncome) && newIncome > 0) {
+                totalIncome = newIncome;
+                incomeInput.value = '';
+            }
+
             const amount = parseFloat(amountInput.value);
             const desc = descInput.value.trim();
 
-            if (isNaN(amount) || amount <= 0 || !desc) return;
+            if (!isNaN(amount) && amount > 0 && desc) {
+                categoriesData[currentCategoryKey].spent += amount;
+                categoriesData[currentCategoryKey].items.push({ desc, amount });
+                amountInput.value = '';
+                descInput.value = '';
+            }
 
-            totalExpenses += amount;
-            document.getElementById('summaryTotalExpenses').textContent = `$${totalExpenses.toFixed(2)}`;
-            document.getElementById('summaryBalance').textContent = `$${(totalIncome - totalExpenses).toFixed(2)}`;
-
-            const container = document.getElementById('financeListContainer');
-            const row = document.createElement('div');
-            row.className = 'expense-item-row';
-            row.innerHTML = `
-                <div class="expense-info-main">
-                    <b>${desc}</b>
-                    <small>Gasto Registrado</small>
-                </div>
-                <div class="expense-item-right">
-                    <span>-$${amount.toFixed(2)}</span>
-                    <button class="delete-expense-btn" onclick="removeFinanceItem(this, ${amount})"><i class="fa-solid fa-trash"></i></button>
-                </div>
-            `;
-            container.appendChild(row);
-
-            amountInput.value = '';
-            descInput.value = '';
+            updateFinanceUI();
         }
 
-        function removeFinanceItem(btn, amount) {
-            totalExpenses -= amount;
-            document.getElementById('summaryTotalExpenses').textContent = `$${totalExpenses.toFixed(2)}`;
-            document.getElementById('summaryBalance').textContent = `$${(totalIncome - totalExpenses).toFixed(2)}`;
-            btn.closest('.expense-item-row').remove();
+        function removeFinanceItem(index) {
+            const item = categoriesData[currentCategoryKey].items[index];
+            categoriesData[currentCategoryKey].spent -= item.amount;
+            categoriesData[currentCategoryKey].items.splice(index, 1);
+            updateFinanceUI();
+        }
+
+        function updateFinanceUI() {
+            document.getElementById('summaryTotalIncome').textContent = `$${totalIncome.toFixed(2)}`;
+            
+            const categoryLimit = totalIncome * (currentCategoryPercent / 100);
+            document.getElementById('summaryCategoryLimit').textContent = `$${categoryLimit.toFixed(2)}`;
+
+            const categorySpent = categoriesData[currentCategoryKey].spent;
+            const spentEl = document.getElementById('summaryCategorySpent');
+            spentEl.textContent = `$${categorySpent.toFixed(2)}`;
+
+            if (categorySpent > categoryLimit && categoryLimit > 0) {
+                spentEl.style.color = '#f43f5e'; // Rojo si excede el porcentaje
+            } else {
+                spentEl.style.color = '#38bdf8';
+            }
+
+            const container = document.getElementById('financeListContainer');
+            container.innerHTML = '';
+
+            categoriesData[currentCategoryKey].items.forEach((item, index) => {
+                const row = document.createElement('div');
+                row.className = 'expense-item-row';
+                row.innerHTML = `
+                    <div class="expense-info-main">
+                        <b>${item.desc}</b>
+                        <small>${categoriesData[currentCategoryKey].name}</small>
+                    </div>
+                    <div class="expense-item-right">
+                        <span>-$${item.amount.toFixed(2)}</span>
+                        <button class="delete-expense-btn" onclick="removeFinanceItem(${index})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
         }
 
         function addNewTask() {
