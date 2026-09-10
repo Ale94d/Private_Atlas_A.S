@@ -28,7 +28,8 @@
             <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
             <!-- Botón de Finanzas con la Moneda -->
             <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></a>
-            <a href="#" class="dock-icon" id="nav-help" title="Ayuda"><i class="fa-solid fa-circle-question"></i></a>
+            <!-- Botón de Tareas -->
+            <a href="#" class="dock-icon" id="nav-tasks" title="Gestión de Tareas" onclick="switchView('tasks')"><i class="fa-solid fa-list-check"></i></a>
         </nav>
 
         <!-- ================= VISTA 1: INICIO (PRINCIPAL) ================= -->
@@ -48,12 +49,12 @@
                 <p>Gestiona tus tareas submarinas, controla tu presupuesto 50/30/20 y explora santuarios marinos con claridad absoluta.</p>
             </div>
 
-            <div class="holo-cards-carousel" style="grid-template-columns: repeat(2, 1fr);">
-                <div class="carousel-card active-card">
+            <div class="holo-cards-carousel">
+                <div class="carousel-card active-card" onclick="switchView('tasks')">
                     <div class="card-top-tag"><span>Tareas Activas</span><i class="fa-regular fa-heart"></i></div>
                     <div class="card-content-text">
-                        <h4>Mantenimiento de Coral</h4>
-                        <p><i class="fa-solid fa-calendar-days"></i> 06 Sep • Completado</p>
+                        <h4>Panel de Tareas</h4>
+                        <p><i class="fa-solid fa-list-check"></i> Escribir y completar</p>
                     </div>
                     <span class="carousel-step">01</span>
                 </div>
@@ -67,11 +68,29 @@
                     </div>
                     <span class="carousel-step">02</span>
                 </div>
+
+                <div class="carousel-card">
+                    <div class="card-top-tag"><span>Exploración</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-content-text">
+                        <h4>Santuario Antiguo</h4>
+                        <p><i class="fa-solid fa-location-dot"></i> Sector 7</p>
+                    </div>
+                    <span class="carousel-step">03</span>
+                </div>
+
+                <div class="carousel-card">
+                    <div class="card-top-tag"><span>Sistema</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-content-text">
+                        <h4>Filtros de Presión</h4>
+                        <p><i class="fa-solid fa-shield"></i> Modo Óptimo</p>
+                    </div>
+                    <span class="carousel-step">04</span>
+                </div>
             </div>
 
             <div class="holo-action-footer">
                 <button class="holo-btn primary-btn" onclick="switchView('finance')">Get Started</button>
-                <button class="holo-btn secondary-btn">Contact Us</button>
+                <button class="holo-btn secondary-btn" onclick="switchView('tasks')">Ver Tareas</button>
                 <div class="footer-icon-pill"><i class="fa-solid fa-bookmark"></i></div>
                 <div class="footer-icon-pill"><i class="fa-solid fa-share-nodes"></i></div>
             </div>
@@ -116,85 +135,52 @@
                     </div>
                 </div>
 
-                <!-- Tarjeta de Formulario, Cálculo 50/30/20 y Listado Profesional de Gastos Guardados -->
+                <!-- Tarjeta de Formulario y Gastos -->
                 <div class="finance-form-container">
                     <div class="plan-journey-title">
-                        <h3>Control 50 / 30 / 20</h3>
-                        <p>Distribuye tus ingresos submarinos y administra tus registros guardados.</p>
+                        <h3>Control Presupuestario</h3>
+                        <p>Distribuye tus ingresos bajo la regla 50/30/20 y registra tus movimientos.</p>
                     </div>
 
-                    <!-- Resumen matemático 50/30/20 en tiempo real -->
                     <div class="summary-cards-row">
                         <div class="summary-card-mini">
-                            <span>50% Necesidades</span>
-                            <h4 id="calc-50">$2,250</h4>
+                            <span>Ingreso Total</span>
+                            <h4 id="summaryTotalIncome">$0.00</h4>
                         </div>
                         <div class="summary-card-mini">
-                            <span>30% Deseos</span>
-                            <h4 id="calc-30">$1,350</h4>
+                            <span>Gastos Totales</span>
+                            <h4 id="summaryTotalExpenses">$0.00</h4>
                         </div>
                         <div class="summary-card-mini">
-                            <span>20% Ahorro</span>
-                            <h4 id="calc-20">$900</h4>
+                            <span>Balance Restante</span>
+                            <h4 id="summaryBalance">$0.00</h4>
                         </div>
                     </div>
 
                     <div class="finance-row-inputs">
                         <div class="finance-input-group">
-                            <label>Ingreso Total Mensual (USD)</label>
+                            <label>Monto de Ingreso / Gasto</label>
                             <div class="fin-input-box">
                                 <i class="fa-solid fa-dollar-sign"></i>
-                                <input type="number" id="total-income" placeholder="Ej: 4500" value="4500" oninput="updateBudgetCalculations()">
+                                <input type="number" id="financeAmountInput" placeholder="Ej: 150">
                             </div>
                         </div>
-
                         <div class="finance-input-group">
-                            <label>Descripción del Gasto</label>
+                            <label>Descripción</label>
                             <div class="fin-input-box">
-                                <i class="fa-solid fa-pen-nib"></i>
-                                <input type="text" id="expense-name" placeholder="Ej: Mantenimiento de Cúpula">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="finance-row-inputs">
-                        <div class="finance-input-group">
-                            <label>Categoría</label>
-                            <div class="fin-input-box">
-                                <i class="fa-solid fa-layer-group"></i>
-                                <select id="expense-category">
-                                    <option value="50">Necesidades (50%)</option>
-                                    <option value="30">Deseos (30%)</option>
-                                    <option value="20">Ahorro/Deudas (20%)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="finance-input-group">
-                            <label>Monto Asignado ($)</label>
-                            <div class="fin-input-box">
-                                <i class="fa-solid fa-coins"></i>
-                                <input type="number" id="expense-amount" placeholder="Ej: 500">
+                                <i class="fa-solid fa-tag"></i>
+                                <input type="text" id="financeDescInput" placeholder="Ej: Supermercado, Videojuego...">
                             </div>
                         </div>
                     </div>
 
                     <div class="finance-actions-footer">
-                        <button class="holo-btn primary-btn" onclick="saveExpense()">
-                            <i class="fa-solid fa-floppy-disk"></i> Guardar Gasto
-                        </button>
-                        <button class="holo-btn secondary-btn" onclick="completeBudget()">
-                            <i class="fa-solid fa-check-circle"></i> Completar Ciclo
-                        </button>
+                        <button class="holo-btn primary-btn" onclick="addFinanceItem()">Registrar Movimiento</button>
+                        <button class="holo-btn secondary-btn" onclick="switchView('home')">Volver al Inicio</button>
                     </div>
 
-                    <!-- Contenedor profesional de gastos guardados (con scroll y botón de eliminar) -->
-                    <div class="expenses-list-container" id="expenses-list-box">
-                        <!-- Los gastos se cargan dinámicamente aquí -->
-                    </div>
-
-                    <div class="budget-feedback" id="budget-feedback-msg">
-                        💡 Ingresa un monto y haz clic en Guardar para registrar tus datos.
+                    <div class="expenses-list-container" id="financeListContainer">
+                        <!-- Los registros de finanzas se cargarán dinámicamente aquí -->
                     </div>
                 </div>
 
@@ -203,188 +189,194 @@
         </main>
 
 
-        <!-- Tarjeta Lateral Derecha (Reloj en vivo) -->
+        <!-- ================= VISTA 3: GESTIÓN DE TAREAS ================= -->
+        <main class="hologram-main-card hidden-view" id="view-tasks">
+            
+            <div class="holo-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-arrow-left" style="cursor: pointer;" onclick="switchView('home')" title="Volver"></i>
+                    <span style="font-weight: 700; color: #fff;">Private Atlas • Gestión de Tareas</span>
+                </div>
+                <div class="holo-nav-links">
+                    <span>Tasks</span>
+                    <div class="user-avatar-small"><i class="fa-solid fa-list-check"></i></div>
+                </div>
+            </div>
+
+            <div class="finance-form-container" style="gap: 15px;">
+                <div class="plan-journey-title">
+                    <h3>Nueva Tarea Abisal</h3>
+                    <p>Escribe tu pendiente submarino y márcalo como completado al terminar.</p>
+                </div>
+
+                <div class="finance-input-group">
+                    <label>Descripción de la Tarea</label>
+                    <div class="fin-input-box">
+                        <i class="fa-solid fa-pen"></i>
+                        <input type="text" id="taskInputText" placeholder="Ej: Mantenimiento de filtros o tarea de física...">
+                    </div>
+                </div>
+
+                <div class="finance-actions-footer">
+                    <button class="holo-btn primary-btn" onclick="addNewTask()">Añadir Tarea</button>
+                    <button class="holo-btn secondary-btn" onclick="switchView('home')">Volver al Inicio</button>
+                </div>
+
+                <div class="plan-journey-title" style="margin-top: 10px;">
+                    <h3 style="font-size: 16px;">Lista de Pendientes</h3>
+                </div>
+
+                <div class="expenses-list-container" id="tasksListContainer">
+                    <!-- Las tareas se generarán aquí dinámicamente -->
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Tarjeta lateral derecha -->
         <aside class="hologram-side-card">
             <div class="side-badge">
                 <div class="side-badge-header">
-                    <i class="fa-solid fa-compass"></i>
-                    <span>Santuario Marino</span>
+                    <i class="fa-solid fa-compass"></i> Sincronización Abisal
                 </div>
-                <div class="realtime-clock" id="live-clock">00:00:00</div>
-                <div class="realtime-date" id="live-date">Cargando fecha...</div>
+                <div class="realtime-clock" id="liveClock">12:00 AM</div>
+                <div class="realtime-date" id="liveDate">Miércoles, 9 Sep 2026</div>
                 <div class="side-location">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span id="live-location">Soacha • Sector Abisal</span>
+                    <i class="fa-solid fa-location-dot"></i> Soacha, Cundinamarca
                 </div>
-                <small class="read-more-link">EN VIVO</small>
+                <div class="read-more-link">Sistema Activo</div>
             </div>
         </aside>
 
     </div>
 
-    <!-- Script completo con almacenamiento localStorage, listado y eliminación de gastos -->
+    <!-- Script de control de vistas y datos -->
     <script>
-        function updateRealtimeInfo() {
-            const now = new Date();
-            const clockElement = document.getElementById('live-clock');
-            if (clockElement) {
-                clockElement.textContent = now.toLocaleTimeString('es-ES', { hour12: false });
-            }
-
-            const dateElement = document.getElementById('live-date');
-            if (dateElement) {
-                const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
-                dateElement.textContent = now.toLocaleDateString('es-ES', options);
-            }
-        }
-
         function switchView(viewName) {
-            const homeView = document.getElementById('view-home');
-            const financeView = document.getElementById('view-finance');
-            const btnHome = document.getElementById('nav-home');
-            const btnSearch = document.getElementById('nav-search');
-            const btnFinance = document.getElementById('nav-finance');
+            document.getElementById('view-home').classList.add('hidden-view');
+            document.getElementById('view-finance').classList.add('hidden-view');
+            document.getElementById('view-tasks').classList.add('hidden-view');
 
-            if(btnHome) btnHome.classList.remove('active');
-            if(btnSearch) btnSearch.classList.remove('active');
-            if(btnFinance) btnFinance.classList.remove('active');
+            document.getElementById('nav-home').classList.remove('active');
+            document.getElementById('nav-finance').classList.remove('active');
+            document.getElementById('nav-tasks').classList.remove('active');
 
-            if (viewName === 'finance') {
-                if(homeView) homeView.classList.add('hidden-view');
-                if(financeView) financeView.classList.remove('hidden-view');
-                if(btnFinance) btnFinance.classList.add('active');
-                renderExpenses(); // Carga y muestra los gastos guardados al entrar
-                updateBudgetCalculations();
-            } else {
-                if(financeView) financeView.classList.add('hidden-view');
-                if(homeView) homeView.classList.remove('hidden-view');
-                if(btnHome) btnHome.classList.add('active');
+            if (viewName === 'home') {
+                document.getElementById('view-home').classList.remove('hidden-view');
+                document.getElementById('nav-home').classList.add('active');
+            } else if (viewName === 'finance') {
+                document.getElementById('view-finance').classList.remove('hidden-view');
+                document.getElementById('nav-finance').classList.add('active');
+            } else if (viewName === 'tasks') {
+                document.getElementById('view-tasks').classList.remove('hidden-view');
+                document.getElementById('nav-tasks').classList.add('active');
             }
         }
 
-        function selectCategory(categoryValue, element) {
-            const selectElement = document.getElementById('expense-category');
-            if (selectElement) {
-                selectElement.value = categoryValue;
-            }
-
-            document.querySelectorAll('.fin-cat-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            if (element) {
-                element.classList.add('active');
-            }
+        function selectCategory(type, element) {
+            document.querySelectorAll('.fin-cat-item').forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
         }
 
-        // Cálculo matemático automático de la regla 50/30/20
-        function updateBudgetCalculations() {
-            const incomeInput = document.getElementById('total-income');
-            const income = incomeInput ? parseFloat(incomeInput.value) || 0 : 0;
+        let totalIncome = 0;
+        let totalExpenses = 0;
 
-            document.getElementById('calc-50').textContent = `$${(income * 0.50).toLocaleString()}`;
-            document.getElementById('calc-30').textContent = `$${(income * 0.30).toLocaleString()}`;
-            document.getElementById('calc-20').textContent = `$${(income * 0.20).toLocaleString()}`;
-        }
-
-        // Gestión de Gastos con localStorage
-        function getStoredExpenses() {
-            try {
-                return JSON.parse(localStorage.getItem('private_atlas_expenses')) || [];
-            } catch (e) {
-                return [];
-            }
-        }
-
-        function saveExpense() {
-            const nameInput = document.getElementById('expense-name');
-            const amountInput = document.getElementById('expense-amount');
-            const categorySelect = document.getElementById('expense-category');
-            const feedback = document.getElementById('budget-feedback-msg');
-
-            const name = nameInput.value.trim();
+        function addFinanceItem() {
+            const amountInput = document.getElementById('financeAmountInput');
+            const descInput = document.getElementById('financeDescInput');
             const amount = parseFloat(amountInput.value);
-            const category = categorySelect.value;
+            const desc = descInput.value.trim();
 
-            if(!name || isNaN(amount) || amount <= 0) {
-                feedback.innerHTML = "⚠️ Por favor ingresa un nombre y un monto válido para el gasto.";
-                feedback.style.color = "#f43f5e";
-                return;
-            }
+            if (isNaN(amount) || amount <= 0 || !desc) return;
 
-            const expenses = getStoredExpenses();
-            const newExpense = {
-                id: Date.now(),
-                name: name,
-                amount: amount,
-                category: category === '50' ? 'Necesidades (50%)' : category === '30' ? 'Deseos (30%)' : 'Ahorro (20%)'
-            };
+            totalExpenses += amount;
+            document.getElementById('summaryTotalExpenses').textContent = `$${totalExpenses.toFixed(2)}`;
+            document.getElementById('summaryBalance').textContent = `$${(totalIncome - totalExpenses).toFixed(2)}`;
 
-            expenses.push(newExpense);
-            localStorage.setItem('private_atlas_expenses', JSON.stringify(expenses));
+            const container = document.getElementById('financeListContainer');
+            const row = document.createElement('div');
+            row.className = 'expense-item-row';
+            row.innerHTML = `
+                <div class="expense-info-main">
+                    <b>${desc}</b>
+                    <small>Gasto Registrado</small>
+                </div>
+                <div class="expense-item-right">
+                    <span>-$${amount.toFixed(2)}</span>
+                    <button class="delete-expense-btn" onclick="removeFinanceItem(this, ${amount})"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `;
+            container.appendChild(row);
 
-            feedback.innerHTML = `✅ ¡Gasto '${name}' de $${amount.toLocaleString()} guardado correctamente!`;
-            feedback.style.color = "#34d399";
-
-            nameInput.value = '';
             amountInput.value = '';
-            renderExpenses();
+            descInput.value = '';
         }
 
-        function deleteExpense(id) {
-            let expenses = getStoredExpenses();
-            expenses = expenses.filter(item => item.id !== id);
-            localStorage.setItem('private_atlas_expenses', JSON.stringify(expenses));
-            renderExpenses();
-
-            const feedback = document.getElementById('budget-feedback-msg');
-            feedback.innerHTML = "🗑️ Gasto eliminado del registro abisal.";
-            feedback.style.color = "#f43f5e";
+        function removeFinanceItem(btn, amount) {
+            totalExpenses -= amount;
+            document.getElementById('summaryTotalExpenses').textContent = `$${totalExpenses.toFixed(2)}`;
+            document.getElementById('summaryBalance').textContent = `$${(totalIncome - totalExpenses).toFixed(2)}`;
+            btn.closest('.expense-item-row').remove();
         }
 
-        function renderExpenses() {
-            const container = document.getElementById('expenses-list-box');
-            if(!container) return;
+        function addNewTask() {
+            const input = document.getElementById('taskInputText');
+            const text = input.value.trim();
+            if (!text) return;
 
-            const expenses = getStoredExpenses();
-
-            if (expenses.length === 0) {
-                container.innerHTML = `<div style="text-align: center; color: #94a3b8; font-size: 11px; padding: 15px;">No hay gastos registrados todavía.</div>`;
-                return;
-            }
-
-            let html = '';
-            expenses.forEach(item => {
-                html += `
-                    <div class="expense-item-row">
-                        <div class="expense-info-main">
-                            <b>${item.name}</b>
-                            <small>${item.category}</small>
-                        </div>
-                        <div class="expense-item-right">
-                            <span>$${item.amount.toLocaleString()}</span>
-                            <button class="delete-expense-btn" onclick="deleteExpense(${item.id})" title="Eliminar gasto">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </div>
+            const container = document.getElementById('tasksListContainer');
+            const row = document.createElement('div');
+            row.className = 'expense-item-row';
+            row.innerHTML = `
+                <div class="expense-info-main" style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+                    <input type="checkbox" style="cursor: pointer; width: 16px; height: 16px;" onchange="toggleTaskComplete(this)">
+                    <div>
+                        <b>${text}</b>
+                        <small style="color: #94a3b8;">Pendiente</small>
                     </div>
-                `;
-            });
-            container.innerHTML = html;
+                </div>
+                <div class="expense-item-right">
+                    <button class="delete-expense-btn" onclick="this.closest('.expense-item-row').remove()"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `;
+
+            container.appendChild(row);
+            input.value = '';
         }
 
-        function completeBudget() {
-            const income = document.getElementById('total-income').value;
-            const feedback = document.getElementById('budget-feedback-msg');
-            
-            feedback.innerHTML = `🏆 ¡Ciclo de presupuesto completado para tus ingresos de $${Number(income).toLocaleString()} USD! Regla 50/30/20 validada.`;
-            feedback.style.color = "#38bdf8";
+        function toggleTaskComplete(checkbox) {
+            const infoMain = checkbox.closest('.expense-info-main');
+            const small = infoMain.querySelector('small');
+            const title = infoMain.querySelector('b');
+
+            if (checkbox.checked) {
+                small.textContent = 'Completado';
+                small.style.color = '#34d399';
+                title.style.textDecoration = 'line-through';
+                title.style.color = '#94a3b8';
+            } else {
+                small.textContent = 'Pendiente';
+                small.style.color = '#94a3b8';
+                title.style.textDecoration = 'none';
+                title.style.color = '#f8fafc';
+            }
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            updateRealtimeInfo();
-            setInterval(updateRealtimeInfo, 1000);
-            updateBudgetCalculations();
-        });
+        // Reloj en tiempo real
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            document.getElementById('liveClock').textContent = `${hours}:${minutes} ${ampm}`;
+
+            const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+            document.getElementById('liveDate').textContent = now.toLocaleDateString('es-ES', options);
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
     </script>
 </body>
 </html>
