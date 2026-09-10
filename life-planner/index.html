@@ -117,7 +117,7 @@
                 <div class="finance-form-container">
                     <div class="plan-journey-title">
                         <h3 id="currentCategoryTitle">Control Presupuestario: Necesidades (50%)</h3>
-                        <p id="currentCategoryDesc">Establece tu ingreso mensual para calcular el límite ideal o registra tus gastos en esta categoría.</p>
+                        <p id="currentCategoryDesc">Límite recomendado: 50% de tus ingresos totales.</p>
                     </div>
 
                     <div class="summary-cards-row">
@@ -259,14 +259,14 @@
             }
         }
 
-        // Lógica de Presupuesto 50 / 30 / 20
-        let totalIncome = 0;
+        // Lógica de Presupuesto 50 / 30 / 20 corregida y sincronizada
+        let totalIncome = 0; // Empieza en 0 para que tú pongas tu ingreso real
         let currentCategoryKey = 'needs';
         let currentCategoryPercent = 50;
         let categoriesData = {
-            needs: { name: 'Necesidades', percent: 50, spent: 0, items: [] },
-            wants: { name: 'Deseos', percent: 30, spent: 0, items: [] },
-            savings: { name: 'Ahorro', percent: 20, spent: 0, items: [] }
+            needs: { name: 'Necesidades', percent: 50, items: [] },
+            wants: { name: 'Deseos', percent: 30, items: [] },
+            savings: { name: 'Ahorro', percent: 20, items: [] }
         };
 
         function setCategory(key, percent, element) {
@@ -297,7 +297,6 @@
             const desc = descInput.value.trim();
 
             if (!isNaN(amount) && amount > 0 && desc) {
-                categoriesData[currentCategoryKey].spent += amount;
                 categoriesData[currentCategoryKey].items.push({ desc, amount });
                 amountInput.value = '';
                 descInput.value = '';
@@ -307,8 +306,6 @@
         }
 
         function removeFinanceItem(index) {
-            const item = categoriesData[currentCategoryKey].items[index];
-            categoriesData[currentCategoryKey].spent -= item.amount;
             categoriesData[currentCategoryKey].items.splice(index, 1);
             updateFinanceUI();
         }
@@ -319,12 +316,17 @@
             const categoryLimit = totalIncome * (currentCategoryPercent / 100);
             document.getElementById('summaryCategoryLimit').textContent = `$${categoryLimit.toFixed(2)}`;
 
-            const categorySpent = categoriesData[currentCategoryKey].spent;
+            // Calcular el gastado sumando los elementos de la categoría actual
+            let categorySpent = 0;
+            categoriesData[currentCategoryKey].items.forEach(item => {
+                categorySpent += item.amount;
+            });
+
             const spentEl = document.getElementById('summaryCategorySpent');
             spentEl.textContent = `$${categorySpent.toFixed(2)}`;
 
             if (categorySpent > categoryLimit && categoryLimit > 0) {
-                spentEl.style.color = '#f43f5e'; // Rojo si excede el porcentaje
+                spentEl.style.color = '#f43f5e'; // Rojo si excede el porcentaje de la categoría
             } else {
                 spentEl.style.color = '#38bdf8';
             }
@@ -407,6 +409,9 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
+
+        // Inicializar la interfaz financiera al cargar
+        updateFinanceUI();
     </script>
 </body>
 </html>
