@@ -624,3 +624,6 @@ body {
         grid-template-columns: 1fr;
     }
 }
+.hidden-view {
+    display: none !important;
+}
