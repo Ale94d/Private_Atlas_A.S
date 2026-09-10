@@ -28,7 +28,7 @@
             <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
             <!-- Botón de Finanzas con la Moneda -->
             <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></a>
-            <!-- Botón de Tareas con el Cuernerno -->
+            <!-- Botón del Cuaderno para la sección de tareas -->
             <a href="#" class="dock-icon" id="nav-tasks" title="Tareas y Notas" onclick="switchView('tasks')"><i class="fa-solid fa-book"></i></a>
         </nav>
 
@@ -54,7 +54,7 @@
                     <div class="card-top-tag"><span>Tareas Activas</span><i class="fa-regular fa-heart"></i></div>
                     <div class="card-content-text">
                         <h4>Mantenimiento de Coral</h4>
-                        <p><i class="fa-solid fa-calendar-days"></i> 06 Sep • Ver Tareas</p>
+                        <p><i class="fa-solid fa-calendar-days"></i> 06 Sep • Completado</p>
                     </div>
                     <span class="carousel-step">01</span>
                 </div>
@@ -204,7 +204,7 @@
         </main>
 
 
-        <!-- ================= VISTA 3: TAREAS (CUADERNO ABISAL) ================= -->
+        <!-- ================= VISTA 3: TAREAS (CUADERNO) ================= -->
         <main class="hologram-main-card hidden-view" id="view-tasks">
             
             <div class="holo-header">
@@ -222,7 +222,7 @@
             <div class="finance-form-container" style="width: 100%; max-width: 100%;">
                 <div class="plan-journey-title">
                     <h3>Bitácora de Tareas Submarinas</h3>
-                    <p>Organiza tus actividades pendientes, proyectos y notas del cuaderno abisal.</p>
+                    <p>Organiza tus actividades pendientes y notas del cuaderno abisal.</p>
                 </div>
 
                 <div class="finance-row-inputs">
@@ -230,14 +230,14 @@
                         <label>Nueva Tarea o Nota</label>
                         <div class="fin-input-box">
                             <i class="fa-solid fa-pen"></i>
-                            <input type="text" id="task-input-name" placeholder="Ej: Mantenimiento de Coral o Reporte de Física">
+                            <input type="text" id="task-input-name" placeholder="Ej: Mantenimiento de Coral">
                         </div>
                     </div>
                     <div class="finance-input-group" style="flex: 1;">
                         <label>Fecha Límite</label>
                         <div class="fin-input-box">
                             <i class="fa-solid fa-calendar"></i>
-                            <input type="text" id="task-input-date" placeholder="Ej: 10 Sep">
+                            <input type="text" id="task-input-date" placeholder="Ej: 06 Sep">
                         </div>
                     </div>
                 </div>
@@ -248,7 +248,6 @@
                     </button>
                 </div>
 
-                <!-- Contenedor del listado de tareas -->
                 <div class="expenses-list-container" id="tasks-list-box" style="margin-top: 20px;">
                     <!-- Tareas cargadas dinámicamente -->
                 </div>
@@ -280,7 +279,7 @@
 
     </div>
 
-    <!-- Script completo con almacenamiento localStorage, finanzas y cuaderno de tareas -->
+    <!-- Script completo -->
     <script>
         function updateRealtimeInfo() {
             const now = new Date();
@@ -344,7 +343,6 @@
             }
         }
 
-        // Cálculo matemático automático de la regla 50/30/20
         function updateBudgetCalculations() {
             const incomeInput = document.getElementById('total-income');
             const income = incomeInput ? parseFloat(incomeInput.value) || 0 : 0;
@@ -354,7 +352,6 @@
             document.getElementById('calc-20').textContent = `$${(income * 0.20).toLocaleString()}`;
         }
 
-        // Gestión de Gastos con localStorage
         function getStoredExpenses() {
             try {
                 return JSON.parse(localStorage.getItem('private_atlas_expenses')) || [];
@@ -411,4 +408,9 @@
 
         function renderExpenses() {
             const container = document.getElementById('expenses-list-box');
-            if(!container
+            if(!container) return;
+
+            const expenses = getStoredExpenses();
+
+            if (expenses.length === 0) {
+                container.innerHTML = `<div style="text-align: center; color: #94a3b8; font-size: 11px; padding: 15px;">No hay gastos registrados todaví
