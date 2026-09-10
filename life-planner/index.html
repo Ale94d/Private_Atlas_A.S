@@ -259,21 +259,15 @@
             }
         }
 
-        // Cargar datos guardados o usar 10000 por defecto
-        let totalIncome = parseFloat(localStorage.getItem('atlas_totalIncome')) || 10000;
+        // Lógica de Presupuesto 50 / 30 / 20 corregida y sincronizada
+        let totalIncome = 0; // Empieza en 0 para que tú pongas tu ingreso real
         let currentCategoryKey = 'needs';
         let currentCategoryPercent = 50;
-        
-        let categoriesData = JSON.parse(localStorage.getItem('atlas_categoriesData')) || {
+        let categoriesData = {
             needs: { name: 'Necesidades', percent: 50, items: [] },
             wants: { name: 'Deseos', percent: 30, items: [] },
             savings: { name: 'Ahorro', percent: 20, items: [] }
         };
-
-        function saveData() {
-            localStorage.setItem('atlas_totalIncome', totalIncome);
-            localStorage.setItem('atlas_categoriesData', JSON.stringify(categoriesData));
-        }
 
         function setCategory(key, percent, element) {
             document.querySelectorAll('.fin-cat-item').forEach(item => item.classList.remove('active'));
@@ -308,13 +302,11 @@
                 descInput.value = '';
             }
 
-            saveData();
             updateFinanceUI();
         }
 
         function removeFinanceItem(index) {
             categoriesData[currentCategoryKey].items.splice(index, 1);
-            saveData();
             updateFinanceUI();
         }
 
@@ -324,6 +316,7 @@
             const categoryLimit = totalIncome * (currentCategoryPercent / 100);
             document.getElementById('summaryCategoryLimit').textContent = `$${categoryLimit.toFixed(2)}`;
 
+            // Calcular el gastado sumando los elementos de la categoría actual
             let categorySpent = 0;
             categoriesData[currentCategoryKey].items.forEach(item => {
                 categorySpent += item.amount;
@@ -333,7 +326,7 @@
             spentEl.textContent = `$${categorySpent.toFixed(2)}`;
 
             if (categorySpent > categoryLimit && categoryLimit > 0) {
-                spentEl.style.color = '#f43f5e';
+                spentEl.style.color = '#f43f5e'; // Rojo si excede el porcentaje de la categoría
             } else {
                 spentEl.style.color = '#38bdf8';
             }
@@ -414,4 +407,11 @@
             const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
             document.getElementById('liveDate').textContent = now.toLocaleDateString('es-ES', options);
         }
-        setInterv
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Inicializar la interfaz financiera al cargar
+        updateFinanceUI();
+    </script>
+</body>
+</html>
