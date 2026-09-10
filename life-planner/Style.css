@@ -483,15 +483,6 @@ body {
     margin-top: 5px;
 }
 
-.budget-feedback {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 10px 14px;
-    border-radius: 12px;
-    font-size: 12px;
-    color: #cbd5e1;
-}
-
 /* ================= LISTADO PROFESIONAL DE GASTOS Y TAREAS ================= */
 .summary-cards-row {
     display: grid;
