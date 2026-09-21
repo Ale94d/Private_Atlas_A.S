@@ -361,14 +361,6 @@ const genericCovers = {
         "assets/portadas/Poesia/P6.png"
     ],
 
-    "Biografía": [
-        "assets/portadas/Biografia/P1.png",
-        "assets/portadas/Biografia/P2.png",
-        "assets/portadas/Biografia/P3.png",
-        "assets/portadas/Biografia/P4.png",
-        "assets/portadas/Biografia/P5.png",
-        "assets/portadas/Biografia/P6.png"
-    ],
 
     "Clásicos": [
         "assets/portadas/Clasicos/P1.png",
