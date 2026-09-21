@@ -1,626 +1,417 @@
-html {
-    background-color: #050b14;
-    height: 100%;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Outfit', sans-serif;
-}
-
-body {
-    min-height: 100vh;
-    height: 100%;
-    background-color: #050b14;
-    background-image: linear-gradient(rgba(2, 6, 23, 0.4), rgba(15, 23, 42, 0.65)), url('assets/background/marino.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #f8fafc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow-x: hidden;
-    padding: 20px;
-}
-
-.bubbles-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.bubble {
-    position: absolute;
-    bottom: -30px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    animation: riseUp linear infinite;
-}
-
-@keyframes riseUp {
-    0% { transform: translateY(0) scale(1); opacity: 0; }
-    20% { opacity: 0.7; }
-    100% { transform: translateY(-105vh) scale(1.2); opacity: 0; }
-}
-
-.spatial-viewport {
-    width: 100%;
-    max-width: 1450px;
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    z-index: 10;
-    position: relative;
-}
-
-.floating-left-dock {
-    background: rgba(15, 23, 42, 0.45);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 40px;
-    padding: 16px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
-
-.dock-icon {
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: #94a3b8;
-    font-size: 16px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.dock-icon:hover, .dock-icon.active {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #0f172a;
-    box-shadow: 0 4px 15px rgba(255,255,255,0.3);
-}
-
-.hologram-main-card {
-    flex-grow: 1;
-    background: rgba(15, 23, 42, 0.38);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 36px;
-    padding: 45px;
-    min-height: 660px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-}
-
-.holo-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    color: #cbd5e1;
-    font-size: 18px;
-}
-
-.holo-nav-links {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.user-avatar-small {
-    width: 36px;
-    height: 36px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #38bdf8;
-}
-
-.holo-intro {
-    margin-bottom: 35px;
-}
-
-.holo-intro h2 {
-    font-size: 38px;
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: -0.5px;
-    line-height: 1.2;
-    margin-bottom: 12px;
-}
-
-.holo-intro p {
-    font-size: 13px;
-    color: #94a3b8;
-    max-width: 550px;
-    line-height: 1.5;
-}
-
-.holo-cards-carousel {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin-bottom: 35px;
-}
-
-.carousel-card {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 20px;
-    padding: 22px;
-    min-height: 180px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.carousel-card:hover, .carousel-card.active-card {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(56, 189, 248, 0.5);
-    transform: translateY(-4px);
-}
-
-.card-top-tag {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 10px;
-    font-weight: 700;
-    color: #94a3b8;
-    text-transform: uppercase;
-}
-
-.card-top-tag i {
-    color: #f43f5e;
-}
-
-.card-content-text h4 {
-    font-size: 13px;
-    font-weight: 700;
-    color: #f8fafc;
-    margin-bottom: 4px;
-}
-
-.card-content-text p {
-    font-size: 11px;
-    color: #cbd5e1;
-}
-
-.carousel-step {
-    font-size: 12px;
-    font-weight: 800;
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.holo-action-footer {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.holo-btn {
-    border: none;
-    padding: 12px 28px;
-    border-radius: 30px;
-    font-weight: 700;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.primary-btn {
-    background: rgba(255, 255, 255, 0.9);
-    color: #0f172a;
-    box-shadow: 0 4px 15px rgba(255,255,255,0.2);
-}
-
-.primary-btn:hover {
-    background: #ffffff;
-}
-
-.secondary-btn {
-    background: transparent;
-    color: #cbd5e1;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.secondary-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.footer-icon-pill {
-    width: 42px;
-    height: 42px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #cbd5e1;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.footer-icon-pill:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* Tarjeta lateral derecha */
-.hologram-side-card {
-    width: 290px;
-    height: 660px;
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('assets/background/marino.jpg');
-    background-size: cover;
-    background-position: center;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 36px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-    position: relative;
-    flex-shrink: 0;
-}
-
-.side-badge {
-    background: rgba(10, 15, 30, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 16px;
-    border-radius: 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    color: #ffffff;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-}
-
-.side-badge-header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    color: #38bdf8;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 2px;
-}
-
-.realtime-clock {
-    font-size: 24px;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 1px;
-}
-
-.realtime-date {
-    font-size: 12px;
-    font-weight: 500;
-    color: #cbd5e1;
-    text-transform: capitalize;
-}
-
-.side-location {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    color: #94a3b8;
-    margin-top: 4px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 6px;
-}
-
-.side-location i {
-    color: #f43f5e;
-}
-
-.read-more-link {
-    font-size: 9px;
-    color: #34d399;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-top: 2px;
-}
-
-/* ================= MÓDULO FINANCIERO ================= */
-.hidden-view {
-    display: none !important;
-}
-
-.finance-layout-grid {
-    display: flex;
-    gap: 20px;
-    align-items: stretch;
-}
-
-.finance-categories-dock {
-    width: 190px;
-    background: rgba(10, 15, 30, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 22px;
-    padding: 15px 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex-shrink: 0;
-}
-
-.fin-cat-item {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 14px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    color: #94a3b8;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-.fin-cat-item i {
-    font-size: 16px;
-    color: #38bdf8;
-}
-
-.fin-cat-item:hover, .fin-cat-item.active {
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(14, 116, 144, 0.4));
-    border-color: rgba(56, 189, 248, 0.5);
-    color: #ffffff;
-    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
-}
-
-.finance-form-container {
-    flex-grow: 1;
-    background: rgba(10, 15, 30, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 24px;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    backdrop-filter: blur(12px);
-}
-
-.plan-journey-title h3 {
-    font-size: 20px;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 4px;
-}
-
-.plan-journey-title p {
-    font-size: 12px;
-    color: #94a3b8;
-}
-
-.finance-input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    width: 100%;
-}
-
-.finance-input-group label {
-    font-size: 11px;
-    font-weight: 600;
-    color: #cbd5e1;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.fin-input-box {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 14px;
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #ffffff;
-}
-
-.fin-input-box i {
-    color: #38bdf8;
-    font-size: 14px;
-}
-
-.fin-input-box input, .fin-input-box select {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #ffffff;
-    font-size: 13px;
-    width: 100%;
-    font-family: 'Outfit', sans-serif;
-}
-
-.fin-input-box select option {
-    background: #0f172a;
-    color: #ffffff;
-}
-
-.finance-row-inputs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.finance-actions-footer {
-    display: flex;
-    gap: 12px;
-    margin-top: 5px;
-}
-
-/* ================= LISTADO PROFESIONAL DE GASTOS Y TAREAS ================= */
-.summary-cards-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 4px;
-}
-
-.summary-card-mini {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 14px;
-    padding: 10px;
-    text-align: center;
-}
-
-.summary-card-mini span {
-    font-size: 10px;
-    color: #94a3b8;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.summary-card-mini h4 {
-    font-size: 14px;
-    color: #38bdf8;
-    font-weight: 700;
-    margin-top: 2px;
-}
-
-.expenses-list-container {
-    max-height: 160px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-right: 4px;
-}
-
-.expenses-list-container::-webkit-scrollbar {
-    width: 4px;
-}
-
-.expenses-list-container::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-}
-
-.expense-item-row {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 8px 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-}
-
-.expense-info-main {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.expense-info-main b {
-    color: #f8fafc;
-    font-size: 12px;
-}
-
-.expense-info-main small {
-    color: #94a3b8;
-    font-size: 10px;
-}
-
-.expense-item-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.expense-item-right span {
-    font-weight: 700;
-    color: #34d399;         
-}
-
-.delete-expense-btn {
-    background: rgba(244, 63, 94, 0.2);
-    border: 1px solid rgba(244, 63, 94, 0.4);
-    color: #f43f5e;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 11px;
-    transition: all 0.2s;
-}
-
-.delete-expense-btn:hover {
-    background: #f43f5e;
-    color: #ffffff;
-}
-
-@media (max-width: 1024px) {
-    .spatial-viewport {
-        flex-direction: column;
-    }
-    .floating-left-dock {
-        flex-direction: row;
-        width: 100%;
-        justify-content: space-around;
-        border-radius: 30px;
-    }
-    .hologram-side-card {
-        width: 100%;
-        height: 280px;
-    }
-    .holo-cards-carousel {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .finance-layout-grid {
-        flex-direction: column;
-    }
-    .finance-categories-dock {
-        width: 100%;
-        flex-direction: row;
-        overflow-x: auto;
-    }
-    .finance-row-inputs {
-        grid-template-columns: 1fr;
-    }
-    .summary-cards-row {
-        grid-template-columns: 1fr;
-    }
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Atlas A.S | Life Planner Holográfico</title>
+    <link rel="stylesheet" href="Style.css">
+    <!-- Tipografía moderna geométrica -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Burbujas animadas de fondo -->
+    <div class="bubbles-container">
+        <span class="bubble" style="left: 15%; width: 12px; height: 12px; animation-duration: 9s;"></span>
+        <span class="bubble" style="left: 45%; width: 20px; height: 20px; animation-duration: 11s; animation-delay: 2s;"></span>
+        <span class="bubble" style="left: 75%; width: 15px; height: 15px; animation-duration: 7s; animation-delay: 1s;"></span>
+        <span class="bubble" style="left: 90%; width: 22px; height: 22px; animation-duration: 10s; animation-delay: 3s;"></span>
+    </div>
+
+    <!-- Contenedor espacial tipo VisionOS -->
+    <div class="spatial-viewport">
+
+        <!-- Barra lateral flotante izquierda -->
+        <nav class="floating-left-dock">
+            <a href="#" class="dock-icon active" id="nav-home" title="Inicio" onclick="switchView('home')"><i class="fa-solid fa-house"></i></a>
+            <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <!-- Botón de Finanzas con la Moneda -->
+            <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></a>
+            <!-- Botón de Tareas -->
+            <a href="#" class="dock-icon" id="nav-tasks" title="Gestión de Tareas" onclick="switchView('tasks')"><i class="fa-solid fa-list-check"></i></a>
+        </nav>
+
+        <!-- ================= VISTA 1: INICIO (PRINCIPAL) ================= -->
+        <main class="hologram-main-card" id="view-home">
+            
+            <div class="holo-header">
+                <i class="fa-solid fa-bars"></i>
+                <div class="holo-nav-links">
+                    <span>Descubrir</span>
+                    <span>Planear</span>
+                    <div class="user-avatar-small"><i class="fa-solid fa-user-astronaut"></i></div>
+                </div>
+            </div>
+
+            <div class="holo-intro">
+                <h2>Get ready to organize<br>your abyssal life!</h2>
+                <p>Gestiona tus tareas submarinas, controla tu presupuesto 50/30/20 y explora santuarios marinos con claridad absoluta.</p>
+            </div>
+
+            <div class="holo-cards-carousel">
+                <div class="carousel-card active-card" onclick="switchView('tasks')">
+                    <div class="card-top-tag"><span>Tareas Activas</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-content-text">
+                        <h4>Panel de Tareas</h4>
+                        <p><i class="fa-solid fa-list-check"></i> Escribir y completar</p>
+                    </div>
+                    <span class="carousel-step">01</span>
+                </div>
+
+                <!-- Tarjeta interactiva del Carrusel para ir directo al monedero -->
+                <div class="carousel-card" onclick="switchView('finance')">
+                    <div class="card-top-tag"><span>Finanzas</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-content-text">
+                        <h4>Presupuesto Abisal</h4>
+                        <p><i class="fa-solid fa-wallet"></i> Ver Gastos Guardados</p>
+                    </div>
+                    <span class="carousel-step">02</span>
+                </div>
+            </div>
+
+            <div class="holo-action-footer">
+                <button class="holo-btn primary-btn" onclick="switchView('finance')">Get Started</button>
+                <button class="holo-btn secondary-btn" onclick="switchView('tasks')">Ver Tareas</button>
+                <div class="footer-icon-pill"><i class="fa-solid fa-bookmark"></i></div>
+                <div class="footer-icon-pill"><i class="fa-solid fa-share-nodes"></i></div>
+            </div>
+
+        </main>
+
+
+        <!-- ================= VISTA 2: FINANZAS 50/30/20 ================= -->
+        <main class="hologram-main-card hidden-view" id="view-finance">
+            
+            <div class="holo-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-arrow-left" style="cursor: pointer;" onclick="switchView('home')" title="Volver"></i>
+                    <span style="font-weight: 700; color: #fff;">Private Atlas • Finanzas Abisales</span>
+                </div>
+                <div class="holo-nav-links">
+                    <span>$ USD</span>
+                    <span>Manage Budget</span>
+                    <div class="user-avatar-small"><i class="fa-solid fa-wallet"></i></div>
+                </div>
+            </div>
+
+            <div class="finance-layout-grid">
+                
+                <!-- Barra de Categorías Izquierda -->
+                <div class="finance-categories-dock">
+                    <div class="fin-cat-item active" onclick="setCategory('needs', 50, this)" title="Necesidades (50%)">
+                        <i class="fa-solid fa-house-chimney"></i>
+                        <span>Necesidades (50%)</span>
+                    </div>
+                    <div class="fin-cat-item" onclick="setCategory('wants', 30, this)" title="Deseos (30%)">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span>Deseos (30%)</span>
+                    </div>
+                    <div class="fin-cat-item" onclick="setCategory('savings', 20, this)" title="Ahorro (20%)">
+                        <i class="fa-solid fa-piggy-bank"></i>
+                        <span>Ahorro (20%)</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Formulario y Gastos -->
+                <div class="finance-form-container">
+                    <div class="plan-journey-title">
+                        <h3 id="currentCategoryTitle">Control Presupuestario: Necesidades (50%)</h3>
+                        <p id="currentCategoryDesc">Límite recomendado: 50% de tus ingresos totales.</p>
+                    </div>
+
+                    <div class="summary-cards-row">
+                        <div class="summary-card-mini">
+                            <span>Ingreso Total</span>
+                            <h4 id="summaryTotalIncome">$0.00</h4>
+                        </div>
+                        <div class="summary-card-mini">
+                            <span>Límite Categoría</span>
+                            <h4 id="summaryCategoryLimit">$0.00</h4>
+                        </div>
+                        <div class="summary-card-mini">
+                            <span>Gastado en Cat.</span>
+                            <h4 id="summaryCategorySpent">$0.00</h4>
+                        </div>
+                    </div>
+
+                    <div class="finance-row-inputs">
+                        <div class="finance-input-group">
+                            <label>Establecer Ingreso Total (Opcional/Actualizar)</label>
+                            <div class="fin-input-box">
+                                <i class="fa-solid fa-dollar-sign"></i>
+                                <input type="number" id="financeIncomeInput" placeholder="Ej: 1000 (Ingreso)">
+                            </div>
+                        </div>
+                        <div class="finance-input-group">
+                            <label>Monto del Gasto</label>
+                            <div class="fin-input-box">
+                                <i class="fa-solid fa-tag"></i>
+                                <input type="number" id="financeAmountInput" placeholder="Ej: 150 (Gasto)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="finance-input-group">
+                        <label>Descripción del Movimiento</label>
+                        <div class="fin-input-box">
+                            <i class="fa-solid fa-pen"></i>
+                            <input type="text" id="financeDescInput" placeholder="Ej: Alquiler, Videojuego, Cuenta de ahorros...">
+                        </div>
+                    </div>
+
+                    <div class="finance-actions-footer">
+                        <button class="holo-btn primary-btn" onclick="addFinanceItem()">Registrar en Categoría</button>
+                        <button class="holo-btn secondary-btn" onclick="switchView('home')">Volver al Inicio</button>
+                    </div>
+
+                    <div class="expenses-list-container" id="financeListContainer">
+                        <!-- Los registros de finanzas se cargarán dinámicamente aquí -->
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+
+        <!-- ================= VISTA 3: GESTIÓN DE TAREAS ================= -->
+        <main class="hologram-main-card hidden-view" id="view-tasks">
+            
+            <div class="holo-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-arrow-left" style="cursor: pointer;" onclick="switchView('home')" title="Volver"></i>
+                    <span style="font-weight: 700; color: #fff;">Private Atlas • Gestión de Tareas</span>
+                </div>
+                <div class="holo-nav-links">
+                    <span>Tasks</span>
+                    <div class="user-avatar-small"><i class="fa-solid fa-list-check"></i></div>
+                </div>
+            </div>
+
+            <div class="finance-form-container" style="gap: 15px;">
+                <div class="plan-journey-title">
+                    <h3>Nueva Tarea Abisal</h3>
+                    <p>Escribe tu pendiente submarino y márcalo como completado al terminar.</p>
+                </div>
+
+                <div class="finance-input-group">
+                    <label>Descripción de la Tarea</label>
+                    <div class="fin-input-box">
+                        <i class="fa-solid fa-pen"></i>
+                        <input type="text" id="taskInputText" placeholder="Ej: Mantenimiento de filtros o tarea de física...">
+                    </div>
+                </div>
+
+                <div class="finance-actions-footer">
+                    <button class="holo-btn primary-btn" onclick="addNewTask()">Añadir Tarea</button>
+                    <button class="holo-btn secondary-btn" onclick="switchView('home')">Volver al Inicio</button>
+                </div>
+
+                <div class="plan-journey-title" style="margin-top: 10px;">
+                    <h3 style="font-size: 16px;">Lista de Pendientes</h3>
+                </div>
+
+                <div class="expenses-list-container" id="tasksListContainer">
+                    <!-- Las tareas se generarán aquí dinámicamente -->
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Tarjeta lateral derecha -->
+        <aside class="hologram-side-card">
+            <div class="side-badge">
+                <div class="side-badge-header">
+                    <i class="fa-solid fa-compass"></i> Sincronización Abisal
+                </div>
+                <div class="realtime-clock" id="liveClock">12:00 AM</div>
+                <div class="realtime-date" id="liveDate">Miércoles, 9 Sep 2026</div>
+                <div class="side-location">
+                    <i class="fa-solid fa-location-dot"></i> Soacha, Cundinamarca
+                </div>
+                <div class="read-more-link">Sistema Activo</div>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- Script de control de vistas y datos -->
+    <script>
+        function switchView(viewName) {
+            document.getElementById('view-home').classList.add('hidden-view');
+            document.getElementById('view-finance').classList.add('hidden-view');
+            document.getElementById('view-tasks').classList.add('hidden-view');
+
+            document.getElementById('nav-home').classList.remove('active');
+            document.getElementById('nav-finance').classList.remove('active');
+            document.getElementById('nav-tasks').classList.remove('active');
+
+            if (viewName === 'home') {
+                document.getElementById('view-home').classList.remove('hidden-view');
+                document.getElementById('nav-home').classList.add('active');
+            } else if (viewName === 'finance') {
+                document.getElementById('view-finance').classList.remove('hidden-view');
+                document.getElementById('nav-finance').classList.add('active');
+            } else if (viewName === 'tasks') {
+                document.getElementById('view-tasks').classList.remove('hidden-view');
+                document.getElementById('nav-tasks').classList.add('active');
+            }
+        }
+
+        // Lógica de Presupuesto 50 / 30 / 20 corregida y sincronizada
+        let totalIncome = 0; // Empieza en 0 para que tú pongas tu ingreso real
+        let currentCategoryKey = 'needs';
+        let currentCategoryPercent = 50;
+        let categoriesData = {
+            needs: { name: 'Necesidades', percent: 50, items: [] },
+            wants: { name: 'Deseos', percent: 30, items: [] },
+            savings: { name: 'Ahorro', percent: 20, items: [] }
+        };
+
+        function setCategory(key, percent, element) {
+            document.querySelectorAll('.fin-cat-item').forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+
+            currentCategoryKey = key;
+            currentCategoryPercent = percent;
+
+            document.getElementById('currentCategoryTitle').textContent = `Control Presupuestario: ${categoriesData[key].name} (${percent}%)`;
+            document.getElementById('currentCategoryDesc').textContent = `Límite recomendado: ${percent}% de tus ingresos totales.`;
+            
+            updateFinanceUI();
+        }
+
+        function addFinanceItem() {
+            const incomeInput = document.getElementById('financeIncomeInput');
+            const amountInput = document.getElementById('financeAmountInput');
+            const descInput = document.getElementById('financeDescInput');
+
+            const newIncome = parseFloat(incomeInput.value);
+            if (!isNaN(newIncome) && newIncome > 0) {
+                totalIncome = newIncome;
+                incomeInput.value = '';
+            }
+
+            const amount = parseFloat(amountInput.value);
+            const desc = descInput.value.trim();
+
+            if (!isNaN(amount) && amount > 0 && desc) {
+                categoriesData[currentCategoryKey].items.push({ desc, amount });
+                amountInput.value = '';
+                descInput.value = '';
+            }
+
+            updateFinanceUI();
+        }
+
+        function removeFinanceItem(index) {
+            categoriesData[currentCategoryKey].items.splice(index, 1);
+            updateFinanceUI();
+        }
+
+        function updateFinanceUI() {
+            document.getElementById('summaryTotalIncome').textContent = `$${totalIncome.toFixed(2)}`;
+            
+            const categoryLimit = totalIncome * (currentCategoryPercent / 100);
+            document.getElementById('summaryCategoryLimit').textContent = `$${categoryLimit.toFixed(2)}`;
+
+            // Calcular el gastado sumando los elementos de la categoría actual
+            let categorySpent = 0;
+            categoriesData[currentCategoryKey].items.forEach(item => {
+                categorySpent += item.amount;
+            });
+
+            const spentEl = document.getElementById('summaryCategorySpent');
+            spentEl.textContent = `$${categorySpent.toFixed(2)}`;
+
+            if (categorySpent > categoryLimit && categoryLimit > 0) {
+                spentEl.style.color = '#f43f5e'; // Rojo si excede el porcentaje de la categoría
+            } else {
+                spentEl.style.color = '#38bdf8';
+            }
+
+            const container = document.getElementById('financeListContainer');
+            container.innerHTML = '';
+
+            categoriesData[currentCategoryKey].items.forEach((item, index) => {
+                const row = document.createElement('div');
+                row.className = 'expense-item-row';
+                row.innerHTML = `
+                    <div class="expense-info-main">
+                        <b>${item.desc}</b>
+                        <small>${categoriesData[currentCategoryKey].name}</small>
+                    </div>
+                    <div class="expense-item-right">
+                        <span>-$${item.amount.toFixed(2)}</span>
+                        <button class="delete-expense-btn" onclick="removeFinanceItem(${index})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        function addNewTask() {
+            const input = document.getElementById('taskInputText');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const container = document.getElementById('tasksListContainer');
+            const row = document.createElement('div');
+            row.className = 'expense-item-row';
+            row.innerHTML = `
+                <div class="expense-info-main" style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+                    <input type="checkbox" style="cursor: pointer; width: 16px; height: 16px;" onchange="toggleTaskComplete(this)">
+                    <div>
+                        <b>${text}</b>
+                        <small style="color: #94a3b8;">Pendiente</small>
+                    </div>
+                </div>
+                <div class="expense-item-right">
+                    <button class="delete-expense-btn" onclick="this.closest('.expense-item-row').remove()"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `;
+
+            container.appendChild(row);
+            input.value = '';
+        }
+
+        function toggleTaskComplete(checkbox) {
+            const infoMain = checkbox.closest('.expense-info-main');
+            const small = infoMain.querySelector('small');
+            const title = infoMain.querySelector('b');
+
+            if (checkbox.checked) {
+                small.textContent = 'Completado';
+                small.style.color = '#34d399';
+                title.style.textDecoration = 'line-through';
+                title.style.color = '#94a3b8';
+            } else {
+                small.textContent = 'Pendiente';
+                small.style.color = '#94a3b8';
+                title.style.textDecoration = 'none';
+                title.style.color = '#f8fafc';
+            }
+        }
+
+        // Reloj en tiempo real
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            document.getElementById('liveClock').textContent = `${hours}:${minutes} ${ampm}`;
+
+            const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+            document.getElementById('liveDate').textContent = now.toLocaleDateString('es-ES', options);
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Inicializar la interfaz financiera al cargar
+        updateFinanceUI();
+    </script>
+</body>
+</html>
