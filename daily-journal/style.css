@@ -43,17 +43,10 @@ body {
 
     overflow: hidden;
 
-     background:
-        linear-gradient(
-            rgba(55, 43, 32, 0.48),
-            rgba(55, 43, 32, 0.48)
-        ),
-        url("fondo-journal.jpg");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
+    background-image: url("fondo-journal.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
 }
