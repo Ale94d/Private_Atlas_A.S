@@ -40,7 +40,7 @@ body {
             rgba(55, 43, 32, 0.35),
             rgba(55, 43, 32, 0.35)
         ),
-        url("fondo-journal.jpg");
+        url("assets/background/fondo-journal.jpg");
 
     background-size: cover;
     background-position: center;
