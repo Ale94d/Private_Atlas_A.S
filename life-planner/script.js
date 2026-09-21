@@ -19,3 +19,5 @@ function updateRealtimeInfo() {
 // Inicializar de inmediato y actualizar cada segundo
 setInterval(updateRealtimeInfo, 1000);
 updateRealtimeInfo();
+
+
