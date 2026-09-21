@@ -3,82 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Atlas A.S | Life Planner Holográfico</title>
+    <title>Private Atlas A.S • VisionOS Layout</title>
     <link rel="stylesheet" href="Style.css">
-    <!-- Tipografía moderna geométrica -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fuente Google: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Burbujas animadas de fondo -->
-    <div class="bubbles-container">
-        <span class="bubble" style="left: 15%; width: 12px; height: 12px; animation-duration: 9s;"></span>
-        <span class="bubble" style="left: 45%; width: 20px; height: 20px; animation-duration: 11s; animation-delay: 2s;"></span>
-        <span class="bubble" style="left: 75%; width: 15px; height: 15px; animation-duration: 7s; animation-delay: 1s;"></span>
-        <span class="bubble" style="left: 90%; width: 22px; height: 22px; animation-duration: 10s; animation-delay: 3s;"></span>
-    </div>
-
-    <!-- Contenedor espacial tipo VisionOS -->
     <div class="spatial-viewport">
 
-        <!-- Barra lateral flotante izquierda -->
-        <nav class="floating-left-dock">
-            <a href="#" class="dock-icon active" id="nav-home" title="Inicio" onclick="switchView('home')"><i class="fa-solid fa-house"></i></a>
-            <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <!-- Botón de Finanzas con la Moneda -->
-            <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></a>
-            <!-- Botón de Tareas -->
-            <a href="#" class="dock-icon" id="nav-tasks" title="Gestión de Tareas" onclick="switchView('tasks')"><i class="fa-solid fa-list-check"></i></a>
-        </nav>
+        <!-- ================= DOCK IZQUIERDO ================= -->
+        <aside class="floating-left-dock">
+            <div class="dock-item active" id="dock-home" onclick="switchView('home')" title="Inicio / Explorar">
+                <i class="fa-solid fa-compass"></i>
+            </div>
+            <div class="dock-item" id="dock-finance" onclick="switchView('finance')" title="Finanzas 50/30/20">
+                <i class="fa-solid fa-chart-pie"></i>
+            </div>
+            <div class="dock-item" id="dock-tasks" onclick="switchView('tasks')" title="Bitácora / Tareas">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div class="dock-divider"></div>
+            <div class="dock-item" id="dock-settings" onclick="switchView('settings')" title="Ajustes de Interfaz">
+                <i class="fa-solid fa-sliders"></i>
+            </div>
+        </aside>
 
-        <!-- ================= VISTA 1: INICIO (PRINCIPAL) ================= -->
+        <!-- ================= VISTA 1: INICIO (HOME) ================= -->
         <main class="hologram-main-card" id="view-home">
             
             <div class="holo-header">
-                <i class="fa-solid fa-bars"></i>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-globe"></i>
+                    <span style="font-weight: 700; color: #fff;">Private Atlas A.S</span>
+                </div>
                 <div class="holo-nav-links">
-                    <span>Descubrir</span>
-                    <span>Planear</span>
-                    <div class="user-avatar-small"><i class="fa-solid fa-user-astronaut"></i></div>
+                    <span class="active-link">Overview</span>
+                    <span>Destinations</span>
+                    <span>System Log</span>
+                    <div class="user-avatar-small"><i class="fa-solid fa-user"></i></div>
                 </div>
             </div>
 
-            <div class="holo-intro">
-                <h2>Get ready to organize<br>your abyssal life!</h2>
-                <p>Gestiona tus tareas submarinas, controla tu presupuesto 50/30/20 y explora santuarios marinos con claridad absoluta.</p>
-            </div>
+            <div class="journey-planner-container">
+                <div class="plan-journey-title">
+                    <span class="accent-sub">EXPLORACIÓN ESPACIAL</span>
+                    <h2>Plan Your Next Expedition</h2>
+                    <p>Organiza viajes, gestiona presupuestos abisales y realiza seguimiento a tus proyectos.</p>
+                </div>
 
-            <div class="holo-cards-carousel">
-                <div class="carousel-card active-card" onclick="switchView('tasks')">
-                    <div class="card-top-tag"><span>Tareas Activas</span><i class="fa-regular fa-heart"></i></div>
-                    <div class="card-content-text">
-                        <h4>Panel de Tareas</h4>
-                        <p><i class="fa-solid fa-list-check"></i> Escribir y completar</p>
+                <div class="journey-inputs-grid">
+                    <div class="input-card">
+                        <span class="input-label"><i class="fa-solid fa-location-dot"></i> Destino</span>
+                        <input type="text" placeholder="Ej: Arrecife Abisal, Japón..." id="inputDestination">
                     </div>
-                    <span class="carousel-step">01</span>
-                </div>
-
-                <!-- Tarjeta interactiva del Carrusel para ir directo al monedero -->
-                <div class="carousel-card" onclick="switchView('finance')">
-                    <div class="card-top-tag"><span>Finanzas</span><i class="fa-regular fa-heart"></i></div>
-                    <div class="card-content-text">
-                        <h4>Presupuesto Abisal</h4>
-                        <p><i class="fa-solid fa-wallet"></i> Ver Gastos Guardados</p>
+                    <div class="input-card">
+                        <span class="input-label"><i class="fa-solid fa-calendar-days"></i> Fechas</span>
+                        <input type="text" placeholder="Seleccionar intervalo" id="inputDates">
                     </div>
-                    <span class="carousel-step">02</span>
+                    <div class="input-card">
+                        <span class="input-label"><i class="fa-solid fa-users"></i> Tripulación</span>
+                        <input type="number" placeholder="2 Exploradores" id="inputExplorers">
+                    </div>
                 </div>
-            </div>
 
-            <div class="holo-action-footer">
-                <button class="holo-btn primary-btn" onclick="switchView('finance')">Get Started</button>
-                <button class="holo-btn secondary-btn" onclick="switchView('tasks')">Ver Tareas</button>
-                <div class="footer-icon-pill"><i class="fa-solid fa-bookmark"></i></div>
-                <div class="footer-icon-pill"><i class="fa-solid fa-share-nodes"></i></div>
+                <div class="hero-action-row">
+                    <button class="holo-btn primary-btn" onclick="quickLaunchExpedition()">
+                        <i class="fa-solid fa-rocket"></i> Crear Bitácora
+                    </button>
+                    <button class="holo-btn secondary-btn" onclick="switchView('finance')">
+                        <i class="fa-solid fa-wallet"></i> Ver Finanzas
+                    </button>
+                </div>
             </div>
 
         </main>
-
 
         <!-- ================= VISTA 2: FINANZAS 50/30/20 ================= -->
         <main class="hologram-main-card hidden-view" id="view-finance">
@@ -89,7 +92,18 @@
                     <span style="font-weight: 700; color: #fff;">Private Atlas • Finanzas Abisales</span>
                 </div>
                 <div class="holo-nav-links">
-                    <span>$ USD</span>
+                    <!-- Selector de Divisa Dinámico -->
+                    <div class="currency-selector-box">
+                        <i class="fa-solid fa-globe"></i>
+                        <select id="currencySelect" onchange="changeCurrency()">
+                            <option value="$ USD">$ USD</option>
+                            <option value="$ COP">$ COP</option>
+                            <option value="€ EUR">€ EUR</option>
+                            <option value="$ MXN">$ MXN</option>
+                            <option value="custom">Otra...</option>
+                        </select>
+                        <input type="text" id="customCurrencyInput" placeholder="Ej: £" style="display: none; width: 50px; text-align: center;" oninput="changeCurrency()">
+                    </div>
                     <span>Manage Budget</span>
                     <div class="user-avatar-small"><i class="fa-solid fa-wallet"></i></div>
                 </div>
@@ -139,7 +153,7 @@
                         <div class="finance-input-group">
                             <label>Establecer Ingreso Total (Opcional/Actualizar)</label>
                             <div class="fin-input-box">
-                                <i class="fa-solid fa-dollar-sign"></i>
+                                <i class="fa-solid fa-coins"></i>
                                 <input type="number" id="financeIncomeInput" placeholder="Ej: 1000 (Ingreso)">
                             </div>
                         </div>
@@ -174,244 +188,113 @@
 
         </main>
 
-
-        <!-- ================= VISTA 3: GESTIÓN DE TAREAS ================= -->
+        <!-- ================= VISTA 3: TAREAS / BITÁCORA ================= -->
         <main class="hologram-main-card hidden-view" id="view-tasks">
             
             <div class="holo-header">
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <i class="fa-solid fa-arrow-left" style="cursor: pointer;" onclick="switchView('home')" title="Volver"></i>
-                    <span style="font-weight: 700; color: #fff;">Private Atlas • Gestión de Tareas</span>
+                    <span style="font-weight: 700; color: #fff;">Private Atlas • Bitácora de Tareas</span>
                 </div>
                 <div class="holo-nav-links">
-                    <span>Tasks</span>
+                    <span>Task Manager</span>
                     <div class="user-avatar-small"><i class="fa-solid fa-list-check"></i></div>
                 </div>
             </div>
 
-            <div class="finance-form-container" style="gap: 15px;">
-                <div class="plan-journey-title">
-                    <h3>Nueva Tarea Abisal</h3>
-                    <p>Escribe tu pendiente submarino y márcalo como completado al terminar.</p>
-                </div>
+            <div class="plan-journey-title" style="margin-bottom: 20px;">
+                <h3>Bitácora Abisal de Misiones</h3>
+                <p>Gestiona tus pendientes y metas de expedición.</p>
+            </div>
 
-                <div class="finance-input-group">
-                    <label>Descripción de la Tarea</label>
-                    <div class="fin-input-box">
-                        <i class="fa-solid fa-pen"></i>
-                        <input type="text" id="taskInputText" placeholder="Ej: Mantenimiento de filtros o tarea de física...">
+            <div class="task-input-bar">
+                <input type="text" id="taskInput" placeholder="Nueva misión o pendiente...">
+                <button class="holo-btn primary-btn" onclick="addTask()"><i class="fa-solid fa-plus"></i> Agregar</button>
+            </div>
+
+            <div class="task-list-box" id="taskListContainer">
+                <!-- Tareas dinámicas -->
+            </div>
+
+        </main>
+
+        <!-- ================= VISTA 4: AJUSTES ================= -->
+        <main class="hologram-main-card hidden-view" id="view-settings">
+            
+            <div class="holo-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-arrow-left" style="cursor: pointer;" onclick="switchView('home')" title="Volver"></i>
+                    <span style="font-weight: 700; color: #fff;">Private Atlas • Configuración</span>
+                </div>
+            </div>
+
+            <div class="plan-journey-title" style="margin-bottom: 20px;">
+                <h3>Ajustes de Interfaz Holográfica</h3>
+                <p>Personaliza los parámetros del entorno VisionOS.</p>
+            </div>
+
+            <div class="settings-options-list">
+                <div class="setting-item-row">
+                    <div>
+                        <b>Efecto Glassmorphism Profundo</b>
+                        <p style="font-size: 12px; color: rgba(255,255,255,0.6);">Aumenta el desenfoque de fondo en tarjetas.</p>
                     </div>
+                    <input type="checkbox" checked style="accent-color: #38bdf8;">
                 </div>
-
-                <div class="finance-actions-footer">
-                    <button class="holo-btn primary-btn" onclick="addNewTask()">Añadir Tarea</button>
-                    <button class="holo-btn secondary-btn" onclick="switchView('home')">Volver al Inicio</button>
-                </div>
-
-                <div class="plan-journey-title" style="margin-top: 10px;">
-                    <h3 style="font-size: 16px;">Lista de Pendientes</h3>
-                </div>
-
-                <div class="expenses-list-container" id="tasksListContainer">
-                    <!-- Las tareas se generarán aquí dinámicamente -->
+                <div class="setting-item-row">
+                    <div>
+                        <b>Efecto de Brillo Holográfico</b>
+                        <p style="font-size: 12px; color: rgba(255,255,255,0.6);">Resalta los bordes al interactuar.</p>
+                    </div>
+                    <input type="checkbox" checked style="accent-color: #38bdf8;">
                 </div>
             </div>
 
         </main>
 
-        <!-- Tarjeta lateral derecha -->
+        <!-- ================= PANEL LATERAL DERECHO (ESTÁTICO/GLOBAL) ================= -->
         <aside class="hologram-side-card">
-            <div class="side-badge">
-                <div class="side-badge-header">
-                    <i class="fa-solid fa-compass"></i> Sincronización Abisal
-                </div>
-                <div class="realtime-clock" id="liveClock">12:00 AM</div>
-                <div class="realtime-date" id="liveDate">Miércoles, 9 Sep 2026</div>
-                <div class="side-location">
-                    <i class="fa-solid fa-location-dot"></i> Soacha, Cundinamarca
-                </div>
-                <div class="read-more-link">Sistema Activo</div>
+            
+            <div class="time-widget-box">
+                <span class="time-digital" id="realtimeClock">00:00:00</span>
+                <span class="date-digital" id="realtimeDate">Cargando fecha...</span>
             </div>
+
+            <div class="side-divider"></div>
+
+            <div class="widget-section-title">
+                <i class="fa-solid fa-compass-drafting"></i> Estado del Sistema
+            </div>
+
+            <div class="system-status-card">
+                <div class="status-row">
+                    <span>Core Status</span>
+                    <span class="badge-online">ONLINE</span>
+                </div>
+                <div class="status-row">
+                    <span>Profundidad</span>
+                    <span>-3,400 m</span>
+                </div>
+                <div class="status-row">
+                    <span>Atmósfera</span>
+                    <span>Estable</span>
+                </div>
+            </div>
+
+            <div class="side-divider"></div>
+
+            <div class="widget-section-title">
+                <i class="fa-solid fa-note-sticky"></i> Nota Rápida
+            </div>
+
+            <div class="quick-note-box">
+                <textarea placeholder="Escribe notas temporales aquí..."></textarea>
+            </div>
+
         </aside>
 
     </div>
 
-    <!-- Script de control de vistas y datos -->
-    <script>
-        function switchView(viewName) {
-            document.getElementById('view-home').classList.add('hidden-view');
-            document.getElementById('view-finance').classList.add('hidden-view');
-            document.getElementById('view-tasks').classList.add('hidden-view');
-
-            document.getElementById('nav-home').classList.remove('active');
-            document.getElementById('nav-finance').classList.remove('active');
-            document.getElementById('nav-tasks').classList.remove('active');
-
-            if (viewName === 'home') {
-                document.getElementById('view-home').classList.remove('hidden-view');
-                document.getElementById('nav-home').classList.add('active');
-            } else if (viewName === 'finance') {
-                document.getElementById('view-finance').classList.remove('hidden-view');
-                document.getElementById('nav-finance').classList.add('active');
-            } else if (viewName === 'tasks') {
-                document.getElementById('view-tasks').classList.remove('hidden-view');
-                document.getElementById('nav-tasks').classList.add('active');
-            }
-        }
-
-        // Lógica de Presupuesto 50 / 30 / 20 corregida y sincronizada
-        let totalIncome = 0; // Empieza en 0 para que tú pongas tu ingreso real
-        let currentCategoryKey = 'needs';
-        let currentCategoryPercent = 50;
-        let categoriesData = {
-            needs: { name: 'Necesidades', percent: 50, items: [] },
-            wants: { name: 'Deseos', percent: 30, items: [] },
-            savings: { name: 'Ahorro', percent: 20, items: [] }
-        };
-
-        function setCategory(key, percent, element) {
-            document.querySelectorAll('.fin-cat-item').forEach(item => item.classList.remove('active'));
-            element.classList.add('active');
-
-            currentCategoryKey = key;
-            currentCategoryPercent = percent;
-
-            document.getElementById('currentCategoryTitle').textContent = `Control Presupuestario: ${categoriesData[key].name} (${percent}%)`;
-            document.getElementById('currentCategoryDesc').textContent = `Límite recomendado: ${percent}% de tus ingresos totales.`;
-            
-            updateFinanceUI();
-        }
-
-        function addFinanceItem() {
-            const incomeInput = document.getElementById('financeIncomeInput');
-            const amountInput = document.getElementById('financeAmountInput');
-            const descInput = document.getElementById('financeDescInput');
-
-            const newIncome = parseFloat(incomeInput.value);
-            if (!isNaN(newIncome) && newIncome > 0) {
-                totalIncome = newIncome;
-                incomeInput.value = '';
-            }
-
-            const amount = parseFloat(amountInput.value);
-            const desc = descInput.value.trim();
-
-            if (!isNaN(amount) && amount > 0 && desc) {
-                categoriesData[currentCategoryKey].items.push({ desc, amount });
-                amountInput.value = '';
-                descInput.value = '';
-            }
-
-            updateFinanceUI();
-        }
-
-        function removeFinanceItem(index) {
-            categoriesData[currentCategoryKey].items.splice(index, 1);
-            updateFinanceUI();
-        }
-
-        function updateFinanceUI() {
-            document.getElementById('summaryTotalIncome').textContent = `$${totalIncome.toFixed(2)}`;
-            
-            const categoryLimit = totalIncome * (currentCategoryPercent / 100);
-            document.getElementById('summaryCategoryLimit').textContent = `$${categoryLimit.toFixed(2)}`;
-
-            // Calcular el gastado sumando los elementos de la categoría actual
-            let categorySpent = 0;
-            categoriesData[currentCategoryKey].items.forEach(item => {
-                categorySpent += item.amount;
-            });
-
-            const spentEl = document.getElementById('summaryCategorySpent');
-            spentEl.textContent = `$${categorySpent.toFixed(2)}`;
-
-            if (categorySpent > categoryLimit && categoryLimit > 0) {
-                spentEl.style.color = '#f43f5e'; // Rojo si excede el porcentaje de la categoría
-            } else {
-                spentEl.style.color = '#38bdf8';
-            }
-
-            const container = document.getElementById('financeListContainer');
-            container.innerHTML = '';
-
-            categoriesData[currentCategoryKey].items.forEach((item, index) => {
-                const row = document.createElement('div');
-                row.className = 'expense-item-row';
-                row.innerHTML = `
-                    <div class="expense-info-main">
-                        <b>${item.desc}</b>
-                        <small>${categoriesData[currentCategoryKey].name}</small>
-                    </div>
-                    <div class="expense-item-right">
-                        <span>-$${item.amount.toFixed(2)}</span>
-                        <button class="delete-expense-btn" onclick="removeFinanceItem(${index})"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                `;
-                container.appendChild(row);
-            });
-        }
-
-        function addNewTask() {
-            const input = document.getElementById('taskInputText');
-            const text = input.value.trim();
-            if (!text) return;
-
-            const container = document.getElementById('tasksListContainer');
-            const row = document.createElement('div');
-            row.className = 'expense-item-row';
-            row.innerHTML = `
-                <div class="expense-info-main" style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
-                    <input type="checkbox" style="cursor: pointer; width: 16px; height: 16px;" onchange="toggleTaskComplete(this)">
-                    <div>
-                        <b>${text}</b>
-                        <small style="color: #94a3b8;">Pendiente</small>
-                    </div>
-                </div>
-                <div class="expense-item-right">
-                    <button class="delete-expense-btn" onclick="this.closest('.expense-item-row').remove()"><i class="fa-solid fa-trash"></i></button>
-                </div>
-            `;
-
-            container.appendChild(row);
-            input.value = '';
-        }
-
-        function toggleTaskComplete(checkbox) {
-            const infoMain = checkbox.closest('.expense-info-main');
-            const small = infoMain.querySelector('small');
-            const title = infoMain.querySelector('b');
-
-            if (checkbox.checked) {
-                small.textContent = 'Completado';
-                small.style.color = '#34d399';
-                title.style.textDecoration = 'line-through';
-                title.style.color = '#94a3b8';
-            } else {
-                small.textContent = 'Pendiente';
-                small.style.color = '#94a3b8';
-                title.style.textDecoration = 'none';
-                title.style.color = '#f8fafc';
-            }
-        }
-
-        // Reloj en tiempo real
-        function updateClock() {
-            const now = new Date();
-            let hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            hours = hours % 12;
-            hours = hours ? hours : 12;
-            document.getElementById('liveClock').textContent = `${hours}:${minutes} ${ampm}`;
-
-            const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
-            document.getElementById('liveDate').textContent = now.toLocaleDateString('es-ES', options);
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // Inicializar la interfaz financiera al cargar
-        updateFinanceUI();
-    </script>
+    <script src="Script.js"></script>
 </body>
 </html>
