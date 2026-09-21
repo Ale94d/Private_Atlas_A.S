@@ -1,300 +1,626 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Atlas A.S • VisionOS Layout</title>
-    <link rel="stylesheet" href="Style.css">
-    <!-- FontAwesome para iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Fuente Google: Outfit -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+html {
+    background-color: #050b14;
+    height: 100%;
+}
 
-    <div class="spatial-viewport">
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+}
 
-        <!-- ================= DOCK IZQUIERDO ================= -->
-        <aside class="floating-left-dock">
-            <div class="dock-item active" id="dock-home" onclick="switchView('home')" title="Inicio / Explorar">
-                <i class="fa-solid fa-compass"></i>
-            </div>
-            <div class="dock-item" id="dock-finance" onclick="switchView('finance')" title="Finanzas 50/30/20">
-                <i class="fa-solid fa-chart-pie"></i>
-            </div>
-            <div class="dock-item" id="dock-tasks" onclick="switchView('tasks')" title="Bitácora / Tareas">
-                <i class="fa-solid fa-layer-group"></i>
-            </div>
-            <div class="dock-divider"></div>
-            <div class="dock-item" id="dock-settings" onclick="switchView('settings')" title="Ajustes de Interfaz">
-                <i class="fa-solid fa-sliders"></i>
-            </div>
-        </aside>
+body {
+    min-height: 100vh;
+    height: 100%;
+    background-color: #050b14;
+    background-image: linear-gradient(rgba(2, 6, 23, 0.4), rgba(15, 23, 42, 0.65)), url('assets/background/marino.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    padding: 20px;
+}
 
-        <!-- ================= VISTA 1: INICIO (HOME) ================= -->
-        <main class="hologram-main-card" id="view-home">
-            
-            <div class="holo-header">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fa-solid fa-globe"></i>
-                    <span style="font-weight: 700; color: #fff;">Private Atlas A.S</span>
-                </div>
-                <div class="holo-nav-links">
-                    <span class="active-link">Overview</span>
-                    <span>Destinations</span>
-                    <span>System Log</span>
-                    <div class="user-avatar-small"><i class="fa-solid fa-user"></i></div>
-                </div>
-            </div>
+.bubbles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
 
-            <div class="journey-planner-container">
-                <div class="plan-journey-title">
-                    <span class="accent-sub">EXPLORACIÓN ESPACIAL</span>
-                    <h2>Plan Your Next Expedition</h2>
-                    <p>Organiza viajes, gestiona presupuestos abisales y realiza seguimiento a tus proyectos.</p>
-                </div>
+.bubble {
+    position: absolute;
+    bottom: -30px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: riseUp linear infinite;
+}
 
-                <div class="journey-inputs-grid">
-                    <div class="input-card">
-                        <span class="input-label"><i class="fa-solid fa-location-dot"></i> Destino</span>
-                        <input type="text" placeholder="Ej: Arrecife Abisal, Japón..." id="inputDestination">
-                    </div>
-                    <div class="input-card">
-                        <span class="input-label"><i class="fa-solid fa-calendar-days"></i> Fechas</span>
-                        <input type="text" placeholder="Seleccionar intervalo" id="inputDates">
-                    </div>
-                    <div class="input-card">
-                        <span class="input-label"><i class="fa-solid fa-users"></i> Tripulación</span>
-                        <input type="number" placeholder="2 Exploradores" id="inputExplorers">
-                    </div>
-                </div>
+@keyframes riseUp {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    20% { opacity: 0.7; }
+    100% { transform: translateY(-105vh) scale(1.2); opacity: 0; }
+}
 
-                <div class="hero-action-row">
-                    <button class="holo-btn primary-btn" onclick="quickLaunchExpedition()">
-                        <i class="fa-solid fa-rocket"></i> Crear Bitácora
-                    </button>
-                    <button class="holo-btn secondary-btn" onclick="switchView('finance')">
-                        <i class="fa-solid fa-wallet"></i> Ver Finanzas
-                    </button>
-                </div>
-            </div>
+.spatial-viewport {
+    width: 100%;
+    max-width: 1450px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    z-index: 10;
+    position: relative;
+}
 
-        </main>
+.floating-left-dock {
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    padding: 16px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
 
-        <!-- ================= VISTA 2: FINANZAS 50/30/20 ================= -->
-        <main class="hologram-main-card hidden-view" id="view-finance">
-            
-            <div class="holo-header">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fa-solid fa-arrow-left" style="cursor: pointer;" onclick="switchView('home')" title="Volver"></i>
-                    <span style="font-weight: 700; color: #fff;">Private Atlas • Finanzas Abisales</span>
-                </div>
-                <div class="holo-nav-links">
-                    <!-- Selector de Divisa Dinámico -->
-                    <div class="currency-selector-box">
-                        <i class="fa-solid fa-globe"></i>
-                        <select id="currencySelect" onchange="changeCurrency()">
-                            <option value="$ USD">$ USD</option>
-                            <option value="$ COP">$ COP</option>
-                            <option value="€ EUR">€ EUR</option>
-                            <option value="$ MXN">$ MXN</option>
-                            <option value="custom">Otra...</option>
-                        </select>
-                        <input type="text" id="customCurrencyInput" placeholder="Ej: £" style="display: none; width: 50px; text-align: center;" oninput="changeCurrency()">
-                    </div>
-                    <span>Manage Budget</span>
-                    <div class="user-avatar-small"><i class="fa-solid fa-wallet"></i></div>
-                </div>
-            </div>
+.dock-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #94a3b8;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
 
-            <div class="finance-layout-grid">
-                
-                <!-- Barra de Categorías Izquierda -->
-                <div class="finance-categories-dock">
-                    <div class="fin-cat-item active" onclick="setCategory('needs', 50, this)" title="Necesidades (50%)">
-                        <i class="fa-solid fa-house-chimney"></i>
-                        <span>Necesidades (50%)</span>
-                    </div>
-                    <div class="fin-cat-item" onclick="setCategory('wants', 30, this)" title="Deseos (30%)">
-                        <i class="fa-solid fa-gamepad"></i>
-                        <span>Deseos (30%)</span>
-                    </div>
-                    <div class="fin-cat-item" onclick="setCategory('savings', 20, this)" title="Ahorro (20%)">
-                        <i class="fa-solid fa-piggy-bank"></i>
-                        <span>Ahorro (20%)</span>
-                    </div>
-                </div>
+.dock-icon:hover, .dock-icon.active {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #0f172a;
+    box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+}
 
-                <!-- Tarjeta de Formulario y Gastos -->
-                <div class="finance-form-container">
-                    <div class="plan-journey-title">
-                        <h3 id="currentCategoryTitle">Control Presupuestario: Necesidades (50%)</h3>
-                        <p id="currentCategoryDesc">Límite recomendado: 50% de tus ingresos totales.</p>
-                    </div>
+.hologram-main-card {
+    flex-grow: 1;
+    background: rgba(15, 23, 42, 0.38);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 36px;
+    padding: 45px;
+    min-height: 660px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
 
-                    <div class="summary-cards-row">
-                        <div class="summary-card-mini">
-                            <span>Ingreso Total</span>
-                            <h4 id="summaryTotalIncome">$0.00</h4>
-                        </div>
-                        <div class="summary-card-mini">
-                            <span>Límite Categoría</span>
-                            <h4 id="summaryCategoryLimit">$0.00</h4>
-                        </div>
-                        <div class="summary-card-mini">
-                            <span>Gastado en Cat.</span>
-                            <h4 id="summaryCategorySpent">$0.00</h4>
-                        </div>
-                    </div>
+.holo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    color: #cbd5e1;
+    font-size: 18px;
+}
 
-                    <div class="finance-row-inputs">
-                        <div class="finance-input-group">
-                            <label>Establecer Ingreso Total (Opcional/Actualizar)</label>
-                            <div class="fin-input-box">
-                                <i class="fa-solid fa-coins"></i>
-                                <input type="number" id="financeIncomeInput" placeholder="Ej: 1000 (Ingreso)">
-                            </div>
-                        </div>
-                        <div class="finance-input-group">
-                            <label>Monto del Gasto</label>
-                            <div class="fin-input-box">
-                                <i class="fa-solid fa-tag"></i>
-                                <input type="number" id="financeAmountInput" placeholder="Ej: 150 (Gasto)">
-                            </div>
-                        </div>
-                    </div>
+.holo-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
 
-                    <div class="finance-input-group">
-                        <label>Descripción del Movimiento</label>
-                        <div class="fin-input-box">
-                            <i class="fa-solid fa-pen"></i>
-                            <input type="text" id="financeDescInput" placeholder="Ej: Alquiler, Videojuego, Cuenta de ahorros...">
-                        </div>
-                    </div>
+.user-avatar-small {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #38bdf8;
+}
 
-                    <div class="finance-actions-footer">
-                        <button class="holo-btn primary-btn" onclick="addFinanceItem()">Registrar en Categoría</button>
-                        <button class="holo-btn secondary-btn" onclick="switchView('home')">Volver al Inicio</button>
-                    </div>
+.holo-intro {
+    margin-bottom: 35px;
+}
 
-                    <div class="expenses-list-container" id="financeListContainer">
-                        <!-- Los registros de finanzas se cargarán dinámicamente aquí -->
-                    </div>
-                </div>
+.holo-intro h2 {
+    font-size: 38px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
 
-            </div>
+.holo-intro p {
+    font-size: 13px;
+    color: #94a3b8;
+    max-width: 550px;
+    line-height: 1.5;
+}
 
-        </main>
+.holo-cards-carousel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 35px;
+}
 
-        <!-- ================= VISTA 3: TAREAS / BITÁCORA ================= -->
-        <main class="hologram-main-card hidden-view" id="view-tasks">
-            
-            <div class="holo-header">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fa-solid fa-arrow-left" style="cursor: pointer;" onclick="switchView('home')" title="Volver"></i>
-                    <span style="font-weight: 700; color: #fff;">Private Atlas • Bitácora de Tareas</span>
-                </div>
-                <div class="holo-nav-links">
-                    <span>Task Manager</span>
-                    <div class="user-avatar-small"><i class="fa-solid fa-list-check"></i></div>
-                </div>
-            </div>
+.carousel-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 22px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
 
-            <div class="plan-journey-title" style="margin-bottom: 20px;">
-                <h3>Bitácora Abisal de Misiones</h3>
-                <p>Gestiona tus pendientes y metas de expedición.</p>
-            </div>
+.carousel-card:hover, .carousel-card.active-card {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(56, 189, 248, 0.5);
+    transform: translateY(-4px);
+}
 
-            <div class="task-input-bar">
-                <input type="text" id="taskInput" placeholder="Nueva misión o pendiente...">
-                <button class="holo-btn primary-btn" onclick="addTask()"><i class="fa-solid fa-plus"></i> Agregar</button>
-            </div>
+.card-top-tag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
 
-            <div class="task-list-box" id="taskListContainer">
-                <!-- Tareas dinámicas -->
-            </div>
+.card-top-tag i {
+    color: #f43f5e;
+}
 
-        </main>
+.card-content-text h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 4px;
+}
 
-        <!-- ================= VISTA 4: AJUSTES ================= -->
-        <main class="hologram-main-card hidden-view" id="view-settings">
-            
-            <div class="holo-header">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fa-solid fa-arrow-left" style="cursor: pointer;" onclick="switchView('home')" title="Volver"></i>
-                    <span style="font-weight: 700; color: #fff;">Private Atlas • Configuración</span>
-                </div>
-            </div>
+.card-content-text p {
+    font-size: 11px;
+    color: #cbd5e1;
+}
 
-            <div class="plan-journey-title" style="margin-bottom: 20px;">
-                <h3>Ajustes de Interfaz Holográfica</h3>
-                <p>Personaliza los parámetros del entorno VisionOS.</p>
-            </div>
+.carousel-step {
+    font-size: 12px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.4);
+}
 
-            <div class="settings-options-list">
-                <div class="setting-item-row">
-                    <div>
-                        <b>Efecto Glassmorphism Profundo</b>
-                        <p style="font-size: 12px; color: rgba(255,255,255,0.6);">Aumenta el desenfoque de fondo en tarjetas.</p>
-                    </div>
-                    <input type="checkbox" checked style="accent-color: #38bdf8;">
-                </div>
-                <div class="setting-item-row">
-                    <div>
-                        <b>Efecto de Brillo Holográfico</b>
-                        <p style="font-size: 12px; color: rgba(255,255,255,0.6);">Resalta los bordes al interactuar.</p>
-                    </div>
-                    <input type="checkbox" checked style="accent-color: #38bdf8;">
-                </div>
-            </div>
+.holo-action-footer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-        </main>
+.holo-btn {
+    border: none;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
-        <!-- ================= PANEL LATERAL DERECHO (ESTÁTICO/GLOBAL) ================= -->
-        <aside class="hologram-side-card">
-            
-            <div class="time-widget-box">
-                <span class="time-digital" id="realtimeClock">00:00:00</span>
-                <span class="date-digital" id="realtimeDate">Cargando fecha...</span>
-            </div>
+.primary-btn {
+    background: rgba(255, 255, 255, 0.9);
+    color: #0f172a;
+    box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+}
 
-            <div class="side-divider"></div>
+.primary-btn:hover {
+    background: #ffffff;
+}
 
-            <div class="widget-section-title">
-                <i class="fa-solid fa-compass-drafting"></i> Estado del Sistema
-            </div>
+.secondary-btn {
+    background: transparent;
+    color: #cbd5e1;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-            <div class="system-status-card">
-                <div class="status-row">
-                    <span>Core Status</span>
-                    <span class="badge-online">ONLINE</span>
-                </div>
-                <div class="status-row">
-                    <span>Profundidad</span>
-                    <span>-3,400 m</span>
-                </div>
-                <div class="status-row">
-                    <span>Atmósfera</span>
-                    <span>Estable</span>
-                </div>
-            </div>
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
 
-            <div class="side-divider"></div>
+.footer-icon-pill {
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #cbd5e1;
+    cursor: pointer;
+    transition: background 0.2s;
+}
 
-            <div class="widget-section-title">
-                <i class="fa-solid fa-note-sticky"></i> Nota Rápida
-            </div>
+.footer-icon-pill:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
 
-            <div class="quick-note-box">
-                <textarea placeholder="Escribe notas temporales aquí..."></textarea>
-            </div>
+/* Tarjeta lateral derecha */
+.hologram-side-card {
+    width: 290px;
+    height: 660px;
+    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('assets/background/marino.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 36px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    position: relative;
+    flex-shrink: 0;
+}
 
-        </aside>
+.side-badge {
+    background: rgba(10, 15, 30, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 16px;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
 
-    </div>
+.side-badge-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
 
-    <script src="Script.js"></script>
-</body>
-</html>
+.realtime-clock {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.realtime-date {
+    font-size: 12px;
+    font-weight: 500;
+    color: #cbd5e1;
+    text-transform: capitalize;
+}
+
+.side-location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 6px;
+}
+
+.side-location i {
+    color: #f43f5e;
+}
+
+.read-more-link {
+    font-size: 9px;
+    color: #34d399;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 2px;
+}
+
+/* ================= MÓDULO FINANCIERO ================= */
+.hidden-view {
+    display: none !important;
+}
+
+.finance-layout-grid {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.finance-categories-dock {
+    width: 190px;
+    background: rgba(10, 15, 30, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.fin-cat-item {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 14px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.fin-cat-item i {
+    font-size: 16px;
+    color: #38bdf8;
+}
+
+.fin-cat-item:hover, .fin-cat-item.active {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(14, 116, 144, 0.4));
+    border-color: rgba(56, 189, 248, 0.5);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+}
+
+.finance-form-container {
+    flex-grow: 1;
+    background: rgba(10, 15, 30, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    backdrop-filter: blur(12px);
+}
+
+.plan-journey-title h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.plan-journey-title p {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.finance-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.finance-input-group label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.fin-input-box {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+}
+
+.fin-input-box i {
+    color: #38bdf8;
+    font-size: 14px;
+}
+
+.fin-input-box input, .fin-input-box select {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 13px;
+    width: 100%;
+    font-family: 'Outfit', sans-serif;
+}
+
+.fin-input-box select option {
+    background: #0f172a;
+    color: #ffffff;
+}
+
+.finance-row-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.finance-actions-footer {
+    display: flex;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+/* ================= LISTADO PROFESIONAL DE GASTOS Y TAREAS ================= */
+.summary-cards-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.summary-card-mini {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 10px;
+    text-align: center;
+}
+
+.summary-card-mini span {
+    font-size: 10px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.summary-card-mini h4 {
+    font-size: 14px;
+    color: #38bdf8;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.expenses-list-container {
+    max-height: 160px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 4px;
+}
+
+.expenses-list-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.expenses-list-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.expense-item-row {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+.expense-info-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.expense-info-main b {
+    color: #f8fafc;
+    font-size: 12px;
+}
+
+.expense-info-main small {
+    color: #94a3b8;
+    font-size: 10px;
+}
+
+.expense-item-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.expense-item-right span {
+    font-weight: 700;
+    color: #34d399;         
+}
+
+.delete-expense-btn {
+    background: rgba(244, 63, 94, 0.2);
+    border: 1px solid rgba(244, 63, 94, 0.4);
+    color: #f43f5e;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.2s;
+}
+
+.delete-expense-btn:hover {
+    background: #f43f5e;
+    color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+    .spatial-viewport {
+        flex-direction: column;
+    }
+    .floating-left-dock {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        border-radius: 30px;
+    }
+    .hologram-side-card {
+        width: 100%;
+        height: 280px;
+    }
+    .holo-cards-carousel {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .finance-layout-grid {
+        flex-direction: column;
+    }
+    .finance-categories-dock {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+    }
+    .finance-row-inputs {
+        grid-template-columns: 1fr;
+    }
+    .summary-cards-row {
+        grid-template-columns: 1fr;
+    }
+}
