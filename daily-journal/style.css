@@ -43,10 +43,10 @@ body {
 
     overflow: hidden;
 
-    background:
+     background:
         linear-gradient(
-            rgba(55, 43, 32, 0.35),
-            rgba(55, 43, 32, 0.35)
+            rgba(55, 43, 32, 0.48),
+            rgba(55, 43, 32, 0.48)
         ),
         url("fondo-journal.jpg");
 
