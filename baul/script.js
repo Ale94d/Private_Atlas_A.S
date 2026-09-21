@@ -225,14 +225,6 @@ const genericCovers = {
         "assets/portadas/Aventura/P6.png"
     ],
 
-    "Ciencia ficción": [
-        "assets/portadas/Ciencia-Ficcion/P1.png",
-        "assets/portadas/Ciencia-Ficcion/P2.png",
-        "assets/portadas/Ciencia-Ficcion/P3.png",
-        "assets/portadas/Ciencia-Ficcion/P4.png",
-        "assets/portadas/Ciencia-Ficcion/P5.png",
-        "assets/portadas/Ciencia-Ficcion/P6.png"
-    ],
 
     "Dark Romance": [
         "assets/portadas/Dark-Romance/P1.png",
@@ -331,7 +323,7 @@ const genericCovers = {
         "assets/portadas/Comodines/P4.png",
         "assets/portadas/Comodines/P5.png",
         "assets/portadas/Comodines/P6.png"
-    ]
+    ],
 
      "Autobiografía": [
         "assets/portadas/Autobiografia/P1.png",
