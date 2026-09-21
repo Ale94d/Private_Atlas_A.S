@@ -332,6 +332,33 @@ const genericCovers = {
         "assets/portadas/Comodines/P5.png",
         "assets/portadas/Comodines/P6.png"
     ]
+
+     "Autobiografia": [
+        "assets/portadas/Autobiografia/P1.png",
+        "assets/portadas/Autobiografia/P2.png",
+        "assets/portadas/Autobiografia/P3.png",
+        "assets/portadas/Autobiografia/P4.png",
+        "assets/portadas/Autobiografia/P5.png",
+        "assets/portadas/Autobiografia/P6.png"
+    ],
+
+     "Biografia": [
+        "assets/portadas/Biografia/P1.png",
+        "assets/portadas/Biografia/P2.png",
+        "assets/portadas/Biografia/P3.png",
+        "assets/portadas/Biografia/P4.png",
+        "assets/portadas/Biografia/P5.png",
+        "assets/portadas/Biografia/P6.png"
+    ],
+
+    "Ciencia Ficcion": [
+        "assets/portadas/Ciencia Ficcion/P1.png",
+        "assets/portadas/Ciencia Ficcion/P2.png",
+        "assets/portadas/Ciencia Ficcion/P3.png",
+        "assets/portadas/Ciencia Ficcion/P4.png",
+        "assets/portadas/Ciencia Ficcion/P5.png",
+        "assets/portadas/Ciencia Ficcion/P6.png"
+    ],
 };
 
 const genericCover =
