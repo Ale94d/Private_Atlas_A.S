@@ -333,7 +333,7 @@ const genericCovers = {
         "assets/portadas/Comodines/P6.png"
     ]
 
-     "Autobiografia": [
+     "Autobiografía": [
         "assets/portadas/Autobiografia/P1.png",
         "assets/portadas/Autobiografia/P2.png",
         "assets/portadas/Autobiografia/P3.png",
@@ -342,7 +342,7 @@ const genericCovers = {
         "assets/portadas/Autobiografia/P6.png"
     ],
 
-     "Biografia": [
+     "Biografía": [
         "assets/portadas/Biografia/P1.png",
         "assets/portadas/Biografia/P2.png",
         "assets/portadas/Biografia/P3.png",
@@ -351,13 +351,85 @@ const genericCovers = {
         "assets/portadas/Biografia/P6.png"
     ],
 
-    "Ciencia Ficcion": [
+    "Ciencia Ficción": [
         "assets/portadas/Ciencia Ficcion/P1.png",
         "assets/portadas/Ciencia Ficcion/P2.png",
         "assets/portadas/Ciencia Ficcion/P3.png",
         "assets/portadas/Ciencia Ficcion/P4.png",
         "assets/portadas/Ciencia Ficcion/P5.png",
         "assets/portadas/Ciencia Ficcion/P6.png"
+    ],
+
+    "Poesía": [
+        "assets/portadas/Poesia/P1.png",
+        "assets/portadas/Poesia/P2.png",
+        "assets/portadas/Poesia/P3.png",
+        "assets/portadas/Poesia/P4.png",
+        "assets/portadas/Poesia/P5.png",
+        "assets/portadas/Poesia/P6.png"
+    ],
+
+    "Biografía": [
+        "assets/portadas/Biografia/P1.png",
+        "assets/portadas/Biografia/P2.png",
+        "assets/portadas/Biografia/P3.png",
+        "assets/portadas/Biografia/P4.png",
+        "assets/portadas/Biografia/P5.png",
+        "assets/portadas/Biografia/P6.png"
+    ],
+
+    "Clásicos": [
+        "assets/portadas/Clasicos/P1.png",
+        "assets/portadas/Clasicos/P2.png",
+        "assets/portadas/Clasicos/P3.png",
+        "assets/portadas/Clasicos/P4.png",
+        "assets/portadas/Clasicos/P5.png",
+        "assets/portadas/Clasicos/P6.png"
+    ],
+
+    "Comedia": [
+        "assets/portadas/Comedia/P1.png",
+        "assets/portadas/Comedia/P2.png",
+        "assets/portadas/Comedia/P3.png",
+        "assets/portadas/Comedia/P4.png",
+        "assets/portadas/Comedia/P5.png",
+        "assets/portadas/Comedia/P6.png"
+    ],
+
+    "Drama": [
+        "assets/portadas/Drama/P1.png",
+        "assets/portadas/Drama/P2.png",
+        "assets/portadas/Drama/P3.png",
+        "assets/portadas/Drama/P4.png",
+        "assets/portadas/Drama/P5.png",
+        "assets/portadas/Drama/P6.png"
+    ],
+
+    "No ficción": [
+        "assets/portadas/No Ficcion/P1.png",
+        "assets/portadas/No Ficcion/P2.png",
+        "assets/portadas/No Ficcion/P3.png",
+        "assets/portadas/No Ficcion/P4.png",
+        "assets/portadas/No Ficcion/P5.png",
+        "assets/portadas/No Ficcion/P6.png"
+    ],
+
+    "Novela Gráfica": [
+        "assets/portadas/Novela Grafica/P1.png",
+        "assets/portadas/Novela Grafica/P2.png",
+        "assets/portadas/Novela Grafica/P3.png",
+        "assets/portadas/Novela Grafica/P4.png",
+        "assets/portadas/Novela Grafica/P5.png",
+        "assets/portadas/Novela Grafica/P6.png"
+    ],
+
+    "Juvenil": [
+        "assets/portadas/Juvenil/P1.png",
+        "assets/portadas/Juvenil/P2.png",
+        "assets/portadas/Juvenil/P3.png",
+        "assets/portadas/Juvenil/P4.png",
+        "assets/portadas/Juvenil/P5.png",
+        "assets/portadas/Juvenil/P6.png"
     ],
 };
 
