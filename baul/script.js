@@ -326,12 +326,12 @@ const genericCovers = {
     ],
 
      "Autobiografía": [
-        "assets/portadas/Autobiografia/P1.png",
-        "assets/portadas/Autobiografia/P2.png",
-        "assets/portadas/Autobiografia/P3.png",
-        "assets/portadas/Autobiografia/P4.png",
-        "assets/portadas/Autobiografia/P5.png",
-        "assets/portadas/Autobiografia/P6.png"
+        "assets/portadas/Autobiografía/P1.png",
+        "assets/portadas/Autobiografía/P2.png",
+        "assets/portadas/Autobiografía/P3.png",
+        "assets/portadas/Autobiografía/P4.png",
+        "assets/portadas/Autobiografía/P5.png",
+        "assets/portadas/Autobiografía/P6.png"
     ],
 
      "Biografía": [
