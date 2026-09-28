@@ -573,15 +573,6 @@ function createBookCard(book) {
 
             <div class="book-card-buttons">
 
-                <button
-                    class="view-book-btn"
-                    type="button">
-
-                    <i data-lucide="eye"></i>
-
-                    Ver libro
-
-                </button>
 
                 <button
                     class="edit-book-btn"
