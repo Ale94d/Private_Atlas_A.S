@@ -2073,9 +2073,7 @@ function loadTravel() {
             "none";
     }
 
-    travels.forEach(travel => {
-        createTravelCard(travel);
-    });
+
 
     if (typeof lucide !== "undefined") {
         lucide.createIcons();
@@ -2179,9 +2177,6 @@ function createTravelCard(travel) {
     `;
 
     travelGrid.appendChild(card);
-
-    const viewButton =
-        card.querySelector(".view-travel-btn");
 
     const editButton =
         card.querySelector(".edit-travel-btn");
