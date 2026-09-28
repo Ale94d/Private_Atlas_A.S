@@ -573,6 +573,15 @@ function createBookCard(book) {
 
             <div class="book-card-buttons">
 
+                <button
+                    class="view-book-btn"
+                    type="button">
+
+                    <i data-lucide="eye"></i>
+
+                    Ver libro
+
+                </button>
 
                 <button
                     class="edit-book-btn"
@@ -2145,16 +2154,7 @@ function createTravelCard(travel) {
 
         <div class="travel-card-buttons">
 
-            <button
-                type="button"
-                class="view-travel-btn">
-
-                <i data-lucide="eye"></i>
-
-                Ver
-
-            </button>
-
+           
             <button
                 type="button"
                 class="edit-travel-btn">
