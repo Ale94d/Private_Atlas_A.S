@@ -1280,7 +1280,7 @@ function addIngredientRow(name = "", quantity = "") {
 
         <button
             type="button"
-            class="remove-ingredient"
+            class="remove-ingredient-btn"
         >
             <i data-lucide="trash-2"></i>
         </button>
@@ -1288,7 +1288,7 @@ function addIngredientRow(name = "", quantity = "") {
     `;
 
     row
-        .querySelector(".remove-ingredient")
+        .querySelector(".remove-ingredient-btn")
         .addEventListener(
             "click",
             () => {
