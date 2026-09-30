@@ -2187,6 +2187,13 @@ body {
     line-height: 1.1;
 }
 
+.recipe-categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
 .recipe-category {
     display: inline-block;
     padding: 4px 9px;
@@ -2431,6 +2438,39 @@ body {
     color:
         rgba(243, 230, 208, 0.52);
     font-size: 0.78rem;
+}
+
+.recipe-category-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.recipe-category-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 10px;
+
+    border:
+        1px solid
+        rgba(243, 230, 208, 0.10);
+
+    border-radius: 9px;
+
+    background:
+        rgba(0, 0, 0, 0.20);
+
+    color:
+        rgba(243, 230, 208, 0.75);
+
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.recipe-category-option input {
+    accent-color: #d32f0f;
 }
 
 .ingredients-list {

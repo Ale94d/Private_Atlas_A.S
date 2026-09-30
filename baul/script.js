@@ -1471,6 +1471,13 @@ function loadRecipes() {
 
 function createRecipeCard(recipe) {
 
+    const categories =
+    Array.isArray(recipe.category)
+    ? recipe.recipeCategory
+    :recipe.category    
+        ?¨[recipe.category]
+        :[];
+
     const card =
         document.createElement("article");
 
@@ -1491,10 +1498,16 @@ function createRecipeCard(recipe) {
                 ${escapeHTML(recipe.name)}
             </h3>
 
-            <span class="recipe-category">
-                ${escapeHTML(recipe.category)}
+            <span class="recipe-categories">
+                ${
+                    categories.map(
+                        category => ` 
+                <span class="recipe-category"> $
+                        {escapeHTML(category)}
             </span>
-
+                `)
+            .join("")
+                }
         </div>
 
         <div class="recipe-card-meta">
@@ -1630,12 +1643,24 @@ if (recipeForm) {
                     .value
                     .trim();
 
-            const category =
-                document
-                    .getElementById(
-                        "recipeCategory"
-                    )
-                    .value;
+            const categories =
+    Array.from(
+        document.querySelectorAll(
+            'input[name="recipeCategory"]:checked'
+        )
+    ).map(
+        checkbox =>
+            checkbox.value
+    );
+
+if (categories.length === 0) {
+
+    alert(
+        "Selecciona al menos una categoría."
+    );
+
+    return;
+}
 
             const preparation =
                 document
@@ -1712,7 +1737,7 @@ if (recipeForm) {
                     recipes[index] = {
                         ...recipes[index],
                         name,
-                        category,
+                        category: categories,
                         ingredients,
                         preparation,
                         time,
@@ -1729,7 +1754,7 @@ if (recipeForm) {
                         Date.now(),
 
                     name,
-                    category,
+                    category: categories,
                     ingredients,
                     preparation,
                     time,
@@ -1961,6 +1986,12 @@ if (recipeDetailsOverlay) {
 
         }
     );
+}
+
+loadRecipes();
+
+if(typeof lucide !== "undefined"){
+    lucide.createIcons();
 }
 
 if (typeof lucide !== "undefined") {
