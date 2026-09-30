@@ -15,26 +15,7 @@
 
 <body>
     
-    
-    <!--
-    <header class="atlas-header">
 
-        <button class="back-home">
-            Inicio
-        </button>
-
-        <div class="atlas-title">
-            <h1
-            >🧭Atlas</h1>
-            <p> Explora el mundo,conserva tus recuerdos</p>
-        </div>
-
-        <div class="atlas-location">
-        🌎 Mundo
-    </div>
-
-    </header>
-    -->
 
     <main class="atlas-workspace">
 
@@ -65,6 +46,14 @@
 
         </div>
 
+        <div id="selected-country" class="selected-country">
+            
+            <h2 id="country-name">Selecciona un país</h2>
+            <p id="country-message">
+                Haz clic sobre un país del mapa para comenzar</p>
+
+        </div>
+
     </div>
 
     <aside class="scroll-right">
@@ -92,21 +81,79 @@
     </div>
 
     <div id="country-memory">
+        <div class="memory-paper">
+            <buttom id="close-memory" type="buttom">
+                <i data-lucide="x"></i>
+            </buttom>
 
-    <div class="memory-paper">
+            <h2 id="memory-country-name">País</h2>
 
-        <h2>País</h2>
+            <p id="memory-country-description">
+                Aquí aparecerán los recuerdos de este lugar.</div>
+            
+            <div id="country-memories">
+                <!--Aquí aparecerán los recuerdos-->
+            </div>
 
-        <p>Aquí aparecerán los recuerdos.</p>
-
-        <button id="close-memory">
-
-            Cerrar
-
-        </button>
+         </div>
 
     </div>
 
+    <div id="memory-form-container">
+
+    <div class="memory-form">
+
+        <button id="close-memory-form" type="button">
+            <i data-lucide="x"></i>
+        </button>
+
+        <h2>Nuevo recuerdo</h2>
+
+        <form id="memory-form">
+
+            <div class="form-group">
+                <label for="memory-title">Título</label>
+                <input
+                    type="text"
+                    id="memory-title"
+                    placeholder="Ej. Viaje a Cartagena"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="memory-description">Descripción</label>
+                <textarea
+                    id="memory-description"
+                    placeholder="Cuenta un poco sobre este recuerdo..."
+                    required
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="memory-date">Fecha</label>
+                <input
+                    type="date"
+                    id="memory-date"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="memory-image">Fotografía</label>
+                <input
+                    type="file"
+                    id="memory-image"
+                    accept="image/*"
+                >
+            </div>
+
+            <button type="submit" id="save-memory-btn">
+                <i data-lucide="save"></i>
+                Guardar recuerdo
+            </button>
+
+        </form>
+    </div>
 </div>
 
     <script src="script.js"></script>
