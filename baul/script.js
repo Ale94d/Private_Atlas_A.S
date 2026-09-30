@@ -2129,6 +2129,20 @@ function createTravelCard(travel) {
 
         </div>
 
+       <div class="travel-card-companions">
+
+            <i data-lucide="users"></i>
+
+            <span>
+                ${travel.companions ? "Acompañantes: " +
+                    
+                    escapeHTML(travel.companions)
+                        : "Viaje en solitario"
+                }
+            </span>
+
+        </div>
+
         <div class="travel-card-memory">
 
             ${escapeHTML(

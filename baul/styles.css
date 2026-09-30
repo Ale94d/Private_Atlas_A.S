@@ -2757,6 +2757,23 @@ body {
     height: 15px;
 }
 
+.travel-card-companions {
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(243, 230, 208, 0.62);
+    font-size: 0.72rem;
+}
+
+.travel-card-companions i {
+
+    width: 15px;
+    height: 15px;
+    color: #DCA76A;
+    flex-shrink: 0;
+}
+
 .travel-card-memory {
     padding-top: 10px;
     border-top: 1px solid rgba(243, 230, 208, 0.08);
@@ -2782,7 +2799,7 @@ body {
 
 .travel-card-buttons {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 7px;
     margin-top: auto;
     padding-top: 8px;
