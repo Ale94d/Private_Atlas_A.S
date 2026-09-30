@@ -175,6 +175,56 @@ function selectCountry(country) {
     );
 }
 
+// =========================================
+// CARGAR RECUERDOS DEL PAÍS
+// =========================================
+
+function loadCountryMemories(countryCode) {
+
+    const memories =
+        JSON.parse(
+            localStorage.getItem("privateAtlasAtlas")
+        ) || [];
+
+    const countryList =
+        memories.filter(
+            memory => memory.country === countryCode
+        );
+
+    countryMemories.innerHTML = "";
+
+    const emptyMessage =
+        document.querySelector(".memory-empty-message");
+
+
+    if (countryList.length === 0) {
+
+        if (emptyMessage) {
+            emptyMessage.style.display = "block";
+        }
+
+        return;
+    }
+
+
+    if (emptyMessage) {
+        emptyMessage.style.display = "none";
+    }
+
+
+    countryList.forEach(memory => {
+
+        countryMemories.appendChild(
+            createMemoryCard(memory)
+        );
+
+    });
+
+
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+    }
+}
 
 const countryNames = {
 
@@ -260,138 +310,7 @@ if (closeMemoryForm) {
 
 }
 
-// =========================================
-// GUARDAR / EDITAR RECUERDO
-// =========================================
 
-let editingMemoryId = null;
-
-memoryForm.addEventListener("submit", (event) => {
-
-    event.preventDefault();
-
-    if (!selectedCountryCode) return;
-
-    const title =
-        document.getElementById("memory-title").value.trim();
-
-    let description =
-        document.getElementById("memory-description").value.trim();
-
-    const date =
-        document.getElementById("memory-date").value;
-
-    const imageInput =
-        document.getElementById("memory-image");
-
-    const file =
-        imageInput.files[0];
-
-    // Límite de 35 palabras
-    description =
-        description
-            .split(/\s+/)
-            .slice(0, 35)
-            .join(" ");
-
-    const memories =
-        JSON.parse(
-            localStorage.getItem("privateAtlasAtlas")
-        ) || [];
-
-
-    const saveMemory = (image = null) => {
-
-        if (editingMemoryId) {
-
-            const index =
-                memories.findIndex(
-                    memory => memory.id === editingMemoryId
-                );
-
-            if (index !== -1) {
-
-                memories[index].title = title;
-                memories[index].description = description;
-                memories[index].date = date;
-
-                if (image !== null) {
-                    memories[index].image = image;
-                }
-
-            }
-
-        } else {
-
-            memories.push({
-
-                id: Date.now(),
-
-                country: selectedCountryCode,
-
-                title,
-
-                description,
-
-                date,
-
-                image: image || "",
-
-                favorite: false
-
-            });
-
-        }
-
-
-        localStorage.setItem(
-            "privateAtlasAtlas",
-            JSON.stringify(memories)
-        );
-
-
-        editingMemoryId = null;
-
-        memoryForm.reset();
-
-        memoryFormContainer.classList.remove("active");
-
-        loadCountryMemories(selectedCountryCode);
-    };
-
-
-    if (file) {
-
-        const reader = new FileReader();
-
-        reader.onload = () => {
-            saveMemory(reader.result);
-        };
-
-        reader.readAsDataURL(file);
-
-    } else {
-
-        if (editingMemoryId) {
-
-            const oldMemory =
-                memories.find(
-                    memory => memory.id === editingMemoryId
-                );
-
-            saveMemory(
-                oldMemory ? oldMemory.image : ""
-            );
-
-        } else {
-
-            saveMemory("");
-
-        }
-
-    }
-
-});
 
 // =========================================
 // GUARDAR / EDITAR RECUERDO

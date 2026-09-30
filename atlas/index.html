@@ -80,24 +80,54 @@
 
     </div>
 
-    <div id="country-memory">
-        <div class="memory-paper">
-            <buttom id="close-memory" type="buttom">
-                <i data-lucide="x"></i>
-            </buttom>
+    <!-- =========================================
+     VENTANA DEL PAÍS
+========================================= -->
 
-            <h2 id="memory-country-name">País</h2>
+<div id="country-memory">
 
-            <p id="memory-country-description">
-                Aquí aparecerán los recuerdos de este lugar.</div>
-            
-            <div id="country-memories">
-                <!--Aquí aparecerán los recuerdos-->
+    <div class="memory-paper">
+
+        <button id="close-memory" type="button">
+            <i data-lucide="x"></i>
+        </button>
+
+        <div class="memory-paper-header">
+
+            <span class="memory-location-icon">
+                <i data-lucide="map-pin"></i>
+            </span>
+
+            <div>
+                <h2 id="memory-country-name">
+                    País
+                </h2>
+
+                <p id="memory-country-description">
+                    Aquí aparecerán tus recuerdos de este lugar.
+                </p>
             </div>
 
-         </div>
+        </div>
+
+        <div id="country-memories">
+            <!-- Aquí aparecerán las Polaroid -->
+        </div>
+
+        <div class="memory-empty-message">
+            <p>
+                Todavía no tienes recuerdos guardados aquí.
+            </p>
+        </div>
+
+        <button id="add-memory-btn" type="button">
+            <i data-lucide="plus"></i>
+            Agregar recuerdo
+        </button>
 
     </div>
+
+</div>
 
     <div id="memory-form-container">
 
