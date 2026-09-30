@@ -668,3 +668,54 @@ function escapeHTML(text) {
 
     return div.innerHTML;
 }
+
+// =========================================
+// CARGAR RECUERDOS DEL PAÍS
+// =========================================
+
+function loadCountryMemories(countryCode) {
+
+    const memories =
+        JSON.parse(
+            localStorage.getItem("privateAtlasAtlas")
+        ) || [];
+
+    const countryList =
+        memories.filter(
+            memory => memory.country === countryCode
+        );
+
+    countryMemories.innerHTML = "";
+
+    const emptyMessage =
+        document.querySelector(".memory-empty-message");
+
+
+    if (countryList.length === 0) {
+
+        if (emptyMessage) {
+            emptyMessage.style.display = "block";
+        }
+
+        return;
+    }
+
+
+    if (emptyMessage) {
+        emptyMessage.style.display = "none";
+    }
+
+
+    countryList.forEach(memory => {
+
+        countryMemories.appendChild(
+            createMemoryCard(memory)
+        );
+
+    });
+
+
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+    }
+}
