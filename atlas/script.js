@@ -260,6 +260,12 @@ if (closeMemoryForm) {
 
 }
 
+// =========================================
+// GUARDAR / EDITAR RECUERDO
+// =========================================
+
+let editingMemoryId = null;
+
 memoryForm.addEventListener("submit", (event) => {
 
     event.preventDefault();
@@ -269,7 +275,7 @@ memoryForm.addEventListener("submit", (event) => {
     const title =
         document.getElementById("memory-title").value.trim();
 
-    const description =
+    let description =
         document.getElementById("memory-description").value.trim();
 
     const date =
@@ -281,33 +287,61 @@ memoryForm.addEventListener("submit", (event) => {
     const file =
         imageInput.files[0];
 
+    // Límite de 35 palabras
+    description =
+        description
+            .split(/\s+/)
+            .slice(0, 35)
+            .join(" ");
 
-    const saveMemory = (image = "") => {
-
-        const memories =
-            JSON.parse(
-                localStorage.getItem("privateAtlasAtlas")
-            ) || [];
-
-
-        const newMemory = {
-
-            id: Date.now(),
-
-            country: selectedCountryCode,
-
-            title,
-
-            description,
-
-            date,
-
-            image
-
-        };
+    const memories =
+        JSON.parse(
+            localStorage.getItem("privateAtlasAtlas")
+        ) || [];
 
 
-        memories.push(newMemory);
+    const saveMemory = (image = null) => {
+
+        if (editingMemoryId) {
+
+            const index =
+                memories.findIndex(
+                    memory => memory.id === editingMemoryId
+                );
+
+            if (index !== -1) {
+
+                memories[index].title = title;
+                memories[index].description = description;
+                memories[index].date = date;
+
+                if (image !== null) {
+                    memories[index].image = image;
+                }
+
+            }
+
+        } else {
+
+            memories.push({
+
+                id: Date.now(),
+
+                country: selectedCountryCode,
+
+                title,
+
+                description,
+
+                date,
+
+                image: image || "",
+
+                favorite: false
+
+            });
+
+        }
 
 
         localStorage.setItem(
@@ -316,12 +350,13 @@ memoryForm.addEventListener("submit", (event) => {
         );
 
 
+        editingMemoryId = null;
+
+        memoryForm.reset();
+
         memoryFormContainer.classList.remove("active");
 
-        loadCountryMemories(
-            selectedCountryCode
-        );
-
+        loadCountryMemories(selectedCountryCode);
     };
 
 
@@ -330,17 +365,387 @@ memoryForm.addEventListener("submit", (event) => {
         const reader = new FileReader();
 
         reader.onload = () => {
-
             saveMemory(reader.result);
-
         };
 
         reader.readAsDataURL(file);
 
     } else {
 
-        saveMemory();
+        if (editingMemoryId) {
+
+            const oldMemory =
+                memories.find(
+                    memory => memory.id === editingMemoryId
+                );
+
+            saveMemory(
+                oldMemory ? oldMemory.image : ""
+            );
+
+        } else {
+
+            saveMemory("");
+
+        }
 
     }
 
 });
+
+// =========================================
+// GUARDAR / EDITAR RECUERDO
+// =========================================
+
+let editingMemoryId = null;
+
+memoryForm.addEventListener("submit", (event) => {
+
+    event.preventDefault();
+
+    if (!selectedCountryCode) return;
+
+    const title =
+        document.getElementById("memory-title").value.trim();
+
+    let description =
+        document.getElementById("memory-description").value.trim();
+
+    const date =
+        document.getElementById("memory-date").value;
+
+    const imageInput =
+        document.getElementById("memory-image");
+
+    const file =
+        imageInput.files[0];
+
+    // Límite de 35 palabras
+    description =
+        description
+            .split(/\s+/)
+            .slice(0, 35)
+            .join(" ");
+
+    const memories =
+        JSON.parse(
+            localStorage.getItem("privateAtlasAtlas")
+        ) || [];
+
+
+    const saveMemory = (image = null) => {
+
+        if (editingMemoryId) {
+
+            const index =
+                memories.findIndex(
+                    memory => memory.id === editingMemoryId
+                );
+
+            if (index !== -1) {
+
+                memories[index].title = title;
+                memories[index].description = description;
+                memories[index].date = date;
+
+                if (image !== null) {
+                    memories[index].image = image;
+                }
+
+            }
+
+        } else {
+
+            memories.push({
+
+                id: Date.now(),
+
+                country: selectedCountryCode,
+
+                title,
+
+                description,
+
+                date,
+
+                image: image || "",
+
+                favorite: false
+
+            });
+
+        }
+
+
+        localStorage.setItem(
+            "privateAtlasAtlas",
+            JSON.stringify(memories)
+        );
+
+
+        editingMemoryId = null;
+
+        memoryForm.reset();
+
+        memoryFormContainer.classList.remove("active");
+
+        loadCountryMemories(selectedCountryCode);
+    };
+
+
+    if (file) {
+
+        const reader = new FileReader();
+
+        reader.onload = () => {
+            saveMemory(reader.result);
+        };
+
+        reader.readAsDataURL(file);
+
+    } else {
+
+        if (editingMemoryId) {
+
+            const oldMemory =
+                memories.find(
+                    memory => memory.id === editingMemoryId
+                );
+
+            saveMemory(
+                oldMemory ? oldMemory.image : ""
+            );
+
+        } else {
+
+            saveMemory("");
+
+        }
+
+    }
+
+});
+
+// =========================================
+// CREAR TARJETA POLAROID
+// =========================================
+
+function createMemoryCard(memory) {
+
+    const card = document.createElement("article");
+
+    card.className =
+        `memory-card ${memory.favorite ? "favorite" : ""}`;
+
+    card.dataset.id = memory.id;
+
+
+    card.innerHTML = `
+
+        <div class="memory-card-inner">
+
+            <!-- FRENTE -->
+            <div class="memory-card-front">
+
+                <div class="memory-photo">
+
+                    ${
+                        memory.image
+                            ? `<img src="${memory.image}" alt="${escapeHTML(memory.title)}">`
+                            : `
+                                <div class="no-photo">
+                                    Sin fotografía
+                                </div>
+                            `
+                    }
+
+                </div>
+
+                <div class="polaroid-caption">
+                    ${escapeHTML(memory.title)}
+                </div>
+
+            </div>
+
+
+            <!-- REVERSO -->
+            <div class="memory-card-back">
+
+                <h3>
+                    ${escapeHTML(memory.title)}
+                </h3>
+
+                <p class="memory-description">
+                    ${escapeHTML(memory.description)}
+                </p>
+
+                <p class="memory-date">
+                    ${memory.date || "Sin fecha"}
+                </p>
+
+                <div class="memory-actions">
+
+                    <button
+                        type="button"
+                        class="favorite-memory"
+                        title="Favorito"
+                    >
+                        <i data-lucide="star"></i>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="edit-memory"
+                        title="Editar"
+                    >
+                        <i data-lucide="pencil"></i>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="delete-memory"
+                        title="Eliminar"
+                    >
+                        <i data-lucide="trash-2"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
+
+
+    // Girar tarjeta
+    card.addEventListener("click", (event) => {
+
+        if (
+            event.target.closest(".memory-actions")
+        ) {
+            return;
+        }
+
+        card.classList.toggle("flipped");
+
+    });
+
+
+    // Favorito
+    card
+        .querySelector(".favorite-memory")
+        .addEventListener("click", (event) => {
+
+            event.stopPropagation();
+
+            toggleFavorite(memory.id);
+
+        });
+
+
+    // Editar
+    card
+        .querySelector(".edit-memory")
+        .addEventListener("click", (event) => {
+
+            event.stopPropagation();
+
+            editMemory(memory.id);
+
+        });
+
+
+    // Eliminar
+    card
+        .querySelector(".delete-memory")
+        .addEventListener("click", (event) => {
+
+            event.stopPropagation();
+
+            deleteMemory(memory.id);
+
+        });
+
+
+    return card;
+}
+
+// =========================================
+// FAVORITO
+// =========================================
+
+function toggleFavorite(memoryId) {
+
+    const memories =
+        JSON.parse(
+            localStorage.getItem("privateAtlasAtlas")
+        ) || [];
+
+
+    const memory =
+        memories.find(
+            item => item.id === memoryId
+        );
+
+
+    if (!memory) return;
+
+
+    memory.favorite =
+        !memory.favorite;
+
+
+    localStorage.setItem(
+        "privateAtlasAtlas",
+        JSON.stringify(memories)
+    );
+
+
+    loadCountryMemories(
+        selectedCountryCode
+    );
+}
+
+// =========================================
+// ELIMINAR RECUERDO
+// =========================================
+
+function deleteMemory(memoryId) {
+
+    const memories =
+        JSON.parse(
+            localStorage.getItem("privateAtlasAtlas")
+        ) || [];
+
+
+    const updatedMemories =
+        memories.filter(
+            memory => memory.id !== memoryId
+        );
+
+
+    localStorage.setItem(
+        "privateAtlasAtlas",
+        JSON.stringify(updatedMemories)
+    );
+
+
+    loadCountryMemories(
+        selectedCountryCode
+    );
+}
+
+// =========================================
+// SEGURIDAD DE TEXTO
+// =========================================
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        text || "";
+
+    return div.innerHTML;
+}

@@ -499,3 +499,189 @@ object{
         left: 12px;
     }
 }
+
+/* =========================================
+   TARJETAS DE RECUERDOS
+========================================= */
+
+#country-memories {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(220px, 1fr)
+    );
+    gap: 24px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+/* TARJETA */
+
+.memory-card {
+    width: 220px;
+    height: 290px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+
+.memory-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+}
+
+
+.memory-card.flipped
+.memory-card-inner {
+    transform: rotateY(180deg);
+}
+
+
+/* FRENTE Y REVERSO */
+
+.memory-card-front,
+.memory-card-back {
+    position: absolute;
+    inset: 0;
+
+    backface-visibility: hidden;
+
+    border-radius: 4px;
+}
+
+
+/* FRENTE */
+
+.memory-card-front {
+    background: #f5eee3;
+    padding: 12px;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+
+.memory-photo {
+    width: 100%;
+    height: 220px;
+
+    overflow: hidden;
+
+    background: #ddd;
+}
+
+
+.memory-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.no-photo {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #777;
+}
+
+
+.polaroid-caption {
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    color: #4b3428;
+
+    text-align: center;
+}
+
+
+/* REVERSO */
+
+.memory-card-back {
+    background: #f5eee3;
+
+    padding: 20px;
+
+    transform: rotateY(180deg);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.18);
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.memory-card-back h3 {
+    margin-bottom: 12px;
+}
+
+
+.memory-description {
+    line-height: 1.5;
+    flex: 1;
+}
+
+
+.memory-date {
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+
+/* BOTONES */
+
+.memory-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+
+.memory-actions button {
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+
+.favorite-memory {
+    color: #c99b35;
+}
+
+
+.memory-card.favorite
+.favorite-memory {
+    background: #e5c56b;
+}
+
+
+.edit-memory {
+    color: #6f5a4d;
+}
+
+
+.delete-memory {
+    color: #b84b3b;
+}
