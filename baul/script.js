@@ -1257,11 +1257,10 @@ const recipeDetailsOverlay =
 const closeRecipeDetails =
     document.getElementById("closeRecipeDetailsClose");
 
-function addIngredientRow(value = "") {
 
-    if (!ingredientsList) {
-        return;
-    }
+
+
+function addIngredientRow(name = "", quantity = "") {
 
     const row =
         document.createElement("div");
@@ -1270,171 +1269,127 @@ function addIngredientRow(value = "") {
         "ingredient-row";
 
     row.innerHTML = `
+
         <input
             type="text"
-            class="recipe-ingredient"
-            placeholder="Ejemplo: 2 huevos"
-            value="${escapeHTML(value)}"
-            required>
+            class="ingredient-name"
+            placeholder="Ingrediente"
+            value="${escapeHTML(name)}"
+        >
+
+        <input
+            type="text"
+            class="ingredient-quantity"
+            placeholder="Cantidad"
+            value="${escapeHTML(quantity)}"
+        >
 
         <button
             type="button"
-            class="remove-ingredient-btn"
-            aria-label="Eliminar ingrediente">
-
+            class="remove-ingredient"
+        >
             <i data-lucide="trash-2"></i>
-
         </button>
+
     `;
 
-    ingredientsList.appendChild(row);
-
-    const removeButton =
-        row.querySelector(
-            ".remove-ingredient-btn"
-        );
-
-    if (removeButton) {
-
-        removeButton.addEventListener(
+    row
+        .querySelector(".remove-ingredient")
+        .addEventListener(
             "click",
             () => {
-
-                if (
-                    ingredientsList.children.length > 1
-                ) {
-                    row.remove();
-                }
-
+                row.remove();
             }
         );
-    }
+
+    ingredientsList.appendChild(row);
 
     if (typeof lucide !== "undefined") {
         lucide.createIcons();
     }
 }
 
-if (ingredientsList) {
 
-    ingredientsList.addEventListener(
-        "click",
-        event => {
+addIngredient.addEventListener(
+    "click",
+    () => {
+        addIngredientRow();
+    }
+);
 
-            const removeButton =
-                event.target.closest(
-                    ".remove-ingredient-btn"
-                );
 
-            if (removeButton) {
+openAddRecipe.addEventListener(
+    "click",
+    () => {
 
-                const row =
-                    removeButton.closest(
-                        ".ingredient-row"
-                    );
+        recipeForm.reset();
 
-                if (
-                    row &&
-                    ingredientsList.children.length > 1
-                ) {
-                    row.remove();
+        ingredientsList.innerHTML = "";
+
+        addIngredientRow();
+
+        document
+            .querySelectorAll(
+                'input[name="recipeCategory"]'
+            )
+            .forEach(
+                checkbox => {
+                    checkbox.checked = false;
                 }
-            }
-        }
-    );
-}
+            );
 
-if (addIngredient) {
+        recipeFormOverlay.classList.add(
+            "active"
+        );
 
-    addIngredient.addEventListener(
-        "click",
-        () => {
-            addIngredientRow();
-        }
-    );
-}
+        recipeForm.dataset.editingId = "";
 
-if (openAddRecipe) {
+    }
+);
 
-    openAddRecipe.addEventListener(
-        "click",
-        () => {
-
-            if (recipeForm) {
-
-                recipeForm.reset();
-
-                delete recipeForm.dataset.editingId;
-            }
-
-            if (ingredientsList) {
-
-                ingredientsList.innerHTML = "";
-
-                addIngredientRow();
-            }
-
-            if (recipeFormOverlay) {
-
-                recipeFormOverlay.classList.add(
-                    "active"
-                );
-            }
-
-        }
-    );
-}
 
 function closeRecipeFormWindow() {
 
-    if (recipeFormOverlay) {
-
-        recipeFormOverlay.classList.remove(
-            "active"
-        );
-    }
-}
-
-if (closeRecipeForm) {
-
-    closeRecipeForm.addEventListener(
-        "click",
-        closeRecipeFormWindow
+    recipeFormOverlay.classList.remove(
+        "active"
     );
+
+    recipeForm.reset();
+
+    ingredientsList.innerHTML = "";
+
+    recipeForm.dataset.editingId = "";
 }
 
-if (cancelRecipe) {
 
-    cancelRecipe.addEventListener(
-        "click",
-        closeRecipeFormWindow
-    );
-}
+closeRecipeForm.addEventListener(
+    "click",
+    closeRecipeFormWindow
+);
 
-if (recipeFormOverlay) {
 
-    recipeFormOverlay.addEventListener(
-        "click",
-        event => {
+cancelRecipe.addEventListener(
+    "click",
+    closeRecipeFormWindow
+);
 
-            if (
-                event.target ===
-                recipeFormOverlay
-            ) {
-                closeRecipeFormWindow();
-            }
 
+recipeFormOverlay.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target ===
+            recipeFormOverlay
+        ) {
+            closeRecipeFormWindow();
         }
-    );
-}
+
+    }
+);
+
 
 function loadRecipes() {
-
-    if (!recipesGrid) {
-        return;
-    }
-
-    recipesGrid.innerHTML = "";
 
     const recipes =
         JSON.parse(
@@ -1443,40 +1398,39 @@ function loadRecipes() {
             )
         ) || [];
 
+    recipesGrid.innerHTML = "";
+
     if (recipes.length === 0) {
 
-        if (emptyRecipes) {
-
-            emptyRecipes.style.display =
-                "flex";
-        }
+        emptyRecipes.style.display =
+            "block";
 
         return;
     }
 
-    if (emptyRecipes) {
+    emptyRecipes.style.display =
+        "none";
 
-        emptyRecipes.style.display =
-            "none";
-    }
-
-    recipes.forEach(recipe => {
-        createRecipeCard(recipe);
-    });
+    recipes.forEach(
+        recipe => {
+            createRecipeCard(recipe);
+        }
+    );
 
     if (typeof lucide !== "undefined") {
         lucide.createIcons();
     }
 }
 
+
 function createRecipeCard(recipe) {
 
     const categories =
-    Array.isArray(recipe.category)
-    ? recipe.recipeCategory
-    :recipe.category    
-        ?¨[recipe.category]
-        :[];
+        Array.isArray(recipe.category)
+            ? recipe.category
+            : recipe.category
+                ? [recipe.category]
+                : [];
 
     const card =
         document.createElement("article");
@@ -1487,9 +1441,7 @@ function createRecipeCard(recipe) {
     card.innerHTML = `
 
         <div class="recipe-card-icon">
-
             <i data-lucide="chef-hat"></i>
-
         </div>
 
         <div class="recipe-card-info">
@@ -1499,346 +1451,416 @@ function createRecipeCard(recipe) {
             </h3>
 
             <span class="recipe-categories">
+
                 ${
-                    categories.map(
-                        category => ` 
-                <span class="recipe-category"> $
-                        {escapeHTML(category)}
-            </span>
-                `)
-            .join("")
+                    categories
+                        .map(
+                            category => `
+                                <span class="recipe-category">
+                                    ${escapeHTML(category)}
+                                </span>
+                            `
+                        )
+                        .join("")
                 }
-        </div>
-
-        <div class="recipe-card-meta">
-
-            <span>
-
-                <i data-lucide="clock"></i>
-
-                ${escapeHTML(recipe.time)}
 
             </span>
 
-            <span>
+            <div class="recipe-card-meta">
 
-                <i data-lucide="users"></i>
+                <span>
+                    <i data-lucide="clock-3"></i>
+                    ${escapeHTML(recipe.time || "Sin tiempo")}
+                </span>
 
-                ${recipe.servings} porciones
+                <span>
+                    <i data-lucide="users"></i>
+                    ${escapeHTML(recipe.servings || "Sin datos")}
+                </span>
 
-            </span>
+            </div>
 
         </div>
-
-        ${
-            recipe.favorite
-                ? `
-                    <div class="recipe-card-favorite">
-
-                        <i data-lucide="star"></i>
-
-                        Favorita
-
-                    </div>
-                `
-                : ""
-        }
 
         <div class="recipe-card-buttons">
 
             <button
                 type="button"
-                class="view-recipe-btn">
-
+                class="view-recipe-btn"
+            >
                 <i data-lucide="eye"></i>
-
                 Ver receta
-
             </button>
 
             <button
                 type="button"
-                class="edit-recipe-btn">
-
+                class="edit-recipe-btn"
+            >
                 <i data-lucide="pencil"></i>
-
                 Editar
-
             </button>
 
             <button
                 type="button"
-                class="delete-recipe-btn">
-
+                class="delete-recipe-btn"
+            >
                 <i data-lucide="trash-2"></i>
-
                 Eliminar
-
             </button>
 
         </div>
+
     `;
 
-    recipesGrid.appendChild(card);
-
-    const viewButton =
-        card.querySelector(
-            ".view-recipe-btn"
-        );
-
-    const editButton =
-        card.querySelector(
-            ".edit-recipe-btn"
-        );
-
-    const deleteButton =
-        card.querySelector(
-            ".delete-recipe-btn"
-        );
-
-    if (viewButton) {
-
-        viewButton.addEventListener(
+    card
+        .querySelector(".view-recipe-btn")
+        .addEventListener(
             "click",
             () => {
                 showRecipeDetails(recipe);
             }
         );
-    }
 
-    if (editButton) {
 
-        editButton.addEventListener(
+    card
+        .querySelector(".edit-recipe-btn")
+        .addEventListener(
             "click",
             () => {
                 editRecipe(recipe);
             }
         );
-    }
 
-    if (deleteButton) {
 
-        deleteButton.addEventListener(
+
+    card
+        .querySelector(".delete-recipe-btn")
+        .addEventListener(
             "click",
             () => {
                 deleteRecipe(recipe.id);
             }
         );
+
+
+    recipesGrid.appendChild(card);
+
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
     }
 }
 
-if (recipeForm) {
 
-    recipeForm.addEventListener(
-        "submit",
-        event => {
+recipeForm.addEventListener(
+    "submit",
+    event => {
 
-            event.preventDefault();
+        event.preventDefault();
 
-            const name =
-                document
-                    .getElementById(
-                        "recipeName"
-                    )
-                    .value
-                    .trim();
+        const name =
+            document.getElementById(
+                "recipeName"
+            ).value.trim();
 
-            const categories =
-    Array.from(
-        document.querySelectorAll(
-            'input[name="recipeCategory"]:checked'
-        )
-    ).map(
-        checkbox =>
-            checkbox.value
-    );
+        const preparation =
+            document.getElementById(
+                "recipePreparation"
+            ).value.trim();
 
-if (categories.length === 0) {
+        const time =
+            document.getElementById(
+                "recipeTime"
+            ).value.trim();
 
-    alert(
-        "Selecciona al menos una categoría."
-    );
+        const servings =
+            document.getElementById(
+                "recipeServings"
+            ).value.trim();
 
-    return;
-}
 
-            const preparation =
-                document
-                    .getElementById(
-                        "recipePreparation"
-                    )
-                    .value
-                    .trim();
-
-            const time =
-                document
-                    .getElementById(
-                        "recipeTime"
-                    )
-                    .value
-                    .trim();
-
-            const servings =
-                Number(
-                    document
-                        .getElementById(
-                            "recipeServings"
-                        )
-                        .value
-                );
-
-            const favorite =
-                document
-                    .getElementById(
-                        "recipeFavorite"
-                    )
-                    .checked;
-
-            const ingredients =
-                Array.from(
-                    document.querySelectorAll(
-                        ".recipe-ingredient"
-                    )
+        const categories =
+            Array.from(
+                document.querySelectorAll(
+                    'input[name="recipeCategory"]:checked'
                 )
-                .map(
-                    input =>
-                        input.value.trim()
-                )
-                .filter(
-                    ingredient =>
-                        ingredient !== ""
-                );
-
-            if (ingredients.length === 0) {
-                return;
-            }
-
-            const recipes =
-                JSON.parse(
-                    localStorage.getItem(
-                        "privateAtlasRecipes"
-                    )
-                ) || [];
-
-            const editingId =
-                recipeForm.dataset.editingId;
-
-            if (editingId) {
-
-                const index =
-                    recipes.findIndex(
-                        recipe =>
-                            recipe.id ==
-                            editingId
-                    );
-
-                if (index !== -1) {
-
-                    recipes[index] = {
-                        ...recipes[index],
-                        name,
-                        category: categories,
-                        ingredients,
-                        preparation,
-                        time,
-                        servings,
-                        favorite
-                    };
-                }
-
-            } else {
-
-                recipes.push({
-
-                    id:
-                        Date.now(),
-
-                    name,
-                    category: categories,
-                    ingredients,
-                    preparation,
-                    time,
-                    servings,
-                    favorite
-
-                });
-            }
-
-            localStorage.setItem(
-                "privateAtlasRecipes",
-                JSON.stringify(recipes)
+            ).map(
+                checkbox =>
+                    checkbox.value
             );
 
-            loadRecipes();
 
-            closeRecipeFormWindow();
+        if (!name) {
+
+            alert(
+                "Escribe el nombre de la receta."
+            );
+
+            return;
         }
-    );
-}
+
+
+        if (categories.length === 0) {
+
+            alert(
+                "Selecciona al menos una categoría."
+            );
+
+            return;
+        }
+
+
+        const ingredients =
+            Array.from(
+                document.querySelectorAll(
+                    ".ingredient-row"
+                )
+            )
+            .map(
+                row => {
+
+                    const ingredientName =
+                        row
+                            .querySelector(
+                                ".ingredient-name"
+                            )
+                            .value.trim();
+
+                    const ingredientQuantity =
+                        row
+                            .querySelector(
+                                ".ingredient-quantity"
+                            )
+                            .value.trim();
+
+                    return {
+                        name:
+                            ingredientName,
+
+                        quantity:
+                            ingredientQuantity
+                    };
+
+                }
+            )
+            .filter(
+                ingredient =>
+                    ingredient.name
+            );
+
+
+        const favorite =
+            document.getElementById(
+                "recipeFavorite"
+            ).checked;
+
+
+        const recipes =
+            JSON.parse(
+                localStorage.getItem(
+                    "privateAtlasRecipes"
+                )
+            ) || [];
+
+
+        const editingId =
+            recipeForm.dataset.editingId;
+
+
+        if (editingId) {
+
+            const index =
+                recipes.findIndex(
+                    recipe =>
+                        String(recipe.id) ===
+                        String(editingId)
+                );
+
+
+            if (index !== -1) {
+
+                recipes[index] = {
+
+                    ...recipes[index],
+
+                    name:
+                        name,
+
+                    category:
+                        categories,
+
+                    time:
+                        time,
+
+                    servings:
+                        servings,
+
+                    ingredients:
+                        ingredients,
+
+                    preparation:
+                        preparation,
+
+                    favorite:
+                        favorite
+
+                };
+
+            }
+
+        } else {
+
+            const newRecipe = {
+
+                id:
+                    Date.now(),
+
+                name:
+                    name,
+
+                category:
+                    categories,
+
+                time:
+                    time,
+                servings:
+                    servings,
+                ingredients:
+                    ingredients,
+                preparation:
+                    preparation,
+                favorite:
+                    favorite
+
+            };
+
+            recipes.push(
+                newRecipe
+            );
+        }
+
+
+        localStorage.setItem(
+            "privateAtlasRecipes",
+            JSON.stringify(recipes)
+        );
+
+
+        closeRecipeFormWindow();
+        loadRecipes();
+
+    }
+);
+
 
 function editRecipe(recipe) {
-
-    if (
-        !recipeForm ||
-        !recipeFormOverlay
-    ) {
-        return;
-    }
 
     document.getElementById(
         "recipeName"
     ).value =
         recipe.name || "";
 
-    document.getElementById(
-        "recipeCategory"
-    ).value =
-        recipe.category || "";
 
     document.getElementById(
         "recipePreparation"
     ).value =
         recipe.preparation || "";
 
+
     document.getElementById(
         "recipeTime"
     ).value =
         recipe.time || "";
+
 
     document.getElementById(
         "recipeServings"
     ).value =
         recipe.servings || "";
 
+
     document.getElementById(
         "recipeFavorite"
     ).checked =
-        !!recipe.favorite;
+        recipe.favorite || false;
+
+
+    const selectedCategories =
+        Array.isArray(recipe.category)
+            ? recipe.category
+            : recipe.category
+                ? [recipe.category]
+                : [];
+
+
+    document
+        .querySelectorAll(
+            'input[name="recipeCategory"]'
+        )
+        .forEach(
+            checkbox => {
+
+                checkbox.checked =
+                    selectedCategories.includes(
+                        checkbox.value
+                    );
+
+            }
+        );
+
+
+    ingredientsList.innerHTML = "";
+
+
+    if (
+        Array.isArray(recipe.ingredients) &&
+        recipe.ingredients.length > 0
+    ) {
+
+        recipe.ingredients.forEach(
+            ingredient => {
+
+                addIngredientRow(
+                    ingredient.name || "",
+                    ingredient.quantity || ""
+                );
+
+            }
+        );
+
+    } else {
+
+        addIngredientRow();
+
+    }
+
 
     recipeForm.dataset.editingId =
         recipe.id;
 
-    ingredientsList.innerHTML = "";
-
-    const recipeIngredients =
-        Array.isArray(recipe.ingredients)
-            ? recipe.ingredients
-            : [""];
-
-    recipeIngredients.forEach(
-        ingredient => {
-            addIngredientRow(
-                ingredient
-            );
-        }
-    );
 
     recipeFormOverlay.classList.add(
         "active"
     );
+
+
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+    }
 }
 
-function deleteRecipe(recipeId) {
+
+function deleteRecipe(id) {
+
+    const confirmDelete =
+        confirm(
+            "¿Seguro que quieres eliminar esta receta?"
+        );
+
+
+    if (!confirmDelete) {
+        return;
+    }
+
 
     const recipes =
         JSON.parse(
@@ -1847,19 +1869,24 @@ function deleteRecipe(recipeId) {
             )
         ) || [];
 
+
     const updatedRecipes =
         recipes.filter(
             recipe =>
-                recipe.id != recipeId
+                String(recipe.id) !==
+                String(id)
         );
+
 
     localStorage.setItem(
         "privateAtlasRecipes",
         JSON.stringify(updatedRecipes)
     );
 
+
     loadRecipes();
 }
+
 
 function showRecipeDetails(recipe) {
 
@@ -1898,101 +1925,149 @@ function showRecipeDetails(recipe) {
             "detailsRecipeFavorite"
         );
 
-    if (!recipeDetailsOverlay) {
-        return;
-    }
 
     name.textContent =
         recipe.name || "";
 
-    category.textContent =
-        recipe.category || "";
+
+
+    const categories =
+        Array.isArray(recipe.category)
+            ? recipe.category
+            : recipe.category
+                ? [recipe.category]
+                : [];
+
+
+    category.innerHTML =
+        categories
+            .map(
+                item => `
+                    <span class="recipe-category">
+                        ${escapeHTML(item)}
+                    </span>
+                `
+            )
+            .join("");
+
 
     time.textContent =
-        recipe.time || "";
+        recipe.time || "Sin especificar";
+
 
     servings.textContent =
-        `${recipe.servings} porciones`;
+        recipe.servings || "Sin especificar";
+
 
     ingredients.innerHTML = "";
 
-    const recipeIngredients =
-        Array.isArray(recipe.ingredients)
-            ? recipe.ingredients
-            : [];
 
-    recipeIngredients.forEach(
-        ingredient => {
+    if (
+        Array.isArray(recipe.ingredients) &&
+        recipe.ingredients.length > 0
+    ) {
 
-            const li =
-                document.createElement("li");
+        recipe.ingredients.forEach(
+            ingredient => {
 
-            li.textContent =
-                ingredient;
+                const li =
+                    document.createElement("li");
 
-            ingredients.appendChild(li);
-        }
-    );
+                li.innerHTML = `
+                    <strong>
+                        ${escapeHTML(
+                            ingredient.name || ""
+                        )}
+                    </strong>
+
+                    ${
+                        ingredient.quantity
+                            ? `
+                                <span>
+                                    ${escapeHTML(
+                                        ingredient.quantity
+                                    )}
+                                </span>
+                            `
+                            : ""
+                    }
+                `;
+
+                ingredients.appendChild(li);
+
+            }
+        );
+
+    } else {
+
+        ingredients.innerHTML =
+            "<li>Sin ingredientes registrados.</li>";
+
+    }
 
     preparation.textContent =
-        recipe.preparation || "";
+        recipe.preparation ||
+        "Sin preparación registrada.";
 
-    favorite.style.display =
-        recipe.favorite
-            ? "flex"
-            : "none";
+
+
+    if (recipe.favorite) {
+
+        favorite.style.display =
+            "inline-flex";
+
+    } else {
+
+        favorite.style.display =
+            "none";
+
+    }
+
 
     recipeDetailsOverlay.classList.add(
         "active"
     );
+
 
     if (typeof lucide !== "undefined") {
         lucide.createIcons();
     }
 }
 
-if (closeRecipeDetails) {
 
-    closeRecipeDetails.addEventListener(
-        "click",
-        () => {
+closeRecipeDetails.addEventListener(
+    "click",
+    () => {
 
-            if (recipeDetailsOverlay) {
+        recipeDetailsOverlay.classList.remove(
+            "active"
+        );
 
-                recipeDetailsOverlay.classList.remove(
-                    "active"
-                );
-            }
+    }
+);
 
-        }
-    );
-}
 
-if (recipeDetailsOverlay) {
+recipeDetailsOverlay.addEventListener(
+    "click",
+    event => {
 
-    recipeDetailsOverlay.addEventListener(
-        "click",
-        event => {
+        if (
+            event.target ===
+            recipeDetailsOverlay
+        ) {
 
-            if (
-                event.target ===
-                recipeDetailsOverlay
-            ) {
-
-                recipeDetailsOverlay.classList.remove(
-                    "active"
-                );
-            }
+            recipeDetailsOverlay.classList.remove(
+                "active"
+            );
 
         }
-    );
-}
+
+    }
+);
+
 
 loadRecipes();
 
-if(typeof lucide !== "undefined"){
-    lucide.createIcons();
-}
 
 if (typeof lucide !== "undefined") {
     lucide.createIcons();
