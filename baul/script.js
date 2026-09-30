@@ -1277,12 +1277,6 @@ function addIngredientRow(name = "", quantity = "") {
             value="${escapeHTML(name)}"
         >
 
-        <input
-            type="text"
-            class="ingredient-quantity"
-            placeholder="Cantidad"
-            value="${escapeHTML(quantity)}"
-        >
 
         <button
             type="button"
@@ -1820,8 +1814,7 @@ function editRecipe(recipe) {
             ingredient => {
 
                 addIngredientRow(
-                    ingredient.name || "",
-                    ingredient.quantity || ""
+                    ingredient.name || ""
                 );
 
             }
