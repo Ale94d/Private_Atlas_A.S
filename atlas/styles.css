@@ -1079,3 +1079,488 @@ object{
     box-shadow:
         0 25px 70px rgba(35, 20, 10, 0.45);
 }
+
+/* =========================================
+   ATLAS — CARRUSELES POR CIUDAD
+========================================= */
+
+.city-memory-section {
+    width: 100%;
+    margin-bottom: 42px;
+}
+
+
+/* =========================================
+   NOMBRE DE LA CIUDAD
+========================================= */
+
+.city-memory-title {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    color: #5a3821;
+
+    letter-spacing: 0.5px;
+
+    text-align: center;
+}
+
+.city-memory-title span {
+
+    color: #9a6b43;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================
+   CARRUSEL
+========================================= */
+
+.memory-carousel {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+}
+
+
+/* =========================================
+   VENTANA DEL CARRUSEL
+========================================= */
+
+.memory-carousel-viewport {
+
+    width: 100%;
+
+    overflow: hidden;
+
+    padding: 12px 5px 25px;
+
+}
+
+
+/* =========================================
+   PISTA
+========================================= */
+
+.memory-carousel-track {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 32px;
+
+    width: max-content;
+
+    transition:
+        transform 0.45s ease;
+
+}
+
+
+/* =========================================
+   FLECHAS
+========================================= */
+
+.carousel-arrow {
+
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    z-index: 20;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid
+        rgba(91, 55, 28, 0.30);
+
+    border-radius: 50%;
+
+    background:
+        rgba(221, 190, 141, 0.92);
+
+    color: #5c391f;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 10px
+        rgba(60, 35, 15, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+
+}
+
+.carousel-arrow:hover {
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+
+    background:
+        #d0a973;
+
+}
+
+.carousel-arrow svg {
+
+    width: 18px;
+    height: 18px;
+
+}
+
+.carousel-prev {
+
+    left: 2px;
+
+}
+
+.carousel-next {
+
+    right: 2px;
+
+}
+
+
+/* =========================================
+   POLAROID
+========================================= */
+
+.memory-card {
+
+    flex: 0 0 210px;
+
+    width: 210px;
+    height: 275px;
+
+    perspective: 1000px;
+
+    cursor: pointer;
+
+}
+
+
+.memory-card-front {
+
+    background:
+        #f7f0e2;
+
+    padding: 12px;
+
+    border:
+        1px solid
+        rgba(91, 55, 28, 0.18);
+
+    box-shadow:
+        0 9px 18px
+        rgba(54, 31, 15, 0.22);
+
+    transform:
+        rotate(-1deg);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+
+.memory-card:nth-child(even)
+.memory-card-front {
+
+    transform:
+        rotate(1.2deg);
+
+}
+
+
+.memory-card:hover
+.memory-card-front {
+
+    transform:
+        rotate(0deg)
+        translateY(-5px);
+
+    box-shadow:
+        0 14px 24px
+        rgba(54, 31, 15, 0.28);
+
+}
+
+
+/* =========================================
+   FOTO
+========================================= */
+
+.memory-photo {
+
+    width: 100%;
+
+    height: 215px;
+
+    overflow: hidden;
+
+    background:
+        #d7c09a;
+
+}
+
+
+.memory-photo img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+/* =========================================
+   TEXTO POLAROID
+========================================= */
+
+.polaroid-caption {
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 5px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 14px;
+
+    color: #503421;
+
+    text-align: center;
+
+}
+
+
+/* =========================================
+   REVERSO
+========================================= */
+
+.memory-card-back {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ead2a5,
+            #e3c492
+        );
+
+    border:
+        1px solid
+        rgba(91, 55, 28, 0.22);
+
+    box-shadow:
+        0 9px 18px
+        rgba(54, 31, 15, 0.22);
+
+    padding: 20px;
+
+    transform:
+        rotateY(180deg);
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.memory-back-city {
+
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 11px;
+
+    color: #8b5b36;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.memory-card-back h3 {
+
+    margin: 0 0 12px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 19px;
+
+    color: #4a2d1a;
+
+}
+
+
+.memory-description {
+
+    flex: 1;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 13px;
+
+    line-height: 1.55;
+
+    color: #684a31;
+
+}
+
+
+.memory-date {
+
+    margin-top: 12px;
+
+    font-size: 11px;
+
+    color: #806044;
+
+}
+
+
+/* =========================================
+   ACCIONES
+========================================= */
+
+.memory-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 7px;
+
+    margin-top: 12px;
+
+}
+
+
+.memory-actions button {
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid
+        rgba(91, 55, 28, 0.18);
+
+    border-radius: 50%;
+
+    background:
+        rgba(214, 182, 132, 0.8);
+
+    cursor: pointer;
+
+}
+
+
+.memory-actions button:hover {
+
+    transform: scale(1.08);
+
+}
+
+
+.memory-actions svg {
+
+    width: 15px;
+    height: 15px;
+
+}
+
+
+.favorite-memory {
+
+    color: #a97825;
+
+}
+
+
+.edit-memory {
+
+    color: #65472f;
+
+}
+
+
+.delete-memory {
+
+    color: #a34635;
+
+}
+
+
+.memory-card.favorite
+.favorite-memory {
+
+    background: #c89c42;
+
+    color: #fff4d6;
+
+}

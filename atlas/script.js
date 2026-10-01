@@ -26,6 +26,67 @@ const closeMemory =
 const closeMemoryForm =
     document.getElementById("close-memory-form");
 
+
+// =========================================
+// CONTROLES DE LAS VENTANAS
+// =========================================
+
+if (addMemoryBtn) {
+
+    addMemoryBtn.addEventListener(
+        "click",
+        () => {
+
+            editingMemoryId = null;
+
+            memoryForm.reset();
+
+            memoryFormContainer
+                .classList
+                .add("active");
+
+            if (
+                typeof lucide !== "undefined"
+            ) {
+                lucide.createIcons();
+            }
+
+        }
+    );
+
+}
+
+
+if (closeMemory) {
+
+    closeMemory.addEventListener(
+        "click",
+        () => {
+
+            countryMemory
+                .classList
+                .remove("active");
+
+        }
+    );
+
+}
+
+
+if (closeMemoryForm) {
+
+    closeMemoryForm.addEventListener(
+        "click",
+        () => {
+
+            memoryFormContainer
+                .classList
+                .remove("active");
+
+        }
+    );
+
+}
 let selectedCountryCode = null;
 let selectedCountryElement = null;
 
@@ -301,14 +362,28 @@ memoryForm.addEventListener("submit", (event) => {
 
     if (!selectedCountryCode) return;
 
+    const city =
+        document
+            .getElementById("memory-city")
+            .value
+            .trim();
+
     const title =
-        document.getElementById("memory-title").value.trim();
+        document
+            .getElementById("memory-title")
+            .value
+            .trim();
 
     let description =
-        document.getElementById("memory-description").value.trim();
+        document
+            .getElementById("memory-description")
+            .value
+            .trim();
 
     const date =
-        document.getElementById("memory-date").value;
+        document
+            .getElementById("memory-date")
+            .value;
 
     const imageInput =
         document.getElementById("memory-image");
@@ -316,12 +391,14 @@ memoryForm.addEventListener("submit", (event) => {
     const file =
         imageInput.files[0];
 
-    // Límite de 35 palabras
+
+    // Máximo 35 palabras
     description =
         description
             .split(/\s+/)
             .slice(0, 35)
             .join(" ");
+
 
     const memories =
         JSON.parse(
@@ -335,17 +412,27 @@ memoryForm.addEventListener("submit", (event) => {
 
             const index =
                 memories.findIndex(
-                    memory => memory.id === editingMemoryId
+                    memory =>
+                        memory.id === editingMemoryId
                 );
 
             if (index !== -1) {
 
-                memories[index].title = title;
-                memories[index].description = description;
-                memories[index].date = date;
+                memories[index].city =
+                    city;
+
+                memories[index].title =
+                    title;
+
+                memories[index].description =
+                    description;
+
+                memories[index].date =
+                    date;
 
                 if (image !== null) {
-                    memories[index].image = image;
+                    memories[index].image =
+                        image;
                 }
 
             }
@@ -356,7 +443,10 @@ memoryForm.addEventListener("submit", (event) => {
 
                 id: Date.now(),
 
-                country: selectedCountryCode,
+                country:
+                    selectedCountryCode,
+
+                city,
 
                 title,
 
@@ -364,7 +454,8 @@ memoryForm.addEventListener("submit", (event) => {
 
                 date,
 
-                image: image || "",
+                image:
+                    image || "",
 
                 favorite: false
 
@@ -383,18 +474,27 @@ memoryForm.addEventListener("submit", (event) => {
 
         memoryForm.reset();
 
-        memoryFormContainer.classList.remove("active");
+        memoryFormContainer
+            .classList
+            .remove("active");
 
-        loadCountryMemories(selectedCountryCode);
+        loadCountryMemories(
+            selectedCountryCode
+        );
     };
 
 
     if (file) {
 
-        const reader = new FileReader();
+        const reader =
+            new FileReader();
 
         reader.onload = () => {
-            saveMemory(reader.result);
+
+            saveMemory(
+                reader.result
+            );
+
         };
 
         reader.readAsDataURL(file);
@@ -405,11 +505,14 @@ memoryForm.addEventListener("submit", (event) => {
 
             const oldMemory =
                 memories.find(
-                    memory => memory.id === editingMemoryId
+                    memory =>
+                        memory.id === editingMemoryId
                 );
 
             saveMemory(
-                oldMemory ? oldMemory.image : ""
+                oldMemory
+                    ? oldMemory.image
+                    : ""
             );
 
         } else {
@@ -428,12 +531,20 @@ memoryForm.addEventListener("submit", (event) => {
 
 function createMemoryCard(memory) {
 
-    const card = document.createElement("article");
+    const card =
+        document.createElement("article");
+
 
     card.className =
-        `memory-card ${memory.favorite ? "favorite" : ""}`;
+        `memory-card ${
+            memory.favorite
+                ? "favorite"
+                : ""
+        }`;
 
-    card.dataset.id = memory.id;
+
+    card.dataset.id =
+        memory.id;
 
 
     card.innerHTML = `
@@ -441,43 +552,85 @@ function createMemoryCard(memory) {
         <div class="memory-card-inner">
 
             <!-- FRENTE -->
+
             <div class="memory-card-front">
 
                 <div class="memory-photo">
 
                     ${
                         memory.image
-                            ? `<img src="${memory.image}" alt="${escapeHTML(memory.title)}">`
+
+                            ? `
+                                <img
+                                    src="${memory.image}"
+                                    alt="${escapeHTML(memory.title)}"
+                                >
+                              `
+
                             : `
                                 <div class="no-photo">
                                     Sin fotografía
                                 </div>
-                            `
+                              `
                     }
 
                 </div>
 
+
                 <div class="polaroid-caption">
-                    ${escapeHTML(memory.title)}
+
+                    ${escapeHTML(
+                        memory.title
+                    )}
+
                 </div>
 
             </div>
 
 
             <!-- REVERSO -->
+
             <div class="memory-card-back">
 
-                <h3>
-                    ${escapeHTML(memory.title)}
-                </h3>
+                <div class="memory-back-content">
 
-                <p class="memory-description">
-                    ${escapeHTML(memory.description)}
-                </p>
+                    <span class="memory-back-city">
 
-                <p class="memory-date">
-                    ${memory.date || "Sin fecha"}
-                </p>
+                        ${escapeHTML(
+                            memory.city ||
+                            "Sin ciudad"
+                        )}
+
+                    </span>
+
+
+                    <h3>
+
+                        ${escapeHTML(
+                            memory.title
+                        )}
+
+                    </h3>
+
+
+                    <p class="memory-description">
+
+                        ${escapeHTML(
+                            memory.description
+                        )}
+
+                    </p>
+
+
+                    <p class="memory-date">
+
+                        ${memory.date
+                            || "Sin fecha"}
+
+                    </p>
+
+                </div>
+
 
                 <div class="memory-actions">
 
@@ -486,23 +639,31 @@ function createMemoryCard(memory) {
                         class="favorite-memory"
                         title="Favorito"
                     >
-                        <i data-lucide="star"></i>
+                        <i
+                            data-lucide="star">
+                        </i>
                     </button>
+
 
                     <button
                         type="button"
                         class="edit-memory"
                         title="Editar"
                     >
-                        <i data-lucide="pencil"></i>
+                        <i
+                            data-lucide="pencil">
+                        </i>
                     </button>
+
 
                     <button
                         type="button"
                         class="delete-memory"
                         title="Eliminar"
                     >
-                        <i data-lucide="trash-2"></i>
+                        <i
+                            data-lucide="trash-2">
+                        </i>
                     </button>
 
                 </div>
@@ -510,96 +671,101 @@ function createMemoryCard(memory) {
             </div>
 
         </div>
+
     `;
 
 
-    // Girar tarjeta
-    card.addEventListener("click", (event) => {
+    // =========================================
+    // GIRAR POLAROID
+    // =========================================
 
-        if (
-            event.target.closest(".memory-actions")
-        ) {
-            return;
+    card.addEventListener(
+        "click",
+        (event) => {
+
+            if (
+                event.target.closest(
+                    ".memory-actions"
+                )
+            ) {
+                return;
+            }
+
+            card.classList.toggle(
+                "flipped"
+            );
+
         }
-
-        card.classList.toggle("flipped");
-
-    });
+    );
 
 
-    // Favorito
+    // =========================================
+    // FAVORITO
+    // =========================================
+
     card
-        .querySelector(".favorite-memory")
-        .addEventListener("click", (event) => {
+        .querySelector(
+            ".favorite-memory"
+        )
+        .addEventListener(
+            "click",
+            (event) => {
 
-            event.stopPropagation();
+                event.stopPropagation();
 
-            toggleFavorite(memory.id);
+                toggleFavorite(
+                    memory.id
+                );
 
-        });
-
-
-    // Editar
-    card
-        .querySelector(".edit-memory")
-        .addEventListener("click", (event) => {
-
-            event.stopPropagation();
-
-            editMemory(memory.id);
-
-        });
-
-
-    // Eliminar
-    card
-        .querySelector(".delete-memory")
-        .addEventListener("click", (event) => {
-
-            event.stopPropagation();
-
-            deleteMemory(memory.id);
-
-        });
-
-
-    return card;
-}
-
-// =========================================
-// FAVORITO
-// =========================================
-
-function toggleFavorite(memoryId) {
-
-    const memories =
-        JSON.parse(
-            localStorage.getItem("privateAtlasAtlas")
-        ) || [];
-
-
-    const memory =
-        memories.find(
-            item => item.id === memoryId
+            }
         );
 
 
-    if (!memory) return;
+    // =========================================
+    // EDITAR
+    // =========================================
+
+    card
+        .querySelector(
+            ".edit-memory"
+        )
+        .addEventListener(
+            "click",
+            (event) => {
+
+                event.stopPropagation();
+
+                editMemory(
+                    memory.id
+                );
+
+            }
+        );
 
 
-    memory.favorite =
-        !memory.favorite;
+    // =========================================
+    // ELIMINAR
+    // =========================================
+
+    card
+        .querySelector(
+            ".delete-memory"
+        )
+        .addEventListener(
+            "click",
+            (event) => {
+
+                event.stopPropagation();
+
+                deleteMemory(
+                    memory.id
+                );
+
+            }
+        );
 
 
-    localStorage.setItem(
-        "privateAtlasAtlas",
-        JSON.stringify(memories)
-    );
-
-
-    loadCountryMemories(
-        selectedCountryCode
-    );
+    return card;
 }
 
 // =========================================
@@ -647,7 +813,7 @@ function escapeHTML(text) {
 }
 
 // =========================================
-// CARGAR RECUERDOS DEL PAÍS
+// CARGAR RECUERDOS AGRUPADOS POR CIUDAD
 // =========================================
 
 function loadCountryMemories(countryCode) {
@@ -657,21 +823,32 @@ function loadCountryMemories(countryCode) {
             localStorage.getItem("privateAtlasAtlas")
         ) || [];
 
+
     const countryList =
         memories.filter(
-            memory => memory.country === countryCode
+            memory =>
+                memory.country === countryCode
         );
+
 
     countryMemories.innerHTML = "";
 
-    const emptyMessage =
-        document.querySelector(".memory-empty-message");
 
+    const emptyMessage =
+        document.querySelector(
+            ".memory-empty-message"
+        );
+
+
+    // =========================================
+    // SIN RECUERDOS
+    // =========================================
 
     if (countryList.length === 0) {
 
         if (emptyMessage) {
-            emptyMessage.style.display = "block";
+            emptyMessage.style.display =
+                "block";
         }
 
         return;
@@ -679,14 +856,41 @@ function loadCountryMemories(countryCode) {
 
 
     if (emptyMessage) {
-        emptyMessage.style.display = "none";
+        emptyMessage.style.display =
+            "none";
     }
 
 
+    // =========================================
+    // AGRUPAR POR CIUDAD
+    // =========================================
+
+    const cities = {};
+
     countryList.forEach(memory => {
 
-        countryMemories.appendChild(
-            createMemoryCard(memory)
+        const city =
+            memory.city ||
+            "Sin ciudad";
+
+        if (!cities[city]) {
+            cities[city] = [];
+        }
+
+        cities[city].push(memory);
+
+    });
+
+
+    // =========================================
+    // CREAR UN CARRUSEL POR CIUDAD
+    // =========================================
+
+    Object.keys(cities).forEach(city => {
+
+        createCityCarousel(
+            city,
+            cities[city]
         );
 
     });
@@ -695,4 +899,183 @@ function loadCountryMemories(countryCode) {
     if (typeof lucide !== "undefined") {
         lucide.createIcons();
     }
+
+}
+
+// =========================================
+// CREAR CARRUSEL DE UNA CIUDAD
+// =========================================
+
+function createCityCarousel(city, memories) {
+
+    const section =
+        document.createElement("section");
+
+    section.className =
+        "city-memory-section";
+
+
+    const title =
+        document.createElement("h3");
+
+    title.className =
+        "city-memory-title";
+
+    title.innerHTML = `
+        <span>✦</span>
+        ${escapeHTML(city)}
+        <span>✦</span>
+    `;
+
+
+    const carousel =
+        document.createElement("div");
+
+    carousel.className =
+        "memory-carousel";
+
+
+    const previous =
+        document.createElement("button");
+
+    previous.type = "button";
+
+    previous.className =
+        "carousel-arrow carousel-prev";
+
+    previous.innerHTML = `
+        <i data-lucide="chevron-left"></i>
+    `;
+
+
+    const next =
+        document.createElement("button");
+
+    next.type = "button";
+
+    next.className =
+        "carousel-arrow carousel-next";
+
+    next.innerHTML = `
+        <i data-lucide="chevron-right"></i>
+    `;
+
+
+    const viewport =
+        document.createElement("div");
+
+    viewport.className =
+        "memory-carousel-viewport";
+
+
+    const track =
+        document.createElement("div");
+
+    track.className =
+        "memory-carousel-track";
+
+
+    // Crear Polaroids
+    memories.forEach(memory => {
+
+        track.appendChild(
+            createMemoryCard(memory)
+        );
+
+    });
+
+
+    viewport.appendChild(track);
+
+    carousel.appendChild(previous);
+
+    carousel.appendChild(viewport);
+
+    carousel.appendChild(next);
+
+
+    section.appendChild(title);
+
+    section.appendChild(carousel);
+
+
+    countryMemories.appendChild(section);
+
+
+    // =========================================
+    // CONTROL DEL CARRUSEL
+    // =========================================
+
+    let position = 0;
+
+    const cardWidth = 242;
+
+
+    function updateCarousel() {
+
+        const visibleWidth =
+            viewport.clientWidth;
+
+        const totalWidth =
+            track.scrollWidth;
+
+        const maxPosition =
+            Math.max(
+                0,
+                totalWidth - visibleWidth
+            );
+
+
+        position =
+            Math.max(
+                0,
+                Math.min(
+                    position,
+                    maxPosition
+                )
+            );
+
+
+        track.style.transform =
+            `translateX(-${position}px)`;
+
+    }
+
+
+    next.addEventListener(
+        "click",
+        (event) => {
+
+            event.stopPropagation();
+
+            position += cardWidth;
+
+            updateCarousel();
+
+        }
+    );
+
+
+    previous.addEventListener(
+        "click",
+        (event) => {
+
+            event.stopPropagation();
+
+            position -= cardWidth;
+
+            updateCarousel();
+
+        }
+    );
+
+
+    window.addEventListener(
+        "resize",
+        updateCarousel
+    );
+
+
+    updateCarousel();
+
 }
