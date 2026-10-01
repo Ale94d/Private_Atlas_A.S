@@ -30,9 +30,6 @@ let selectedCountryCode = null;
 let selectedCountryElement = null;
 
 
-// =========================================
-// CONTROLES DE LAS VENTANAS
-// =========================================
 
 if (addMemoryBtn) {
 
@@ -83,76 +80,183 @@ if (backHome) {
 }
 
 
+
 let isDragging = false;
+let hasMoved = false;
 
-let startX = 0;
-let startY = 0;
+let startPointerX = 0;
+let startPointerY = 0;
 
-let mapX = 0;
-let mapY = 0;
+let startMapX = 0;
+let startMapY = 0;
 
-let scale = 1;
 
 function updateMapTransform() {
 
     mapContainer.style.transform =
-        `translate(${mapX}px, ${mapY}px) scale(${scale})`;
+        `translate3d(${mapX}px, ${mapY}px, 0)
+         scale(${scale})`;
+
 }
 
 
-mapContainer.addEventListener("pointerdown", (event) => {
+mapContainer.addEventListener(
+    "pointerdown",
+    (event) => {
 
-    isDragging = true;
+        isDragging = true;
+        hasMoved = false;
 
-    startX = event.clientX - mapX;
-    startY = event.clientY - mapY;
+        startPointerX =
+            event.clientX;
 
-    mapContainer.setPointerCapture(event.pointerId);
-});
+        startPointerY =
+            event.clientY;
+
+        startMapX = mapX;
+        startMapY = mapY;
+
+        mapContainer.setPointerCapture(
+            event.pointerId
+        );
+
+    }
+);
 
 
-mapContainer.addEventListener("pointermove", (event) => {
+
+mapContainer.addEventListener(
+    "pointermove",
+    (event) => {
+
+        if (!isDragging) return;
+
+
+        const deltaX =
+            event.clientX -
+            startPointerX;
+
+        const deltaY =
+            event.clientY -
+            startPointerY;
+
+
+        if (
+            Math.abs(deltaX) > 4 ||
+            Math.abs(deltaY) > 4
+        ) {
+
+            hasMoved = true;
+
+        }
+
+
+        mapX =
+            startMapX + deltaX;
+
+        mapY =
+            startMapY + deltaY;
+
+
+        updateMapTransform();
+
+    }
+);
+
+
+function stopDragging(event) {
 
     if (!isDragging) return;
 
-    mapX = event.clientX - startX;
-    mapY = event.clientY - startY;
-
-    updateMapTransform();
-});
-
-
-mapContainer.addEventListener("pointerup", () => {
-
     isDragging = false;
-});
+
+    try {
+
+        mapContainer.releasePointerCapture(
+            event.pointerId
+        );
+
+    } catch (error) {}
+
+}
 
 
-mapContainer.addEventListener("pointercancel", () => {
+mapContainer.addEventListener(
+    "pointerup",
+    stopDragging
+);
 
-    isDragging = false;
-});
+mapContainer.addEventListener(
+    "pointercancel",
+    stopDragging
+);
 
 
-mapContainer.addEventListener("wheel", (event) => {
 
-    event.preventDefault();
+mapContainer.addEventListener(
+    "wheel",
+    (event) => {
 
-    const zoomSpeed = 0.1;
+        event.preventDefault();
 
-    if (event.deltaY < 0) {
-        scale += zoomSpeed;
-    } else {
-        scale -= zoomSpeed;
+
+        const zoomIntensity = 0.0015;
+
+
+        const oldScale = scale;
+
+
+        scale -=
+            event.deltaY *
+            zoomIntensity;
+
+
+        scale =
+            Math.max(
+                0.65,
+                Math.min(
+                    scale,
+                    4
+                )
+            );
+
+
+        const rect =
+            mapContainer.getBoundingClientRect();
+
+
+        const mouseX =
+            event.clientX -
+            rect.left;
+
+        const mouseY =
+            event.clientY -
+            rect.top;
+
+
+        const scaleChange =
+            scale / oldScale;
+
+
+        mapX =
+            mouseX -
+            (mouseX - mapX) *
+            scaleChange;
+
+
+        mapY =
+            mouseY -
+            (mouseY - mapY) *
+            scaleChange;
+
+
+        updateMapTransform();
+
+    },
+    {
+        passive: false
     }
-
-    scale = Math.max(0.6, Math.min(scale, 4));
-
-    updateMapTransform();
-
-}, { passive: false });
-
-
+);
 
 mapContainer.addEventListener("dblclick", () => {
 
@@ -164,63 +268,83 @@ mapContainer.addEventListener("dblclick", () => {
 });
 
 
-
 worldMap.addEventListener("load", () => {
 
     const svgDocument =
         worldMap.contentDocument;
 
     if (!svgDocument) {
-        console.error("No se pudo acceder al mapa SVG.");
+
+        console.error(
+            "No se pudo acceder al mapa SVG."
+        );
+
         return;
     }
 
     const countries =
-        svgDocument.querySelectorAll("[id]");
+        svgDocument.querySelectorAll(
+            "path[id][name]"
+        );
+
 
     countries.forEach((country) => {
 
         country.style.cursor = "pointer";
 
-        country.addEventListener("click", (event) => {
+        country.style.transition =
+            "filter 0.2s ease";
 
-            event.stopPropagation();
 
-            selectCountry(country);
-        });
+        country.addEventListener(
+            "mouseenter",
+            () => {
+
+                country.style.filter =
+                    "brightness(1.15)";
+
+            }
+        );
+
+
+        country.addEventListener(
+            "mouseleave",
+            () => {
+
+                if (
+                    country !==
+                    selectedCountryElement
+                ) {
+
+                    country.style.filter =
+                        "";
+
+                }
+
+            }
+        );
+
+
+        country.addEventListener(
+            "click",
+            (event) => {
+
+                event.stopPropagation();
+
+                selectCountry(country);
+
+            }
+        );
 
     });
 
+
     console.log(
-        `Países encontrados: ${countries.length}`
+        `Países habilitados: ${countries.length}`
     );
+
 });
 
-
-
-function selectCountry(country) {
-
-    selectedCountryCode = country.id;
-    selectedCountryElement = country;
-
-    const name =
-        getCountryName(country.id);
-
-    console.log(
-        "País seleccionado:",
-        country.id,
-        name
-    );
-
-    openCountryMemory(
-        country.id,
-        name
-    );
-}
-
-// =========================================
-// CARGAR RECUERDOS DEL PAÍS
-// =========================================
 
 function loadCountryMemories(countryCode) {
 
@@ -302,7 +426,190 @@ const countryNames = {
 
 function getCountryName(code) {
 
+    if (
+        selectedCountryElement &&
+        selectedCountryElement.getAttribute("name")
+    ) {
+
+        return translateCountryName(
+            selectedCountryElement.getAttribute("name")
+        );
+
+    }
+
+
     return countryNames[code] || code;
+
+}
+
+
+function translateCountryName(name) {
+
+    const translations = {
+
+        Afghanistan: "Afganistán",
+        Albania: "Albania",
+        Algeria: "Argelia",
+        Andorra: "Andorra",
+        Angola: "Angola",
+        Argentina: "Argentina",
+        Armenia: "Armenia",
+        Australia: "Australia",
+        Austria: "Austria",
+        Azerbaijan: "Azerbaiyán",
+        Bahamas: "Bahamas",
+        Bahrain: "Baréin",
+        Bangladesh: "Bangladés",
+        Barbados: "Barbados",
+        Belarus: "Bielorrusia",
+        Belgium: "Bélgica",
+        Belize: "Belice",
+        Benin: "Benín",
+        Bhutan: "Bután",
+        Bolivia: "Bolivia",
+        Bosnia: "Bosnia y Herzegovina",
+        Botswana: "Botsuana",
+        Brazil: "Brasil",
+        Brunei: "Brunéi",
+        Bulgaria: "Bulgaria",
+        Burkina: "Burkina Faso",
+        Burundi: "Burundi",
+        Cambodia: "Camboya",
+        Cameroon: "Camerún",
+        Canada: "Canadá",
+        Chad: "Chad",
+        Chile: "Chile",
+        China: "China",
+        Colombia: "Colombia",
+        Congo: "Congo",
+        Croatia: "Croacia",
+        Cuba: "Cuba",
+        Cyprus: "Chipre",
+        Czechia: "Chequia",
+        Denmark: "Dinamarca",
+        Djibouti: "Yibuti",
+        Dominica: "Dominica",
+        Dominican: "República Dominicana",
+        Ecuador: "Ecuador",
+        Egypt: "Egipto",
+        Eritrea: "Eritrea",
+        Estonia: "Estonia",
+        Ethiopia: "Etiopía",
+        Fiji: "Fiyi",
+        Finland: "Finlandia",
+        France: "Francia",
+        Gabon: "Gabón",
+        Gambia: "Gambia",
+        Georgia: "Georgia",
+        Germany: "Alemania",
+        Ghana: "Ghana",
+        Greece: "Grecia",
+        Guatemala: "Guatemala",
+        Guinea: "Guinea",
+        Guyana: "Guyana",
+        Haiti: "Haití",
+        Honduras: "Honduras",
+        Hungary: "Hungría",
+        Iceland: "Islandia",
+        India: "India",
+        Indonesia: "Indonesia",
+        Iran: "Irán",
+        Iraq: "Irak",
+        Ireland: "Irlanda",
+        Israel: "Israel",
+        Italy: "Italia",
+        Jamaica: "Jamaica",
+        Japan: "Japón",
+        Jordan: "Jordania",
+        Kazakhstan: "Kazajistán",
+        Kenya: "Kenia",
+        Kuwait: "Kuwait",
+        Kyrgyzstan: "Kirguistán",
+        Laos: "Laos",
+        Latvia: "Letonia",
+        Lebanon: "Líbano",
+        Liberia: "Liberia",
+        Libya: "Libia",
+        Lithuania: "Lituania",
+        Luxembourg: "Luxemburgo",
+        Madagascar: "Madagascar",
+        Malawi: "Malaui",
+        Malaysia: "Malasia",
+        Maldives: "Maldivas",
+        Mali: "Malí",
+        Malta: "Malta",
+        Mauritania: "Mauritania",
+        Mauritius: "Mauricio",
+        Mexico: "México",
+        Moldova: "Moldavia",
+        Monaco: "Mónaco",
+        Mongolia: "Mongolia",
+        Montenegro: "Montenegro",
+        Morocco: "Marruecos",
+        Mozambique: "Mozambique",
+        Namibia: "Namibia",
+        Nepal: "Nepal",
+        Netherlands: "Países Bajos",
+        NewZealand: "Nueva Zelanda",
+        Nicaragua: "Nicaragua",
+        Niger: "Níger",
+        Nigeria: "Nigeria",
+        Norway: "Noruega",
+        Oman: "Omán",
+        Pakistan: "Pakistán",
+        Panama: "Panamá",
+        Paraguay: "Paraguay",
+        Peru: "Perú",
+        Philippines: "Filipinas",
+        Poland: "Polonia",
+        Portugal: "Portugal",
+        Qatar: "Catar",
+        Romania: "Rumania",
+        Russia: "Rusia",
+        Rwanda: "Ruanda",
+        SaudiArabia: "Arabia Saudita",
+        Senegal: "Senegal",
+        Serbia: "Serbia",
+        Singapore: "Singapur",
+        Slovakia: "Eslovaquia",
+        Slovenia: "Eslovenia",
+        Somalia: "Somalia",
+        SouthAfrica: "Sudáfrica",
+        SouthKorea: "Corea del Sur",
+        Spain: "España",
+        Sudan: "Sudán",
+        Suriname: "Surinam",
+        Sweden: "Suecia",
+        Switzerland: "Suiza",
+        Syria: "Siria",
+        Taiwan: "Taiwán",
+        Tajikistan: "Tayikistán",
+        Tanzania: "Tanzania",
+        Thailand: "Tailandia",
+        Togo: "Togo",
+        Tonga: "Tonga",
+        Tunisia: "Túnez",
+        Turkey: "Turquía",
+        Turkmenistan: "Turkmenistán",
+        Uganda: "Uganda",
+        Ukraine: "Ucrania",
+        UnitedArabEmirates:"Emiratos Árabes Unidos",
+        UnitedKingdom:"Reino Unido",
+        UnitedStates:"Estados Unidos",
+        Uruguay: "Uruguay",
+        Uzbekistan: "Uzbekistán",
+        Vanuatu: "Vanuatu",
+        Venezuela: "Venezuela",
+        Vietnam: "Vietnam",
+        Yemen: "Yemen",
+        Zambia: "Zambia",
+        Zimbabwe: "Zimbabue"
+
+    };
+
+
+    return translations[name] || name;
+
 }
 
 
@@ -331,11 +638,6 @@ function openCountryMemory(code, name) {
     );
 }
 
-
-
-// =========================================
-// GUARDAR / EDITAR RECUERDO
-// =========================================
 
 let editingMemoryId = null;
 
@@ -374,8 +676,6 @@ memoryForm.addEventListener("submit", (event) => {
     const file =
         imageInput.files[0];
 
-
-    // Máximo 35 palabras
     description =
         description
             .split(/\s+/)
@@ -508,9 +808,6 @@ memoryForm.addEventListener("submit", (event) => {
 
 });
 
-// =========================================
-// CREAR TARJETA POLAROID
-// =========================================
 
 function createMemoryCard(memory) {
 
@@ -658,10 +955,6 @@ function createMemoryCard(memory) {
     `;
 
 
-    // =========================================
-    // GIRAR POLAROID
-    // =========================================
-
     card.addEventListener(
         "click",
         (event) => {
@@ -682,10 +975,6 @@ function createMemoryCard(memory) {
     );
 
 
-    // =========================================
-    // FAVORITO
-    // =========================================
-
     card
         .querySelector(
             ".favorite-memory"
@@ -704,10 +993,6 @@ function createMemoryCard(memory) {
         );
 
 
-    // =========================================
-    // EDITAR
-    // =========================================
-
     card
         .querySelector(
             ".edit-memory"
@@ -724,11 +1009,6 @@ function createMemoryCard(memory) {
 
             }
         );
-
-
-    // =========================================
-    // ELIMINAR
-    // =========================================
 
     card
         .querySelector(
@@ -751,10 +1031,6 @@ function createMemoryCard(memory) {
     return card;
 }
 
-
-// =========================================
-// FAVORITO
-// =========================================
 
 function toggleFavorite(memoryId) {
 
@@ -789,10 +1065,6 @@ function toggleFavorite(memoryId) {
 
 }
 
-
-// =========================================
-// EDITAR RECUERDO
-// =========================================
 
 function editMemory(memoryId) {
 
@@ -845,9 +1117,6 @@ function editMemory(memoryId) {
 
 }
 
-// =========================================
-// ELIMINAR RECUERDO
-// =========================================
 
 function deleteMemory(memoryId) {
 
@@ -874,10 +1143,6 @@ function deleteMemory(memoryId) {
     );
 }
 
-// =========================================
-// SEGURIDAD DE TEXTO
-// =========================================
-
 function escapeHTML(text) {
 
     const div =
@@ -888,10 +1153,6 @@ function escapeHTML(text) {
 
     return div.innerHTML;
 }
-
-// =========================================
-// CARGAR RECUERDOS AGRUPADOS POR CIUDAD
-// =========================================
 
 function loadCountryMemories(countryCode) {
 
@@ -917,10 +1178,6 @@ function loadCountryMemories(countryCode) {
         );
 
 
-    // =========================================
-    // SIN RECUERDOS
-    // =========================================
-
     if (countryList.length === 0) {
 
         if (emptyMessage) {
@@ -937,10 +1194,6 @@ function loadCountryMemories(countryCode) {
             "none";
     }
 
-
-    // =========================================
-    // AGRUPAR POR CIUDAD
-    // =========================================
 
     const cities = {};
 
@@ -959,10 +1212,6 @@ function loadCountryMemories(countryCode) {
     });
 
 
-    // =========================================
-    // CREAR UN CARRUSEL POR CIUDAD
-    // =========================================
-
     Object.keys(cities).forEach(city => {
 
         createCityCarousel(
@@ -979,9 +1228,6 @@ function loadCountryMemories(countryCode) {
 
 }
 
-// =========================================
-// CREAR CARRUSEL DE UNA CIUDAD
-// =========================================
 
 function createCityCarousel(city, memories) {
 
@@ -1051,8 +1297,6 @@ function createCityCarousel(city, memories) {
     track.className =
         "memory-carousel-track";
 
-
-    // Crear Polaroids
     memories.forEach(memory => {
 
         track.appendChild(
@@ -1078,10 +1322,6 @@ function createCityCarousel(city, memories) {
 
     countryMemories.appendChild(section);
 
-
-    // =========================================
-    // CONTROL DEL CARRUSEL
-    // =========================================
 
     let position = 0;
 

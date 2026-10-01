@@ -515,10 +515,6 @@ object{
     }
 }
 
-/* =========================================
-   TARJETAS DE RECUERDOS
-========================================= */
-
 #country-memories {
     display: grid;
     grid-template-columns: repeat(
@@ -531,7 +527,6 @@ object{
 }
 
 
-/* TARJETA */
 
 .memory-card {
     width: 220px;
@@ -539,7 +534,6 @@ object{
     perspective: 1000px;
     cursor: pointer;
 }
-
 
 .memory-card-inner {
     position: relative;
@@ -555,7 +549,6 @@ object{
 }
 
 
-
 .memory-card-front,
 .memory-card-back {
     position: absolute;
@@ -563,8 +556,6 @@ object{
     backface-visibility: hidden;
     border-radius: 4px;
 }
-
-
 
 .memory-card-front {
     background: #f5eee3;
@@ -580,7 +571,6 @@ object{
     overflow: hidden;
     background: #ddd;
 }
-
 
 .memory-photo img {
     width: 100%;
@@ -1018,71 +1008,41 @@ object{
     font-size: 14px;
 }
 
-/* =========================================
-   MENSAJE DE PAÍS SELECCIONADO
-========================================= */
-
 #selected-country {
     display: none;
 }
 
-
-/* =========================================
-   VENTANA DEL PAÍS
-========================================= */
-
 #country-memory {
     position: fixed;
     inset: 0;
-
     display: none;
-
     align-items: center;
     justify-content: center;
-
     padding: 30px;
-
     background: rgba(35, 20, 10, 0.60);
-
     backdrop-filter: blur(5px);
-
     z-index: 500;
 }
 
-
-/* CUANDO SE ABRE */
 
 #country-memory.active {
     display: flex !important;
 }
 
-/* =========================================
-   PAPEL DEL PAÍS
-========================================= */
 
 #country-memory .memory-paper {
     position: relative;
-
     width: min(1050px, 90vw);
     max-height: 85vh;
-
     overflow-y: auto;
-
     padding: 40px;
-
     background: #f5e6c9;
-
     border: 1px solid rgba(100, 60, 30, 0.25);
-
     border-radius: 8px;
-
     box-shadow:
         0 25px 70px rgba(35, 20, 10, 0.45);
 }
 
-/* =========================================
-   ATLAS — CARRUSELES POR CIUDAD
-========================================= */
 
 .city-memory-section {
     width: 100%;
@@ -1090,136 +1050,83 @@ object{
 }
 
 
-/* =========================================
-   NOMBRE DE LA CIUDAD
-========================================= */
-
 .city-memory-title {
 
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     gap: 12px;
-
     margin-bottom: 18px;
-
     font-family:
         Georgia,
         "Times New Roman",
         serif;
-
     font-size: 21px;
-
     font-weight: bold;
-
     color: #5a3821;
-
     letter-spacing: 0.5px;
-
     text-align: center;
 }
 
 .city-memory-title span {
 
     color: #9a6b43;
-
     font-size: 12px;
 
 }
 
 
-/* =========================================
-   CARRUSEL
-========================================= */
-
 .memory-carousel {
-
     position: relative;
-
     display: flex;
-
     align-items: center;
-
     width: 100%;
 
 }
 
 
-/* =========================================
-   VENTANA DEL CARRUSEL
-========================================= */
-
 .memory-carousel-viewport {
 
     width: 100%;
-
     overflow: hidden;
-
     padding: 12px 5px 25px;
 
 }
 
 
-/* =========================================
-   PISTA
-========================================= */
-
 .memory-carousel-track {
 
     display: flex;
-
     align-items: flex-start;
-
     gap: 32px;
-
     width: max-content;
-
     transition:
         transform 0.45s ease;
 
 }
 
 
-/* =========================================
-   FLECHAS
-========================================= */
-
 .carousel-arrow {
 
     position: absolute;
-
     top: 50%;
-
     transform: translateY(-50%);
-
     z-index: 20;
-
     width: 38px;
     height: 38px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     border: 1px solid
         rgba(91, 55, 28, 0.30);
-
     border-radius: 50%;
-
     background:
         rgba(221, 190, 141, 0.92);
-
     color: #5c391f;
-
     cursor: pointer;
-
     box-shadow:
         0 4px 10px
         rgba(60, 35, 15, 0.18);
-
     transition:
         transform 0.2s ease,
         background 0.2s ease;
@@ -1231,7 +1138,6 @@ object{
     transform:
         translateY(-50%)
         scale(1.08);
-
     background:
         #d0a973;
 
@@ -1257,19 +1163,13 @@ object{
 }
 
 
-/* =========================================
-   POLAROID
-========================================= */
 
 .memory-card {
 
     flex: 0 0 210px;
-
     width: 210px;
     height: 275px;
-
     perspective: 1000px;
-
     cursor: pointer;
 
 }
@@ -1279,20 +1179,15 @@ object{
 
     background:
         #f7f0e2;
-
     padding: 12px;
-
     border:
         1px solid
         rgba(91, 55, 28, 0.18);
-
     box-shadow:
         0 9px 18px
         rgba(54, 31, 15, 0.22);
-
     transform:
         rotate(-1deg);
-
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease;
@@ -1322,67 +1217,42 @@ object{
 
 }
 
-
-/* =========================================
-   FOTO
-========================================= */
-
 .memory-photo {
 
     width: 100%;
-
     height: 215px;
-
     overflow: hidden;
-
     background:
         #d7c09a;
 
 }
 
-
 .memory-photo img {
 
     width: 100%;
     height: 100%;
-
     object-fit: cover;
 
 }
 
 
-/* =========================================
-   TEXTO POLAROID
-========================================= */
-
 .polaroid-caption {
 
     height: 45px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     padding: 0 5px;
-
     font-family:
         Georgia,
         "Times New Roman",
         serif;
-
     font-size: 14px;
-
     color: #503421;
-
     text-align: center;
 
 }
 
-
-/* =========================================
-   REVERSO
-========================================= */
 
 .memory-card-back {
 
@@ -1392,158 +1262,105 @@ object{
             #ead2a5,
             #e3c492
         );
-
     border:
         1px solid
         rgba(91, 55, 28, 0.22);
-
     box-shadow:
         0 9px 18px
         rgba(54, 31, 15, 0.22);
-
     padding: 20px;
-
     transform:
         rotateY(180deg);
-
     display: flex;
-
     flex-direction: column;
 
 }
 
-
 .memory-back-city {
 
     display: inline-block;
-
     margin-bottom: 10px;
-
     font-family:
         Georgia,
         "Times New Roman",
         serif;
-
     font-size: 11px;
-
     color: #8b5b36;
-
     text-transform: uppercase;
-
     letter-spacing: 1.5px;
 
 }
 
-
 .memory-card-back h3 {
 
     margin: 0 0 12px;
-
     font-family:
         Georgia,
         "Times New Roman",
         serif;
-
     font-size: 19px;
-
     color: #4a2d1a;
-
 }
-
 
 .memory-description {
 
     flex: 1;
-
     font-family:
         Georgia,
         "Times New Roman",
         serif;
-
     font-size: 13px;
-
     line-height: 1.55;
-
     color: #684a31;
 
 }
 
-
 .memory-date {
 
     margin-top: 12px;
-
     font-size: 11px;
-
     color: #806044;
-
 }
-
-
-/* =========================================
-   ACCIONES
-========================================= */
 
 .memory-actions {
-
     display: flex;
-
     justify-content: flex-end;
-
     gap: 7px;
-
     margin-top: 12px;
-
 }
 
-
 .memory-actions button {
-
     width: 32px;
     height: 32px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     border: 1px solid
         rgba(91, 55, 28, 0.18);
-
     border-radius: 50%;
-
     background:
         rgba(214, 182, 132, 0.8);
-
     cursor: pointer;
 
 }
 
-
 .memory-actions button:hover {
-
     transform: scale(1.08);
 
 }
 
-
 .memory-actions svg {
-
     width: 15px;
     height: 15px;
 
 }
 
-
 .favorite-memory {
-
     color: #a97825;
 
 }
 
-
 .edit-memory {
-
     color: #65472f;
 
 }
@@ -1560,14 +1377,9 @@ object{
 .favorite-memory {
 
     background: #c89c42;
-
     color: #fff4d6;
 
 }
-
-/* =========================================
-   ATLAS — CARRUSEL DEFINITIVO
-========================================= */
 
 #country-memories {
     display: block !important;
@@ -1576,50 +1388,31 @@ object{
 }
 
 
-/* =========================================
-   SECCIÓN DE CADA CIUDAD
-========================================= */
-
 .city-memory-section {
     width: 100%;
     margin-bottom: 45px;
 }
 
 
-/* =========================================
-   NOMBRE DE CIUDAD
-========================================= */
-
 .city-memory-title {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-
     margin: 0 0 20px;
-
     font-family:
         Georgia,
         "Times New Roman",
         serif;
-
     font-size: 22px;
     color: #5a3821;
-
     text-align: center;
 }
 
-
-/* =========================================
-   CARRUSEL
-========================================= */
-
 .memory-carousel {
     position: relative;
-
     display: flex;
     align-items: center;
-
     width: 100%;
 }
 
@@ -1627,48 +1420,34 @@ object{
 .memory-carousel-viewport {
     width: 100%;
     overflow: hidden;
-
     padding: 15px 45px 25px;
 }
 
 
 .memory-carousel-track {
     display: flex;
-
     gap: 30px;
-
     width: max-content;
-
     transition:
         transform 0.45s ease;
 }
 
 
-/* =========================================
-   POLAROIDS
-========================================= */
-
 .memory-card {
     flex: 0 0 210px;
-
     width: 210px;
     height: 275px;
-
     perspective: 1000px;
-
     cursor: pointer;
 }
 
 
 .memory-card-inner {
     position: relative;
-
     width: 100%;
     height: 100%;
-
     transition:
         transform 0.7s ease;
-
     transform-style: preserve-3d;
 }
 
@@ -1681,33 +1460,21 @@ object{
 .memory-card-front,
 .memory-card-back {
     position: absolute;
-
     inset: 0;
-
     width: 100%;
     height: 100%;
-
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
 
-
-/* =========================================
-   FRENTE POLAROID
-========================================= */
-
 .memory-card-front {
     padding: 12px;
-
     background: #f7f0e2;
-
     border: 1px solid
         rgba(91, 55, 28, 0.18);
-
     box-shadow:
         0 9px 18px
         rgba(54, 31, 15, 0.22);
-
     transform: rotate(-1deg);
 }
 
@@ -1721,9 +1488,7 @@ object{
 .memory-photo {
     width: 100%;
     height: 215px;
-
     overflow: hidden;
-
     background: #d7c09a;
 }
 
@@ -1731,79 +1496,54 @@ object{
 .memory-photo img {
     width: 100%;
     height: 100%;
-
     object-fit: cover;
 }
 
 
 .polaroid-caption {
     height: 45px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 0 5px;
-
     font-family:
         Georgia,
         "Times New Roman",
         serif;
-
     font-size: 14px;
-
     color: #503421;
-
     text-align: center;
 }
 
 
-/* =========================================
-   FLECHAS
-========================================= */
-
 .carousel-arrow {
     position: absolute;
-
     top: 50%;
-
     transform: translateY(-50%);
-
     z-index: 20;
-
     width: 38px;
     height: 38px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: 1px solid
         rgba(91, 55, 28, 0.30);
-
     border-radius: 50%;
-
     background: #dfc294;
-
     color: #5c391f;
-
     cursor: pointer;
-
     box-shadow:
         0 4px 10px
         rgba(60, 35, 15, 0.18);
 }
 
-
 .carousel-prev {
     left: 3px;
 }
 
-
 .carousel-next {
     right: 3px;
 }
-
 
 .carousel-arrow:hover {
     background: #cda56e;
@@ -1813,63 +1553,430 @@ object{
 }
 
 
-/* =========================================
-   FORMULARIO — DEBE PODER RECIBIR CLICS
-========================================= */
-
 #memory-form-container {
     position: fixed;
-
     inset: 0;
-
     display: none;
-
     align-items: center;
     justify-content: center;
-
     padding: 30px;
-
     background:
         rgba(35, 20, 10, 0.65);
-
     backdrop-filter: blur(5px);
-
     z-index: 1000;
-
     pointer-events: none;
 }
 
 
 #memory-form-container.active {
     display: flex !important;
-
     pointer-events: auto;
 }
 
-
 .memory-form {
     position: relative;
-
     z-index: 1001;
-
     width: min(520px, 92vw);
-
     max-height: 90vh;
-
     overflow-y: auto;
-
     padding: 35px;
-
     background:
         #f3dfbb;
-
     border:
         1px solid
         rgba(91, 55, 28, 0.28);
-
     border-radius: 5px;
-
     box-shadow:
         0 25px 60px
         rgba(35, 20, 10, 0.45);
+}
+
+
+@media (min-width: 1200px) {
+
+    #country-memory .memory-paper {
+        width: min(
+            1400px,
+            94vw
+        );
+        max-height: 90vh;
+        padding: 55px 65px;
+
+    }
+
+    .memory-card {
+        flex-basis: 255px;
+        width: 255px;
+        height: 330px;
+
+    }
+
+    .memory-photo {
+        height: 255px;
+
+    }
+
+    .polaroid-caption {
+
+        height: 55px;
+        font-size: 16px;
+
+    }
+
+    .memory-carousel-track {
+
+        gap: 38px;
+
+    }
+}
+
+#country-memory {
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(74, 45, 24, 0.18),
+            rgba(25, 15, 8, 0.78)
+        );
+    backdrop-filter:
+        blur(4px);
+
+}
+
+#country-memory .memory-paper {
+
+    position: relative;
+    background:
+        radial-gradient(
+            ellipse at 20% 15%,
+            rgba(255,255,255,0.28),
+            transparent 35%
+        ),
+        radial-gradient(
+            ellipse at 85% 85%,
+            rgba(104,65,32,0.15),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #f4e2bd,
+            #e8cc98 50%,
+            #f1dbb2
+        );
+    border:
+        1px solid
+        rgba(91,55,28,0.40);
+    border-radius: 3px;
+    box-shadow:
+        0 35px 90px
+        rgba(30,16,7,0.60),
+        inset 0 0 45px
+        rgba(112,72,35,0.15),
+        inset 0 0 10px
+        rgba(80,45,20,0.18);
+    overflow-y: auto;
+
+}
+
+#country-memory .memory-paper::before {
+
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border:
+        1px solid
+        rgba(104,65,32,0.25);
+    pointer-events: none;
+
+}
+
+
+#country-memory .memory-paper::after {
+
+    content: "✦";
+    position: absolute;
+    right: 28px;
+    top: 18px;
+    color:
+        rgba(103,63,31,0.45);
+    font-size: 18px;
+    pointer-events: none;
+
+}
+
+.memory-paper-header {
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding:
+        8px
+        10px
+        25px;
+    margin-bottom: 30px;
+    border-bottom:
+        1px solid
+        rgba(91,55,28,0.30);
+
+}
+
+
+.memory-paper-header::after {
+
+    content:
+        "────────  ✦  ────────";
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    transform:
+        translateX(-50%);
+    padding: 0 12px;
+    background:
+        #e9cf9f;
+    color:
+        #8b5e3c;
+    font-size: 10px;
+    letter-spacing: 2px;
+
+}
+
+
+.memory-location-icon {
+
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background:
+        radial-gradient(
+            circle,
+            #95633c,
+            #69401f
+        );
+    color:
+        #f5e2b9;
+    border:
+        2px solid
+        rgba(82,48,23,0.25);
+    box-shadow:
+        0 5px 12px
+        rgba(57,32,14,0.25);
+}
+
+
+.memory-paper-header h2 {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 34px;
+    color:
+        #4c2e1b;
+    letter-spacing:
+        0.5px;
+
+}
+
+.memory-paper-header p {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 14px;
+    color:
+        #765238;
+    font-style: italic;
+
+}
+
+#close-memory {
+
+    position: absolute;
+    top: 25px;
+    right: 28px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:
+        1px solid
+        rgba(91,55,28,0.28);
+    border-radius: 50%;
+    background:
+        rgba(218,185,132,0.75);
+    color:
+        #59371f;
+    cursor: pointer;
+    z-index: 30;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+
+}
+
+#close-memory:hover {
+
+    transform:
+        rotate(8deg)
+        scale(1.08);
+    background:
+        #cda875;
+
+}
+
+#close-memory svg {
+
+    width: 18px;
+    height: 18px;
+
+}
+
+.memory-form {
+
+    background:
+        radial-gradient(
+            circle at 80% 10%,
+            rgba(255,255,255,0.25),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #f3dfb9,
+            #e5c995
+        );
+    border:
+        1px solid
+        rgba(91,55,28,0.30);
+    border-radius: 4px;
+    box-shadow:
+        0 30px 80px
+        rgba(30,16,7,0.55),
+        inset 0 0 30px
+        rgba(105,65,31,0.12);
+
+}
+
+
+.memory-form h2 {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 27px;
+    color:
+        #4a2d1a;
+
+}
+
+
+.memory-form input,
+.memory-form textarea {
+    background:
+        rgba(255,248,232,0.72);
+    border:
+        1px solid
+        rgba(91,55,28,0.25);
+    border-radius: 4px;
+    color:
+        #4a3020;
+
+}
+
+
+.memory-form input:focus,
+.memory-form textarea:focus {
+
+    border-color:
+        #96663f;
+    box-shadow:
+        0 0 0 2px
+        rgba(150,102,63,0.12);
+
+}
+
+
+#save-memory-btn {
+
+    background:
+        linear-gradient(
+            135deg,
+            #754827,
+            #5d351d
+        );
+    border-radius: 3px;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+}
+
+
+#close-memory-form {
+
+    background:
+        #d9b983;
+    color:
+        #5b3820;
+
+}
+
+.scroll-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border:
+        1px solid
+        rgba(91,55,28,0.30);
+    border-radius: 50%;
+    background:
+        radial-gradient(
+            circle,
+            #9a6a43,
+            #704526
+        );
+    color:
+        #f3dfb9;
+    box-shadow:
+        0 5px 12px
+        rgba(45,25,10,0.25);
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+.scroll-btn:hover {
+
+    transform:
+        translateY(-2px)
+        scale(1.05);
+    background:
+        radial-gradient(
+            circle,
+            #ad7950,
+            #7b4d2b
+        );
+    box-shadow:
+
+        0 8px 17px
+        rgba(45,25,10,0.30);
+
+}
+
+
+.scroll-btn i {
+
+    font-size: 19px;
+
 }
