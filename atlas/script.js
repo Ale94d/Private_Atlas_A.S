@@ -162,6 +162,8 @@ function selectCountry(country) {
     const name =
         getCountryName(country.id);
 
+    console.log("País seleccionado:", country.id, name);
+
     countryName.textContent = name;
 
     countryMessage.textContent =

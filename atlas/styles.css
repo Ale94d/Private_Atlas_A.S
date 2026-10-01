@@ -301,24 +301,39 @@ object{
 
 }
 
-#country-memory{
 
-    position:fixed;
-    inset:0;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    background:rgba(0,0,0,.45);
-    z-index:500;
-
+#country-memory {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background: rgba(35, 20, 10, 0.55);
+    backdrop-filter: blur(5px);
+    z-index: 500;
 }
 
-.memory-paper{
 
-    width:600px;
-    background:#F7E7C4;
-    padding:40px;
+#country-memory.active {
+    display: flex;
+}
 
+#country-memory {
+    isolation: isolate;
+}
+
+.memory-paper {
+    position: relative;
+    z-index: 501;
+    width: min(1100px, 92vw);
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 40px;
+    background: #f5e6c9;
+    border-radius: 8px;
+    box-shadow:
+        0 25px 70px rgba(35, 20, 10, 0.40);
 }
 
 .map-background{
