@@ -26,6 +26,9 @@ const closeMemory =
 const closeMemoryForm =
     document.getElementById("close-memory-form");
 
+let selectedCountryCode = null;
+let selectedCountryElement = null;
+
 
 // =========================================
 // CONTROLES DE LAS VENTANAS
@@ -33,63 +36,43 @@ const closeMemoryForm =
 
 if (addMemoryBtn) {
 
-    addMemoryBtn.addEventListener(
-        "click",
-        () => {
+    addMemoryBtn.addEventListener("click", () => {
 
-            editingMemoryId = null;
+        editingMemoryId = null;
 
-            memoryForm.reset();
+        memoryForm.reset();
 
-            memoryFormContainer
-                .classList
-                .add("active");
+        memoryFormContainer.classList.add("active");
 
-            if (
-                typeof lucide !== "undefined"
-            ) {
-                lucide.createIcons();
-            }
-
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
         }
-    );
+
+    });
 
 }
 
 
 if (closeMemory) {
 
-    closeMemory.addEventListener(
-        "click",
-        () => {
+    closeMemory.addEventListener("click", () => {
 
-            countryMemory
-                .classList
-                .remove("active");
+        countryMemory.classList.remove("active");
 
-        }
-    );
+    });
 
 }
 
 
 if (closeMemoryForm) {
 
-    closeMemoryForm.addEventListener(
-        "click",
-        () => {
+    closeMemoryForm.addEventListener("click", () => {
 
-            memoryFormContainer
-                .classList
-                .remove("active");
+        memoryFormContainer.classList.remove("active");
 
-        }
-    );
+    });
 
 }
-let selectedCountryCode = null;
-let selectedCountryElement = null;
-
 
 const backHome = document.querySelector(".back-home");
 
@@ -766,6 +749,100 @@ function createMemoryCard(memory) {
 
 
     return card;
+}
+
+
+// =========================================
+// FAVORITO
+// =========================================
+
+function toggleFavorite(memoryId) {
+
+    const memories =
+        JSON.parse(
+            localStorage.getItem("privateAtlasAtlas")
+        ) || [];
+
+
+    const memory =
+        memories.find(
+            item => item.id === memoryId
+        );
+
+
+    if (!memory) return;
+
+
+    memory.favorite =
+        !memory.favorite;
+
+
+    localStorage.setItem(
+        "privateAtlasAtlas",
+        JSON.stringify(memories)
+    );
+
+
+    loadCountryMemories(
+        selectedCountryCode
+    );
+
+}
+
+
+// =========================================
+// EDITAR RECUERDO
+// =========================================
+
+function editMemory(memoryId) {
+
+    const memories =
+        JSON.parse(
+            localStorage.getItem("privateAtlasAtlas")
+        ) || [];
+
+
+    const memory =
+        memories.find(
+            item => item.id === memoryId
+        );
+
+
+    if (!memory) return;
+
+
+    editingMemoryId =
+        memoryId;
+
+
+    document
+        .getElementById("memory-city")
+        .value =
+            memory.city || "";
+
+
+    document
+        .getElementById("memory-title")
+        .value =
+            memory.title || "";
+
+
+    document
+        .getElementById("memory-description")
+        .value =
+            memory.description || "";
+
+
+    document
+        .getElementById("memory-date")
+        .value =
+            memory.date || "";
+
+
+    memoryFormContainer
+        .classList
+        .add("active");
+
 }
 
 // =========================================

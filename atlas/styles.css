@@ -1564,3 +1564,312 @@ object{
     color: #fff4d6;
 
 }
+
+/* =========================================
+   ATLAS — CARRUSEL DEFINITIVO
+========================================= */
+
+#country-memories {
+    display: block !important;
+    width: 100%;
+    margin-top: 25px;
+}
+
+
+/* =========================================
+   SECCIÓN DE CADA CIUDAD
+========================================= */
+
+.city-memory-section {
+    width: 100%;
+    margin-bottom: 45px;
+}
+
+
+/* =========================================
+   NOMBRE DE CIUDAD
+========================================= */
+
+.city-memory-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    margin: 0 0 20px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 22px;
+    color: #5a3821;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   CARRUSEL
+========================================= */
+
+.memory-carousel {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+}
+
+
+.memory-carousel-viewport {
+    width: 100%;
+    overflow: hidden;
+
+    padding: 15px 45px 25px;
+}
+
+
+.memory-carousel-track {
+    display: flex;
+
+    gap: 30px;
+
+    width: max-content;
+
+    transition:
+        transform 0.45s ease;
+}
+
+
+/* =========================================
+   POLAROIDS
+========================================= */
+
+.memory-card {
+    flex: 0 0 210px;
+
+    width: 210px;
+    height: 275px;
+
+    perspective: 1000px;
+
+    cursor: pointer;
+}
+
+
+.memory-card-inner {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    transition:
+        transform 0.7s ease;
+
+    transform-style: preserve-3d;
+}
+
+
+.memory-card.flipped .memory-card-inner {
+    transform: rotateY(180deg);
+}
+
+
+.memory-card-front,
+.memory-card-back {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+
+/* =========================================
+   FRENTE POLAROID
+========================================= */
+
+.memory-card-front {
+    padding: 12px;
+
+    background: #f7f0e2;
+
+    border: 1px solid
+        rgba(91, 55, 28, 0.18);
+
+    box-shadow:
+        0 9px 18px
+        rgba(54, 31, 15, 0.22);
+
+    transform: rotate(-1deg);
+}
+
+
+.memory-card:nth-child(even)
+.memory-card-front {
+    transform: rotate(1deg);
+}
+
+
+.memory-photo {
+    width: 100%;
+    height: 215px;
+
+    overflow: hidden;
+
+    background: #d7c09a;
+}
+
+
+.memory-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.polaroid-caption {
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 5px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 14px;
+
+    color: #503421;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   FLECHAS
+========================================= */
+
+.carousel-arrow {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    z-index: 20;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid
+        rgba(91, 55, 28, 0.30);
+
+    border-radius: 50%;
+
+    background: #dfc294;
+
+    color: #5c391f;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 10px
+        rgba(60, 35, 15, 0.18);
+}
+
+
+.carousel-prev {
+    left: 3px;
+}
+
+
+.carousel-next {
+    right: 3px;
+}
+
+
+.carousel-arrow:hover {
+    background: #cda56e;
+    transform:
+        translateY(-50%)
+        scale(1.08);
+}
+
+
+/* =========================================
+   FORMULARIO — DEBE PODER RECIBIR CLICS
+========================================= */
+
+#memory-form-container {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background:
+        rgba(35, 20, 10, 0.65);
+
+    backdrop-filter: blur(5px);
+
+    z-index: 1000;
+
+    pointer-events: none;
+}
+
+
+#memory-form-container.active {
+    display: flex !important;
+
+    pointer-events: auto;
+}
+
+
+.memory-form {
+    position: relative;
+
+    z-index: 1001;
+
+    width: min(520px, 92vw);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 35px;
+
+    background:
+        #f3dfbb;
+
+    border:
+        1px solid
+        rgba(91, 55, 28, 0.28);
+
+    border-radius: 5px;
+
+    box-shadow:
+        0 25px 60px
+        rgba(35, 20, 10, 0.45);
+}
