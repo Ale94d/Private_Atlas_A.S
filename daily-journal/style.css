@@ -1235,3 +1235,222 @@ body {
     }
 
 }
+
+/* =========================================
+   LIBRERO ANTIGUO - PRIVATE ATLAS
+========================================= */
+
+.apothecary-bookshelf {
+    position: absolute;
+    z-index: 6;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-45%);
+    width: 190px;
+    padding: 12px 10px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #26180f,
+            #624329 12%,
+            #42291a 85%,
+            #21140d
+        );
+
+    border: 2px solid #8d6942;
+
+    box-shadow:
+        0 16px 32px rgba(20, 12, 6, 0.5),
+        inset 0 0 14px rgba(0, 0, 0, 0.35);
+
+    pointer-events: none;
+}
+
+.bookshelf-sign {
+    padding: 8px 2px;
+    text-align: center;
+
+    color: #d8bd8d;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+
+    border-bottom: 1px solid #98734a;
+}
+
+.bookshelf-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+
+    padding: 12px 1px 9px;
+    min-height: 100px;
+}
+
+.antique-book {
+    position: relative;
+    flex: 0 0 25px;
+    height: 76px;
+
+    border-left: 3px solid rgba(239, 216, 176, 0.22);
+    border-right: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 2px 3px 1px 1px;
+
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.antique-book::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    right: 3px;
+    top: 12px;
+    height: 2px;
+
+    background: rgba(222, 193, 144, 0.5);
+    box-shadow: 0 44px rgba(222, 193, 144, 0.3);
+}
+
+.book-forest { background: #3e5140; }
+.book-walnut { background: #67432b; height: 85px; }
+.book-parchment { background: #b7a17b; height: 66px; }
+.book-wine { background: #67382d; height: 80px; }
+.book-olive { background: #77734e; height: 72px; }
+
+.bookshelf-plank {
+    height: 10px;
+    margin: 0 -10px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #a77b4b,
+            #624027 45%,
+            #302014
+        );
+
+    border-top: 1px solid #c09a65;
+    border-bottom: 2px solid #24160d;
+
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.35);
+}
+
+.apothecary-items {
+    min-height: 112px;
+    align-items: flex-end;
+    gap: 7px;
+}
+
+.shelf-jar {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 29px;
+    height: 49px;
+
+    border: 1px solid rgba(225, 207, 170, 0.5);
+    border-radius: 4px 4px 6px 6px;
+
+    color: #e0cba1;
+    font-size: 12px;
+
+    box-shadow: inset 4px 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.jar-sage {
+    background: linear-gradient(90deg, #354638, #79836b, #354638);
+}
+
+.jar-amber {
+    height: 59px;
+    background: linear-gradient(90deg, #684126, #b2834e, #603a21);
+}
+
+.mortar-bowl {
+    width: 37px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #c7ad7e;
+    font-size: 27px;
+}
+
+.herb-bundle {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 43px;
+    line-height: 1;
+    color: #879073;
+    transform: rotate(-20deg);
+}
+
+.lower-books {
+    min-height: 92px;
+}
+
+.herb-box {
+    align-self: center;
+    padding: 12px 5px;
+
+    color: #d6bd8f;
+    background: #49301e;
+    border: 1px solid #947044;
+
+    font-size: 7px;
+    letter-spacing: 1px;
+}
+
+.bookshelf-drawers {
+    display: flex;
+    margin: 0 -10px;
+    min-height: 48px;
+
+    background: #392316;
+}
+
+.bookshelf-drawer {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #c6a576;
+    border: 1px solid #795332;
+}
+
+.bookshelf-drawer span {
+    font-size: 12px;
+}
+
+/* Ajuste para tablet */
+@media (max-width: 1100px) {
+    .apothecary-bookshelf {
+        left: 12px;
+        width: 155px;
+        transform: translateY(-42%) scale(0.9);
+        transform-origin: left center;
+    }
+
+    .bookshelf-row {
+        gap: 2px;
+    }
+
+    .antique-book {
+        flex-basis: 21px;
+    }
+}
+
+/* En móviles dejamos espacio al diario */
+@media (max-width: 700px) {
+    .apothecary-bookshelf {
+        display: none;
+    }
+}
