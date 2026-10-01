@@ -2753,6 +2753,23 @@ body {
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
 }
 
+.travel-card-companions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: #c9a98b;
+    font-size: 13px;
+}
+
+.travel-card-companions svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
 .travel-card-icon {
     display: flex;
     align-items: center;
@@ -2815,12 +2832,16 @@ body {
 }
 
 .travel-card-memory {
-    padding-top: 10px;
-    border-top: 1px solid rgba(243, 230, 208, 0.08);
-    color: rgba(243, 230, 208, 0.72);
-    font-size: 0.76rem;
-    line-height: 1.6;
-    white-space: pre-wrap;
+    margin-top: 14px;
+    padding: 12px;
+    min-height: 55px;
+    display: flex;
+    align-items: center;
+    color: #c8b6a5;
+    font-size: 13px;
+    line-height: 1.5;
+    background: rgba(255, 255, 255, 0.025);
+    border-radius: 8px;
 }
 
 .travel-card-favorite {
@@ -2838,6 +2859,10 @@ body {
 }
 
 .travel-card-buttons {
+    display: flex;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 14px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 7px;
