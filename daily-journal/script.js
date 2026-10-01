@@ -1,368 +1,198 @@
 /* =========================================
-   DAILY JOURNAL - PRIVATE ATLAS
+   NAVEGACIÓN ENTRE SECCIONES
 ========================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    /* =========================================
-       ELEMENTOS PRINCIPALES
-    ========================================= */
-
-    const journalText = document.getElementById("journalText");
-    const saveButton = document.querySelector(".save-button");
-    const moods = document.querySelectorAll(".mood");
-    const addTagButton = document.querySelector(".add-tag");
-    const tagsContainer = document.querySelector(".tags");
-    const memoryButton = document.querySelector(".memory-box button");
-    const searchInput = document.querySelector(".search-box input");
-    const archiveList = document.querySelector(".archive-list");
+const sectionButtons = document.querySelectorAll(".section-button");
+const journalSections = document.querySelectorAll(".journal-section");
 
 
-    /* =========================================
-       ESTADO ACTUAL
-    ========================================= */
+sectionButtons.forEach(button => {
 
-    let selectedMood = "";
+    button.addEventListener("click", () => {
 
-    let tags = [
-        "#hoy",
-        "#recuerdo"
-    ];
+        const sectionName = button.dataset.section;
 
 
-    /* =========================================
-       SELECCIONAR ESTADO DE ÁNIMO
-    ========================================= */
+        /* Cambiar botón activo */
 
-    moods.forEach((mood) => {
-
-        mood.addEventListener("click", () => {
-
-            moods.forEach((item) => {
-                item.classList.remove("selected");
-            });
-
-            mood.classList.add("selected");
-
-            selectedMood = mood.textContent.trim();
-
+        sectionButtons.forEach(item => {
+            item.classList.remove("active");
         });
+
+        button.classList.add("active");
+
+
+        /* Cambiar sección */
+
+        journalSections.forEach(section => {
+            section.classList.remove("active-section");
+        });
+
+
+        const selectedSection =
+            document.getElementById(sectionName);
+
+
+        if (selectedSection) {
+            selectedSection.classList.add("active-section");
+        }
 
     });
 
+});
 
-    /* =========================================
-       AÑADIR ETIQUETA
-    ========================================= */
 
-    addTagButton.addEventListener("click", () => {
+/* =========================================
+   SELECCIÓN DE EMOCIONES
+========================================= */
 
-        const newTag = prompt("Escribe una nueva etiqueta:");
+const emotionButtons =
+    document.querySelectorAll(".emotion");
 
-        if (!newTag) {
-            return;
+const selectedMood =
+    document.getElementById("selectedMood");
+
+
+emotionButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        /* Quitar selección anterior */
+
+        emotionButtons.forEach(item => {
+            item.classList.remove("selected");
+        });
+
+
+        /* Seleccionar emoción */
+
+        button.classList.add("selected");
+
+
+        /* Obtener nombre */
+
+        const mood =
+            button.dataset.mood;
+
+
+        /* Mostrar en el diario */
+
+        if (selectedMood) {
+            selectedMood.textContent = mood;
         }
-
-        let formattedTag = newTag.trim();
-
-        if (!formattedTag.startsWith("#")) {
-            formattedTag = "#" + formattedTag;
-        }
-
-        tags.push(formattedTag);
-
-        renderTags();
 
     });
 
-
-    /* =========================================
-       MOSTRAR ETIQUETAS
-    ========================================= */
-
-    function renderTags() {
-
-        tagsContainer.innerHTML = "";
-
-        tags.forEach((tag) => {
-
-            const tagElement = document.createElement("span");
-
-            tagElement.classList.add("tag");
-
-            tagElement.textContent = tag;
-
-            tagsContainer.appendChild(tagElement);
-
-        });
+});
 
 
-        const button = document.createElement("button");
+/* =========================================
+   GUARDAR RECUERDO
+========================================= */
 
-        button.classList.add("add-tag");
+const saveButton =
+    document.getElementById("saveButton");
 
-        button.type = "button";
-
-        button.textContent = "+ añadir";
-
-        button.addEventListener("click", () => {
-
-            const newTag = prompt("Escribe una nueva etiqueta:");
-
-            if (!newTag) {
-                return;
-            }
-
-            let formattedTag = newTag.trim();
-
-            if (!formattedTag.startsWith("#")) {
-                formattedTag = "#" + formattedTag;
-            }
-
-            tags.push(formattedTag);
-
-            renderTags();
-
-        });
-
-        tagsContainer.appendChild(button);
-
-    }
+const journalText =
+    document.getElementById("journalText");
 
 
-    /* =========================================
-       GUARDAR RECUERDO
-    ========================================= */
+if (saveButton) {
 
     saveButton.addEventListener("click", () => {
 
-        const text = journalText.value.trim();
+        const text =
+            journalText.value.trim();
 
 
         if (text === "") {
 
-            alert("Escribe algo en tu diario antes de guardar tu recuerdo.");
+            alert(
+                "Escribe algo en tu diario antes de guardar el recuerdo."
+            );
 
             journalText.focus();
 
             return;
-
         }
 
 
-        const today = new Date();
+        const mood =
+            selectedMood
+                ? selectedMood.textContent
+                : "Sin emoción";
 
 
-        const entry = {
+        const memory = {
 
             text: text,
 
-            mood: selectedMood || "Sin emoción seleccionada",
+            mood: mood,
 
-            tags: [...tags],
-
-            date: today.toLocaleDateString("es-CO"),
-
-            timestamp: today.getTime()
+            date: new Date().toLocaleDateString("es-CO")
 
         };
 
 
-        /* Guardar en navegador */
-
         localStorage.setItem(
             "privateAtlasJournal",
-            JSON.stringify(entry)
+            JSON.stringify(memory)
         );
 
 
-        /* Cambiar apariencia del botón */
+        saveButton.innerHTML =
+            "<span>✦</span> Recuerdo guardado";
+
 
         saveButton.classList.add("saved");
 
-        saveButton.innerHTML = "✦ Recuerdo guardado";
-
-
-        /* Agregar al archivo */
-
-        addArchiveEntry(entry);
-
-
-        /* Volver al estado normal después de un momento */
 
         setTimeout(() => {
 
-            saveButton.classList.remove("saved");
+            saveButton.innerHTML =
+                "<span>✦</span> Guardar recuerdo";
 
-            saveButton.innerHTML = "<span>✦</span> Guardar recuerdo";
+            saveButton.classList.remove("saved");
 
         }, 2500);
 
     });
 
-
-    /* =========================================
-       AGREGAR REGISTRO AL ARCHIVO
-    ========================================= */
-
-    function addArchiveEntry(entry) {
-
-        const archiveItem = document.createElement("div");
-
-        archiveItem.classList.add("archive-item");
+}
 
 
-        const date = document.createElement("span");
+/* =========================================
+   CARGAR RECUERDO ANTERIOR
+========================================= */
 
-        date.classList.add("archive-date");
-
-        date.textContent = "HOY";
-
-
-        const content = document.createElement("div");
+const savedMemory =
+    localStorage.getItem("privateAtlasJournal");
 
 
-        const title = document.createElement("strong");
+if (savedMemory) {
 
-        title.textContent = "Nuevo recuerdo";
+    try {
 
-
-        const small = document.createElement("small");
-
-        small.textContent = entry.mood;
+        const memory =
+            JSON.parse(savedMemory);
 
 
-        content.appendChild(title);
-
-        content.appendChild(small);
-
-
-        archiveItem.appendChild(date);
-
-        archiveItem.appendChild(content);
-
-
-        archiveList.prepend(archiveItem);
-
-    }
-
-
-    /* =========================================
-       CARGAR RECUERDO GUARDADO
-    ========================================= */
-
-    const savedEntry = localStorage.getItem("privateAtlasJournal");
-
-
-    if (savedEntry) {
-
-        try {
-
-            const entry = JSON.parse(savedEntry);
-
-            journalText.value = entry.text;
-
-
-            if (entry.mood) {
-
-                moods.forEach((mood) => {
-
-                    if (
-                        mood.textContent.trim() === entry.mood
-                    ) {
-
-                        mood.classList.add("selected");
-
-                        selectedMood = entry.mood;
-
-                    }
-
-                });
-
-            }
-
-        } catch (error) {
-
-            console.log("No se pudo cargar el recuerdo.");
-
-        }
-
-    }
-
-
-    /* =========================================
-       BOTÓN "VER RECUERDOS"
-    ========================================= */
-
-    memoryButton.addEventListener("click", () => {
-
-        const saved = localStorage.getItem(
-            "privateAtlasJournal"
-        );
-
-
-        if (!saved) {
-
-            alert("Todavía no tienes recuerdos guardados.");
-
-            return;
-
+        if (journalText && memory.text) {
+            journalText.value = memory.text;
         }
 
 
-        const entry = JSON.parse(saved);
+        if (selectedMood && memory.mood) {
+            selectedMood.textContent = memory.mood;
+        }
 
 
-        alert(
-            "Tu último recuerdo:\n\n" +
-            entry.text +
-            "\n\nEstado de ánimo: " +
-            entry.mood
+    } catch (error) {
+
+        console.log(
+            "No se pudo cargar el recuerdo."
         );
 
-    });
+    }
 
-
-    /* =========================================
-       BUSCADOR
-    ========================================= */
-
-    searchInput.addEventListener("input", () => {
-
-        const search = searchInput.value
-            .toLowerCase()
-            .trim();
-
-
-        const archiveItems =
-            document.querySelectorAll(".archive-item");
-
-
-        archiveItems.forEach((item) => {
-
-            const text =
-                item.textContent.toLowerCase();
-
-
-            if (text.includes(search)) {
-
-                item.style.display = "flex";
-
-            } else {
-
-                item.style.display = "none";
-
-            }
-
-        });
-
-    });
-
-
-    /* =========================================
-       INICIALIZAR ETIQUETAS
-    ========================================= */
-
-    renderTags();
-
-});
+}
