@@ -1017,3 +1017,65 @@ object{
     color: #76583f;
     font-size: 14px;
 }
+
+/* =========================================
+   MENSAJE DE PAÍS SELECCIONADO
+========================================= */
+
+#selected-country {
+    display: none;
+}
+
+
+/* =========================================
+   VENTANA DEL PAÍS
+========================================= */
+
+#country-memory {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background: rgba(35, 20, 10, 0.60);
+
+    backdrop-filter: blur(5px);
+
+    z-index: 500;
+}
+
+
+/* CUANDO SE ABRE */
+
+#country-memory.active {
+    display: flex !important;
+}
+
+/* =========================================
+   PAPEL DEL PAÍS
+========================================= */
+
+#country-memory .memory-paper {
+    position: relative;
+
+    width: min(1050px, 90vw);
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    padding: 40px;
+
+    background: #f5e6c9;
+
+    border: 1px solid rgba(100, 60, 30, 0.25);
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 25px 70px rgba(35, 20, 10, 0.45);
+}

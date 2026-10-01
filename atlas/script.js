@@ -162,14 +162,11 @@ function selectCountry(country) {
     const name =
         getCountryName(country.id);
 
-    console.log("País seleccionado:", country.id, name);
-
-    countryName.textContent = name;
-
-    countryMessage.textContent =
-        "País seleccionado. Aquí podrás guardar tus recuerdos.";
-
-    selectedCountry.classList.add("active");
+    console.log(
+        "País seleccionado:",
+        country.id,
+        name
+    );
 
     openCountryMemory(
         country.id,
@@ -269,7 +266,13 @@ function openCountryMemory(code, name) {
 
     selectedCountryCode = code;
 
-    memoryCountryName.textContent = name;
+    console.log(
+        "Abriendo ventana:",
+        name
+    );
+
+    memoryCountryName.textContent =
+        name;
 
     memoryCountryDescription.textContent =
         `Aquí podrás guardar tus recuerdos de ${name}.`;
@@ -277,39 +280,11 @@ function openCountryMemory(code, name) {
     loadCountryMemories(code);
 
     countryMemory.classList.add("active");
-}
 
-if (closeMemory) {
-
-    closeMemory.addEventListener("click", () => {
-
-        countryMemory.classList.remove("active");
-
-    });
-
-}
-
-if (addMemoryBtn) {
-
-    addMemoryBtn.addEventListener("click", () => {
-
-        memoryForm.reset();
-
-        memoryFormContainer.classList.add("active");
-
-    });
-
-}
-
-
-if (closeMemoryForm) {
-
-    closeMemoryForm.addEventListener("click", () => {
-
-        memoryFormContainer.classList.remove("active");
-
-    });
-
+    console.log(
+        "Ventana activa:",
+        countryMemory.classList.contains("active")
+    );
 }
 
 
