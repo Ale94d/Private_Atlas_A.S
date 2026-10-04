@@ -41,7 +41,7 @@ function updateMapTransform() {
     if (!mapContainer) return;
 
     mapContainer.style.transform =
-        translate3d(${mapX}px, ${mapY}px, 0) scale(${scale});
+        `translate3d(${mapX}px, ${mapY}px, 0) scale(${scale})`;
 }
 
 const backHome = document.querySelector(".back-home");
