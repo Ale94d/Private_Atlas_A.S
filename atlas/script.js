@@ -8,7 +8,6 @@ const countryMessage = document.getElementById("country-message");
 const countryMemory = document.getElementById("country-memory");
 const memoryCountryName = document.getElementById("memory-country-name");
 const memoryCountryDescription = document.getElementById("memory-country-description");
-
 const countryMemories = document.getElementById("country-memories");
 
 const addMemoryBtn = document.getElementById("add-memory-btn");
@@ -18,6 +17,11 @@ const memoryForm = document.getElementById("memory-form");
 
 const closeMemory = document.getElementById("close-memory");
 const closeMemoryForm = document.getElementById("close-memory-form");
+
+const searchButton = document.querySelector(".search-btn");
+const favoriteButton = document.querySelector(".favorite-btn");
+const memoryButton = document.querySelector(".memory-btn");
+const backHome = document.querySelector(".back-home");
 
 let selectedCountryCode = null;
 let selectedCountryElement = null;
@@ -36,311 +40,288 @@ let mapX = 0;
 let mapY = 0;
 let scale = 1;
 
-function updateMapTransform() {
+let svgDocument = null;
+let svgRoot = null;
 
+const MIN_SCALE = 0.65;
+const MAX_SCALE = 4;
+
+function updateMapTransform() {
     if (!mapContainer) return;
 
     mapContainer.style.transform =
         `translate3d(${mapX}px, ${mapY}px, 0) scale(${scale})`;
 }
 
-const backHome = document.querySelector(".back-home");
+function resetMap() {
+    mapX = 0;
+    mapY = 0;
+    scale = 1;
+    updateMapTransform();
+}
 
 if (backHome) {
-
     backHome.addEventListener("click", () => {
-
         window.location.href = "../index.html";
-
     });
-
 }
 
-if (addMemoryBtn) {
-
-    addMemoryBtn.addEventListener("click", () => {
-
-        editingMemoryId = null;
-
-        if (memoryForm) {
-            memoryForm.reset();
-        }
-
-        if (memoryFormContainer) {
-            memoryFormContainer.classList.add("active");
-        }
-
-    });
-
+function getMemories() {
+    try {
+        return JSON.parse(
+            localStorage.getItem("privateAtlasAtlas")
+        ) || [];
+    } catch (error) {
+        return [];
+    }
 }
 
-if (closeMemory) {
-
-    closeMemory.addEventListener("click", () => {
-
-        if (countryMemory) {
-            countryMemory.classList.remove("active");
-        }
-
-    });
-
+function saveMemories(memories) {
+    localStorage.setItem(
+        "privateAtlasAtlas",
+        JSON.stringify(memories)
+    );
 }
 
-if (closeMemoryForm) {
-
-    closeMemoryForm.addEventListener("click", () => {
-
-        if (memoryFormContainer) {
-            memoryFormContainer.classList.remove("active");
-        }
-
-    });
-
+function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
 }
 
-if (memoryFormContainer) {
+function startMapDrag(event) {
+    if (!event.isPrimary) return;
 
-    memoryFormContainer.addEventListener("click", (event) => {
+    isDragging = true;
+    hasMoved = false;
 
-        if (event.target === memoryFormContainer) {
+    startPointerX = event.clientX;
+    startPointerY = event.clientY;
 
-            memoryFormContainer.classList.remove("active");
+    startMapX = mapX;
+    startMapY = mapY;
 
-        }
-
-    });
-
+    if (svgRoot) {
+        svgRoot.style.cursor = "grabbing";
+    }
 }
 
-if (countryMemory) {
+function moveMapDrag(event) {
+    if (!isDragging || !event.isPrimary) return;
 
-    countryMemory.addEventListener("click", (event) => {
+    const deltaX = event.clientX - startPointerX;
+    const deltaY = event.clientY - startPointerY;
 
-        if (event.target === countryMemory) {
+    if (
+        Math.abs(deltaX) > 5 ||
+        Math.abs(deltaY) > 5
+    ) {
+        hasMoved = true;
+    }
 
-            countryMemory.classList.remove("active");
+    mapX = startMapX + deltaX;
+    mapY = startMapY + deltaY;
 
-        }
+    updateMapTransform();
 
-    });
-
+    if (hasMoved) {
+        event.preventDefault();
+    }
 }
 
-if (mapContainer) {
+function endMapDrag() {
+    if (!isDragging) return;
 
-    mapContainer.addEventListener(
+    isDragging = false;
+
+    if (svgRoot) {
+        svgRoot.style.cursor = "grab";
+    }
+
+    setTimeout(() => {
+        hasMoved = false;
+    }, 80);
+}
+
+function zoomMap(event) {
+    event.preventDefault();
+
+    if (!mapContainer) return;
+
+    const rect = mapContainer.getBoundingClientRect();
+
+    const cursorX = event.clientX - rect.left;
+    const cursorY = event.clientY - rect.top;
+
+    const worldX =
+        (cursorX - mapX) / scale;
+
+    const worldY =
+        (cursorY - mapY) / scale;
+
+    const zoomFactor =
+        event.deltaY < 0
+            ? 1.12
+            : 0.89;
+
+    const newScale =
+        clamp(
+            scale * zoomFactor,
+            MIN_SCALE,
+            MAX_SCALE
+        );
+
+    mapX =
+        cursorX -
+        worldX * newScale;
+
+    mapY =
+        cursorY -
+        worldY * newScale;
+
+    scale = newScale;
+
+    updateMapTransform();
+}
+
+function initializeMapControls() {
+    if (!worldMap) return;
+
+    svgDocument = worldMap.contentDocument;
+
+    if (!svgDocument) {
+        setTimeout(initializeMapControls, 250);
+        return;
+    }
+
+    svgRoot = svgDocument.documentElement;
+
+    if (!svgRoot) return;
+
+    svgRoot.style.cursor = "grab";
+    svgRoot.style.touchAction = "none";
+    svgRoot.style.userSelect = "none";
+
+    svgRoot.addEventListener(
         "pointerdown",
-        (event) => {
-
-            isDragging = true;
-            hasMoved = false;
-
-            startPointerX = event.clientX;
-            startPointerY = event.clientY;
-
-            startMapX = mapX;
-            startMapY = mapY;
-
-            try {
-
-                mapContainer.setPointerCapture(event.pointerId);
-
-            } catch (error) {}
-
-        }
+        startMapDrag
     );
 
-    mapContainer.addEventListener(
+    svgRoot.addEventListener(
         "pointermove",
-        (event) => {
-
-            if (!isDragging) return;
-
-            const deltaX =
-                event.clientX - startPointerX;
-
-            const deltaY =
-                event.clientY - startPointerY;
-
-            if (
-                Math.abs(deltaX) > 4 ||
-                Math.abs(deltaY) > 4
-            ) {
-
-                hasMoved = true;
-
-            }
-
-            mapX = startMapX + deltaX;
-            mapY = startMapY + deltaY;
-
-            updateMapTransform();
-
-        }
+        moveMapDrag
     );
 
-    mapContainer.addEventListener(
+    svgRoot.addEventListener(
         "pointerup",
-        (event) => {
-
-            if (!isDragging) return;
-
-            isDragging = false;
-
-            try {
-
-                mapContainer.releasePointerCapture(
-                    event.pointerId
-                );
-
-            } catch (error) {}
-
-        }
+        endMapDrag
     );
 
-    mapContainer.addEventListener(
+    svgRoot.addEventListener(
         "pointercancel",
-        () => {
-
-            isDragging = false;
-
-        }
+        endMapDrag
     );
 
-    mapContainer.addEventListener(
+    svgRoot.addEventListener(
         "wheel",
-        (event) => {
-
-            event.preventDefault();
-
-            const oldScale = scale;
-
-            const zoomAmount =
-                event.deltaY > 0
-                    ? 0.90
-                    : 1.10;
-
-            scale *= zoomAmount;
-
-            scale =
-                Math.max(
-                    0.65,
-                    Math.min(scale, 4)
-                );
-
-            const rect =
-                mapContainer.getBoundingClientRect();
-
-            const mouseX =
-                event.clientX - rect.left;
-
-            const mouseY =
-                event.clientY - rect.top;
-
-            const scaleChange =
-                scale / oldScale;
-
-            mapX =
-                mouseX -
-                (mouseX - mapX) *
-                scaleChange;
-
-            mapY =
-                mouseY -
-                (mouseY - mapY) *
-                scaleChange;
-
-            updateMapTransform();
-
-        },
+        zoomMap,
         {
             passive: false
         }
     );
 
-    mapContainer.addEventListener(
+    svgRoot.addEventListener(
         "dblclick",
-        () => {
-
-            mapX = 0;
-            mapY = 0;
-            scale = 1;
-
-            updateMapTransform();
-
+        (event) => {
+            event.preventDefault();
+            resetMap();
         }
     );
 
-}
-
-updateMapTransform();
-
-function initializeCountries() {
-
-    if (!worldMap) {
-        return;
-    }
-
-    const svgDocument = worldMap.contentDocument;
-
-    if (!svgDocument) {
-        setTimeout(initializeCountries, 200);
-        return;
-    }
-
-    const countries = svgDocument.querySelectorAll("path[id]");
-
-    countries.forEach((country) => {
-
-        country.style.cursor = "pointer";
-        country.style.transition = "filter 0.2s ease";
-
-        country.addEventListener("mouseenter", () => {
-
-            country.style.filter = "brightness(1.15)";
-
-        });
-
-        country.addEventListener("mouseleave", () => {
-
-            if (country !== selectedCountryElement) {
-                country.style.filter = "";
-            }
-
-        });
-
-        country.addEventListener("click", (event) => {
-
-            event.stopPropagation();
-
-            if (hasMoved) {
-                return;
-            }
-
-            selectCountry(country);
-
-        });
-
-    });
-
+    initializeCountries();
 }
 
 if (worldMap) {
+    worldMap.addEventListener(
+        "load",
+        initializeMapControls
+    );
 
-    worldMap.addEventListener("load", initializeCountries);
+    setTimeout(
+        initializeMapControls,
+        300
+    );
+}
 
-    setTimeout(initializeCountries, 300);
+function initializeCountries() {
+    if (!svgDocument) return;
 
+    const countries =
+        svgDocument.querySelectorAll(
+            "path[id]"
+        );
+
+    countries.forEach((country) => {
+        if (country.dataset.atlasReady === "true") {
+            return;
+        }
+
+        country.dataset.atlasReady = "true";
+
+        country.style.cursor = "pointer";
+        country.style.transition =
+            "filter 0.2s ease, opacity 0.2s ease";
+
+        country.addEventListener(
+            "mouseenter",
+            () => {
+                country.style.filter =
+                    "brightness(1.18) saturate(1.08)";
+            }
+        );
+
+        country.addEventListener(
+            "mouseleave",
+            () => {
+                if (
+                    country !==
+                    selectedCountryElement
+                ) {
+                    country.style.filter = "";
+                }
+            }
+        );
+
+        country.addEventListener(
+            "click",
+            (event) => {
+                event.stopPropagation();
+
+                if (hasMoved) {
+                    return;
+                }
+
+                selectCountry(country);
+            }
+        );
+    });
 }
 
 function selectCountry(country) {
-
     if (!country) return;
+
+    if (
+        selectedCountryElement &&
+        selectedCountryElement !== country
+    ) {
+        selectedCountryElement.style.filter = "";
+    }
 
     selectedCountryElement = country;
 
     selectedCountryCode =
         country.getAttribute("id");
+
+    country.style.filter =
+        "brightness(1.2) saturate(1.1)";
 
     const name =
         getCountryName(
@@ -348,67 +329,228 @@ function selectCountry(country) {
         );
 
     if (selectedCountry) {
-        selectedCountry.classList.remove("active");
+        selectedCountry.classList.remove(
+            "active"
+        );
     }
 
     openCountryMemory(
         selectedCountryCode,
         name
     );
-
 }
 
 function getCountryName(code) {
-
     if (
         selectedCountryElement &&
         selectedCountryElement.getAttribute("name")
     ) {
-
         return translateCountryName(
             selectedCountryElement.getAttribute("name")
         );
-
     }
 
     return countryNames[code] || code;
-
 }
 
 const countryNames = {
-
-    CO: "Colombia",
-    VE: "Venezuela",
-    EC: "Ecuador",
-    PE: "Perú",
-    BR: "Brasil",
+    AF: "Afganistán",
+    AL: "Albania",
+    DZ: "Argelia",
+    AD: "Andorra",
+    AO: "Angola",
     AR: "Argentina",
-    CL: "Chile",
+    AM: "Armenia",
+    AU: "Australia",
+    AT: "Austria",
+    AZ: "Azerbaiyán",
+    BS: "Bahamas",
+    BH: "Baréin",
+    BD: "Bangladés",
+    BB: "Barbados",
+    BY: "Bielorrusia",
+    BE: "Bélgica",
+    BZ: "Belice",
+    BJ: "Benín",
+    BT: "Bután",
     BO: "Bolivia",
-    PY: "Paraguay",
-    UY: "Uruguay",
-    PA: "Panamá",
-    CR: "Costa Rica",
-    MX: "México",
-    US: "Estados Unidos",
+    BA: "Bosnia y Herzegovina",
+    BW: "Botsuana",
+    BR: "Brasil",
+    BN: "Brunéi",
+    BG: "Bulgaria",
+    BF: "Burkina Faso",
+    BI: "Burundi",
+    KH: "Camboya",
+    CM: "Camerún",
     CA: "Canadá",
-    ES: "España",
-    FR: "Francia",
-    IT: "Italia",
-    DE: "Alemania",
-    PT: "Portugal",
-    GB: "Reino Unido",
-    JP: "Japón",
+    CV: "Cabo Verde",
+    CF: "República Centroafricana",
+    TD: "Chad",
+    CL: "Chile",
     CN: "China",
+    CO: "Colombia",
+    CG: "Congo",
+    CD: "República Democrática del Congo",
+    CR: "Costa Rica",
+    CI: "Costa de Marfil",
+    HR: "Croacia",
+    CU: "Cuba",
+    CY: "Chipre",
+    CZ: "Chequia",
+    DK: "Dinamarca",
+    DJ: "Yibuti",
+    DM: "Dominica",
+    DO: "República Dominicana",
+    EC: "Ecuador",
+    EG: "Egipto",
+    SV: "El Salvador",
+    GQ: "Guinea Ecuatorial",
+    ER: "Eritrea",
+    EE: "Estonia",
+    SZ: "Esuatini",
+    ET: "Etiopía",
+    FJ: "Fiyi",
+    FI: "Finlandia",
+    FR: "Francia",
+    GA: "Gabón",
+    GM: "Gambia",
+    GE: "Georgia",
+    DE: "Alemania",
+    GH: "Ghana",
+    GR: "Grecia",
+    GD: "Granada",
+    GT: "Guatemala",
+    GN: "Guinea",
+    GW: "Guinea-Bisáu",
+    GY: "Guyana",
+    HT: "Haití",
+    HN: "Honduras",
+    HU: "Hungría",
+    IS: "Islandia",
+    IN: "India",
+    ID: "Indonesia",
+    IR: "Irán",
+    IQ: "Irak",
+    IE: "Irlanda",
+    IL: "Israel",
+    IT: "Italia",
+    JM: "Jamaica",
+    JP: "Japón",
+    JO: "Jordania",
+    KZ: "Kazajistán",
+    KE: "Kenia",
+    KI: "Kiribati",
+    KW: "Kuwait",
+    KG: "Kirguistán",
+    LA: "Laos",
+    LV: "Letonia",
+    LB: "Líbano",
+    LS: "Lesoto",
+    LR: "Liberia",
+    LY: "Libia",
+    LI: "Liechtenstein",
+    LT: "Lituania",
+    LU: "Luxemburgo",
+    MG: "Madagascar",
+    MW: "Malaui",
+    MY: "Malasia",
+    MV: "Maldivas",
+    ML: "Malí",
+    MT: "Malta",
+    MH: "Islas Marshall",
+    MR: "Mauritania",
+    MU: "Mauricio",
+    MX: "México",
+    FM: "Micronesia",
+    MD: "Moldavia",
+    MC: "Mónaco",
+    MN: "Mongolia",
+    ME: "Montenegro",
+    MA: "Marruecos",
+    MZ: "Mozambique",
+    MM: "Myanmar",
+    NA: "Namibia",
+    NR: "Nauru",
+    NP: "Nepal",
+    NL: "Países Bajos",
+    NZ: "Nueva Zelanda",
+    NI: "Nicaragua",
+    NE: "Níger",
+    NG: "Nigeria",
+    KP: "Corea del Norte",
+    MK: "Macedonia del Norte",
+    NO: "Noruega",
+    OM: "Omán",
+    PK: "Pakistán",
+    PW: "Palaos",
+    PA: "Panamá",
+    PG: "Papúa Nueva Guinea",
+    PY: "Paraguay",
+    PE: "Perú",
+    PH: "Filipinas",
+    PL: "Polonia",
+    PT: "Portugal",
+    QA: "Catar",
+    RO: "Rumania",
+    RU: "Rusia",
+    RW: "Ruanda",
+    KN: "San Cristóbal y Nieves",
+    LC: "Santa Lucía",
+    VC: "San Vicente y las Granadinas",
+    WS: "Samoa",
+    SM: "San Marino",
+    ST: "Santo Tomé y Príncipe",
+    SA: "Arabia Saudita",
+    SN: "Senegal",
+    RS: "Serbia",
+    SC: "Seychelles",
+    SL: "Sierra Leona",
+    SG: "Singapur",
+    SK: "Eslovaquia",
+    SI: "Eslovenia",
+    SB: "Islas Salomón",
+    SO: "Somalia",
+    ZA: "Sudáfrica",
     KR: "Corea del Sur",
-    AU: "Australia"
-
+    SS: "Sudán del Sur",
+    ES: "España",
+    LK: "Sri Lanka",
+    SD: "Sudán",
+    SR: "Surinam",
+    SE: "Suecia",
+    CH: "Suiza",
+    SY: "Siria",
+    TW: "Taiwán",
+    TJ: "Tayikistán",
+    TZ: "Tanzania",
+    TH: "Tailandia",
+    TL: "Timor Oriental",
+    TG: "Togo",
+    TO: "Tonga",
+    TT: "Trinidad y Tobago",
+    TN: "Túnez",
+    TR: "Turquía",
+    TM: "Turkmenistán",
+    TV: "Tuvalu",
+    UG: "Uganda",
+    UA: "Ucrania",
+    AE: "Emiratos Árabes Unidos",
+    GB: "Reino Unido",
+    US: "Estados Unidos",
+    UY: "Uruguay",
+    UZ: "Uzbekistán",
+    VU: "Vanuatu",
+    VA: "Ciudad del Vaticano",
+    VE: "Venezuela",
+    VN: "Vietnam",
+    YE: "Yemen",
+    ZM: "Zambia",
+    ZW: "Zimbabue"
 };
 
 function translateCountryName(name) {
-
     const translations = {
-
         Afghanistan: "Afganistán",
         Albania: "Albania",
         Algeria: "Argelia",
@@ -439,11 +581,13 @@ function translateCountryName(name) {
         Cambodia: "Camboya",
         Cameroon: "Camerún",
         Canada: "Canadá",
+        CapeVerde: "Cabo Verde",
         Chad: "Chad",
         Chile: "Chile",
         China: "China",
         Colombia: "Colombia",
         Congo: "Congo",
+        CostaRica: "Costa Rica",
         Croatia: "Croacia",
         Cuba: "Cuba",
         Cyprus: "Chipre",
@@ -566,47 +710,111 @@ function translateCountryName(name) {
         Yemen: "Yemen",
         Zambia: "Zambia",
         Zimbabwe: "Zimbabue"
-
     };
 
     return translations[name] || name;
-
 }
 
 function openCountryMemory(code, name) {
-
     selectedCountryCode = code;
 
     if (memoryCountryName) {
-
-        memoryCountryName.textContent =
-            name;
-
+        memoryCountryName.textContent = name;
     }
 
     if (memoryCountryDescription) {
-
         memoryCountryDescription.textContent =
             `Aquí podrás guardar tus recuerdos de ${name}.`;
-
     }
 
     loadCountryMemories(code);
 
     if (countryMemory) {
-
         countryMemory.classList.add("active");
-
     }
+}
 
+if (addMemoryBtn) {
+    addMemoryBtn.addEventListener(
+        "click",
+        () => {
+            editingMemoryId = null;
+
+            if (memoryForm) {
+                memoryForm.reset();
+            }
+
+            if (memoryFormContainer) {
+                memoryFormContainer.classList.add(
+                    "active"
+                );
+            }
+        }
+    );
+}
+
+if (closeMemory) {
+    closeMemory.addEventListener(
+        "click",
+        () => {
+            if (countryMemory) {
+                countryMemory.classList.remove(
+                    "active"
+                );
+            }
+        }
+    );
+}
+
+if (closeMemoryForm) {
+    closeMemoryForm.addEventListener(
+        "click",
+        () => {
+            if (memoryFormContainer) {
+                memoryFormContainer.classList.remove(
+                    "active"
+                );
+            }
+        }
+    );
+}
+
+if (memoryFormContainer) {
+    memoryFormContainer.addEventListener(
+        "click",
+        (event) => {
+            if (
+                event.target ===
+                memoryFormContainer
+            ) {
+                memoryFormContainer.classList.remove(
+                    "active"
+                );
+            }
+        }
+    );
+}
+
+if (countryMemory) {
+    countryMemory.addEventListener(
+        "click",
+        (event) => {
+            if (
+                event.target ===
+                countryMemory
+            ) {
+                countryMemory.classList.remove(
+                    "active"
+                );
+            }
+        }
+    );
 }
 
 if (memoryForm) {
-
     memoryForm.addEventListener(
         "submit",
         (event) => {
-
             event.preventDefault();
 
             if (!selectedCountryCode) {
@@ -671,119 +879,73 @@ if (memoryForm) {
                     .slice(0, 35)
                     .join(" ");
 
-            const memories =
-                JSON.parse(
-                    localStorage.getItem(
-                        "privateAtlasAtlas"
-                    )
-                ) || [];
+            const memories = getMemories();
 
-            const saveMemory =
-                (image) => {
-
-                    if (editingMemoryId) {
-
-                        const index =
-                            memories.findIndex(
-                                memory =>
-                                    memory.id ===
-                                    editingMemoryId
-                            );
-
-                        if (index !== -1) {
-
-                            memories[index].city =
-                                city;
-
-                            memories[index].title =
-                                title;
-
-                            memories[index].description =
-                                description;
-
-                            memories[index].date =
-                                date;
-
-                            memories[index].image =
-                                image;
-
-                        }
-
-                    } else {
-
-                        memories.push({
-
-                            id:
-                                Date.now(),
-
-                            country:
-                                selectedCountryCode,
-
-                            city,
-
-                            title,
-
-                            description,
-
-                            date,
-
-                            image:
-                                image || "",
-
-                            favorite:
-                                false
-
-                        });
-
-                    }
-
-                    localStorage.setItem(
-                        "privateAtlasAtlas",
-                        JSON.stringify(memories)
-                    );
-
-                    editingMemoryId = null;
-
-                    memoryForm.reset();
-
-                    if (memoryFormContainer) {
-
-                        memoryFormContainer.classList.remove(
-                            "active"
+            const saveMemory = (image) => {
+                if (editingMemoryId) {
+                    const index =
+                        memories.findIndex(
+                            memory =>
+                                memory.id ===
+                                editingMemoryId
                         );
 
+                    if (index !== -1) {
+                        memories[index].city = city;
+                        memories[index].title = title;
+                        memories[index].description =
+                            description;
+                        memories[index].date = date;
+                        memories[index].image = image;
                     }
+                } else {
+                    memories.push({
+                        id: Date.now(),
+                        country:
+                            selectedCountryCode,
+                        city,
+                        title,
+                        description,
+                        date,
+                        image: image || "",
+                        favorite: false
+                    });
+                }
 
-                    loadCountryMemories(
-                        selectedCountryCode
+                saveMemories(memories);
+
+                editingMemoryId = null;
+
+                if (memoryForm) {
+                    memoryForm.reset();
+                }
+
+                if (memoryFormContainer) {
+                    memoryFormContainer.classList.remove(
+                        "active"
                     );
+                }
 
-                };
+                loadCountryMemories(
+                    selectedCountryCode
+                );
+            };
 
             if (file) {
-
                 const reader =
                     new FileReader();
 
-                reader.onload =
-                    () => {
+                reader.onload = () => {
+                    saveMemory(
+                        reader.result
+                    );
+                };
 
-                        saveMemory(
-                            reader.result
-                        );
-
-                    };
-
-                reader.readAsDataURL(
-                    file
-                );
-
+                reader.readAsDataURL(file);
             } else {
-
                 let oldImage = "";
 
                 if (editingMemoryId) {
-
                     const oldMemory =
                         memories.find(
                             memory =>
@@ -792,38 +954,21 @@ if (memoryForm) {
                         );
 
                     if (oldMemory) {
-
                         oldImage =
-                            oldMemory.image ||
-                            "";
-
+                            oldMemory.image || "";
                     }
-
                 }
 
-                saveMemory(
-                    oldImage
-                );
-
+                saveMemory(oldImage);
             }
-
         }
     );
-
 }
 
 function loadCountryMemories(countryCode) {
+    if (!countryMemories) return;
 
-    if (!countryMemories) {
-        return;
-    }
-
-    const memories =
-        JSON.parse(
-            localStorage.getItem(
-                "privateAtlasAtlas"
-            )
-        ) || [];
+    const memories = getMemories();
 
     const countryList =
         memories.filter(
@@ -839,33 +984,24 @@ function loadCountryMemories(countryCode) {
             ".memory-empty-message"
         );
 
-    if (
-        countryList.length === 0
-    ) {
-
+    if (countryList.length === 0) {
         if (emptyMessage) {
-
             emptyMessage.style.display =
                 "block";
-
         }
 
         return;
-
     }
 
     if (emptyMessage) {
-
         emptyMessage.style.display =
             "none";
-
     }
 
     const cities = {};
 
     countryList.forEach(
-        (memory) => {
-
+        memory => {
             const city =
                 memory.city &&
                 memory.city.trim()
@@ -873,37 +1009,27 @@ function loadCountryMemories(countryCode) {
                     : "Sin ciudad";
 
             if (!cities[city]) {
-
                 cities[city] = [];
-
             }
 
-            cities[city].push(
-                memory
-            );
-
+            cities[city].push(memory);
         }
     );
 
-    Object.keys(cities)
-        .forEach(
-            (city) => {
-
-                createCityCarousel(
-                    city,
-                    cities[city]
-                );
-
-            }
-        );
-
+    Object.keys(cities).forEach(
+        city => {
+            createCityCarousel(
+                city,
+                cities[city]
+            );
+        }
+    );
 }
 
 function createCityCarousel(
     city,
     memories
 ) {
-
     const section =
         document.createElement(
             "section"
@@ -939,9 +1065,7 @@ function createCityCarousel(
             "button"
         );
 
-    previous.type =
-        "button";
-
+    previous.type = "button";
     previous.className =
         "carousel-arrow carousel-prev";
 
@@ -953,9 +1077,7 @@ function createCityCarousel(
             "button"
         );
 
-    next.type =
-        "button";
-
+    next.type = "button";
     next.className =
         "carousel-arrow carousel-next";
 
@@ -979,54 +1101,34 @@ function createCityCarousel(
         "memory-carousel-track";
 
     memories.forEach(
-        (memory) => {
-
+        memory => {
             track.appendChild(
                 createMemoryCard(memory)
             );
-
         }
     );
 
-    viewport.appendChild(
-        track
-    );
+    viewport.appendChild(track);
 
-    carousel.appendChild(
-        previous
-    );
+    carousel.appendChild(previous);
+    carousel.appendChild(viewport);
+    carousel.appendChild(next);
 
-    carousel.appendChild(
-        viewport
-    );
+    section.appendChild(title);
+    section.appendChild(carousel);
 
-    carousel.appendChild(
-        next
-    );
-
-    section.appendChild(
-        title
-    );
-
-    section.appendChild(
-        carousel
-    );
-
-    countryMemories.appendChild(
-        section
-    );
+    countryMemories.appendChild(section);
 
     let position = 0;
 
     function getStep() {
-
         const card =
             track.querySelector(
                 ".memory-card"
             );
 
         if (!card) {
-            return 240;
+            return 250;
         }
 
         const style =
@@ -1038,19 +1140,16 @@ function createCityCarousel(
             parseFloat(
                 style.columnGap ||
                 style.gap ||
-                30
+                "30"
             ) || 30;
 
         return (
             card.getBoundingClientRect()
-                .width +
-            gap
+                .width + gap
         );
-
     }
 
     function updateCarousel() {
-
         const visibleWidth =
             viewport.clientWidth;
 
@@ -1065,60 +1164,44 @@ function createCityCarousel(
             );
 
         position =
-            Math.max(
+            clamp(
+                position,
                 0,
-                Math.min(
-                    position,
-                    maxPosition
-                )
+                maxPosition
             );
 
         track.style.transform =
-            `translateX(-${position}px)`;
-
+            `translate3d(-${position}px, 0, 0)`;
     }
-
-    next.addEventListener(
-        "click",
-        (event) => {
-
-            event.stopPropagation();
-
-            position +=
-                getStep();
-
-            updateCarousel();
-
-        }
-    );
 
     previous.addEventListener(
         "click",
-        (event) => {
-
+        event => {
             event.stopPropagation();
 
-            position -=
-                getStep();
+            position -= getStep();
 
             updateCarousel();
-
         }
     );
 
-    window.addEventListener(
-        "resize",
-        updateCarousel
+    next.addEventListener(
+        "click",
+        event => {
+            event.stopPropagation();
+
+            position += getStep();
+
+            updateCarousel();
+        }
     );
 
     requestAnimationFrame(
         updateCarousel
     );
-
 }
 
 function createMemoryCard(memory) {
-
     const card =
         document.createElement(
             "article"
@@ -1151,24 +1234,19 @@ function createMemoryCard(memory) {
               `;
 
     card.innerHTML = `
-
         <div class="memory-card-inner">
 
             <div class="memory-card-front">
 
                 <div class="memory-photo">
-
                     ${imageHTML}
-
                 </div>
 
                 <div class="polaroid-caption">
-
                     ${escapeHTML(
                         memory.title ||
                         "Sin título"
                     )}
-
                 </div>
 
             </div>
@@ -1178,39 +1256,31 @@ function createMemoryCard(memory) {
                 <div class="memory-back-content">
 
                     <span class="memory-back-city">
-
                         ${escapeHTML(
                             memory.city ||
                             "Sin ciudad"
                         )}
-
                     </span>
 
                     <h3>
-
                         ${escapeHTML(
                             memory.title ||
                             "Sin título"
                         )}
-
                     </h3>
 
                     <p class="memory-description">
-
                         ${escapeHTML(
                             memory.description ||
                             "Sin descripción"
                         )}
-
                     </p>
 
                     <p class="memory-date">
-
                         ${
                             memory.date ||
                             "Sin fecha"
                         }
-
                     </p>
 
                 </div>
@@ -1222,9 +1292,7 @@ function createMemoryCard(memory) {
                         class="favorite-memory"
                         title="Favorito"
                     >
-
                         <i class="icon-star"></i>
-
                     </button>
 
                     <button
@@ -1232,9 +1300,7 @@ function createMemoryCard(memory) {
                         class="edit-memory"
                         title="Editar"
                     >
-
                         <i class="icon-pencil"></i>
-
                     </button>
 
                     <button
@@ -1242,9 +1308,7 @@ function createMemoryCard(memory) {
                         class="delete-memory"
                         title="Eliminar"
                     >
-
                         <i class="icon-trash-2"></i>
-
                     </button>
 
                 </div>
@@ -1252,50 +1316,41 @@ function createMemoryCard(memory) {
             </div>
 
         </div>
-
     `;
 
     card.addEventListener(
         "click",
-        (event) => {
-
+        event => {
             if (
                 event.target.closest(
                     ".memory-actions"
                 )
             ) {
-
                 return;
-
             }
 
             card.classList.toggle(
                 "flipped"
             );
-
         }
     );
 
-    const favoriteButton =
+    const favoriteMemoryButton =
         card.querySelector(
             ".favorite-memory"
         );
 
-    if (favoriteButton) {
-
-        favoriteButton.addEventListener(
+    if (favoriteMemoryButton) {
+        favoriteMemoryButton.addEventListener(
             "click",
-            (event) => {
-
+            event => {
                 event.stopPropagation();
 
                 toggleFavorite(
                     memory.id
                 );
-
             }
         );
-
     }
 
     const editButton =
@@ -1304,20 +1359,16 @@ function createMemoryCard(memory) {
         );
 
     if (editButton) {
-
         editButton.addEventListener(
             "click",
-            (event) => {
-
+            event => {
                 event.stopPropagation();
 
                 editMemory(
                     memory.id
                 );
-
             }
         );
-
     }
 
     const deleteButton =
@@ -1326,36 +1377,23 @@ function createMemoryCard(memory) {
         );
 
     if (deleteButton) {
-
         deleteButton.addEventListener(
             "click",
-            (event) => {
-
+            event => {
                 event.stopPropagation();
 
                 deleteMemory(
                     memory.id
                 );
-
             }
         );
-
     }
 
     return card;
-
 }
 
-function toggleFavorite(
-    memoryId
-) {
-
-    const memories =
-        JSON.parse(
-            localStorage.getItem(
-                "privateAtlasAtlas"
-            )
-        ) || [];
+function toggleFavorite(memoryId) {
+    const memories = getMemories();
 
     const memory =
         memories.find(
@@ -1364,36 +1402,22 @@ function toggleFavorite(
                 memoryId
         );
 
-    if (!memory) {
-        return;
-    }
+    if (!memory) return;
 
     memory.favorite =
         !memory.favorite;
 
-    localStorage.setItem(
-        "privateAtlasAtlas",
-        JSON.stringify(
-            memories
-        )
-    );
+    saveMemories(memories);
 
-    loadCountryMemories(
-        selectedCountryCode
-    );
-
+    if (selectedCountryCode) {
+        loadCountryMemories(
+            selectedCountryCode
+        );
+    }
 }
 
-function editMemory(
-    memoryId
-) {
-
-    const memories =
-        JSON.parse(
-            localStorage.getItem(
-                "privateAtlasAtlas"
-            )
-        ) || [];
+function editMemory(memoryId) {
+    const memories = getMemories();
 
     const memory =
         memories.find(
@@ -1402,9 +1426,7 @@ function editMemory(
                 memoryId
         );
 
-    if (!memory) {
-        return;
-    }
+    if (!memory) return;
 
     editingMemoryId =
         memoryId;
@@ -1430,57 +1452,34 @@ function editMemory(
         );
 
     if (cityInput) {
-
         cityInput.value =
-            memory.city ||
-            "";
-
+            memory.city || "";
     }
 
     if (titleInput) {
-
         titleInput.value =
-            memory.title ||
-            "";
-
+            memory.title || "";
     }
 
     if (descriptionInput) {
-
         descriptionInput.value =
-            memory.description ||
-            "";
-
+            memory.description || "";
     }
 
     if (dateInput) {
-
         dateInput.value =
-            memory.date ||
-            "";
-
+            memory.date || "";
     }
 
     if (memoryFormContainer) {
-
         memoryFormContainer.classList.add(
             "active"
         );
-
     }
-
 }
 
-function deleteMemory(
-    memoryId
-) {
-
-    const memories =
-        JSON.parse(
-            localStorage.getItem(
-                "privateAtlasAtlas"
-            )
-        ) || [];
+function deleteMemory(memoryId) {
+    const memories = getMemories();
 
     const updatedMemories =
         memories.filter(
@@ -1489,73 +1488,104 @@ function deleteMemory(
                 memoryId
         );
 
-    localStorage.setItem(
-        "privateAtlasAtlas",
-        JSON.stringify(
-            updatedMemories
-        )
+    saveMemories(
+        updatedMemories
     );
 
-    loadCountryMemories(
-        selectedCountryCode
-    );
-
+    if (selectedCountryCode) {
+        loadCountryMemories(
+            selectedCountryCode
+        );
+    }
 }
 
-function escapeHTML(
-    text
-) {
+function showFavoriteMemories() {
+    const memories = getMemories();
 
-    const div =
-        document.createElement(
-            "div"
+    const favorites =
+        memories.filter(
+            memory =>
+                memory.favorite
         );
 
-    div.textContent =
-        text || "";
+    if (favorites.length === 0) {
+        alert(
+            "Todavía no tienes recuerdos favoritos."
+        );
+        return;
+    }
 
-    return div.innerHTML;
+    const grouped = {};
 
-}
+    favorites.forEach(
+        memory => {
+            if (!grouped[memory.country]) {
+                grouped[memory.country] = [];
+            }
 
-const searchButton =
-    document.querySelector(
-        ".search-btn"
+            grouped[memory.country].push(
+                memory
+            );
+        }
     );
 
-if (searchButton) {
+    let message =
+        "✦ TUS RECUERDOS FAVORITOS ✦\n\n";
 
+    Object.keys(grouped).forEach(
+        country => {
+            const countryTitle =
+                countryNames[country] ||
+                country;
+
+            message +=
+                `${countryTitle}\n`;
+
+            grouped[country].forEach(
+                memory => {
+                    message +=
+                        `• ${
+                            memory.city ||
+                            "Sin ciudad"
+                        } — ${
+                            memory.title ||
+                            "Sin título"
+                        }\n`;
+                }
+            );
+
+            message += "\n";
+        }
+    );
+
+    alert(message);
+}
+
+if (searchButton) {
     searchButton.addEventListener(
         "click",
         () => {
-
             const country =
                 prompt(
                     "Escribe el nombre del país que quieres buscar:"
                 );
 
-            if (!country) {
-                return;
-            }
+            if (!country) return;
 
             const search =
                 country
                     .trim()
                     .toLowerCase();
 
-            if (!worldMap) {
-                return;
-            }
+            if (!worldMap) return;
 
-            const svgDocument =
+            const documentMap =
                 worldMap.contentDocument;
 
-            if (!svgDocument) {
-                return;
-            }
+            if (!documentMap) return;
 
             const countries =
-                svgDocument.querySelectorAll(
+                documentMap.querySelectorAll(
                     "path[id]"
                 );
 
@@ -1563,11 +1593,8 @@ if (searchButton) {
                 null;
 
             countries.forEach(
-                (countryElement) => {
-
-                    if (foundCountry) {
-                        return;
-                    }
+                countryElement => {
+                    if (foundCountry) return;
 
                     const originalName =
                         countryElement.getAttribute(
@@ -1592,168 +1619,81 @@ if (searchButton) {
                             .toLowerCase()
                             .includes(search) ||
                         id
-                            .toLowerCase()
-                            === search
+                            .toLowerCase() ===
+                            search
                     ) {
-
                         foundCountry =
                             countryElement;
-
                     }
-
                 }
             );
 
             if (foundCountry) {
-
                 selectCountry(
                     foundCountry
                 );
-
             } else {
-
                 alert(
                     "No encontramos ese país en el mapa."
                 );
-
             }
-
         }
     );
-
 }
-
-const favoriteButton =
-    document.querySelector(
-        ".favorite-btn"
-    );
 
 if (favoriteButton) {
-
     favoriteButton.addEventListener(
         "click",
-        () => {
+        event => {
+            event.stopPropagation();
 
-            const memories =
-                JSON.parse(
-                    localStorage.getItem(
-                        "privateAtlasAtlas"
-                    )
-                ) || [];
-
-            const favorites =
-                memories.filter(
-                    memory =>
-                        memory.favorite
-                );
-
-            if (
-                favorites.length === 0
-            ) {
-
-                alert(
-                    "Todavía no tienes recuerdos favoritos."
-                );
-
-                return;
-
-            }
-
-            if (
-                !selectedCountryCode
-            ) {
-
-                alert(
-                    `Tienes ${favorites.length} recuerdo${
-                        favorites.length === 1
-                            ? ""
-                            : "s"
-                    } favorito${
-                        favorites.length === 1
-                            ? ""
-                            : "s"
-                    }.`
-                );
-
-                return;
-
-            }
-
-            const countryFavorites =
-                favorites.filter(
-                    memory =>
-                        memory.country ===
-                        selectedCountryCode
-                );
-
-            if (
-                countryFavorites.length === 0
-            ) {
-
-                alert(
-                    "No tienes recuerdos favoritos en este país."
-                );
-
-                return;
-
-            }
-
-            loadCountryMemories(
-                selectedCountryCode
-            );
-
+            showFavoriteMemories();
         }
     );
-
 }
 
-const memoryButton =
-    document.querySelector(
-        ".memory-btn"
-    );
-
 if (memoryButton) {
-
     memoryButton.addEventListener(
         "click",
-        () => {
+        event => {
+            event.stopPropagation();
 
-            if (
-                !selectedCountryCode
-            ) {
-
+            if (!selectedCountryCode) {
                 alert(
                     "Primero selecciona un país en el mapa."
                 );
-
                 return;
-
             }
 
             if (countryMemory) {
-
                 countryMemory.classList.add(
                     "active"
                 );
-
             }
-
         }
     );
+}
 
+function escapeHTML(text) {
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        text || "";
+
+    return div.innerHTML;
 }
 
 document.addEventListener(
     "keydown",
-    (event) => {
-
+    event => {
         if (
             event.key !==
             "Escape"
         ) {
-
             return;
-
         }
 
         if (
@@ -1762,13 +1702,11 @@ document.addEventListener(
                 "active"
             )
         ) {
-
             memoryFormContainer.classList.remove(
                 "active"
             );
 
             return;
-
         }
 
         if (
@@ -1777,13 +1715,12 @@ document.addEventListener(
                 "active"
             )
         ) {
-
             countryMemory.classList.remove(
                 "active"
             );
 
+            return;
         }
-
     }
 );
 
