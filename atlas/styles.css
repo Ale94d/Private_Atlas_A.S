@@ -969,7 +969,7 @@ object {
     resize: vertical;
 }
 
-#save-memory-btn {
+.save-memory-btn {
     width: 100%;
     padding: 12px;
     display: flex;
@@ -993,7 +993,7 @@ object {
     cursor: pointer;
 }
 
-#close-memory-form {
+.close-memory-form {
     position: absolute;
     top: 15px;
     right: 15px;
