@@ -275,73 +275,61 @@ if (mapContainer) {
 
 updateMapTransform();
 
-if (worldMap) {
+function initializeCountries() {
 
-    worldMap.addEventListener("load", () => {
+    if (!worldMap) {
+        return;
+    }
 
-        const svgDocument =
-            worldMap.contentDocument;
+    const svgDocument = worldMap.contentDocument;
 
-        if (!svgDocument) {
-            return;
-        }
+    if (!svgDocument) {
+        setTimeout(initializeCountries, 200);
+        return;
+    }
 
-        const countries =
-            svgDocument.querySelectorAll(
-                "path[id]"
-            );
+    const countries = svgDocument.querySelectorAll("path[id]");
 
-        countries.forEach((country) => {
+    countries.forEach((country) => {
 
-            country.style.cursor = "pointer";
+        country.style.cursor = "pointer";
+        country.style.transition = "filter 0.2s ease";
 
-            country.style.transition =
-                "filter 0.2s ease";
+        country.addEventListener("mouseenter", () => {
 
-            country.addEventListener(
-                "mouseenter",
-                () => {
+            country.style.filter = "brightness(1.15)";
 
-                    country.style.filter =
-                        "brightness(1.15)";
+        });
 
-                }
-            );
+        country.addEventListener("mouseleave", () => {
 
-            country.addEventListener(
-                "mouseleave",
-                () => {
+            if (country !== selectedCountryElement) {
+                country.style.filter = "";
+            }
 
-                    if (
-                        country !==
-                        selectedCountryElement
-                    ) {
+        });
 
-                        country.style.filter = "";
+        country.addEventListener("click", (event) => {
 
-                    }
+            event.stopPropagation();
 
-                }
-            );
+            if (hasMoved) {
+                return;
+            }
 
-            country.addEventListener(
-                "click",
-                (event) => {
-
-                    event.stopPropagation();
-
-                    if (hasMoved) {
-                        return;
-                    }
-
-                    selectCountry(country);
-
-                }
-            );
+            selectCountry(country);
 
         });
 
     });
+
+}
+
+if (worldMap) {
+
+    worldMap.addEventListener("load", initializeCountries);
+
+    setTimeout(initializeCountries, 300);
 
 }
 
