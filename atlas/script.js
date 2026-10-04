@@ -7,79 +7,21 @@ const countryMessage = document.getElementById("country-message");
 
 const countryMemory = document.getElementById("country-memory");
 const memoryCountryName = document.getElementById("memory-country-name");
-const memoryCountryDescription =
-    document.getElementById("memory-country-description");
+const memoryCountryDescription = document.getElementById("memory-country-description");
 
 const countryMemories = document.getElementById("country-memories");
 
 const addMemoryBtn = document.getElementById("add-memory-btn");
 
-const memoryFormContainer =
-    document.getElementById("memory-form-container");
+const memoryFormContainer = document.getElementById("memory-form-container");
+const memoryForm = document.getElementById("memory-form");
 
-const memoryForm =
-    document.getElementById("memory-form");
-
-const closeMemory =
-    document.getElementById("close-memory");
-
-const closeMemoryForm =
-    document.getElementById("close-memory-form");
+const closeMemory = document.getElementById("close-memory");
+const closeMemoryForm = document.getElementById("close-memory-form");
 
 let selectedCountryCode = null;
 let selectedCountryElement = null;
-
-
-
-if (addMemoryBtn) {
-
-    addMemoryBtn.addEventListener("click", () => {
-
-        editingMemoryId = null;
-
-        memoryForm.reset();
-
-        memoryFormContainer.classList.add("active");
-
-        if (typeof lucide !== "undefined") {
-            lucide.createIcons();
-        }
-
-    });
-
-}
-
-
-if (closeMemory) {
-
-    closeMemory.addEventListener("click", () => {
-
-        countryMemory.classList.remove("active");
-
-    });
-
-}
-
-
-if (closeMemoryForm) {
-
-    closeMemoryForm.addEventListener("click", () => {
-
-        memoryFormContainer.classList.remove("active");
-
-    });
-
-}
-
-const backHome = document.querySelector(".back-home");
-
-if (backHome) {
-    backHome.addEventListener("click", () => {
-        window.location.href = "../index.html";
-    });
-}
-
-
+let editingMemoryId = null;
 
 let isDragging = false;
 let hasMoved = false;
@@ -90,307 +32,359 @@ let startPointerY = 0;
 let startMapX = 0;
 let startMapY = 0;
 
+let mapX = 0;
+let mapY = 0;
+let scale = 1;
 
 function updateMapTransform() {
 
+    if (!mapContainer) return;
+
     mapContainer.style.transform =
-        `translate3d(${mapX}px, ${mapY}px, 0)
-         scale(${scale})`;
-
+        translate3d(${mapX}px, ${mapY}px, 0) scale(${scale});
 }
 
+const backHome = document.querySelector(".back-home");
 
-mapContainer.addEventListener(
-    "pointerdown",
-    (event) => {
+if (backHome) {
 
-        isDragging = true;
-        hasMoved = false;
+    backHome.addEventListener("click", () => {
 
-        startPointerX =
-            event.clientX;
-
-        startPointerY =
-            event.clientY;
-
-        startMapX = mapX;
-        startMapY = mapY;
-
-        mapContainer.setPointerCapture(
-            event.pointerId
-        );
-
-    }
-);
-
-
-
-mapContainer.addEventListener(
-    "pointermove",
-    (event) => {
-
-        if (!isDragging) return;
-
-
-        const deltaX =
-            event.clientX -
-            startPointerX;
-
-        const deltaY =
-            event.clientY -
-            startPointerY;
-
-
-        if (
-            Math.abs(deltaX) > 4 ||
-            Math.abs(deltaY) > 4
-        ) {
-
-            hasMoved = true;
-
-        }
-
-
-        mapX =
-            startMapX + deltaX;
-
-        mapY =
-            startMapY + deltaY;
-
-
-        updateMapTransform();
-
-    }
-);
-
-
-function stopDragging(event) {
-
-    if (!isDragging) return;
-
-    isDragging = false;
-
-    try {
-
-        mapContainer.releasePointerCapture(
-            event.pointerId
-        );
-
-    } catch (error) {}
-
-}
-
-
-mapContainer.addEventListener(
-    "pointerup",
-    stopDragging
-);
-
-mapContainer.addEventListener(
-    "pointercancel",
-    stopDragging
-);
-
-
-
-mapContainer.addEventListener(
-    "wheel",
-    (event) => {
-
-        event.preventDefault();
-
-
-        const zoomIntensity = 0.0015;
-
-
-        const oldScale = scale;
-
-
-        scale -=
-            event.deltaY *
-            zoomIntensity;
-
-
-        scale =
-            Math.max(
-                0.65,
-                Math.min(
-                    scale,
-                    4
-                )
-            );
-
-
-        const rect =
-            mapContainer.getBoundingClientRect();
-
-
-        const mouseX =
-            event.clientX -
-            rect.left;
-
-        const mouseY =
-            event.clientY -
-            rect.top;
-
-
-        const scaleChange =
-            scale / oldScale;
-
-
-        mapX =
-            mouseX -
-            (mouseX - mapX) *
-            scaleChange;
-
-
-        mapY =
-            mouseY -
-            (mouseY - mapY) *
-            scaleChange;
-
-
-        updateMapTransform();
-
-    },
-    {
-        passive: false
-    }
-);
-
-mapContainer.addEventListener("dblclick", () => {
-
-    mapX = 0;
-    mapY = 0;
-    scale = 1;
-
-    updateMapTransform();
-});
-
-
-worldMap.addEventListener("load", () => {
-
-    const svgDocument =
-        worldMap.contentDocument;
-
-    if (!svgDocument) {
-
-        console.error(
-            "No se pudo acceder al mapa SVG."
-        );
-
-        return;
-    }
-
-    const countries =
-        svgDocument.querySelectorAll(
-            "path[id][name]"
-        );
-
-
-    countries.forEach((country) => {
-
-        country.style.cursor = "pointer";
-
-        country.style.transition =
-            "filter 0.2s ease";
-
-
-        country.addEventListener(
-            "mouseenter",
-            () => {
-
-                country.style.filter =
-                    "brightness(1.15)";
-
-            }
-        );
-
-
-        country.addEventListener(
-            "mouseleave",
-            () => {
-
-                if (
-                    country !==
-                    selectedCountryElement
-                ) {
-
-                    country.style.filter =
-                        "";
-
-                }
-
-            }
-        );
-
-
-        country.addEventListener(
-            "click",
-            (event) => {
-
-                event.stopPropagation();
-
-                selectCountry(country);
-
-            }
-        );
+        window.location.href = "../index.html";
 
     });
 
+}
 
-    console.log(
-        `Países habilitados: ${countries.length}`
+if (addMemoryBtn) {
+
+    addMemoryBtn.addEventListener("click", () => {
+
+        editingMemoryId = null;
+
+        if (memoryForm) {
+            memoryForm.reset();
+        }
+
+        if (memoryFormContainer) {
+            memoryFormContainer.classList.add("active");
+        }
+
+    });
+
+}
+
+if (closeMemory) {
+
+    closeMemory.addEventListener("click", () => {
+
+        if (countryMemory) {
+            countryMemory.classList.remove("active");
+        }
+
+    });
+
+}
+
+if (closeMemoryForm) {
+
+    closeMemoryForm.addEventListener("click", () => {
+
+        if (memoryFormContainer) {
+            memoryFormContainer.classList.remove("active");
+        }
+
+    });
+
+}
+
+if (memoryFormContainer) {
+
+    memoryFormContainer.addEventListener("click", (event) => {
+
+        if (event.target === memoryFormContainer) {
+
+            memoryFormContainer.classList.remove("active");
+
+        }
+
+    });
+
+}
+
+if (countryMemory) {
+
+    countryMemory.addEventListener("click", (event) => {
+
+        if (event.target === countryMemory) {
+
+            countryMemory.classList.remove("active");
+
+        }
+
+    });
+
+}
+
+if (mapContainer) {
+
+    mapContainer.addEventListener(
+        "pointerdown",
+        (event) => {
+
+            isDragging = true;
+            hasMoved = false;
+
+            startPointerX = event.clientX;
+            startPointerY = event.clientY;
+
+            startMapX = mapX;
+            startMapY = mapY;
+
+            try {
+
+                mapContainer.setPointerCapture(event.pointerId);
+
+            } catch (error) {}
+
+        }
     );
 
-});
+    mapContainer.addEventListener(
+        "pointermove",
+        (event) => {
 
+            if (!isDragging) return;
 
-function loadCountryMemories(countryCode) {
+            const deltaX =
+                event.clientX - startPointerX;
 
-    const memories =
-        JSON.parse(
-            localStorage.getItem("privateAtlasAtlas")
-        ) || [];
+            const deltaY =
+                event.clientY - startPointerY;
 
-    const countryList =
-        memories.filter(
-            memory => memory.country === countryCode
-        );
+            if (
+                Math.abs(deltaX) > 4 ||
+                Math.abs(deltaY) > 4
+            ) {
 
-    countryMemories.innerHTML = "";
+                hasMoved = true;
 
-    const emptyMessage =
-        document.querySelector(".memory-empty-message");
+            }
 
+            mapX = startMapX + deltaX;
+            mapY = startMapY + deltaY;
 
-    if (countryList.length === 0) {
+            updateMapTransform();
 
-        if (emptyMessage) {
-            emptyMessage.style.display = "block";
+        }
+    );
+
+    mapContainer.addEventListener(
+        "pointerup",
+        (event) => {
+
+            if (!isDragging) return;
+
+            isDragging = false;
+
+            try {
+
+                mapContainer.releasePointerCapture(
+                    event.pointerId
+                );
+
+            } catch (error) {}
+
+        }
+    );
+
+    mapContainer.addEventListener(
+        "pointercancel",
+        () => {
+
+            isDragging = false;
+
+        }
+    );
+
+    mapContainer.addEventListener(
+        "wheel",
+        (event) => {
+
+            event.preventDefault();
+
+            const oldScale = scale;
+
+            const zoomAmount =
+                event.deltaY > 0
+                    ? 0.90
+                    : 1.10;
+
+            scale *= zoomAmount;
+
+            scale =
+                Math.max(
+                    0.65,
+                    Math.min(scale, 4)
+                );
+
+            const rect =
+                mapContainer.getBoundingClientRect();
+
+            const mouseX =
+                event.clientX - rect.left;
+
+            const mouseY =
+                event.clientY - rect.top;
+
+            const scaleChange =
+                scale / oldScale;
+
+            mapX =
+                mouseX -
+                (mouseX - mapX) *
+                scaleChange;
+
+            mapY =
+                mouseY -
+                (mouseY - mapY) *
+                scaleChange;
+
+            updateMapTransform();
+
+        },
+        {
+            passive: false
+        }
+    );
+
+    mapContainer.addEventListener(
+        "dblclick",
+        () => {
+
+            mapX = 0;
+            mapY = 0;
+            scale = 1;
+
+            updateMapTransform();
+
+        }
+    );
+
+}
+
+updateMapTransform();
+
+if (worldMap) {
+
+    worldMap.addEventListener("load", () => {
+
+        const svgDocument =
+            worldMap.contentDocument;
+
+        if (!svgDocument) {
+            return;
         }
 
-        return;
-    }
+        const countries =
+            svgDocument.querySelectorAll(
+                "path[id]"
+            );
 
+        countries.forEach((country) => {
 
-    if (emptyMessage) {
-        emptyMessage.style.display = "none";
-    }
+            country.style.cursor = "pointer";
 
+            country.style.transition =
+                "filter 0.2s ease";
 
-    countryList.forEach(memory => {
+            country.addEventListener(
+                "mouseenter",
+                () => {
 
-        countryMemories.appendChild(
-            createMemoryCard(memory)
-        );
+                    country.style.filter =
+                        "brightness(1.15)";
+
+                }
+            );
+
+            country.addEventListener(
+                "mouseleave",
+                () => {
+
+                    if (
+                        country !==
+                        selectedCountryElement
+                    ) {
+
+                        country.style.filter = "";
+
+                    }
+
+                }
+            );
+
+            country.addEventListener(
+                "click",
+                (event) => {
+
+                    event.stopPropagation();
+
+                    if (hasMoved) {
+                        return;
+                    }
+
+                    selectCountry(country);
+
+                }
+            );
+
+        });
 
     });
 
+}
 
-    if (typeof lucide !== "undefined") {
-        lucide.createIcons();
+function selectCountry(country) {
+
+    if (!country) return;
+
+    selectedCountryElement = country;
+
+    selectedCountryCode =
+        country.getAttribute("id");
+
+    const name =
+        getCountryName(
+            selectedCountryCode
+        );
+
+    if (selectedCountry) {
+        selectedCountry.classList.remove("active");
     }
+
+    openCountryMemory(
+        selectedCountryCode,
+        name
+    );
+
+}
+
+function getCountryName(code) {
+
+    if (
+        selectedCountryElement &&
+        selectedCountryElement.getAttribute("name")
+    ) {
+
+        return translateCountryName(
+            selectedCountryElement.getAttribute("name")
+        );
+
+    }
+
+    return countryNames[code] || code;
+
 }
 
 const countryNames = {
@@ -422,26 +416,6 @@ const countryNames = {
     AU: "Australia"
 
 };
-
-
-function getCountryName(code) {
-
-    if (
-        selectedCountryElement &&
-        selectedCountryElement.getAttribute("name")
-    ) {
-
-        return translateCountryName(
-            selectedCountryElement.getAttribute("name")
-        );
-
-    }
-
-
-    return countryNames[code] || code;
-
-}
-
 
 function translateCountryName(name) {
 
@@ -593,9 +567,9 @@ function translateCountryName(name) {
         Turkmenistan: "Turkmenistán",
         Uganda: "Uganda",
         Ukraine: "Ucrania",
-        UnitedArabEmirates:"Emiratos Árabes Unidos",
-        UnitedKingdom:"Reino Unido",
-        UnitedStates:"Estados Unidos",
+        UnitedArabEmirates: "Emiratos Árabes Unidos",
+        UnitedKingdom: "Reino Unido",
+        UnitedStates: "Estados Unidos",
         Uruguay: "Uruguay",
         Uzbekistan: "Uzbekistán",
         Vanuatu: "Vanuatu",
@@ -607,213 +581,560 @@ function translateCountryName(name) {
 
     };
 
-
     return translations[name] || name;
 
 }
-
 
 function openCountryMemory(code, name) {
 
     selectedCountryCode = code;
 
-    console.log(
-        "Abriendo ventana:",
-        name
-    );
+    if (memoryCountryName) {
 
-    memoryCountryName.textContent =
-        name;
-
-    memoryCountryDescription.textContent =
-        `Aquí podrás guardar tus recuerdos de ${name}.`;
-
-    loadCountryMemories(code);
-
-    countryMemory.classList.add("active");
-
-    console.log(
-        "Ventana activa:",
-        countryMemory.classList.contains("active")
-    );
-}
-
-
-let editingMemoryId = null;
-
-memoryForm.addEventListener("submit", (event) => {
-
-    event.preventDefault();
-
-    if (!selectedCountryCode) return;
-
-    const city =
-        document
-            .getElementById("memory-city")
-            .value
-            .trim();
-
-    const title =
-        document
-            .getElementById("memory-title")
-            .value
-            .trim();
-
-    let description =
-        document
-            .getElementById("memory-description")
-            .value
-            .trim();
-
-    const date =
-        document
-            .getElementById("memory-date")
-            .value;
-
-    const imageInput =
-        document.getElementById("memory-image");
-
-    const file =
-        imageInput.files[0];
-
-    description =
-        description
-            .split(/\s+/)
-            .slice(0, 35)
-            .join(" ");
-
-
-    const memories =
-        JSON.parse(
-            localStorage.getItem("privateAtlasAtlas")
-        ) || [];
-
-
-    const saveMemory = (image = null) => {
-
-        if (editingMemoryId) {
-
-            const index =
-                memories.findIndex(
-                    memory =>
-                        memory.id === editingMemoryId
-                );
-
-            if (index !== -1) {
-
-                memories[index].city =
-                    city;
-
-                memories[index].title =
-                    title;
-
-                memories[index].description =
-                    description;
-
-                memories[index].date =
-                    date;
-
-                if (image !== null) {
-                    memories[index].image =
-                        image;
-                }
-
-            }
-
-        } else {
-
-            memories.push({
-
-                id: Date.now(),
-
-                country:
-                    selectedCountryCode,
-
-                city,
-
-                title,
-
-                description,
-
-                date,
-
-                image:
-                    image || "",
-
-                favorite: false
-
-            });
-
-        }
-
-
-        localStorage.setItem(
-            "privateAtlasAtlas",
-            JSON.stringify(memories)
-        );
-
-
-        editingMemoryId = null;
-
-        memoryForm.reset();
-
-        memoryFormContainer
-            .classList
-            .remove("active");
-
-        loadCountryMemories(
-            selectedCountryCode
-        );
-    };
-
-
-    if (file) {
-
-        const reader =
-            new FileReader();
-
-        reader.onload = () => {
-
-            saveMemory(
-                reader.result
-            );
-
-        };
-
-        reader.readAsDataURL(file);
-
-    } else {
-
-        if (editingMemoryId) {
-
-            const oldMemory =
-                memories.find(
-                    memory =>
-                        memory.id === editingMemoryId
-                );
-
-            saveMemory(
-                oldMemory
-                    ? oldMemory.image
-                    : ""
-            );
-
-        } else {
-
-            saveMemory("");
-
-        }
+        memoryCountryName.textContent =
+            name;
 
     }
 
-});
+    if (memoryCountryDescription) {
 
+        memoryCountryDescription.textContent =
+            `Aquí podrás guardar tus recuerdos de ${name}.`;
+
+    }
+
+    loadCountryMemories(code);
+
+    if (countryMemory) {
+
+        countryMemory.classList.add("active");
+
+    }
+
+}
+
+if (memoryForm) {
+
+    memoryForm.addEventListener(
+        "submit",
+        (event) => {
+
+            event.preventDefault();
+
+            if (!selectedCountryCode) {
+                return;
+            }
+
+            const cityInput =
+                document.getElementById(
+                    "memory-city"
+                );
+
+            const titleInput =
+                document.getElementById(
+                    "memory-title"
+                );
+
+            const descriptionInput =
+                document.getElementById(
+                    "memory-description"
+                );
+
+            const dateInput =
+                document.getElementById(
+                    "memory-date"
+                );
+
+            const imageInput =
+                document.getElementById(
+                    "memory-image"
+                );
+
+            const city =
+                cityInput
+                    ? cityInput.value.trim()
+                    : "";
+
+            const title =
+                titleInput
+                    ? titleInput.value.trim()
+                    : "";
+
+            let description =
+                descriptionInput
+                    ? descriptionInput.value.trim()
+                    : "";
+
+            const date =
+                dateInput
+                    ? dateInput.value
+                    : "";
+
+            const file =
+                imageInput &&
+                imageInput.files
+                    ? imageInput.files[0]
+                    : null;
+
+            description =
+                description
+                    .split(/\s+/)
+                    .filter(Boolean)
+                    .slice(0, 35)
+                    .join(" ");
+
+            const memories =
+                JSON.parse(
+                    localStorage.getItem(
+                        "privateAtlasAtlas"
+                    )
+                ) || [];
+
+            const saveMemory =
+                (image) => {
+
+                    if (editingMemoryId) {
+
+                        const index =
+                            memories.findIndex(
+                                memory =>
+                                    memory.id ===
+                                    editingMemoryId
+                            );
+
+                        if (index !== -1) {
+
+                            memories[index].city =
+                                city;
+
+                            memories[index].title =
+                                title;
+
+                            memories[index].description =
+                                description;
+
+                            memories[index].date =
+                                date;
+
+                            memories[index].image =
+                                image;
+
+                        }
+
+                    } else {
+
+                        memories.push({
+
+                            id:
+                                Date.now(),
+
+                            country:
+                                selectedCountryCode,
+
+                            city,
+
+                            title,
+
+                            description,
+
+                            date,
+
+                            image:
+                                image || "",
+
+                            favorite:
+                                false
+
+                        });
+
+                    }
+
+                    localStorage.setItem(
+                        "privateAtlasAtlas",
+                        JSON.stringify(memories)
+                    );
+
+                    editingMemoryId = null;
+
+                    memoryForm.reset();
+
+                    if (memoryFormContainer) {
+
+                        memoryFormContainer.classList.remove(
+                            "active"
+                        );
+
+                    }
+
+                    loadCountryMemories(
+                        selectedCountryCode
+                    );
+
+                };
+
+            if (file) {
+
+                const reader =
+                    new FileReader();
+
+                reader.onload =
+                    () => {
+
+                        saveMemory(
+                            reader.result
+                        );
+
+                    };
+
+                reader.readAsDataURL(
+                    file
+                );
+
+            } else {
+
+                let oldImage = "";
+
+                if (editingMemoryId) {
+
+                    const oldMemory =
+                        memories.find(
+                            memory =>
+                                memory.id ===
+                                editingMemoryId
+                        );
+
+                    if (oldMemory) {
+
+                        oldImage =
+                            oldMemory.image ||
+                            "";
+
+                    }
+
+                }
+
+                saveMemory(
+                    oldImage
+                );
+
+            }
+
+        }
+    );
+
+}
+
+function loadCountryMemories(countryCode) {
+
+    if (!countryMemories) {
+        return;
+    }
+
+    const memories =
+        JSON.parse(
+            localStorage.getItem(
+                "privateAtlasAtlas"
+            )
+        ) || [];
+
+    const countryList =
+        memories.filter(
+            memory =>
+                memory.country ===
+                countryCode
+        );
+
+    countryMemories.innerHTML = "";
+
+    const emptyMessage =
+        document.querySelector(
+            ".memory-empty-message"
+        );
+
+    if (
+        countryList.length === 0
+    ) {
+
+        if (emptyMessage) {
+
+            emptyMessage.style.display =
+                "block";
+
+        }
+
+        return;
+
+    }
+
+    if (emptyMessage) {
+
+        emptyMessage.style.display =
+            "none";
+
+    }
+
+    const cities = {};
+
+    countryList.forEach(
+        (memory) => {
+
+            const city =
+                memory.city &&
+                memory.city.trim()
+                    ? memory.city.trim()
+                    : "Sin ciudad";
+
+            if (!cities[city]) {
+
+                cities[city] = [];
+
+            }
+
+            cities[city].push(
+                memory
+            );
+
+        }
+    );
+
+    Object.keys(cities)
+        .forEach(
+            (city) => {
+
+                createCityCarousel(
+                    city,
+                    cities[city]
+                );
+
+            }
+        );
+
+}
+
+function createCityCarousel(
+    city,
+    memories
+) {
+
+    const section =
+        document.createElement(
+            "section"
+        );
+
+    section.className =
+        "city-memory-section";
+
+    const title =
+        document.createElement(
+            "h3"
+        );
+
+    title.className =
+        "city-memory-title";
+
+    title.innerHTML = `
+        <span>✦</span>
+        ${escapeHTML(city)}
+        <span>✦</span>
+    `;
+
+    const carousel =
+        document.createElement(
+            "div"
+        );
+
+    carousel.className =
+        "memory-carousel";
+
+    const previous =
+        document.createElement(
+            "button"
+        );
+
+    previous.type =
+        "button";
+
+    previous.className =
+        "carousel-arrow carousel-prev";
+
+    previous.innerHTML =
+        `<i class="icon-chevron-left"></i>`;
+
+    const next =
+        document.createElement(
+            "button"
+        );
+
+    next.type =
+        "button";
+
+    next.className =
+        "carousel-arrow carousel-next";
+
+    next.innerHTML =
+        `<i class="icon-chevron-right"></i>`;
+
+    const viewport =
+        document.createElement(
+            "div"
+        );
+
+    viewport.className =
+        "memory-carousel-viewport";
+
+    const track =
+        document.createElement(
+            "div"
+        );
+
+    track.className =
+        "memory-carousel-track";
+
+    memories.forEach(
+        (memory) => {
+
+            track.appendChild(
+                createMemoryCard(memory)
+            );
+
+        }
+    );
+
+    viewport.appendChild(
+        track
+    );
+
+    carousel.appendChild(
+        previous
+    );
+
+    carousel.appendChild(
+        viewport
+    );
+
+    carousel.appendChild(
+        next
+    );
+
+    section.appendChild(
+        title
+    );
+
+    section.appendChild(
+        carousel
+    );
+
+    countryMemories.appendChild(
+        section
+    );
+
+    let position = 0;
+
+    function getStep() {
+
+        const card =
+            track.querySelector(
+                ".memory-card"
+            );
+
+        if (!card) {
+            return 240;
+        }
+
+        const style =
+            window.getComputedStyle(
+                track
+            );
+
+        const gap =
+            parseFloat(
+                style.columnGap ||
+                style.gap ||
+                30
+            ) || 30;
+
+        return (
+            card.getBoundingClientRect()
+                .width +
+            gap
+        );
+
+    }
+
+    function updateCarousel() {
+
+        const visibleWidth =
+            viewport.clientWidth;
+
+        const totalWidth =
+            track.scrollWidth;
+
+        const maxPosition =
+            Math.max(
+                0,
+                totalWidth -
+                visibleWidth
+            );
+
+        position =
+            Math.max(
+                0,
+                Math.min(
+                    position,
+                    maxPosition
+                )
+            );
+
+        track.style.transform =
+            `translateX(-${position}px)`;
+
+    }
+
+    next.addEventListener(
+        "click",
+        (event) => {
+
+            event.stopPropagation();
+
+            position +=
+                getStep();
+
+            updateCarousel();
+
+        }
+    );
+
+    previous.addEventListener(
+        "click",
+        (event) => {
+
+            event.stopPropagation();
+
+            position -=
+                getStep();
+
+            updateCarousel();
+
+        }
+    );
+
+    window.addEventListener(
+        "resize",
+        updateCarousel
+    );
+
+    requestAnimationFrame(
+        updateCarousel
+    );
+
+}
 
 function createMemoryCard(memory) {
 
     const card =
-        document.createElement("article");
-
+        document.createElement(
+            "article"
+        );
 
     card.className =
         `memory-card ${
@@ -822,53 +1143,47 @@ function createMemoryCard(memory) {
                 : ""
         }`;
 
-
     card.dataset.id =
         memory.id;
 
+    const imageHTML =
+        memory.image
+            ? `
+                <img
+                    src="${memory.image}"
+                    alt="${escapeHTML(
+                        memory.title
+                    )}"
+                >
+              `
+            : `
+                <div class="no-photo">
+                    Sin fotografía
+                </div>
+              `;
 
     card.innerHTML = `
 
         <div class="memory-card-inner">
 
-            <!-- FRENTE -->
-
             <div class="memory-card-front">
 
                 <div class="memory-photo">
 
-                    ${
-                        memory.image
-
-                            ? `
-                                <img
-                                    src="${memory.image}"
-                                    alt="${escapeHTML(memory.title)}"
-                                >
-                              `
-
-                            : `
-                                <div class="no-photo">
-                                    Sin fotografía
-                                </div>
-                              `
-                    }
+                    ${imageHTML}
 
                 </div>
-
 
                 <div class="polaroid-caption">
 
                     ${escapeHTML(
-                        memory.title
+                        memory.title ||
+                        "Sin título"
                     )}
 
                 </div>
 
             </div>
-
-
-            <!-- REVERSO -->
 
             <div class="memory-card-back">
 
@@ -883,34 +1198,34 @@ function createMemoryCard(memory) {
 
                     </span>
 
-
                     <h3>
 
                         ${escapeHTML(
-                            memory.title
+                            memory.title ||
+                            "Sin título"
                         )}
 
                     </h3>
 
-
                     <p class="memory-description">
 
                         ${escapeHTML(
-                            memory.description
+                            memory.description ||
+                            "Sin descripción"
                         )}
 
                     </p>
 
-
                     <p class="memory-date">
 
-                        ${memory.date
-                            || "Sin fecha"}
+                        ${
+                            memory.date ||
+                            "Sin fecha"
+                        }
 
                     </p>
 
                 </div>
-
 
                 <div class="memory-actions">
 
@@ -919,31 +1234,29 @@ function createMemoryCard(memory) {
                         class="favorite-memory"
                         title="Favorito"
                     >
-                        <i
-                            data-lucide="star">
-                        </i>
-                    </button>
 
+                        <i class="icon-star"></i>
+
+                    </button>
 
                     <button
                         type="button"
                         class="edit-memory"
                         title="Editar"
                     >
-                        <i
-                            data-lucide="pencil">
-                        </i>
-                    </button>
 
+                        <i class="icon-pencil"></i>
+
+                    </button>
 
                     <button
                         type="button"
                         class="delete-memory"
                         title="Eliminar"
                     >
-                        <i
-                            data-lucide="trash-2">
-                        </i>
+
+                        <i class="icon-trash-2"></i>
+
                     </button>
 
                 </div>
@@ -954,7 +1267,6 @@ function createMemoryCard(memory) {
 
     `;
 
-
     card.addEventListener(
         "click",
         (event) => {
@@ -964,7 +1276,9 @@ function createMemoryCard(memory) {
                     ".memory-actions"
                 )
             ) {
+
                 return;
+
             }
 
             card.classList.toggle(
@@ -974,12 +1288,14 @@ function createMemoryCard(memory) {
         }
     );
 
-
-    card
-        .querySelector(
+    const favoriteButton =
+        card.querySelector(
             ".favorite-memory"
-        )
-        .addEventListener(
+        );
+
+    if (favoriteButton) {
+
+        favoriteButton.addEventListener(
             "click",
             (event) => {
 
@@ -992,12 +1308,16 @@ function createMemoryCard(memory) {
             }
         );
 
+    }
 
-    card
-        .querySelector(
+    const editButton =
+        card.querySelector(
             ".edit-memory"
-        )
-        .addEventListener(
+        );
+
+    if (editButton) {
+
+        editButton.addEventListener(
             "click",
             (event) => {
 
@@ -1010,11 +1330,16 @@ function createMemoryCard(memory) {
             }
         );
 
-    card
-        .querySelector(
+    }
+
+    const deleteButton =
+        card.querySelector(
             ".delete-memory"
-        )
-        .addEventListener(
+        );
+
+    if (deleteButton) {
+
+        deleteButton.addEventListener(
             "click",
             (event) => {
 
@@ -1027,37 +1352,43 @@ function createMemoryCard(memory) {
             }
         );
 
+    }
 
     return card;
+
 }
 
-
-function toggleFavorite(memoryId) {
+function toggleFavorite(
+    memoryId
+) {
 
     const memories =
         JSON.parse(
-            localStorage.getItem("privateAtlasAtlas")
+            localStorage.getItem(
+                "privateAtlasAtlas"
+            )
         ) || [];
-
 
     const memory =
         memories.find(
-            item => item.id === memoryId
+            item =>
+                item.id ===
+                memoryId
         );
 
-
-    if (!memory) return;
-
+    if (!memory) {
+        return;
+    }
 
     memory.favorite =
         !memory.favorite;
 
-
     localStorage.setItem(
         "privateAtlasAtlas",
-        JSON.stringify(memories)
+        JSON.stringify(
+            memories
+        )
     );
-
 
     loadCountryMemories(
         selectedCountryCode
@@ -1065,334 +1396,407 @@ function toggleFavorite(memoryId) {
 
 }
 
-
-function editMemory(memoryId) {
+function editMemory(
+    memoryId
+) {
 
     const memories =
         JSON.parse(
-            localStorage.getItem("privateAtlasAtlas")
+            localStorage.getItem(
+                "privateAtlasAtlas"
+            )
         ) || [];
-
 
     const memory =
         memories.find(
-            item => item.id === memoryId
+            item =>
+                item.id ===
+                memoryId
         );
 
-
-    if (!memory) return;
-
+    if (!memory) {
+        return;
+    }
 
     editingMemoryId =
         memoryId;
 
+    const cityInput =
+        document.getElementById(
+            "memory-city"
+        );
 
-    document
-        .getElementById("memory-city")
-        .value =
-            memory.city || "";
+    const titleInput =
+        document.getElementById(
+            "memory-title"
+        );
 
+    const descriptionInput =
+        document.getElementById(
+            "memory-description"
+        );
 
-    document
-        .getElementById("memory-title")
-        .value =
-            memory.title || "";
+    const dateInput =
+        document.getElementById(
+            "memory-date"
+        );
 
+    if (cityInput) {
 
-    document
-        .getElementById("memory-description")
-        .value =
-            memory.description || "";
+        cityInput.value =
+            memory.city ||
+            "";
 
+    }
 
-    document
-        .getElementById("memory-date")
-        .value =
-            memory.date || "";
+    if (titleInput) {
 
+        titleInput.value =
+            memory.title ||
+            "";
 
-    memoryFormContainer
-        .classList
-        .add("active");
+    }
+
+    if (descriptionInput) {
+
+        descriptionInput.value =
+            memory.description ||
+            "";
+
+    }
+
+    if (dateInput) {
+
+        dateInput.value =
+            memory.date ||
+            "";
+
+    }
+
+    if (memoryFormContainer) {
+
+        memoryFormContainer.classList.add(
+            "active"
+        );
+
+    }
 
 }
 
-
-function deleteMemory(memoryId) {
+function deleteMemory(
+    memoryId
+) {
 
     const memories =
         JSON.parse(
-            localStorage.getItem("privateAtlasAtlas")
+            localStorage.getItem(
+                "privateAtlasAtlas"
+            )
         ) || [];
-
 
     const updatedMemories =
         memories.filter(
-            memory => memory.id !== memoryId
+            memory =>
+                memory.id !==
+                memoryId
         );
-
 
     localStorage.setItem(
         "privateAtlasAtlas",
-        JSON.stringify(updatedMemories)
+        JSON.stringify(
+            updatedMemories
+        )
     );
-
 
     loadCountryMemories(
         selectedCountryCode
     );
+
 }
 
-function escapeHTML(text) {
+function escapeHTML(
+    text
+) {
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     div.textContent =
         text || "";
 
     return div.innerHTML;
-}
-
-function loadCountryMemories(countryCode) {
-
-    const memories =
-        JSON.parse(
-            localStorage.getItem("privateAtlasAtlas")
-        ) || [];
-
-
-    const countryList =
-        memories.filter(
-            memory =>
-                memory.country === countryCode
-        );
-
-
-    countryMemories.innerHTML = "";
-
-
-    const emptyMessage =
-        document.querySelector(
-            ".memory-empty-message"
-        );
-
-
-    if (countryList.length === 0) {
-
-        if (emptyMessage) {
-            emptyMessage.style.display =
-                "block";
-        }
-
-        return;
-    }
-
-
-    if (emptyMessage) {
-        emptyMessage.style.display =
-            "none";
-    }
-
-
-    const cities = {};
-
-    countryList.forEach(memory => {
-
-        const city =
-            memory.city ||
-            "Sin ciudad";
-
-        if (!cities[city]) {
-            cities[city] = [];
-        }
-
-        cities[city].push(memory);
-
-    });
-
-
-    Object.keys(cities).forEach(city => {
-
-        createCityCarousel(
-            city,
-            cities[city]
-        );
-
-    });
-
-
-    if (typeof lucide !== "undefined") {
-        lucide.createIcons();
-    }
 
 }
 
+const searchButton =
+    document.querySelector(
+        ".search-btn"
+    );
 
-function createCityCarousel(city, memories) {
+if (searchButton) {
 
-    const section =
-        document.createElement("section");
+    searchButton.addEventListener(
+        "click",
+        () => {
 
-    section.className =
-        "city-memory-section";
+            const country =
+                prompt(
+                    "Escribe el nombre del país que quieres buscar:"
+                );
 
+            if (!country) {
+                return;
+            }
 
-    const title =
-        document.createElement("h3");
+            const search =
+                country
+                    .trim()
+                    .toLowerCase();
 
-    title.className =
-        "city-memory-title";
+            if (!worldMap) {
+                return;
+            }
 
-    title.innerHTML = `
-        <span>✦</span>
-        ${escapeHTML(city)}
-        <span>✦</span>
-    `;
+            const svgDocument =
+                worldMap.contentDocument;
 
+            if (!svgDocument) {
+                return;
+            }
 
-    const carousel =
-        document.createElement("div");
+            const countries =
+                svgDocument.querySelectorAll(
+                    "path[id]"
+                );
 
-    carousel.className =
-        "memory-carousel";
+            let foundCountry =
+                null;
 
+            countries.forEach(
+                (countryElement) => {
 
-    const previous =
-        document.createElement("button");
+                    if (foundCountry) {
+                        return;
+                    }
 
-    previous.type = "button";
+                    const originalName =
+                        countryElement.getAttribute(
+                            "name"
+                        ) || "";
 
-    previous.className =
-        "carousel-arrow carousel-prev";
+                    const translatedName =
+                        translateCountryName(
+                            originalName
+                        );
 
-    previous.innerHTML = `
-        <i data-lucide="chevron-left"></i>
-    `;
+                    const id =
+                        countryElement.getAttribute(
+                            "id"
+                        ) || "";
 
+                    if (
+                        originalName
+                            .toLowerCase()
+                            .includes(search) ||
+                        translatedName
+                            .toLowerCase()
+                            .includes(search) ||
+                        id
+                            .toLowerCase()
+                            === search
+                    ) {
 
-    const next =
-        document.createElement("button");
+                        foundCountry =
+                            countryElement;
 
-    next.type = "button";
+                    }
 
-    next.className =
-        "carousel-arrow carousel-next";
-
-    next.innerHTML = `
-        <i data-lucide="chevron-right"></i>
-    `;
-
-
-    const viewport =
-        document.createElement("div");
-
-    viewport.className =
-        "memory-carousel-viewport";
-
-
-    const track =
-        document.createElement("div");
-
-    track.className =
-        "memory-carousel-track";
-
-    memories.forEach(memory => {
-
-        track.appendChild(
-            createMemoryCard(memory)
-        );
-
-    });
-
-
-    viewport.appendChild(track);
-
-    carousel.appendChild(previous);
-
-    carousel.appendChild(viewport);
-
-    carousel.appendChild(next);
-
-
-    section.appendChild(title);
-
-    section.appendChild(carousel);
-
-
-    countryMemories.appendChild(section);
-
-
-    let position = 0;
-
-    const cardWidth = 242;
-
-
-    function updateCarousel() {
-
-        const visibleWidth =
-            viewport.clientWidth;
-
-        const totalWidth =
-            track.scrollWidth;
-
-        const maxPosition =
-            Math.max(
-                0,
-                totalWidth - visibleWidth
+                }
             );
 
+            if (foundCountry) {
 
-        position =
-            Math.max(
-                0,
-                Math.min(
-                    position,
-                    maxPosition
-                )
-            );
+                selectCountry(
+                    foundCountry
+                );
 
+            } else {
 
-        track.style.transform =
-            `translateX(-${position}px)`;
+                alert(
+                    "No encontramos ese país en el mapa."
+                );
 
-    }
-
-
-    next.addEventListener(
-        "click",
-        (event) => {
-
-            event.stopPropagation();
-
-            position += cardWidth;
-
-            updateCarousel();
+            }
 
         }
     );
-
-
-    previous.addEventListener(
-        "click",
-        (event) => {
-
-            event.stopPropagation();
-
-            position -= cardWidth;
-
-            updateCarousel();
-
-        }
-    );
-
-
-    window.addEventListener(
-        "resize",
-        updateCarousel
-    );
-
-
-    updateCarousel();
 
 }
+
+const favoriteButton =
+    document.querySelector(
+        ".favorite-btn"
+    );
+
+if (favoriteButton) {
+
+    favoriteButton.addEventListener(
+        "click",
+        () => {
+
+            const memories =
+                JSON.parse(
+                    localStorage.getItem(
+                        "privateAtlasAtlas"
+                    )
+                ) || [];
+
+            const favorites =
+                memories.filter(
+                    memory =>
+                        memory.favorite
+                );
+
+            if (
+                favorites.length === 0
+            ) {
+
+                alert(
+                    "Todavía no tienes recuerdos favoritos."
+                );
+
+                return;
+
+            }
+
+            if (
+                !selectedCountryCode
+            ) {
+
+                alert(
+                    `Tienes ${favorites.length} recuerdo${
+                        favorites.length === 1
+                            ? ""
+                            : "s"
+                    } favorito${
+                        favorites.length === 1
+                            ? ""
+                            : "s"
+                    }.`
+                );
+
+                return;
+
+            }
+
+            const countryFavorites =
+                favorites.filter(
+                    memory =>
+                        memory.country ===
+                        selectedCountryCode
+                );
+
+            if (
+                countryFavorites.length === 0
+            ) {
+
+                alert(
+                    "No tienes recuerdos favoritos en este país."
+                );
+
+                return;
+
+            }
+
+            loadCountryMemories(
+                selectedCountryCode
+            );
+
+        }
+    );
+
+}
+
+const memoryButton =
+    document.querySelector(
+        ".memory-btn"
+    );
+
+if (memoryButton) {
+
+    memoryButton.addEventListener(
+        "click",
+        () => {
+
+            if (
+                !selectedCountryCode
+            ) {
+
+                alert(
+                    "Primero selecciona un país en el mapa."
+                );
+
+                return;
+
+            }
+
+            if (countryMemory) {
+
+                countryMemory.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key !==
+            "Escape"
+        ) {
+
+            return;
+
+        }
+
+        if (
+            memoryFormContainer &&
+            memoryFormContainer.classList.contains(
+                "active"
+            )
+        ) {
+
+            memoryFormContainer.classList.remove(
+                "active"
+            );
+
+            return;
+
+        }
+
+        if (
+            countryMemory &&
+            countryMemory.classList.contains(
+                "active"
+            )
+        ) {
+
+            countryMemory.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+);
+
+updateMapTransform();
