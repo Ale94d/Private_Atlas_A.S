@@ -148,34 +148,22 @@ function zoomMap(event) {
 
     const rect = mapContainer.getBoundingClientRect();
 
-    const cursorX = event.clientX - rect.left;
-    const cursorY = event.clientY - rect.top;
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
 
-    const worldX =
-        (cursorX - mapX) / scale;
+    const pointX = (mouseX - mapX) / scale;
+    const pointY = (mouseY - mapY) / scale;
 
-    const worldY =
-        (cursorY - mapY) / scale;
+    const zoomFactor = event.deltaY < 0 ? 1.08 : 0.92;
 
-    const zoomFactor =
-        event.deltaY < 0
-            ? 1.08
-            : 0.92;
+    const newScale = clamp(
+        scale * zoomFactor,
+        MIN_SCALE,
+        MAX_SCALE
+    );
 
-    const newScale =
-        clamp(
-            scale * zoomFactor,
-            MIN_SCALE,
-            MAX_SCALE
-        );
-
-    mapX =
-        cursorX -
-        worldX * newScale;
-
-    mapY =
-        cursorY -
-        worldY * newScale;
+    mapX = mouseX - pointX * newScale;
+    mapY = mouseY - pointY * newScale;
 
     scale = newScale;
 
