@@ -315,8 +315,7 @@ function initializeCountries() {
             "mouseenter",
             () => {
                 country.style.filter =
-                    "brightness(1.18) saturate(1.08) 
-                    drop-shadow(0 0 5px rgba(116,76,42,.45))";
+                "brightness(1.18) saturate(1.08) drop-shadow(0 0 5px rgba(116,76,42,.45))";
             }
         );
 
