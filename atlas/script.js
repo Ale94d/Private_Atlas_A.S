@@ -111,8 +111,8 @@ function moveMapDrag(event) {
     const deltaY = event.clientY - startPointerY;
 
     if (
-        Math.abs(deltaX) > 5 ||
-        Math.abs(deltaY) > 5
+        Math.abs(deltaX) > 3 ||
+        Math.abs(deltaY) > 3
     ) {
         hasMoved = true;
     }
@@ -138,7 +138,7 @@ function endMapDrag() {
 
     setTimeout(() => {
         hasMoved = false;
-    }, 80);
+    }, 100);
 }
 
 function zoomMap(event) {
@@ -159,8 +159,8 @@ function zoomMap(event) {
 
     const zoomFactor =
         event.deltaY < 0
-            ? 1.12
-            : 0.89;
+            ? 1.08
+            : 0.92;
 
     const newScale =
         clamp(
