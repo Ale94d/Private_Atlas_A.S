@@ -253,27 +253,29 @@ if (worldMap) {
     );
 }
 
-function applyAtlasMapTheme(){
-    if(!svgDocument || !svgRoot)
+function applyAtlasMapTheme() {
+    if (!svgDocument || !svgRoot)
         return;
 
     let styleTag =
-    svgDocument.getElementById
-    ("private-atlas-map-style");
+        svgDocument.getElementById(
+            "private-atlas-map-style"
+        );
 
-    if(!styleTag) {
+    if (!styleTag) {
         styleTag = svgDocument.createElement(
-            "http://www.w3.org/2000/svg","style"
+            "http://www.w3.org/2000/svg",
+            "style"
         );
 
         styleTag.id =
-        "private-atlas-map-style";
+            "private-atlas-map-style";
 
         svgRoot.appendChild(styleTag);
     }
 
     styleTag.textContent = `
-        path{
+        path {
             fill: #C7A875 !important;
             stroke: #765238 !important;
             stroke-width: .7;
@@ -282,16 +284,18 @@ function applyAtlasMapTheme(){
                 fill .2s ease,
                 filter .2s ease,
                 opacity .2s ease;
-            }
+        }
 
         path:hover {
             fill: #D9BC89 !important;
-            filter: 
-                drop-shadow(0 0 4px rgba(91,55,28,.45)
+            filter:
+                drop-shadow(
+                    0 0 4px rgba(91,55,28,.45)
                 );
-            }
-                `;
+        }
+    `;
 }
+
 function initializeCountries() {
     if (!svgDocument) return;
 
@@ -308,6 +312,7 @@ function initializeCountries() {
         country.dataset.atlasReady = "true";
 
         country.style.cursor = "pointer";
+
         country.style.transition =
             "filter 0.2s ease, opacity 0.2s ease";
 
@@ -315,7 +320,7 @@ function initializeCountries() {
             "mouseenter",
             () => {
                 country.style.filter =
-                "brightness(1.18) saturate(1.08) drop-shadow(0 0 5px rgba(116,76,42,.45))";
+                    "brightness(1.18) saturate(1.08) drop-shadow(0 0 5px rgba(116,76,42,.45))";
             }
         );
 
@@ -346,6 +351,23 @@ function initializeCountries() {
     });
 }
 
+function getCountryKey(country) {
+    if (!country) return "";
+
+    return (
+        country.getAttribute("id") ||
+        country.getAttribute("name") ||
+        country.getAttribute("class") ||
+        ""
+    ).trim();
+}
+
+function normalizeCountryLabel(value) {
+    return String(value || "")
+        .trim()
+        .replace(/\s+/g, "");
+}
+
 function selectCountry(country) {
     if (!country) return;
 
@@ -364,23 +386,6 @@ function selectCountry(country) {
     country.style.filter =
         "brightness(1.2) saturate(1.1)";
 
-    function getCountryKey(country){
-        if(!country) return "";
-
-        return (
-            country.getAttribute("id")||
-            country.getAttribute("name")||
-            country.getAttribute("class")||
-            ""
-        ).trim();
-    }
-
-    function normalizeCountryLabel(value){
-        return String(value || "")
-        .trim()
-        .replace(/\s+/g,"");
-    }
-    
     const name =
         getCountryName(
             selectedCountryCode
@@ -537,7 +542,10 @@ const countryNames = {
     MT: "Malta",
     MH: "Islas Marshall",
     MR: "Mauritania",
-    MU: "Mauricio",
+    MU: "Mauricio"
+};
+
+Object.assign(countryNames, {
     MX: "México",
     FM: "Micronesia",
     MD: "Moldavia",
@@ -624,7 +632,7 @@ const countryNames = {
     YE: "Yemen",
     ZM: "Zambia",
     ZW: "Zimbabue"
-};
+});
 
 function translateCountryName(name) {
     const translations = {
@@ -717,80 +725,16 @@ function translateCountryName(name) {
         Luxembourg: "Luxemburgo",
         Madagascar: "Madagascar",
         Malawi: "Malaui",
-        Malaysia: "Malasia",
-        Maldives: "Maldivas",
-        Mali: "Malí",
-        Malta: "Malta",
-        Mauritania: "Mauritania",
-        Mauritius: "Mauricio",
-        Mexico: "México",
-        Moldova: "Moldavia",
-        Monaco: "Mónaco",
-        Mongolia: "Mongolia",
-        Montenegro: "Montenegro",
-        Morocco: "Marruecos",
-        Mozambique: "Mozambique",
-        Namibia: "Namibia",
-        Nepal: "Nepal",
-        Netherlands: "Países Bajos",
-        NewZealand: "Nueva Zelanda",
-        Nicaragua: "Nicaragua",
-        Niger: "Níger",
-        Nigeria: "Nigeria",
-        Norway: "Noruega",
-        Oman: "Omán",
-        Pakistan: "Pakistán",
-        Panama: "Panamá",
-        Paraguay: "Paraguay",
-        Peru: "Perú",
-        Philippines: "Filipinas",
-        Poland: "Polonia",
-        Portugal: "Portugal",
-        Qatar: "Catar",
-        Romania: "Rumania",
-        Russia: "Rusia",
-        Rwanda: "Ruanda",
-        SaudiArabia: "Arabia Saudita",
-        Senegal: "Senegal",
-        Serbia: "Serbia",
-        Singapore: "Singapur",
-        Slovakia: "Eslovaquia",
-        Slovenia: "Eslovenia",
-        Somalia: "Somalia",
-        SouthAfrica: "Sudáfrica",
-        SouthKorea: "Corea del Sur",
-        Spain: "España",
-        Sudan: "Sudán",
-        Suriname: "Surinam",
-        Sweden: "Suecia",
-        Switzerland: "Suiza",
-        Syria: "Siria",
-        Taiwan: "Taiwán",
-        Tajikistan: "Tayikistán",
-        Tanzania: "Tanzania",
-        Thailand: "Tailandia",
-        Togo: "Togo",
-        Tonga: "Tonga",
-        Tunisia: "Túnez",
-        Turkey: "Turquía",
-        Turkmenistan: "Turkmenistán",
-        Uganda: "Uganda",
-        Ukraine: "Ucrania",
-        UnitedArabEmirates: "Emiratos Árabes Unidos",
-        UnitedKingdom: "Reino Unido",
-        UnitedStates: "Estados Unidos",
-        Uruguay: "Uruguay",
-        Uzbekistan: "Uzbekistán",
-        Vanuatu: "Vanuatu",
-        Venezuela: "Venezuela",
-        Vietnam: "Vietnam",
-        Yemen: "Yemen",
-        Zambia: "Zambia",
-        Zimbabwe: "Zimbabue"
+        Malaysia: "Malasia"
     };
 
     return translations[name] || name;
 }
+
+Object.assign(
+    translationsFix = {},
+    {}
+);
 
 function openCountryMemory(code, name) {
     selectedCountryCode = code;
@@ -1143,6 +1087,7 @@ function createCityCarousel(
         );
 
     previous.type = "button";
+
     previous.className =
         "carousel-arrow carousel-prev";
 
@@ -1155,6 +1100,7 @@ function createCityCarousel(
         );
 
     next.type = "button";
+
     next.className =
         "carousel-arrow carousel-next";
 
