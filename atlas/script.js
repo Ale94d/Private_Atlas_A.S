@@ -99,19 +99,9 @@ function startMapDrag(event) {
     startMapX = mapX;
     startMapY = mapY;
 
-    if (event.currentTarget.setPointerCapture) {
-        try {
-            event.currentTarget.setPointerCapture(
-                event.pointerId
-            );
-        } catch (error) {}
-    }
-
     if (svgRoot) {
         svgRoot.style.cursor = "grabbing";
     }
-
-    event.preventDefault();
 }
 
 function moveMapDrag(event) {
@@ -124,11 +114,13 @@ function moveMapDrag(event) {
         event.clientY - startPointerY;
 
     if (
-        Math.abs(deltaX) > 3 ||
-        Math.abs(deltaY) > 3
+        Math.abs(deltaX) > 5 ||
+        Math.abs(deltaY) > 5
     ) {
         hasMoved = true;
     }
+
+    if (!hasMoved) return;
 
     mapX = startMapX + deltaX;
     mapY = startMapY + deltaY;
@@ -143,25 +135,13 @@ function endMapDrag(event) {
 
     isDragging = false;
 
-    if (
-        event &&
-        event.currentTarget &&
-        event.currentTarget.releasePointerCapture
-    ) {
-        try {
-            event.currentTarget.releasePointerCapture(
-                event.pointerId
-            );
-        } catch (error) {}
-    }
-
     if (svgRoot) {
         svgRoot.style.cursor = "grab";
     }
 
     setTimeout(() => {
         hasMoved = false;
-    }, 100);
+    }, 150);
 }
 
 function zoomMap(event) {
@@ -312,7 +292,8 @@ function applyAtlasMapTheme() {
             stroke: #765238 !important;
             stroke-width: .7;
             vector-effect: non-scaling-stroke;
-            transition:
+
+    transition:
                 fill .2s ease,
                 filter .2s ease,
                 opacity .2s ease;
@@ -898,7 +879,6 @@ if (memoryForm) {
                 document.getElementById(
                     "memory-image"
                 );
-
             const city =
                 cityInput
                     ? cityInput.value.trim()
@@ -997,7 +977,6 @@ if (memoryForm) {
                 reader.readAsDataURL(file);
             } else {
                 let oldImage = "";
-
                 if (editingMemoryId) {
                     const oldMemory =
                         memories.find(
