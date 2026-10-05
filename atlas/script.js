@@ -253,9 +253,9 @@ if (worldMap) {
     );
 }
 
-fuction applyAtlasMapTheme(){
+function applyAtlasMapTheme(){
     if(!svgDocument || !svgRoot)
-        retrun;
+        return;
 
     let styleTag =
     svgDocument.getElementById
@@ -275,17 +275,17 @@ fuction applyAtlasMapTheme(){
     styleTag.textContent = `
         path{
             fill: #C7A875 !important;
-            stroke: #765238 !inportant;
+            stroke: #765238 !important;
             stroke-width: .7;
             vector-effect: non-scaling-stroke;
             transition:
                 fill .2s ease,
                 filter .2s ease,
-                opacity .2ws ease;
+                opacity .2s ease;
             }
 
         path:hover {
-            fill: #D9BC89 !inportant;
+            fill: #D9BC89 !important;
             filter: 
                 drop-shadow(0 0 4px rgba(91,55,28,.45)
                 );
@@ -316,7 +316,7 @@ function initializeCountries() {
             () => {
                 country.style.filter =
                     "brightness(1.18) saturate(1.08) 
-                    drop-shadow(0 0 5ox rgba(116,76,42,.45))";
+                    drop-shadow(0 0 5px rgba(116,76,42,.45))";
             }
         );
 
