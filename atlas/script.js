@@ -99,16 +99,29 @@ function startMapDrag(event) {
     startMapX = mapX;
     startMapY = mapY;
 
+    if (event.currentTarget.setPointerCapture) {
+        try {
+            event.currentTarget.setPointerCapture(
+                event.pointerId
+            );
+        } catch (error) {}
+    }
+
     if (svgRoot) {
         svgRoot.style.cursor = "grabbing";
     }
+
+    event.preventDefault();
 }
 
 function moveMapDrag(event) {
     if (!isDragging || !event.isPrimary) return;
 
-    const deltaX = event.clientX - startPointerX;
-    const deltaY = event.clientY - startPointerY;
+    const deltaX =
+        event.clientX - startPointerX;
+
+    const deltaY =
+        event.clientY - startPointerY;
 
     if (
         Math.abs(deltaX) > 3 ||
@@ -122,15 +135,25 @@ function moveMapDrag(event) {
 
     updateMapTransform();
 
-    if (hasMoved) {
-        event.preventDefault();
-    }
+    event.preventDefault();
 }
 
-function endMapDrag() {
+function endMapDrag(event) {
     if (!isDragging) return;
 
     isDragging = false;
+
+    if (
+        event &&
+        event.currentTarget &&
+        event.currentTarget.releasePointerCapture
+    ) {
+        try {
+            event.currentTarget.releasePointerCapture(
+                event.pointerId
+            );
+        } catch (error) {}
+    }
 
     if (svgRoot) {
         svgRoot.style.cursor = "grab";
@@ -146,15 +169,25 @@ function zoomMap(event) {
 
     if (!mapContainer) return;
 
-    const rect = mapContainer.getBoundingClientRect();
+    const rect =
+        mapContainer.getBoundingClientRect();
 
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;
+    const mouseX =
+        event.clientX - rect.left;
 
-    const pointX = (mouseX - mapX) / scale;
-    const pointY = (mouseY - mapY) / scale;
+    const mouseY =
+        event.clientY - rect.top;
 
-    const zoomFactor = event.deltaY < 0 ? 1.08 : 0.92;
+    const worldX =
+        (mouseX - mapX) / scale;
+
+    const worldY =
+        (mouseY - mapY) / scale;
+
+    const zoomFactor =
+        event.deltaY < 0
+            ? 1.10
+            : 0.90;
 
     const newScale = clamp(
         scale * zoomFactor,
@@ -162,13 +195,19 @@ function zoomMap(event) {
         MAX_SCALE
     );
 
-    mapX = mouseX - pointX * newScale;
-    mapY = mouseY - pointY * newScale;
+    mapX =
+        mouseX -
+        worldX * newScale;
+
+    mapY =
+        mouseY -
+        worldY * newScale;
 
     scale = newScale;
 
     updateMapTransform();
 }
+
 
 function initializeMapControls() {
     if (!worldMap) return;
@@ -207,6 +246,11 @@ function initializeMapControls() {
 
     svgRoot.addEventListener(
         "pointercancel",
+        endMapDrag
+    );
+
+    svgRoot.addEventListener(
+        "pointerleave",
         endMapDrag
     );
 

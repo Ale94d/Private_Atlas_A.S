@@ -99,7 +99,7 @@ body {
     justify-content: center;
     align-items: center;
     user-select: none;
-    transform-origin: center center;
+    transform-origin: 0 0;
     will-change: transform;
     touch-action: none;
 }
