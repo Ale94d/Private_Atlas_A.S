@@ -200,6 +200,8 @@ function initializeMapControls() {
     svgRoot.style.touchAction = "none";
     svgRoot.style.userSelect = "none";
 
+    applyAtlasMapTheme();
+
     svgRoot.addEventListener(
         "pointerdown",
         startMapDrag
@@ -251,12 +253,51 @@ if (worldMap) {
     );
 }
 
+fuction applyAtlasMapTheme(){
+    if(!svgDocument || !svgRoot)
+        retrun;
+
+    let styleTag =
+    svgDocument.getElementById
+    ("private-atlas-map-style");
+
+    if(!styleTag) {
+        styleTag = svgDocument.createElement(
+            "http://www.w3.org/2000/svg","style"
+        );
+
+        styleTag.id =
+        "private-atlas-map-style";
+
+        svgRoot.appendChild(styleTag);
+    }
+
+    styleTag.textContent = `
+        path{
+            fill: #C7A875 !important;
+            stroke: #765238 !inportant;
+            stroke-width: .7;
+            vector-effect: non-scaling-stroke;
+            transition:
+                fill .2s ease,
+                filter .2s ease,
+                opacity .2ws ease;
+            }
+
+        path:hover {
+            fill: #D9BC89 !inportant;
+            filter: 
+                drop-shadow(0 0 4px rgba(91,55,28,.45)
+                );
+            }
+                `;
+}
 function initializeCountries() {
     if (!svgDocument) return;
 
     const countries =
         svgDocument.querySelectorAll(
-            "path[id]"
+            "path[id], path[class]"
         );
 
     countries.forEach((country) => {
@@ -274,7 +315,8 @@ function initializeCountries() {
             "mouseenter",
             () => {
                 country.style.filter =
-                    "brightness(1.18) saturate(1.08)";
+                    "brightness(1.18) saturate(1.08) 
+                    drop-shadow(0 0 5ox rgba(116,76,42,.45))";
             }
         );
 
@@ -323,6 +365,23 @@ function selectCountry(country) {
     country.style.filter =
         "brightness(1.2) saturate(1.1)";
 
+    function getCountryKey(country){
+        if(!country) return "";
+
+        return (
+            country.getAttribute("id")||
+            country.getAttribute("name")||
+            country.getAttribute("class")||
+            ""
+        ).trim();
+    }
+
+    function normalizeCountryLabel(value){
+        return String(value || "")
+        .trim()
+        .replace(/\s+/g,"");
+    }
+    
     const name =
         getCountryName(
             selectedCountryCode
@@ -346,11 +405,30 @@ function getCountryName(code) {
         selectedCountryElement.getAttribute("name")
     ) {
         return translateCountryName(
-            selectedCountryElement.getAttribute("name")
+            normalizeCountryLabel(
+                selectedCountryElement.getAttribute("name")
+            )
         );
     }
 
-    return countryNames[code] || code;
+    if (countryNames[code]) {
+        return countryNames[code];
+    }
+
+    const className =
+        selectedCountryElement
+            ? selectedCountryElement.getAttribute("class")
+            : "";
+
+    const normalizedClass =
+        normalizeCountryLabel(className);
+
+    return (
+        countryNames[normalizedClass] ||
+        translateCountryName(normalizedClass) ||
+        className ||
+        code
+    );
 }
 
 const countryNames = {
