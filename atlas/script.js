@@ -29,7 +29,6 @@ let editingMemoryId = null;
 
 let isDragging = false;
 let hasMoved = false;
-let justDragged = false;
 
 let startPointerX = 0;
 let startPointerY = 0;
@@ -93,7 +92,6 @@ function startMapDrag(event) {
 
     isDragging = true;
     hasMoved = false;
-    justDragged = false;
 
     startPointerX = event.clientX;
     startPointerY = event.clientY;
@@ -101,10 +99,7 @@ function startMapDrag(event) {
     startMapX = mapX;
     startMapY = mapY;
 
-    if (
-        event.currentTarget &&
-        event.currentTarget.setPointerCapture
-    ) {
+    if (event.currentTarget.setPointerCapture) {
         try {
             event.currentTarget.setPointerCapture(
                 event.pointerId
@@ -115,6 +110,8 @@ function startMapDrag(event) {
     if (svgRoot) {
         svgRoot.style.cursor = "grabbing";
     }
+
+    event.preventDefault();
 }
 
 function moveMapDrag(event) {
@@ -127,14 +124,10 @@ function moveMapDrag(event) {
         event.clientY - startPointerY;
 
     if (
-        Math.abs(deltaX) > 5 ||
-        Math.abs(deltaY) > 5
+        Math.abs(deltaX) > 3 ||
+        Math.abs(deltaY) > 3
     ) {
         hasMoved = true;
-    }
-
-    if (!hasMoved) {
-        return;
     }
 
     mapX = startMapX + deltaX;
@@ -149,8 +142,6 @@ function endMapDrag(event) {
     if (!isDragging) return;
 
     isDragging = false;
-
-    justDragged = hasMoved;
 
     if (
         event &&
@@ -170,8 +161,7 @@ function endMapDrag(event) {
 
     setTimeout(() => {
         hasMoved = false;
-        justDragged = false;
-    }, 150);
+    }, 100);
 }
 
 function zoomMap(event) {
@@ -383,7 +373,7 @@ function initializeCountries() {
             (event) => {
                 event.stopPropagation();
 
-                if (justDragged) {
+                if (hasMoved) {
                     return;
                 }
 
