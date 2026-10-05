@@ -1759,4 +1759,3 @@ document.addEventListener(
 );
 
 updateMapTransform();
-
