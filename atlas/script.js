@@ -7,16 +7,12 @@ const countryMessage = document.getElementById("country-message");
 
 const countryMemory = document.getElementById("country-memory");
 const memoryCountryName = document.getElementById("memory-country-name");
-const memoryCountryDescription = document.getElementById(
-    "memory-country-description"
-);
+const memoryCountryDescription = document.getElementById("memory-country-description");
 const countryMemories = document.getElementById("country-memories");
 
 const addMemoryBtn = document.getElementById("add-memory-btn");
 
-const memoryFormContainer = document.getElementById(
-    "memory-form-container"
-);
+const memoryFormContainer = document.getElementById("memory-form-container");
 const memoryForm = document.getElementById("memory-form");
 
 const closeMemory = document.getElementById("close-memory");
@@ -31,17 +27,12 @@ let selectedCountryCode = null;
 let selectedCountryElement = null;
 let editingMemoryId = null;
 
-/* =========================================
-   MAPA
-========================================= */
-
 let isDragging = false;
 let hasMoved = false;
 let suppressNextClick = false;
 
 let startPointerX = 0;
 let startPointerY = 0;
-
 let startMapX = 0;
 let startMapY = 0;
 
@@ -55,12 +46,7 @@ let mapControlsInitialized = false;
 
 const MIN_SCALE = 0.65;
 const MAX_SCALE = 4;
-
 const DRAG_THRESHOLD = 5;
-
-/* =========================================
-   TRANSFORMACIÓN
-========================================= */
 
 function updateMapTransform() {
     if (!mapContainer) return;
@@ -73,23 +59,12 @@ function resetMap() {
     mapX = 0;
     mapY = 0;
     scale = 1;
-
     updateMapTransform();
 }
 
-/* =========================================
-   INICIO
-========================================= */
-
-if (backHome) {
-    backHome.addEventListener("click", () => {
-        window.location.href = "../index.html";
-    });
+function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
 }
-
-/* =========================================
-   LOCAL STORAGE
-========================================= */
 
 function getMemories() {
     try {
@@ -97,11 +72,6 @@ function getMemories() {
             localStorage.getItem("privateAtlasAtlas")
         ) || [];
     } catch (error) {
-        console.warn(
-            "No se pudieron cargar los recuerdos:",
-            error
-        );
-
         return [];
     }
 }
@@ -113,21 +83,15 @@ function saveMemories(memories) {
             JSON.stringify(memories)
         );
     } catch (error) {
-        console.error(
-            "No se pudieron guardar los recuerdos:",
-            error
-        );
+        console.error(error);
     }
 }
 
-function clamp(value, min, max) {
-    return Math.max(min, Math.min(max, value));
+if (backHome) {
+    backHome.addEventListener("click", () => {
+        window.location.href = "../index.html";
+    });
 }
-
-/* =========================================
-   ARRASTRE DEL MAPA
-   CORREGIDO PARA EVITAR TEMBLOR
-========================================= */
 
 function startMapDrag(event) {
     if (!event.isPrimary) return;
@@ -145,18 +109,15 @@ function startMapDrag(event) {
     if (svgRoot) {
         svgRoot.style.cursor = "grabbing";
     }
+
+    event.preventDefault();
 }
 
 function moveMapDrag(event) {
-    if (!isDragging || !event.isPrimary) {
-        return;
-    }
+    if (!isDragging || !event.isPrimary) return;
 
-    const deltaX =
-        event.clientX - startPointerX;
-
-    const deltaY =
-        event.clientY - startPointerY;
+    const deltaX = event.clientX - startPointerX;
+    const deltaY = event.clientY - startPointerY;
 
     if (
         Math.abs(deltaX) > DRAG_THRESHOLD ||
@@ -166,9 +127,7 @@ function moveMapDrag(event) {
         suppressNextClick = true;
     }
 
-    if (!hasMoved) {
-        return;
-    }
+    if (!hasMoved) return;
 
     mapX = startMapX + deltaX;
     mapY = startMapY + deltaY;
@@ -178,103 +137,69 @@ function moveMapDrag(event) {
     event.preventDefault();
 }
 
-function endMapDrag() {
-    if (!isDragging) {
-        return;
-    }
+function endMapDrag(event) {
+    if (!isDragging) return;
 
     isDragging = false;
 
     if (svgRoot) {
         svgRoot.style.cursor = "grab";
     }
-}
 
-/* =========================================
-   ZOOM
-   NO SE MODIFICA LA LÓGICA ORIGINAL
-========================================= */
+    if (event) {
+        event.preventDefault();
+    }
+}
 
 function zoomMap(event) {
     event.preventDefault();
 
     if (!mapContainer) return;
 
-    const viewport =
-        document.querySelector(".map-background");
+    const viewport = document.querySelector(".map-background");
 
     if (!viewport) return;
 
-    const viewportRect =
-        viewport.getBoundingClientRect();
+    const viewportRect = viewport.getBoundingClientRect();
 
-    const mouseX =
-        event.clientX -
-        viewportRect.left;
+    const mouseX = event.clientX - viewportRect.left;
+    const mouseY = event.clientY - viewportRect.top;
 
-    const mouseY =
-        event.clientY -
-        viewportRect.top;
-
-    const worldX =
-        (mouseX - mapX) / scale;
-
-    const worldY =
-        (mouseY - mapY) / scale;
+    const worldX = (mouseX - mapX) / scale;
+    const worldY = (mouseY - mapY) / scale;
 
     const zoomFactor =
         event.deltaY < 0
             ? 1.10
             : 0.90;
 
-    const newScale =
-        clamp(
-            scale * zoomFactor,
-            MIN_SCALE,
-            MAX_SCALE
-        );
+    const newScale = clamp(
+        scale * zoomFactor,
+        MIN_SCALE,
+        MAX_SCALE
+    );
 
-    mapX =
-        mouseX -
-        worldX * newScale;
-
-    mapY =
-        mouseY -
-        worldY * newScale;
+    mapX = mouseX - worldX * newScale;
+    mapY = mouseY - worldY * newScale;
 
     scale = newScale;
 
     updateMapTransform();
 }
 
-/* =========================================
-   INICIALIZAR CONTROLES DEL MAPA
-========================================= */
-
 function initializeMapControls() {
-    if (!worldMap) return;
-
-    if (mapControlsInitialized) {
-        return;
-    }
+    if (!worldMap || mapControlsInitialized) return;
 
     svgDocument = worldMap.contentDocument;
 
     if (!svgDocument) {
-        setTimeout(
-            initializeMapControls,
-            250
-        );
-
+        setTimeout(initializeMapControls, 250);
         return;
     }
 
-    svgRoot =
-        svgDocument.documentElement;
+    svgRoot = svgDocument.documentElement;
 
-    if (!svgRoot) {
-        return;
-    }
+    if (!svgRoot) return;
 
     mapControlsInitialized = true;
 
@@ -284,16 +209,6 @@ function initializeMapControls() {
 
     applyAtlasMapTheme();
 
-    /*
-     * IMPORTANTE:
-     * El pointerdown ocurre en el SVG.
-     * El movimiento y el pointerup se escuchan
-     * en el documento SVG completo.
-     *
-     * Esto evita que el mapa tiemble cuando
-     * el elemento debajo del cursor cambia.
-     */
-
     svgRoot.addEventListener(
         "pointerdown",
         startMapDrag
@@ -301,42 +216,38 @@ function initializeMapControls() {
 
     svgDocument.addEventListener(
         "pointermove",
-        moveMapDrag
+        moveMapDrag,
+        { passive: false }
     );
 
     svgDocument.addEventListener(
         "pointerup",
-        endMapDrag
+        endMapDrag,
+        { passive: false }
     );
 
     svgDocument.addEventListener(
         "pointercancel",
-        endMapDrag
+        endMapDrag,
+        { passive: false }
     );
 
     svgRoot.addEventListener(
         "wheel",
         zoomMap,
-        {
-            passive: false
-        }
+        { passive: false }
     );
 
     svgRoot.addEventListener(
         "dblclick",
-        (event) => {
+        event => {
             event.preventDefault();
-
             resetMap();
         }
     );
 
     initializeCountries();
 }
-
-/* =========================================
-   CARGA DEL SVG
-========================================= */
 
 if (worldMap) {
     worldMap.addEventListener(
@@ -350,14 +261,8 @@ if (worldMap) {
     );
 }
 
-/* =========================================
-   ESTILO DEL MAPA
-========================================= */
-
 function applyAtlasMapTheme() {
-    if (!svgDocument || !svgRoot) {
-        return;
-    }
+    if (!svgDocument || !svgRoot) return;
 
     let styleTag =
         svgDocument.getElementById(
@@ -383,16 +288,10 @@ function applyAtlasMapTheme() {
             stroke: #765238 !important;
             stroke-width: .7;
             vector-effect: non-scaling-stroke;
-
-            transition:
-                fill .2s ease,
-                filter .2s ease,
-                opacity .2s ease;
         }
 
         path:hover {
             fill: #D9BC89 !important;
-
             filter:
                 drop-shadow(
                     0 0 4px rgba(91,55,28,.45)
@@ -401,21 +300,15 @@ function applyAtlasMapTheme() {
     `;
 }
 
-/* =========================================
-   PAÍSES
-========================================= */
-
 function initializeCountries() {
-    if (!svgDocument) {
-        return;
-    }
+    if (!svgDocument) return;
 
     const countries =
         svgDocument.querySelectorAll(
             "path[id], path[class]"
         );
 
-    countries.forEach((country) => {
+    countries.forEach(country => {
         if (
             country.dataset.atlasReady ===
             "true"
@@ -428,9 +321,6 @@ function initializeCountries() {
 
         country.style.cursor =
             "pointer";
-
-        country.style.transition =
-            "filter 0.2s ease, opacity 0.2s ease";
 
         country.addEventListener(
             "mouseenter",
@@ -447,32 +337,24 @@ function initializeCountries() {
                     country !==
                     selectedCountryElement
                 ) {
-                    country.style.filter =
-                        "";
+                    country.style.filter = "";
                 }
             }
         );
 
         country.addEventListener(
             "click",
-            (event) => {
+            event => {
                 event.stopPropagation();
 
-                /*
-                 * Si el usuario estaba arrastrando,
-                 * no debemos abrir el país.
-                 */
-
                 if (suppressNextClick) {
-                    suppressNextClick =
-                        false;
-
+                    suppressNextClick = false;
+                    hasMoved = false;
                     return;
                 }
 
                 if (hasMoved) {
                     hasMoved = false;
-
                     return;
                 }
 
@@ -482,48 +364,23 @@ function initializeCountries() {
     });
 }
 
-/* =========================================
-   DATOS AUXILIARES DEL PAÍS
-========================================= */
-
-function getCountryKey(country) {
-    if (!country) {
-        return "";
-    }
-
-    return (
-        country.getAttribute("id") ||
-        country.getAttribute("name") ||
-        country.getAttribute("class") ||
-        ""
-    ).trim();
-}
-
 function normalizeCountryLabel(value) {
     return String(value || "")
         .trim()
         .replace(/\s+/g, "");
 }
 
-/* =========================================
-   SELECCIONAR PAÍS
-========================================= */
-
 function selectCountry(country) {
-    if (!country) {
-        return;
-    }
+    if (!country) return;
 
     if (
         selectedCountryElement &&
         selectedCountryElement !== country
     ) {
-        selectedCountryElement.style.filter =
-            "";
+        selectedCountryElement.style.filter = "";
     }
 
-    selectedCountryElement =
-        country;
+    selectedCountryElement = country;
 
     selectedCountryCode =
         country.getAttribute("id") ||
@@ -538,34 +395,20 @@ function selectCountry(country) {
             selectedCountryCode
         );
 
-    if (selectedCountry) {
-        selectedCountry.classList.remove(
-            "active"
-        );
-    }
-
     openCountryMemory(
         selectedCountryCode,
         name
     );
 }
 
-/* =========================================
-   NOMBRES DE PAÍSES
-========================================= */
-
 function getCountryName(code) {
     if (
         selectedCountryElement &&
-        selectedCountryElement.getAttribute(
-            "name"
-        )
+        selectedCountryElement.getAttribute("name")
     ) {
         return translateCountryName(
             normalizeCountryLabel(
-                selectedCountryElement.getAttribute(
-                    "name"
-                )
+                selectedCountryElement.getAttribute("name")
             )
         );
     }
@@ -576,21 +419,15 @@ function getCountryName(code) {
 
     const className =
         selectedCountryElement
-            ? selectedCountryElement.getAttribute(
-                "class"
-            )
+            ? selectedCountryElement.getAttribute("class")
             : "";
 
     const normalizedClass =
-        normalizeCountryLabel(
-            className
-        );
+        normalizeCountryLabel(className);
 
     return (
         countryNames[normalizedClass] ||
-        translateCountryName(
-            normalizedClass
-        ) ||
+        translateCountryName(normalizedClass) ||
         className ||
         code
     );
@@ -607,7 +444,6 @@ const countryNames = {
     AU: "Australia",
     AT: "Austria",
     AZ: "Azerbaiyán",
-
     BS: "Bahamas",
     BH: "Baréin",
     BD: "Bangladés",
@@ -625,7 +461,6 @@ const countryNames = {
     BG: "Bulgaria",
     BF: "Burkina Faso",
     BI: "Burundi",
-
     KH: "Camboya",
     CM: "Camerún",
     CA: "Canadá",
@@ -643,12 +478,10 @@ const countryNames = {
     CU: "Cuba",
     CY: "Chipre",
     CZ: "Chequia",
-
     DK: "Dinamarca",
     DJ: "Yibuti",
     DM: "Dominica",
     DO: "República Dominicana",
-
     EC: "Ecuador",
     EG: "Egipto",
     SV: "El Salvador",
@@ -657,11 +490,9 @@ const countryNames = {
     EE: "Estonia",
     SZ: "Esuatini",
     ET: "Etiopía",
-
     FJ: "Fiyi",
     FI: "Finlandia",
     FR: "Francia",
-
     GA: "Gabón",
     GM: "Gambia",
     GE: "Georgia",
@@ -673,11 +504,9 @@ const countryNames = {
     GN: "Guinea",
     GW: "Guinea-Bisáu",
     GY: "Guyana",
-
     HT: "Haití",
     HN: "Honduras",
     HU: "Hungría",
-
     IS: "Islandia",
     IN: "India",
     ID: "Indonesia",
@@ -686,17 +515,14 @@ const countryNames = {
     IE: "Irlanda",
     IL: "Israel",
     IT: "Italia",
-
     JM: "Jamaica",
     JP: "Japón",
     JO: "Jordania",
-
     KZ: "Kazajistán",
     KE: "Kenia",
     KI: "Kiribati",
     KW: "Kuwait",
     KG: "Kirguistán",
-
     LA: "Laos",
     LV: "Letonia",
     LB: "Líbano",
@@ -706,7 +532,6 @@ const countryNames = {
     LI: "Liechtenstein",
     LT: "Lituania",
     LU: "Luxemburgo",
-
     MG: "Madagascar",
     MW: "Malaui",
     MY: "Malasia",
@@ -716,7 +541,6 @@ const countryNames = {
     MH: "Islas Marshall",
     MR: "Mauritania",
     MU: "Mauricio",
-
     MX: "México",
     FM: "Micronesia",
     MD: "Moldavia",
@@ -726,7 +550,6 @@ const countryNames = {
     MA: "Marruecos",
     MZ: "Mozambique",
     MM: "Myanmar",
-
     NA: "Namibia",
     NR: "Nauru",
     NP: "Nepal",
@@ -738,9 +561,7 @@ const countryNames = {
     KP: "Corea del Norte",
     MK: "Macedonia del Norte",
     NO: "Noruega",
-
     OM: "Omán",
-
     PK: "Pakistán",
     PW: "Palaos",
     PA: "Panamá",
@@ -750,13 +571,10 @@ const countryNames = {
     PH: "Filipinas",
     PL: "Polonia",
     PT: "Portugal",
-
     QA: "Catar",
-
     RO: "Rumania",
     RU: "Rusia",
     RW: "Ruanda",
-
     KN: "San Cristóbal y Nieves",
     LC: "Santa Lucía",
     VC: "San Vicente y las Granadinas",
@@ -783,7 +601,6 @@ const countryNames = {
     SE: "Suecia",
     CH: "Suiza",
     SY: "Siria",
-
     TW: "Taiwán",
     TJ: "Tayikistán",
     TZ: "Tanzania",
@@ -796,7 +613,6 @@ const countryNames = {
     TR: "Turquía",
     TM: "Turkmenistán",
     TV: "Tuvalu",
-
     UG: "Uganda",
     UA: "Ucrania",
     AE: "Emiratos Árabes Unidos",
@@ -804,21 +620,14 @@ const countryNames = {
     US: "Estados Unidos",
     UY: "Uruguay",
     UZ: "Uzbekistán",
-
     VU: "Vanuatu",
     VA: "Ciudad del Vaticano",
     VE: "Venezuela",
     VN: "Vietnam",
-
     YE: "Yemen",
-
     ZM: "Zambia",
     ZW: "Zimbabue"
 };
-
-/* =========================================
-   TRADUCCIÓN DE NOMBRES SVG
-========================================= */
 
 function translateCountryName(name) {
     const translations = {
@@ -832,7 +641,6 @@ function translateCountryName(name) {
         Australia: "Australia",
         Austria: "Austria",
         Azerbaijan: "Azerbaiyán",
-
         Bahamas: "Bahamas",
         Bahrain: "Baréin",
         Bangladesh: "Bangladés",
@@ -850,7 +658,6 @@ function translateCountryName(name) {
         Bulgaria: "Bulgaria",
         Burkina: "Burkina Faso",
         Burundi: "Burundi",
-
         Cambodia: "Camboya",
         Cameroon: "Camerún",
         Canada: "Canadá",
@@ -865,22 +672,18 @@ function translateCountryName(name) {
         Cuba: "Cuba",
         Cyprus: "Chipre",
         Czechia: "Chequia",
-
         Denmark: "Dinamarca",
         Djibouti: "Yibuti",
         Dominica: "Dominica",
         Dominican: "República Dominicana",
-
         Ecuador: "Ecuador",
         Egypt: "Egipto",
         Eritrea: "Eritrea",
         Estonia: "Estonia",
         Ethiopia: "Etiopía",
-
         Fiji: "Fiyi",
         Finland: "Finlandia",
         France: "Francia",
-
         Gabon: "Gabón",
         Gambia: "Gambia",
         Georgia: "Georgia",
@@ -890,11 +693,9 @@ function translateCountryName(name) {
         Guatemala: "Guatemala",
         Guinea: "Guinea",
         Guyana: "Guyana",
-
         Haiti: "Haití",
         Honduras: "Honduras",
         Hungary: "Hungría",
-
         Iceland: "Islandia",
         India: "India",
         Indonesia: "Indonesia",
@@ -903,16 +704,13 @@ function translateCountryName(name) {
         Ireland: "Irlanda",
         Israel: "Israel",
         Italy: "Italia",
-
         Jamaica: "Jamaica",
         Japan: "Japón",
         Jordan: "Jordania",
-
         Kazakhstan: "Kazajistán",
         Kenya: "Kenia",
         Kuwait: "Kuwait",
         Kyrgyzstan: "Kirguistán",
-
         Laos: "Laos",
         Latvia: "Letonia",
         Lebanon: "Líbano",
@@ -920,7 +718,6 @@ function translateCountryName(name) {
         Libya: "Libia",
         Lithuania: "Lituania",
         Luxembourg: "Luxemburgo",
-
         Madagascar: "Madagascar",
         Malawi: "Malaui",
         Malaysia: "Malasia"
@@ -929,16 +726,11 @@ function translateCountryName(name) {
     return translations[name] || name;
 }
 
-/* =========================================
-   VENTANA DEL PAÍS
-========================================= */
-
 function openCountryMemory(code, name) {
     selectedCountryCode = code;
 
     if (memoryCountryName) {
-        memoryCountryName.textContent =
-            name;
+        memoryCountryName.textContent = name;
     }
 
     if (memoryCountryDescription) {
@@ -949,15 +741,9 @@ function openCountryMemory(code, name) {
     loadCountryMemories(code);
 
     if (countryMemory) {
-        countryMemory.classList.add(
-            "active"
-        );
+        countryMemory.classList.add("active");
     }
 }
-
-/* =========================================
-   AÑADIR RECUERDO
-========================================= */
 
 if (addMemoryBtn) {
     addMemoryBtn.addEventListener(
@@ -970,26 +756,18 @@ if (addMemoryBtn) {
             }
 
             if (memoryFormContainer) {
-                memoryFormContainer.classList.add(
-                    "active"
-                );
+                memoryFormContainer.classList.add("active");
             }
         }
     );
 }
-
-/* =========================================
-   CERRAR VENTANA
-========================================= */
 
 if (closeMemory) {
     closeMemory.addEventListener(
         "click",
         () => {
             if (countryMemory) {
-                countryMemory.classList.remove(
-                    "active"
-                );
+                countryMemory.classList.remove("active");
             }
         }
     );
@@ -1000,29 +778,18 @@ if (closeMemoryForm) {
         "click",
         () => {
             if (memoryFormContainer) {
-                memoryFormContainer.classList.remove(
-                    "active"
-                );
+                memoryFormContainer.classList.remove("active");
             }
         }
     );
 }
 
-/* =========================================
-   CERRAR HACIENDO CLICK AFUERA
-========================================= */
-
 if (memoryFormContainer) {
     memoryFormContainer.addEventListener(
         "click",
-        (event) => {
-            if (
-                event.target ===
-                memoryFormContainer
-            ) {
-                memoryFormContainer.classList.remove(
-                    "active"
-                );
+        event => {
+            if (event.target === memoryFormContainer) {
+                memoryFormContainer.classList.remove("active");
             }
         }
     );
@@ -1031,57 +798,36 @@ if (memoryFormContainer) {
 if (countryMemory) {
     countryMemory.addEventListener(
         "click",
-        (event) => {
-            if (
-                event.target ===
-                countryMemory
-            ) {
-                countryMemory.classList.remove(
-                    "active"
-                );
+        event => {
+            if (event.target === countryMemory) {
+                countryMemory.classList.remove("active");
             }
         }
     );
 }
 
-/* =========================================
-   GUARDAR RECUERDO
-========================================= */
-
 if (memoryForm) {
     memoryForm.addEventListener(
         "submit",
-        (event) => {
+        event => {
             event.preventDefault();
 
-            if (!selectedCountryCode) {
-                return;
-            }
+            if (!selectedCountryCode) return;
 
             const cityInput =
-                document.getElementById(
-                    "memory-city"
-                );
+                document.getElementById("memory-city");
 
             const titleInput =
-                document.getElementById(
-                    "memory-title"
-                );
+                document.getElementById("memory-title");
 
             const descriptionInput =
-                document.getElementById(
-                    "memory-description"
-                );
+                document.getElementById("memory-description");
 
             const dateInput =
-                document.getElementById(
-                    "memory-date"
-                );
+                document.getElementById("memory-date");
 
             const imageInput =
-                document.getElementById(
-                    "memory-image"
-                );
+                document.getElementById("memory-image");
 
             const city =
                 cityInput
@@ -1109,10 +855,6 @@ if (memoryForm) {
                     ? imageInput.files[0]
                     : null;
 
-            /*
-             * Máximo 35 palabras.
-             */
-
             description =
                 description
                     .split(/\s+/)
@@ -1120,12 +862,9 @@ if (memoryForm) {
                     .slice(0, 35)
                     .join(" ");
 
-            const memories =
-                getMemories();
+            const memories = getMemories();
 
-            const saveMemory = (
-                image
-            ) => {
+            const saveMemory = image => {
                 if (editingMemoryId) {
                     const index =
                         memories.findIndex(
@@ -1135,47 +874,26 @@ if (memoryForm) {
                         );
 
                     if (index !== -1) {
-                        memories[index].city =
-                            city;
-
-                        memories[index].title =
-                            title;
-
-                        memories[index].description =
-                            description;
-
-                        memories[index].date =
-                            date;
-
-                        memories[index].image =
-                            image;
+                        memories[index].city = city;
+                        memories[index].title = title;
+                        memories[index].description = description;
+                        memories[index].date = date;
+                        memories[index].image = image;
                     }
                 } else {
                     memories.push({
                         id: Date.now(),
-
-                        country:
-                            selectedCountryCode,
-
+                        country: selectedCountryCode,
                         city,
-
                         title,
-
                         description,
-
                         date,
-
-                        image:
-                            image || "",
-
-                        favorite:
-                            false
+                        image: image || "",
+                        favorite: false
                     });
                 }
 
-                saveMemories(
-                    memories
-                );
+                saveMemories(memories);
 
                 editingMemoryId = null;
 
@@ -1183,40 +901,25 @@ if (memoryForm) {
                     memoryForm.reset();
                 }
 
-                if (
-                    memoryFormContainer
-                ) {
-                    memoryFormContainer.classList.remove(
-                        "active"
-                    );
+                if (memoryFormContainer) {
+                    memoryFormContainer.classList.remove("active");
                 }
 
-                loadCountryMemories(
-                    selectedCountryCode
-                );
+                loadCountryMemories(selectedCountryCode);
             };
 
             if (file) {
-                const reader =
-                    new FileReader();
+                const reader = new FileReader();
 
                 reader.onload = () => {
-                    saveMemory(
-                        reader.result
-                    );
+                    saveMemory(reader.result);
                 };
 
                 reader.onerror = () => {
-                    console.error(
-                        "No se pudo leer la imagen."
-                    );
-
                     saveMemory("");
                 };
 
-                reader.readAsDataURL(
-                    file
-                );
+                reader.readAsDataURL(file);
             } else {
                 let oldImage = "";
 
@@ -1230,32 +933,20 @@ if (memoryForm) {
 
                     if (oldMemory) {
                         oldImage =
-                            oldMemory.image ||
-                            "";
+                            oldMemory.image || "";
                     }
                 }
 
-                saveMemory(
-                    oldImage
-                );
+                saveMemory(oldImage);
             }
         }
     );
 }
 
-/* =========================================
-   CARGAR RECUERDOS DE UN PAÍS
-========================================= */
+function loadCountryMemories(countryCode) {
+    if (!countryMemories) return;
 
-function loadCountryMemories(
-    countryCode
-) {
-    if (!countryMemories) {
-        return;
-    }
-
-    const memories =
-        getMemories();
+    const memories = getMemories();
 
     const countryList =
         memories.filter(
@@ -1264,83 +955,58 @@ function loadCountryMemories(
                 countryCode
         );
 
-    countryMemories.innerHTML =
-        "";
+    countryMemories.innerHTML = "";
 
     const emptyMessage =
         document.querySelector(
             ".memory-empty-message"
         );
 
-    if (
-        countryList.length ===
-        0
-    ) {
+    if (countryList.length === 0) {
         if (emptyMessage) {
-            emptyMessage.style.display =
-                "block";
+            emptyMessage.style.display = "block";
         }
 
         return;
     }
 
     if (emptyMessage) {
-        emptyMessage.style.display =
-            "none";
+        emptyMessage.style.display = "none";
     }
 
     const cities = {};
 
-    countryList.forEach(
-        memory => {
-            const city =
-                memory.city &&
-                memory.city.trim()
-                    ? memory.city.trim()
-                    : "Sin ciudad";
+    countryList.forEach(memory => {
+        const city =
+            memory.city &&
+            memory.city.trim()
+                ? memory.city.trim()
+                : "Sin ciudad";
 
-            if (!cities[city]) {
-                cities[city] = [];
-            }
-
-            cities[city].push(
-                memory
-            );
+        if (!cities[city]) {
+            cities[city] = [];
         }
-    );
 
-    Object.keys(
-        cities
-    ).forEach(
-        city => {
-            createCityCarousel(
-                city,
-                cities[city]
-            );
-        }
-    );
+        cities[city].push(memory);
+    });
+
+    Object.keys(cities).forEach(city => {
+        createCityCarousel(
+            city,
+            cities[city]
+        );
+    });
 }
 
-/* =========================================
-   CARRUSEL POR CIUDAD
-========================================= */
-
-function createCityCarousel(
-    city,
-    memories
-) {
+function createCityCarousel(city, memories) {
     const section =
-        document.createElement(
-            "section"
-        );
+        document.createElement("section");
 
     section.className =
         "city-memory-section";
 
     const title =
-        document.createElement(
-            "h3"
-        );
+        document.createElement("h3");
 
     title.className =
         "city-memory-title";
@@ -1352,21 +1018,15 @@ function createCityCarousel(
     `;
 
     const carousel =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     carousel.className =
         "memory-carousel";
 
     const previous =
-        document.createElement(
-            "button"
-        );
+        document.createElement("button");
 
-    previous.type =
-        "button";
-
+    previous.type = "button";
     previous.className =
         "carousel-arrow carousel-prev";
 
@@ -1374,13 +1034,9 @@ function createCityCarousel(
         `<i class="icon-chevron-left"></i>`;
 
     const next =
-        document.createElement(
-            "button"
-        );
+        document.createElement("button");
 
-    next.type =
-        "button";
-
+    next.type = "button";
     next.className =
         "carousel-arrow carousel-next";
 
@@ -1388,58 +1044,33 @@ function createCityCarousel(
         `<i class="icon-chevron-right"></i>`;
 
     const viewport =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     viewport.className =
         "memory-carousel-viewport";
 
     const track =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     track.className =
         "memory-carousel-track";
 
-    memories.forEach(
-        memory => {
-            track.appendChild(
-                createMemoryCard(
-                    memory
-                )
-            );
-        }
-    );
+    memories.forEach(memory => {
+        track.appendChild(
+            createMemoryCard(memory)
+        );
+    });
 
-    viewport.appendChild(
-        track
-    );
+    viewport.appendChild(track);
 
-    carousel.appendChild(
-        previous
-    );
+    carousel.appendChild(previous);
+    carousel.appendChild(viewport);
+    carousel.appendChild(next);
 
-    carousel.appendChild(
-        viewport
-    );
+    section.appendChild(title);
+    section.appendChild(carousel);
 
-    carousel.appendChild(
-        next
-    );
-
-    section.appendChild(
-        title
-    );
-
-    section.appendChild(
-        carousel
-    );
-
-    countryMemories.appendChild(
-        section
-    );
+    countryMemories.appendChild(section);
 
     let position = 0;
 
@@ -1449,14 +1080,10 @@ function createCityCarousel(
                 ".memory-card"
             );
 
-        if (!card) {
-            return 250;
-        }
+        if (!card) return 250;
 
         const style =
-            window.getComputedStyle(
-                track
-            );
+            window.getComputedStyle(track);
 
         const gap =
             parseFloat(
@@ -1466,8 +1093,8 @@ function createCityCarousel(
             ) || 30;
 
         return (
-            card.getBoundingClientRect()
-                .width + gap
+            card.getBoundingClientRect().width +
+            gap
         );
     }
 
@@ -1500,10 +1127,7 @@ function createCityCarousel(
         "click",
         event => {
             event.stopPropagation();
-
-            position -=
-                getStep();
-
+            position -= getStep();
             updateCarousel();
         }
     );
@@ -1512,10 +1136,7 @@ function createCityCarousel(
         "click",
         event => {
             event.stopPropagation();
-
-            position +=
-                getStep();
-
+            position += getStep();
             updateCarousel();
         }
     );
@@ -1525,17 +1146,9 @@ function createCityCarousel(
     );
 }
 
-/* =========================================
-   TARJETA / POLAROID
-========================================= */
-
-function createMemoryCard(
-    memory
-) {
+function createMemoryCard(memory) {
     const card =
-        document.createElement(
-            "article"
-        );
+        document.createElement("article");
 
     card.className =
         `memory-card ${
@@ -1544,8 +1157,7 @@ function createMemoryCard(
                 : ""
         }`;
 
-    card.dataset.id =
-        memory.id;
+    card.dataset.id = memory.id;
 
     const imageHTML =
         memory.image
@@ -1670,17 +1282,12 @@ function createMemoryCard(
             ".favorite-memory"
         );
 
-    if (
-        favoriteMemoryButton
-    ) {
+    if (favoriteMemoryButton) {
         favoriteMemoryButton.addEventListener(
             "click",
             event => {
                 event.stopPropagation();
-
-                toggleFavorite(
-                    memory.id
-                );
+                toggleFavorite(memory.id);
             }
         );
     }
@@ -1695,10 +1302,7 @@ function createMemoryCard(
             "click",
             event => {
                 event.stopPropagation();
-
-                editMemory(
-                    memory.id
-                );
+                editMemory(memory.id);
             }
         );
     }
@@ -1713,10 +1317,7 @@ function createMemoryCard(
             "click",
             event => {
                 event.stopPropagation();
-
-                deleteMemory(
-                    memory.id
-                );
+                deleteMemory(memory.id);
             }
         );
     }
@@ -1724,15 +1325,8 @@ function createMemoryCard(
     return card;
 }
 
-/* =========================================
-   FAVORITOS
-========================================= */
-
-function toggleFavorite(
-    memoryId
-) {
-    const memories =
-        getMemories();
+function toggleFavorite(memoryId) {
+    const memories = getMemories();
 
     const memory =
         memories.find(
@@ -1741,16 +1335,12 @@ function toggleFavorite(
                 memoryId
         );
 
-    if (!memory) {
-        return;
-    }
+    if (!memory) return;
 
     memory.favorite =
         !memory.favorite;
 
-    saveMemories(
-        memories
-    );
+    saveMemories(memories);
 
     if (selectedCountryCode) {
         loadCountryMemories(
@@ -1759,15 +1349,8 @@ function toggleFavorite(
     }
 }
 
-/* =========================================
-   EDITAR RECUERDO
-========================================= */
-
-function editMemory(
-    memoryId
-) {
-    const memories =
-        getMemories();
+function editMemory(memoryId) {
+    const memories = getMemories();
 
     const memory =
         memories.find(
@@ -1776,9 +1359,7 @@ function editMemory(
                 memoryId
         );
 
-    if (!memory) {
-        return;
-    }
+    if (!memory) return;
 
     editingMemoryId =
         memoryId;
@@ -1830,13 +1411,7 @@ function editMemory(
     }
 }
 
-/* =========================================
-   ELIMINAR RECUERDO
-========================================= */
-
-function deleteMemory(
-    memoryId
-) {
+function deleteMemory(memoryId) {
     const memories =
         getMemories();
 
@@ -1858,10 +1433,6 @@ function deleteMemory(
     }
 }
 
-/* =========================================
-   MOSTRAR FAVORITOS
-========================================= */
-
 function showFavoriteMemories() {
     const memories =
         getMemories();
@@ -1872,10 +1443,7 @@ function showFavoriteMemories() {
                 memory.favorite
         );
 
-    if (
-        favorites.length ===
-        0
-    ) {
+    if (favorites.length === 0) {
         alert(
             "Todavía no tienes recuerdos favoritos."
         );
@@ -1885,43 +1453,29 @@ function showFavoriteMemories() {
 
     const grouped = {};
 
-    favorites.forEach(
-        memory => {
-            if (
-                !grouped[
-                    memory.country
-                ]
-            ) {
-                grouped[
-                    memory.country
-                ] = [];
-            }
-
-            grouped[
-                memory.country
-            ].push(memory);
+    favorites.forEach(memory => {
+        if (!grouped[memory.country]) {
+            grouped[memory.country] = [];
         }
-    );
+
+        grouped[memory.country].push(
+            memory
+        );
+    });
 
     let message =
         "✦ TUS RECUERDOS FAVORITOS ✦\n\n";
 
-    Object.keys(
-        grouped
-    ).forEach(
+    Object.keys(grouped).forEach(
         country => {
             const countryTitle =
-                countryNames[
-                    country
-                ] ||
+                countryNames[country] ||
                 country;
 
             message +=
                 `${countryTitle}\n`;
 
-            grouped[
-                country
-            ].forEach(
+            grouped[country].forEach(
                 memory => {
                     message +=
                         `• ${
@@ -1934,19 +1488,12 @@ function showFavoriteMemories() {
                 }
             );
 
-            message +=
-                "\n";
+            message += "\n";
         }
     );
 
-    alert(
-        message
-    );
+    alert(message);
 }
-
-/* =========================================
-   BÚSQUEDA
-========================================= */
 
 if (searchButton) {
     searchButton.addEventListener(
@@ -1957,39 +1504,30 @@ if (searchButton) {
                     "Escribe el nombre del país que quieres buscar:"
                 );
 
-            if (!country) {
-                return;
-            }
+            if (!country) return;
 
             const search =
                 country
                     .trim()
                     .toLowerCase();
 
-            if (!worldMap) {
-                return;
-            }
+            if (!worldMap) return;
 
             const documentMap =
                 worldMap.contentDocument;
 
-            if (!documentMap) {
-                return;
-            }
+            if (!documentMap) return;
 
             const countries =
                 documentMap.querySelectorAll(
                     "path[id], path[name], path[class]"
                 );
 
-            let foundCountry =
-                null;
+            let foundCountry = null;
 
             countries.forEach(
                 countryElement => {
-                    if (foundCountry) {
-                        return;
-                    }
+                    if (foundCountry) return;
 
                     const originalName =
                         countryElement.getAttribute(
@@ -2013,12 +1551,6 @@ if (searchButton) {
                             "class"
                         ) || "";
 
-                    const normalizedId =
-                        id.toLowerCase();
-
-                    const normalizedClass =
-                        className.toLowerCase();
-
                     if (
                         originalName
                             .toLowerCase()
@@ -2028,10 +1560,12 @@ if (searchButton) {
                             .toLowerCase()
                             .includes(search) ||
 
-                        normalizedId ===
-                            search ||
+                        id
+                            .toLowerCase()
+                            .includes(search) ||
 
-                        normalizedClass
+                        className
+                            .toLowerCase()
                             .includes(search)
                     ) {
                         foundCountry =
@@ -2053,24 +1587,15 @@ if (searchButton) {
     );
 }
 
-/* =========================================
-   BOTÓN FAVORITOS
-========================================= */
-
 if (favoriteButton) {
     favoriteButton.addEventListener(
         "click",
         event => {
             event.stopPropagation();
-
             showFavoriteMemories();
         }
     );
 }
-
-/* =========================================
-   BOTÓN MEMORIA
-========================================= */
 
 if (memoryButton) {
     memoryButton.addEventListener(
@@ -2095,10 +1620,6 @@ if (memoryButton) {
     );
 }
 
-/* =========================================
-   ESCAPAR HTML
-========================================= */
-
 function escapeHTML(text) {
     const div =
         document.createElement(
@@ -2111,17 +1632,10 @@ function escapeHTML(text) {
     return div.innerHTML;
 }
 
-/* =========================================
-   TECLA ESCAPE
-========================================= */
-
 document.addEventListener(
     "keydown",
     event => {
-        if (
-            event.key !==
-            "Escape"
-        ) {
+        if (event.key !== "Escape") {
             return;
         }
 
@@ -2150,9 +1664,5 @@ document.addEventListener(
         }
     }
 );
-
-/* =========================================
-   INICIALIZAR TRANSFORMACIÓN
-========================================= */
 
 updateMapTransform();
