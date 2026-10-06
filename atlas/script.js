@@ -160,6 +160,7 @@ function endMapDrag(event) {
 
     }
 
+    
     setTimeout(() => {
         hasMoved = false;
     }, 150);
