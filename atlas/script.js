@@ -31,6 +31,10 @@ let selectedCountryCode = null;
 let selectedCountryElement = null;
 let editingMemoryId = null;
 
+/* =========================================
+   MAPA
+========================================= */
+
 let isDragging = false;
 let hasMoved = false;
 let suppressNextClick = false;
@@ -54,6 +58,10 @@ const MAX_SCALE = 4;
 
 const DRAG_THRESHOLD = 5;
 
+/* =========================================
+   TRANSFORMACIÓN
+========================================= */
+
 function updateMapTransform() {
     if (!mapContainer) return;
 
@@ -69,6 +77,9 @@ function resetMap() {
     updateMapTransform();
 }
 
+/* =========================================
+   INICIO
+========================================= */
 
 if (backHome) {
     backHome.addEventListener("click", () => {
@@ -76,6 +87,9 @@ if (backHome) {
     });
 }
 
+/* =========================================
+   LOCAL STORAGE
+========================================= */
 
 function getMemories() {
     try {
@@ -110,6 +124,10 @@ function clamp(value, min, max) {
     return Math.max(min, Math.min(max, value));
 }
 
+/* =========================================
+   ARRASTRE DEL MAPA
+   CORREGIDO PARA EVITAR TEMBLOR
+========================================= */
 
 function startMapDrag(event) {
     if (!event.isPrimary) return;
@@ -172,7 +190,10 @@ function endMapDrag() {
     }
 }
 
-
+/* =========================================
+   ZOOM
+   NO SE MODIFICA LA LÓGICA ORIGINAL
+========================================= */
 
 function zoomMap(event) {
     event.preventDefault();
@@ -1837,6 +1858,9 @@ function deleteMemory(
     }
 }
 
+/* =========================================
+   MOSTRAR FAVORITOS
+========================================= */
 
 function showFavoriteMemories() {
     const memories =
@@ -1920,6 +1944,9 @@ function showFavoriteMemories() {
     );
 }
 
+/* =========================================
+   BÚSQUEDA
+========================================= */
 
 if (searchButton) {
     searchButton.addEventListener(
@@ -2026,6 +2053,9 @@ if (searchButton) {
     );
 }
 
+/* =========================================
+   BOTÓN FAVORITOS
+========================================= */
 
 if (favoriteButton) {
     favoriteButton.addEventListener(
@@ -2038,6 +2068,9 @@ if (favoriteButton) {
     );
 }
 
+/* =========================================
+   BOTÓN MEMORIA
+========================================= */
 
 if (memoryButton) {
     memoryButton.addEventListener(
@@ -2062,6 +2095,9 @@ if (memoryButton) {
     );
 }
 
+/* =========================================
+   ESCAPAR HTML
+========================================= */
 
 function escapeHTML(text) {
     const div =
@@ -2075,6 +2111,9 @@ function escapeHTML(text) {
     return div.innerHTML;
 }
 
+/* =========================================
+   TECLA ESCAPE
+========================================= */
 
 document.addEventListener(
     "keydown",
@@ -2111,5 +2150,9 @@ document.addEventListener(
         }
     }
 );
+
+/* =========================================
+   INICIALIZAR TRANSFORMACIÓN
+========================================= */
 
 updateMapTransform();
