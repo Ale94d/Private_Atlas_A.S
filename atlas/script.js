@@ -42,6 +42,7 @@ let scale = 1;
 
 let svgDocument = null;
 let svgRoot = null;
+let mapControlsInitialized = false;
 
 const MIN_SCALE = 0.65;
 const MAX_SCALE = 4;
@@ -101,7 +102,16 @@ function startMapDrag(event) {
 
     if (svgRoot) {
         svgRoot.style.cursor = "grabbing";
+
+    try {
+        svgRoot.setPointerCapture(event.pointerId);
+    
+    } catch(error){
+        console.warn("No se pudo capturar el puntero:", error);
     }
+    }
+
+    event.preventDefault();
 }
 
 function moveMapDrag(event) {
@@ -137,6 +147,20 @@ function endMapDrag(event) {
 
     if (svgRoot) {
         svgRoot.style.cursor = "grab";
+    
+        try {
+            if (event && 
+                svgRoot.hasPointerCapture(event.pointerId)){
+
+                svgRoot.releacePointerCapture(event.pointerId);
+            }
+        } catch (error) {
+            console.warn("No se pudo liberar el puntero:", error);
+        }
+
+        setTimeout (() => {
+            hasMoved = false;
+        }, 150);
     }
 
     setTimeout(() => {
@@ -144,19 +168,28 @@ function endMapDrag(event) {
     }, 150);
 }
 
-function zoomMap(event) {
+function zoomMap (event) {
     event.preventDefault();
 
     if (!mapContainer) return;
 
-    const rect =
-        mapContainer.getBoundingClientRect();
+    const viewport =
+
+document.querySelector(".map-background");
+
+    if (!viewport) return;
+
+    const viewportRect =
+
+    viewport.getBoundingClientRect();
 
     const mouseX =
-        event.clientX - rect.left;
+        event.clientX -
+    viewportRect.left;
 
-    const mouseY =
-        event.clientY - rect.top;
+    const mouseY = 
+        event.clientY - 
+    viewportRect.top;
 
     const worldX =
         (mouseX - mapX) / scale;
@@ -166,8 +199,8 @@ function zoomMap(event) {
 
     const zoomFactor =
         event.deltaY < 0
-            ? 1.10
-            : 0.90;
+        ? 1.10
+        : 0.90:
 
     const newScale = clamp(
         scale * zoomFactor,
@@ -176,12 +209,12 @@ function zoomMap(event) {
     );
 
     mapX =
-        mouseX -
-        worldX * newScale;
+    mouseX -
+    worldX * newScale;
 
     mapY =
-        mouseY -
-        worldY * newScale;
+    mouseY -
+    worldY * newScale;
 
     scale = newScale;
 
@@ -191,6 +224,8 @@ function zoomMap(event) {
 
 function initializeMapControls() {
     if (!worldMap) return;
+
+    if (mapControlsInitialized) return;
 
     svgDocument = worldMap.contentDocument;
 
@@ -202,6 +237,8 @@ function initializeMapControls() {
     svgRoot = svgDocument.documentElement;
 
     if (!svgRoot) return;
+
+    mapControlsInitialized = true;
 
     svgRoot.style.cursor = "grab";
     svgRoot.style.touchAction = "none";
@@ -226,11 +263,6 @@ function initializeMapControls() {
 
     svgRoot.addEventListener(
         "pointercancel",
-        endMapDrag
-    );
-
-    svgRoot.addEventListener(
-        "pointerleave",
         endMapDrag
     );
 
