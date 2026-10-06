@@ -152,15 +152,12 @@ function endMapDrag(event) {
             if (event && 
                 svgRoot.hasPointerCapture(event.pointerId)){
 
-                svgRoot.releacePointerCapture(event.pointerId);
+                svgRoot.releasePointerCapture(event.pointerId);
             }
         } catch (error) {
             console.warn("No se pudo liberar el puntero:", error);
         }
 
-        setTimeout (() => {
-            hasMoved = false;
-        }, 150);
     }
 
     setTimeout(() => {
@@ -200,7 +197,7 @@ document.querySelector(".map-background");
     const zoomFactor =
         event.deltaY < 0
         ? 1.10
-        : 0.90:
+        : 0.90;
 
     const newScale = clamp(
         scale * zoomFactor,
