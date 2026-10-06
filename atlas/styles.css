@@ -1178,3 +1178,548 @@ object {
     }
 }
 
+/* =========================================
+   BUSCADOR Y FAVORITOS
+   PRIVATE ATLAS
+========================================= */
+
+.atlas-utility-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(74, 45, 24, .18),
+            rgba(25, 15, 8, .78)
+        );
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 2000;
+}
+
+.atlas-utility-overlay.active {
+    display: flex;
+}
+
+.atlas-utility-paper {
+    position: relative;
+    width: min(760px, 92vw);
+    max-height: 86vh;
+    overflow: hidden;
+    padding: 38px;
+    background:
+        radial-gradient(
+            ellipse at 15% 10%,
+            rgba(255, 255, 255, .30),
+            transparent 34%
+        ),
+        radial-gradient(
+            ellipse at 90% 90%,
+            rgba(105, 65, 32, .16),
+            transparent 38%
+        ),
+        linear-gradient(
+            135deg,
+            #F4E2BD,
+            #E8CC98 50%,
+            #F1DBB2
+        );
+    border: 1px solid rgba(91, 55, 28, .42);
+    border-radius: 4px;
+    box-shadow:
+        0 35px 90px rgba(30, 16, 7, .62),
+        inset 0 0 45px rgba(112, 72, 35, .15),
+        inset 0 0 10px rgba(80, 45, 20, .18);
+}
+
+.atlas-utility-paper::before {
+    content: "";
+    position: absolute;
+    inset: 13px;
+    border: 1px solid rgba(104, 65, 32, .25);
+    pointer-events: none;
+}
+
+.atlas-utility-paper::after {
+    content: "✦";
+    position: absolute;
+    right: 28px;
+    top: 18px;
+    color: rgba(103, 63, 31, .42);
+    font-size: 18px;
+    pointer-events: none;
+}
+
+.utility-close {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(91, 55, 28, .28);
+    border-radius: 50%;
+    background: rgba(218, 185, 132, .78);
+    color: #59371F;
+    cursor: pointer;
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+.utility-close:hover {
+    transform: rotate(8deg) scale(1.08);
+    background: #CDA875;
+}
+
+.utility-close svg {
+    width: 18px;
+    height: 18px;
+}
+
+.utility-header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    padding: 5px 5px 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(91, 55, 28, .28);
+}
+
+.utility-header::after {
+    content: "────────  ✦  ────────";
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 12px;
+    background: #E9CF9F;
+    color: #8B5E3C;
+    font-size: 9px;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+.utility-icon {
+    flex-shrink: 0;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background:
+        radial-gradient(
+            circle,
+            #95633C,
+            #69401F
+        );
+    color: #F5E2B9;
+    border: 2px solid rgba(82, 48, 23, .25);
+    box-shadow:
+        0 5px 12px rgba(57, 32, 14, .25);
+}
+
+.utility-icon svg {
+    width: 23px;
+    height: 23px;
+}
+
+.favorite-utility-icon {
+    background:
+        radial-gradient(
+            circle,
+            #C5963B,
+            #8B6423
+        );
+}
+
+.utility-kicker {
+    display: block;
+    margin-bottom: 3px;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 11px;
+    color: #8B5B36;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.utility-header h2 {
+    margin: 0;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 30px;
+    color: #4C2E1B;
+}
+
+.utility-header p {
+    margin-top: 5px;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 13px;
+    color: #765238;
+    font-style: italic;
+}
+
+.atlas-search-box {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 13px;
+    margin-bottom: 20px;
+    background: rgba(255, 248, 232, .78);
+    border: 1px solid rgba(91, 55, 28, .30);
+    border-radius: 4px;
+    box-shadow:
+        inset 0 0 10px rgba(105, 65, 31, .08),
+        0 4px 10px rgba(55, 30, 14, .08);
+}
+
+.atlas-search-box > svg {
+    flex-shrink: 0;
+    width: 19px;
+    height: 19px;
+    color: #765238;
+}
+
+.atlas-search-box input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #4A3020;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 15px;
+}
+
+.atlas-search-box input::placeholder {
+    color: #92755A;
+}
+
+#clear-atlas-search {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(210, 177, 126, .45);
+    color: #654127;
+    cursor: pointer;
+}
+
+#clear-atlas-search.visible {
+    display: flex;
+}
+
+#clear-atlas-search:hover {
+    background: rgba(190, 148, 89, .65);
+}
+
+#clear-atlas-search svg {
+    width: 15px;
+    height: 15px;
+}
+
+.atlas-utility-results {
+    position: relative;
+    z-index: 2;
+    max-height: 54vh;
+    overflow-y: auto;
+    padding: 4px 7px 10px 2px;
+}
+
+.atlas-utility-results::-webkit-scrollbar {
+    width: 7px;
+}
+
+.atlas-utility-results::-webkit-scrollbar-track {
+    background: rgba(112, 72, 35, .08);
+}
+
+.atlas-utility-results::-webkit-scrollbar-thumb {
+    background: rgba(112, 72, 35, .38);
+    border-radius: 10px;
+}
+
+.utility-empty {
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 25px;
+    text-align: center;
+    color: #76583F;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+.utility-empty svg {
+    width: 34px;
+    height: 34px;
+    color: #9A6B43;
+}
+
+.utility-empty p {
+    max-width: 360px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.utility-result {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 13px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 248, 232, .82),
+            rgba(234, 210, 165, .76)
+        );
+    border: 1px solid rgba(91, 55, 28, .22);
+    border-radius: 4px;
+    box-shadow:
+        0 5px 12px rgba(54, 31, 15, .10);
+    cursor: pointer;
+    text-align: left;
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+.utility-result:hover {
+    transform: translateY(-2px);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 250, 237, .95),
+            rgba(231, 201, 148, .90)
+        );
+    box-shadow:
+        0 9px 18px rgba(54, 31, 15, .17);
+}
+
+.utility-result-image {
+    flex-shrink: 0;
+    width: 68px;
+    height: 68px;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            #D9C19A,
+            #C9A979
+        );
+    border: 3px solid #F7F0E2;
+    box-shadow:
+        0 4px 8px rgba(54, 31, 15, .16);
+}
+
+.utility-result-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.utility-result-image.no-result-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #765238;
+}
+
+.utility-result-image.no-result-image svg {
+    width: 25px;
+    height: 25px;
+}
+
+.utility-result-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.utility-result-type {
+    display: block;
+    margin-bottom: 3px;
+    color: #9A6B43;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.utility-result-content h3 {
+    margin: 0;
+    color: #4A2D1A;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 17px;
+}
+
+.utility-result-content p {
+    margin-top: 4px;
+    color: #765238;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 12px;
+}
+
+.utility-result-arrow {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(210, 177, 126, .48);
+    color: #654127;
+}
+
+.utility-result-arrow svg {
+    width: 16px;
+    height: 16px;
+}
+
+.favorite-result .utility-result-image {
+    position: relative;
+}
+
+.favorite-result .favorite-mark {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(91, 55, 28, .72);
+    color: #F7D777;
+}
+
+.favorite-result .favorite-mark svg {
+    width: 13px;
+    height: 13px;
+    fill: #F7D777;
+}
+
+.utility-section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 4px 2px 13px;
+    color: #5A3821;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 17px;
+}
+
+.utility-section-title::before,
+.utility-section-title::after {
+    content: "✦";
+    color: #9A6B43;
+    font-size: 10px;
+}
+
+@media (max-width: 600px) {
+
+    .atlas-utility-overlay {
+        padding: 15px;
+    }
+
+    .atlas-utility-paper {
+        width: 96vw;
+        max-height: 90vh;
+        padding: 28px 18px;
+    }
+
+    .utility-header {
+        padding-right: 35px;
+    }
+
+    .utility-icon {
+        width: 46px;
+        height: 46px;
+    }
+
+    .utility-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .utility-header h2 {
+        font-size: 25px;
+    }
+
+    .utility-header p {
+        font-size: 12px;
+    }
+
+    .atlas-utility-results {
+        max-height: 58vh;
+    }
+
+    .utility-result {
+        gap: 11px;
+        padding: 10px;
+    }
+
+    .utility-result-image {
+        width: 58px;
+        height: 58px;
+    }
+
+    .utility-result-content h3 {
+        font-size: 15px;
+    }
+
+    .utility-result-content p {
+        font-size: 11px;
+    }
+}

@@ -196,6 +196,148 @@
     </div>
 </div>
 
+<!-- =========================================
+     PANEL DE BÚSQUEDA
+========================================= -->
+
+<div id="atlas-search-panel" class="atlas-utility-overlay">
+
+    <div class="atlas-utility-paper">
+
+        <button
+            id="close-search-panel"
+            class="utility-close"
+            type="button"
+            aria-label="Cerrar búsqueda"
+        >
+            <i data-lucide="x"></i>
+        </button>
+
+        <div class="utility-header">
+
+            <div class="utility-icon">
+                <i data-lucide="search"></i>
+            </div>
+
+            <div>
+                <span class="utility-kicker">
+                    Explorar el atlas
+                </span>
+
+                <h2>
+                    Buscar un recuerdo
+                </h2>
+
+                <p>
+                    Encuentra países, ciudades y lugares guardados.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="atlas-search-box">
+
+            <i data-lucide="search"></i>
+
+            <input
+                type="text"
+                id="atlas-search-input"
+                placeholder="Busca un país, ciudad o recuerdo..."
+                autocomplete="off"
+            >
+
+            <button
+                id="clear-atlas-search"
+                type="button"
+                aria-label="Limpiar búsqueda"
+            >
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <div
+            id="atlas-search-results"
+            class="atlas-utility-results"
+        >
+
+            <div class="utility-empty">
+
+                <i data-lucide="map"></i>
+
+                <p>
+                    Escribe algo para comenzar a buscar.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     PANEL DE FAVORITOS
+========================================= -->
+
+<div id="atlas-favorites-panel" class="atlas-utility-overlay">
+
+    <div class="atlas-utility-paper favorites-paper">
+
+        <button
+            id="close-favorites-panel"
+            class="utility-close"
+            type="button"
+            aria-label="Cerrar favoritos"
+        >
+            <i data-lucide="x"></i>
+        </button>
+
+        <div class="utility-header">
+
+            <div class="utility-icon favorite-utility-icon">
+                <i data-lucide="star"></i>
+            </div>
+
+            <div>
+                <span class="utility-kicker">
+                    Tus recuerdos especiales
+                </span>
+
+                <h2>
+                    Favoritos
+                </h2>
+
+                <p>
+                    Elige el recuerdo que quieres volver a visitar.
+                </p>
+            </div>
+
+        </div>
+
+        <div
+            id="atlas-favorites-results"
+            class="atlas-utility-results favorites-results"
+        >
+
+            <div class="utility-empty">
+
+                <i data-lucide="star"></i>
+
+                <p>
+                    Aún no tienes recuerdos favoritos.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>
     lucide.createIcons();

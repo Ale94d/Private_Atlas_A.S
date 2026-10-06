@@ -1666,3 +1666,1073 @@ document.addEventListener(
 );
 
 updateMapTransform();
+
+/* =========================================
+   BUSCADOR Y FAVORITOS
+   PRIVATE ATLAS
+========================================= */
+
+(function initializeAtlasUtilities() {
+
+    const searchButtonElement =
+        document.querySelector(".search-btn");
+
+    const favoriteButtonElement =
+        document.querySelector(".favorite-btn");
+
+    const searchPanel =
+        document.getElementById("atlas-search-panel");
+
+    const favoritesPanel =
+        document.getElementById("atlas-favorites-panel");
+
+    const closeSearchPanel =
+        document.getElementById("close-search-panel");
+
+    const closeFavoritesPanel =
+        document.getElementById("close-favorites-panel");
+
+    const searchInput =
+        document.getElementById("atlas-search-input");
+
+    const searchResults =
+        document.getElementById("atlas-search-results");
+
+    const favoritesResults =
+        document.getElementById("atlas-favorites-results");
+
+    const clearSearch =
+        document.getElementById("clear-atlas-search");
+
+
+    if (
+        !searchButtonElement ||
+        !favoriteButtonElement ||
+        !searchPanel ||
+        !favoritesPanel
+    ) {
+        return;
+    }
+
+
+    /*
+        Se reemplazan los botones actuales para
+        eliminar los listeners anteriores del script.
+    */
+
+    const newSearchButton =
+        searchButtonElement.cloneNode(true);
+
+    searchButtonElement.replaceWith(
+        newSearchButton
+    );
+
+
+    const newFavoriteButton =
+        favoriteButtonElement.cloneNode(true);
+
+    favoriteButtonElement.replaceWith(
+        newFavoriteButton
+    );
+
+
+    function openSearchPanel() {
+
+        favoritesPanel.classList.remove(
+            "active"
+        );
+
+        searchPanel.classList.add(
+            "active"
+        );
+
+        if (searchInput) {
+            setTimeout(() => {
+                searchInput.focus();
+            }, 100);
+        }
+
+        renderSearchResults("");
+    }
+
+
+    function closeSearchPanelFunction() {
+
+        searchPanel.classList.remove(
+            "active"
+        );
+
+        if (searchInput) {
+            searchInput.value = "";
+        }
+
+        if (clearSearch) {
+            clearSearch.classList.remove(
+                "visible"
+            );
+        }
+
+        renderSearchResults("");
+    }
+
+
+    function openFavoritesPanel() {
+
+        searchPanel.classList.remove(
+            "active"
+        );
+
+        favoritesPanel.classList.add(
+            "active"
+        );
+
+        renderFavoriteResults();
+    }
+
+
+    function closeFavoritesPanelFunction() {
+
+        favoritesPanel.classList.remove(
+            "active"
+        );
+    }
+
+
+    newSearchButton.addEventListener(
+        "click",
+        event => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            openSearchPanel();
+        }
+    );
+
+
+    newFavoriteButton.addEventListener(
+        "click",
+        event => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            openFavoritesPanel();
+        }
+    );
+
+
+    if (closeSearchPanel) {
+
+        closeSearchPanel.addEventListener(
+            "click",
+            closeSearchPanelFunction
+        );
+
+    }
+
+
+    if (closeFavoritesPanel) {
+
+        closeFavoritesPanel.addEventListener(
+            "click",
+            closeFavoritesPanelFunction
+        );
+
+    }
+
+
+    function normalizeSearchText(value) {
+
+        return String(value || "")
+            .normalize("NFD")
+            .replace(
+                /[\u0300-\u036f]/g,
+                ""
+            )
+            .toLowerCase()
+            .trim();
+
+    }
+
+
+    function findCountryElement(
+        countryCode
+    ) {
+
+        if (
+            !worldMap ||
+            !worldMap.contentDocument
+        ) {
+            return null;
+        }
+
+
+        const mapDocument =
+            worldMap.contentDocument;
+
+
+        const countries =
+            mapDocument.querySelectorAll(
+                "path[id], path[name], path[class]"
+            );
+
+
+        let result = null;
+
+
+        countries.forEach(
+            countryElement => {
+
+                if (result) {
+                    return;
+                }
+
+
+                const id =
+                    countryElement.getAttribute(
+                        "id"
+                    ) || "";
+
+
+                const name =
+                    countryElement.getAttribute(
+                        "name"
+                    ) || "";
+
+
+                const className =
+                    countryElement.getAttribute(
+                        "class"
+                    ) || "";
+
+
+                if (
+                    id === countryCode ||
+                    name === countryCode ||
+                    className === countryCode
+                ) {
+
+                    result =
+                        countryElement;
+
+                }
+
+            }
+        );
+
+
+        return result;
+    }
+
+
+    function openMemoryFromUtility(
+        memory
+    ) {
+
+        if (!memory) {
+            return;
+        }
+
+
+        const countryElement =
+            findCountryElement(
+                memory.country
+            );
+
+
+        if (countryElement) {
+
+            selectCountry(
+                countryElement
+            );
+
+        } else {
+
+            selectedCountryCode =
+                memory.country;
+
+            openCountryMemory(
+                memory.country,
+                countryNames[
+                    memory.country
+                ] || memory.country
+            );
+
+        }
+
+
+        searchPanel.classList.remove(
+            "active"
+        );
+
+        favoritesPanel.classList.remove(
+            "active"
+        );
+
+    }
+
+
+    function createUtilityResult(
+        memory,
+        type
+    ) {
+
+        const button =
+            document.createElement(
+                "button"
+            );
+
+
+        button.type = "button";
+
+
+        button.className =
+            "utility-result";
+
+
+        if (
+            type === "favorite"
+        ) {
+            button.classList.add(
+                "favorite-result"
+            );
+        }
+
+
+        const image =
+            memory.image
+                ? `
+                    <div class="utility-result-image">
+
+                        <img
+                            src="${memory.image}"
+                            alt="${escapeHTML(
+                                memory.title ||
+                                "Recuerdo"
+                            )}"
+                        >
+
+                        ${
+                            type === "favorite"
+                                ? `
+                                    <span class="favorite-mark">
+                                        <i data-lucide="star"></i>
+                                    </span>
+                                `
+                                : ""
+                        }
+
+                    </div>
+                `
+                : `
+                    <div class="
+                        utility-result-image
+                        no-result-image
+                    ">
+
+                        <i data-lucide="image-off"></i>
+
+                        ${
+                            type === "favorite"
+                                ? `
+                                    <span class="favorite-mark">
+                                        <i data-lucide="star"></i>
+                                    </span>
+                                `
+                                : ""
+                        }
+
+                    </div>
+                `;
+
+
+        const country =
+            countryNames[
+                memory.country
+            ] ||
+            memory.country ||
+            "País desconocido";
+
+
+        button.innerHTML = `
+
+            ${image}
+
+            <div class="utility-result-content">
+
+                <span class="utility-result-type">
+                    ${
+                        type === "favorite"
+                            ? "Recuerdo favorito"
+                            : escapeHTML(country)
+                    }
+                </span>
+
+                <h3>
+                    ${escapeHTML(
+                        memory.title ||
+                        "Sin título"
+                    )}
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        memory.city ||
+                        "Sin ciudad"
+                    )}
+
+                    ${
+                        memory.date
+                            ? ` · ${escapeHTML(
+                                memory.date
+                            )}`
+                            : ""
+                    }
+                </p>
+
+            </div>
+
+            <span class="utility-result-arrow">
+                <i data-lucide="arrow-right"></i>
+            </span>
+
+        `;
+
+
+        button.addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+                openMemoryFromUtility(
+                    memory
+                );
+
+            }
+        );
+
+
+        return button;
+    }
+
+
+    function renderSearchResults(
+        query
+    ) {
+
+        if (!searchResults) {
+            return;
+        }
+
+
+        const normalizedQuery =
+            normalizeSearchText(
+                query
+            );
+
+
+        searchResults.innerHTML =
+            "";
+
+
+        if (!normalizedQuery) {
+
+            searchResults.innerHTML = `
+
+                <div class="utility-empty">
+
+                    <i data-lucide="map"></i>
+
+                    <p>
+                        Escribe algo para buscar
+                        entre tus países, ciudades
+                        y recuerdos.
+                    </p>
+
+                </div>
+
+            `;
+
+            refreshUtilityIcons();
+
+            return;
+        }
+
+
+        const memories =
+            getMemories();
+
+
+        const memoryMatches =
+            memories.filter(
+                memory => {
+
+                    const country =
+                        countryNames[
+                            memory.country
+                        ] ||
+                        memory.country ||
+                        "";
+
+
+                    const searchableText = [
+                        country,
+                        memory.city,
+                        memory.title,
+                        memory.description,
+                        memory.date
+                    ]
+                        .map(
+                            normalizeSearchText
+                        )
+                        .join(" ");
+
+
+                    return searchableText.includes(
+                        normalizedQuery
+                    );
+
+                }
+            );
+
+
+        let countryMatches = [];
+
+
+        if (
+            worldMap &&
+            worldMap.contentDocument
+        ) {
+
+            const mapDocument =
+                worldMap.contentDocument;
+
+
+            const countries =
+                mapDocument.querySelectorAll(
+                    "path[id], path[name], path[class]"
+                );
+
+
+            countries.forEach(
+                countryElement => {
+
+                    const id =
+                        countryElement.getAttribute(
+                            "id"
+                        ) || "";
+
+
+                    const name =
+                        countryElement.getAttribute(
+                            "name"
+                        ) || "";
+
+
+                    const className =
+                        countryElement.getAttribute(
+                            "class"
+                        ) || "";
+
+
+                    const translated =
+                        translateCountryName(
+                            normalizeCountryLabel(
+                                name
+                            )
+                        );
+
+
+                    const searchable =
+                        [
+                            id,
+                            name,
+                            className,
+                            translated,
+                            countryNames[id]
+                        ]
+                            .map(
+                                normalizeSearchText
+                            )
+                            .join(" ");
+
+
+                    if (
+                        searchable.includes(
+                            normalizedQuery
+                        )
+                    ) {
+
+                        const code =
+                            id ||
+                            name ||
+                            className;
+
+
+                        const exists =
+                            countryMatches.some(
+                                item =>
+                                    item.code ===
+                                    code
+                            );
+
+
+                        if (!exists) {
+
+                            countryMatches.push({
+                                code,
+                                name:
+                                    countryNames[
+                                        code
+                                    ] ||
+                                    translated ||
+                                    name ||
+                                    code
+                            });
+
+                        }
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        if (
+            countryMatches.length === 0 &&
+            memoryMatches.length === 0
+        ) {
+
+            searchResults.innerHTML = `
+
+                <div class="utility-empty">
+
+                    <i data-lucide="search-x"></i>
+
+                    <p>
+                        No encontramos resultados
+                        para “${escapeHTML(query)}”.
+                    </p>
+
+                </div>
+
+            `;
+
+            refreshUtilityIcons();
+
+            return;
+        }
+
+
+        if (
+            countryMatches.length > 0
+        ) {
+
+            const countryTitle =
+                document.createElement(
+                    "div"
+                );
+
+
+            countryTitle.className =
+                "utility-section-title";
+
+
+            countryTitle.textContent =
+                "Países";
+
+
+            searchResults.appendChild(
+                countryTitle
+            );
+
+
+            countryMatches.forEach(
+                country => {
+
+                    const result =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    result.type = "button";
+
+                    result.className =
+                        "utility-result";
+
+
+                    result.innerHTML = `
+
+                        <div class="
+                            utility-result-image
+                            no-result-image
+                        ">
+
+                            <i data-lucide="map-pin"></i>
+
+                        </div>
+
+                        <div class="
+                            utility-result-content
+                        ">
+
+                            <span class="
+                                utility-result-type
+                            ">
+                                País del atlas
+                            </span>
+
+                            <h3>
+                                ${escapeHTML(
+                                    country.name
+                                )}
+                            </h3>
+
+                            <p>
+                                Abrir ubicación en el mapa
+                            </p>
+
+                        </div>
+
+                        <span class="
+                            utility-result-arrow
+                        ">
+
+                            <i data-lucide="arrow-right"></i>
+
+                        </span>
+
+                    `;
+
+
+                    result.addEventListener(
+                        "click",
+                        event => {
+
+                            event.preventDefault();
+
+                            event.stopPropagation();
+
+
+                            const element =
+                                findCountryElement(
+                                    country.code
+                                );
+
+
+                            if (element) {
+
+                                selectCountry(
+                                    element
+                                );
+
+                                searchPanel.classList.remove(
+                                    "active"
+                                );
+
+                            }
+
+                        }
+                    );
+
+
+                    searchResults.appendChild(
+                        result
+                    );
+
+                }
+            );
+
+        }
+
+
+        if (
+            memoryMatches.length > 0
+        ) {
+
+            const memoryTitle =
+                document.createElement(
+                    "div"
+                );
+
+
+            memoryTitle.className =
+                "utility-section-title";
+
+
+            memoryTitle.textContent =
+                "Recuerdos";
+
+
+            searchResults.appendChild(
+                memoryTitle
+            );
+
+
+            memoryMatches.forEach(
+                memory => {
+
+                    searchResults.appendChild(
+                        createUtilityResult(
+                            memory,
+                            "search"
+                        )
+                    );
+
+                }
+            );
+
+        }
+
+
+        refreshUtilityIcons();
+
+    }
+
+
+    function renderFavoriteResults() {
+
+        if (!favoritesResults) {
+            return;
+        }
+
+
+        const memories =
+            getMemories();
+
+
+        const favorites =
+            memories.filter(
+                memory =>
+                    memory.favorite === true
+            );
+
+
+        favoritesResults.innerHTML =
+            "";
+
+
+        if (
+            favorites.length === 0
+        ) {
+
+            favoritesResults.innerHTML = `
+
+                <div class="utility-empty">
+
+                    <i data-lucide="star"></i>
+
+                    <p>
+                        Aún no tienes recuerdos
+                        favoritos.
+                    </p>
+
+                </div>
+
+            `;
+
+            refreshUtilityIcons();
+
+            return;
+        }
+
+
+        const title =
+            document.createElement(
+                "div"
+            );
+
+
+        title.className =
+            "utility-section-title";
+
+
+        title.textContent =
+            `${favorites.length} recuerdo${
+                favorites.length === 1
+                    ? ""
+                    : "s"
+            } favorito${
+                favorites.length === 1
+                    ? ""
+                    : "s"
+            }`;
+
+
+        favoritesResults.appendChild(
+            title
+        );
+
+
+        favorites.forEach(
+            memory => {
+
+                favoritesResults.appendChild(
+                    createUtilityResult(
+                        memory,
+                        "favorite"
+                    )
+                );
+
+            }
+        );
+
+
+        refreshUtilityIcons();
+
+    }
+
+
+    function refreshUtilityIcons() {
+
+        if (
+            typeof lucide !==
+            "undefined"
+        ) {
+
+            lucide.createIcons();
+
+        }
+
+    }
+
+
+    if (searchInput) {
+
+        searchInput.addEventListener(
+            "input",
+            () => {
+
+                const value =
+                    searchInput.value;
+
+
+                if (clearSearch) {
+
+                    clearSearch.classList.toggle(
+                        "visible",
+                        value.length > 0
+                    );
+
+                }
+
+
+                renderSearchResults(
+                    value
+                );
+
+            }
+        );
+
+    }
+
+
+    if (clearSearch) {
+
+        clearSearch.addEventListener(
+            "click",
+            () => {
+
+                if (searchInput) {
+
+                    searchInput.value = "";
+
+                    searchInput.focus();
+
+                }
+
+
+                clearSearch.classList.remove(
+                    "visible"
+                );
+
+
+                renderSearchResults("");
+
+            }
+        );
+
+    }
+
+
+    searchPanel.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target ===
+                searchPanel
+            ) {
+
+                closeSearchPanelFunction();
+
+            }
+
+        }
+    );
+
+
+    favoritesPanel.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target ===
+                favoritesPanel
+            ) {
+
+                closeFavoritesPanelFunction();
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key !==
+                "Escape"
+            ) {
+                return;
+            }
+
+
+            if (
+                searchPanel.classList.contains(
+                    "active"
+                )
+            ) {
+
+                closeSearchPanelFunction();
+
+                return;
+
+            }
+
+
+            if (
+                favoritesPanel.classList.contains(
+                    "active"
+                )
+            ) {
+
+                closeFavoritesPanelFunction();
+
+            }
+
+        }
+    );
+
+
+    refreshUtilityIcons();
+
+})();
