@@ -103,12 +103,11 @@ function startMapDrag(event) {
     if (svgRoot) {
         svgRoot.style.cursor = "grabbing";
 
-    try {
-        svgRoot.setPointerCapture(event.pointerId);
-    
-    } catch(error){
-        console.warn("No se pudo capturar el puntero:", error);
-    }
+        try {
+            svgRoot.setPointerCapture(event.pointerId);
+        } catch (error) {
+            console.warn("No se pudo capturar el puntero:", error);
+        }
     }
 
     event.preventDefault();
@@ -147,47 +146,40 @@ function endMapDrag(event) {
 
     if (svgRoot) {
         svgRoot.style.cursor = "grab";
-    
-        try {
-            if (event && 
-                svgRoot.hasPointerCapture(event.pointerId)){
 
+        try {
+            if (
+                event &&
+                svgRoot.hasPointerCapture(event.pointerId)
+            ) {
                 svgRoot.releasePointerCapture(event.pointerId);
             }
         } catch (error) {
             console.warn("No se pudo liberar el puntero:", error);
         }
-
     }
 
-    
     setTimeout(() => {
         hasMoved = false;
     }, 150);
 }
 
-function zoomMap (event) {
+function zoomMap(event) {
     event.preventDefault();
 
     if (!mapContainer) return;
 
-    const viewport =
-
-document.querySelector(".map-background");
+    const viewport = document.querySelector(".map-background");
 
     if (!viewport) return;
 
-    const viewportRect =
-
-    viewport.getBoundingClientRect();
+    const viewportRect = viewport.getBoundingClientRect();
 
     const mouseX =
-        event.clientX -
-    viewportRect.left;
+        event.clientX - viewportRect.left;
 
-    const mouseY = 
-        event.clientY - 
-    viewportRect.top;
+    const mouseY =
+        event.clientY - viewportRect.top;
 
     const worldX =
         (mouseX - mapX) / scale;
@@ -197,8 +189,8 @@ document.querySelector(".map-background");
 
     const zoomFactor =
         event.deltaY < 0
-        ? 1.10
-        : 0.90;
+            ? 1.10
+            : 0.90;
 
     const newScale = clamp(
         scale * zoomFactor,
@@ -207,12 +199,12 @@ document.querySelector(".map-background");
     );
 
     mapX =
-    mouseX -
-    worldX * newScale;
+        mouseX -
+        worldX * newScale;
 
     mapY =
-    mouseY -
-    worldY * newScale;
+        mouseY -
+        worldY * newScale;
 
     scale = newScale;
 
