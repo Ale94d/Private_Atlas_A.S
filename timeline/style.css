@@ -1,8 +1,3 @@
-/* =========================================
-   PRIVATE ATLAS — TIMELINE
-   Salón de los Logros
-========================================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -27,9 +22,6 @@ body {
     overflow-y: auto;
 }
 
-/* =========================================
-   PANTALLA DE ENTRADA
-========================================= */
 
 #entrance-screen {
     position: fixed;
@@ -140,10 +132,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* =========================================
-   CONTENEDOR PRINCIPAL
-========================================= */
-
 .timeline-workspace {
     position: relative;
     width: 100%;
@@ -151,9 +139,6 @@ body {
     overflow: hidden;
 }
 
-/* =========================================
-   PARED DE MÁRMOL
-========================================= */
 
 .marble-wall {
     position: absolute;
@@ -191,9 +176,6 @@ body {
     pointer-events: none;
 }
 
-/* =========================================
-   COLUMNAS GRIEGAS
-========================================= */
 
 .background-columns {
     position: absolute;
@@ -268,9 +250,6 @@ body {
     border-right: 2px solid rgba(80,65,50,.25);
 }
 
-/* =========================================
-   BOTONES SUPERIORES
-========================================= */
 
 .home-button {
     position: fixed;
@@ -296,9 +275,6 @@ body {
     background: #fff5df;
 }
 
-/* =========================================
-   CONTENEDOR SCROLL
-========================================= */
 
 .timeline-container {
     position: relative;
@@ -325,9 +301,6 @@ body {
     border-radius: 10px;
 }
 
-/* =========================================
-   CONTENIDO CENTRAL
-========================================= */
 
 .timeline-content {
     position: relative;
@@ -338,9 +311,6 @@ body {
     padding: 100px 0 90px;
 }
 
-/* =========================================
-   ENCABEZADO
-========================================= */
 
 .timeline-header {
     text-align: center;
@@ -362,9 +332,6 @@ body {
     font-style: italic;
 }
 
-/* =========================================
-   SEPARADOR
-========================================= */
 
 .section-divider {
     width: 75%;
@@ -379,9 +346,6 @@ body {
         );
 }
 
-/* =========================================
-   GRID DE LOGROS
-========================================= */
 
 .achievements-grid {
     display: grid;
@@ -389,9 +353,6 @@ body {
     gap: 24px 28px;
 }
 
-/* =========================================
-   TARJETA DE LOGRO
-========================================= */
 
 .achievement-card {
     position: relative;
@@ -421,7 +382,6 @@ body {
         inset 0 0 20px rgba(139,104,62,.1);
 }
 
-/* Variaciones sutiles */
 .achievement-card:nth-child(4n + 2) {
     transform: translateY(8px);
 }
@@ -438,7 +398,6 @@ body {
     transform: translateY(-9px);
 }
 
-/* Decoración */
 .achievement-card::before {
     content: "✦";
     position: absolute;
@@ -458,9 +417,6 @@ body {
     background: rgba(130,95,55,.4);
 }
 
-/* =========================================
-   ICONO DEL LOGRO
-========================================= */
 
 .achievement-icon {
     width: 52px;
@@ -488,9 +444,6 @@ body {
     height: 25px;
 }
 
-/* =========================================
-   TEXTO DEL LOGRO
-========================================= */
 
 .achievement-card h3 {
     color: #503a29;
@@ -517,9 +470,6 @@ body {
     color: #604329;
 }
 
-/* =========================================
-   LOGROS PREMIUM
-========================================= */
 
 .achievement-card.premium {
     border-color: #65564c;
@@ -578,9 +528,6 @@ body {
     color: #d5c4af;
 }
 
-/* =========================================
-   TÍTULO DE SECCIÓN PREMIUM
-========================================= */
 
 .premium-title {
     margin: 70px 0 25px;
@@ -598,10 +545,6 @@ body {
     color: #765f4b;
     font-style: italic;
 }
-
-/* =========================================
-   ROMPECABEZAS
-========================================= */
 
 .puzzles-section {
     margin-top: 75px;
@@ -692,9 +635,6 @@ body {
     color: #d8cab9;
 }
 
-/* =========================================
-   MODAL PREMIUM
-========================================= */
 
 .premium-modal {
     position: fixed;
@@ -788,9 +728,6 @@ body {
     background: rgba(90,65,43,.1);
 }
 
-/* =========================================
-   PIE DE PÁGINA
-========================================= */
 
 .timeline-footer {
     margin-top: 65px;
@@ -802,9 +739,6 @@ body {
     font-style: italic;
 }
 
-/* =========================================
-   RESPONSIVE
-========================================= */
 
 @media (max-width: 1100px) {
 
