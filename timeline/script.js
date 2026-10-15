@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const entranceScreen = document.getElementById("entrance-screen");
-    const enterButton = document.getElementById("enter-button");
-    const homeButton = document.querySelector(".home-button");
-
+    const entrance = document.querySelector(".timeline-entrance");
+    const homeButton = document.querySelector(".back-home");
     const premiumModal = document.querySelector(".premium-modal");
-    const closeModalButton = document.querySelector(".close-modal");
+    const modalCard = document.querySelector(".premium-modal-card");
+    const closeModalButton = document.querySelector(".premium-modal-close");
+    const discoverPremiumButton = document.querySelector(".discover-premium");
 
+    let entranceStarted = false;
+    let lastFocusedElement = null;
 
     function renderIcons() {
         if (window.lucide) {
@@ -13,19 +15,68 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    renderIcons();
+    function enterTimeline() {
+        if (!entrance || entranceStarted) {
+            return;
+        }
 
+        entranceStarted = true;
+        entrance.classList.add("is-opening");
 
-    if (enterButton && entranceScreen) {
-        enterButton.addEventListener("click", () => {
-            entranceScreen.classList.add("open");
-
-            setTimeout(() => {
-                entranceScreen.style.display = "none";
-            }, 1500);
-        });
+        window.setTimeout(() => {
+            entrance.classList.add("is-hidden");
+        }, 1400);
     }
 
+    function openPremiumModal() {
+        if (!premiumModal) {
+            return;
+        }
+
+        lastFocusedElement = document.activeElement;
+        premiumModal.classList.add("active");
+        premiumModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        if (closeModalButton) {
+            closeModalButton.focus();
+        }
+    }
+
+    function closePremiumModal() {
+        if (!premiumModal) {
+            return;
+        }
+
+        premiumModal.classList.remove("active");
+        premiumModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+
+        if (
+            lastFocusedElement &&
+            typeof lastFocusedElement.focus === "function"
+        ) {
+            lastFocusedElement.focus();
+        }
+    }
+
+    if (entrance) {
+        entrance.addEventListener("click", enterTimeline);
+
+        entrance.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                enterTimeline();
+            }
+        });
+
+        entrance.setAttribute("tabindex", "0");
+        entrance.setAttribute("role", "button");
+        entrance.setAttribute(
+            "aria-label",
+            "Entrar al Salón de los Logros"
+        );
+    }
 
     if (homeButton) {
         homeButton.addEventListener("click", () => {
@@ -33,36 +84,69 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    document
+        .querySelectorAll(
+            ".achievement-card.premium, .achievement-card.locked, .puzzle-slot.premium-puzzle"
+        )
+        .forEach((element) => {
+            element.addEventListener("click", (event) => {
+                event.preventDefault();
+                openPremiumModal();
+            });
 
-    function openPremiumModal() {
-        if (!premiumModal) return;
+            if (!element.hasAttribute("tabindex")) {
+                element.setAttribute("tabindex", "0");
+            }
 
-        premiumModal.classList.add("active");
-        document.body.style.overflow = "hidden";
-
-        const closeButton = premiumModal.querySelector(".close-modal");
-
-        if (closeButton) {
-            closeButton.focus();
-        }
-    }
-
-    function closePremiumModal() {
-        if (!premiumModal) return;
-
-        premiumModal.classList.remove("active");
-        document.body.style.overflow = "";
-    }
-
-    document.querySelectorAll(".premium").forEach((element) => {
-        element.addEventListener("click", (event) => {
-            event.preventDefault();
-            openPremiumModal();
+            element.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    openPremiumModal();
+                }
+            });
         });
-    });
+
+    document
+        .querySelectorAll(".puzzle-slot.free-puzzle")
+        .forEach((slot, index) => {
+            slot.addEventListener("click", () => {
+                const puzzleNumber = index + 1;
+
+                window.alert(
+                    `Rompecabezas ${puzzleNumber}\n\nEste espacio está reservado para el rompecabezas gratuito. Su dinámica se conectará cuando se implemente el sistema de piezas.`
+                );
+            });
+        });
+
+    document
+        .querySelectorAll(".achievement-card.free")
+        .forEach((card) => {
+            card.addEventListener("click", () => {
+                const title =
+                    card.querySelector("h2")?.textContent.trim() || "Logro";
+
+                const level =
+                    card.querySelector(".level")?.textContent.trim() ||
+                    "Gratuito";
+
+                const description =
+                    card.querySelector("p")?.textContent.trim() || "";
+
+                const reward =
+                    card.querySelector(".reward")?.textContent.trim() ||
+                    "Recompensa por definir";
+
+                window.alert(
+                    `${title}\n${level}\n\n${description}\n\n${reward}`
+                );
+            });
+        });
 
     if (closeModalButton) {
-        closeModalButton.addEventListener("click", closePremiumModal);
+        closeModalButton.addEventListener(
+            "click",
+            closePremiumModal
+        );
     }
 
     if (premiumModal) {
@@ -73,62 +157,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    if (modalCard) {
+        modalCard.addEventListener("click", (event) => {
+            event.stopPropagation();
+        });
+    }
+
     document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
+        if (
+            event.key === "Escape" &&
+            premiumModal?.classList.contains("active")
+        ) {
             closePremiumModal();
         }
     });
 
-
-    const discoverPremiumButton = premiumModal
-        ? premiumModal.querySelector(".discover-premium")
-        : null;
-
     if (discoverPremiumButton) {
         discoverPremiumButton.addEventListener("click", () => {
-            window.location.href = "../index.html";
+            window.location.href = "../premium/index.html";
         });
     }
-
-
-    document.querySelectorAll(
-        ".achievement-card:not(.premium)"
-    ).forEach((card) => {
-        card.addEventListener("click", () => {
-        });
-    });
-
-
-    document.querySelectorAll(".puzzle-slot").forEach((slot) => {
-        slot.addEventListener("click", () => {
-            if (slot.classList.contains("premium")) {
-                openPremiumModal();
-                return;
-            }
-
-        });
-    });
-
-
-
-    document.querySelectorAll(
-        ".achievement-card.premium, .puzzle-slot.premium"
-    ).forEach((element) => {
-        if (!element.hasAttribute("tabindex")) {
-            element.setAttribute("tabindex", "0");
-        }
-
-        if (!element.hasAttribute("role")) {
-            element.setAttribute("role", "button");
-        }
-
-        element.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                openPremiumModal();
-            }
-        });
-    });
 
     renderIcons();
 });
