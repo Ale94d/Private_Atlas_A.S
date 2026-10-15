@@ -1,224 +1,345 @@
 
-/* =========================================
-   NAVEGACIÓN ENTRE SECCIONES
-========================================= */
 
-const sectionButtons = document.querySelectorAll(".section-button");
-const journalSections = document.querySelectorAll(".journal-section");
+<!DOCTYPE html>
+<html lang="es">
 
-sectionButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        const sectionName = button.dataset.section;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        sectionButtons.forEach(item => item.classList.remove("active"));
-        journalSections.forEach(section => section.classList.remove("active-section"));
+    <title>Daily Journal | Private Atlas A.S.</title>
 
-        button.classList.add("active");
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        const selectedSection = document.getElementById(sectionName);
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
-        if (selectedSection) {
-            selectedSection.classList.add("active-section");
-        }
-    });
-});
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/icons/favicon-dailyjournal.png">
+</head>
 
+<body>
 
-/* =========================================
-   SELECCIÓN DE EMOCIONES
-========================================= */
-
-const emotionButtons = document.querySelectorAll(".emotion");
-const selectedMood = document.getElementById("selectedMood");
-
-let selectedEmotion = "";
-
-emotionButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        emotionButtons.forEach(item => item.classList.remove("selected"));
-
-        button.classList.add("selected");
-
-        selectedEmotion = button.dataset.mood || "";
-
-        if (selectedMood) {
-            selectedMood.textContent = selectedEmotion;
-        }
-    });
-});
+<main class="apothecary">
 
 
-/* =========================================
-   ELEMENTOS DEL DIARIO
-========================================= */
+    <header class="journal-navigation">
 
-const saveButton = document.getElementById("saveButton");
-const journalText = document.getElementById("journalText");
-const memoriesList = document.getElementById("memoriesList");
+        <a href="../index.html" class="home-button">
+            <span>⌂</span>
+            Home
+        </a>
 
-const STORAGE_KEY = "privateAtlasMemories";
-const OLD_STORAGE_KEY = "privateAtlasJournal";
+        <div class="journal-brand">
+            <span>PRIVATE ATLAS A.S.</span>
+            <h1>Daily Journal</h1>
+        </div>
 
+        <nav class="section-navigation">
 
-/* =========================================
-   CARGAR RECUERDOS GUARDADOS
-========================================= */
+            <button
+                class="section-button active"
+                data-section="diario"
+                type="button">
+                Diario
+            </button>
 
-function loadMemories() {
-    try {
-        const storedMemories = localStorage.getItem(STORAGE_KEY);
+            <button
+                class="section-button"
+                data-section="emociones"
+                type="button">
+                Emociones
+            </button>
 
-        if (storedMemories !== null) {
-            const parsed = JSON.parse(storedMemories);
-            return Array.isArray(parsed) ? parsed : [];
-        }
+        </nav>
 
-        // Intentar recuperar el recuerdo del sistema anterior.
-        const oldSavedMemory = localStorage.getItem(OLD_STORAGE_KEY);
-
-        if (oldSavedMemory) {
-            const oldMemory = JSON.parse(oldSavedMemory);
-
-            if (oldMemory && oldMemory.text) {
-                const migratedMemory = [{
-                    id: Date.now(),
-                    text: oldMemory.text,
-                    mood: oldMemory.mood || "Sin emoción",
-                    date: oldMemory.date || ""
-                }];
-
-                localStorage.setItem(
-                    STORAGE_KEY,
-                    JSON.stringify(migratedMemory)
-                );
-
-                return migratedMemory;
-            }
-        }
-    } catch (error) {
-        console.error("Error al cargar los recuerdos:", error);
-    }
-
-    return [];
-}
-
-let memories = loadMemories();
+    </header>
 
 
-/* =========================================
-   MOSTRAR RECUERDOS GUARDADOS
-========================================= */
+    <!-- CONTENIDO -->
 
-function renderMemories() {
-    if (!memoriesList) return;
-
-    memoriesList.replaceChildren();
-
-    if (memories.length === 0) {
-        const message = document.createElement("p");
-
-        message.className = "empty-memories";
-        message.textContent =
-            "Aquí aparecerán los recuerdos que guardes.";
-
-        memoriesList.appendChild(message);
-        return;
-    }
-
-    [...memories].reverse().forEach(memory => {
-        const card = document.createElement("article");
-        card.className = "memory-entry";
-
-        const date = document.createElement("p");
-        date.className = "memory-entry-date";
-        date.textContent = memory.date || "Fecha no disponible";
-
-        const mood = document.createElement("p");
-        mood.className = "memory-entry-mood";
-        mood.textContent = "Estado de ánimo: " +
-            (memory.mood || "Sin emoción");
-
-        const text = document.createElement("p");
-        text.className = "memory-entry-text";
-        text.textContent = memory.text;
-
-        card.append(date, mood, text);
-        memoriesList.appendChild(card);
-    });
-}
+    <section class="journal-content">
 
 
-/* =========================================
-   GUARDAR RECUERDO
-========================================= */
+<!-- LIBRERO DE BOTICARIA -->
+<aside class="apothecary-bookshelf" aria-label="Librero de boticaria antigua">
 
-if (saveButton && journalText) {
-    saveButton.addEventListener("click", () => {
-        const text = journalText.value.trim();
+    <div class="bookshelf-sign">HERBARIUM</div>
 
-        if (!text) {
-            alert("Escribe algo en tu diario antes de guardar el recuerdo.");
-            journalText.focus();
-            return;
-        }
+    <div class="bookshelf-row books">
+        <div class="antique-book book-forest"></div>
+        <div class="antique-book book-walnut"></div>
+        <div class="antique-book book-parchment"></div>
+        <div class="antique-book book-wine"></div>
+        <div class="antique-book book-olive"></div>
+    </div>
 
-        const memory = {
-            id: Date.now(),
-            text: text,
-            mood: selectedEmotion || "Sin emoción",
-            date: new Date().toLocaleDateString("es-CO")
-        };
+    <div class="bookshelf-plank"></div>
 
-        memories.push(memory);
+    <div class="bookshelf-row apothecary-items">
+        <div class="shelf-jar jar-sage">
+            <span>✦</span>
+        </div>
+        <div class="mortar-bowl">⚗</div>
+        <div class="herb-bundle">❧</div>
+        <div class="shelf-jar jar-amber">
+            <span>✧</span>
+        </div>
+    </div>
 
-        try {
-            localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify(memories)
-            );
+    <div class="bookshelf-plank"></div>
 
-            // Actualizar la lista después de guardar.
-            renderMemories();
+    <div class="bookshelf-row lower-books">
+        <div class="antique-book book-wine"></div>
+        <div class="antique-book book-walnut"></div>
+        <div class="antique-book book-forest"></div>
+        <div class="herb-box">HERBAS</div>
+    </div>
 
-            saveButton.innerHTML =
-                "<span>✦</span> Recuerdo guardado";
+    <div class="bookshelf-plank"></div>
 
-            saveButton.classList.add("saved");
+    <div class="bookshelf-drawers">
+        <div class="bookshelf-drawer"><span>✦</span></div>
+        <div class="bookshelf-drawer"><span>✦</span></div>
+    </div>
 
-            // Preparar el diario para un nuevo recuerdo.
-            journalText.value = "";
-            selectedEmotion = "";
-
-            if (selectedMood) {
-                selectedMood.textContent = "Selecciona una emoción";
-            }
-
-            emotionButtons.forEach(button => {
-                button.classList.remove("selected");
-            });
-
-            setTimeout(() => {
-                saveButton.innerHTML =
-                    "<span>✦</span> Guardar recuerdo";
-
-                saveButton.classList.remove("saved");
-            }, 2500);
-
-        } catch (error) {
-            memories.pop();
-
-            console.error("No se pudo guardar el recuerdo:", error);
-
-            alert(
-                "No se pudo guardar el recuerdo. Comprueba el almacenamiento del navegador."
-            );
-        }
-    });
-}
+</aside>
 
 
-/* =========================================
-   INICIAR LA PÁGINA
-========================================= */
+        <section
+            id="diario"
+            class="journal-section active-section">
 
-renderMemories();
+            <div class="section-intro">
+
+                <span class="small-title">
+                    CUADERNO PERSONAL
+                </span>
+
+                <h2>
+                    Conserva tu día
+                </h2>
+
+                <p>
+                    Un espacio para guardar aquello que quieras recordar.
+                </p>
+
+            </div>
+
+
+            <div class="journal-paper">
+
+                <div class="paper-decoration">
+                    ✦
+                </div>
+
+
+                <div class="paper-header">
+
+                    <div>
+
+                        <span class="paper-label">
+                            DIARIO
+                        </span>
+
+                        <h3>
+                            ¿Cómo fue tu día?
+                        </h3>
+
+                    </div>
+
+                    <span class="today-date">
+                        Hoy
+                    </span>
+
+                </div>
+
+
+                <div class="writing-area">
+
+                    <textarea
+                        id="journalText"
+                        placeholder="Escribe aquí aquello que quieras conservar de este día..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="paper-bottom">
+
+                    <div class="selected-mood">
+
+                        <span>
+                            ESTADO DE ÁNIMO
+                        </span>
+
+                        <strong id="selectedMood">
+                            Selecciona una emoción
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="save-button"
+                        id="saveButton"
+                        type="button">
+
+                        <span>✦</span>
+                        Guardar recuerdo
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section
+            id="emociones"
+            class="journal-section">
+
+            <div class="section-intro">
+
+                <span class="small-title">
+                    HERBARIO INTERIOR
+                </span>
+
+                <h2>
+                    ¿Cómo te sentiste?
+                </h2>
+
+                <p>
+                    Elige la emoción que mejor representa tu día.
+                </p>
+
+            </div>
+
+
+            <div class="emotion-paper">
+
+                <div class="emotion-header">
+
+                    <span class="paper-label">
+                        EMOCIONES
+                    </span>
+
+                    <h3>
+                        Guarda cómo te sentiste
+                    </h3>
+
+                </div>
+
+
+                <div class="emotion-grid">
+
+                    <button
+                        class="emotion"
+                        data-mood="Feliz"
+                        type="button">
+
+                        <span>☀</span>
+
+                        <small>
+                            Feliz
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        class="emotion"
+                        data-mood="Tranquilo"
+                        type="button">
+
+                        <span>♡</span>
+
+                        <small>
+                            Tranquilo
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        class="emotion"
+                        data-mood="Emocionado"
+                        type="button">
+
+                        <span>✦</span>
+
+                        <small>
+                            Emocionado
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        class="emotion"
+                        data-mood="Nostálgico"
+                        type="button">
+
+                        <span>☾</span>
+
+                        <small>
+                            Nostálgico
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        class="emotion"
+                        data-mood="Pensativo"
+                        type="button">
+
+                        <span>☁</span>
+
+                        <small>
+                            Pensativo
+                        </small>
+
+                    </button>
+
+                </div>
+
+
+                <div class="emotion-note">
+
+                    <span>✧</span>
+
+                    <p>
+                        Cada emoción también forma parte de tu historia.
+                    </p>
+
+                    <span>✧</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <div class="bottom-botanical botanical-left">
+            ❧
+        </div>
+
+        <div class="bottom-botanical botanical-right">
+            ❧
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
