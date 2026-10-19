@@ -1,9 +1,8 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    background: linear-gradient(135deg, rgba(246, 235, 215, .94), rgba(210, 190, 157, .94));
+    box-shadow: 0 10px 22px rgba(62, 43, 25, .18), inset 0 0 0 5px rgba(255, 255, 255, .16);
 }
 
+<<<<<<< HEAD
 :root {
     --stone-light: #f1e7d6;
     --stone: #d7c7ae;
@@ -818,4 +817,116 @@ button.achievement-card {
         animation-iteration-count: 1 !important;
         transition-duration: .01ms !important;
     }
+=======
+.section-heading {
+    margin: 0 auto 30px;
+    text-align: center;
+}
+
+.section-heading h2 {
+    color: #503a29;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+}
+
+.section-heading p {
+    margin-top: 6px;
+    color: #765e47;
+    font-size: .9rem;
+    line-height: 1.6;
+}
+
+.puzzle-slot {
+    border-radius: 3px;
+}
+
+.puzzle-piece {
+    min-height: 72px;
+    padding: 12px;
+    border: 1px dashed #a88a61;
+    color: #62482e;
+    background: rgba(255, 248, 232, .62);
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease;
+}
+
+.puzzle-piece:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 251, 241, .92);
+}
+
+/* Ventana Premium por encima del resto de modales */
+.premium-modal {
+    z-index: 1700;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Accesibilidad */
+button:focus-visible,
+.achievement-card:focus-visible,
+.puzzle-slot:focus-visible,
+.puzzle-piece:focus-visible {
+    outline: 3px solid #8b6338;
+    outline-offset: 4px;
+}
+
+@media (max-width: 1100px) {
+    .timeline-content {
+        width: calc(100% - 190px);
+    }
+}
+
+@media (max-width: 700px) {
+    .timeline-content {
+        width: calc(100% - 54px);
+        padding: 88px 0 52px;
+    }
+
+    .achievement-filters,
+    .timeline-filters,
+    .filter-buttons,
+    .filters {
+        gap: 9px;
+        margin-bottom: 24px;
+    }
+
+    .achievement-filters button,
+    .timeline-filters button,
+    .filter-buttons button,
+    .filters button,
+    [data-filter] {
+        padding: 10px 15px;
+        font-size: .76rem;
+    }
+
+    .achievement-card {
+        min-height: 190px;
+        padding: 22px 20px;
+    }
+
+    .puzzle-section {
+        margin-top: 44px;
+        padding: 22px 15px;
+    }
+
+    .achievement-modal,
+    .puzzle-modal {
+        padding: 14px;
+    }
+
+    .achievement-modal-card,
+    .puzzle-modal-card {
+        max-height: 92vh;
+        padding: 38px 20px 24px;
+    }
+}
+
+@media (max-width: 390px) {
+    .timeline-content {
+        width: calc(100% - 42px);
+    }
+>>>>>>> aa0f245 (timeline)
 }
