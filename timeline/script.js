@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     const entrance = document.querySelector(".timeline-entrance");
     const homeButton = document.querySelector(".back-home");
     const premiumModal = document.querySelector(".premium-modal");
@@ -10,70 +11,50 @@ document.addEventListener("DOMContentLoaded", () => {
     let entranceStarted = false;
     let lastFocusedElement = null;
 =======
+=======
+    // =========================================
+    // ELEMENTOS PRINCIPALES
+    // =========================================
+>>>>>>> 00b7ae2 (timeline)
 
-    const entrance = document.querySelector(".timeline-entrance");
+    const entrance = document.querySelector("#entrance-screen");
     const enterButton = document.querySelector("#enter-button");
-    const homeButton = document.querySelector(".back-home");
+    const timeline = document.querySelector("#timeline-container");
+    const homeButton = document.querySelector("#back-home");
 
-    const achievementGrid = document.querySelector("#achievement-grid");
-    const filterButtons = document.querySelectorAll(".filter-button");
+    const cards = Array.from(
+        document.querySelectorAll(".achievement-card")
+    );
 
-    // Modal de logros
+    const filterButtons = Array.from(
+        document.querySelectorAll(".filter-button")
+    );
+
     const achievementModal = document.querySelector("#achievement-modal");
-    const achievementModalCard = document.querySelector(
-        ".achievement-modal-card"
-    );
-    const achievementModalClose = document.querySelector(
-        ".achievement-modal-close"
-    );
-
-    const achievementModalTier = document.querySelector(
-        "#achievement-modal-tier"
-    );
-    const achievementModalTitle = document.querySelector(
-        "#achievement-modal-title"
-    );
-    const achievementModalDescription = document.querySelector(
-        "#achievement-modal-description"
-    );
-    const achievementModalCondition = document.querySelector(
-        "#achievement-modal-condition"
-    );
-    const achievementModalReward = document.querySelector(
-        "#achievement-modal-reward"
-    );
-    const achievementModalProgressLabel = document.querySelector(
-        "#achievement-modal-progress-label"
-    );
-    const achievementModalProgressBar = document.querySelector(
-        "#achievement-modal-progress-bar"
-    );
-
-    // Modal Premium
     const premiumModal = document.querySelector("#premium-modal");
-    const premiumModalCard = document.querySelector(".premium-modal-card");
-    const premiumModalClose = document.querySelector(".premium-modal-close");
-    const discoverPremiumButton = document.querySelector(
-        "#discover-premium"
-    );
-
-    // Modal de rompecabezas
     const puzzleModal = document.querySelector("#puzzle-modal");
-    const puzzleModalCard = document.querySelector(".puzzle-modal-card");
-    const puzzleModalClose = document.querySelector(".puzzle-modal-close");
-    const puzzleModalTitle = document.querySelector("#puzzle-modal-title");
-    const puzzleModalDescription = document.querySelector(
-        "#puzzle-modal-description"
+
+    const closeAchievementButtons = document.querySelectorAll(
+        "[data-close-achievement]"
     );
-    const puzzleModalNote = document.querySelector("#puzzle-modal-note");
-    const puzzlePieces = document.querySelectorAll(".puzzle-piece");
 
+    const closePremiumButtons = document.querySelectorAll(
+        "[data-close-premium]"
+    );
 
-    let entranceStarted = false;
+    const closePuzzleButtons = document.querySelectorAll(
+        "[data-close-puzzle]"
+    );
+
     let lastFocusedElement = null;
-    let activeModal = null;
 
+<<<<<<< HEAD
 >>>>>>> aa0f245 (timeline)
+=======
+    // =========================================
+    // ICONOS
+    // =========================================
+>>>>>>> 00b7ae2 (timeline)
 
     function renderIcons() {
         if (window.lucide) {
@@ -81,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+<<<<<<< HEAD
     function enterTimeline() {
         if (!entrance || entranceStarted) {
             return;
@@ -159,109 +141,55 @@ document.addEventListener("DOMContentLoaded", () => {
         // Título y subtítulo de la página
         if (headerTitle) {
             headerTitle.textContent = "Timeline";
+=======
+    // =========================================
+    // ENTRADA AL TIMELINE
+    // =========================================
+
+    function enterTimeline(event) {
+        if (event) {
+            event.preventDefault();
+>>>>>>> 00b7ae2 (timeline)
         }
 
-        if (headerSubtitle) {
-            headerSubtitle.textContent = "Salón de logros";
-        }
-
-        // Mantener coherente la pantalla de entrada
-        if (entranceTitle) {
-            entranceTitle.textContent = "Timeline";
-        }
-
-        if (entranceSubtitle) {
-            entranceSubtitle.textContent = "Salón de logros";
-        }
-
-        // Retirar el bloque introductorio de la galería
-        const achievementSection = document.querySelector(
-            ".achievement-section"
-        );
-
-        if (achievementSection) {
-            const sectionHeading = achievementSection.querySelector(
-                ".section-heading"
-            );
-
-            const summary = achievementSection.querySelector(
-                ".achievement-summary"
-            );
-
-            if (sectionHeading) {
-                sectionHeading.remove();
-            }
-
-            if (summary) {
-                summary.remove();
-            }
-        }
-
-        document.querySelectorAll(
-            '.filter-button[data-filter="locked"], ' +
-            '.filter-button[data-filter="premium"]'
-        ).forEach((button) => button.remove());
-
-        // Garantizar que el filtro inicial sea "Todos"
-        filterButtons.forEach((button) => {
-            const isAll = button.dataset.filter === "all";
-
-            button.classList.toggle("active", isAll);
-            button.setAttribute("aria-pressed", String(isAll));
-        });
-
-        document.querySelectorAll(".achievement-card").forEach((card) => {
-            if (card.dataset.premium === "true" ||
-                card.classList.contains("premium")) {
-                card.classList.add("premium", "locked");
-            } else {
-                card.classList.add("free");
-            }
-        });
-    }
-
-    function enterTimeline() {
-        if (!entrance || entranceStarted) {
+        if (!entrance) {
             return;
         }
 
-        entranceStarted = true;
         entrance.classList.add("is-opening");
-
-        if (enterButton) {
-            enterButton.disabled = true;
-        }
 
         window.setTimeout(() => {
             entrance.classList.add("is-hidden");
+            entrance.setAttribute("aria-hidden", "true");
+
+            if (timeline) {
+                timeline.classList.add("is-visible");
+                timeline.setAttribute("aria-hidden", "false");
+            }
         }, 1400);
     }
 
-    if (entrance) {
-        entrance.addEventListener("click", enterTimeline);
+    if (enterButton) {
+        enterButton.addEventListener("click", enterTimeline);
+    }
 
-        entrance.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                enterTimeline();
+    // Permite entrar al hacer clic en la pantalla de entrada.
+    if (entrance) {
+        entrance.addEventListener("click", (event) => {
+            if (
+                event.target === entrance ||
+                event.target.closest(".entrance-wall")
+            ) {
+                if (!event.target.closest("button")) {
+                    enterTimeline(event);
+                }
             }
         });
-
-        entrance.setAttribute("tabindex", "0");
-        entrance.setAttribute("role", "button");
-        entrance.setAttribute(
-            "aria-label",
-            "Entrar a Timeline"
-        );
     }
 
-    if (enterButton) {
-        enterButton.addEventListener("click", (event) => {
-            event.stopPropagation();
-            enterTimeline();
-        });
-    }
-
+    // =========================================
+    // VOLVER AL HOME
+    // =========================================
 
 >>>>>>> aa0f245 (timeline)
     if (homeButton) {
@@ -270,6 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     document
         .querySelectorAll(
@@ -336,28 +265,32 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 =======
     function openModal(modal, focusElement) {
+=======
+    // =========================================
+    // ABRIR Y CERRAR MODALES
+    // =========================================
+
+    function openModal(modal) {
+>>>>>>> 00b7ae2 (timeline)
         if (!modal) {
             return;
         }
 
-        // Cerrar el modal anterior si se cambia directamente a otro.
-        if (activeModal && activeModal !== modal) {
-            activeModal.classList.remove("active");
-            activeModal.setAttribute("aria-hidden", "true");
-        }
-
         lastFocusedElement = document.activeElement;
-        activeModal = modal;
 
+        modal.classList.add("is-open");
         modal.classList.add("active");
         modal.setAttribute("aria-hidden", "false");
+
         document.body.style.overflow = "hidden";
 
-        renderIcons();
+        const closeButton = modal.querySelector("button");
 
-        if (focusElement) {
-            focusElement.focus();
+        if (closeButton) {
+            closeButton.focus();
         }
+
+        renderIcons();
     }
 
     function closeModal(modal) {
@@ -365,126 +298,265 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        modal.classList.remove("is-open");
         modal.classList.remove("active");
         modal.setAttribute("aria-hidden", "true");
 
-        if (activeModal === modal) {
-            activeModal = null;
-        }
+        const anyModalOpen = [
+            achievementModal,
+            premiumModal,
+            puzzleModal
+        ].some((item) => {
+            return item &&
+                (
+                    item.classList.contains("is-open") ||
+                    item.classList.contains("active")
+                );
+        });
 
-        if (!activeModal) {
+        if (!anyModalOpen) {
             document.body.style.overflow = "";
-        }
 
-        if (
-            lastFocusedElement &&
-            document.contains(lastFocusedElement) &&
-            typeof lastFocusedElement.focus === "function"
-        ) {
-            lastFocusedElement.focus();
+            if (
+                lastFocusedElement &&
+                typeof lastFocusedElement.focus === "function"
+            ) {
+                lastFocusedElement.focus();
+            }
         }
     }
 
-    function openAchievementModal(card) {
+    function closeAllModals() {
+        closeModal(achievementModal);
+        closeModal(premiumModal);
+        closeModal(puzzleModal);
+    }
+
+    // =========================================
+    // INFORMACIÓN DE LOS LOGROS
+    // =========================================
+
+    function getCardText(card, selector, fallback = "") {
+        const element = card.querySelector(selector);
+
+        return element
+            ? element.textContent.trim()
+            : fallback;
+    }
+
+    function showAchievement(card) {
         if (!card || !achievementModal) {
             return;
         }
 
-        const number = card.querySelector(".achievement-number");
-        const tier = card.querySelector(".achievement-tier");
-        const title = card.querySelector(".achievement-name");
-        const description = card.querySelector(
-            ".achievement-description"
-        );
-        const progressLabel = card.querySelector(
-            ".achievement-progress-label"
-        );
-        const progressFill = card.querySelector(
-            ".progress-fill"
+        const tier = getCardText(
+            card,
+            ".achievement-tier",
+            card.dataset.tier || "Logro"
         );
 
-        const achievementName = title
-            ? title.textContent.trim()
-            : "Logro";
+        const title = getCardText(
+            card,
+            ".achievement-name",
+            "Logro"
+        );
 
-        const achievementTier = tier
-            ? tier.textContent.trim()
-            : "Gratuito";
+        const description = getCardText(
+            card,
+            ".achievement-description",
+            "Información no disponible."
+        );
 
-        const achievementDescription = description
-            ? description.textContent.trim()
-            : "No hay una descripción disponible.";
+        const progressLabel = getCardText(
+            card,
+            ".achievement-progress-label",
+            "Progreso por registrar"
+        );
 
-        const progressText = progressLabel
-            ? progressLabel.textContent.trim()
-            : "Progreso por registrar";
+        const unlocked = card.dataset.unlocked === "true";
 
-        let progress = 0;
+        const tierElement = document.querySelector(
+            "#achievement-modal-tier"
+        );
 
-        if (progressFill) {
-            const width = progressFill.style.width;
-            const parsedProgress = Number.parseFloat(width);
+        const titleElement = document.querySelector(
+            "#achievement-modal-title"
+        );
 
-            if (Number.isFinite(parsedProgress)) {
-                progress = Math.min(100, Math.max(0, parsedProgress));
+        const descriptionElement = document.querySelector(
+            "#achievement-modal-description"
+        );
+
+        const conditionElement = document.querySelector(
+            "#achievement-modal-condition"
+        );
+
+        const rewardElement = document.querySelector(
+            "#achievement-modal-reward"
+        );
+
+        const progressLabelElement = document.querySelector(
+            "#achievement-modal-progress-label"
+        );
+
+        const progressBar = document.querySelector(
+            "#achievement-modal-progress-bar"
+        );
+
+        if (tierElement) {
+            tierElement.textContent = tier;
+        }
+
+        if (titleElement) {
+            titleElement.textContent = title;
+        }
+
+        if (descriptionElement) {
+            descriptionElement.textContent = description;
+        }
+
+        if (conditionElement) {
+            conditionElement.textContent = description;
+        }
+
+        if (rewardElement) {
+            rewardElement.textContent = unlocked
+                ? "Desbloqueado"
+                : "Aún no desbloqueado";
+        }
+
+        if (progressLabelElement) {
+            progressLabelElement.textContent = progressLabel;
+        }
+
+        // Lee el progreso de la barra que ya existe en la tarjeta.
+        if (progressBar) {
+            const cardProgress = card.querySelector(
+                ".achievement-progress .progress-fill"
+            );
+
+            const width = cardProgress
+                ? cardProgress.style.width
+                : "0%";
+
+            progressBar.style.width = width || "0%";
+        }
+
+        openModal(achievementModal);
+    }
+
+    // =========================================
+    // CLIC EN LAS TARJETAS DE LOGROS
+    // =========================================
+
+    cards.forEach((card) => {
+        card.addEventListener("click", () => {
+            const isPremium =
+                card.classList.contains("premium") ||
+                card.classList.contains("locked") ||
+                card.dataset.tier === "premium";
+
+            if (isPremium) {
+                openModal(premiumModal);
+                return;
             }
-        }
 
-        if (achievementModalTier) {
-            achievementModalTier.textContent = number
-                ? `${achievementTier} · Logro ${number.textContent.trim()}`
-                : achievementTier;
-        }
+            showAchievement(card);
+        });
+    });
 
-        if (achievementModalTitle) {
-            achievementModalTitle.textContent = achievementName;
-        }
+    // =========================================
+    // FILTROS: TODOS / DESBLOQUEADOS
+    // =========================================
 
-        if (achievementModalDescription) {
-            achievementModalDescription.textContent =
-                achievementDescription;
-        }
+    function applyFilter(filter) {
+        cards.forEach((card) => {
+            const unlocked = card.dataset.unlocked === "true";
 
-        // El HTML no contiene condiciones individuales ni recompensas
-        // específicas. Se muestra información coherente con el estado actual.
-        if (achievementModalCondition) {
-            achievementModalCondition.textContent =
-                "Consulta la descripción del logro. " +
-                "La condición específica se debe conectar al sistema de progreso.";
-        }
+            if (filter === "unlocked") {
+                card.hidden = !unlocked;
+            } else {
+                card.hidden = false;
+            }
+        });
 
-        if (achievementModalReward) {
-            achievementModalReward.textContent =
-                card.dataset.unlocked === "true"
-                    ? "Logro desbloqueado."
-                    : "Este logro todavía no está desbloqueado.";
-        }
+        filterButtons.forEach((button) => {
+            const isActive = button.dataset.filter === filter;
 
-        if (achievementModalProgressLabel) {
-            achievementModalProgressLabel.textContent =
-                card.dataset.unlocked === "true"
-                    ? "100%"
-                    : `${progress}%`;
-        }
-
-        if (achievementModalProgressBar) {
-            achievementModalProgressBar.style.width =
-                card.dataset.unlocked === "true"
-                    ? "100%"
-                    : `${progress}%`;
-        }
-
-        openModal(achievementModal, achievementModalClose);
+            button.classList.toggle("active", isActive);
+            button.setAttribute(
+                "aria-pressed",
+                String(isActive)
+            );
+        });
     }
 
-    function openPremiumModal() {
-        openModal(premiumModal, premiumModalClose);
-    }
+    filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const filter = button.dataset.filter === "unlocked"
+                ? "unlocked"
+                : "all";
 
-    if (premiumModalClose) {
-        premiumModalClose.addEventListener("click", () => {
+            applyFilter(filter);
+        });
+    });
+
+    // =========================================
+    // ROMPECABEZAS
+    // =========================================
+
+    const puzzleSlots = document.querySelectorAll(".puzzle-slot");
+
+    puzzleSlots.forEach((slot) => {
+        slot.addEventListener("click", () => {
+            const isPremium =
+                slot.dataset.premium === "true" ||
+                slot.classList.contains("premium-puzzle");
+
+            if (isPremium) {
+                openModal(premiumModal);
+                return;
+            }
+
+            const puzzleNumber = slot.dataset.puzzle || "1";
+            const puzzleName = slot.querySelector(".puzzle-name");
+            const puzzleTitle = document.querySelector(
+                "#puzzle-modal-title"
+            );
+            const puzzleDescription = document.querySelector(
+                "#puzzle-modal-description"
+            );
+
+            if (puzzleTitle) {
+                puzzleTitle.textContent = puzzleName
+                    ? puzzleName.textContent.trim()
+                    : `Rompecabezas ${puzzleNumber}`;
+            }
+
+            if (puzzleDescription) {
+                puzzleDescription.textContent =
+                    "Reúne las piezas necesarias para completar este rompecabezas.";
+            }
+
+            openModal(puzzleModal);
+        });
+    });
+
+    // =========================================
+    // BOTONES PARA CERRAR MODALES
+    // =========================================
+
+    closeAchievementButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            closeModal(achievementModal);
+        });
+    });
+
+    closePremiumButtons.forEach((button) => {
+        button.addEventListener("click", () => {
             closeModal(premiumModal);
         });
+<<<<<<< HEAD
 >>>>>>> aa0f245 (timeline)
     }
 
@@ -500,10 +572,34 @@ document.addEventListener("DOMContentLoaded", () => {
             ) {
                 closeModal(premiumModal);
 >>>>>>> aa0f245 (timeline)
+=======
+    });
+
+    closePuzzleButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            closeModal(puzzleModal);
+        });
+    });
+
+    // Cerrar al pulsar fuera del contenido.
+    [
+        achievementModal,
+        premiumModal,
+        puzzleModal
+    ].forEach((modal) => {
+        if (!modal) {
+            return;
+        }
+
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                closeModal(modal);
+>>>>>>> 00b7ae2 (timeline)
             }
         });
-    }
+    });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     if (modalCard) {
         modalCard.addEventListener("click", (event) => {
@@ -514,6 +610,22 @@ document.addEventListener("DOMContentLoaded", () => {
             event.stopPropagation();
         });
     }
+=======
+    // Cerrar con Escape.
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeAllModals();
+        }
+    });
+
+    // =========================================
+    // ACCESO A PREMIUM
+    // =========================================
+
+    const discoverPremiumButton = document.querySelector(
+        "#discover-premium"
+    );
+>>>>>>> 00b7ae2 (timeline)
 
 <<<<<<< HEAD
     document.addEventListener("keydown", (event) => {
@@ -534,6 +646,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     renderIcons();
 });
 =======
@@ -541,166 +654,17 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!slot || !puzzleModal) {
             return;
         }
+=======
+    // =========================================
+    // INICIALIZACIÓN
+    // =========================================
+>>>>>>> 00b7ae2 (timeline)
 
-        const puzzleNumber = Number.parseInt(
-            slot.dataset.puzzle || "1",
-            10
-        );
-
-        const puzzleName = slot.querySelector(".puzzle-name");
-        const puzzleStatus = slot.querySelector(".puzzle-status");
-
-        const name = puzzleName
-            ? puzzleName.textContent.trim()
-            : `Rompecabezas ${puzzleNumber}`;
-
-        const isPremium =
-            slot.dataset.premium === "true" ||
-            slot.classList.contains("premium-puzzle");
-
-        if (isPremium) {
-            openPremiumModal();
-            return;
-        }
-
-        if (puzzleModalTitle) {
-            puzzleModalTitle.textContent = name;
-        }
-
-        if (puzzleModalDescription) {
-            puzzleModalDescription.textContent =
-                `Este es el ${name}. Sus piezas y su progreso ` +
-                "se mostrarán cuando se conecte el sistema de rompecabezas.";
-        }
-
-        if (puzzleModalNote) {
-            puzzleModalNote.textContent = puzzleStatus
-                ? `${puzzleStatus.textContent.trim()}. El progreso aún no está conectado.`
-                : "El progreso aún no está conectado.";
-        }
-
-        // Las piezas son una representación visual, no progreso real.
-        puzzlePieces.forEach((piece) => {
-            piece.classList.remove("collected", "completed");
-            piece.setAttribute("aria-hidden", "true");
-        });
-
-        openModal(puzzleModal, puzzleModalClose);
-    }
-
-    document.querySelectorAll(".puzzle-slot").forEach((slot) => {
-        slot.addEventListener("click", () => {
-            openPuzzleModal(slot);
-        });
-    });
-
-    if (puzzleModalClose) {
-        puzzleModalClose.addEventListener("click", () => {
-            closeModal(puzzleModal);
-        });
-    }
-
-    if (puzzleModal) {
-        puzzleModal.addEventListener("click", (event) => {
-            if (
-                event.target === puzzleModal ||
-                event.target.closest("[data-close-puzzle]")
-            ) {
-                closeModal(puzzleModal);
-            }
-        });
-    }
-
-    if (puzzleModalCard) {
-        puzzleModalCard.addEventListener("click", (event) => {
-            event.stopPropagation();
-        });
-    }
-
-    if (achievementModalClose) {
-        achievementModalClose.addEventListener("click", () => {
-            closeModal(achievementModal);
-        });
-    }
-
-    if (achievementModal) {
-        achievementModal.addEventListener("click", (event) => {
-            if (
-                event.target === achievementModal ||
-                event.target.closest("[data-close-achievement]")
-            ) {
-                closeModal(achievementModal);
-            }
-        });
-    }
-
-    if (achievementModalCard) {
-        achievementModalCard.addEventListener("click", (event) => {
-            event.stopPropagation();
-        });
-    }
-
-    function applyFilter(filter) {
-        if (!achievementGrid) {
-            return;
-        }
-
-        const cards = achievementGrid.querySelectorAll(
-            ".achievement-card"
-        );
-
-        cards.forEach((card) => {
-            const isUnlocked = card.dataset.unlocked === "true";
-
-            // "Todos" incluye gratuitos y Premium.
-            // "Desbloqueados" solo muestra logros marcados como desbloqueados.
-            const shouldShow =
-                filter === "all" ||
-                (filter === "unlocked" && isUnlocked);
-
-            card.hidden = !shouldShow;
-        });
-
-        filterButtons.forEach((button) => {
-            const isActive = button.dataset.filter === filter;
-
-            button.classList.toggle("active", isActive);
-            button.setAttribute("aria-pressed", String(isActive));
-        });
-    }
-
-    filterButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            const filter = button.dataset.filter;
-
-            if (filter === "all" || filter === "unlocked") {
-                applyFilter(filter);
-            }
-        });
-    });
-
-    document.querySelectorAll(".achievement-card").forEach((card) => {
-        card.addEventListener("click", () => {
-            const isPremium =
-                card.dataset.premium === "true" ||
-                card.classList.contains("premium");
-
-            if (isPremium) {
-                openPremiumModal();
-            } else {
-                openAchievementModal(card);
-            }
-        });
-    });
-
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && activeModal) {
-            closeModal(activeModal);
-        }
-    });
-
-    configureTimeline();
     applyFilter("all");
     renderIcons();
+<<<<<<< HEAD
 });
 >>>>>>> aa0f245 (timeline)
+=======
+});
+>>>>>>> 00b7ae2 (timeline)
