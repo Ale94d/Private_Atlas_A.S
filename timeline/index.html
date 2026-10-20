@@ -1,579 +1,355 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#e9dcc6">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#e9dcc6">
+  <title>Salón de los Logros | Private Atlas</title>
 
-    <title>Timeline | Private Atlas A.S.</title>
-
-    <link rel="icon" href="assets/icons/favicon-timeline.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-        <link rel="icon" type="image/png" href="assets/icons/favicon-timeline.png">
-
+  <link rel="icon" href="assets/icons/favicon-timeline.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <main class="timeline-page">
-        <section class="timeline-entrance" id="entrance-screen" aria-label="Entrada al salón de los logros">
-            <div class="entrance-wall">
-                <div class="entrance-decoration entrance-decoration-left" aria-hidden="true"></div>
-                <div class="entrance-decoration entrance-decoration-right" aria-hidden="true"></div>
+  <main class="timeline-page">
+    <section class="entrance" id="entrance-screen" aria-label="Entrada al salón">
+      <div class="entrance-wall">
+        <div class="greek-key entrance-key" aria-hidden="true"></div>
 
-                <div class="entrance-window" id="entrance-window">
-                    <div class="window-arch" aria-hidden="true"></div>
+        <div class="entrance-window" aria-hidden="true">
+          <div class="window-scene"></div>
+          <div class="window-arch"></div>
+          <div class="window-column window-column-left"></div>
+          <div class="window-column window-column-right"></div>
+        </div>
 
-                    <div class="window-frame">
-                        <div class="window-view">
-                            <div class="window-light"></div>
-                            <div class="window-interior"></div>
-                        </div>
-                    </div>
+        <div class="entrance-copy">
+          <span class="eyebrow">PRIVATE ATLAS</span>
+          <h1>Salón de los Logros</h1>
+          <p>Cada descubrimiento deja una huella en tu historia.</p>
+          <button class="gold-button" id="enter-button" type="button">
+            Entrar al salón
+          </button>
+        </div>
+      </div>
+    </section>
 
-                    <div class="window-meander window-meander-top" aria-hidden="true"></div>
-                    <div class="window-meander window-meander-bottom" aria-hidden="true"></div>
-                </div>
+    <section class="gallery is-hidden" id="timeline-container" aria-label="Galería de logros" aria-hidden="true">
+      <div class="wall-decoration" aria-hidden="true">
+        <div class="greek-key gallery-key-top"></div>
+        <div class="greek-key gallery-key-bottom"></div>
+        <div class="greek-column gallery-column-left"></div>
+        <div class="greek-column gallery-column-right"></div>
+      </div>
 
-                <div class="entrance-content">
-                    <span class="eyebrow">PRIVATE ATLAS</span>
-                    <h1>Salón de los Logros</h1>
-                    <p>Descubre tus avances, desafíos y recompensas.</p>
-                    <button class="enter-button" id="enter-button" type="button">
-                        Entrar al salón
-                    </button>
-                </div>
+      <button class="home-button" id="back-home" type="button" aria-label="Volver a la entrada">
+        <span aria-hidden="true">⌂</span>
+      </button>
+
+      <div class="content">
+        <header class="page-header">
+          <span class="eyebrow">PRIVATE ATLAS</span>
+          <h1>Salón de los Logros</h1>
+          <p>Cada descubrimiento deja una huella en tu historia.</p>
+        </header>
+
+        <section class="achievement-section" aria-labelledby="achievements-title">
+          <div class="section-heading">
+            <span class="eyebrow">TU RECORRIDO</span>
+            <h2 id="achievements-title">Galería de logros</h2>
+            <p>Elige un logro para ver una pista y descubrir su recompensa.</p>
+          </div>
+
+          <div class="achievement-summary">
+            <span><strong id="unlocked-count">0</strong> logros desbloqueados</span>
+            <span>25 logros gratuitos</span>
+            <span>25 logros Premium</span>
+          </div>
+
+          <div class="achievement-filter" role="group" aria-label="Filtrar logros">
+            <button class="filter-button active" type="button" data-filter="all" aria-pressed="true">Todos</button>
+            <button class="filter-button" type="button" data-filter="unlocked" aria-pressed="false">Desbloqueados</button>
+            <button class="filter-button" type="button" data-filter="locked" aria-pressed="false">Por desbloquear</button>
+            <button class="filter-button" type="button" data-filter="premium" aria-pressed="false">Premium</button>
+          </div>
+
+          <div class="achievement-grid" id="achievement-grid">
+            <button class="achievement-card" type="button" data-achievement="1" data-unlocked="false" data-progress="0">
+              <span class="card-number">01</span>
+              <span class="card-name">Cambio Mental</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="2" data-unlocked="false" data-progress="0">
+              <span class="card-number">02</span>
+              <span class="card-name">Código Emocional</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="3" data-unlocked="false" data-progress="0">
+              <span class="card-number">03</span>
+              <span class="card-name">Más Allá</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="4" data-unlocked="false" data-progress="0">
+              <span class="card-number">04</span>
+              <span class="card-name">Lugar Completo</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="5" data-unlocked="false" data-progress="0">
+              <span class="card-number">05</span>
+              <span class="card-name">Conexión Natural</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="6" data-unlocked="false" data-progress="0">
+              <span class="card-number">06</span>
+              <span class="card-name">Mirada Interna</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="7" data-unlocked="false" data-progress="0">
+              <span class="card-number">07</span>
+              <span class="card-name">Baúl Variado</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="8" data-unlocked="false" data-progress="0">
+              <span class="card-number">08</span>
+              <span class="card-name">Ruta Insólita</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="9" data-unlocked="false" data-progress="0">
+              <span class="card-number">09</span>
+              <span class="card-name">Regreso Temporal</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="10" data-unlocked="false" data-progress="0">
+              <span class="card-number">10</span>
+              <span class="card-name">Marca Personal</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="11" data-unlocked="false" data-progress="0">
+              <span class="card-number">11</span>
+              <span class="card-name">Ida y Vuelta</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="12" data-unlocked="false" data-progress="0">
+              <span class="card-number">12</span>
+              <span class="card-name">Pieza Oculta</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="13" data-unlocked="false" data-progress="0">
+              <span class="card-number">13</span>
+              <span class="card-name">Llave Perdida</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="14" data-unlocked="false" data-progress="0">
+              <span class="card-number">14</span>
+              <span class="card-name">Doble Jornada</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="15" data-unlocked="false" data-progress="0">
+              <span class="card-number">15</span>
+              <span class="card-name">Mente Curiosa</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="16" data-unlocked="false" data-progress="0">
+              <span class="card-number">16</span>
+              <span class="card-name">Detalles Importan</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="17" data-unlocked="false" data-progress="0">
+              <span class="card-number">17</span>
+              <span class="card-name">Falsa Decoración</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="18" data-unlocked="false" data-progress="0">
+              <span class="card-number">18</span>
+              <span class="card-name">Fragmentos Unidos</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="19" data-unlocked="false" data-progress="0">
+              <span class="card-number">19</span>
+              <span class="card-name">Combinación Secreta</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="20" data-unlocked="false" data-progress="0">
+              <span class="card-number">20</span>
+              <span class="card-name">Atlas Oculto</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="21" data-unlocked="false" data-progress="0">
+              <span class="card-number">21</span>
+              <span class="card-name">Tres Coincidencias</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="22" data-unlocked="false" data-progress="0">
+              <span class="card-number">22</span>
+              <span class="card-name">Huella Temporal</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="23" data-unlocked="false" data-progress="0">
+              <span class="card-number">23</span>
+              <span class="card-name">Última Cerradura</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="24" data-unlocked="false" data-progress="0">
+              <span class="card-number">24</span>
+              <span class="card-name">Imagen Revelada</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
+            <button class="achievement-card" type="button" data-achievement="25" data-unlocked="false" data-progress="0">
+              <span class="card-number">25</span>
+              <span class="card-name">Maestro Atlas</span>
+              <span class="card-progress-label">Progreso</span>
+              <span class="progress-track"><span class="progress-fill"></span></span>
+            </button>
+
             </div>
         </section>
 
-        <section class="timeline-container" id="timeline-container" aria-label="Galería de logros">
-            <div class="marble-wall">
-                <button class="back-home" id="back-home" type="button" aria-label="Volver al Home">
-                    <i data-lucide="house"></i>
-                </button>
-
-                <div class="greek-border top-border" aria-hidden="true"></div>
-
-                <div class="timeline-content">
-                    <header class="timeline-header">
-                        <span class="eyebrow">PRIVATE ATLAS</span>
-                        <h1>Salón de los Logros</h1>
-                        <p>Cada descubrimiento deja una huella en tu historia.</p>
-                    </header>
-
-                    <section class="achievement-section" aria-labelledby="achievements-title">
-                        <div class="section-heading">
-                            <span class="section-kicker">Tu recorrido</span>
-                            <h2 id="achievements-title">Galería de logros</h2>
-                            <p>Explora los logros, revisa sus condiciones y reúne sus recompensas.</p>
-                        </div>
-
-                        <div class="achievement-summary">
-                            <div class="summary-item">
-                                <span class="summary-number" id="unlocked-count">0</span>
-                                <span class="summary-label">Logros desbloqueados</span>
-                            </div>
-
-                            <div class="summary-divider" aria-hidden="true"></div>
-
-                            <div class="summary-item">
-                                <span class="summary-number">25</span>
-                                <span class="summary-label">Logros gratuitos</span>
-                            </div>
-
-                            <div class="summary-divider" aria-hidden="true"></div>
-
-                            <div class="summary-item">
-                                <span class="summary-number">25</span>
-                                <span class="summary-label">Logros Premium</span>
-                            </div>
-                        </div>
-
-                        <div class="achievement-filter" role="group" aria-label="Filtrar logros">
-                            <button class="filter-button active" type="button" data-filter="all">
-                                Todos
-                            </button>
-                            <button class="filter-button" type="button" data-filter="unlocked">
-                                Desbloqueados
-                            </button>
-                            <button class="filter-button" type="button" data-filter="locked">
-                                Por desbloquear
-                            </button>
-                            <button class="filter-button" type="button" data-filter="premium">
-                                Premium
-                            </button>
-                        </div>
-
-                        <div class="achievement-grid" id="achievement-grid">
-                            <button class="achievement-card" type="button" data-achievement="1" data-tier="diamante" data-unlocked="false">
-                                <span class="achievement-number">01</span>
-                                <span class="achievement-tier">Diamante</span>
-                                <span class="achievement-name">Cambio Mental</span>
-                                <span class="achievement-description">Explora tus cambios emocionales.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="2" data-tier="diamante" data-unlocked="false">
-                                <span class="achievement-number">02</span>
-                                <span class="achievement-tier">Diamante</span>
-                                <span class="achievement-name">Código Emocional</span>
-                                <span class="achievement-description">Descubre un código secreto.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="3" data-tier="diamante" data-unlocked="false">
-                                <span class="achievement-number">03</span>
-                                <span class="achievement-tier">Diamante</span>
-                                <span class="achievement-name">Más Allá</span>
-                                <span class="achievement-description">Completa un lugar en Atlas.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="4" data-tier="diamante" data-unlocked="false">
-                                <span class="achievement-number">04</span>
-                                <span class="achievement-tier">Diamante</span>
-                                <span class="achievement-name">Lugar Completo</span>
-                                <span class="achievement-description">Reúne distintos contenidos en Atlas.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="5" data-tier="diamante" data-unlocked="false">
-                                <span class="achievement-number">05</span>
-                                <span class="achievement-tier">Diamante</span>
-                                <span class="achievement-name">Conexión Natural</span>
-                                <span class="achievement-description">Conecta dos espacios de la plataforma.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="6" data-tier="diamante" data-unlocked="false">
-                                <span class="achievement-number">06</span>
-                                <span class="achievement-tier">Diamante</span>
-                                <span class="achievement-name">Mirada Interna</span>
-                                <span class="achievement-description">Vuelve a encontrar una emoción en Timeline.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="7" data-tier="diamante" data-unlocked="false">
-                                <span class="achievement-number">07</span>
-                                <span class="achievement-tier">Diamante</span>
-                                <span class="achievement-name">Baúl Variado</span>
-                                <span class="achievement-description">Construye una colección diversa.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="8" data-tier="diamante" data-unlocked="false">
-                                <span class="achievement-number">08</span>
-                                <span class="achievement-tier">Diamante</span>
-                                <span class="achievement-name">Ruta Insólita</span>
-                                <span class="achievement-description">Explora lugares de categorías diferentes.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="9" data-tier="diamante" data-unlocked="false">
-                                <span class="achievement-number">09</span>
-                                <span class="achievement-tier">Diamante</span>
-                                <span class="achievement-name">Regreso Temporal</span>
-                                <span class="achievement-description">Regresa a un recuerdo después de un tiempo.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="10" data-tier="diamante" data-unlocked="false">
-                                <span class="achievement-number">10</span>
-                                <span class="achievement-tier">Diamante</span>
-                                <span class="achievement-name">Marca Personal</span>
-                                <span class="achievement-description">Personaliza uno de tus espacios.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="11" data-tier="amatista" data-unlocked="false">
-                                <span class="achievement-number">11</span>
-                                <span class="achievement-tier">Amatista</span>
-                                <span class="achievement-name">Ida y Vuelta</span>
-                                <span class="achievement-description">Utiliza una experiencia en dos funciones diferentes.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="12" data-tier="amatista" data-unlocked="false">
-                                <span class="achievement-number">12</span>
-                                <span class="achievement-tier">Amatista</span>
-                                <span class="achievement-name">Pieza Oculta</span>
-                                <span class="achievement-description">Encuentra un fragmento escondido.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="13" data-tier="amatista" data-unlocked="false">
-                                <span class="achievement-number">13</span>
-                                <span class="achievement-tier">Amatista</span>
-                                <span class="achievement-name">Llave Perdida</span>
-                                <span class="achievement-description">Descubre dónde utilizar una llave secreta.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="14" data-tier="amatista" data-unlocked="false">
-                                <span class="achievement-number">14</span>
-                                <span class="achievement-tier">Amatista</span>
-                                <span class="achievement-name">Doble Jornada</span>
-                                <span class="achievement-description">Registra dos emociones durante un mismo día.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="15" data-tier="amatista" data-unlocked="false">
-                                <span class="achievement-number">15</span>
-                                <span class="achievement-tier">Amatista</span>
-                                <span class="achievement-name">Mente Curiosa</span>
-                                <span class="achievement-description">Descubre una interacción especial.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="16" data-tier="amatista" data-unlocked="false">
-                                <span class="achievement-number">16</span>
-                                <span class="achievement-tier">Amatista</span>
-                                <span class="achievement-name">Detalles Importan</span>
-                                <span class="achievement-description">Completa los detalles adicionales de un registro.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="17" data-tier="amatista" data-unlocked="false">
-                                <span class="achievement-number">17</span>
-                                <span class="achievement-tier">Amatista</span>
-                                <span class="achievement-name">Falsa Decoración</span>
-                                <span class="achievement-description">Descubre una interacción oculta en un elemento visual.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="18" data-tier="amatista" data-unlocked="false">
-                                <span class="achievement-number">18</span>
-                                <span class="achievement-tier">Amatista</span>
-                                <span class="achievement-name">Fragmentos Unidos</span>
-                                <span class="achievement-description">Reúne todas las piezas de un rompecabezas gratuito.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="19" data-tier="obsidiana" data-unlocked="false">
-                                <span class="achievement-number">19</span>
-                                <span class="achievement-tier">Obsidiana</span>
-                                <span class="achievement-name">Combinación Secreta</span>
-                                <span class="achievement-description">Descubre una combinación oculta entre dos funciones.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="20" data-tier="obsidiana" data-unlocked="false">
-                                <span class="achievement-number">20</span>
-                                <span class="achievement-tier">Obsidiana</span>
-                                <span class="achievement-name">Atlas Oculto</span>
-                                <span class="achievement-description">Encuentra una función escondida dentro de Atlas.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="21" data-tier="obsidiana" data-unlocked="false">
-                                <span class="achievement-number">21</span>
-                                <span class="achievement-tier">Obsidiana</span>
-                                <span class="achievement-name">Tres Coincidencias</span>
-                                <span class="achievement-description">Descubre una combinación de tres elementos independientes.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="22" data-tier="obsidiana" data-unlocked="false">
-                                <span class="achievement-number">22</span>
-                                <span class="achievement-tier">Obsidiana</span>
-                                <span class="achievement-name">Huella Temporal</span>
-                                <span class="achievement-description">Conecta registros relacionados de distintos momentos.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="23" data-tier="obsidiana" data-unlocked="false">
-                                <span class="achievement-number">23</span>
-                                <span class="achievement-tier">Obsidiana</span>
-                                <span class="achievement-name">Última Cerradura</span>
-                                <span class="achievement-description">Encuentra una cerradura secreta y descubre cómo abrirla.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="24" data-tier="obsidiana" data-unlocked="false">
-                                <span class="achievement-number">24</span>
-                                <span class="achievement-tier">Obsidiana</span>
-                                <span class="achievement-name">Imagen Revelada</span>
-                                <span class="achievement-description">Completa un rompecabezas y descubre su imagen.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card" type="button" data-achievement="25" data-tier="obsidiana" data-unlocked="false">
-                                <span class="achievement-number">25</span>
-                                <span class="achievement-tier">Obsidiana</span>
-                                <span class="achievement-name">Maestro Atlas</span>
-                                <span class="achievement-description">Completa todos los logros gratuitos de Private Atlas.</span>
-                                <span class="achievement-progress"><span class="progress-fill" style="width: 0%"></span></span>
-                                <span class="achievement-progress-label">Progreso por registrar</span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-1" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">26</span>
-                                <span class="achievement-tier">Premium</span>
-                                <span class="achievement-name">Logro Premium</span>
-                                <span class="achievement-description">Disponible con la experiencia Premium.</span>
-                                <span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-2" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">27</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-3" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">28</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-4" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">29</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-5" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">30</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-6" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">31</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-7" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">32</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-8" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">33</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-9" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">34</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-10" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">35</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-11" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">36</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-12" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">37</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-13" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">38</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-14" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">39</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-15" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">40</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-16" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">41</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-17" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">42</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-18" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">43</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-19" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">44</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-20" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">45</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-21" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">46</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-22" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">47</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-23" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">48</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-24" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">49</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="achievement-card premium locked" type="button" data-achievement="premium-25" data-premium="true" aria-label="Logro Premium bloqueado">
-                                <span class="achievement-number">50</span><span class="achievement-tier">Premium</span><span class="achievement-name">Logro Premium</span><span class="achievement-description">Disponible con la experiencia Premium.</span><span class="achievement-lock"><i data-lucide="lock"></i></span>
-                            </button>
-                        </div>
-                    </section>
-
-                    <section class="puzzle-section" aria-labelledby="puzzles-title">
-                        <div class="section-heading">
-                            <span class="section-kicker">Desafíos especiales</span>
-                            <h2 id="puzzles-title">Rompecabezas</h2>
-                            <p>Reúne las piezas escondidas y descubre qué imagen espera al final.</p>
-                        </div>
-
-                        <div class="puzzle-list">
-                            <button class="puzzle-slot free-puzzle" type="button" data-puzzle="1">
-                                <span class="puzzle-number">01</span>
-                                <span class="puzzle-name">Rompecabezas I</span>
-                                <span class="puzzle-status">Gratuito</span>
-                                <span class="puzzle-progress">Piezas por reunir</span>
-                            </button>
-
-                            <button class="puzzle-slot free-puzzle" type="button" data-puzzle="2">
-                                <span class="puzzle-number">02</span>
-                                <span class="puzzle-name">Rompecabezas II</span>
-                                <span class="puzzle-status">Gratuito</span>
-                                <span class="puzzle-progress">Piezas por reunir</span>
-                            </button>
-
-                            <button class="puzzle-slot premium-puzzle locked" type="button" data-puzzle="3" data-premium="true">
-                                <span class="puzzle-number">03</span>
-                                <span class="puzzle-name">Rompecabezas Premium</span>
-                                <span class="puzzle-status">Premium</span>
-                                <span class="puzzle-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="puzzle-slot premium-puzzle locked" type="button" data-puzzle="4" data-premium="true">
-                                <span class="puzzle-number">04</span>
-                                <span class="puzzle-name">Rompecabezas Premium</span>
-                                <span class="puzzle-status">Premium</span>
-                                <span class="puzzle-lock"><i data-lucide="lock"></i></span>
-                            </button>
-
-                            <button class="puzzle-slot premium-puzzle locked" type="button" data-puzzle="5" data-premium="true">
-                                <span class="puzzle-number">05</span>
-                                <span class="puzzle-name">Rompecabezas Premium</span>
-                                <span class="puzzle-status">Premium</span>
-                                <span class="puzzle-lock"><i data-lucide="lock"></i></span>
-                            </button>
-                        </div>
-                    </section>
-                </div>
-
-                <div class="greek-border bottom-border" aria-hidden="true"></div>
-            </div>
+        <section class="puzzle-section" aria-labelledby="puzzles-title">
+          <div class="section-heading">
+            <span class="eyebrow">DESAFÍOS ESPECIALES</span>
+            <h2 id="puzzles-title">Rompecabezas</h2>
+            <p>Reúne las piezas escondidas y descubre la imagen.</p>
+          </div>
+
+          <div class="puzzle-grid">
+            <button class="puzzle-card" type="button" data-puzzle="1">
+              <span class="card-number">01</span>
+              <span class="card-name">Rompecabezas I</span>
+              <span class="puzzle-status">Gratuito</span>
+            </button>
+            <button class="puzzle-card" type="button" data-puzzle="2">
+              <span class="card-number">02</span>
+              <span class="card-name">Rompecabezas II</span>
+              <span class="puzzle-status">Gratuito</span>
+            </button>
+            <button class="puzzle-card premium-item" type="button" data-premium="true">
+              <span class="card-number">03</span>
+              <span class="card-name">Rompecabezas Premium</span>
+              <span class="puzzle-status">Premium · bloqueado</span>
+            </button>
+            <button class="puzzle-card premium-item" type="button" data-premium="true">
+              <span class="card-number">04</span>
+              <span class="card-name">Rompecabezas Premium</span>
+              <span class="puzzle-status">Premium · bloqueado</span>
+            </button>
+            <button class="puzzle-card premium-item" type="button" data-premium="true">
+              <span class="card-number">05</span>
+              <span class="card-name">Rompecabezas Premium</span>
+              <span class="puzzle-status">Premium · bloqueado</span>
+            </button>
+          </div>
         </section>
-    </main>
+      </div>
+    </section>
+  </main>
 
-    <div class="achievement-modal" id="achievement-modal" aria-hidden="true">
-        <div class="achievement-modal-backdrop" data-close-achievement></div>
+  <div class="modal" id="achievement-modal" aria-hidden="true">
+    <button class="modal-backdrop" data-close-modal aria-label="Cerrar"></button>
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" type="button" data-close-modal aria-label="Cerrar">×</button>
+      <span class="eyebrow" id="modal-number">LOGRO 01</span>
+      <h2 id="modal-title">Nombre del logro</h2>
+      <p id="modal-description"></p>
 
-        <div class="achievement-modal-card" role="dialog" aria-modal="true" aria-labelledby="achievement-modal-title">
-            <button class="achievement-modal-close" type="button" data-close-achievement aria-label="Cerrar">
-                <i data-lucide="x"></i>
-            </button>
+      <div class="modal-detail">
+        <h3>Pista</h3>
+        <p id="modal-hint"></p>
+      </div>
 
-            <span class="modal-eyebrow" id="achievement-modal-tier">Logro</span>
-            <h2 id="achievement-modal-title">Nombre del logro</h2>
-            <p class="modal-description" id="achievement-modal-description"></p>
+      <div class="modal-detail">
+        <h3>Recompensa</h3>
+        <p id="modal-reward"></p>
+      </div>
 
-            <div class="modal-detail">
-                <h3>Condición</h3>
-                <p id="achievement-modal-condition"></p>
-            </div>
-
-            <div class="modal-detail">
-                <h3>Recompensa</h3>
-                <p id="achievement-modal-reward"></p>
-            </div>
-
-            <div class="modal-progress">
-                <div class="modal-progress-heading">
-                    <span>Tu progreso</span>
-                    <span id="achievement-modal-progress-label">0%</span>
-                </div>
-                <div class="achievement-progress">
-                    <span class="progress-fill" id="achievement-modal-progress-bar"></span>
-                </div>
-            </div>
+      <div class="modal-progress">
+        <div class="modal-progress-label">
+          <span>Tu progreso</span>
+          <span id="modal-progress-text">0%</span>
         </div>
-    </div>
-
-    <div class="premium-modal" id="premium-modal" aria-hidden="true">
-        <div class="premium-modal-backdrop" data-close-premium></div>
-
-        <div class="premium-modal-card" role="dialog" aria-modal="true" aria-labelledby="premium-title">
-            <button class="premium-modal-close" type="button" data-close-premium aria-label="Cerrar">
-                <i data-lucide="x"></i>
-            </button>
-
-            <span class="modal-lock"><i data-lucide="lock-keyhole"></i></span>
-            <span class="modal-eyebrow">PRIVATE ATLAS</span>
-            <h2 id="premium-title">Logro Premium</h2>
-            <p>Este logro forma parte de la experiencia Premium de Private Atlas.</p>
-            <button class="discover-premium" id="discover-premium" type="button">
-                Descubrir Premium
-            </button>
+        <div class="progress-track">
+          <span class="progress-fill" id="modal-progress-fill"></span>
         </div>
-    </div>
+      </div>
+    </section>
+  </div>
 
-    <div class="puzzle-modal" id="puzzle-modal" aria-hidden="true">
-        <div class="puzzle-modal-backdrop" data-close-puzzle></div>
+  <div class="modal" id="premium-modal" aria-hidden="true">
+    <button class="modal-backdrop" data-close-modal aria-label="Cerrar"></button>
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="premium-title">
+      <button class="modal-close" type="button" data-close-modal aria-label="Cerrar">×</button>
+      <span class="eyebrow">PRIVATE ATLAS</span>
+      <h2 id="premium-title">Un secreto Premium</h2>
+      <p>Este contenido forma parte de la experiencia Premium.</p>
+      <a class="gold-button" href="../premium/index.html">Descubrir Premium</a>
+    </section>
+  </div>
 
-        <div class="puzzle-modal-card" role="dialog" aria-modal="true" aria-labelledby="puzzle-modal-title">
-            <button class="puzzle-modal-close" type="button" data-close-puzzle aria-label="Cerrar">
-                <i data-lucide="x"></i>
-            </button>
+  <div class="modal" id="puzzle-modal" aria-hidden="true">
+    <button class="modal-backdrop" data-close-modal aria-label="Cerrar"></button>
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="puzzle-title">
+      <button class="modal-close" type="button" data-close-modal aria-label="Cerrar">×</button>
+      <span class="eyebrow">DESAFÍO ESPECIAL</span>
+      <h2 id="puzzle-title">Rompecabezas</h2>
+      <p>Reúne las piezas que encuentres al completar desafíos.</p>
+      <div class="puzzle-pieces" aria-label="Nueve piezas por reunir">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+    </section>
+  </div>
 
-            <span class="modal-eyebrow">DESAFÍO ESPECIAL</span>
-            <h2 id="puzzle-modal-title">Rompecabezas</h2>
-            <p id="puzzle-modal-description">Reúne las piezas necesarias para completar este rompecabezas.</p>
-
-            <div class="puzzle-piece-grid" id="puzzle-piece-grid">
-                <span class="puzzle-piece"></span>
-                <span class="puzzle-piece"></span>
-                <span class="puzzle-piece"></span>
-                <span class="puzzle-piece"></span>
-                <span class="puzzle-piece"></span>
-                <span class="puzzle-piece"></span>
-                <span class="puzzle-piece"></span>
-                <span class="puzzle-piece"></span>
-                <span class="puzzle-piece"></span>
-            </div>
-
-            <p class="puzzle-modal-note" id="puzzle-modal-note">Las piezas aparecerán a medida que completes los desafíos.</p>
-        </div>
-    </div>
-
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
-
-
-                            
