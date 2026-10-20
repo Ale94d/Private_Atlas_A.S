@@ -1,21 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    const entrance = document.querySelector(".timeline-entrance");
-    const homeButton = document.querySelector(".back-home");
-    const premiumModal = document.querySelector(".premium-modal");
-    const modalCard = document.querySelector(".premium-modal-card");
-    const closeModalButton = document.querySelector(".premium-modal-close");
-    const discoverPremiumButton = document.querySelector(".discover-premium");
-
-    let entranceStarted = false;
-    let lastFocusedElement = null;
-=======
-=======
     // =========================================
     // ELEMENTOS PRINCIPALES
     // =========================================
->>>>>>> 00b7ae2 (timeline)
 
     const entrance = document.querySelector("#entrance-screen");
     const enterButton = document.querySelector("#enter-button");
@@ -34,27 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const premiumModal = document.querySelector("#premium-modal");
     const puzzleModal = document.querySelector("#puzzle-modal");
 
-    const closeAchievementButtons = document.querySelectorAll(
-        "[data-close-achievement]"
-    );
+    const discoverPremiumButton = document.querySelector("#discover-premium");
 
-    const closePremiumButtons = document.querySelectorAll(
-        "[data-close-premium]"
-    );
-
-    const closePuzzleButtons = document.querySelectorAll(
-        "[data-close-puzzle]"
-    );
-
+    let entranceStarted = false;
     let lastFocusedElement = null;
 
-<<<<<<< HEAD
->>>>>>> aa0f245 (timeline)
-=======
     // =========================================
     // ICONOS
     // =========================================
->>>>>>> 00b7ae2 (timeline)
 
     function renderIcons() {
         if (window.lucide) {
@@ -62,86 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-<<<<<<< HEAD
-    function enterTimeline() {
-        if (!entrance || entranceStarted) {
-            return;
-        }
-
-<<<<<<< HEAD
-        entranceStarted = true;
-        entrance.classList.add("is-opening");
-
-        window.setTimeout(() => {
-            entrance.classList.add("is-hidden");
-        }, 1400);
-    }
-
-    function openPremiumModal() {
-        if (!premiumModal) {
-            return;
-        }
-
-        lastFocusedElement = document.activeElement;
-        premiumModal.classList.add("active");
-        premiumModal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-
-        if (closeModalButton) {
-            closeModalButton.focus();
-        }
-    }
-
-    function closePremiumModal() {
-        if (!premiumModal) {
-            return;
-        }
-
-        premiumModal.classList.remove("active");
-        premiumModal.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-
-        if (
-            lastFocusedElement &&
-            typeof lastFocusedElement.focus === "function"
-        ) {
-            lastFocusedElement.focus();
-        }
-    }
-
-    if (entrance) {
-        entrance.addEventListener("click", enterTimeline);
-
-        entrance.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                enterTimeline();
-            }
-        });
-
-        entrance.setAttribute("tabindex", "0");
-        entrance.setAttribute("role", "button");
-        entrance.setAttribute(
-            "aria-label",
-            "Entrar al Salón de los Logros"
-        );
-    }
-
-=======
-    function configureTimeline() {
-        const headerTitle = document.querySelector(".timeline-header h1");
-        const headerSubtitle = document.querySelector(".timeline-header p");
-        const entranceTitle = document.querySelector(
-            ".entrance-content h1"
-        );
-        const entranceSubtitle = document.querySelector(
-            ".entrance-content p"
-        );
-
-        // Título y subtítulo de la página
-        if (headerTitle) {
-            headerTitle.textContent = "Timeline";
-=======
     // =========================================
     // ENTRADA AL TIMELINE
     // =========================================
@@ -149,14 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
     function enterTimeline(event) {
         if (event) {
             event.preventDefault();
->>>>>>> 00b7ae2 (timeline)
         }
 
-        if (!entrance) {
+        if (!entrance || entranceStarted) {
             return;
         }
 
+        entranceStarted = true;
         entrance.classList.add("is-opening");
+
+        if (enterButton) {
+            enterButton.disabled = true;
+        }
 
         window.setTimeout(() => {
             entrance.classList.add("is-hidden");
@@ -173,17 +70,14 @@ document.addEventListener("DOMContentLoaded", () => {
         enterButton.addEventListener("click", enterTimeline);
     }
 
-    // Permite entrar al hacer clic en la pantalla de entrada.
+    // También permite entrar haciendo clic en el fondo.
     if (entrance) {
         entrance.addEventListener("click", (event) => {
-            if (
-                event.target === entrance ||
-                event.target.closest(".entrance-wall")
-            ) {
-                if (!event.target.closest("button")) {
-                    enterTimeline(event);
-                }
+            if (event.target.closest("button")) {
+                return;
             }
+
+            enterTimeline(event);
         });
     }
 
@@ -191,95 +85,31 @@ document.addEventListener("DOMContentLoaded", () => {
     // VOLVER AL HOME
     // =========================================
 
->>>>>>> aa0f245 (timeline)
     if (homeButton) {
         homeButton.addEventListener("click", () => {
             window.location.href = "../index.html";
         });
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    document
-        .querySelectorAll(
-            ".achievement-card.premium, .achievement-card.locked, .puzzle-slot.premium-puzzle"
-        )
-        .forEach((element) => {
-            element.addEventListener("click", (event) => {
-                event.preventDefault();
-                openPremiumModal();
-            });
-
-            if (!element.hasAttribute("tabindex")) {
-                element.setAttribute("tabindex", "0");
-            }
-
-            element.addEventListener("keydown", (event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    openPremiumModal();
-                }
-            });
-        });
-
-    document
-        .querySelectorAll(".puzzle-slot.free-puzzle")
-        .forEach((slot, index) => {
-            slot.addEventListener("click", () => {
-                const puzzleNumber = index + 1;
-
-                window.alert(
-                    `Rompecabezas ${puzzleNumber}\n\nEste espacio está reservado para el rompecabezas gratuito. Su dinámica se conectará cuando se implemente el sistema de piezas.`
-                );
-            });
-        });
-
-    document
-        .querySelectorAll(".achievement-card.free")
-        .forEach((card) => {
-            card.addEventListener("click", () => {
-                const title =
-                    card.querySelector("h2")?.textContent.trim() || "Logro";
-
-                const level =
-                    card.querySelector(".level")?.textContent.trim() ||
-                    "Gratuito";
-
-                const description =
-                    card.querySelector("p")?.textContent.trim() || "";
-
-                const reward =
-                    card.querySelector(".reward")?.textContent.trim() ||
-                    "Recompensa por definir";
-
-                window.alert(
-                    `${title}\n${level}\n\n${description}\n\n${reward}`
-                );
-            });
-        });
-
-    if (closeModalButton) {
-        closeModalButton.addEventListener(
-            "click",
-            closePremiumModal
-        );
-=======
-    function openModal(modal, focusElement) {
-=======
     // =========================================
     // ABRIR Y CERRAR MODALES
     // =========================================
 
+    const allModals = [
+        achievementModal,
+        premiumModal,
+        puzzleModal
+    ];
+
     function openModal(modal) {
->>>>>>> 00b7ae2 (timeline)
         if (!modal) {
             return;
         }
 
         lastFocusedElement = document.activeElement;
 
-        modal.classList.add("is-open");
         modal.classList.add("active");
+        modal.classList.add("is-open");
         modal.setAttribute("aria-hidden", "false");
 
         document.body.style.overflow = "hidden";
@@ -298,23 +128,19 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        modal.classList.remove("is-open");
         modal.classList.remove("active");
+        modal.classList.remove("is-open");
         modal.setAttribute("aria-hidden", "true");
 
-        const anyModalOpen = [
-            achievementModal,
-            premiumModal,
-            puzzleModal
-        ].some((item) => {
+        const hasOpenModal = allModals.some((item) => {
             return item &&
                 (
-                    item.classList.contains("is-open") ||
-                    item.classList.contains("active")
+                    item.classList.contains("active") ||
+                    item.classList.contains("is-open")
                 );
         });
 
-        if (!anyModalOpen) {
+        if (!hasOpenModal) {
             document.body.style.overflow = "";
 
             if (
@@ -327,10 +153,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function closeAllModals() {
-        closeModal(achievementModal);
-        closeModal(premiumModal);
-        closeModal(puzzleModal);
+        allModals.forEach((modal) => {
+            closeModal(modal);
+        });
     }
+
+    // Cerrar al pulsar los fondos de los modales.
+    allModals.forEach((modal) => {
+        if (!modal) {
+            return;
+        }
+
+        modal.addEventListener("click", (event) => {
+            if (
+                event.target === modal ||
+                event.target.classList.contains(
+                    `${modal.id}-backdrop`
+                )
+            ) {
+                closeModal(modal);
+            }
+        });
+    });
+
+    // Cerrar con Escape.
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeAllModals();
+        }
+    });
 
     // =========================================
     // INFORMACIÓN DE LOS LOGROS
@@ -429,7 +280,6 @@ document.addEventListener("DOMContentLoaded", () => {
             progressLabelElement.textContent = progressLabel;
         }
 
-        // Lee el progreso de la barra que ya existe en la tarjeta.
         if (progressBar) {
             const cardProgress = card.querySelector(
                 ".achievement-progress .progress-fill"
@@ -446,7 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =========================================
-    // CLIC EN LAS TARJETAS DE LOGROS
+    // CLIC EN LAS TARJETAS
     // =========================================
 
     cards.forEach((card) => {
@@ -454,6 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const isPremium =
                 card.classList.contains("premium") ||
                 card.classList.contains("locked") ||
+                card.dataset.premium === "true" ||
                 card.dataset.tier === "premium";
 
             if (isPremium) {
@@ -481,21 +332,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         filterButtons.forEach((button) => {
-            const isActive = button.dataset.filter === filter;
+            const active = button.dataset.filter === filter;
 
-            button.classList.toggle("active", isActive);
-            button.setAttribute(
-                "aria-pressed",
-                String(isActive)
-            );
+            button.classList.toggle("active", active);
+            button.setAttribute("aria-pressed", String(active));
         });
     }
 
     filterButtons.forEach((button) => {
         button.addEventListener("click", () => {
-            const filter = button.dataset.filter === "unlocked"
-                ? "unlocked"
-                : "all";
+            const filter =
+                button.dataset.filter === "unlocked"
+                    ? "unlocked"
+                    : "all";
 
             applyFilter(filter);
         });
@@ -511,7 +360,8 @@ document.addEventListener("DOMContentLoaded", () => {
         slot.addEventListener("click", () => {
             const isPremium =
                 slot.dataset.premium === "true" ||
-                slot.classList.contains("premium-puzzle");
+                slot.classList.contains("premium-puzzle") ||
+                slot.classList.contains("locked");
 
             if (isPremium) {
                 openModal(premiumModal);
@@ -519,12 +369,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const puzzleNumber = slot.dataset.puzzle || "1";
+
             const puzzleName = slot.querySelector(".puzzle-name");
+
             const puzzleTitle = document.querySelector(
                 "#puzzle-modal-title"
             );
+
             const puzzleDescription = document.querySelector(
                 "#puzzle-modal-description"
+            );
+
+            const puzzleNote = document.querySelector(
+                "#puzzle-modal-note"
             );
 
             if (puzzleTitle) {
@@ -538,6 +395,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Reúne las piezas necesarias para completar este rompecabezas.";
             }
 
+            if (puzzleNote) {
+                puzzleNote.textContent =
+                    "Las piezas aparecerán a medida que completes los desafíos.";
+            }
+
             openModal(puzzleModal);
         });
     });
@@ -546,125 +408,38 @@ document.addEventListener("DOMContentLoaded", () => {
     // BOTONES PARA CERRAR MODALES
     // =========================================
 
-    closeAchievementButtons.forEach((button) => {
+    document.querySelectorAll("[data-close-achievement]").forEach((button) => {
         button.addEventListener("click", () => {
             closeModal(achievementModal);
         });
     });
 
-    closePremiumButtons.forEach((button) => {
+    document.querySelectorAll("[data-close-premium]").forEach((button) => {
         button.addEventListener("click", () => {
             closeModal(premiumModal);
         });
-<<<<<<< HEAD
->>>>>>> aa0f245 (timeline)
-    }
-
-    if (premiumModal) {
-        premiumModal.addEventListener("click", (event) => {
-<<<<<<< HEAD
-            if (event.target === premiumModal) {
-                closePremiumModal();
-=======
-            if (
-                event.target === premiumModal ||
-                event.target.closest("[data-close-premium]")
-            ) {
-                closeModal(premiumModal);
->>>>>>> aa0f245 (timeline)
-=======
     });
 
-    closePuzzleButtons.forEach((button) => {
+    document.querySelectorAll("[data-close-puzzle]").forEach((button) => {
         button.addEventListener("click", () => {
             closeModal(puzzleModal);
         });
-    });
-
-    // Cerrar al pulsar fuera del contenido.
-    [
-        achievementModal,
-        premiumModal,
-        puzzleModal
-    ].forEach((modal) => {
-        if (!modal) {
-            return;
-        }
-
-        modal.addEventListener("click", (event) => {
-            if (event.target === modal) {
-                closeModal(modal);
->>>>>>> 00b7ae2 (timeline)
-            }
-        });
-    });
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-    if (modalCard) {
-        modalCard.addEventListener("click", (event) => {
-=======
-    if (premiumModalCard) {
-        premiumModalCard.addEventListener("click", (event) => {
->>>>>>> aa0f245 (timeline)
-            event.stopPropagation();
-        });
-    }
-=======
-    // Cerrar con Escape.
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-            closeAllModals();
-        }
     });
 
     // =========================================
     // ACCESO A PREMIUM
     // =========================================
 
-    const discoverPremiumButton = document.querySelector(
-        "#discover-premium"
-    );
->>>>>>> 00b7ae2 (timeline)
-
-<<<<<<< HEAD
-    document.addEventListener("keydown", (event) => {
-        if (
-            event.key === "Escape" &&
-            premiumModal?.classList.contains("active")
-        ) {
-            closePremiumModal();
-        }
-    });
-
-=======
->>>>>>> aa0f245 (timeline)
     if (discoverPremiumButton) {
         discoverPremiumButton.addEventListener("click", () => {
             window.location.href = "../premium/index.html";
         });
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    renderIcons();
-});
-=======
-    function openPuzzleModal(slot) {
-        if (!slot || !puzzleModal) {
-            return;
-        }
-=======
     // =========================================
     // INICIALIZACIÓN
     // =========================================
->>>>>>> 00b7ae2 (timeline)
 
     applyFilter("all");
     renderIcons();
-<<<<<<< HEAD
 });
->>>>>>> aa0f245 (timeline)
-=======
-});
->>>>>>> 00b7ae2 (timeline)
