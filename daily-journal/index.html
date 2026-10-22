@@ -1,5 +1,4 @@
-
-
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -12,7 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
@@ -23,6 +23,9 @@
 
 <main class="apothecary">
 
+    <!-- =====================================
+         NAVEGACIÓN PRINCIPAL
+    ====================================== -->
 
     <header class="journal-navigation">
 
@@ -36,86 +39,108 @@
             <h1>Daily Journal</h1>
         </div>
 
-        <nav class="section-navigation">
+        <nav class="section-navigation" aria-label="Secciones del diario">
 
-        
-<nav class="section-navigation">
+            <button
+                class="section-button active"
+                data-section="diario"
+                type="button">
+                Diario
+            </button>
 
-    <button
-        class="section-button active"
-        data-section="diario"
-        type="button">
-        Diario
-    </button>
+            <button
+                class="section-button"
+                data-section="emociones"
+                type="button">
+                Emociones
+            </button>
 
-    <button
-        class="section-button"
-        data-section="emociones"
-        type="button">
-        Emociones
-    </button>
+            <button
+                class="section-button"
+                data-section="mis-recuerdos"
+                type="button">
+                Mis recuerdos
+            </button>
 
-    <button
-        class="section-button"
-        data-section="mis-recuerdos"
-        type="button">
-        Mis recuerdos
-    </button>
-
-  </nav>
+        </nav>
 
     </header>
 
 
-    <!-- CONTENIDO -->
+    <!-- =====================================
+         CONTENIDO PRINCIPAL
+    ====================================== -->
 
     <section class="journal-content">
 
 
-<!-- LIBRERO DE BOTICARIA -->
-<aside class="apothecary-bookshelf" aria-label="Librero de boticaria antigua">
+        <!-- LIBRERO DE BOTICARIA -->
 
-    <div class="bookshelf-sign">HERBARIUM</div>
+        <aside
+            class="apothecary-bookshelf"
+            aria-label="Librero de boticaria antigua">
 
-    <div class="bookshelf-row books">
-        <div class="antique-book book-forest"></div>
-        <div class="antique-book book-walnut"></div>
-        <div class="antique-book book-parchment"></div>
-        <div class="antique-book book-wine"></div>
-        <div class="antique-book book-olive"></div>
-    </div>
+            <div class="bookshelf-sign">
+                HERBARIUM
+            </div>
 
-    <div class="bookshelf-plank"></div>
+            <div class="bookshelf-row books">
+                <div class="antique-book book-forest"></div>
+                <div class="antique-book book-walnut"></div>
+                <div class="antique-book book-parchment"></div>
+                <div class="antique-book book-wine"></div>
+                <div class="antique-book book-olive"></div>
+            </div>
 
-    <div class="bookshelf-row apothecary-items">
-        <div class="shelf-jar jar-sage">
-            <span>✦</span>
-        </div>
-        <div class="mortar-bowl">⚗</div>
-        <div class="herb-bundle">❧</div>
-        <div class="shelf-jar jar-amber">
-            <span>✧</span>
-        </div>
-    </div>
+            <div class="bookshelf-plank"></div>
 
-    <div class="bookshelf-plank"></div>
+            <div class="bookshelf-row apothecary-items">
 
-    <div class="bookshelf-row lower-books">
-        <div class="antique-book book-wine"></div>
-        <div class="antique-book book-walnut"></div>
-        <div class="antique-book book-forest"></div>
-        <div class="herb-box">HERBAS</div>
-    </div>
+                <div class="shelf-jar jar-sage">
+                    <span>✦</span>
+                </div>
 
-    <div class="bookshelf-plank"></div>
+                <div class="mortar-bowl">⚗</div>
 
-    <div class="bookshelf-drawers">
-        <div class="bookshelf-drawer"><span>✦</span></div>
-        <div class="bookshelf-drawer"><span>✦</span></div>
-    </div>
+                <div class="herb-bundle">❧</div>
 
-</aside>
+                <div class="shelf-jar jar-amber">
+                    <span>✧</span>
+                </div>
 
+            </div>
+
+            <div class="bookshelf-plank"></div>
+
+            <div class="bookshelf-row lower-books">
+
+                <div class="antique-book book-wine"></div>
+                <div class="antique-book book-walnut"></div>
+                <div class="antique-book book-forest"></div>
+                <div class="herb-box">HERBAS</div>
+
+            </div>
+
+            <div class="bookshelf-plank"></div>
+
+            <div class="bookshelf-drawers">
+
+                <div class="bookshelf-drawer">
+                    <span>✦</span>
+                </div>
+
+                <div class="bookshelf-drawer">
+                    <span>✦</span>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================
+             SECCIÓN 1: DIARIO
+        ====================================== -->
 
         <section
             id="diario"
@@ -127,9 +152,7 @@
                     CUADERNO PERSONAL
                 </span>
 
-                <h2>
-                    Conserva tu día
-                </h2>
+                <h2>Conserva tu día</h2>
 
                 <p>
                     Un espacio para guardar aquello que quieras recordar.
@@ -140,10 +163,7 @@
 
             <div class="journal-paper">
 
-                <div class="paper-decoration">
-                    ✦
-                </div>
-
+                <div class="paper-decoration">✦</div>
 
                 <div class="paper-header">
 
@@ -153,13 +173,11 @@
                             DIARIO
                         </span>
 
-                        <h3>
-                            ¿Cómo fue tu día?
-                        </h3>
+                        <h3>¿Cómo fue tu día?</h3>
 
                     </div>
 
-                    <span class="today-date">
+                    <span class="today-date" id="todayDate">
                         Hoy
                     </span>
 
@@ -170,8 +188,8 @@
 
                     <textarea
                         id="journalText"
-                        placeholder="Escribe aquí aquello que quieras conservar de este día..."
-                    ></textarea>
+                        aria-label="Escribe tu recuerdo"
+                        placeholder="Escribe aquí aquello que quieras conservar de este día..."></textarea>
 
                 </div>
 
@@ -180,9 +198,7 @@
 
                     <div class="selected-mood">
 
-                        <span>
-                            ESTADO DE ÁNIMO
-                        </span>
+                        <span>ESTADO DE ÁNIMO</span>
 
                         <strong id="selectedMood">
                             Selecciona una emoción
@@ -207,6 +223,11 @@
 
         </section>
 
+
+        <!-- =====================================
+             SECCIÓN 2: EMOCIONES
+        ====================================== -->
+
         <section
             id="emociones"
             class="journal-section">
@@ -217,9 +238,7 @@
                     HERBARIO INTERIOR
                 </span>
 
-                <h2>
-                    ¿Cómo te sentiste?
-                </h2>
+                <h2>¿Cómo te sentiste?</h2>
 
                 <p>
                     Elige la emoción que mejor representa tu día.
@@ -236,9 +255,7 @@
                         EMOCIONES
                     </span>
 
-                    <h3>
-                        Guarda cómo te sentiste
-                    </h3>
+                    <h3>Guarda cómo te sentiste</h3>
 
                 </div>
 
@@ -248,13 +265,11 @@
                     <button
                         class="emotion"
                         data-mood="Feliz"
-                        type="button">
+                        type="button"
+                        aria-label="Seleccionar emoción Feliz">
 
                         <span>☀</span>
-
-                        <small>
-                            Feliz
-                        </small>
+                        <small>Feliz</small>
 
                     </button>
 
@@ -262,13 +277,11 @@
                     <button
                         class="emotion"
                         data-mood="Tranquilo"
-                        type="button">
+                        type="button"
+                        aria-label="Seleccionar emoción Tranquilo">
 
                         <span>♡</span>
-
-                        <small>
-                            Tranquilo
-                        </small>
+                        <small>Tranquilo</small>
 
                     </button>
 
@@ -276,13 +289,11 @@
                     <button
                         class="emotion"
                         data-mood="Emocionado"
-                        type="button">
+                        type="button"
+                        aria-label="Seleccionar emoción Emocionado">
 
                         <span>✦</span>
-
-                        <small>
-                            Emocionado
-                        </small>
+                        <small>Emocionado</small>
 
                     </button>
 
@@ -290,13 +301,11 @@
                     <button
                         class="emotion"
                         data-mood="Nostálgico"
-                        type="button">
+                        type="button"
+                        aria-label="Seleccionar emoción Nostálgico">
 
                         <span>☾</span>
-
-                        <small>
-                            Nostálgico
-                        </small>
+                        <small>Nostálgico</small>
 
                     </button>
 
@@ -304,13 +313,39 @@
                     <button
                         class="emotion"
                         data-mood="Pensativo"
-                        type="button">
+                        type="button"
+                        aria-label="Seleccionar emoción Pensativo">
 
                         <span>☁</span>
+                        <small>Pensativo</small>
 
-                        <small>
-                            Pensativo
-                        </small>
+                    </button>
+
+
+                    <!-- EMOCIÓN 6 -->
+
+                    <button
+                        class="emotion"
+                        data-mood="En paz"
+                        type="button"
+                        aria-label="Seleccionar emoción En paz">
+
+                        <span>❀</span>
+                        <small>En paz</small>
+
+                    </button>
+
+
+                    <!-- EMOCIÓN 7 -->
+
+                    <button
+                        class="emotion"
+                        data-mood="Agradecido"
+                        type="button"
+                        aria-label="Seleccionar emoción Agradecido">
+
+                        <span>♡</span>
+                        <small>Agradecido</small>
 
                     </button>
 
@@ -332,8 +367,10 @@
             </div>
 
         </section>
+
+
         <!-- =====================================
-             MIS RECUERDOS
+             SECCIÓN 3: MIS RECUERDOS
         ====================================== -->
 
         <section
@@ -354,23 +391,33 @@
 
             </div>
 
+
             <div class="memories-paper">
 
                 <div class="memories-heading">
-                    <span class="paper-label">MI COLECCIÓN</span>
+
+                    <span class="paper-label">
+                        MI COLECCIÓN
+                    </span>
 
                     <h3>Recuerdos conservados</h3>
 
-                    <p id="memoriesCount">
+                    <p id="memoriesCount" aria-live="polite">
                         Todavía no tienes recuerdos guardados.
                     </p>
+
                 </div>
+
 
                 <div
                     id="memoriesList"
-                    class="memories-list">
+                    class="memories-list"
+                    aria-live="polite">
 
-                    <!-- Los recuerdos aparecerán aquí -->
+                    <!--
+                        JavaScript insertará aquí
+                        los recuerdos guardados.
+                    -->
 
                 </div>
 
@@ -379,11 +426,17 @@
         </section>
 
 
-        <div class="bottom-botanical botanical-left">
+        <!-- DECORACIÓN BOTÁNICA -->
+
+        <div
+            class="bottom-botanical botanical-left"
+            aria-hidden="true">
             ❧
         </div>
 
-        <div class="bottom-botanical botanical-right">
+        <div
+            class="bottom-botanical botanical-right"
+            aria-hidden="true">
             ❧
         </div>
 
@@ -397,3 +450,4 @@
 </body>
 
 </html>
+```
