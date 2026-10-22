@@ -1451,3 +1451,37 @@ body {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* =========================================
+   BOTÓN ELIMINAR RECUERDO
+========================================= */
+
+.memory-delete {
+    display: block;
+    margin-top: 16px;
+    padding: 7px 11px;
+
+    border: 1px solid rgba(126, 72, 54, 0.35);
+    border-radius: 2px;
+
+    background: rgba(126, 72, 54, 0.08);
+    color: #80513b;
+
+    font-family: "Inter", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.memory-delete:hover {
+    background: #80513b;
+    color: #f3e3c7;
+    border-color: #80513b;
+}
+
+.memory-delete:focus-visible {
+    outline: 2px solid #a77b4b;
+    outline-offset: 3px;
+}
