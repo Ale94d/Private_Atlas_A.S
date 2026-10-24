@@ -24,7 +24,7 @@
 
         <!-- Barra lateral flotante izquierda -->
         <nav class="floating-left-dock">
-            <a href="#" class="dock-icon active" id="nav-home" title="Inicio" onclick="switchView('home')"><i class="fa-solid fa-house"></i></a>
+            <a href="../index.html" class="dock-icon active" id="nav-home" title="Inicio Principal"><i class="fa-solid fa-house"></i></a>
             <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
             <!-- Botón de Finanzas con la Moneda -->
             <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></a>
@@ -243,13 +243,11 @@
             document.getElementById('view-finance').classList.add('hidden-view');
             document.getElementById('view-tasks').classList.add('hidden-view');
 
-            document.getElementById('nav-home').classList.remove('active');
             document.getElementById('nav-finance').classList.remove('active');
             document.getElementById('nav-tasks').classList.remove('active');
 
             if (viewName === 'home') {
                 document.getElementById('view-home').classList.remove('hidden-view');
-                document.getElementById('nav-home').classList.add('active');
             } else if (viewName === 'finance') {
                 document.getElementById('view-finance').classList.remove('hidden-view');
                 document.getElementById('nav-finance').classList.add('active');
@@ -413,4 +411,5 @@
         // Inicializar la interfaz financiera al cargar
         updateFinanceUI();
     </script>
-</
+</body>
+</html>
