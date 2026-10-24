@@ -24,6 +24,7 @@
 
         <!-- Barra lateral flotante izquierda -->
         <nav class="floating-left-dock">
+            <!-- Botón de la casita actualizado para volver al índice principal -->
             <a href="../index.html" class="dock-icon active" id="nav-home" title="Inicio Principal"><i class="fa-solid fa-house"></i></a>
             <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
             <!-- Botón de Finanzas con la Moneda -->
@@ -136,14 +137,165 @@
                     </div>
 
                     <div class="finance-row-inputs">
-                        <!-- Inputs y componentes de finanzas -->
+                        <div class="finance-input-group">
+                            <label>Ingreso Mensual Total ($)</label>
+                            <div class="fin-input-box">
+                                <i class="fa-solid fa-dollar-sign"></i>
+                                <input type="number" id="totalIncomeInput" placeholder="Ej: 3000" oninput="updateFinanceCalculations()">
+                            </div>
+                        </div>
+                        <div class="finance-input-group">
+                            <label>Descripción del Gasto</label>
+                            <div class="fin-input-box">
+                                <i class="fa-solid fa-pen"></i>
+                                <input type="text" id="expenseNameInput" placeholder="Ej: Alquiler o Supermercado">
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="finance-row-inputs">
+                        <div class="finance-input-group">
+                            <label>Monto del Gasto ($)</label>
+                            <div class="fin-input-box">
+                                <i class="fa-solid fa-coins"></i>
+                                <input type="number" id="expenseAmountInput" placeholder="Ej: 800">
+                            </div>
+                        </div>
+                        <div class="finance-input-group">
+                            <label>Fecha</label>
+                            <div class="fin-input-box">
+                                <i class="fa-solid fa-calendar"></i>
+                                <input type="date" id="expenseDateInput">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="finance-actions-footer">
+                        <button class="holo-btn primary-btn" onclick="addExpense()">Registrar Gasto</button>
+                    </div>
+
+                    <!-- Listado de Gastos -->
+                    <div style="margin-top: 10px;">
+                        <span style="font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Gastos Registrados</span>
+                        <div class="expenses-list-container" id="expensesListContainer">
+                            <!-- Se llena dinámicamente -->
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
         </main>
 
+
+        <!-- ================= VISTA 3: TAREAS ================= -->
+        <main class="hologram-main-card hidden-view" id="view-tasks">
+            <div class="holo-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-arrow-left" style="cursor: pointer;" onclick="switchView('home')" title="Volver"></i>
+                    <span style="font-weight: 700; color: #fff;">Private Atlas • Panel de Tareas</span>
+                </div>
+                <div class="holo-nav-links">
+                    <span>Tasks</span>
+                    <div class="user-avatar-small"><i class="fa-solid fa-list-check"></i></div>
+                </div>
+            </div>
+
+            <div class="finance-form-container" style="max-width: 100%;">
+                <div class="plan-journey-title">
+                    <h3>Gestión de Tareas Abisales</h3>
+                    <p>Anota y completa tus misiones submarinas pendientes.</p>
+                </div>
+
+                <div class="finance-row-inputs" style="margin-bottom: 15px;">
+                    <div class="finance-input-group">
+                        <label>Nueva Tarea</label>
+                        <div class="fin-input-box">
+                            <i class="fa-solid fa-tasks"></i>
+                            <input type="text" id="taskInput" placeholder="Escribe tu tarea...">
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: flex-end;">
+                        <button class="holo-btn primary-btn" style="width: 100%; height: 42px;" onclick="addTask()">Agregar Tarea</button>
+                    </div>
+                </div>
+
+                <div class="expenses-list-container" id="tasksListContainer" style="max-height: 280px;">
+                    <!-- Se llena dinámicamente -->
+                </div>
+            </div>
+        </main>
+
+
+        <!-- ================= TARJETA LATERAL DERECHA (RELOJ Y ESTADO) ================= -->
+        <aside class="hologram-side-card">
+            <div class="side-badge">
+                <div class="side-badge-header">
+                    <i class="fa-solid fa-compass"></i> Sincronización Abisal
+                </div>
+                <div class="realtime-clock" id="realtimeClock">10:10 PM</div>
+                <div class="realtime-date" id="realtimeDate">Viernes, 23 de Octubre</div>
+                <div class="side-location">
+                    <i class="fa-solid fa-location-dot"></i> Fosa de las Marianas • Sector 7
+                </div>
+                <span class="read-more-link">Sistema Activo</span>
+            </div>
+        </aside>
+
     </div>
 
-</body>
-</html>
+    <!-- Script de funcionalidad -->
+    <script>
+        function switchView(viewName) {
+            document.getElementById('view-home').classList.add('hidden-view');
+            document.getElementById('view-finance').classList.add('hidden-view');
+            document.getElementById('view-tasks').classList.add('hidden-view');
+
+            if (viewName === 'home') {
+                document.getElementById('view-home').classList.remove('hidden-view');
+            } else if (viewName === 'finance') {
+                document.getElementById('view-finance').classList.remove('hidden-view');
+            } else if (viewName === 'tasks') {
+                document.getElementById('view-tasks').classList.remove('hidden-view');
+            }
+        }
+
+        // Reloj en tiempo real
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            document.getElementById('realtimeClock').innerText = `${hours}:${minutes} ${ampm}`;
+            
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('realtimeDate').innerText = now.toLocaleDateString('es-ES', options);
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        let currentCategory = 'needs';
+        let currentPercentage = 50;
+
+        function setCategory(category, percentage, element) {
+            currentCategory = category;
+            currentPercentage = percentage;
+            
+            document.querySelectorAll('.fin-cat-item').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+
+            const titles = {
+                needs: "Control Presupuestario: Necesidades (50%)",
+                wants: "Control Presupuestario: Deseos (30%)",
+                savings: "Control Presupuestario: Ahorro (20%)"
+            };
+            document.getElementById('currentCategoryTitle').innerText = titles[category];
+            updateFinanceCalculations();
+        }
+
+        let totalIncome = parseFloat(localStorage.getItem('totalIncome')) || 0;
+        document.getElementById('totalIncomeInput').value = totalIncome || '';
+
+        let expenses = JSON
