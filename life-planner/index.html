@@ -24,12 +24,23 @@
 
         <!-- Barra lateral flotante izquierda -->
         <nav class="floating-left-dock">
-            <a href="../index.html" class="dock-icon active" id="nav-home" title="Inicio Principal"><i class="fa-solid fa-house"></i></a>
-            <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="../index.html" class="dock-icon active" id="nav-home" title="Inicio Principal">
+                <i class="fa-solid fa-house"></i>
+            </a>
+            
+            <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+            
             <!-- Botón de Finanzas con la Moneda -->
-            <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></a>
+            <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')">
+                <i class="fa-solid fa-coins"></i>
+            </a>
+            
             <!-- Botón de Tareas -->
-            <a href="#" class="dock-icon" id="nav-tasks" title="Gestión de Tareas" onclick="switchView('tasks')"><i class="fa-solid fa-list-check"></i></a>
+            <a href="#" class="dock-icon" id="nav-tasks" title="Gestión de Tareas" onclick="switchView('tasks')">
+                <i class="fa-solid fa-list-check"></i>
+            </a>
         </nav>
 
         <!-- ================= VISTA 1: INICIO (PRINCIPAL) ================= -->
@@ -40,7 +51,9 @@
                 <div class="holo-nav-links">
                     <span>Descubrir</span>
                     <span>Planear</span>
-                    <div class="user-avatar-small"><i class="fa-solid fa-user-astronaut"></i></div>
+                    <div class="user-avatar-small">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                    </div>
                 </div>
             </div>
 
@@ -51,7 +64,10 @@
 
             <div class="holo-cards-carousel">
                 <div class="carousel-card active-card" onclick="switchView('tasks')">
-                    <div class="card-top-tag"><span>Tareas Activas</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-top-tag">
+                        <span>Tareas Activas</span>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
                     <div class="card-content-text">
                         <h4>Panel de Tareas</h4>
                         <p><i class="fa-solid fa-list-check"></i> Escribir y completar</p>
@@ -61,7 +77,10 @@
 
                 <!-- Tarjeta interactiva del Carrusel para ir directo al monedero -->
                 <div class="carousel-card" onclick="switchView('finance')">
-                    <div class="card-top-tag"><span>Finanzas</span><i class="fa-regular fa-heart"></i></div>
+                    <div class="card-top-tag">
+                        <span>Finanzas</span>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
                     <div class="card-content-text">
                         <h4>Presupuesto Abisal</h4>
                         <p><i class="fa-solid fa-wallet"></i> Ver Gastos Guardados</p>
@@ -73,8 +92,12 @@
             <div class="holo-action-footer">
                 <button class="holo-btn primary-btn" onclick="switchView('finance')">Get Started</button>
                 <button class="holo-btn secondary-btn" onclick="switchView('tasks')">Ver Tareas</button>
-                <div class="footer-icon-pill"><i class="fa-solid fa-bookmark"></i></div>
-                <div class="footer-icon-pill"><i class="fa-solid fa-share-nodes"></i></div>
+                <div class="footer-icon-pill">
+                    <i class="fa-solid fa-bookmark"></i>
+                </div>
+                <div class="footer-icon-pill">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </div>
             </div>
 
         </main>
@@ -89,9 +112,25 @@
                     <span style="font-weight: 700; color: #fff;">Private Atlas • Finanzas Abisales</span>
                 </div>
                 <div class="holo-nav-links">
-                    <span>$ USD</span>
+                    <!-- Muestra la divisa actualmente en uso -->
+                    <span id="activeCurrencyDisplay">$ USD</span>
                     <span>Manage Budget</span>
-                    <div class="user-avatar-small"><i class="fa-solid fa-wallet"></i></div>
+                    
+                    <!-- Selector de Divisas en el círculo de la cabecera -->
+                    <div class="user-avatar-small" style="position: relative; cursor: pointer;" title="Seleccionar Divisa">
+                        <i class="fa-solid fa-wallet"></i>
+                        <select id="currencySelector" onchange="changeCurrency(this.value)" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;">
+                            <option value="COP" data-symbol="$">COP - Peso Colombiano</option>
+                            <option value="USD" data-symbol="$" selected>USD - Dólar Estadounidense</option>
+                            <option value="EUR" data-symbol="€">EUR - Euro</option>
+                            <option value="MXN" data-symbol="$">MXN - Peso Mexicano</option>
+                            <option value="ARS" data-symbol="$">ARS - Peso Argentino</option>
+                            <option value="CLP" data-symbol="$">CLP - Peso Chileno</option>
+                            <option value="PEN" data-symbol="S/">PEN - Sol Peruano</option>
+                            <option value="GBP" data-symbol="£">GBP - Libra Esterlina</option>
+                            <option value="JPY" data-symbol="¥">JPY - Yen Japonés</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -103,10 +142,12 @@
                         <i class="fa-solid fa-house-chimney"></i>
                         <span>Necesidades (50%)</span>
                     </div>
+
                     <div class="fin-cat-item" onclick="setCategory('wants', 30, this)" title="Deseos (30%)">
                         <i class="fa-solid fa-gamepad"></i>
                         <span>Deseos (30%)</span>
                     </div>
+
                     <div class="fin-cat-item" onclick="setCategory('savings', 20, this)" title="Ahorro (20%)">
                         <i class="fa-solid fa-piggy-bank"></i>
                         <span>Ahorro (20%)</span>
@@ -125,10 +166,12 @@
                             <span>Ingreso Total</span>
                             <h4 id="summaryTotalIncome">$0.00</h4>
                         </div>
+
                         <div class="summary-card-mini">
                             <span>Límite Categoría</span>
                             <h4 id="summaryCategoryLimit">$0.00</h4>
                         </div>
+
                         <div class="summary-card-mini">
                             <span>Gastado en Cat.</span>
                             <h4 id="summaryCategorySpent">$0.00</h4>
@@ -143,6 +186,7 @@
                                 <input type="number" id="financeIncomeInput" placeholder="Ej: 1000 (Ingreso)">
                             </div>
                         </div>
+
                         <div class="finance-input-group">
                             <label>Monto del Gasto</label>
                             <div class="fin-input-box">
@@ -185,7 +229,9 @@
                 </div>
                 <div class="holo-nav-links">
                     <span>Tasks</span>
-                    <div class="user-avatar-small"><i class="fa-solid fa-list-check"></i></div>
+                    <div class="user-avatar-small">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
                 </div>
             </div>
 
@@ -225,11 +271,14 @@
                 <div class="side-badge-header">
                     <i class="fa-solid fa-compass"></i> Sincronización Abisal
                 </div>
+
                 <div class="realtime-clock" id="liveClock">12:00 AM</div>
                 <div class="realtime-date" id="liveDate">Miércoles, 9 Sep 2026</div>
+
                 <div class="side-location">
                     <i class="fa-solid fa-location-dot"></i> Soacha, Cundinamarca
                 </div>
+
                 <div class="read-more-link">Sistema Activo</div>
             </div>
         </aside>
@@ -255,6 +304,20 @@
                 document.getElementById('view-tasks').classList.remove('hidden-view');
                 document.getElementById('nav-tasks').classList.add('active');
             }
+        }
+
+        // Lógica de Divisas
+        let selectedCurrencySymbol = '$';
+        let selectedCurrencyCode = 'USD';
+
+        function changeCurrency(code) {
+            const selector = document.getElementById('currencySelector');
+            const selectedOption = selector.options[selector.selectedIndex];
+            selectedCurrencySymbol = selectedOption.getAttribute('data-symbol') || '$';
+            selectedCurrencyCode = code;
+
+            document.getElementById('activeCurrencyDisplay').textContent = `${selectedCurrencySymbol} ${selectedCurrencyCode}`;
+            updateFinanceUI();
         }
 
         // Lógica de Presupuesto 50 / 30 / 20 corregida y sincronizada
@@ -309,10 +372,10 @@
         }
 
         function updateFinanceUI() {
-            document.getElementById('summaryTotalIncome').textContent = `$${totalIncome.toFixed(2)}`;
+            document.getElementById('summaryTotalIncome').textContent = `${selectedCurrencySymbol}${totalIncome.toFixed(2)}`;
             
             const categoryLimit = totalIncome * (currentCategoryPercent / 100);
-            document.getElementById('summaryCategoryLimit').textContent = `$${categoryLimit.toFixed(2)}`;
+            document.getElementById('summaryCategoryLimit').textContent = `${selectedCurrencySymbol}${categoryLimit.toFixed(2)}`;
 
             // Calcular el gastado sumando los elementos de la categoría actual
             let categorySpent = 0;
@@ -321,7 +384,7 @@
             });
 
             const spentEl = document.getElementById('summaryCategorySpent');
-            spentEl.textContent = `$${categorySpent.toFixed(2)}`;
+            spentEl.textContent = `${selectedCurrencySymbol}${categorySpent.toFixed(2)}`;
 
             if (categorySpent > categoryLimit && categoryLimit > 0) {
                 spentEl.style.color = '#f43f5e'; // Rojo si excede el porcentaje de la categoría
@@ -341,7 +404,7 @@
                         <small>${categoriesData[currentCategoryKey].name}</small>
                     </div>
                     <div class="expense-item-right">
-                        <span>-$${item.amount.toFixed(2)}</span>
+                        <span>-${selectedCurrencySymbol}${item.amount.toFixed(2)}</span>
                         <button class="delete-expense-btn" onclick="removeFinanceItem(${index})"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 `;
@@ -355,61 +418,4 @@
             if (!text) return;
 
             const container = document.getElementById('tasksListContainer');
-            const row = document.createElement('div');
-            row.className = 'expense-item-row';
-            row.innerHTML = `
-                <div class="expense-info-main" style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
-                    <input type="checkbox" style="cursor: pointer; width: 16px; height: 16px;" onchange="toggleTaskComplete(this)">
-                    <div>
-                        <b>${text}</b>
-                        <small style="color: #94a3b8;">Pendiente</small>
-                    </div>
-                </div>
-                <div class="expense-item-right">
-                    <button class="delete-expense-btn" onclick="this.closest('.expense-item-row').remove()"><i class="fa-solid fa-trash"></i></button>
-                </div>
-            `;
-
-            container.appendChild(row);
-            input.value = '';
-        }
-
-        function toggleTaskComplete(checkbox) {
-            const infoMain = checkbox.closest('.expense-info-main');
-            const small = infoMain.querySelector('small');
-            const title = infoMain.querySelector('b');
-
-            if (checkbox.checked) {
-                small.textContent = 'Completado';
-                small.style.color = '#34d399';
-                title.style.textDecoration = 'line-through';
-                title.style.color = '#94a3b8';
-            } else {
-                small.textContent = 'Pendiente';
-                small.style.color = '#94a3b8';
-                title.style.textDecoration = 'none';
-                title.style.color = '#f8fafc';
-            }
-        }
-
-        // Reloj en tiempo real
-        function updateClock() {
-            const now = new Date();
-            let hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            hours = hours % 12;
-            hours = hours ? hours : 12;
-            document.getElementById('liveClock').textContent = `${hours}:${minutes} ${ampm}`;
-
-            const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
-            document.getElementById('liveDate').textContent = now.toLocaleDateString('es-ES', options);
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // Inicializar la interfaz financiera al cargar
-        updateFinanceUI();
-    </script>
-</body>
-</html>
+            const row =
