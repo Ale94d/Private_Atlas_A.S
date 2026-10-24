@@ -24,17 +24,21 @@
 
         <!-- Barra lateral flotante izquierda -->
         <nav class="floating-left-dock">
-            <!-- Botón de la casita para volver al Home principal -->
-            <a href="../index.html" class="dock-icon active" id="nav-home" title="Inicio Principal"><i class="fa-solid fa-house"></i></a>
-            
-            <!-- Botón de buscar (vuelve a la vista inicial) -->
-            <button type="button" class="dock-icon" id="nav-search" title="Inicio / Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></button>
-            
-            <!-- Botón de Finanzas -->
-            <button type="button" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></button>
-            
+            <!-- Botón de la casita: vuelve al index principal del ecosistema -->
+            <a href="../index.html" class="dock-icon active" id="nav-home" title="Inicio Principal">
+                <i class="fa-solid fa-house"></i>
+            </a>
+            <a href="javascript:void(0)" class="dock-icon" id="nav-search" title="Buscar / Inicio" onclick="switchView('home')">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+            <!-- Botón de Finanzas con la Moneda -->
+            <a href="javascript:void(0)" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')">
+                <i class="fa-solid fa-coins"></i>
+            </a>
             <!-- Botón de Tareas -->
-            <button type="button" class="dock-icon" id="nav-tasks" title="Gestión de Tareas" onclick="switchView('tasks')"><i class="fa-solid fa-list-check"></i></button>
+            <a href="javascript:void(0)" class="dock-icon" id="nav-tasks" title="Gestión de Tareas" onclick="switchView('tasks')">
+                <i class="fa-solid fa-list-check"></i>
+            </a>
         </nav>
 
         <!-- ================= VISTA 1: INICIO (PRINCIPAL) ================= -->
@@ -175,7 +179,7 @@
                     </div>
 
                     <div class="finance-actions-footer">
-                        <button type="button" class="holo-btn primary-btn" onclick="addExpense()">Registrar Gasto</button>
+                        <button class="holo-btn primary-btn" onclick="addExpense()">Registrar Gasto</button>
                     </div>
 
                     <!-- Listado de Gastos -->
@@ -220,7 +224,7 @@
                         </div>
                     </div>
                     <div style="display: flex; align-items: flex-end;">
-                        <button type="button" class="holo-btn primary-btn" style="width: 100%; height: 42px;" onclick="addTask()">Agregar Tarea</button>
+                        <button class="holo-btn primary-btn" style="width: 100%; height: 42px;" onclick="addTask()">Agregar Tarea</button>
                     </div>
                 </div>
 
@@ -251,43 +255,49 @@
     <!-- Script de funcionalidad -->
     <script>
         function switchView(viewName) {
-            document.getElementById('view-home').classList.add('hidden-view');
-            document.getElementById('view-finance').classList.add('hidden-view');
-            document.getElementById('view-tasks').classList.add('hidden-view');
+            var vHome = document.getElementById('view-home');
+            var vFinance = document.getElementById('view-finance');
+            var vTasks = document.getElementById('view-tasks');
 
-            // Actualizar botones del dock
-            document.querySelectorAll('.floating-left-dock button, .floating-left-dock a').forEach(el => el.classList.remove('active'));
+            if (vHome) vHome.classList.add('hidden-view');
+            if (vFinance) vFinance.classList.add('hidden-view');
+            if (vTasks) vTasks.classList.add('hidden-view');
 
-            if (viewName === 'home') {
-                document.getElementById('view-home').classList.remove('hidden-view');
+            // Quitar clase active de los elementos del dock
+            document.querySelectorAll('.floating-left-dock a').forEach(function(el) {
+                el.classList.remove('active');
+            });
+
+            if (viewName === 'home' && vHome) {
+                vHome.classList.remove('hidden-view');
                 document.getElementById('nav-search').classList.add('active');
-            } else if (viewName === 'finance') {
-                document.getElementById('view-finance').classList.remove('hidden-view');
+            } else if (viewName === 'finance' && vFinance) {
+                vFinance.classList.remove('hidden-view');
                 document.getElementById('nav-finance').classList.add('active');
-            } else if (viewName === 'tasks') {
-                document.getElementById('view-tasks').classList.remove('hidden-view');
+            } else if (viewName === 'tasks' && vTasks) {
+                vTasks.classList.remove('hidden-view');
                 document.getElementById('nav-tasks').classList.add('active');
             }
         }
 
-        // Reloj en tiempo real dinámico con tu hora exacta
+        // Reloj en tiempo real
         function updateClock() {
-            const now = new Date();
-            let hours = now.getHours();
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const ampm = hours >= 12 ? 'PM' : 'AM';
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = String(now.getMinutes()).padStart(2, '0');
+            var ampm = hours >= 12 ? 'PM' : 'AM';
             hours = hours % 12;
             hours = hours ? hours : 12;
             
-            const clockEl = document.getElementById('realtimeClock');
-            const dateEl = document.getElementById('realtimeDate');
+            var clockEl = document.getElementById('realtimeClock');
+            var dateEl = document.getElementById('realtimeDate');
 
             if (clockEl) {
-                clockEl.innerText = `${hours}:${minutes} ${ampm}`;
+                clockEl.innerText = hours + ':' + minutes + ' ' + ampm;
             }
             if (dateEl) {
-                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                let strDate = now.toLocaleDateString('es-CO', options);
+                var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                var strDate = now.toLocaleDateString('es-CO', options);
                 dateEl.innerText = strDate.charAt(0).toUpperCase() + strDate.slice(1);
             }
         }
@@ -295,115 +305,113 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        let currentCategory = 'needs';
-        let currentPercentage = 50;
+        var currentCategory = 'needs';
+        var currentPercentage = 50;
 
         function setCategory(category, percentage, element) {
             currentCategory = category;
             currentPercentage = percentage;
             
-            document.querySelectorAll('.fin-cat-item').forEach(el => el.classList.remove('active'));
-            if(element) element.classList.add('active');
+            document.querySelectorAll('.fin-cat-item').forEach(function(el) {
+                el.classList.remove('active');
+            });
+            if (element) element.classList.add('active');
 
-            const titles = {
+            var titles = {
                 needs: "Control Presupuestario: Necesidades (50%)",
                 wants: "Control Presupuestario: Deseos (30%)",
                 savings: "Control Presupuestario: Ahorro (20%)"
             };
-            const desc = {
+            var desc = {
                 needs: "Límite recomendado: 50% de tus ingresos totales.",
                 wants: "Límite recomendado: 30% de tus ingresos totales.",
                 savings: "Límite recomendado: 20% de tus ingresos totales."
             };
 
-            document.getElementById('currentCategoryTitle').innerText = titles[category];
-            document.getElementById('currentCategoryDesc').innerText = desc[category];
+            var titleEl = document.getElementById('currentCategoryTitle');
+            var descEl = document.getElementById('currentCategoryDesc');
+            if (titleEl) titleEl.innerText = titles[category];
+            if (descEl) descEl.innerText = desc[category];
+
             updateFinanceCalculations();
         }
 
-        let totalIncome = parseFloat(localStorage.getItem('totalIncome')) || 0;
-        const incomeInput = document.getElementById('totalIncomeInput');
+        var totalIncome = parseFloat(localStorage.getItem('totalIncome')) || 0;
+        var incomeInput = document.getElementById('totalIncomeInput');
         if (incomeInput) incomeInput.value = totalIncome || '';
 
-        let expenses = JSON.parse(localStorage.getItem('abyssalExpenses')) || [];
-        let tasks = JSON.parse(localStorage.getItem('abyssalTasks')) || [];
+        var expenses = JSON.parse(localStorage.getItem('abyssalExpenses')) || [];
+        var tasks = JSON.parse(localStorage.getItem('abyssalTasks')) || [];
 
         function updateFinanceCalculations() {
-            const incomeInp = document.getElementById('totalIncomeInput');
+            var incomeInp = document.getElementById('totalIncomeInput');
             if (incomeInp) {
                 totalIncome = parseFloat(incomeInp.value) || 0;
                 localStorage.setItem('totalIncome', totalIncome);
             }
 
-            const categoryLimit = totalIncome * (currentPercentage / 100);
+            var categoryLimit = totalIncome * (currentPercentage / 100);
             
-            let spentInCat = expenses
-                .filter(exp => exp.category === currentCategory)
-                .reduce((sum, exp) => sum + exp.amount, 0);
+            var spentInCat = expenses
+                .filter(function(exp) { return exp.category === currentCategory; })
+                .reduce(function(sum, exp) { return sum + exp.amount; }, 0);
 
-            document.getElementById('summaryTotalIncome').innerText = `$${totalIncome.toFixed(2)}`;
-            document.getElementById('summaryCategoryLimit').innerText = `$${categoryLimit.toFixed(2)}`;
-            document.getElementById('summaryCategorySpent').innerText = `$${spentInCat.toFixed(2)}`;
+            var totalIncEl = document.getElementById('summaryTotalIncome');
+            var limitEl = document.getElementById('summaryCategoryLimit');
+            var spentEl = document.getElementById('summaryCategorySpent');
+
+            if (totalIncEl) totalIncEl.innerText = '$' + totalIncome.toFixed(2);
+            if (limitEl) limitEl.innerText = '$' + categoryLimit.toFixed(2);
+            if (spentEl) spentEl.innerText = '$' + spentInCat.toFixed(2);
 
             renderExpenses();
         }
 
         function addExpense() {
-            const name = document.getElementById('expenseNameInput').value;
-            const amount = parseFloat(document.getElementById('expenseAmountInput').value);
-            const date = document.getElementById('expenseDateInput').value || new Date().toISOString().split('T')[0];
+            var nameInp = document.getElementById('expenseNameInput');
+            var amountInp = document.getElementById('expenseAmountInput');
+            var dateInp = document.getElementById('expenseDateInput');
+
+            var name = nameInp ? nameInp.value : '';
+            var amount = amountInp ? parseFloat(amountInp.value) : 0;
+            var date = (dateInp && dateInp.value) ? dateInp.value : new Date().toISOString().split('T')[0];
 
             if (!name || isNaN(amount) || amount <= 0) {
                 alert('Por favor ingresa un nombre y un monto válido.');
                 return;
             }
 
-            expenses.push({ id: Date.now(), category: currentCategory, name, amount, date });
+            expenses.push({ id: Date.now(), category: currentCategory, name: name, amount: amount, date: date });
             localStorage.setItem('abyssalExpenses', JSON.stringify(expenses));
 
-            document.getElementById('expenseNameInput').value = '';
-            document.getElementById('expenseAmountInput').value = '';
+            if (nameInp) nameInp.value = '';
+            if (amountInp) amountInp.value = '';
             updateFinanceCalculations();
         }
 
         function deleteExpense(id) {
-            expenses = expenses.filter(exp => exp.id !== id);
+            expenses = expenses.filter(function(exp) { return exp.id !== id; });
             localStorage.setItem('abyssalExpenses', JSON.stringify(expenses));
             updateFinanceCalculations();
         }
 
         function renderExpenses() {
-            const container = document.getElementById('expensesListContainer');
+            var container = document.getElementById('expensesListContainer');
             if (!container) return;
             container.innerHTML = '';
 
-            const filtered = expenses.filter(exp => exp.category === currentCategory);
+            var filtered = expenses.filter(function(exp) { return exp.category === currentCategory; });
             if (filtered.length === 0) {
-                container.innerHTML = `<div style="text-align: center; color: #94a3b8; font-size: 11px; padding: 15px;">No hay gastos registrados en esta categoría.</div>`;
+                container.innerHTML = '<div style="text-align: center; color: #94a3b8; font-size: 11px; padding: 15px;">No hay gastos registrados en esta categoría.</div>';
                 return;
             }
 
-            filtered.forEach(exp => {
-                const row = document.createElement('div');
+            filtered.forEach(function(exp) {
+                var row = document.createElement('div');
                 row.className = 'expense-item-row';
-                row.innerHTML = `
-                    <div class="expense-info-main">
-                        <b>${exp.name}</b>
-                        <small>${exp.date}</small>
-                    </div>
-                    <div class="expense-item-right">
-                        <span>$${exp.amount.toFixed(2)}</span>
-                        <button type="button" class="delete-expense-btn" onclick="deleteExpense(${exp.id})"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                `;
-                container.appendChild(row);
-            });
-        }
-
-        function addTask() {
-            const text = document.getElementById('taskInput').value;
-            if (!text) return;
-
-            tasks.push({ id: Date.now(), text, completed: false });
-            localStorage.setItem('abyssalTasks', JSON.stringify(tasks));
-            doc
+                row.innerHTML = 
+                    '<div class="expense-info-main">' +
+                        '<b>' + exp.name + '</b>' +
+                        '<small>' + exp.date + '</small>' +
+                    '</div>' +
+                    '<div class="expense-item-right">' +
