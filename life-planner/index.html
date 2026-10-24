@@ -8,18 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="assets/icons/favicon-lifeplaner.png">
-    <style>
-        /* Corrección de visibilidad para asegurar el cambio de vistas */
-        .hologram-main-card.hidden-view {
-            display: none !important;
-        }
-        .hologram-main-card {
-            display: block;
-        }
-        .dock-icon {
-            cursor: pointer !important;
-        }
-    </style>
 </head>
 <body>
 
@@ -36,25 +24,12 @@
 
         <!-- Barra lateral flotante izquierda -->
         <nav class="floating-left-dock">
-            <!-- 1. Botón de la Casita: Vuelve al index principal del ecosistema Private Atlas -->
-            <a href="../index.html" class="dock-icon" id="nav-main-home" title="Inicio Principal Private Atlas">
-                <i class="fa-solid fa-house"></i>
-            </a>
-
-            <!-- 2. Botón Lupa: Cambia a la Vista Inicio del Life Planner -->
-            <a href="javascript:void(0)" class="dock-icon active" id="nav-search" title="Inicio / Buscar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </a>
-
-            <!-- 3. Botón Monedas: Abre Presupuesto Abisal 50/30/20 -->
-            <a href="javascript:void(0)" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20">
-                <i class="fa-solid fa-coins"></i>
-            </a>
-
-            <!-- 4. Botón Lista: Abre Panel de Tareas -->
-            <a href="javascript:void(0)" class="dock-icon" id="nav-tasks" title="Gestión de Tareas">
-                <i class="fa-solid fa-list-check"></i>
-            </a>
+            <a href="#" class="dock-icon active" id="nav-home" title="Inicio" onclick="switchView('home')"><i class="fa-solid fa-house"></i></a>
+            <a href="#" class="dock-icon" id="nav-search" title="Buscar" onclick="switchView('home')"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <!-- Botón de Finanzas con la Moneda -->
+            <a href="#" class="dock-icon" id="nav-finance" title="Presupuesto 50/30/20" onclick="switchView('finance')"><i class="fa-solid fa-coins"></i></a>
+            <!-- Botón de Tareas -->
+            <a href="#" class="dock-icon" id="nav-tasks" title="Gestión de Tareas" onclick="switchView('tasks')"><i class="fa-solid fa-list-check"></i></a>
         </nav>
 
         <!-- ================= VISTA 1: INICIO (PRINCIPAL) ================= -->
@@ -75,7 +50,7 @@
             </div>
 
             <div class="holo-cards-carousel">
-                <div class="carousel-card active-card" id="card-btn-tasks">
+                <div class="carousel-card active-card" onclick="switchView('tasks')">
                     <div class="card-top-tag"><span>Tareas Activas</span><i class="fa-regular fa-heart"></i></div>
                     <div class="card-content-text">
                         <h4>Panel de Tareas</h4>
@@ -84,7 +59,8 @@
                     <span class="carousel-step">01</span>
                 </div>
 
-                <div class="carousel-card" id="card-btn-finance">
+                <!-- Tarjeta interactiva del Carrusel para ir directo al monedero -->
+                <div class="carousel-card" onclick="switchView('finance')">
                     <div class="card-top-tag"><span>Finanzas</span><i class="fa-regular fa-heart"></i></div>
                     <div class="card-content-text">
                         <h4>Presupuesto Abisal</h4>
@@ -95,8 +71,8 @@
             </div>
 
             <div class="holo-action-footer">
-                <button class="holo-btn primary-btn" id="footer-btn-finance">Get Started</button>
-                <button class="holo-btn secondary-btn" id="footer-btn-tasks">Ver Tareas</button>
+                <button class="holo-btn primary-btn" onclick="switchView('finance')">Get Started</button>
+                <button class="holo-btn secondary-btn" onclick="switchView('tasks')">Ver Tareas</button>
                 <div class="footer-icon-pill"><i class="fa-solid fa-bookmark"></i></div>
                 <div class="footer-icon-pill"><i class="fa-solid fa-share-nodes"></i></div>
             </div>
@@ -109,7 +85,7 @@
             
             <div class="holo-header">
                 <div style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fa-solid fa-arrow-left btn-back-home" style="cursor: pointer;" title="Volver"></i>
+                    <i class="fa-solid fa-arrow-left" style="cursor: pointer;" onclick="switchView('home')" title="Volver"></i>
                     <span style="font-weight: 700; color: #fff;">Private Atlas • Finanzas Abisales</span>
                 </div>
                 <div class="holo-nav-links">
@@ -121,21 +97,23 @@
 
             <div class="finance-layout-grid">
                 
+                <!-- Barra de Categorías Izquierda -->
                 <div class="finance-categories-dock">
-                    <div class="fin-cat-item active" id="cat-needs" title="Necesidades (50%)">
+                    <div class="fin-cat-item active" onclick="setCategory('needs', 50, this)" title="Necesidades (50%)">
                         <i class="fa-solid fa-house-chimney"></i>
                         <span>Necesidades (50%)</span>
                     </div>
-                    <div class="fin-cat-item" id="cat-wants" title="Deseos (30%)">
+                    <div class="fin-cat-item" onclick="setCategory('wants', 30, this)" title="Deseos (30%)">
                         <i class="fa-solid fa-gamepad"></i>
                         <span>Deseos (30%)</span>
                     </div>
-                    <div class="fin-cat-item" id="cat-savings" title="Ahorro (20%)">
+                    <div class="fin-cat-item" onclick="setCategory('savings', 20, this)" title="Ahorro (20%)">
                         <i class="fa-solid fa-piggy-bank"></i>
                         <span>Ahorro (20%)</span>
                     </div>
                 </div>
 
+                <!-- Tarjeta de Formulario y Gastos -->
                 <div class="finance-form-container">
                     <div class="plan-journey-title">
                         <h3 id="currentCategoryTitle">Control Presupuestario: Necesidades (50%)</h3>
@@ -162,7 +140,7 @@
                             <label>Ingreso Mensual Total ($)</label>
                             <div class="fin-input-box">
                                 <i class="fa-solid fa-dollar-sign"></i>
-                                <input type="number" id="totalIncomeInput" placeholder="Ej: 3000">
+                                <input type="number" id="totalIncomeInput" placeholder="Ej: 3000" oninput="updateFinanceCalculations()">
                             </div>
                         </div>
                         <div class="finance-input-group">
@@ -192,12 +170,15 @@
                     </div>
 
                     <div class="finance-actions-footer">
-                        <button type="button" class="holo-btn primary-btn" id="btn-add-expense">Registrar Gasto</button>
+                        <button class="holo-btn primary-btn" onclick="addExpense()">Registrar Gasto</button>
                     </div>
 
+                    <!-- Listado de Gastos -->
                     <div style="margin-top: 10px;">
                         <span style="font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Gastos Registrados</span>
-                        <div class="expenses-list-container" id="expensesListContainer"></div>
+                        <div class="expenses-list-container" id="expensesListContainer">
+                            <!-- Se llena dinámicamente -->
+                        </div>
                     </div>
 
                 </div>
@@ -210,7 +191,7 @@
         <main class="hologram-main-card hidden-view" id="view-tasks">
             <div class="holo-header">
                 <div style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fa-solid fa-arrow-left btn-back-home" style="cursor: pointer;" title="Volver"></i>
+                    <i class="fa-solid fa-arrow-left" style="cursor: pointer;" onclick="switchView('home')" title="Volver"></i>
                     <span style="font-weight: 700; color: #fff;">Private Atlas • Panel de Tareas</span>
                 </div>
                 <div class="holo-nav-links">
@@ -234,11 +215,13 @@
                         </div>
                     </div>
                     <div style="display: flex; align-items: flex-end;">
-                        <button type="button" class="holo-btn primary-btn" id="btn-add-task" style="width: 100%; height: 42px;">Agregar Tarea</button>
+                        <button class="holo-btn primary-btn" style="width: 100%; height: 42px;" onclick="addTask()">Agregar Tarea</button>
                     </div>
                 </div>
 
-                <div class="expenses-list-container" id="tasksListContainer" style="max-height: 280px;"></div>
+                <div class="expenses-list-container" id="tasksListContainer" style="max-height: 280px;">
+                    <!-- Se llena dinámicamente -->
+                </div>
             </div>
         </main>
 
@@ -249,10 +232,10 @@
                 <div class="side-badge-header">
                     <i class="fa-solid fa-compass"></i> Sincronización Abisal
                 </div>
-                <div class="realtime-clock" id="realtimeClock">--:-- --</div>
-                <div class="realtime-date" id="realtimeDate">Cargando fecha...</div>
+                <div class="realtime-clock" id="realtimeClock">10:10 PM</div>
+                <div class="realtime-date" id="realtimeDate">Viernes, 23 de Octubre</div>
                 <div class="side-location">
-                    <i class="fa-solid fa-location-dot"></i> Soacha, Cundinamarca • CO
+                    <i class="fa-solid fa-location-dot"></i> Fosa de las Marianas • Sector 7
                 </div>
                 <span class="read-more-link">Sistema Activo</span>
             </div>
@@ -260,141 +243,168 @@
 
     </div>
 
-    <!-- SCRIPT CORREGIDO CON EVENT LISTENERS DIRECTOS -->
+    <!-- Script de funcionalidad original -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        function switchView(viewName) {
+            document.getElementById('view-home').classList.add('hidden-view');
+            document.getElementById('view-finance').classList.add('hidden-view');
+            document.getElementById('view-tasks').classList.add('hidden-view');
 
-            // --- SISTEMA DE NAVEGACIÓN ---
-            function showView(viewName) {
-                var vHome = document.getElementById('view-home');
-                var vFinance = document.getElementById('view-finance');
-                var vTasks = document.getElementById('view-tasks');
+            if (viewName === 'home') {
+                document.getElementById('view-home').classList.remove('hidden-view');
+            } else if (viewName === 'finance') {
+                document.getElementById('view-finance').classList.remove('hidden-view');
+            } else if (viewName === 'tasks') {
+                document.getElementById('view-tasks').classList.remove('hidden-view');
+            }
+        }
 
-                vHome.classList.add('hidden-view');
-                vFinance.classList.add('hidden-view');
-                vTasks.classList.add('hidden-view');
+        // Reloj en tiempo real
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            document.getElementById('realtimeClock').innerText = `${hours}:${minutes} ${ampm}`;
+            
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('realtimeDate').innerText = now.toLocaleDateString('es-ES', options);
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
 
-                document.getElementById('nav-search').classList.remove('active');
-                document.getElementById('nav-finance').classList.remove('active');
-                document.getElementById('nav-tasks').classList.remove('active');
+        let currentCategory = 'needs';
+        let currentPercentage = 50;
 
-                if (viewName === 'home') {
-                    vHome.classList.remove('hidden-view');
-                    document.getElementById('nav-search').classList.add('active');
-                } else if (viewName === 'finance') {
-                    vFinance.classList.remove('hidden-view');
-                    document.getElementById('nav-finance').classList.add('active');
-                } else if (viewName === 'tasks') {
-                    vTasks.classList.remove('hidden-view');
-                    document.getElementById('nav-tasks').classList.add('active');
-                }
+        function setCategory(category, percentage, element) {
+            currentCategory = category;
+            currentPercentage = percentage;
+            
+            document.querySelectorAll('.fin-cat-item').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+
+            const titles = {
+                needs: "Control Presupuestario: Necesidades (50%)",
+                wants: "Control Presupuestario: Deseos (30%)",
+                savings: "Control Presupuestario: Ahorro (20%)"
+            };
+            document.getElementById('currentCategoryTitle').innerText = titles[category];
+            updateFinanceCalculations();
+        }
+
+        let totalIncome = parseFloat(localStorage.getItem('totalIncome')) || 0;
+        document.getElementById('totalIncomeInput').value = totalIncome || '';
+
+        let expenses = JSON.parse(localStorage.getItem('abyssalExpenses')) || [];
+        let tasks = JSON.parse(localStorage.getItem('abyssalTasks')) || [];
+
+        function updateFinanceCalculations() {
+            totalIncome = parseFloat(document.getElementById('totalIncomeInput').value) || 0;
+            localStorage.setItem('totalIncome', totalIncome);
+
+            const categoryLimit = totalIncome * (currentPercentage / 100);
+            
+            let spentInCat = expenses
+                .filter(exp => exp.category === currentCategory)
+                .reduce((sum, exp) => sum + exp.amount, 0);
+
+            document.getElementById('summaryTotalIncome').innerText = `$${totalIncome.toFixed(2)}`;
+            document.getElementById('summaryCategoryLimit').innerText = `$${categoryLimit.toFixed(2)}`;
+            document.getElementById('summaryCategorySpent').innerText = `$${spentInCat.toFixed(2)}`;
+
+            renderExpenses();
+        }
+
+        function addExpense() {
+            const name = document.getElementById('expenseNameInput').value;
+            const amount = parseFloat(document.getElementById('expenseAmountInput').value);
+            const date = document.getElementById('expenseDateInput').value || new Date().toISOString().split('T')[0];
+
+            if (!name || isNaN(amount) || amount <= 0) {
+                alert('Por favor ingresa un nombre y un monto válido.');
+                return;
             }
 
-            // Asignación de clicks del Dock
-            document.getElementById('nav-search').addEventListener('click', function() { showView('home'); });
-            document.getElementById('nav-finance').addEventListener('click', function() { showView('finance'); });
-            document.getElementById('nav-tasks').addEventListener('click', function() { showView('tasks'); });
+            expenses.push({ id: Date.now(), category: currentCategory, name, amount, date });
+            localStorage.setItem('abyssalExpenses', JSON.stringify(expenses));
 
-            // Asignación de botones dentro del Home
-            document.getElementById('card-btn-tasks').addEventListener('click', function() { showView('tasks'); });
-            document.getElementById('card-btn-finance').addEventListener('click', function() { showView('finance'); });
-            document.getElementById('footer-btn-finance').addEventListener('click', function() { showView('finance'); });
-            document.getElementById('footer-btn-tasks').addEventListener('click', function() { showView('tasks'); });
+            document.getElementById('expenseNameInput').value = '';
+            document.getElementById('expenseAmountInput').value = '';
+            updateFinanceCalculations();
+        }
 
-            // Botones Volver
-            document.querySelectorAll('.btn-back-home').forEach(function(btn) {
-                btn.addEventListener('click', function() { showView('home'); });
+        function deleteExpense(id) {
+            expenses = expenses.filter(exp => exp.id !== id);
+            localStorage.setItem('abyssalExpenses', JSON.stringify(expenses));
+            updateFinanceCalculations();
+        }
+
+        function renderExpenses() {
+            const container = document.getElementById('expensesListContainer');
+            container.innerHTML = '';
+
+            const filtered = expenses.filter(exp => exp.category === currentCategory);
+            if (filtered.length === 0) {
+                container.innerHTML = `<div style="text-align: center; color: #94a3b8; font-size: 11px; padding: 15px;">No hay gastos registrados en esta categoría.</div>`;
+                return;
+            }
+
+            filtered.forEach(exp => {
+                const row = document.createElement('div');
+                row.className = 'expense-item-row';
+                row.innerHTML = `
+                    <div class="expense-info-main">
+                        <b>${exp.name}</b>
+                        <small>${exp.date}</small>
+                    </div>
+                    <div class="expense-item-right">
+                        <span>$${exp.amount.toFixed(2)}</span>
+                        <div class="delete-expense-btn" onclick="deleteExpense(${exp.id})"><i class="fa-solid fa-trash"></i></div>
+                    </div>
+                `;
+                container.appendChild(row);
             });
+        }
 
+        function addTask() {
+            const text = document.getElementById('taskInput').value;
+            if (!text) return;
 
-            // --- RELOJ Y FECHA EN TIEMPO REAL ---
-            function updateClock() {
-                var now = new Date();
-                var hours = now.getHours();
-                var minutes = String(now.getMinutes()).padStart(2, '0');
-                var ampm = hours >= 12 ? 'PM' : 'AM';
-                hours = hours % 12;
-                hours = hours ? hours : 12;
+            tasks.push({ id: Date.now(), text, completed: false });
+            localStorage.setItem('abyssalTasks', JSON.stringify(tasks));
+            document.getElementById('taskInput').value = '';
+            renderTasks();
+        }
 
-                document.getElementById('realtimeClock').innerText = hours + ':' + minutes + ' ' + ampm;
+        function toggleTask(id) {
+            tasks = tasks.map(t => t.id === id ? { ...t, completed: !t.completed } : t);
+            localStorage.setItem('abyssalTasks', JSON.stringify(tasks));
+            renderTasks();
+        }
 
-                var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                var strDate = now.toLocaleDateString('es-CO', options);
-                document.getElementById('realtimeDate').innerText = strDate.charAt(0).toUpperCase() + strDate.slice(1);
-            }
-            setInterval(updateClock, 1000);
-            updateClock();
+        function deleteTask(id) {
+            tasks = tasks.filter(t => t.id !== id);
+            localStorage.setItem('abyssalTasks', JSON.stringify(tasks));
+            renderTasks();
+        }
 
+        function renderTasks() {
+            const container = document.getElementById('tasksListContainer');
+            container.innerHTML = '';
 
-            // --- MÓDULO DE FINANZAS 50/30/20 ---
-            var currentCategory = 'needs';
-            var currentPercentage = 50;
-
-            function setCategory(cat, pct, elId) {
-                currentCategory = cat;
-                currentPercentage = pct;
-
-                document.querySelectorAll('.fin-cat-item').forEach(function(i) { i.classList.remove('active'); });
-                document.getElementById(elId).classList.add('active');
-
-                var titles = {
-                    needs: "Control Presupuestario: Necesidades (50%)",
-                    wants: "Control Presupuestario: Deseos (30%)",
-                    savings: "Control Presupuestario: Ahorro (20%)"
-                };
-                var desc = {
-                    needs: "Límite recomendado: 50% de tus ingresos totales.",
-                    wants: "Límite recomendado: 30% de tus ingresos totales.",
-                    savings: "Límite recomendado: 20% de tus ingresos totales."
-                };
-
-                document.getElementById('currentCategoryTitle').innerText = titles[cat];
-                document.getElementById('currentCategoryDesc').innerText = desc[cat];
-
-                updateFinanceCalculations();
+            if (tasks.length === 0) {
+                container.innerHTML = `<div style="text-align: center; color: #94a3b8; font-size: 11px; padding: 15px;">No hay tareas pendientes.</div>`;
+                return;
             }
 
-            document.getElementById('cat-needs').addEventListener('click', function() { setCategory('needs', 50, 'cat-needs'); });
-            document.getElementById('cat-wants').addEventListener('click', function() { setCategory('wants', 30, 'cat-wants'); });
-            document.getElementById('cat-savings').addEventListener('click', function() { setCategory('savings', 20, 'cat-savings'); });
-
-            var totalIncome = parseFloat(localStorage.getItem('totalIncome')) || 0;
-            document.getElementById('totalIncomeInput').value = totalIncome || '';
-
-            var expenses = JSON.parse(localStorage.getItem('abyssalExpenses')) || [];
-            var tasks = JSON.parse(localStorage.getItem('abyssalTasks')) || [];
-
-            function updateFinanceCalculations() {
-                totalIncome = parseFloat(document.getElementById('totalIncomeInput').value) || 0;
-                localStorage.setItem('totalIncome', totalIncome);
-
-                var categoryLimit = totalIncome * (currentPercentage / 100);
-                var spentInCat = expenses
-                    .filter(function(exp) { return exp.category === currentCategory; })
-                    .reduce(function(sum, exp) { return sum + exp.amount; }, 0);
-
-                document.getElementById('summaryTotalIncome').innerText = '$' + totalIncome.toFixed(2);
-                document.getElementById('summaryCategoryLimit').innerText = '$' + categoryLimit.toFixed(2);
-                document.getElementById('summaryCategorySpent').innerText = '$' + spentInCat.toFixed(2);
-
-                renderExpenses();
-            }
-
-            document.getElementById('totalIncomeInput').addEventListener('input', updateFinanceCalculations);
-
-            document.getElementById('btn-add-expense').addEventListener('click', function() {
-                var name = document.getElementById('expenseNameInput').value;
-                var amount = parseFloat(document.getElementById('expenseAmountInput').value);
-                var date = document.getElementById('expenseDateInput').value || new Date().toISOString().split('T')[0];
-
-                if (!name || isNaN(amount) || amount <= 0) {
-                    alert('Ingresa una descripción y un monto válido.');
-                    return;
-                }
-
-                expenses.push({ id: Date.now(), category: currentCategory, name: name, amount: amount, date: date });
-                localStorage.setItem('abyssalExpenses', JSON.stringify(expenses));
-
-                document.getElementById('expenseNameInput').value = '';
-                document.getElementById('expenseAmountInput').value = '';
-                updateFinanceCalculations();
+            tasks.forEach(t => {
+                const row = document.createElement('div');
+                row.className = 'expense-item-row';
+                row.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" ${t.completed ? 'checked' : ''} onclick="toggleTask(${t.id})" style="cursor: pointer;">
+                        <span style="${t.completed ? 'text-decoration: line-through; color: #94a3b8;' : 'color: #f8fafc;'}">${t.text}</span>
+                    </div>
+                    <div cl
